@@ -32,7 +32,7 @@ export default function LandingPage(props) {
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
+        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent sm:mt-8 md:mt-16"></div>
         <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-slate-100 sm:text-4xl">
             <span className="block">Uber for Programmers</span>
@@ -43,14 +43,14 @@ export default function LandingPage(props) {
           </p>
           <a
             href="#"
-            className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50 sm:w-auto"
+            className="mt-8 w-full inline-flex items-center justify-center px-7 py-4 border border-gray-400 text-green-600 text-sm font-medium bg-gray-800 hover:bg-gray-400 sm:w-auto"
           >
             View Case Study
           </a>
         </div>
         <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
         {/* Secondary CTA */}
-        <div className="relative">
+        <div className="relative sm:my-16 lg:my-32">
           <svg className="absolute" width="100%" height="100%">
             <defs>
               <pattern
@@ -88,11 +88,10 @@ export default function LandingPage(props) {
                 Shattering borders, time zones, and language barriers.
               </p>
               <div className="mt-10 sm:flex sm:justify-center lg:justify-start">
-                {/* TODO: style button */}
                 <div className="rounded-md shadow">
                   <a
                     href="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full inline-flex items-center justify-center px-7 py-4 border border-gray-400 text-green-600 text-sm font-medium bg-gray-800 hover:bg-gray-400 sm:w-auto"
                   >
                     Learn more
                   </a>
@@ -108,8 +107,7 @@ export default function LandingPage(props) {
             />
           </div>
         </div>
-        {/* TODO: make responsive */}
-        <div className="mt-12">
+        <div className="my-32 sm:my-24">
           <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
           <div className="w-full h-24 bg-gray-900 flex justify-center items-center">
             <CodeIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
@@ -119,28 +117,27 @@ export default function LandingPage(props) {
           </div>
           <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
         </div>
-        <div>
-          <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-16 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-3xl font-extrabold text-slate-100">
-                Built by programmers for programmers
-              </h2>
-            </div>
-            <dl className="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8">
-              {features.map((feature) => (
-                <div key={feature.name} className="relative">
-                  <dt>
-                    <p className="ml-9 text-lg leading-6 font-medium text-green-600">
-                      {feature.name}
-                    </p>
-                  </dt>
-                  <dd className="mt-2 ml-9 text-base text-gray-400">
-                    {feature.description}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+        {/* Features */}
+        <div className="max-w-7xl mx-auto pb-16 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-extrabold text-slate-100">
+              Built by programmers for programmers
+            </h2>
           </div>
+          <dl className="mt-12 space-y-10 sm:space-y-0 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8">
+            {features.map((feature) => (
+              <div key={feature.name} className="relative">
+                <dt>
+                  <p className="ml-9 text-lg leading-6 font-medium text-green-600">
+                    {feature.name}
+                  </p>
+                </dt>
+                <dd className="mt-2 ml-9 text-base text-gray-400">
+                  {feature.description}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </main>
     </div>
