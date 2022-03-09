@@ -32,8 +32,8 @@ export default function LandingPage(props) {
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        {/* TODO: divider with gradient */}
-        <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8 border-y">
+        <div className="max-w-4xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
+        <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-slate-100 sm:text-4xl">
             <span className="block">Uber for Programmers</span>
           </h2>
@@ -48,7 +48,7 @@ export default function LandingPage(props) {
             View Case Study
           </a>
         </div>
-        {/* TODO: divider */}
+        <div className="max-w-4xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
         {/* Secondary CTA */}
         {/* TODO: grid pattern */}
         <div className="relative">
@@ -84,12 +84,15 @@ export default function LandingPage(props) {
           </div>
         </div>
         {/* TODO: make responsive */}
-        {/* TODO: border fade gradient */}
-        <div className="w-full h-24 bg-gray-900 border-y border-green-700 my-12 flex justify-center items-center">
-          <CodeIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
-          <AcademicCapIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
-          <FingerPrintIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
-          <KeyIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
+        <div className="mt-12">
+          <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
+          <div className="w-full h-24 bg-gray-900 flex justify-center items-center">
+            <CodeIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
+            <AcademicCapIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
+            <FingerPrintIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
+            <KeyIcon className="h-6 w-6 text-green-700 shrink-0 mx-6" />
+          </div>
+          <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
         </div>
         <div>
           <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:py-16 lg:px-8">
