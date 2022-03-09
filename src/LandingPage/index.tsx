@@ -32,7 +32,7 @@ export default function LandingPage(props) {
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        <div className="max-w-4xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
+        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
         <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-slate-100 sm:text-4xl">
             <span className="block">Uber for Programmers</span>
@@ -48,11 +48,36 @@ export default function LandingPage(props) {
             View Case Study
           </a>
         </div>
-        <div className="max-w-4xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
+        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
         {/* Secondary CTA */}
-        {/* TODO: grid pattern */}
         <div className="relative">
-          <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left my-12">
+          <svg className="absolute" width="100%" height="100%">
+            <defs>
+              <pattern
+                id="grid"
+                x="20"
+                y="20"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <rect
+                  stroke="rgba(255,255,255,.1)"
+                  fill="none"
+                  width="40"
+                  height="40"
+                ></rect>
+              </pattern>
+            </defs>
+            <rect
+              x="0"
+              y="0"
+              width="100%"
+              height="100%"
+              fill="url(#grid)"
+            ></rect>
+          </svg>
+          <div className="relative mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left my-12">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
               <h1 className="text-3xl font-bold font-extrabold text-slate-100 sm:text-4xl">
                 <span className="block">
@@ -75,9 +100,9 @@ export default function LandingPage(props) {
               </div>
             </div>
           </div>
-          <div className="relative w-full h-64 sm:h-72 md:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full">
+          <div className="relative w-full h-64 sm:h-72 md:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 lg:h-full lg:p-8">
             <img
-              className="absolute inset-0 w-full h-full object-cover"
+              className="w-full h-full object-cover shadow-md rounded-2xl"
               src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
               alt=""
             />
