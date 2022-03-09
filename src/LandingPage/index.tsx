@@ -32,8 +32,8 @@ export default function LandingPage(props) {
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        {/* TODO: divider */}
-        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+        {/* TODO: divider with gradient */}
+        <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8 border-y">
           <h2 className="text-3xl font-extrabold text-slate-100 sm:text-4xl">
             <span className="block">Uber for Programmers</span>
           </h2>
@@ -52,7 +52,7 @@ export default function LandingPage(props) {
         {/* Secondary CTA */}
         {/* TODO: grid pattern */}
         <div className="relative">
-          <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left">
+          <div className="mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left my-12">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
               <h1 className="text-3xl font-bold font-extrabold text-slate-100 sm:text-4xl">
                 <span className="block">
