@@ -27,7 +27,7 @@ const features = [
 
 export default function LandingPage(props) {
   return (
-    <div className="bg-black">
+    <div className="bg-landing">
       {/* TODO: bg gradient */}
       <Header />
       <main className="lg:relative">

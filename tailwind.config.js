@@ -5,6 +5,9 @@ module.exports = {
       fontFamily: {
         grifter: ['GRIFTER', 'sans-serif'],
       },
+      backgroundImage: {
+        landing: "url('/public/landing.svg')",
+      },
     },
   },
   plugins: [],
