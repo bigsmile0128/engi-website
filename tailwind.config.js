@@ -6,7 +6,7 @@ module.exports = {
         grifter: ['GRIFTER', 'sans-serif'],
       },
       backgroundImage: {
-        landing: "url('/public/landing.svg')",
+        landing: "url('/public/img/landing.svg')",
       },
     },
   },

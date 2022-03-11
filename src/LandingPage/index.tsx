@@ -5,7 +5,9 @@ import {
   FingerPrintIcon,
   KeyIcon,
 } from '@heroicons/react/outline';
+
 import Header from './Header';
+import Hero from './Hero';
 
 const features = [
   {
@@ -28,29 +30,13 @@ const features = [
 export default function LandingPage(props) {
   return (
     <div className="bg-landing">
-      {/* TODO: bg gradient */}
+      {/* TODO: handle background repeat when scrolling down */}
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent sm:mt-8 md:mt-16"></div>
-        <div className="max-w-3xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-slate-100 sm:text-4xl">
-            <span className="block">Uber for Programmers</span>
-          </h2>
-          <p className="mt-4 text-lg leading-6 text-indigo-200">
-            An innovative way, reliable way to source code development at a high
-            cost efficiency.
-          </p>
-          <a
-            href="#"
-            className="mt-8 w-full inline-flex items-center justify-center px-7 py-4 border border-gray-400 text-green-600 text-sm font-medium bg-gray-800 hover:bg-gray-400 sm:w-auto"
-          >
-            View Case Study
-          </a>
-        </div>
-        <div className="max-w-6xl h-px mx-auto bg-gradient-to-r from-transparent via-slate-400 to-transparent"></div>
+        <Hero />
         {/* Secondary CTA */}
-        <div className="relative sm:my-16 lg:my-32">
+        <div className="relative">
           <svg className="absolute" width="100%" height="100%">
             <defs>
               <pattern
@@ -77,7 +63,7 @@ export default function LandingPage(props) {
               fill="url(#grid)"
             ></rect>
           </svg>
-          <div className="relative mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left my-12">
+          <div className="relative mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
               <h1 className="text-3xl font-bold font-extrabold text-slate-100 sm:text-4xl">
                 <span className="block">
