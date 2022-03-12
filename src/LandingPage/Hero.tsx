@@ -1,5 +1,7 @@
 import React from 'react';
 
+import EmailModal from './EmailModal';
+
 import jobActivityImage from './img/job-activity.png';
 import { ReactComponent as GitIcon } from './img/git.svg';
 import { ReactComponent as ReactIcon } from './img/react.svg';
@@ -7,7 +9,7 @@ import { ReactComponent as RustIcon } from './img/rust.svg';
 import { ReactComponent as FigmaIcon } from './img/figma.svg';
 import { ReactComponent as PythonIcon } from './img/python.svg';
 
-export default function Hero() {
+export default function Hero({ onEmailSignupClick }) {
   return (
     <div className="max-w-3xl lg:max-w-4xl mx-auto py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
       {/* TODO: make responsive */}
@@ -76,13 +78,16 @@ export default function Hero() {
       <div className="flex mt-12">
         <div className="flex-1 flex flex-col">
           <div className="flex w-full">
+            {/* TODO: add basic email validation */}
             <input
-              className="bg-transparent border border-gray-500 p-4 text-sm flex-1"
+              className="bg-transparent border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring"
               type="text"
               placeholder="Enter your e-mail address"
             />
-            {/* TODO: button functionality */}
-            <button className="shrink-0 bg-gray-300 px-6 font-bold text-sm">
+            <button
+              className="shrink-0 bg-gray-300 px-6 font-bold text-sm hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring"
+              onClick={onEmailSignupClick}
+            >
               Get Notified
             </button>
           </div>

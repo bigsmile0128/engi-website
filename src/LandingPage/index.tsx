@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CodeIcon,
   AcademicCapIcon,
   FingerPrintIcon,
   KeyIcon,
 } from '@heroicons/react/outline';
+import classNames from 'classnames';
 
 import Header from './Header';
 import Hero from './Hero';
+import EmailModal from './EmailModal';
 
 const features = [
   {
@@ -28,13 +30,33 @@ const features = [
 ];
 
 export default function LandingPage(props) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isBlur, setIsBlur] = useState(false);
+
+  const onEmailSignupClick = async () => {
+    // TODO: make request to sign up for newsletter
+    // TODO: add logging for failed email registration
+    setModalOpen(true);
+  };
+
+  const onInterestClick = async () => {
+    // TODO: make request for selecting interest
+    // TODO: add logging for failed selection
+  };
+
+  // blur should only happen after the modal has already been rendered to prevent choppy re-render
+  useEffect(() => {
+    setIsBlur(modalOpen);
+  }, [modalOpen]);
+
   return (
-    <div className="bg-landing">
-      {/* TODO: handle background repeat when scrolling down */}
+    <div
+      className={classNames('bg-landing bg-cover', { 'blur-[10px]': isBlur })}
+    >
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        <Hero />
+        <Hero onEmailSignupClick={onEmailSignupClick} />
         {/* Secondary CTA */}
         <div className="relative">
           <svg className="absolute" width="100%" height="100%">
@@ -126,6 +148,11 @@ export default function LandingPage(props) {
           </dl>
         </div>
       </main>
+      <EmailModal
+        open={modalOpen}
+        setOpen={setModalOpen}
+        onInterestClick={onInterestClick}
+      />
     </div>
   );
 }
