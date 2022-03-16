@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import jobActivityImage from './img/job-activity.png';
 import { ReactComponent as GitIcon } from './img/git.svg';
@@ -7,7 +7,9 @@ import { ReactComponent as RustIcon } from './img/rust.svg';
 import { ReactComponent as FigmaIcon } from './img/figma.svg';
 import { ReactComponent as PythonIcon } from './img/python.svg';
 
-export default function Hero({ onEmailSignupClick }) {
+export default function Hero({ onEmailSignup }) {
+  const [email, setEmail] = useState('');
+
   return (
     <div className="max-w-3xl lg:max-w-4xl mx-auto pt-4 py-16 px-4 sm:py-20 sm:px-6 lg:px-8 flex flex-col items-center sm:items-start">
       <div className="flex items-center sm:justify-between">
@@ -74,20 +76,33 @@ export default function Hero({ onEmailSignupClick }) {
       </p>
       <div className="flex mt-12">
         <div className="flex-1 flex flex-col">
-          <div className="flex w-full">
+          <form
+            className="flex w-full"
+            onSubmit={(e) => {
+              e.preventDefault();
+              onEmailSignup(email);
+            }}
+          >
             {/* TODO: add basic email validation */}
+            <label htmlFor="email-address" className="sr-only">
+              Email address
+            </label>
             <input
-              className="bg-transparent border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring"
-              type="text"
-              placeholder="Enter your e-mail address"
+              id="email-address"
+              className="bg-transparent border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring peer"
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
             />
             <button
+              type="submit"
               className="shrink-0 bg-gray-300 px-6 font-bold text-sm hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring"
-              onClick={onEmailSignupClick}
             >
               Get Notified
             </button>
-          </div>
+          </form>
           <div className="flex items-center mt-16 gap-x-6 sm:gap-x-8">
             <GitIcon />
             <ReactIcon />

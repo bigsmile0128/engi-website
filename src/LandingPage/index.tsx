@@ -33,7 +33,7 @@ export default function LandingPage(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
 
-  const onEmailSignupClick = async () => {
+  const onEmailSignup = async () => {
     // TODO: make request to sign up for newsletter
     // TODO: add logging for failed email registration
     setModalOpen(true);
@@ -56,7 +56,7 @@ export default function LandingPage(props) {
       <Header />
       <main className="lg:relative">
         {/* Primary CTA */}
-        <Hero onEmailSignupClick={onEmailSignupClick} />
+        <Hero onEmailSignup={onEmailSignup} />
         {/* Secondary CTA */}
         <div className="relative">
           <svg className="absolute" width="100%" height="100%">
@@ -87,7 +87,7 @@ export default function LandingPage(props) {
           </svg>
           <div className="relative mx-auto max-w-7xl w-full pt-16 pb-20 text-center lg:py-12 lg:text-left">
             <div className="px-4 lg:w-1/2 sm:px-8 xl:pr-16">
-              <h1 className="text-3xl font-bold font-extrabold text-slate-100 sm:text-4xl">
+              <h1 className="text-3xl font-bold text-slate-100 sm:text-4xl">
                 <span className="block">
                   Global products build by global engineering
                 </span>
