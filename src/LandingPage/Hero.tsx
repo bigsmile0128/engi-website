@@ -1,7 +1,5 @@
 import React from 'react';
 
-import EmailModal from './EmailModal';
-
 import jobActivityImage from './img/job-activity.png';
 import { ReactComponent as GitIcon } from './img/git.svg';
 import { ReactComponent as ReactIcon } from './img/react.svg';
@@ -11,9 +9,8 @@ import { ReactComponent as PythonIcon } from './img/python.svg';
 
 export default function Hero({ onEmailSignupClick }) {
   return (
-    <div className="max-w-3xl lg:max-w-4xl mx-auto py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-      {/* TODO: make responsive */}
-      <div className="flex items-center justify-between">
+    <div className="max-w-3xl lg:max-w-4xl mx-auto pt-4 py-16 px-4 sm:py-20 sm:px-6 lg:px-8 flex flex-col items-center sm:items-start">
+      <div className="flex items-center sm:justify-between">
         <h2 className="text-4xl font-extrabold text-slate-100 sm:text-6xl sm:text-center">
           <div className="flex items-center">
             <svg
@@ -59,7 +56,7 @@ export default function Hero({ onEmailSignupClick }) {
             </svg>
           </div>
         </h2>
-        <div className="w-1/4 invisible md:visible">
+        <div className="w-1/4 hidden md:block">
           <img
             className="scale-[.85]"
             src={jobActivityImage}
@@ -67,7 +64,7 @@ export default function Hero({ onEmailSignupClick }) {
           />
         </div>
       </div>
-      <p className="text-lg leading-6 text-gray-300">
+      <p className="text-lg leading-6 text-gray-300 mt-8 sm:mt-4 md:mt-0">
         <span className="block">
           Welcome to
           <span className="ml-1 bg-[#65FFB7] text-[#4A6B63]">engi</span>, a
@@ -91,8 +88,7 @@ export default function Hero({ onEmailSignupClick }) {
               Get Notified
             </button>
           </div>
-          {/* TODO: make responsive */}
-          <div className="flex items-center mt-16 gap-x-8">
+          <div className="flex items-center mt-16 gap-x-6 sm:gap-x-8">
             <GitIcon />
             <ReactIcon />
             <RustIcon />
