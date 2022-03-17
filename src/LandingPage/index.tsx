@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   CodeIcon,
   AcademicCapIcon,
   FingerPrintIcon,
   KeyIcon,
 } from '@heroicons/react/outline';
-import classNames from 'classnames';
 
 import Header from './Header';
 import Hero from './Hero';
-import EmailModal from './EmailModal';
 import FigmaPreview from './FigmaPreview';
 
 const features = [
@@ -31,33 +29,12 @@ const features = [
 ];
 
 export default function LandingPage(props) {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isBlur, setIsBlur] = useState(false);
-
-  const onEmailSignup = async () => {
-    // TODO: make request to sign up for newsletter
-    // TODO: add logging for failed email registration
-    setModalOpen(true);
-  };
-
-  const onInterestClick = async () => {
-    // TODO: make request for selecting interest
-    // TODO: add logging for failed selection
-  };
-
-  // blur should only happen after the modal has already been rendered to prevent choppy re-render
-  useEffect(() => {
-    setIsBlur(modalOpen);
-  }, [modalOpen]);
-
   return (
-    <div
-      className={classNames('bg-landing bg-cover', { 'blur-[10px]': isBlur })}
-    >
+    <div className="bg-landing bg-cover relative">
       <Header />
-      <main className="lg:relative">
+      <main className="">
         {/* Primary CTA */}
-        <Hero onEmailSignup={onEmailSignup} />
+        <Hero />
         <FigmaPreview />
         <div className="my-32 sm:my-24">
           <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
@@ -92,11 +69,6 @@ export default function LandingPage(props) {
           </dl>
         </div>
       </main>
-      <EmailModal
-        open={modalOpen}
-        setOpen={setModalOpen}
-        onInterestClick={onInterestClick}
-      />
     </div>
   );
 }

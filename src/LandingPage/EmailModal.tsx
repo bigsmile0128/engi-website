@@ -2,7 +2,12 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 
-const interests = ['Programmer', 'Business', 'Investor', 'Curious'];
+const interests = [
+  { label: 'Programmer', value: 'engi-programmer' },
+  { label: 'Business', value: 'engi-business' },
+  { label: 'Investor', value: 'engi-investor' },
+  { label: 'Curious', value: 'engi-curious' },
+];
 
 export default function EmailModal({ open, setOpen, onInterestClick }) {
   const [selectedInterest, setSelectedInterest] = useState('');
@@ -69,24 +74,24 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
                       Select what best describes you.
                     </p>
                     <div className="grid grid-cols-2 grid-rows-2 gap-4 mt-4">
-                      {interests.map((interest) => (
+                      {interests.map(({ label, value }) => (
                         <button
                           className={classNames(
                             'py-3 px-6 text-sm focus:outline-none focus:ring',
                             {
                               'border border-gray-600 text-gray-400 hover:bg-gray-600 active:bg-gray-500':
-                                selectedInterest !== interest,
+                                selectedInterest !== value,
                               'text-gray-800 bg-teal-400 font-medium':
-                                selectedInterest === interest,
+                                selectedInterest === value,
                             }
                           )}
-                          key={interest}
+                          key={value}
                           onClick={() => {
-                            setSelectedInterest(interest);
-                            onInterestClick(interest);
+                            setSelectedInterest(value);
+                            onInterestClick(value);
                           }}
                         >
-                          {interest}
+                          {label}
                         </button>
                       ))}
                     </div>
@@ -94,7 +99,6 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
                 </div>
               </div>
               <div className="mt-5 sm:mt-10">
-                {/* TODO: it feels a bit strange to only have a dismiss button since there's no feedback for clicking an interest, but another "Get Notified" button seems redundant */}
                 <button
                   type="button"
                   className="inline-flex justify-center w-full border border-gray-400 px-4 py-4 bg-gray-700 text-base font-medium text-teal-400 hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-400 sm:text-sm"
