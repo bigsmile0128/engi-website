@@ -60,7 +60,7 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
                 <div className="mt-3 sm:mt-5">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg leading-6 font-grifter text-3xl text-gray-300"
+                    className="leading-6 font-grifter text-3xl text-gray-300"
                   >
                     You'll be notified!
                   </Dialog.Title>
