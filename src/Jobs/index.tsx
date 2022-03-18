@@ -1,10 +1,11 @@
 import React from 'react';
 import TimeEstimate from '../components/TimeEstimate';
+import SearchFilterList from './SearchFilterList';
 
 export default function Jobs() {
   return (
     // TODO: make responsive
-    <div className="flex flex-col p-24">
+    <div className="max-w-7xl mx-auto flex flex-col p-24">
       <div className="flex items-start justify-between">
         <h1 className="text-white font-grifter text-6xl">
           <span className="md:block">Discover </span>
@@ -29,6 +30,7 @@ export default function Jobs() {
           </div>
         </div>
       </div>
+      <SearchFilterList className="mt-12 w-64" />
     </div>
   );
 }

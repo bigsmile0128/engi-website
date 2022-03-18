@@ -54,6 +54,7 @@ export default function Layout() {
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0"></div>
           </div>
         </div>
+        {/* TODO: add popover for hamburger menu on mobile */}
       </nav>
       <div className="content">
         <Outlet />
