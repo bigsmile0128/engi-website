@@ -6,7 +6,6 @@ import {
   KeyIcon,
 } from '@heroicons/react/outline';
 
-import Header from './Header';
 import Hero from './Hero';
 import FigmaPreview from './FigmaPreview';
 
@@ -30,8 +29,7 @@ const features = [
 
 export default function LandingPage(props) {
   return (
-    <div className="bg-landing bg-cover relative">
-      <Header />
+    <div className="">
       <main className="">
         {/* Primary CTA */}
         <Hero />
