@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import Checkbox from '../components/Checkbox';
 
 interface SearchFilterListProps {
   className?: string;
@@ -21,17 +22,12 @@ export default function SearchFilterList({ className }: SearchFilterListProps) {
         <legend className="text-sm mb-2">Language</legend>
         <div className="flex flex-col gap-y-1">
           {languages.map((language) => (
-            <div className="flex items-center" key={language}>
-              <input
-                className="mr-4 h-4 w-4 accent-green-400 rounded-none"
-                type="checkbox"
-                name={language}
-                id={language}
-              />
-              <label htmlFor={language} className="text-sm">
-                {language}
-              </label>
-            </div>
+            <Checkbox
+              key={language}
+              name={language}
+              id={language}
+              label={language}
+            />
           ))}
         </div>
       </fieldset>
