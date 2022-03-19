@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Checkbox from '../components/Checkbox';
+import Slider from '../components/Slider';
 
 interface SearchFilterListProps {
   className?: string;
@@ -30,6 +31,9 @@ export default function SearchFilterList({ className }: SearchFilterListProps) {
             />
           ))}
         </div>
+        <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+        <legend className="text-sm mb-2">Estimated Time</legend>
+        <Slider />
       </fieldset>
     </div>
   );

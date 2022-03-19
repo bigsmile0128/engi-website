@@ -30,7 +30,7 @@ export default function Jobs() {
           </div>
         </div>
       </div>
-      <SearchFilterList className="mt-12 w-64" />
+      <SearchFilterList className="mt-12 w-48" />
     </div>
   );
 }
