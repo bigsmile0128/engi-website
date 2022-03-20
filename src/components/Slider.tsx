@@ -8,7 +8,7 @@ export default function Slider(props) {
       className="mt-8 bg-red-300"
       trackClassName=""
       markClassName=""
-      defaultValue={[1, 10]}
+      defaultValue={[2, 6]}
       marks
       min={1}
       max={10}
@@ -35,7 +35,7 @@ export default function Slider(props) {
             {...props}
             className={classNames(props.className, 'h-0.5 top-[5px]', {
               'bg-green-400': props.key === '-1',
-              'bg-gray-600': props.key === '-0' || props.key === '-2',
+              'bg-[#FFFFFF22]': props.key === '-0' || props.key === '-2',
             })}
           />
         );

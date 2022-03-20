@@ -1,6 +1,7 @@
 import React from 'react';
 import TimeEstimate from '../components/TimeEstimate';
 import SearchFilterList from './SearchFilterList';
+import SearchResultsHeader from './SearchResultsHeader';
 
 export default function Jobs() {
   return (
@@ -30,7 +31,12 @@ export default function Jobs() {
           </div>
         </div>
       </div>
-      <SearchFilterList className="mt-12 w-48" />
+      <div className="flex mt-12 gap-x-12">
+        <SearchFilterList className="basis-48 shrink-0" />
+        <div className="flex-1 flex flex-col">
+          <SearchResultsHeader className="shrink-0" />
+        </div>
+      </div>
     </div>
   );
 }

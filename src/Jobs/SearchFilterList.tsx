@@ -28,6 +28,7 @@ export default function SearchFilterList({ className }: SearchFilterListProps) {
               name={language}
               id={language}
               label={language}
+              defaultChecked={language === 'Python'}
             />
           ))}
         </div>
