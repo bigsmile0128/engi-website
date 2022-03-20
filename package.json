@@ -35,7 +35,7 @@
     "build-storybook": "build-storybook -s public",
     "storycap": "storycap --serverCmd \"start-storybook -p 9001\" http://localhost:9001",
     "prepare": "husky install",
-    "server": "nodemon ./mock_server"
+    "server": "nodemon ./mockServer"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +66,7 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^6.0.0",
     "@storybook/addon-actions": "^6.4.17",
     "@storybook/addon-essentials": "^6.4.17",
     "@storybook/addon-links": "^6.4.17",
@@ -77,18 +78,20 @@
     "@storybook/react": "^6.4.17",
     "@typescript-eslint/parser": "^5.14.0",
     "autoprefixer": "^10.4.2",
+    "dotenv": "^16.0.0",
     "eslint": "^8.11.0",
+    "express": "^4.17.3",
+    "http-proxy-middleware": "^2.0.4",
     "husky": "^7.0.4",
-    "json-server": "^0.17.0",
     "lint-staged": "^12.3.6",
     "nodemon": "^2.0.15",
     "postcss": "^8.4.8",
     "prettier": "^2.5.1",
     "tailwindcss": "^3.0.23",
+    "uuid": "^8.3.2",
     "webpack": "^5.68.0"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css,md}": "prettier --write"
-  },
-  "proxy": "http://localhost:8000/"
+  }
 }

@@ -19,7 +19,7 @@ export default function Hero() {
 
   const registerMutation = useMutation(async (email) => {
     try {
-      await axios.post('/contact', {
+      await axios.post('/api/contact', {
         contact_list_name: 'engi-newsletter',
         email,
       });
@@ -34,7 +34,7 @@ export default function Hero() {
   });
 
   const interestMutation = useMutation(async (interest) => {
-    await axios.put('/contact', {
+    await axios.put('/api/contact', {
       contact_list_name: 'engi-newsletter',
       email,
       topics: [interest],
