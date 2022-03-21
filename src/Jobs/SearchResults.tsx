@@ -21,10 +21,11 @@ const mockJobs = [
 
 export default function SearchResults({ className }: SearchResultsProps) {
   return (
-    <div className={classNames('flex flex-col', className)}>
+    <div className={classNames('flex flex-col gap-y-4', className)}>
       {mockJobs.map((job) => (
         <JobPreview key={job.id} {...job} />
       ))}
+      <JobPreview isSkeleton />
     </div>
   );
 }
