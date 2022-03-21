@@ -1,10 +1,14 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import TimeEstimate from '../components/TimeEstimate';
 import SearchFilterList from './SearchFilterList';
 import SearchResultsHeader from './SearchResultsHeader';
 import SearchResults from './SearchResults';
 
 export default function Jobs() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     // TODO: make responsive
     <div className="max-w-7xl mx-auto flex flex-col p-24">
@@ -33,7 +37,11 @@ export default function Jobs() {
         </div>
       </div>
       <div className="flex mt-12 gap-x-12">
-        <SearchFilterList className="basis-48 shrink-0" />
+        <SearchFilterList
+          className="basis-48 shrink-0"
+          searchParams={searchParams}
+          onChange={setSearchParams}
+        />
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader className="shrink-0 mb-6" />
           <SearchResults />

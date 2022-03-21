@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface CheckboxProps {
   className?: string;
   name: string;
   id: string;
   label: string;
-  defaultChecked?: boolean;
+  checked: boolean;
+  onChange: (checked) => void;
 }
 
 export default function Checkbox({
@@ -13,10 +14,9 @@ export default function Checkbox({
   name,
   id,
   label,
-  defaultChecked = false,
+  checked,
+  onChange,
 }: CheckboxProps) {
-  const [checked, setChecked] = useState(defaultChecked);
-
   return (
     <div className="flex items-center relative">
       <input
@@ -26,14 +26,14 @@ export default function Checkbox({
         id={id}
         className="opacity-0 absolute h-4 w-4"
         checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
+        onChange={(e) => onChange(e.target.checked)}
       />
       <div
         tabIndex={0}
         className="bg-[#ffffff22] border border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 focus:outline-none focus:ring-2"
         onKeyPress={(e) => {
           if (e.key === ' ') {
-            setChecked(!checked);
+            onChange(!checked);
           }
         }}
       >

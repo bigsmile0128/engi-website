@@ -8,10 +8,7 @@ export default function Slider(props) {
       className="mt-8 bg-red-300"
       trackClassName=""
       markClassName=""
-      defaultValue={[2, 6]}
       marks
-      min={1}
-      max={10}
       ariaLabel={['min', 'max']}
       ariaValuetext={(state) => `${state.valueNow}`}
       renderThumb={(props, state) => {
@@ -40,8 +37,8 @@ export default function Slider(props) {
           />
         );
       }}
-      minDistance={1}
       pearling
+      {...props}
     />
   );
 }
