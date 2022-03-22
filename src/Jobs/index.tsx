@@ -25,7 +25,7 @@ export default function Jobs() {
 
   return (
     // TODO: make responsive
-    // TODO: handle error
+    // TODO: log error to Sentry
     <div className="max-w-7xl mx-auto flex flex-col p-24">
       <div className="flex items-start justify-between">
         <h1 className="text-white font-grifter text-6xl">
@@ -67,6 +67,8 @@ export default function Jobs() {
             isLoading={searchMutation.isLoading}
             results={searchMutation.data?.results ?? []}
             numResults={searchMutation.data?.numResults ?? 0}
+            error={searchMutation.error as Error}
+            refresh={() => searchMutation.mutate(searchParams)}
           />
         </div>
       </div>

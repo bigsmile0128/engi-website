@@ -10,6 +10,7 @@ interface SearchResultsHeaderProps {
   className?: string;
   isLoading: boolean;
   numResults?: number;
+  error?: Error;
 }
 
 const publishingOptions = [
@@ -30,6 +31,7 @@ export default function SearchResultsHeader({
   className,
   isLoading,
   numResults,
+  error,
 }: SearchResultsHeaderProps) {
   const [selected, setSelected] = useState(publishingOptions[0]);
   const [sortDir, setSortDir] = useState(SortDirection.DESCENDING);
