@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
-    <div className="bg-black bg-landing bg-cover relative min-h-screen">
+    <div className="bg-landing bg-repeat-y relative min-h-screen">
       <nav className="shrink-0">
         <div className="relative bg-transparent">
           <div className="flex justify-between items-center px-4 py-6 sm:px-6 md:justify-start md:space-x-10">

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useMutation } from 'react-query';
+import axios from 'axios';
 
 import TimeEstimate from '../components/TimeEstimate';
 import SearchFilterList from './SearchFilterList';
@@ -8,6 +10,19 @@ import SearchResults from './SearchResults';
 
 export default function Jobs() {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const searchMutation = useMutation(async (searchParams: URLSearchParams) => {
+    const response = await axios.get('/api/jobs', {
+      params: searchParams,
+    });
+
+    return response.data;
+  });
+
+  useEffect(() => {
+    searchMutation.mutate(searchParams);
+  }, [searchParams]);
+  console.log(searchMutation.data);
 
   return (
     // TODO: make responsive
@@ -43,8 +58,15 @@ export default function Jobs() {
           onChange={setSearchParams}
         />
         <div className="flex-1 flex flex-col">
-          <SearchResultsHeader className="shrink-0 mb-6" />
-          <SearchResults />
+          <SearchResultsHeader
+            className="shrink-0 mb-6"
+            numResults={searchMutation.data?.numResults}
+            isLoading={searchMutation.isLoading}
+          />
+          <SearchResults
+            isLoading={searchMutation.isLoading}
+            results={searchMutation.data?.results ?? []}
+          />
         </div>
       </div>
     </div>

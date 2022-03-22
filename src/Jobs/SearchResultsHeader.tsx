@@ -4,9 +4,12 @@ import { FiSearch } from 'react-icons/fi';
 import { HiSortAscending, HiSortDescending } from 'react-icons/hi';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
+import pluralize from 'pluralize';
 
 interface SearchResultsHeaderProps {
   className?: string;
+  isLoading: boolean;
+  numResults?: number;
 }
 
 const publishingOptions = [
@@ -25,14 +28,19 @@ enum SortDirection {
 
 export default function SearchResultsHeader({
   className,
+  isLoading,
+  numResults,
 }: SearchResultsHeaderProps) {
   const [selected, setSelected] = useState(publishingOptions[0]);
-  const [sortDir, setSortDir] = useState(SortDirection.ASCENDING);
+  const [sortDir, setSortDir] = useState(SortDirection.DESCENDING);
 
   return (
     <header className={classNames('flex items-center', className)}>
       <h4 className="font-grifter">
-        Found 43,125 <span className="text-green-400">jobs</span>
+        Found {numResults ?? 0}{' '}
+        <span className="text-green-400">
+          {pluralize('job', numResults ?? 0)}
+        </span>
       </h4>
       <div className="ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative">
         <div className="flex items-center justify-center absolute pointer-events-none">

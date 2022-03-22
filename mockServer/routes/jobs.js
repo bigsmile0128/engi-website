@@ -17,11 +17,12 @@ function createJobs(numJobs) {
 
   const jobs = [];
   for (let i = 0; i < numJobs; i++) {
+    const numTests = _.random(5, 25);
     jobs.push({
       language: languages[_.random(0, languages.length - 1)],
       title: faker.hacker.phrase(),
-      numTests: _.random(5, 25),
-      testsPassed: _.random(1, 25),
+      numTests,
+      testsPassed: _.random(1, numTests),
       timeEstimate: _.random(1, 20),
       reward: _.random(10, 100) * 10,
       numContributors: _.random(1, 50),
@@ -32,9 +33,11 @@ function createJobs(numJobs) {
   return jobs;
 }
 
-const jobDb = createJobs(200);
+const jobDb = createJobs(247);
 
-router.get('/', (req, res) => {
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+router.get('/', async (req, res) => {
   const { query } = req;
 
   // handle single or multiple language input
@@ -53,6 +56,9 @@ router.get('/', (req, res) => {
     }
     return true;
   });
+
+  // artificial delay
+  await sleep(2000);
 
   res.json({
     numResults: jobs.length,

@@ -7,6 +7,9 @@ module.exports = function (app) {
     createProxyMiddleware({
       target: `http://localhost:${process.env.SERVER_PORT || 8000}`,
       changeOrigin: true,
+      pathRewrite: {
+        '^/api': '',
+      },
     })
   );
 };
