@@ -28,7 +28,7 @@ export default function JobPreview({
   numContributors,
   isSkeleton,
 }: JobPreviewProps) {
-  const placeholderStyle = 'bg-[#00000022] rounded-full';
+  const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
 
   return (
     // TODO: make Link with hover state and disable highlight
@@ -56,12 +56,10 @@ export default function JobPreview({
             <div
               className={classNames(
                 'truncate',
-                isSkeleton ? `${placeholderStyle}` : ''
+                isSkeleton ? placeholderStyle : ''
               )}
             >
-              <span className={isSkeleton ? 'invisible' : ''}>
-                {title ?? 'N/A'}
-              </span>
+              <span>{title ?? 'N/A'}</span>
             </div>
           </span>
         </div>
@@ -72,9 +70,7 @@ export default function JobPreview({
               isSkeleton ? placeholderStyle : ''
             )}
           >
-            <span className={isSkeleton ? 'invisible' : ''}>
-              total contributors
-            </span>
+            <span>total contributors</span>
           </span>
           <div
             className={classNames(
@@ -90,7 +86,7 @@ export default function JobPreview({
           <span
             className={isSkeleton ? `text-xs ${placeholderStyle}` : 'hidden'}
           >
-            <span className="invisible">placeholder</span>
+            <span>placeholder</span>
           </span>
         </div>
         <div className="flex flex-col justify-between items-start w-32">
@@ -100,7 +96,7 @@ export default function JobPreview({
               isSkeleton ? placeholderStyle : ''
             )}
           >
-            <span className={isSkeleton ? 'invisible' : ''}>test progress</span>
+            <span>test progress</span>
           </span>
           <div className="flex flex-col items-center w-full">
             <span
@@ -109,7 +105,7 @@ export default function JobPreview({
                 isSkeleton ? `h-2 ${placeholderStyle}` : ''
               )}
             >
-              <span className={isSkeleton ? 'invisible' : ''}>
+              <span>
                 {!isSkeleton && testsPassed && numTests
                   ? `${testsPassed} / ${numTests}`
                   : ''}
@@ -139,9 +135,7 @@ export default function JobPreview({
               isSkeleton ? placeholderStyle : ''
             )}
           >
-            <span className={isSkeleton ? 'invisible' : ''}>
-              estimated time
-            </span>
+            <span>estimated time</span>
           </span>
           <TimeEstimate
             className={classNames(isSkeleton ? 'hidden' : '')}
@@ -150,7 +144,7 @@ export default function JobPreview({
           <span
             className={isSkeleton ? `text-xs ${placeholderStyle}` : 'hidden'}
           >
-            <span className="invisible">placeholder</span>
+            <span>placeholder</span>
           </span>
         </div>
         <div className="flex flex-col justify-between">
@@ -160,7 +154,7 @@ export default function JobPreview({
               isSkeleton ? placeholderStyle : ''
             )}
           >
-            <span className={isSkeleton ? 'invisible' : ''}>minimum wage</span>
+            <span>minimum wage</span>
           </span>
           <div className="flex items-end">
             <span
@@ -171,7 +165,7 @@ export default function JobPreview({
                   : 'font-grifter -mb-[4px]'
               )}
             >
-              <span className={isSkeleton ? 'invisible' : ''}>
+              <span>
                 {!isSkeleton && (reward ? `$${reward}` : 'N/A')}
                 {isSkeleton && '$100'}
               </span>
@@ -182,7 +176,7 @@ export default function JobPreview({
                 isSkeleton ? `h-4 ${placeholderStyle}` : ''
               )}
             >
-              <span className={isSkeleton ? 'invisible' : ''}>
+              <span>
                 {!isSkeleton && (reward ? `e${Math.floor(reward * 1.6)}` : '')}
                 {isSkeleton && 'e100'}
               </span>

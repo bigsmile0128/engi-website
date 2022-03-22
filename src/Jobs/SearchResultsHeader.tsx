@@ -33,16 +33,35 @@ export default function SearchResultsHeader({
 }: SearchResultsHeaderProps) {
   const [selected, setSelected] = useState(publishingOptions[0]);
   const [sortDir, setSortDir] = useState(SortDirection.DESCENDING);
+  const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
 
   return (
-    <header className={classNames('flex items-center', className)}>
-      <h4 className="font-grifter">
-        Found {numResults ?? 0}{' '}
-        <span className="text-green-400">
-          {pluralize('job', numResults ?? 0)}
+    <header
+      className={classNames(
+        'flex items-center',
+        { 'animate-pulse': isLoading },
+        className
+      )}
+    >
+      <h4
+        className={classNames(
+          'font-grifter',
+          isLoading ? placeholderStyle : ''
+        )}
+      >
+        <span>
+          Found {numResults ?? 0}{' '}
+          <span className="text-green-400">
+            {pluralize('job', numResults ?? 0)}
+          </span>
         </span>
       </h4>
-      <div className="ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative">
+      <div
+        className={classNames(
+          'ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative',
+          isLoading ? ` border-b-0 ${placeholderStyle}` : ''
+        )}
+      >
         <div className="flex items-center justify-center absolute pointer-events-none">
           <FiSearch className="h-5 w-5 text-gray-300" />
         </div>
@@ -55,7 +74,7 @@ export default function SearchResultsHeader({
           autoComplete="off"
         />
       </div>
-      <div className="ml-auto">
+      <div className={classNames('ml-auto', isLoading ? placeholderStyle : '')}>
         <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
             <>
