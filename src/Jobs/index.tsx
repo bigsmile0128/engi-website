@@ -22,10 +22,10 @@ export default function Jobs() {
   useEffect(() => {
     searchMutation.mutate(searchParams);
   }, [searchParams]);
-  console.log(searchMutation.data);
 
   return (
     // TODO: make responsive
+    // TODO: handle error
     <div className="max-w-7xl mx-auto flex flex-col p-24">
       <div className="flex items-start justify-between">
         <h1 className="text-white font-grifter text-6xl">
@@ -66,6 +66,7 @@ export default function Jobs() {
           <SearchResults
             isLoading={searchMutation.isLoading}
             results={searchMutation.data?.results ?? []}
+            numResults={searchMutation.data?.numResults ?? 0}
           />
         </div>
       </div>

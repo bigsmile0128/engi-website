@@ -49,11 +49,9 @@ export default function SearchFilterList({
               label={language}
               checked={selectedLanguages.includes(language)}
               onChange={(checked) => {
-                console.log(checked);
                 if (checked) {
                   onChange({ language: [...selectedLanguages, language] });
                 } else {
-                  console.log(selectedLanguages);
                   onChange({
                     language: selectedLanguages.filter(
                       (lang) => lang !== language
