@@ -72,6 +72,10 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
   const job = jobDb.find((job) => job.id === id);
+
+  // artificial delay
+  await sleep(1500);
+
   res.json(job || jobDb[0] || createJobs(1)[0]);
 });
 
