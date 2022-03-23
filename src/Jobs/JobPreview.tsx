@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { AiOutlineUser } from 'react-icons/ai';
 import { SiPython } from 'react-icons/si';
 import TimeEstimate from '../components/TimeEstimate';
+import { Link } from 'react-router-dom';
 
 interface JobPreviewProps {
   className?: string;
@@ -28,44 +29,6 @@ interface LanguageAndTitleProps {
   iconClassName?: string;
 }
 
-export function LanguageAndTitle({
-  className,
-  language,
-  title,
-  isSkeleton,
-  titleClassName,
-  iconClassName,
-}: LanguageAndTitleProps) {
-  return (
-    <div className={className}>
-      <div
-        className={classNames(
-          iconClassName,
-          isSkeleton ? `self-start ${placeholderStyle}` : ''
-        )}
-      >
-        <SiPython
-          className={classNames('h-5 w-5 text-green-400', {
-            invisible: isSkeleton,
-          })}
-        />
-      </div>
-      <span
-        className={classNames(
-          'font-bond text-gray-200 text-sm w-48 truncate',
-          titleClassName
-        )}
-      >
-        <div
-          className={classNames('truncate', isSkeleton ? placeholderStyle : '')}
-        >
-          <span>{title ?? 'N/A'}</span>
-        </div>
-      </span>
-    </div>
-  );
-}
-
 export default function JobPreview({
   className,
   language,
@@ -76,11 +39,17 @@ export default function JobPreview({
   reward,
   numContributors,
   isSkeleton,
+  id,
 }: JobPreviewProps) {
   return (
-    // TODO: make Link with hover state and disable highlight
-    // TODO: make responsive
-    <div className={classNames('bg-[#00000022] text-gray-200', className)}>
+    <Link
+      to={`/jobs/${id}`}
+      className={classNames(
+        'bg-[#00000022] text-gray-200',
+        isSkeleton ? 'pointer-events-none' : 'hover:bg-[#ffffff22]',
+        className
+      )}
+    >
       <LanguageAndTitle
         language={language}
         title={title}
@@ -221,6 +190,44 @@ export default function JobPreview({
           </div>
         </div>
       </div>
+    </Link>
+  );
+}
+
+export function LanguageAndTitle({
+  className,
+  language,
+  title,
+  isSkeleton,
+  titleClassName,
+  iconClassName,
+}: LanguageAndTitleProps) {
+  return (
+    <div className={className}>
+      <div
+        className={classNames(
+          iconClassName,
+          isSkeleton ? `self-start ${placeholderStyle}` : ''
+        )}
+      >
+        <SiPython
+          className={classNames('h-5 w-5 text-green-400', {
+            invisible: isSkeleton,
+          })}
+        />
+      </div>
+      <span
+        className={classNames(
+          'font-bond text-gray-200 text-sm w-48 truncate',
+          titleClassName
+        )}
+      >
+        <div
+          className={classNames('truncate', isSkeleton ? placeholderStyle : '')}
+        >
+          <span>{title ?? 'N/A'}</span>
+        </div>
+      </span>
     </div>
   );
 }

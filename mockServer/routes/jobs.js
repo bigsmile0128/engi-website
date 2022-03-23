@@ -2,6 +2,7 @@ const express = require('express');
 const _ = require('lodash');
 const { faker } = require('@faker-js/faker');
 const { v4: uuid } = require('uuid');
+const dayjs = require('dayjs');
 
 const router = express.Router();
 
@@ -20,13 +21,15 @@ function createJobs(numJobs) {
     const numTests = _.random(5, 25);
     jobs.push({
       language: languages[_.random(0, languages.length - 1)],
-      title: faker.hacker.phrase(),
+      title: `${_.startCase(faker.hacker.verb())} the ${faker.hacker.noun()}`,
+      description: faker.hacker.phrase(),
       numTests,
       testsPassed: _.random(1, numTests),
       timeEstimate: _.random(1, 20),
       reward: _.random(10, 100) * 10,
       numContributors: _.random(1, 50),
       id: uuid(),
+      created: dayjs().subtract(_.random(3, 20)).format(),
     });
   }
 
@@ -64,6 +67,12 @@ router.get('/', async (req, res) => {
     numResults: jobs.length,
     results: jobs,
   });
+});
+
+router.get('/:id', async (req, res) => {
+  const id = req.params.id;
+  const job = jobDb.find((job) => job.id === id);
+  res.json(job || jobDb[0] || createJobs(1)[0]);
 });
 
 module.exports = router;

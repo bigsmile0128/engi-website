@@ -24,7 +24,6 @@ export default function Jobs() {
   }, [searchParams]);
 
   return (
-    // TODO: make responsive
     // TODO: log error to Sentry
     <div className="max-w-7xl mx-auto flex flex-col p-8 sm:p-16 md:p-24">
       <div className="md:flex items-start justify-between">
