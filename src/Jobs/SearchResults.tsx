@@ -27,6 +27,8 @@ export default function SearchResults({
   refresh,
 }: SearchResultsProps) {
   const [page, setPage] = useState(0);
+  // TODO: remove fake paginating when API is ready
+  const [isFakeLoading, setIsFakeLoading] = useState(false);
   const ref = React.useRef(null);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function SearchResults({
           {results
             ?.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
             .map((job) => (
-              <JobPreview key={job.id} {...job} />
+              <JobPreview key={job.id} {...job} isSkeleton={isFakeLoading} />
             ))}
           <ReactPaginate
             pageCount={numPages}
@@ -88,6 +90,8 @@ export default function SearchResults({
                 block: 'start',
               });
               setPage(e.selected);
+              setIsFakeLoading(true);
+              setTimeout(() => setIsFakeLoading(false), 1500);
             }}
             className="flex items-center self-center mt-2"
             pageClassName=""
