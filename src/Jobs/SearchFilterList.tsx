@@ -7,6 +7,7 @@ interface SearchFilterListProps {
   className?: string;
   searchParams: URLSearchParams;
   onChange: (searchParams) => void;
+  filterClassName?: string;
 }
 
 const languages = [
@@ -25,6 +26,7 @@ export default function SearchFilterList({
   className,
   searchParams,
   onChange,
+  filterClassName,
 }: SearchFilterListProps) {
   const selectedLanguages = searchParams.getAll('language');
   let minHours = parseInt(searchParams.get('minHours')) || MIN_HOURS;
@@ -38,7 +40,7 @@ export default function SearchFilterList({
 
   return (
     <div className={classNames('relative text-gray-300', className)}>
-      <fieldset>
+      <div className={classNames(filterClassName)}>
         <legend className="text-sm mb-2">Language</legend>
         <div className="flex flex-col gap-y-1">
           {languages.map((language) => (
@@ -62,7 +64,9 @@ export default function SearchFilterList({
             />
           ))}
         </div>
-        <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+      </div>
+      <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
+      <div className={classNames(filterClassName)}>
         <legend className="text-sm mb-2">Estimated Time</legend>
         <Slider
           min={MIN_HOURS}
@@ -73,7 +77,7 @@ export default function SearchFilterList({
             onChange({ minHours, maxHours });
           }}
         />
-      </fieldset>
+      </div>
     </div>
   );
 }

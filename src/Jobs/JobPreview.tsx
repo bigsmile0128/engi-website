@@ -17,6 +17,53 @@ interface JobPreviewProps {
   isSkeleton?: boolean;
 }
 
+const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
+
+interface LanguageAndTitleProps {
+  className?: string;
+  language?: string;
+  title?: string;
+  isSkeleton?: boolean;
+  titleClassName?: string;
+}
+
+export function LanguageAndTitle({
+  className,
+  language,
+  title,
+  isSkeleton,
+  titleClassName,
+}: LanguageAndTitleProps) {
+  return (
+    <div className={className}>
+      <div
+        className={classNames(
+          '',
+          isSkeleton ? `self-start ${placeholderStyle}` : ''
+        )}
+      >
+        <SiPython
+          className={classNames('h-5 w-5 text-green-400', {
+            invisible: isSkeleton,
+          })}
+        />
+      </div>
+      <span
+        className={classNames(
+          'font-bond text-gray-200 text-sm w-48 truncate',
+          titleClassName
+        )}
+      >
+        <div
+          className={classNames('truncate', isSkeleton ? placeholderStyle : '')}
+        >
+          <span>{title ?? 'N/A'}</span>
+        </div>
+      </span>
+    </div>
+  );
+}
+
 export default function JobPreview({
   className,
   language,
@@ -28,49 +75,36 @@ export default function JobPreview({
   numContributors,
   isSkeleton,
 }: JobPreviewProps) {
-  const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
-
   return (
     // TODO: make Link with hover state and disable highlight
     // TODO: make responsive
     <div className={classNames('bg-[#00000022] text-gray-200', className)}>
+      <LanguageAndTitle
+        language={language}
+        title={title}
+        isSkeleton={isSkeleton}
+        className="md:hidden flex items-center p-6 pb-0 gap-x-4"
+        titleClassName="w-full"
+      />
       <div
         className={classNames('flex-1 flex justify-between p-6', {
           'animate-pulse': isSkeleton,
         })}
       >
-        <div className="flex flex-col gap-y-2">
-          <div className="block">
-            <SiPython
-              className={classNames('h-5 w-5 text-green-400', {
-                hidden: isSkeleton,
-              })}
-            />
-            <div
-              className={classNames('h-5 w-5', placeholderStyle, {
-                hidden: !isSkeleton,
-              })}
-            />
-          </div>
-          <span className="font-bond text-gray-200 text-sm w-48 truncate">
-            <div
-              className={classNames(
-                'truncate',
-                isSkeleton ? placeholderStyle : ''
-              )}
-            >
-              <span>{title ?? 'N/A'}</span>
-            </div>
-          </span>
-        </div>
-        <div className="flex flex-col justify-between items-start">
+        <LanguageAndTitle
+          language={language}
+          title={title}
+          isSkeleton={isSkeleton}
+          className="hidden md:flex flex-col justify-between"
+        />
+        <div className="hidden sm:flex flex-col justify-between items-start">
           <span
             className={classNames(
               'text-xs',
               isSkeleton ? placeholderStyle : ''
             )}
           >
-            <span>total contributors</span>
+            <span>contributors</span>
           </span>
           <div
             className={classNames(
@@ -89,7 +123,7 @@ export default function JobPreview({
             <span>placeholder</span>
           </span>
         </div>
-        <div className="flex flex-col justify-between items-start w-32">
+        <div className="flex flex-col justify-between items-start sm:w-20 md:w-32">
           <span
             className={classNames(
               'text-xs',

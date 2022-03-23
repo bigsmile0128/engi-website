@@ -26,13 +26,13 @@ export default function Jobs() {
   return (
     // TODO: make responsive
     // TODO: log error to Sentry
-    <div className="max-w-7xl mx-auto flex flex-col p-24">
-      <div className="flex items-start justify-between">
+    <div className="max-w-7xl mx-auto flex flex-col p-8 sm:p-16 md:p-24">
+      <div className="md:flex items-start justify-between">
         <h1 className="text-white font-grifter text-6xl">
           <span className="md:block">Discover </span>
           <span className="md:block">jobs</span>
         </h1>
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col sm:items-start mt-8 md:mt-0">
           <h3 className="font-grifter text-white mb-2">Recommended for you</h3>
           {/* TODO: change to Link component */}
           <div className="bg-[#00000022] hover:bg-[#44444422] cursor-pointer p-6 flex flex-col">
@@ -42,8 +42,8 @@ export default function Jobs() {
               </span>
               <TimeEstimate duration="2 hours" />
             </div>
-            <div className="flex items-center justify-between mt-8">
-              <span className="shrink-0 text-gray-300 mr-20 text-sm font-semibold">
+            <div className="flex items-center justify-between mt-8 gap-x-12">
+              <span className="shrink-0 text-gray-300 text-sm font-semibold truncate sm:w-48">
                 Job Details component
               </span>
               <span className="font-grifter text-xl text-white">$540</span>
@@ -51,9 +51,10 @@ export default function Jobs() {
           </div>
         </div>
       </div>
-      <div className="flex mt-12 gap-x-12">
+      <div className="flex mt-8 md:mt-12 gap-x-12 flex-col lg:flex-row">
         <SearchFilterList
-          className="basis-48 shrink-0"
+          className="shrink-0 mb-12 md:mb-20 flex gap-x-12 lg:block"
+          filterClassName="w-32 md:w-48"
           searchParams={searchParams}
           onChange={setSearchParams}
         />

@@ -40,7 +40,7 @@ export default function SearchResultsHeader({
   return (
     <header
       className={classNames(
-        'flex items-center',
+        'md:flex items-center',
         { 'animate-pulse': isLoading },
         className
       )}
@@ -60,7 +60,7 @@ export default function SearchResultsHeader({
       </h4>
       <div
         className={classNames(
-          'ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative',
+          'my-4 md:my-0 md:ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative',
           isLoading ? ` border-b-0 ${placeholderStyle}` : ''
         )}
       >
