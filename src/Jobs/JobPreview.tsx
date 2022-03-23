@@ -25,6 +25,7 @@ interface LanguageAndTitleProps {
   title?: string;
   isSkeleton?: boolean;
   titleClassName?: string;
+  iconClassName?: string;
 }
 
 export function LanguageAndTitle({
@@ -33,12 +34,13 @@ export function LanguageAndTitle({
   title,
   isSkeleton,
   titleClassName,
+  iconClassName,
 }: LanguageAndTitleProps) {
   return (
     <div className={className}>
       <div
         className={classNames(
-          '',
+          iconClassName,
           isSkeleton ? `self-start ${placeholderStyle}` : ''
         )}
       >
@@ -96,6 +98,7 @@ export default function JobPreview({
           title={title}
           isSkeleton={isSkeleton}
           className="hidden md:flex flex-col justify-between"
+          iconClassName="md:mb-2"
         />
         <div className="hidden sm:flex flex-col justify-between items-start">
           <span
