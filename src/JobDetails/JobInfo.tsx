@@ -26,7 +26,6 @@ export default function JobInfo({ className }: JobInfoProps) {
         </div>
         <div className="flex gap-x-3">
           <AiFillCalendar className="fill-[#65FEB7] h-5 w-5" />
-
           <div className="flex flex-col gap-y-0.5">
             <span className="font-bold">10 days</span>
             <span className="text-sm text-gray-400">Time remaining</span>
