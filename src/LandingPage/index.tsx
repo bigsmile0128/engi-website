@@ -10,6 +10,7 @@ import LanguageDivider from './components/LanguageDivider';
 export default function LandingPage(props) {
   return (
     // TODO: increase whitespace on larger screens
+    // TODO: add footer
     <main className="">
       {/* Primary CTA */}
       <Hero className="max-w-3xl lg:max-w-4xl mx-auto py-16 px-4 sm:py-20 sm:px-6 md:px-0" />
