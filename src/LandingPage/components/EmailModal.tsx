@@ -40,8 +40,9 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
+          {/* TODO: fix modal centering on mobile screen */}
           <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            className="sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
           >
             &#8203;

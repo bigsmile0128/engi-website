@@ -1,10 +1,20 @@
 import React from 'react';
+import classNames from 'classnames';
 
-import figmaPlugin from './img/figma-plugin.png';
+import figmaPlugin from '../img/figma-plugin.png';
 
-export default function FigmaPreview() {
+interface FigmaPreviewProps {
+  className?: string;
+}
+
+export default function FigmaPreview({ className }: FigmaPreviewProps) {
   return (
-    <div className="relative mx-6 max-w-3xl lg:max-w-4xl md:mx-auto flex flex-col md:flex-row border border-[#43ffff1a]">
+    <div
+      className={classNames(
+        'md:mx-auto flex flex-col md:flex-row border border-[#43ffff1a]',
+        className
+      )}
+    >
       <div className="relative flex flex-col md:basis-1/3">
         <svg className="absolute" width="100%" height="100%">
           <defs>
