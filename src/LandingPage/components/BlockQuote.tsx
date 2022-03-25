@@ -9,8 +9,8 @@ export default function BlockQuote({ className }: BlockQuoteProps) {
   return (
     <div
       className={classNames(
-        '',
-        'mx-6 md:mx-auto pb-12 py-14 px-12 my-24 border-y border-[#00000022] flex justify-center gap-x-2'
+        'pb-12 py-14 px-12 border-y border-[#00000022] flex justify-center gap-x-2',
+        className
       )}
     >
       <svg

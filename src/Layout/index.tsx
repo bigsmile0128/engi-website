@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
+    // TODO: fix background not covering full width on large monitors
     <div className="bg-landing bg-repeat-y relative min-h-screen">
       <nav className="shrink-0">
         <div className="relative bg-transparent">
