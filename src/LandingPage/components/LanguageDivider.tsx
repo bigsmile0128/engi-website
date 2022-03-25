@@ -13,6 +13,7 @@ interface LanguageDividerProps {
 
 export default function LanguageDivider({ className }: LanguageDividerProps) {
   return (
+    // TODO: update icons and colors
     <div className={classNames('', className)}>
       <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-700 to-gray-800"></div>
       <div className="w-full h-24 bg-gray-900 flex justify-center items-center">

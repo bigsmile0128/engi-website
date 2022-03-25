@@ -16,6 +16,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       )}
     >
       <div className="relative flex flex-col md:basis-1/3">
+        {/* TODO: fix grid being on top of button */}
         <svg className="absolute" width="100%" height="100%">
           <defs>
             <pattern

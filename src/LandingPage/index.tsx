@@ -7,10 +7,12 @@ import CalloutCards from './components/CalloutCards';
 import BlockQuote from './components/BlockQuote';
 import LanguageDivider from './components/LanguageDivider';
 import GlobalConnection from './components/GlobalConnection';
+import AlternatingFeatures from './components/AlternatingFeatures';
 
 export default function LandingPage(props) {
   return (
     // TODO: increase whitespace on larger screens
+    // TODO: add bottom CTA
     // TODO: add footer
     <main className="">
       {/* Primary CTA */}
@@ -20,6 +22,7 @@ export default function LandingPage(props) {
       <GlobalConnection className="my-24" />
       <Features className="max-w-7xl mx-auto pb-16 px-4 sm:px-6 lg:px-8" />
       <FigmaPreview className="mx-6 max-w-3xl lg:max-w-4xl" />
+      <AlternatingFeatures className="max-w-3xl lg:max-w-4xl mx-auto mt-16" />
       <LanguageDivider className="my-32 sm:my-24" />
     </main>
   );
