@@ -29,8 +29,7 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
         </defs>
         <rect x="0" y="0" width="100%" height="100%" fill="url(#grid)"></rect>
       </svg>
-      {/* TODO: add max width */}
-      <div className="md:flex items-center justify-center max-w-3xl lg:max-w-4xl py-12 md:py-0">
+      <div className="md:flex items-center justify-center max-w-3xl lg:max-w-4xl py-12 md:py-0 z-10">
         <div className="flex flex-col mb-12 md:mb-0 px-12 sm:px-0">
           <h2 className="font-grifter text-3xl">
             Global products built by global engineering

@@ -15,8 +15,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
     >
       <div className="flex-1 border border-gray-400 p-6">
         <h3 className="font-grifter text-xl">
-          {/* TODO: use exact orange from designs */}
-          Write code, <span className="text-orange-500">get paid</span>
+          Write code, <span className="text-[#F27B50]">get paid</span>
         </h3>
         <p className="text-gray-300 pr-10">
           No need to apply. Get paid instantly regardless of your time zone or
@@ -25,8 +24,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
       </div>
       <div className="flex-1 border border-gray-400 p-6">
         <h3 className="font-grifter text-xl">
-          {/* TODO: use exact orange from designs */}
-          Build products <span className="text-orange-500">faster</span>
+          Build products <span className="text-[#F27B50]">faster</span>
         </h3>
         <p className="text-gray-300 pr-10">
           No sourcing. No recruiting. Find worldwide talent instantly.

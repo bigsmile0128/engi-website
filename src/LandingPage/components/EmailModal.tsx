@@ -26,7 +26,7 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
         className="fixed z-10 inset-0 overflow-y-auto"
         onClose={setOpen}
       >
-        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-center sm:items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -38,9 +38,7 @@ export default function EmailModal({ open, setOpen, onInterestClick }) {
           >
             <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
           </Transition.Child>
-
           {/* This element is to trick the browser into centering the modal contents. */}
-          {/* TODO: fix modal centering on mobile screen */}
           <span
             className="sm:inline-block sm:align-middle sm:h-screen"
             aria-hidden="true"
