@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import classNames from 'classnames';
 
@@ -18,20 +18,11 @@ export default function EmailRegistration({
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState('');
 
-  const registerMutation = useMutation(async (email) => {
-    try {
-      await axios.post('/api/contact', {
-        contact_list_name: 'engi-newsletter',
-        email,
-      });
-    } catch (error) {
-      // if email has already been added, treat as success
-      if (error.response?.status === 409) {
-        return;
-      }
-      // TODO: Sentry logging
-      throw error;
-    }
+  const registerMutation = useMutation<any, AxiosError>(async (email) => {
+    await axios.post('/api/contact', {
+      contact_list_name: 'engi-newsletter',
+      email,
+    });
   });
 
   const interestMutation = useMutation(async (interest) => {
@@ -82,7 +73,7 @@ export default function EmailRegistration({
         />
         <button
           type="submit"
-          className="shrink-0 bg-gray-300 w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring flex justify-center items-center"
+          className="shrink-0 bg-gray-300 w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring flex justify-center items-center z-10"
         >
           {!registerMutation.isLoading ? (
             'Get Notified'
@@ -93,7 +84,9 @@ export default function EmailRegistration({
       </form>
       {registerMutation.isError && (
         <p className="text-sm font-bold mt-2 -mb-7 text-red-500">
-          Error submitting email. Please try again.
+          {registerMutation.error?.response?.status === 409
+            ? 'Your email is already subscribed.'
+            : 'Error submitting email. Please try again.'}
         </p>
       )}
       <div
