@@ -8,6 +8,7 @@ import BlockQuote from './components/BlockQuote';
 import LanguageDivider from './components/LanguageDivider';
 import GlobalConnection from './components/GlobalConnection';
 import AlternatingFeatures from './components/AlternatingFeatures';
+import CallToAction from './components/CallToAction';
 
 export default function LandingPage(props) {
   return (
@@ -15,7 +16,6 @@ export default function LandingPage(props) {
     // TODO: add bottom CTA
     // TODO: add footer
     <main className="">
-      {/* Primary CTA */}
       <Hero className="max-w-3xl lg:max-w-4xl mx-auto py-16 px-4 sm:py-20 sm:px-6 md:px-0" />
       <CalloutCards className="max-w-3xl lg:max-w-4xl mx-auto px-6 md:px-0" />
       <BlockQuote className="max-w-3xl lg:max-w-4xl mx-6 md:mx-auto my-24" />
@@ -24,6 +24,7 @@ export default function LandingPage(props) {
       <FigmaPreview className="mx-6 max-w-3xl lg:max-w-4xl" />
       <AlternatingFeatures className="max-w-3xl lg:max-w-4xl mx-auto mt-16" />
       <LanguageDivider className="my-32 sm:my-24" />
+      <CallToAction className="" />
     </main>
   );
 }

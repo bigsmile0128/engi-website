@@ -8,10 +8,12 @@ import EmailModal from './EmailModal';
 
 interface EmailRegistrationProps {
   className?: string;
+  inputClassName?: string;
 }
 
 export default function EmailRegistration({
   className,
+  inputClassName,
 }: EmailRegistrationProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState('');
@@ -68,7 +70,10 @@ export default function EmailRegistration({
         </label>
         <input
           id="email-address"
-          className="bg-transparent text-white border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring peer"
+          className={classNames(
+            'bg-transparent text-white border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring peer',
+            inputClassName
+          )}
           type="email"
           placeholder="Enter your email address"
           value={email}
@@ -77,7 +82,7 @@ export default function EmailRegistration({
         />
         <button
           type="submit"
-          className="shrink-0 bg-gray-300 w-36 font-bold text-sm hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring flex justify-center items-center"
+          className="shrink-0 bg-gray-300 w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring flex justify-center items-center"
         >
           {!registerMutation.isLoading ? (
             'Get Notified'
