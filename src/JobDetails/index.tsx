@@ -40,11 +40,10 @@ export default function JobDetails() {
   });
 
   return (
-    // TODO: make responsive
     // TODO: create skeleton for loading state
     // TODO: render data from mock API
     // TODO: error handling
-    <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex items-start gap-x-12">
+    <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex flex-col lg:flex-row items-start gap-x-12">
       <div className="flex flex-col">
         <div className="flex items-center">
           <Link to="/jobs" className="">
@@ -96,12 +95,12 @@ export default function JobDetails() {
           Gingerbread sweet roll lemon drops jelly-o pie pastry dessert
           tiramisu.
         </p>
-        <div className="flex items-center gap-x-6">
-          <PaymentInfo />
-          <JobInfo />
+        <div className="flex flex-col md:flex-row md:items-center gap-x-6 gap-y-6">
+          <PaymentInfo className="md:flex-1 lg:flex-initial" />
+          <JobInfo className="md:flex-1 lg:flex-initial" />
         </div>
       </div>
-      <div className="basis-80 p-6 flex flex-col shrink-0 bg-[#00000022]">
+      <div className="p-6 flex flex-col shrink-0 bg-[#00000022] mt-6 lg:mt-0 w-full md:w-96 lg:w-auto lg:basis-80">
         <button className="p-4 text-black mb-8 font-bold bg-gray-300 hover:bg-gray-200 active:bg-gray-100 outline-none focus:ring-4">
           Get Started
         </button>

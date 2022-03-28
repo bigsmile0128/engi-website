@@ -7,7 +7,7 @@ interface PaymentInfoProps {
 
 export default function PaymentInfo({ className }: PaymentInfoProps) {
   return (
-    <div className={classNames('bg-[#00000022] px-6 py-4', classNames)}>
+    <div className={classNames('bg-[#00000022] px-6 py-4', className)}>
       <p className="mb-4 font-bold">Payment Info</p>
       <div className="grid grid-rows-2 grid-cols-2 gap-x-6 gap-y-2">
         <div className="flex gap-x-3">

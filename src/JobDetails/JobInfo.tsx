@@ -8,7 +8,7 @@ interface JobInfoProps {
 
 export default function JobInfo({ className }: JobInfoProps) {
   return (
-    <div className={classNames('bg-[#00000022] px-6 py-4', classNames)}>
+    <div className={classNames('bg-[#00000022] px-6 py-4', className)}>
       <p className="mb-4 font-bold">Job Info</p>
       <div className="grid grid-rows-2 grid-cols-1 gap-x-6 gap-y-2">
         <div className="flex gap-x-3">
