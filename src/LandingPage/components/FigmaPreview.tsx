@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import figmaPlugin from '../img/figma-plugin.png';
+import GridPattern from '../../components/GridPattern';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -16,32 +17,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       )}
     >
       <div className="relative flex flex-col md:basis-1/3">
-        <svg className="absolute" width="100%" height="100%">
-          <defs>
-            <pattern
-              id="grid-figma"
-              x="0"
-              y="0"
-              width="50"
-              height="50"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                stroke="rgba(255,255,255,.1)"
-                fill="none"
-                width="50"
-                height="50"
-              ></rect>
-            </pattern>
-          </defs>
-          <rect
-            x="0"
-            y="0"
-            width="100%"
-            height="100%"
-            fill="url(#grid-figma)"
-          ></rect>
-        </svg>
+        <GridPattern size={60} />
         <div className="flex-1 flex flex-col justify-center items-start p-12 border-b md:border-b-0 md:border-r border-[#43ffff1a] z-10">
           <h2 className="font-grifter text-white text-3xl">
             <span className="inline md:block">FIGMA </span>

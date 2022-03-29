@@ -1,6 +1,8 @@
 import React from 'react';
 import classNames from 'classnames';
+
 import { ReactComponent as GlobeSvg } from '../img/globe.svg';
+import GridPattern from '../../components/GridPattern';
 
 interface GlobalConnectionProps {
   className?: string;
@@ -9,32 +11,7 @@ interface GlobalConnectionProps {
 export default function GlobalConnection({ className }: GlobalConnectionProps) {
   return (
     <div className={classNames('relative flex justify-center', className)}>
-      <svg className="absolute" width="100%" height="100%">
-        <defs>
-          <pattern
-            id="grid-globe"
-            x="-1"
-            y="-1"
-            width="50"
-            height="50"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              stroke="rgba(255,255,255,.1)"
-              fill="none"
-              width="50"
-              height="50"
-            ></rect>
-          </pattern>
-        </defs>
-        <rect
-          x="0"
-          y="0"
-          width="100%"
-          height="100%"
-          fill="url(#grid-globe)"
-        ></rect>
-      </svg>
+      <GridPattern offset={-1} />
       <div className="md:flex items-center justify-center max-w-3xl lg:max-w-4xl py-12 md:py-0 z-10">
         <div className="flex flex-col mb-12 md:mb-0 px-12 sm:px-0">
           <h2 className="font-grifter text-3xl">
