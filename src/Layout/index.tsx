@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link, Outlet } from 'react-router-dom';
+import isDevEnv from '../utils';
 
 export default function Layout() {
   return (
@@ -26,26 +27,28 @@ export default function Layout() {
                 </svg>
               </Link>
             </div>
-            <div className="hidden md:flex space-x-10 justify-center">
-              <Link
-                to="/"
-                className="text-base font-medium text-gray-200 hover:text-white"
-              >
-                About
-              </Link>
-              <Link
-                to="/jobs"
-                className="text-base font-medium text-gray-200 hover:text-white"
-              >
-                Earn
-              </Link>
-              <Link
-                to="/hire"
-                className="text-base font-medium text-gray-200 hover:text-white"
-              >
-                Hire
-              </Link>
-            </div>
+            {isDevEnv() && (
+              <div className="hidden md:flex space-x-10 justify-center">
+                <Link
+                  to="/"
+                  className="text-base font-medium text-gray-200 hover:text-white"
+                >
+                  About
+                </Link>
+                <Link
+                  to="/jobs"
+                  className="text-base font-medium text-gray-200 hover:text-white"
+                >
+                  Earn
+                </Link>
+                <Link
+                  to="/hire"
+                  className="text-base font-medium text-gray-200 hover:text-white"
+                >
+                  Hire
+                </Link>
+              </div>
+            )}
             <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0"></div>
           </div>
         </div>
