@@ -35,7 +35,7 @@ export default function Features({ className }: FeaturesProps) {
         {features.map((feature) => (
           <div key={feature.name} className="relative">
             <dt>
-              <p className="ml-9 text-lg leading-6 font-medium text-green-600">
+              <p className="ml-9 text-lg leading-6 font-medium text-green-400">
                 {feature.name}
               </p>
             </dt>

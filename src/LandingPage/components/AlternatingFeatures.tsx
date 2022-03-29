@@ -31,7 +31,7 @@ export default function AlternatingFeatures({
           />
         </div>
       </div>
-      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-24">
+      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-48">
         <div className="mb-12 md:mb-0 col-start-2">
           <h2 className="font-grifter text-3xl mb-4">Website</h2>
           <p className="text-gray-400">
@@ -46,7 +46,7 @@ export default function AlternatingFeatures({
           </div>
         </div>
       </div>
-      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-40">
+      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-48">
         <div className="mb-12 md:mb-0">
           <h2 className="font-grifter text-3xl mb-4">
             Clients &amp; Integrations

@@ -16,7 +16,7 @@ export default function Hero({ className }: HeroProps) {
         className
       )}
     >
-      <div className="md:flex items-center sm:justify-between gap-x-8">
+      <div className="md:flex items-center sm:justify-between gap-x-12">
         <h2 className="flex items-start justify-center sm:justify-start">
           <svg
             className="scale-[.35] sm:scale-[.55] -mt-3.5 sm:-mt-3 -ml-1"
@@ -61,14 +61,14 @@ export default function Hero({ className }: HeroProps) {
             </svg>
           </div>
         </h2>
-        <p className="leading-6 text-gray-300 mt-6 md:-mt-3">
+        <p className="leading-6 text-gray-300 mt-12 md:-mt-3">
           Browse jobs, write code, and get paid instantly no matter where you
           are in the world
         </p>
       </div>
-      <div className="md:flex mt-12 md:mt-16 gap-x-12 items-start">
-        <EmailRegistration className="flex-1" />
-        <div className="flex-1 mt-12 md:mt-0">
+      <div className="md:flex mt-12 md:mt-24 gap-x-12 items-start">
+        <EmailRegistration className="flex-1 mt-8 md:mt-0" />
+        <div className="flex-1 mt-24 md:mt-0">
           <h2 className="font-grifter text-3xl">Languages</h2>
           <div className="flex flex-wrap gap-x-2 gap-y-2 mt-4">
             {[

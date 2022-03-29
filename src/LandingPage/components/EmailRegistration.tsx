@@ -90,7 +90,7 @@ export default function EmailRegistration({
         />
         <button
           type="submit"
-          className="shrink-0 bg-gray-300 w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-100 focus:outline-none focus:ring flex justify-center items-center z-10"
+          className="shrink-0 bg-white w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-300 focus:outline-none focus:ring flex justify-center items-center z-10"
         >
           {!registerMutation.isLoading ? (
             'Get Notified'

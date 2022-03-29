@@ -50,7 +50,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
           <p className="md:mt-8 text-white">
             Our new Figma plugin is available!
           </p>
-          <button className="bg-teal-400 px-6 py-4 mt-8 text-xs font-bold">
+          <button className="bg-white hover:bg-gray-200 active:bg-gray-300 px-6 py-4 mt-8 text-xs font-bold text-black">
             Learn More
           </button>
         </div>
