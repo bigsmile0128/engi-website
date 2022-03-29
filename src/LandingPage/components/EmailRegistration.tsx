@@ -3,6 +3,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import axios, { AxiosError } from 'axios';
 import { useMutation } from 'react-query';
 import classNames from 'classnames';
+import * as Sentry from '@sentry/react';
 
 import EmailModal from './EmailModal';
 
@@ -18,12 +19,28 @@ export default function EmailRegistration({
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState('');
 
-  const registerMutation = useMutation<any, AxiosError>(async (email) => {
-    await axios.post('/api/contact', {
-      contact_list_name: 'engi-newsletter',
-      email,
-    });
-  });
+  const registerMutation = useMutation<any, AxiosError>(
+    async (email) => {
+      await axios.post('/api/contact', {
+        contact_list_name: 'engi-newsletter',
+        email,
+      });
+    },
+    {
+      onError: (error) => {
+        if (error.response?.status !== 409) {
+          console.log(error);
+          Sentry.captureException(error, (scope) => {
+            console.log(scope);
+            scope.clear();
+            scope.setTransactionName('POST /contact');
+            scope.setTag('email', email);
+            return scope;
+          });
+        }
+      },
+    }
+  );
 
   const interestMutation = useMutation(async (interest) => {
     await axios.put('/api/contact', {
