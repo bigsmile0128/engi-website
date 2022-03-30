@@ -6,7 +6,7 @@ import { BrowserTracing } from '@sentry/tracing';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import isDevEnv from './utils';
+import { isDevEnv } from './utils';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',

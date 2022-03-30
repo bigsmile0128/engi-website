@@ -14,19 +14,7 @@ npm start
 Create the production build.
 
 ```
-npm run build
-```
-
-Install `serve` for serving static files.
-
-```
-npm i -g serve
-```
-
-Serve the locally built files.
-
-```
-serve -s build
+npm run start-prod
 ```
 
 ## Mock server
