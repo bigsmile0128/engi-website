@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import figmaPlugin from '../img/figma-plugin.png';
 import GridPattern from '../../components/GridPattern';
+import Button from '../../components/Button';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -26,9 +27,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
           <p className="md:mt-8 text-white">
             Our new Figma plugin is available!
           </p>
-          <button className="bg-white hover:bg-gray-200 active:bg-gray-300 px-6 py-4 mt-8 text-xs font-bold text-black">
-            Learn More
-          </button>
+          <Button className="mt-8">Learn More</Button>
         </div>
       </div>
       <div className="sm:p-12 md:basis-2/3 md:block">

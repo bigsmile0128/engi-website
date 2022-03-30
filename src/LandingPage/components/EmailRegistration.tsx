@@ -5,6 +5,7 @@ import { useMutation } from 'react-query';
 import classNames from 'classnames';
 import * as Sentry from '@sentry/react';
 
+import Button from './../../components/Button';
 import EmailModal from './EmailModal';
 
 interface EmailRegistrationProps {
@@ -88,16 +89,13 @@ export default function EmailRegistration({
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <button
-          type="submit"
-          className="shrink-0 bg-white w-36 font-bold text-sm text-black hover:bg-gray-200 active:bg-gray-300 focus:outline-none focus:ring flex justify-center items-center z-10"
-        >
+        <Button type="submit" className="shrink-0 px-8 z-10">
           {!registerMutation.isLoading ? (
             'Get Notified'
           ) : (
             <AiOutlineLoading className="animate-spin text-lg" />
           )}
-        </button>
+        </Button>
       </form>
       {registerMutation.isError && (
         <p className="text-sm font-bold mt-2 -mb-7 text-red-500">
