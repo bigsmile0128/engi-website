@@ -8,7 +8,7 @@ import SearchFilterList from './SearchFilterList';
 import SearchResultsHeader from './SearchResultsHeader';
 import SearchResults from './SearchResults';
 
-export default function Jobs() {
+export default function JobDiscovery() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchMutation = useMutation(async (searchParams: URLSearchParams) => {
