@@ -32,7 +32,6 @@ export default function EmailRegistration({
         if (error.response?.status !== 409) {
           console.log(error);
           Sentry.captureException(error, (scope) => {
-            console.log(scope);
             scope.clear();
             scope.setTransactionName('POST /contact');
             scope.setTag('email', email);
