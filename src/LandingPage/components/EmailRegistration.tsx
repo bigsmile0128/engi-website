@@ -25,6 +25,7 @@ export default function EmailRegistration({
       await axios.post('/api/contact', {
         contact_list_name: 'engi-newsletter',
         email,
+        attributes: {},
       });
     },
     {
