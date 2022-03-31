@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import axios from 'axios';
 
 import TimeEstimate from '../components/TimeEstimate';
@@ -8,20 +8,29 @@ import SearchFilterList from './SearchFilterList';
 import SearchResultsHeader from './SearchResultsHeader';
 import SearchResults from './SearchResults';
 
+async function fetchJobs(searchParams) {
+  const searchParamsObj = Object.fromEntries(searchParams);
+
+  // convert 1-based indexing to 0-based indexing
+  if (searchParamsObj.page) {
+    const page = Number(searchParamsObj.page);
+    searchParamsObj.page = (page - 1).toString();
+  }
+
+  const response = await axios.get('/api/jobs', {
+    params: searchParamsObj,
+  });
+
+  return response.data;
+}
+
 export default function JobDiscovery() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const searchMutation = useMutation(async (searchParams: URLSearchParams) => {
-    const response = await axios.get('/api/jobs', {
-      params: searchParams,
-    });
-
-    return response.data;
-  });
-
-  useEffect(() => {
-    searchMutation.mutate(searchParams);
-  }, [searchParams]);
+  const { isLoading, isError, data, refetch } = useQuery(
+    ['fetchJobs', searchParams.toString()],
+    () => fetchJobs(searchParams)
+  );
 
   return (
     // TODO: log error to Sentry
@@ -60,15 +69,16 @@ export default function JobDiscovery() {
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader
             className="shrink-0 mb-6"
-            numResults={searchMutation.data?.numResults}
-            isLoading={searchMutation.isLoading}
+            numResults={data?.numResults}
+            isLoading={isLoading}
           />
           <SearchResults
-            isLoading={searchMutation.isLoading}
-            results={searchMutation.data?.results ?? []}
-            numResults={searchMutation.data?.numResults ?? 0}
-            error={searchMutation.error as Error}
-            refresh={() => searchMutation.mutate(searchParams)}
+            isLoading={isLoading}
+            results={data?.results ?? []}
+            numResults={data?.numResults ?? 0}
+            numPages={data?.numPages ?? 0}
+            isError={isError}
+            refresh={refetch}
           />
         </div>
       </div>

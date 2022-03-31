@@ -51,15 +51,17 @@ export default function SearchFilterList({
               label={language}
               checked={selectedLanguages.includes(language)}
               onChange={(checked) => {
+                const newSearchParams: Record<string, any> =
+                  Object.fromEntries(searchParams);
+                delete newSearchParams.page; // reset page when changing languages
                 if (checked) {
-                  onChange({ language: [...selectedLanguages, language] });
+                  newSearchParams.language = [...selectedLanguages, language];
                 } else {
-                  onChange({
-                    language: selectedLanguages.filter(
-                      (lang) => lang !== language
-                    ),
-                  });
+                  newSearchParams.language = selectedLanguages.filter(
+                    (lang) => lang !== language
+                  );
                 }
+                onChange(newSearchParams);
               }}
             />
           ))}
@@ -74,7 +76,11 @@ export default function SearchFilterList({
           minDistance={1}
           value={[minHours, maxHours]}
           onAfterChange={([minHours, maxHours]) => {
-            onChange({ minHours, maxHours });
+            onChange({
+              ...Object.fromEntries(searchParams),
+              minHours,
+              maxHours,
+            });
           }}
         />
       </div>

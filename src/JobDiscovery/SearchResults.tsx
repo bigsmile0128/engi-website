@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import { useSearchParams } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ReactPaginate from 'react-paginate';
 import { AiOutlineEllipsis } from 'react-icons/ai';
@@ -12,30 +13,24 @@ interface SearchResultsProps {
   isLoading: boolean;
   results: Record<string, any>[];
   numResults: number;
-  error?: Error;
+  numPages: number;
+  isError: boolean;
   refresh: () => void;
 }
-
-const PAGE_SIZE = 10;
 
 export default function SearchResults({
   className,
   isLoading,
   results,
   numResults,
-  error,
+  numPages,
+  isError,
   refresh,
 }: SearchResultsProps) {
-  const [page, setPage] = useState(0);
-  // TODO: remove fake paginating when API is ready
-  const [isFakeLoading, setIsFakeLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  // use 1-based pagination instead of 0-based
+  const page = Number(searchParams.get('page')) || 1;
   const ref = React.useRef(null);
-
-  useEffect(() => {
-    setPage(0);
-  }, [results]);
-
-  const numPages = Math.floor(numResults / PAGE_SIZE);
 
   return (
     <div
@@ -49,7 +44,7 @@ export default function SearchResults({
           ))}
         </>
       )}
-      {error && (
+      {isError && (
         <div className="flex flex-col items-center justify-center py-12">
           <p className="font-grifter text-3xl mb-6">Something went wrong...</p>
           <button
@@ -61,13 +56,11 @@ export default function SearchResults({
           </button>
         </div>
       )}
-      {!isLoading && !error && (
+      {!isLoading && !isError && (
         <>
-          {results
-            ?.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE)
-            .map((job) => (
-              <JobPreview key={job.id} {...job} isSkeleton={isFakeLoading} />
-            ))}
+          {results.map((job) => (
+            <JobPreview key={job.id} {...job} isSkeleton={isLoading} />
+          ))}
           <ReactPaginate
             pageCount={numPages}
             previousLabel={
@@ -89,15 +82,22 @@ export default function SearchResults({
                 behavior: 'smooth',
                 block: 'start',
               });
-              setPage(e.selected);
-              setIsFakeLoading(true);
-              setTimeout(() => setIsFakeLoading(false), 1500);
+              const newSearchParams = Object.fromEntries(searchParams);
+              if (e.selected === 0) {
+                delete newSearchParams.page;
+              }
+              setSearchParams({
+                ...Object.fromEntries(searchParams),
+                page: (e.selected + 1).toString(),
+              });
             }}
             className="flex items-center self-center mt-2"
             pageClassName=""
             breakClassName="flex items-center justify-center w-8"
             pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
             activeLinkClassName="!text-green-400 font-bold"
+            // library uses 0-based pagination, but we use 1-based for consistency with URL
+            forcePage={page - 1}
           />
         </>
       )}

@@ -42,6 +42,8 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 router.get('/', async (req, res) => {
   const { query } = req;
+  const pageSize = query.pageSize || 10;
+  const pageNum = query.pageNum || 0;
 
   // handle single or multiple language input
   let languages;
@@ -65,7 +67,8 @@ router.get('/', async (req, res) => {
 
   res.json({
     numResults: jobs.length,
-    results: jobs,
+    results: jobs.slice(pageNum * pageSize, pageNum * pageSize + pageSize),
+    numPages: Math.floor(jobs.length / pageSize),
   });
 });
 
