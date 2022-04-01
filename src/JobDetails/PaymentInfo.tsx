@@ -3,14 +3,27 @@ import classNames from 'classnames';
 
 interface PaymentInfoProps {
   className?: string;
+  isLoading?: boolean;
 }
 
-export default function PaymentInfo({ className }: PaymentInfoProps) {
+export default function PaymentInfo({
+  className,
+  isLoading = false,
+}: PaymentInfoProps) {
   return (
     <div className={classNames('bg-[#00000022] px-6 py-4', className)}>
-      <p className="mb-4 font-bold">Payment Info</p>
+      <p
+        className={classNames(
+          'mb-4 font-bold inline-block',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Payment Info
+      </p>
       <div className="grid grid-rows-2 grid-cols-2 gap-x-6 gap-y-2">
-        <div className="flex gap-x-3">
+        <div
+          className={classNames('flex gap-x-3', isLoading ? 'skeleton' : '')}
+        >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
             <path
               d="M22 10V20C22 20.2652 21.8946 20.5196 21.7071 20.7071C21.5196 20.8946 21.2652 21 21 21H3C2.73478 21 2.48043 20.8946 2.29289 20.7071C2.10536 20.5196 2 20.2652 2 20V10H22ZM22 8H2V4C2 3.73478 2.10536 3.48043 2.29289 3.29289C2.48043 3.10536 2.73478 3 3 3H21C21.2652 3 21.5196 3.10536 21.7071 3.29289C21.8946 3.48043 22 3.73478 22 4V8ZM15 16V18H19V16H15Z"
@@ -22,7 +35,9 @@ export default function PaymentInfo({ className }: PaymentInfoProps) {
             <span className="text-sm text-gray-400">Payout</span>
           </div>
         </div>
-        <div className="flex gap-x-3">
+        <div
+          className={classNames('flex gap-x-3', isLoading ? 'skeleton' : '')}
+        >
           <svg
             width="21"
             height="21"
@@ -41,7 +56,9 @@ export default function PaymentInfo({ className }: PaymentInfoProps) {
             <span className="text-sm text-gray-400">Contributors</span>
           </div>
         </div>
-        <div className="flex gap-x-3">
+        <div
+          className={classNames('flex gap-x-3', isLoading ? 'skeleton' : '')}
+        >
           <svg
             width="21"
             height="20"
@@ -60,7 +77,9 @@ export default function PaymentInfo({ className }: PaymentInfoProps) {
             <span className="text-sm text-gray-400">Bonus</span>
           </div>
         </div>
-        <div className="flex gap-x-3">
+        <div
+          className={classNames('flex gap-x-3', isLoading ? 'skeleton' : '')}
+        >
           <svg width="21" height="18" viewBox="0 0 21 18" fill="none">
             <path
               d="M20 3H13C11.4087 3 9.88258 3.63214 8.75736 4.75736C7.63214 5.88258 7 7.4087 7 9C7 10.5913 7.63214 12.1174 8.75736 13.2426C9.88258 14.3679 11.4087 15 13 15H20V17C20 17.2652 19.8946 17.5196 19.7071 17.7071C19.5196 17.8946 19.2652 18 19 18H1C0.734784 18 0.48043 17.8946 0.292893 17.7071C0.105357 17.5196 0 17.2652 0 17V1C0 0.734784 0.105357 0.48043 0.292893 0.292893C0.48043 0.105357 0.734784 0 1 0H19C19.2652 0 19.5196 0.105357 19.7071 0.292893C19.8946 0.48043 20 0.734784 20 1V3ZM13 5H21V13H13C11.9391 13 10.9217 12.5786 10.1716 11.8284C9.42143 11.0783 9 10.0609 9 9C9 7.93913 9.42143 6.92172 10.1716 6.17157C10.9217 5.42143 11.9391 5 13 5ZM13 8V10H16V8H13Z"

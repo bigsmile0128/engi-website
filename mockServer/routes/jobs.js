@@ -22,14 +22,16 @@ function createJobs(numJobs) {
     jobs.push({
       language: languages[_.random(0, languages.length - 1)],
       title: `${_.startCase(faker.hacker.verb())} the ${faker.hacker.noun()}`,
-      description: faker.hacker.phrase(),
+      description: Array.from({ length: 5 })
+        .map(() => faker.hacker.phrase())
+        .join(' '),
       numTests,
       testsPassed: _.random(1, numTests),
       timeEstimate: _.random(1, 20),
       reward: _.random(10, 100) * 10,
       numContributors: _.random(1, 50),
       id: uuid(),
-      created: dayjs().subtract(_.random(3, 20)).format(),
+      created: dayjs().subtract(_.random(3, 20), 'day').format(),
     });
   }
 
@@ -63,7 +65,7 @@ router.get('/', async (req, res) => {
   });
 
   // artificial delay
-  await sleep(1500);
+  await sleep(5000);
 
   res.json({
     numResults: jobs.length,

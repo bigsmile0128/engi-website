@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .skeleton {
+    @apply bg-[#00000022];
+    @apply rounded-full;
+    @apply children:invisible;
+    @apply text-transparent;
+    @apply animate-pulse;
+  }
+}
+
 @font-face {
   font-family: 'GRIFTER';
   src: url('../public/fonts/grifterbold.otf');
