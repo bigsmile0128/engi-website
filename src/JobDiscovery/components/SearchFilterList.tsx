@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import Checkbox from '../components/Checkbox';
-import Slider from '../components/Slider';
+import Checkbox from '../../components/Checkbox';
+import Slider from '../../components/Slider';
 
 interface SearchFilterListProps {
   className?: string;

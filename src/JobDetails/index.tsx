@@ -9,11 +9,11 @@ import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { IoMdShareAlt } from 'react-icons/io';
 import * as Sentry from '@sentry/react';
 
-import PaymentInfo from './PaymentInfo';
-import JobInfo from './JobInfo';
+import PaymentInfo from './components/PaymentInfo';
+import JobInfo from './components/JobInfo';
 
 import Tag from '../components/Tag';
-import JobCreatorInfo from './JobCreatorInfo';
+import JobCreatorInfo from './components/JobCreatorInfo';
 
 dayjs.extend(relativeTime);
 

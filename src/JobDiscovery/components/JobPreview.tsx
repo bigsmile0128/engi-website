@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { AiOutlineUser } from 'react-icons/ai';
 import { SiPython } from 'react-icons/si';
-import TimeEstimate from '../components/TimeEstimate';
+import TimeEstimate from '../../components/TimeEstimate';
 import { Link } from 'react-router-dom';
 
 interface JobPreviewProps {

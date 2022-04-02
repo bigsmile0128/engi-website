@@ -5,9 +5,9 @@ import axios, { AxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 
 import TimeEstimate from '../components/TimeEstimate';
-import SearchFilterList from './SearchFilterList';
-import SearchResultsHeader from './SearchResultsHeader';
-import SearchResults from './SearchResults';
+import SearchFilterList from './components/SearchFilterList';
+import SearchResultsHeader from './components/SearchResultsHeader';
+import SearchResults from './components/SearchResults';
 
 async function fetchJobs(searchParams) {
   const searchParamsObj = Object.fromEntries(searchParams);
