@@ -18,8 +18,6 @@ interface JobPreviewProps {
   isSkeleton?: boolean;
 }
 
-const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
-
 interface LanguageAndTitleProps {
   className?: string;
   language?: string;
@@ -70,12 +68,7 @@ export default function JobPreview({
           iconClassName="md:mb-2"
         />
         <div className="hidden sm:flex flex-col justify-between items-start">
-          <span
-            className={classNames(
-              'text-xs',
-              isSkeleton ? placeholderStyle : ''
-            )}
-          >
+          <span className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}>
             <span>contributors</span>
           </span>
           <div
@@ -89,26 +82,19 @@ export default function JobPreview({
               {numContributors ?? 'N/A'}
             </span>
           </div>
-          <span
-            className={isSkeleton ? `text-xs ${placeholderStyle}` : 'hidden'}
-          >
+          <span className={isSkeleton ? `text-xs skeleton` : 'hidden'}>
             <span>placeholder</span>
           </span>
         </div>
         <div className="flex flex-col justify-between items-start sm:w-20 md:w-32">
-          <span
-            className={classNames(
-              'text-xs',
-              isSkeleton ? placeholderStyle : ''
-            )}
-          >
+          <span className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}>
             <span>test progress</span>
           </span>
           <div className="flex flex-col items-center w-full">
             <span
               className={classNames(
                 'text-xs mb-1',
-                isSkeleton ? `h-2 ${placeholderStyle}` : ''
+                isSkeleton ? `h-2 skeleton` : ''
               )}
             >
               <span>
@@ -121,7 +107,7 @@ export default function JobPreview({
             <div
               className={classNames(
                 'rounded-full w-full overflow-hidden',
-                isSkeleton ? placeholderStyle : 'bg-gray-200'
+                isSkeleton ? 'skeleton' : 'bg-gray-200'
               )}
             >
               <div
@@ -135,40 +121,26 @@ export default function JobPreview({
           </div>
         </div>
         <div className="flex flex-col justify-between items-start">
-          <span
-            className={classNames(
-              'text-xs',
-              isSkeleton ? placeholderStyle : ''
-            )}
-          >
+          <span className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}>
             <span>estimated time</span>
           </span>
           <TimeEstimate
             className={classNames(isSkeleton ? 'hidden' : '')}
             duration={timeEstimate ? `${timeEstimate} hours` : 'N/A'}
           />
-          <span
-            className={isSkeleton ? `text-xs ${placeholderStyle}` : 'hidden'}
-          >
+          <span className={isSkeleton ? `text-xs skeleton` : 'hidden'}>
             <span>placeholder</span>
           </span>
         </div>
         <div className="flex flex-col justify-between">
-          <span
-            className={classNames(
-              'text-xs',
-              isSkeleton ? placeholderStyle : ''
-            )}
-          >
+          <span className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}>
             <span>minimum wage</span>
           </span>
           <div className="flex items-end">
             <span
               className={classNames(
                 'mr-1',
-                isSkeleton
-                  ? `h-5 ${placeholderStyle}`
-                  : 'font-grifter -mb-[4px]'
+                isSkeleton ? `h-5 skeleton` : 'font-grifter -mb-[4px]'
               )}
             >
               <span>
@@ -179,7 +151,7 @@ export default function JobPreview({
             <span
               className={classNames(
                 'text-sm text-gray-300',
-                isSkeleton ? `h-4 ${placeholderStyle}` : ''
+                isSkeleton ? `h-4 skeleton` : ''
               )}
             >
               <span>
@@ -207,7 +179,7 @@ export function LanguageAndTitle({
       <div
         className={classNames(
           iconClassName,
-          isSkeleton ? `self-start ${placeholderStyle}` : ''
+          isSkeleton ? `self-start skeleton` : ''
         )}
       >
         <SiPython
@@ -222,9 +194,7 @@ export function LanguageAndTitle({
           titleClassName
         )}
       >
-        <div
-          className={classNames('truncate', isSkeleton ? placeholderStyle : '')}
-        >
+        <div className={classNames('truncate', isSkeleton ? 'skeleton' : '')}>
           <span>{title ?? 'N/A'}</span>
         </div>
       </span>

@@ -35,7 +35,6 @@ export default function SearchResultsHeader({
 }: SearchResultsHeaderProps) {
   const [selected, setSelected] = useState(publishingOptions[0]);
   const [sortDir, setSortDir] = useState(SortDirection.DESCENDING);
-  const placeholderStyle = 'bg-[#00000022] rounded-full children:invisible';
 
   return (
     <header
@@ -45,12 +44,7 @@ export default function SearchResultsHeader({
         className
       )}
     >
-      <h4
-        className={classNames(
-          'font-grifter',
-          isLoading ? placeholderStyle : ''
-        )}
-      >
+      <h4 className={classNames('font-grifter', isLoading ? 'skeleton' : '')}>
         <span>
           Found {numResults ?? 0}{' '}
           <span className="text-green-400">
@@ -61,7 +55,7 @@ export default function SearchResultsHeader({
       <div
         className={classNames(
           'my-4 md:my-0 md:ml-12 border-b border-[#ffffff22] focus-within:border-green-400 flex items-center pb-1 relative',
-          isLoading ? ` border-b-0 ${placeholderStyle}` : ''
+          isLoading ? ` border-b-0 skeleton` : ''
         )}
       >
         <div className="flex items-center justify-center absolute pointer-events-none">
@@ -76,7 +70,7 @@ export default function SearchResultsHeader({
           autoComplete="off"
         />
       </div>
-      <div className={classNames('ml-auto', isLoading ? placeholderStyle : '')}>
+      <div className={classNames('ml-auto', isLoading ? 'skeleton' : '')}>
         <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
             <>
