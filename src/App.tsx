@@ -8,6 +8,7 @@ import Layout from './Layout';
 import JobDiscovery from './JobDiscovery';
 import Hire from './Hire';
 import JobDetails from './JobDetails';
+import PressPage from './PressPage';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ function App() {
             <Route path="jobs" element={<JobDiscovery />} />
             <Route path="jobs/:id" element={<JobDetails />} />
             <Route path="hire" element={<Hire />} />
+            <Route path="press" element={<PressPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
