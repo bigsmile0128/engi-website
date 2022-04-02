@@ -2,11 +2,12 @@ import React from 'react';
 import classNames from 'classnames';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { HiOutlineChevronLeft } from 'react-icons/hi';
 import { IoMdShareAlt } from 'react-icons/io';
+import * as Sentry from '@sentry/react';
 
 import PaymentInfo from './PaymentInfo';
 import JobInfo from './JobInfo';
@@ -31,16 +32,31 @@ type Job = {
 
 export default function JobDetails() {
   const { id } = useParams();
-  const { isLoading, error, data } = useQuery<Job>(
+  const { isLoading, isError, data } = useQuery<Job>(
     ['jobDetails', id],
     async () => {
       const response = await axios.get(`/api/jobs/${id}`);
       return response.data;
+    },
+    {
+      onError: (error: AxiosError) => {
+        Sentry.captureException(error, (scope) => {
+          scope.clear();
+          scope.setTransactionName('GET /jobs/{id}');
+          scope.setTag(id, 'id'.toString());
+          return scope;
+        });
+      },
     }
   );
 
-  return (
-    // TODO: error handling
+  return isError ? (
+    <div className="flex flex-col items-center justify-center py-24">
+      <p className="font-grifter text-3xl text-center">
+        Something went wrong...
+      </p>
+    </div>
+  ) : (
     <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex flex-col lg:flex-row items-start gap-x-12">
       <div className="flex flex-1 flex-col">
         <div className="flex items-center">
