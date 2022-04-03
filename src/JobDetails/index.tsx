@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -14,6 +14,7 @@ import JobInfo from './components/JobInfo';
 
 import Tag from '../components/Tag';
 import JobCreatorInfo from './components/JobCreatorInfo';
+import ShareModal from './components/ShareModal';
 
 dayjs.extend(relativeTime);
 
@@ -31,6 +32,7 @@ type Job = {
 };
 
 export default function JobDetails() {
+  const [modalOpen, setModalOpen] = useState(false);
   const { id } = useParams();
   const { isLoading, isError, data } = useQuery<Job>(
     ['jobDetails', id],
@@ -58,6 +60,7 @@ export default function JobDetails() {
     </div>
   ) : (
     <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex flex-col lg:flex-row items-start gap-x-12">
+      <ShareModal open={modalOpen} setOpen={setModalOpen} />
       <div className="flex flex-1 flex-col">
         <div className="flex items-center">
           <Link to="/jobs" className="">
@@ -73,8 +76,7 @@ export default function JobDetails() {
               {data?.title ?? 'Placeholder'}
             </span>
           </h1>
-          {/* TODO: create share modal with options */}
-          <button className="">
+          <button className="" onClick={() => setModalOpen(true)}>
             <IoMdShareAlt className="h-6 w-6" />
           </button>
         </div>
@@ -131,7 +133,7 @@ export default function JobDetails() {
         >
           Job Description
         </h2>
-        <p className="mt-6 mb-12 text-gray-300">
+        <div className="mt-6 mb-12 text-gray-300">
           <div
             className={classNames(
               'flex flex-col gap-y-1',
@@ -144,7 +146,7 @@ export default function JobDetails() {
             <div className={`skeleton animate-pulse h-5 w-3/5`} />
           </div>
           <span className={isLoading ? 'hidden' : ''}>{data?.description}</span>
-        </p>
+        </div>
         <div className="flex flex-col md:flex-row md:items-center gap-x-6 gap-y-6">
           <PaymentInfo
             className="md:flex-1 lg:flex-initial"
