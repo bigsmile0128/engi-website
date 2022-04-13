@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .skeleton {
+    @apply bg-[#00000022];
+    @apply rounded-full;
+    @apply children:invisible;
+    @apply text-transparent;
+    @apply animate-pulse;
+  }
+}
+
+@font-face {
+  font-family: 'GRIFTER';
+  src: url('/fonts/grifterbold.otf');
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+input:checked + div {
+  @apply border-green-400;
+  @apply bg-green-400;
+}
+input:checked + div svg {
+  @apply block;
+}
