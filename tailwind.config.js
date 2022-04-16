@@ -1,14 +1,14 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ['./app/**/*.{ts,tsx,jsx,js}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
       fontFamily: {
         grifter: ['GRIFTER', 'sans-serif'],
       },
       backgroundImage: {
-        landing: "url('/img/landing.svg')",
+        landing: "url('/public/img/landing.svg')",
       },
     },
   },
