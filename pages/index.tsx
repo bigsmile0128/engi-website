@@ -1,0 +1,36 @@
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+
+import Hero from 'components/home/Hero';
+import FigmaPreview from 'components/home/FigmaPreview';
+import Features from 'components/home/Features';
+import CalloutCards from 'components/home/CalloutCards';
+import BlockQuote from 'components/home/BlockQuote';
+import LanguageDivider from 'components/home/LanguageDivider';
+import GlobalConnection from 'components/home/GlobalConnection';
+import AlternatingFeatures from 'components/home/AlternatingFeatures';
+import CallToAction from 'components/home/CallToAction';
+import Footer from 'components/home/Footer';
+
+const Home: NextPage = () => {
+  return (
+    <div>
+      <Head>
+        <title>Engi</title>
+      </Head>
+      <Hero className="max-w-3xl lg:max-w-4xl mx-auto px-4 mt-16 sm:mt-32 sm:px-6 md:px-0" />
+      <CalloutCards className="max-w-3xl lg:max-w-4xl mx-auto px-6 md:px-0 mt-24 sm:mt-32" />
+      <BlockQuote className="max-w-3xl lg:max-w-4xl mx-6 md:mx-auto mt-24 sm:mt-32" />
+      <GlobalConnection className="mt-32" />
+      <Features className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-40" />
+      <FigmaPreview className="mx-6 max-w-3xl lg:max-w-4xl mt-24" />
+      <AlternatingFeatures className="max-w-3xl lg:max-w-4xl mx-auto mt-32" />
+      <LanguageDivider className="my-32 sm:my-48" />
+      <CallToAction className="" />
+      <Footer className="" />
+    </div>
+  );
+};
+
+export default Home;

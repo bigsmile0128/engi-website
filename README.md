@@ -1,30 +1,16 @@
-# Engi Website
+## Getting Started
 
-The Engi website built by the Engi network
+First, run the development server:
 
-## Development
-
-```
-npm install
-npm start
+```bash
+npm run dev
 ```
 
-## Production Preview
+Go to [http://localhost:3000](http://localhost:3000)
 
-Create the production build.
+## Deployment
 
-```
-npm run start-prod
-```
-
-## Mock server
-
-```
-npm run server
-```
-
-## Storybook
-
-```
-npm run storybook
+```bash
+docker build -t engi-website .
+docker run -p 3000:3000 engi-website
 ```

@@ -1,0 +1,39 @@
+import React from 'react';
+import classNames from 'classnames';
+import Image from 'next/image';
+
+import figmaPlugin from './img/figma-plugin.png';
+import GridPattern from 'components/GridPattern';
+import Button from 'components/Button';
+
+interface FigmaPreviewProps {
+  className?: string;
+}
+
+export default function FigmaPreview({ className }: FigmaPreviewProps) {
+  return (
+    <div
+      className={classNames(
+        'md:mx-auto flex flex-col md:flex-row border border-[#43ffff1a]',
+        className
+      )}
+    >
+      <div className="relative flex flex-col md:basis-1/3">
+        <GridPattern size={60} />
+        <div className="flex-1 flex flex-col justify-center items-start p-12 border-b md:border-b-0 md:border-r border-[#43ffff1a] z-10">
+          <h2 className="font-grifter text-white text-3xl">
+            <span className="inline md:block">FIGMA </span>
+            <span className="inline md:block">PLUGIN</span>
+          </h2>
+          <p className="md:mt-8 text-white">
+            Our new Figma plugin is available!
+          </p>
+          <Button className="mt-8">Learn More</Button>
+        </div>
+      </div>
+      <div className="sm:p-12 md:basis-2/3 md:block">
+        <Image src={figmaPlugin} alt="figma-plugin" />
+      </div>
+    </div>
+  );
+}
