@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../components/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-backgrounds',
+    '@storybook/addon-interactions',
+    'storybook-addon-next',
     {
       name: '@storybook/addon-postcss',
       options: {
@@ -16,6 +18,6 @@ module.exports = {
   ],
   framework: '@storybook/react',
   core: {
-    builder: 'webpack5',
+    builder: '@storybook/builder-webpack5',
   },
 };
