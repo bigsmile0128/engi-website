@@ -68,7 +68,8 @@ export default function EmailRegistration({
   return (
     <div className={classNames('flex flex-col', className)}>
       <form
-        className="flex flex-col xs:flex-row gap-y-4 xs:gap-y-0 w-full"
+        // stack vertically on mobile devices
+        className="flex flex-col xs:flex-row gap-y-6 xs:gap-y-0 w-full"
         onSubmit={(e) => {
           e.preventDefault();
           onEmailSignup(email);
