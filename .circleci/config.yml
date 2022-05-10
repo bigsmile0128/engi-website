@@ -42,8 +42,6 @@ workflows:
   build-test-push-workflow:
     jobs:
       - aws-ecr/build-and-push-image:
-          requires:
-            - build-test
           repo: 'engi-website'
           create-repo: true
           tag: 'latest'
