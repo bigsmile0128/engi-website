@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { MdArrowBack, MdCheck, MdHistory } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
@@ -7,14 +8,14 @@ import { SiStorybook } from 'react-icons/si';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
-import Xarrow from 'react-xarrows';
-
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
 import EngiIcon from './img/engi.svg';
 import StorybookIcon from './img/storybook.svg';
 import figmaPlugin from './img/figma-plugin.png';
 import FigmaIcon from './img/figma2.svg';
+
+const Xarrow = dynamic(() => import('react-xarrows'), { ssr: false });
 
 interface FigmaPreviewProps {
   className?: string;
