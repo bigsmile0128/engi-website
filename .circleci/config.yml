@@ -13,6 +13,9 @@ parameters:
   terraform-setup:
     type: string
     default: deploy/setup/engi-website
+  env:
+    type: string
+    default: staging
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -45,7 +48,7 @@ workflows:
   build-test-push-workflow:
     jobs:
       - aws-ecr/build-and-push-image:
-          repo: 'engi-website'
+          repo: 'engi-website-<< pipeline.parameters.env >>'
           create-repo: true
           tag: 'latest'
           registry-id: AWS_ID
