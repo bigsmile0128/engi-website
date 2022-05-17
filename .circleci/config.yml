@@ -51,12 +51,12 @@ workflows:
           registry-id: AWS_ID
           context:
             - aws
-      - deploy:
-          requires:
-            - aws-ecr/build-and-push-image
-          context:
-            - github
-            - terraform
+      # - deploy:
+      #     requires:
+      #       - aws-ecr/build-and-push-image
+      #     context:
+      #       - github
+      #       - terraform
   build-push-workflow-production:
     jobs:
       - aws-ecr/build-and-push-image:
