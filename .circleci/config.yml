@@ -42,12 +42,12 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  build-test-push-workflow-stage:
+  build-test-push-workflow-staging:
     jobs:
       - aws-ecr/build-and-push-image:
           repo: 'engi-website-staging'
           create-repo: true
-          tag: staging
+          tag: latest
           registry-id: AWS_ID
           context:
             - aws
@@ -65,7 +65,7 @@ workflows:
           #     only: /^v.*/
           repo: 'engi-website-production'
           create-repo: true
-          tag: production
+          tag: latest
           registry-id: AWS_ID
           context:
             - aws
