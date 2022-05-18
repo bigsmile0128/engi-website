@@ -14,12 +14,11 @@ parameters:
     type: string
     default: deploy/setup/engi-website
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
-jobs:
-  deploy:
-    machine:
-      image: ubuntu-2004:202201-01
+commands: # a reusable command with parameters
+  terraform-deploy:
+    parameters:
+      workspace:
+        type: string
     steps:
       - run:
           name: 'Checkout Terraform sources'
@@ -38,6 +37,18 @@ jobs:
           path: << pipeline.parameters.terraform-setup >>
       - terraform/apply:
           path: << pipeline.parameters.terraform-setup >>
+          attach-workspace: true
+          workspace: << parameters.workspace >>
+
+# Define a job to be invoked later in a workflow.
+# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+jobs:
+  deploy-staging:
+    machine:
+      image: ubuntu-2004:202201-01
+    steps:
+      - terraform-deploy:
+          workspace: 'engi-website-staging'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -61,9 +72,9 @@ workflows:
           registry-id: AWS_ID
           context:
             - aws
-      # - deploy:
-      #     requires:
-      #       - aws-ecr/build-and-push-image
-      #     context:
-      #       - github
-      #       - terraform
+      - deploy-staging:
+          requires:
+            - aws-ecr/build-and-push-image
+          context:
+            - github
+            - terraform
