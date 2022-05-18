@@ -55,6 +55,7 @@ workflows:
   build-test-push-workflow:
     jobs:
       - aws-ecr/build-and-push-image:
+          name: 'build-and-push-staging'
           repo: 'engi-website-staging'
           create-repo: true
           tag: latest
@@ -73,7 +74,7 @@ workflows:
             - aws
       - deploy-staging:
           requires:
-            - aws-ecr/build-and-push-image
+            - build-and-push-staging
           context:
             - github
             - terraform
