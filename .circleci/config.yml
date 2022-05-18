@@ -14,11 +14,8 @@ parameters:
     type: string
     default: deploy/setup/engi-website
 
-commands: # a reusable command with parameters
+commands:
   terraform-deploy:
-    parameters:
-      workspace:
-        type: string
     steps:
       - run:
           name: 'Checkout Terraform sources'
@@ -29,11 +26,6 @@ commands: # a reusable command with parameters
           command: |
             echo "credentials \"app.terraform.io\" {token =
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
-      - run:
-          name: 'Set workspace environment variable TF_WORKSPACE'
-          command: |
-            echo 'export TF_WORKSPACE=<< parameters.workspace >>' >> $BASH_ENV
-            source $BASH_ENV
       - terraform/install:
           arch: amd64
           os: linux
@@ -50,8 +42,9 @@ jobs:
     machine:
       image: ubuntu-2004:202201-01
     steps:
-      - terraform-deploy:
-          workspace: 'engi-website-staging'
+      - terraform-deploy
+    environment:
+      TF_WORKSPACE: 'engi-website-staging'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
