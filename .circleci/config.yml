@@ -37,6 +37,7 @@ commands:
       - terraform/init:
           path: << pipeline.parameters.terraform-setup >>
       - run:
+          # the terraform/apply command built into the official orb unsets TF_WORKSPACE that won't work here
           name: 'terraform apply'
           command: |
             terraform -chdir="<< pipeline.parameters.terraform-setup >>" apply -auto-approve
@@ -51,6 +52,13 @@ jobs:
       TF_WORKSPACE: 'engi-website-staging'
     steps:
       - terraform-deploy
+  deploy-production:
+    machine:
+      image: ubuntu-2004:202201-01
+    environment:
+      TF_WORKSPACE: 'engi-website-production'
+    steps:
+      - terraform-deploy
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -59,7 +67,7 @@ workflows:
     jobs:
       - aws-ecr/build-and-push-image:
           name: 'build-and-push-staging'
-          repo: 'engi-website-staging'
+          repo: 'email-server-staging'
           create-repo: true
           tag: latest
           registry-id: AWS_ID
@@ -70,7 +78,7 @@ workflows:
           #   tags:
           #     only: /^v.*/
           name: 'build-and-push-production'
-          repo: 'engi-website-production'
+          repo: 'email-server-production'
           create-repo: true
           tag: latest
           registry-id: AWS_ID
@@ -79,6 +87,12 @@ workflows:
       - deploy-staging:
           requires:
             - build-and-push-staging
+          context:
+            - github
+            - terraform
+      - deploy-production:
+          requires:
+            - build-and-push-production
           context:
             - github
             - terraform
