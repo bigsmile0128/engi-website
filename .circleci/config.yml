@@ -37,12 +37,11 @@ commands: # a reusable command with parameters
           arch: amd64
           os: linux
           terraform_version: 1.1.9
-      - terraform/init:
-          path: << pipeline.parameters.terraform-setup >>
       - run:
-          name: 'Switch workspace'
+          name: 'Initialisation'
           command: |
-            terraform workspace select << parameters.workspace >>
+            terraform -chdir="<< pipeline.parameters.terraform-setup >>" init
+            terraform -chdir="<< pipeline.parameters.terraform-setup >>" workspace select << parameters.workspace >>
       - terraform/apply:
           path: << pipeline.parameters.terraform-setup >>
 
