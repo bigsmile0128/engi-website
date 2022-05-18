@@ -36,9 +36,10 @@ commands:
           terraform_version: 1.1.9
       - terraform/init:
           path: << pipeline.parameters.terraform-setup >>
-      - terraform/apply:
-          path: << pipeline.parameters.terraform-setup >>
-          workspace: $TF_WORKSPACE
+      - run:
+          name: 'terraform apply'
+          command: |
+            terraform -chdir="<< pipeline.parameters.terraform-setup >>" apply -auto-approve
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
