@@ -29,15 +29,22 @@ commands: # a reusable command with parameters
           command: |
             echo "credentials \"app.terraform.io\" {token =
             \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+      - run:
+          name: 'Display workspace'
+          command: |
+            echo << parameters.workspace >>
       - terraform/install:
           arch: amd64
           os: linux
           terraform_version: 1.1.9
       - terraform/init:
           path: << pipeline.parameters.terraform-setup >>
+      - run:
+          name: 'Switch workspace'
+          command: |
+            terraform workspace select << parameters.workspace >>
       - terraform/apply:
           path: << pipeline.parameters.terraform-setup >>
-          workspace: << parameters.workspace >>
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
@@ -66,6 +73,7 @@ workflows:
           # filters:
           #   tags:
           #     only: /^v.*/
+          name: 'build-and-push-production'
           repo: 'engi-website-production'
           create-repo: true
           tag: latest
