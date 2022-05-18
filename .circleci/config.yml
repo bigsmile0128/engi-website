@@ -37,7 +37,6 @@ commands: # a reusable command with parameters
           path: << pipeline.parameters.terraform-setup >>
       - terraform/apply:
           path: << pipeline.parameters.terraform-setup >>
-          attach-workspace: true
           workspace: << parameters.workspace >>
 
 # Define a job to be invoked later in a workflow.
