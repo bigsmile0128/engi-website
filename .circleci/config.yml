@@ -67,7 +67,7 @@ workflows:
     jobs:
       - aws-ecr/build-and-push-image:
           name: 'build-and-push-staging'
-          repo: 'email-server-staging'
+          repo: 'engi-website-staging'
           create-repo: true
           tag: latest
           registry-id: AWS_ID
@@ -78,7 +78,7 @@ workflows:
           #   tags:
           #     only: /^v.*/
           name: 'build-and-push-production'
-          repo: 'email-server-production'
+          repo: 'engi-website-production'
           create-repo: true
           tag: latest
           registry-id: AWS_ID
