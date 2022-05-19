@@ -91,6 +91,9 @@ workflows:
             - github
             - terraform
       - deploy-production:
+          filters:
+            tags:
+              only: /^v.*/
           requires:
             - build-and-push-production
           context:
