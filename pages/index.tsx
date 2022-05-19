@@ -11,12 +11,12 @@ import LanguageDivider from 'components/home/LanguageDivider';
 import GlobalConnection from 'components/home/GlobalConnection';
 import AlternatingFeatures from 'components/home/AlternatingFeatures';
 import CallToAction from 'components/home/CallToAction';
-import Footer from 'components/home/Footer';
+import Footer from 'components/layout/Footer';
 import { isDevEnv } from 'utils';
 
 const Home: NextPage = () => {
   return (
-    <div className="">
+    <div className="pb-16 sm:pb-32 lg:pb-40">
       <Head>
         <title>Engi</title>
       </Head>
@@ -33,7 +33,6 @@ const Home: NextPage = () => {
           <CallToAction className="" />
         </>
       )}
-      <Footer className="mt-24" />
     </div>
   );
 };
