@@ -74,9 +74,9 @@ workflows:
           context:
             - aws
       - aws-ecr/build-and-push-image:
-          # filters:
-          #   tags:
-          #     only: /^v.*/
+          filters:
+            tags:
+              only: /^v.*/
           name: 'build-and-push-production'
           repo: 'engi-website-production'
           create-repo: true
@@ -90,9 +90,9 @@ workflows:
           context:
             - github
             - terraform
-      # - deploy-production:
-      #     requires:
-      #       - build-and-push-production
-      #     context:
-      #       - github
-      #       - terraform
+      - deploy-production:
+          requires:
+            - build-and-push-production
+          context:
+            - github
+            - terraform
