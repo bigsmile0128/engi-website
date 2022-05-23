@@ -75,8 +75,11 @@ workflows:
             - aws
       - aws-ecr/build-and-push-image:
           filters:
+            &filters-production # this yaml anchor is setting these values to filters-production
             tags:
               only: /^v.*/
+            branches:
+              ignore: /.*/
           name: 'build-and-push-production'
           repo: 'engi-website-production'
           create-repo: true
@@ -92,8 +95,7 @@ workflows:
             - terraform
       - deploy-production:
           filters:
-            tags:
-              only: /^v.*/
+            <<: *filters-production # this is calling the previously set yaml anchor
           requires:
             - build-and-push-production
           context:
