@@ -38,7 +38,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
   const [showSameStory, setShowSameStory] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setShowSameStory(!showSameStory), 3000);
+    setTimeout(() => setShowSameStory(!showSameStory), 4000);
   }, [showSameStory]);
 
   const motionProps = {
