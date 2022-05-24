@@ -82,7 +82,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
               <div className="flex justify-between">
                 <MdArrowBack />
                 <div className="flex items-center gap-x-1.5 text-gray-400">
-                  <span className="text-xs xs:text-sm">View History</span>
+                  <span className="text-sm hidden xs:block">View History</span>
                   <MdHistory />
                 </div>
               </div>
