@@ -23,6 +23,8 @@
     "copy-to-clipboard": "^3.3.1",
     "dayjs": "^1.11.0",
     "framer-motion": "^6.3.3",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.2.0",
     "lodash": "^4.17.21",
     "next": "12.1.6",
     "next-http-proxy-middleware": "^1.2.4",

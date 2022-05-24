@@ -9,6 +9,7 @@ import Logo from './Logo';
 import Link from 'next/link';
 import { isDevEnv } from 'utils';
 import { ChevronRightIcon } from '@heroicons/react/solid';
+import BlockchainHealth from './BlockchainHealth';
 
 interface NavbarProps {
   className?: string;
@@ -18,8 +19,8 @@ export default function Navbar({ className }: NavbarProps) {
   return (
     <header>
       <Popover className="relative">
-        <div className="flex justify-between items-center mx-auto xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl p-6 sm:px-0">
-          <div className="flex justify-start mr-10">
+        <div className="flex items-center justify-between mx-auto xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl p-6 sm:px-0">
+          <div className="flex mr-10">
             <Logo className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>
           <div className="-mr-2 -my-2 md:hidden">
@@ -30,7 +31,7 @@ export default function Navbar({ className }: NavbarProps) {
           </div>
           <Popover.Group
             as="nav"
-            className="hidden md:flex space-x-16 justify-start ml-12"
+            className="flex-1 hidden md:flex space-x-16 justify-start ml-12"
           >
             <Link href="/litepaper">
               <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -43,12 +44,8 @@ export default function Navbar({ className }: NavbarProps) {
               </a>
             </Link>
           </Popover.Group>
-          {/* TODO: display blockchain health */}
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            {/* <div className="">Blockchain Health</div> */}
-          </div>
+          <BlockchainHealth className="hidden md:flex" />
         </div>
-
         <Transition
           as={Fragment}
           enter="duration-200 ease-out"
@@ -95,6 +92,7 @@ export default function Navbar({ className }: NavbarProps) {
                         <ChevronRightIcon className="h-6" />
                       </a>
                     </Link>
+                    <BlockchainHealth className="justify-self-center xs:justify-self-end mt-8" />
                   </nav>
                 </div>
               </div>

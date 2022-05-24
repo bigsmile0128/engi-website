@@ -11,6 +11,15 @@ export const config = {
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const proxyOptions = [
     {
+      target: 'https://api.engi-graphql.dev.zmvp.host',
+      pathRewrite: [
+        {
+          patternStr: '^/api/graphql',
+          replaceStr: '/graphql',
+        },
+      ],
+    },
+    {
       target: process.env.API_URL,
       pathRewrite: [
         {
