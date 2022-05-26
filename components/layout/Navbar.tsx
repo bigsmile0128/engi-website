@@ -92,7 +92,7 @@ export default function Navbar({ className }: NavbarProps) {
                         <ChevronRightIcon className="h-6" />
                       </a>
                     </Link>
-                    <BlockchainHealth className="justify-self-center xs:justify-self-end mt-8" />
+                    <BlockchainHealth className="justify-self-center mt-8" />
                   </nav>
                 </div>
               </div>

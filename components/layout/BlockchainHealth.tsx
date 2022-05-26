@@ -42,7 +42,7 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
   return (
     <div className={classNames('flex items-center gap-x-12', className)}>
       {/* TODO: display after API is updated */}
-      <div className="flex flex-col items-center">
+      {/* <div className="flex flex-col items-center">
         <span
           className={classNames(
             'font-grifter whitespace-pre',
@@ -63,7 +63,7 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
           {isLoading ? ' ' : data?.peers ?? 'N/A'}
         </span>
         <span className="font-medium text-gray-300">head</span>
-      </div>
+      </div> */}
       <div className="flex flex-col items-center">
         <span className={classNames('font-grifter h-6')}>
           {isLoading && <GrStatusWarningSmall className="text-yellow-400" />}
@@ -78,7 +78,7 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
           )}
         </span>
         <span className="font-medium text-gray-300">
-          {isLoading ? 'connecting...' : data?.status ?? 'unknown'}
+          {isLoading ? 'connecting' : data?.status?.toLowerCase() ?? 'unknown'}
         </span>
       </div>
     </div>
