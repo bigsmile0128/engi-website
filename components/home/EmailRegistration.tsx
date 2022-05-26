@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import axios, { AxiosError } from 'axios';
-import { useMutation } from 'react-query';
+import { Mutation, useMutation } from 'react-query';
 import classNames from 'classnames';
 import * as Sentry from '@sentry/react';
 
 import Button from 'components/Button';
 import EmailModal from './EmailModal';
+import { MdCheck, MdErrorOutline } from 'react-icons/md';
 
 interface EmailRegistrationProps {
   className?: string;
@@ -52,11 +53,6 @@ export default function EmailRegistration({
     });
   });
 
-  // only display modal if successful registration, otherwise display error
-  useEffect(() => {
-    setModalOpen(registerMutation.isSuccess);
-  }, [registerMutation.isSuccess]);
-
   const onEmailSignup = async (email) => {
     registerMutation.mutate(email);
   };
@@ -78,31 +74,74 @@ export default function EmailRegistration({
         <label htmlFor="email-address" className="sr-only">
           Email address
         </label>
-        <input
-          id="email-address"
-          className={classNames(
-            'bg-transparent text-white border border-gray-500 p-4 text-sm flex-1 focus:outline-none focus:ring peer',
-            inputClassName
+        <div className="flex-1 relative">
+          <input
+            id="email-address"
+            className={classNames(
+              'w-full border border-gray-400 border-r-0 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent',
+              registerMutation.isError
+                ? 'border-red-400 fill-red-400 focus:ring-red-300 !bg-[#f8717122]'
+                : '',
+              inputClassName
+            )}
+            type="email"
+            placeholder="Enter your email address"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              registerMutation.reset();
+            }}
+            required
+          />
+          {registerMutation.isError && (
+            <MdErrorOutline
+              size={20}
+              className="text-red-400 absolute right-4 top-1/2 -translate-y-1/2"
+            />
           )}
-          type="email"
-          placeholder="Enter your email address"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <Button type="submit" className="shrink-0 px-8 z-10">
-          {!registerMutation.isLoading ? (
-            'Get Notified'
+        </div>
+        <Button
+          type="submit"
+          className={classNames(
+            'shrink-0 flex items-center justify-center w-40 z-10',
+            {
+              'bg-emerald-300 border-t-emerald-300': registerMutation.isSuccess,
+            }
+          )}
+          disabled={registerMutation.isSuccess || registerMutation.isError}
+        >
+          {registerMutation.isLoading ? (
+            <AiOutlineLoading className="animate-spin text-lg text-emerald-300" />
+          ) : registerMutation.isSuccess ? (
+            <div className="h-4 text-black">
+              <MdCheck size={24} className="-my-1" />
+            </div>
           ) : (
-            <AiOutlineLoading className="animate-spin text-lg" />
+            <span>Get Notified</span>
           )}
         </Button>
       </form>
       {registerMutation.isError && (
-        <p className="text-sm font-bold mt-2 -mb-7 text-red-500">
+        <p className="text-xs mt-2 text-red-400">
           {registerMutation.error?.response?.status === 409
-            ? 'Your email is already subscribed.'
+            ? 'This email is already registered. Please enter a different email.'
             : 'Error submitting email. Please try again.'}
+        </p>
+      )}
+      {registerMutation.isSuccess && (
+        <p className="flex flex-col gap-y-1 text-xs mt-2">
+          <span className="text-emerald-300">
+            {"Success! You'll be notified."}
+          </span>
+          <span>
+            Want more personalized updates?{' '}
+            <button
+              className="font-medium text-white underline hover:cursor-pointer hover:text-gray-300"
+              onClick={() => setModalOpen(true)}
+            >
+              Tell us more about you.
+            </button>
+          </span>
         </p>
       )}
       <div

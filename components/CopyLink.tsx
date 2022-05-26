@@ -19,7 +19,7 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
         type="text"
         disabled
         value={value}
-        className="flex-1 p-3 pr-0 bg-transparent text-gray-300 text-sm truncate"
+        className="flex-1 p-3 pr-0 bg-transparent text-white text-sm truncate"
       />
       <button
         className="p-2 bg-transparent focus:ring-2 outline-none"
@@ -29,17 +29,17 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
           // show checkmark after copying for 2s
           setTimeout(() => setCopied(false), 2000);
         }}
-        data-tip="Copy Link"
+        data-tip="Copy"
       >
         {copied ? (
           <MdCheck className="text-emerald-300" size={24} />
         ) : (
-          <RiFileCopyLine className="text-emerald-300" size={24} />
+          <RiFileCopyLine className="hover:text-emerald-300" size={24} />
         )}
       </button>
       <ReactTooltip
         effect="solid"
-        getContent={() => (copied ? 'Copied' : 'Copy Link')}
+        getContent={() => (copied ? 'Copied' : 'Copy')}
       />
     </div>
   );

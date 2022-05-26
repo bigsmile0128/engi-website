@@ -2,7 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+async function sleep(ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(), ms);
+  });
+}
+
+router.post('/', async (req, res) => {
+  await sleep(1000);
   res.sendStatus(200);
 });
 
