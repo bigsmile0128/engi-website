@@ -78,7 +78,7 @@ export default function EmailRegistration({
           <input
             id="email-address"
             className={classNames(
-              'w-full border border-gray-400 border-r-0 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent',
+              'w-full border border-gray-400 xs:border-r-0 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent',
               registerMutation.isError
                 ? 'border-red-400 fill-red-400 focus:ring-red-300 !bg-[#f8717122]'
                 : '',
@@ -103,7 +103,7 @@ export default function EmailRegistration({
         <Button
           type="submit"
           className={classNames(
-            'shrink-0 flex items-center justify-center w-40 z-10',
+            'shrink-0 flex items-center justify-center w-full xs:w-40 z-10',
             {
               'bg-emerald-300 border-t-emerald-300': registerMutation.isSuccess,
             }
