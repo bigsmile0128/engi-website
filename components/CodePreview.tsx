@@ -22,7 +22,9 @@ export default function CodePreview({
   return (
     <div className="relative flex">
       {borderClassName && (
-        <div className={classNames('border-l-[1px]', borderClassName)}></div>
+        <div
+          className={classNames('border-l-[1px] z-10', borderClassName)}
+        ></div>
       )}
       <div className="absolute h-full w-[28px] bg-gray-200" />
       <SyntaxHighlighter

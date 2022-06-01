@@ -177,8 +177,28 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       </div>
       {/* arrow for non-mobile screen */}
       <Transition className="hidden sm:block" isToggled={showSameStory}>
-        <Arrow start="arrow-start1" end="arrow-end" endAnchor="bottom" />
-        <Arrow start="arrow-start2" end="arrow-end" endAnchor="bottom" />
+        <Arrow
+          start="arrow-start1"
+          end="arrow-end"
+          startAnchor={{
+            position: 'left',
+            offset: {
+              x: -5,
+            },
+          }}
+          endAnchor="bottom"
+        />
+        <Arrow
+          start="arrow-start2"
+          end="arrow-end"
+          startAnchor={{
+            position: 'left',
+            offset: {
+              x: -5,
+            },
+          }}
+          endAnchor="bottom"
+        />
       </Transition>
       {/* arrow for mobile screen with different anchor positions */}
       <Transition className="sm:hidden" isToggled={showSameStory}>
