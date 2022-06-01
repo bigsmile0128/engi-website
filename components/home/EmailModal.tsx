@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
-import Modal, { ModalProps } from 'components/Modal';
 import { XIcon } from '@heroicons/react/outline';
+import Link from 'next/link';
+
+import Modal, { ModalProps } from 'components/Modal';
 import Button from 'components/Button';
 import EnvelopeSvg from './img/envelope.svg';
 import CopyLink from 'components/CopyLink';
@@ -141,19 +143,39 @@ export default function EmailModal({
             </div>
             <p className="font-semibold text-lg mt-6">Page Link</p>
             <CopyLink className="mt-2" value="https://engi.network/" />
-            <div className="flex items-center justify-between mt-12 gap-x-4 xs:gap-x-8">
-              <button className="p-3 xs:p-4 text-xl xs:text-2xl border border-emerald-300 rounded-full hover:text-gray-300">
-                <SiDiscord />
-              </button>
-              <button className="p-3 xs:p-4 text-xl xs:text-2xl border border-emerald-300 rounded-full hover:text-gray-300">
-                <SiTiktok />
-              </button>
-              <button className="p-3 xs:p-4 text-xl xs:text-2xl border border-emerald-300 rounded-full hover:text-gray-300">
-                <SiLinkedin />
-              </button>
-              <button className="p-3 xs:p-4 text-xl xs:text-2xl border border-emerald-300 rounded-full hover:text-gray-300">
-                <SiTwitter />
-              </button>
+            <div className="flex items-center justify-between mt-12 gap-x-4 xs:gap-x-8  text-xl xs:text-2xl">
+              <Link href="https://twitter.com/engi_network">
+                <a
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <SiDiscord />
+                </a>
+              </Link>
+              {/* <Link href="https://twitter.com/engi_network">
+                <a className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300" target="_blank" rel="noreferrer">
+                  <SiTiktok />
+                </a>
+              </Link> */}
+              <Link href="https://linkedin.com/company/engi-network">
+                <a
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <SiLinkedin />
+                </a>
+              </Link>
+              <Link href="https://twitter.com/engi_network">
+                <a
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <SiTwitter />
+                </a>
+              </Link>
             </div>
           </div>
         </>
