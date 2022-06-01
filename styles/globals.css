@@ -17,6 +17,11 @@
   src: url('../public/fonts/grifterbold.otf');
 }
 
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../public/fonts/robotomono.ttf');
+}
+
 body {
   margin: 0;
   font-family: 'Helvetica Neue';
@@ -49,4 +54,14 @@ select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
   background-color: transparent !important;
   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+}
+
+.react-syntax-highlighter code {
+  font-family: 'Roboto Mono';
+  font-weight: 700;
+}
+
+.react-syntax-highlighter-line-number {
+  padding-right: 1.5em !important;
+  padding-left: 0.4em;
 }
