@@ -7,10 +7,11 @@ import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
 import { SiStorybook } from 'react-icons/si';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
-import { motion, AnimatePresence } from 'framer-motion';
+import 'animate.css';
 
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
+import Transition from './Transition';
 import EngiIcon from './img/engi.svg';
 import StorybookIcon from './img/storybook.svg';
 import figmaPlugin from './img/figma-plugin.png';
@@ -38,15 +39,8 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
   const [showSameStory, setShowSameStory] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => setShowSameStory(!showSameStory), 4000);
+    setTimeout(() => setShowSameStory(!showSameStory), 3000);
   }, [showSameStory]);
-
-  const motionProps = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-    transition: { duration: 0.3 },
-  };
 
   return (
     <div className={classNames('grid relative', className)}>
@@ -86,59 +80,40 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
                   <MdHistory />
                 </div>
               </div>
-              <AnimatePresence exitBeforeEnter>
-                {showSameStory ? (
-                  <motion.div
-                    key="0"
-                    className="flex flex-col items-center justify-center text-md xs:text-xl font-bold -mt-5 xs:-mt-6"
-                    {...motionProps}
-                  >
-                    <p>Well done!</p>
-                    <p>
-                      It&rsquo;s the
-                      <span className="bg-emerald-300 text-black p-0.5 ml-1">
-                        Same Story
-                      </span>
-                    </p>
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="1"
-                    className="flex flex-col items-center justify-center text-md xs:text-xl font-bold -mt-5 xs:-mt-6"
-                    {...motionProps}
-                  >
-                    <p>
-                      Sorry,{' '}
-                      <span className="bg-red-400 text-black p-0.5 ml-1">
-                        it&rsquo;s not
-                      </span>
-                    </p>
-                    <p>the Same Story</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <Transition
+                isToggled={showSameStory}
+                className="text-md whitespace-nowrap xs:text-xl font-bold -mt-5 xs:-mt-6 h-10"
+              >
+                <div className="flex flex-col items-center justify-center">
+                  <p>Well done!</p>
+                  <p>
+                    It&rsquo;s the
+                    <span className="bg-emerald-300 text-black p-0.5 ml-1">
+                      Same Story
+                    </span>
+                  </p>
+                </div>
+                <div className="flex flex-col items-center justify-center">
+                  <p>
+                    Sorry,{' '}
+                    <span className="bg-red-400 text-black p-0.5 ml-1">
+                      it&rsquo;s not
+                    </span>
+                  </p>
+                  <p>the Same Story</p>
+                </div>
+              </Transition>
               <div className="flex items-center justify-between gap-x-4 xs:gap-x-12 mt-8 px-2 xs:px-2 sm:px-8 pb-2">
                 <div className="flex flex-col items-center justify-center gap-y-2">
                   <div className="relative border-2 border-[#ffffff22] h-24 xs:h-28 sm:h-36 w-24 xs:w-28 sm:w-36">
-                    <AnimatePresence exitBeforeEnter>
-                      {showSameStory ? (
-                        <motion.div
-                          key="0"
-                          className="absolute top-1/3 left-1/4 flex items-center justify-center bg-[#F27B50] px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap"
-                          {...motionProps}
-                        >
-                          Edit Profile
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="1"
-                          className="absolute top-1/3 left-1/4 flex items-center justify-center bg-gray-400 px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap"
-                          {...motionProps}
-                        >
-                          Click Me
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <Transition isToggled={showSameStory}>
+                      <div className="absolute top-1/3 left-1/4 flex items-center justify-center bg-[#F27B50] px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap">
+                        Edit Profile
+                      </div>
+                      <div className="absolute top-1/3 left-1/4 flex items-center justify-center bg-gray-400 px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap">
+                        Click Me
+                      </div>
+                    </Transition>
                     <div className="absolute bg-[#030219] rounded-full p-2.5 sm:p-3.5 -translate-x-1/4 -translate-y-1/4">
                       <StorybookIcon className="h-5 xs:h-6 sm:h-7 w-5 xs:w-6 sm:w-7" />
                     </div>
@@ -150,23 +125,10 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
                     Rendered Code
                   </span>
                 </div>
-                <AnimatePresence exitBeforeEnter>
-                  {showSameStory ? (
-                    <motion.div key="0" {...motionProps}>
-                      <AiFillCheckCircle
-                        className="text-emerald-300 mb-8"
-                        size={32}
-                      />
-                    </motion.div>
-                  ) : (
-                    <motion.div key="1" {...motionProps}>
-                      <AiFillCloseCircle
-                        className="text-red-400 mb-8"
-                        size={32}
-                      />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <Transition className="w-8 h-8 mb-8" isToggled={showSameStory}>
+                  <AiFillCheckCircle className="text-emerald-300" size={32} />
+                  <AiFillCloseCircle className="text-red-400" size={32} />
+                </Transition>
                 <div className="flex flex-col items-center justify-center gap-y-2">
                   <div className="relative border-2 border-[#ffffff22] h-24 xs:h-28 sm:h-36 w-24 xs:w-28 sm:w-36">
                     <div className="absolute top-1/3 left-1/4 flex items-center justify-center bg-[#F27B50] px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap">
@@ -187,130 +149,114 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       </div>
       <div
         id="arrow-start"
-        className="mt-8 justify-self-end overflow-hidden sm:mr-8 md:mr-0 md:absolute md:bottom-0 md:left-1/2 lg:left-56 xl:left-1/4 md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30"
+        className="mt-8 justify-self-end overflow-hidden sm:mr-8 md:mr-0 relative md:absolute md:bottom-0 md:left-1/2 lg:left-56 xl:left-1/4 md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30"
       >
-        <AnimatePresence exitBeforeEnter>
-          {showSameStory ? (
-            <motion.div
-              key="0"
-              className="flex flex-col items-start"
-              {...motionProps}
-            >
-              <div className="text-[11px] xs:text-xs font-mono bg-[#253520aa] px-2 py-1">
-                Button.tsx
-              </div>
-              <div className="flex">
-                <div className="border-l-2 border-emerald-300"></div>
-                <SyntaxHighlighter
-                  id="arrow-start1"
-                  className="text-[11px] xs:text-xs !bg-[#253520aa] leading-5 overflow-hidden"
-                  language="javascript"
-                  style={monokai}
-                  showLineNumbers
-                  wrapLines
-                  codeTagProps={{}}
-                >
-                  {code}
-                </SyntaxHighlighter>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="1"
-              className="flex flex-col items-start"
-              {...motionProps}
-            >
-              <div className="text-[11px] xs:text-xs font-mono bg-[#253520aa] px-2 py-1">
-                Button.tsx
-              </div>
-              <div className="flex">
-                <div className="border-l-2 border-red-400"></div>
-                <SyntaxHighlighter
-                  id="arrow-start2"
-                  className="text-[11px] xs:text-xs !bg-[#253520aa] leading-5 overflow-hidden"
-                  language="javascript"
-                  style={monokai}
-                  showLineNumbers
-                  wrapLines
-                  codeTagProps={{}}
-                >
-                  {incorrectCode}
-                </SyntaxHighlighter>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        <Transition
+          className="w-[330px] h-[90px] xs:w-[360px]"
+          isToggled={showSameStory}
+        >
+          <div className="flex flex-col items-start absolute left-0 top-0">
+            <div className="text-[11px] xs:text-xs font-mono bg-[#253520aa] px-2 py-1">
+              Button.tsx
+            </div>
+            <div className="flex">
+              <div className="border-l-2 border-emerald-300"></div>
+              <SyntaxHighlighter
+                id="arrow-start1"
+                className="text-[11px] xs:text-xs !bg-[#253520aa] leading-5 overflow-hidden"
+                language="javascript"
+                style={monokai}
+                showLineNumbers
+                wrapLines
+                codeTagProps={{}}
+              >
+                {code}
+              </SyntaxHighlighter>
+            </div>
+          </div>
+          <div className="flex flex-col items-start absolute left-0 top-0">
+            <div className="text-[11px] xs:text-xs font-mono bg-[#253520aa] px-2 py-1">
+              Button.tsx
+            </div>
+            <div className="flex">
+              <div className="border-l-2 border-red-400"></div>
+              <SyntaxHighlighter
+                id="arrow-start2"
+                className="text-[11px] xs:text-xs !bg-[#253520aa] leading-5 overflow-hidden"
+                language="javascript"
+                style={monokai}
+                showLineNumbers
+                wrapLines
+                codeTagProps={{}}
+              >
+                {incorrectCode}
+              </SyntaxHighlighter>
+            </div>
+          </div>
+        </Transition>
       </div>
-      <div className="hidden sm:block">
-        <AnimatePresence exitBeforeEnter>
-          {showSameStory ? (
-            <motion.div key="0" {...motionProps}>
-              <Xarrow
-                start="arrow-start1"
-                end="arrow-end"
-                strokeWidth={1}
-                headSize={8}
-                curveness={0.6}
-                endAnchor="bottom"
-                dashness
-              />
-            </motion.div>
-          ) : (
-            <motion.div key="1" {...motionProps}>
-              <Xarrow
-                start="arrow-start2"
-                end="arrow-end"
-                strokeWidth={1}
-                headSize={8}
-                curveness={0.6}
-                endAnchor="bottom"
-                dashness
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-      <div className="sm:hidden">
-        <AnimatePresence exitBeforeEnter>
-          {showSameStory ? (
-            <motion.div key="0" {...motionProps}>
-              <Xarrow
-                start="arrow-start1"
-                end="arrow-end"
-                strokeWidth={1}
-                headSize={8}
-                curveness={0.6}
-                startAnchor={{
-                  position: 'top',
-                  offset: {
-                    x: 16,
-                  },
-                }}
-                endAnchor="right"
-                dashness
-              />
-            </motion.div>
-          ) : (
-            <motion.div key="1" {...motionProps}>
-              <Xarrow
-                start="arrow-start2"
-                end="arrow-end"
-                strokeWidth={1}
-                headSize={8}
-                curveness={0.6}
-                startAnchor={{
-                  position: 'top',
-                  offset: {
-                    x: 16,
-                  },
-                }}
-                endAnchor="right"
-                dashness
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      {/* arrow for non-mobile screen */}
+      <Transition className="hidden sm:block" isToggled={showSameStory}>
+        <div>
+          <Xarrow
+            start="arrow-start1"
+            end="arrow-end"
+            strokeWidth={1}
+            headSize={8}
+            curveness={0.6}
+            endAnchor="bottom"
+            dashness
+          />
+        </div>
+        <div>
+          <Xarrow
+            start="arrow-start2"
+            end="arrow-end"
+            strokeWidth={1}
+            headSize={8}
+            curveness={0.6}
+            endAnchor="bottom"
+            dashness
+          />
+        </div>
+      </Transition>
+      {/* arrow for mobile screen with different anchor positions */}
+      <Transition className="sm:hidden" isToggled={showSameStory}>
+        <div>
+          <Xarrow
+            start="arrow-start1"
+            end="arrow-end"
+            strokeWidth={1}
+            headSize={8}
+            curveness={0.6}
+            startAnchor={{
+              position: 'top',
+              offset: {
+                x: 16,
+              },
+            }}
+            endAnchor="right"
+            dashness
+          />
+        </div>
+        <div>
+          <Xarrow
+            start="arrow-start2"
+            end="arrow-end"
+            strokeWidth={1}
+            headSize={8}
+            curveness={0.6}
+            startAnchor={{
+              position: 'top',
+              offset: {
+                x: 16,
+              },
+            }}
+            endAnchor="bottom"
+            dashness
+          />
+        </div>
+      </Transition>
     </div>
   );
 }
