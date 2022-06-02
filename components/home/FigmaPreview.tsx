@@ -21,8 +21,8 @@ interface FigmaPreviewProps {
 }
 
 const code = `
-const Button = ({ children }) => (
-  <button className="btn">{children}</button>
+const Button = ({ text }) => (
+  <button className="btn">{text}</button>
 );
 `.trim();
 
@@ -41,11 +41,11 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
 
   return (
     <div className={classNames('grid relative', className)}>
-      <div className="flex flex-col lg:flex-row border border-[#43ffff1a]">
-        <div className="relative flex flex-col">
+      <div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
+        <div className="relative flex flex-col h-full">
           <GridPattern size={64} />
           {/* specific units to line up text precisely with grid on XL */}
-          <div className="flex-1 flex flex-col items-start p-8 xs:p-12 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
+          <div className="flex-1 flex flex-col items-start p-8 xs:p-12 lg:p-6 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
             <h2 className="font-grifter text-white text-5xl">
               <span className="inline md:block">FIGMA plugin</span>
             </h2>
@@ -150,7 +150,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       >
         <Transition
           // set explicit width and height because elements are position absolute
-          className={classNames('w-[337px] h-[103px]')}
+          className={classNames('w-[314px] h-[103px]')}
           isToggled={showSameStory}
         >
           <div className="flex flex-col items-start absolute left-0 top-0">

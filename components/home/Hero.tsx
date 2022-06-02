@@ -9,7 +9,8 @@ import {
   SiReact,
   SiRust,
 } from 'react-icons/si';
-import HeroText from './img/hero_text.svg';
+import HeroTextSvg from './img/hero-text.svg';
+import HeroTextCenteredSvg from './img/hero-text-centered.svg';
 
 interface HeroProps {
   className?: string;
@@ -19,9 +20,10 @@ export default function Hero({ className }: HeroProps) {
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <div className="w-full max-w-5xl mt-20 mb-8">
-        <HeroText className="w-full" />
+        <HeroTextSvg className="hidden lg:block w-full" />
+        <HeroTextCenteredSvg className="block lg:hidden w-full" />
       </div>
-      <div className="w-full xl:flex items-start justify-between xl:justify-start xl:gap-x-24">
+      <div className="w-full flex flex-col items-center text-center lg:text-left lg:items-start xl:flex-row xl:justify-start xl:gap-x-24">
         <div className="">
           <p className="leading-8 inline xs:block">
             <span className="text-[#59746A] bg-emerald-300 shadow-[0_0_0_2px_rgb(110,231,183)]">

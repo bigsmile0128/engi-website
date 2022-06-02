@@ -19,7 +19,7 @@ export default function Navbar({ className }: NavbarProps) {
   return (
     <header>
       <Popover className="relative">
-        <div className="flex items-center justify-between mx-auto xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl p-6 sm:px-0">
+        <div className="flex items-center justify-between max-w-page p-6 sm:px-0">
           <div className="flex mr-10">
             <Logo className="h-8 w-8 sm:h-10 sm:w-10" />
           </div>

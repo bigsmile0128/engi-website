@@ -10,6 +10,10 @@
     @apply text-transparent;
     @apply animate-pulse;
   }
+
+  .max-w-page {
+    @apply mx-auto xs:max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl;
+  }
 }
 
 @font-face {

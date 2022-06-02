@@ -20,8 +20,8 @@ const Home: NextPage = () => {
       <Head>
         <title>Engi</title>
       </Head>
-      <Hero className="mx-auto xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl p-6 sm:p-0" />
-      <FigmaPreview className="mx-auto xs:max-w-md sm:max-w-xl md:max-w-3xl lg:max-w-5xl xl:max-w-6xl p-6 sm:p-0 mt-24" />
+      <Hero className="max-w-page p-6 sm:p-0" />
+      <FigmaPreview className="max-w-page p-6 sm:p-0 mt-24" />
       {isDevEnv() && (
         <>
           <CalloutCards className="max-w-3xl lg:max-w-4xl mx-auto px-6 md:px-0 mt-24 sm:mt-32" />
