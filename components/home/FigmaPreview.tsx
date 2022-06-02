@@ -154,7 +154,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
           isToggled={showSameStory}
         >
           <div className="flex flex-col items-start absolute left-0 top-0">
-            <div className="text-[11px] font-roboto-mono font-bold bg-[#253520aa] px-2 py-1">
+            <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
               Button.tsx
             </div>
             <CodePreview
@@ -167,7 +167,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             />
           </div>
           <div className="flex flex-col items-start absolute left-0 top-0">
-            <div className="text-[11px] font-roboto-mono font-bold bg-[#253520aa] px-2 py-1">
+            <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
               Button.tsx
             </div>
             <CodePreview
