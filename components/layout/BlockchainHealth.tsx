@@ -28,6 +28,7 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
               nodeName
               version
               status
+              peerCount
             }
           }
         `
@@ -40,47 +41,33 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
   );
 
   return (
-    <div className={classNames('flex items-center gap-x-12', className)}>
-      {/* TODO: display after API is updated */}
-      {/* <div className="flex flex-col items-center">
-        <span
-          className={classNames(
-            'font-grifter whitespace-pre',
-            isError ? 'text-gray-400' : ''
-          )}
-        >
-          {isLoading ? ' ' : data?.peers ?? 'N/A'}
-        </span>
-        <span className="font-medium text-gray-300">peers</span>
-      </div>
-      <div className="flex flex-col items-center">
-        <span
-          className={classNames(
-            'font-grifter whitespace-pre',
-            isError ? 'text-gray-400' : ''
-          )}
-        >
-          {isLoading ? ' ' : data?.peers ?? 'N/A'}
-        </span>
-        <span className="font-medium text-gray-300">head</span>
-      </div> */}
-      <div className="flex flex-col items-center">
-        <span className={classNames('font-grifter h-6')}>
-          {isLoading && <GrStatusWarningSmall className="text-yellow-400" />}
-          {data?.status === 'ONLINE' && (
-            <GrStatusGoodSmall className="text-emerald-300" />
-          )}
-          {data?.status === 'OFFLINE' && (
-            <GrStatusDisabledSmall className="text-red-400" />
-          )}
-          {!isLoading && !data?.status && (
-            <MdSignalWifiStatusbarNotConnected className="text-red-400" />
-          )}
-        </span>
-        <span className="font-medium text-gray-300">
-          {isLoading ? 'connecting' : data?.status?.toLowerCase() ?? 'unknown'}
-        </span>
-      </div>
+    <div className={classNames('flex items-center gap-x-3', className)}>
+      {isLoading && (
+        <>
+          <GrStatusGoodSmall className="text-gray-300" />
+          <span>connecting...</span>
+        </>
+      )}
+      {data?.status === 'ONLINE' && (
+        <>
+          <GrStatusGoodSmall className="text-emerald-300" />
+          <span>
+            <span className="font-bold">{data?.peerCount}</span> online peers
+          </span>
+        </>
+      )}
+      {data?.status === 'OFFLINE' && (
+        <>
+          <GrStatusDisabledSmall className="text-red-400" />
+          <span>offline</span>
+        </>
+      )}
+      {!isLoading && !data?.status && (
+        <>
+          <GrStatusGoodSmall className="text-gray-300" />
+          <span>status unknown</span>
+        </>
+      )}
     </div>
   );
 }
