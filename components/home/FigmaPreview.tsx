@@ -150,7 +150,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       >
         <Transition
           // set explicit width and height because elements are position absolute
-          className="w-[337px] h-[103px]"
+          className={classNames('w-[337px] h-[103px]')}
           isToggled={showSameStory}
         >
           <div className="flex flex-col items-start absolute left-0 top-0">
@@ -161,6 +161,9 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
               id="arrow-start1"
               value={code}
               borderClassName="border-emerald-300"
+              customStyle={{
+                width: 337,
+              }}
             />
           </div>
           <div className="flex flex-col items-start absolute left-0 top-0">
@@ -171,34 +174,17 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
               id="arrow-start2"
               value={incorrectCode}
               borderClassName="border-red-400"
+              customStyle={{
+                width: 337,
+              }}
             />
           </div>
         </Transition>
       </div>
       {/* arrow for non-mobile screen */}
       <Transition className="hidden sm:block" isToggled={showSameStory}>
-        <Arrow
-          start="arrow-start1"
-          end="arrow-end"
-          startAnchor={{
-            position: 'left',
-            offset: {
-              x: -5,
-            },
-          }}
-          endAnchor="bottom"
-        />
-        <Arrow
-          start="arrow-start2"
-          end="arrow-end"
-          startAnchor={{
-            position: 'left',
-            offset: {
-              x: -5,
-            },
-          }}
-          endAnchor="bottom"
-        />
+        <Arrow start="arrow-start1" end="arrow-end" endAnchor="bottom" />
+        <Arrow start="arrow-start2" end="arrow-end" endAnchor="bottom" />
       </Transition>
       {/* arrow for mobile screen with different anchor positions */}
       <Transition className="sm:hidden" isToggled={showSameStory}>
@@ -222,7 +208,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
               x: 16,
             },
           }}
-          endAnchor="bottom"
+          endAnchor="right"
         />
       </Transition>
     </div>

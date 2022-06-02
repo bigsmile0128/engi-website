@@ -9,6 +9,7 @@ type CodePreviewProps = {
   value: string;
   id?: string;
   borderClassName?: string; // display border left of line numbers
+  customStyle?: any;
 };
 
 export default function CodePreview({
@@ -17,6 +18,7 @@ export default function CodePreview({
   value,
   id,
   borderClassName,
+  customStyle,
   ...props
 }: CodePreviewProps) {
   return (
@@ -36,6 +38,7 @@ export default function CodePreview({
         customStyle={{
           background: '#253520aa',
           padding: '0.75em 0.5em',
+          ...(customStyle ?? {}),
         }}
         language={language}
         style={monokai}
