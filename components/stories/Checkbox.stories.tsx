@@ -12,6 +12,5 @@ const Template = (args) => <Checkbox {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Rust',
-  name: 'Rust',
   id: 'Rust',
 };

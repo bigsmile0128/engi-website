@@ -46,7 +46,6 @@ export default function SearchFilterList({
           {languages.map((language) => (
             <Checkbox
               key={language}
-              name={language}
               id={language}
               label={language}
               checked={selectedLanguages.includes(language)}

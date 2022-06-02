@@ -2,7 +2,6 @@ import React from 'react';
 
 interface CheckboxProps {
   className?: string;
-  name: string;
   id: string;
   label: string;
   checked: boolean;
@@ -11,7 +10,6 @@ interface CheckboxProps {
 
 export default function Checkbox({
   className,
-  name,
   id,
   label,
   checked,
@@ -22,7 +20,7 @@ export default function Checkbox({
       <input
         tabIndex={-1}
         type="checkbox"
-        name={name}
+        name={id}
         id={id}
         className="opacity-0 absolute h-4 w-4"
         checked={checked}
@@ -30,7 +28,7 @@ export default function Checkbox({
       />
       <div
         tabIndex={0}
-        className="bg-[#ffffff22] border border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 focus:outline-none focus:ring-2"
+        className="bg-[#ffffff22] border border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-3 focus:outline-none focus:ring-2"
         onKeyPress={(e) => {
           if (e.key === ' ') {
             onChange(!checked);
@@ -53,7 +51,7 @@ export default function Checkbox({
           </g>
         </svg>
       </div>
-      <label htmlFor={id} className="text-sm text-gray-300 select-none">
+      <label htmlFor={id} className="text-sm text-white select-none">
         {label}
       </label>
     </div>

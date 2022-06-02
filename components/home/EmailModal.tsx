@@ -3,19 +3,36 @@ import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
 import { XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
+import {
+  SiDiscord,
+  SiJava,
+  SiJavascript,
+  SiLinkedin,
+  SiPython,
+  SiRust,
+  SiTiktok,
+  SiTwitter,
+} from 'react-icons/si';
 
 import Modal, { ModalProps } from 'components/Modal';
 import Button from 'components/Button';
 import EnvelopeSvg from './img/envelope.svg';
 import CopyLink from 'components/CopyLink';
-import { SiDiscord, SiLinkedin, SiTiktok, SiTwitter } from 'react-icons/si';
+import Checkbox from 'components/Checkbox';
 
-const interests = [
-  { label: "I'm a programmer", value: 'engi-programmer' },
-  { label: "I'm a business", value: 'engi-business' },
-  { label: "I'm an investor", value: 'engi-investor' },
-  { label: "I'm curious", value: 'engi-curious' },
-];
+enum Interest {
+  PROGRAMMER = 'engi-programmer',
+  BUSINESS = 'engi-business',
+  INVESTOR = 'engi-investor',
+  CURIOUS = 'engi-curious',
+}
+
+enum BusinessReason {
+  UI = 'ui-engineering',
+  SMART_CONTRACT = 'smart-contract',
+  LIBRARY = 'library',
+  OTHER = 'other',
+}
 
 interface EmailModalProps extends ModalProps {
   onInterestClick: (interest) => void;
@@ -32,17 +49,36 @@ export default function EmailModal({
   setIsOpen,
   onInterestClick,
 }: EmailModalProps) {
-  const [selectedInterest, setSelectedInterest] = useState('');
+  // TODO: reset to empty string
+  const [selectedInterest, setSelectedInterest] = useState<Interest | null>(
+    Interest.PROGRAMMER
+  );
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  const [selectedBusinessReasons, setSelectedBusinessReasons] = useState<
+    BusinessReason[]
+  >([]);
   const [showSuccessScreen, setShowSuccessScreen] = useState(false);
   const [page, setPage] = useState(Page.REGISTER);
 
   useEffect(() => {
     // reset state when opened
     if (isOpen) {
-      setSelectedInterest('');
+      setSelectedInterest(Interest.PROGRAMMER);
+      setSelectedLanguage('');
+      setSelectedBusinessReasons([]);
       setPage(Page.REGISTER);
     }
   }, [isOpen]);
+
+  const onChangeBusinessReason = (checked, businessReason: BusinessReason) => {
+    if (checked) {
+      setSelectedBusinessReasons([...selectedBusinessReasons, businessReason]);
+    } else {
+      setSelectedBusinessReasons(
+        selectedBusinessReasons.filter((reason) => reason !== businessReason)
+      );
+    }
+  };
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -71,31 +107,103 @@ export default function EmailModal({
             </p>
             <div className="mt-4">
               <div className="flex flex-col gap-y-4">
-                {interests.map(({ label, value }) => (
-                  <button
-                    className={classNames(
-                      'py-3 px-6 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-200 border',
-                      {
-                        'border-gray-500 text-gray-300 hover:bg-gray-700 active:bg-gray-600':
-                          selectedInterest !== value,
-                        'text-gray-800 border-emerald-300 bg-emerald-300 font-medium':
-                          selectedInterest === value,
-                      }
-                    )}
-                    key={value}
-                    onClick={() => {
-                      setSelectedInterest(value);
-                      onInterestClick(value);
-                    }}
-                  >
-                    {label}
-                  </button>
-                ))}
+                <InterestButton
+                  label="I'm a programmer"
+                  value={Interest.PROGRAMMER}
+                  onClick={(value) => setSelectedInterest(value)}
+                  active={selectedInterest === Interest.PROGRAMMER}
+                />
+                {selectedInterest === Interest.PROGRAMMER && (
+                  <div>
+                    <p className="mb-2">What is your primary language?</p>
+                    <div className="grid grid-rows-2 grid-cols-2 gap-x-4 gap-y-4 text-[#F27B50] text-lg">
+                      <LanguageButton
+                        onClick={() => setSelectedLanguage('javascript')}
+                        active={selectedLanguage === 'javascript'}
+                      >
+                        <SiJavascript />
+                      </LanguageButton>
+                      <LanguageButton
+                        onClick={() => setSelectedLanguage('python')}
+                        active={selectedLanguage === 'python'}
+                      >
+                        <SiPython />
+                      </LanguageButton>
+                      <LanguageButton
+                        onClick={() => setSelectedLanguage('rust')}
+                        active={selectedLanguage === 'rust'}
+                      >
+                        <SiRust />
+                      </LanguageButton>
+                      <LanguageButton
+                        onClick={() => setSelectedLanguage('java')}
+                        active={selectedLanguage === 'java'}
+                      >
+                        <SiJava />
+                      </LanguageButton>
+                    </div>
+                  </div>
+                )}
+                <InterestButton
+                  label="I'm a business"
+                  value={Interest.BUSINESS}
+                  onClick={(value) => setSelectedInterest(value)}
+                  active={selectedInterest === Interest.BUSINESS}
+                />
+                {selectedInterest === Interest.BUSINESS && (
+                  <div>
+                    <p className="mb-2">
+                      What type of work do you want to get done?
+                    </p>
+                    <div className="flex flex-col gap-y-4">
+                      {[
+                        { label: 'UI Engineering', value: BusinessReason.UI },
+                        {
+                          label: 'Smart Contract',
+                          value: BusinessReason.SMART_CONTRACT,
+                        },
+                        {
+                          label: 'Library/SDK Development',
+                          value: BusinessReason.LIBRARY,
+                        },
+                        { label: 'Other', value: BusinessReason.OTHER },
+                      ].map(({ label, value }) => (
+                        <Checkbox
+                          key={value}
+                          id={value}
+                          label={label}
+                          checked={selectedBusinessReasons.includes(value)}
+                          onChange={(checked) => {
+                            onChangeBusinessReason(checked, value);
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <InterestButton
+                  label="I'm an investor"
+                  value={Interest.INVESTOR}
+                  onClick={(value) => setSelectedInterest(value)}
+                  active={selectedInterest === Interest.INVESTOR}
+                />
+                <InterestButton
+                  label="I'm curious"
+                  value={Interest.CURIOUS}
+                  onClick={(value) => setSelectedInterest(value)}
+                  active={selectedInterest === Interest.CURIOUS}
+                />
               </div>
             </div>
           </div>
           <div className="mt-10">
-            <Button className="w-full" onClick={() => setPage(Page.SUCCESS)}>
+            <Button
+              className="w-full"
+              onClick={() => {
+                onInterestClick(selectedInterest);
+                setPage(Page.SUCCESS);
+              }}
+            >
               Personalize my updates
             </Button>
           </div>
@@ -181,5 +289,36 @@ export default function EmailModal({
         </>
       )}
     </Modal>
+  );
+}
+
+export function InterestButton({ active, label, value, onClick }) {
+  return (
+    <button
+      className={classNames(
+        'py-3 px-6 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-200 border',
+        active
+          ? 'text-gray-800 border-emerald-300 bg-emerald-300 font-medium'
+          : 'border-gray-500 text-gray-300 hover:bg-gray-700 active:bg-gray-600'
+      )}
+      key={value}
+      onClick={() => onClick(value)}
+    >
+      {label}
+    </button>
+  );
+}
+
+export function LanguageButton({ className = '', active, children, ...props }) {
+  return (
+    <button
+      className={classNames(
+        'py-3 flex items-center justify-center border border-gray-500 bg-gradient-to-r from-[#ffffff22] via-[#ffffff11]',
+        active ? 'border-emerald-300' : 'hover:border-gray-300'
+      )}
+      {...props}
+    >
+      {children}
+    </button>
   );
 }
