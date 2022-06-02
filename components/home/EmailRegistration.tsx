@@ -44,21 +44,23 @@ export default function EmailRegistration({
     }
   );
 
-  const interestMutation = useMutation(async (interest) => {
-    await axios.put('/api/contact', {
-      contact_list_name: 'engi-newsletter',
-      email,
-      topics: [interest],
-      attributes: {}, // server throws 500 if this is missing
-    });
-  });
+  const interestMutation = useMutation(
+    async ({ interest, attributes = {} }: any) => {
+      await axios.put('/api/contact', {
+        contact_list_name: 'engi-newsletter',
+        email,
+        topics: [interest],
+        attributes: attributes,
+      });
+    }
+  );
 
   const onEmailSignup = async (email) => {
     registerMutation.mutate(email);
   };
 
-  const onInterestClick = async (interest) => {
-    interestMutation.mutate(interest);
+  const onInterestClick = async (interest: string, attributes: any) => {
+    interestMutation.mutate({ interest, attributes });
   };
 
   return (
@@ -122,14 +124,14 @@ export default function EmailRegistration({
         </Button>
       </form>
       {registerMutation.isError && (
-        <p className="text-xs mt-2 text-red-400">
+        <p className="text-left text-xs mt-2 text-red-400">
           {registerMutation.error?.response?.status === 409
             ? 'This email is already registered. Please enter a different email.'
             : 'Error submitting email. Please try again.'}
         </p>
       )}
       {registerMutation.isSuccess && (
-        <p className="flex flex-col gap-y-1 text-xs mt-2">
+        <p className="text-left text-xs mt-2 flex flex-col gap-y-1">
           <span className="text-emerald-300">
             {"Success! You'll be notified."}
           </span>

@@ -35,7 +35,7 @@ enum BusinessReason {
 }
 
 interface EmailModalProps extends ModalProps {
-  onInterestClick: (interest) => void;
+  onInterestClick: (interest: string, attributes: Record<string, any>) => void;
 }
 
 enum Page {
@@ -49,9 +49,8 @@ export default function EmailModal({
   setIsOpen,
   onInterestClick,
 }: EmailModalProps) {
-  // TODO: reset to empty string
   const [selectedInterest, setSelectedInterest] = useState<Interest | null>(
-    Interest.PROGRAMMER
+    null
   );
   const [selectedLanguage, setSelectedLanguage] = useState('');
   const [selectedBusinessReasons, setSelectedBusinessReasons] = useState<
@@ -61,14 +60,19 @@ export default function EmailModal({
   const [page, setPage] = useState(Page.REGISTER);
 
   useEffect(() => {
-    // reset state when opened
     if (isOpen) {
-      setSelectedInterest(Interest.PROGRAMMER);
+      setSelectedInterest(null);
       setSelectedLanguage('');
       setSelectedBusinessReasons([]);
       setPage(Page.REGISTER);
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    // reset selected subinterests when selecting an interest
+    setSelectedLanguage('');
+    setSelectedBusinessReasons([]);
+  }, [selectedInterest]);
 
   const onChangeBusinessReason = (checked, businessReason: BusinessReason) => {
     if (checked) {
@@ -200,7 +204,13 @@ export default function EmailModal({
             <Button
               className="w-full"
               onClick={() => {
-                onInterestClick(selectedInterest);
+                const attributes: Record<string, any> = {};
+                if (selectedInterest === Interest.PROGRAMMER) {
+                  attributes.subinterest = [selectedLanguage];
+                } else if (selectedInterest === Interest.BUSINESS) {
+                  attributes.subinterest = selectedBusinessReasons ?? [];
+                }
+                onInterestClick(selectedInterest, attributes);
                 setPage(Page.SUCCESS);
               }}
             >
