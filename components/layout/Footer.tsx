@@ -22,7 +22,7 @@ export default function Footer({ className }: FooterProps) {
         <LogoSvg className="h-8 fill-emerald-300 shrink-0 hidden xs:block" />
         <LogoAltSvg className="h-10 mb-12 block xs:hidden" />
         <div className="flex items-center gap-x-8 text-2xl">
-          <Link href="https://twitter.com/engi_network">
+          <Link href="https://discord.gg/XfzX7GPt">
             <a
               className="p-2 hover:text-gray-300"
               target="_blank"
@@ -45,7 +45,7 @@ export default function Footer({ className }: FooterProps) {
               <SiLinkedin />
             </a>
           </Link>
-          <Link href="https://discord.gg/XfzX7GPt">
+          <Link href="https://twitter.com/engi_network">
             <a
               className="p-2 hover:text-gray-300"
               target="_blank"
