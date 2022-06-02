@@ -1,14 +1,12 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
-
+import Link from 'next/link';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-
-import Logo from './Logo';
-
-import Link from 'next/link';
-import { isDevEnv } from 'utils';
 import { ChevronRightIcon } from '@heroicons/react/solid';
+
+import { isDevEnv } from 'utils';
+import Logo from 'components/Logo';
 import BlockchainHealth from './BlockchainHealth';
 
 interface NavbarProps {
@@ -21,7 +19,7 @@ export default function Navbar({ className }: NavbarProps) {
       <Popover className="relative">
         <div className="flex items-center justify-between max-w-page p-6 sm:px-0">
           <div className="flex mr-10">
-            <Logo className="h-8 w-8 sm:h-10 sm:w-10" />
+            <Logo className="h-8 w-8" />
           </div>
           <div className="-mr-2 -my-2 md:hidden">
             <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">

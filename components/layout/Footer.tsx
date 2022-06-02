@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import classNames from 'classnames';
 
-import LogoSvg from './logo.svg';
+import LogoSvg from 'components/home/img/logo.svg';
 import LogoAltSvg from './logo_alt.svg';
 import { SiDiscord, SiLinkedin, SiTiktok, SiTwitter } from 'react-icons/si';
 
