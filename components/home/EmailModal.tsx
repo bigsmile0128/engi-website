@@ -28,8 +28,8 @@ enum Page {
 }
 
 export default function EmailModal({
-  open,
-  setOpen,
+  isOpen,
+  setIsOpen,
   onInterestClick,
 }: EmailModalProps) {
   const [selectedInterest, setSelectedInterest] = useState('');
@@ -38,14 +38,14 @@ export default function EmailModal({
 
   useEffect(() => {
     // reset state when opened
-    if (open) {
+    if (isOpen) {
       setSelectedInterest('');
       setPage(Page.REGISTER);
     }
-  }, [open]);
+  }, [isOpen]);
 
   return (
-    <Modal open={open} setOpen={setOpen}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       {page === Page.REGISTER ? (
         <>
           <div className="">
@@ -60,7 +60,7 @@ export default function EmailModal({
               </Dialog.Title>
               <button
                 className="text-white hover:text-gray-300 focus:outline-none focus:ring-1 focus:ring-emerald-200"
-                onClick={() => setOpen(false)}
+                onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
                 <XIcon className="h-5 w-5" aria-hidden="true" />
@@ -94,7 +94,7 @@ export default function EmailModal({
               </div>
             </div>
           </div>
-          <div className="mt-5 sm:mt-10">
+          <div className="mt-10">
             <Button className="w-full" onClick={() => setPage(Page.SUCCESS)}>
               Personalize my updates
             </Button>
@@ -118,7 +118,7 @@ export default function EmailModal({
           <button
             type="button"
             className="mt-4 w-full border border-white bg-[#00000022] py-4 hover:bg-[#ffffff22]"
-            onClick={() => setOpen(false)}
+            onClick={() => setIsOpen(false)}
           >
             Dismiss
           </button>
@@ -135,7 +135,7 @@ export default function EmailModal({
               </Dialog.Title>
               <button
                 className="text-white hover:text-gray-300 focus:outline-none focus:ring-1 focus:ring-emerald-200"
-                onClick={() => setOpen(false)}
+                onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
                 <XIcon className="h-5 w-5" aria-hidden="true" />

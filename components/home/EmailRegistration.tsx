@@ -151,8 +151,8 @@ export default function EmailRegistration({
         )}
       />
       <EmailModal
-        open={modalOpen}
-        setOpen={setModalOpen}
+        isOpen={modalOpen}
+        setIsOpen={setModalOpen}
         onInterestClick={onInterestClick}
       />
     </div>

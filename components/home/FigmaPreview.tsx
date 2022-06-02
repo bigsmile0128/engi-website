@@ -45,7 +45,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         <div className="relative flex flex-col">
           <GridPattern size={64} />
           {/* specific units to line up text precisely with grid on XL */}
-          <div className="flex-1 flex flex-col items-start p-8 xs:p-12 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-10">
+          <div className="flex-1 flex flex-col items-start p-8 xs:p-12 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
             <h2 className="font-grifter text-white text-5xl">
               <span className="inline md:block">FIGMA plugin</span>
             </h2>
