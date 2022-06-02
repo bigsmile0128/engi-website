@@ -10,7 +10,7 @@ export default function Layout({ children }) {
   return (
     <div className="bg-landing bg-cover relative min-h-screen">
       <Navbar />
-      <div className="content">{children}</div>
+      <div className="overflow-hidden">{children}</div>
       <Footer />
     </div>
   );
