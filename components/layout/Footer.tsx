@@ -3,7 +3,7 @@ import Link from 'next/link';
 import classNames from 'classnames';
 
 import LogoSvg from 'components/home/img/logo.svg';
-import LogoAltSvg from './logo_alt.svg';
+import LogoAltSvg from 'components/home/img/logo_alt.svg';
 import { SiDiscord, SiLinkedin, SiTiktok, SiTwitter } from 'react-icons/si';
 
 interface FooterProps {
