@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { useQuery } from 'react-query';
 import { request, gql } from 'graphql-request';
+import pluralize from 'pluralize';
 import { BiHealth } from 'react-icons/bi';
 import { MdSignalWifiStatusbarNotConnected } from 'react-icons/md';
 import {
@@ -13,9 +14,15 @@ import {
 
 type BlockchainHealthProps = {
   className?: string;
+  isStacked?: boolean;
+  showPeerCount?: boolean;
 };
 
-export default function BlockchainHealth({ className }: BlockchainHealthProps) {
+export default function BlockchainHealth({
+  className,
+  isStacked,
+  showPeerCount = true,
+}: BlockchainHealthProps) {
   const { isLoading, isError, data } = useQuery(
     ['blockchainHealth'],
     async () => {
@@ -40,7 +47,52 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
     }
   );
 
-  return (
+  return isStacked ? (
+    <div className={classNames('flex gap-x-8', className)}>
+      {showPeerCount && data?.status === 'ONLINE' && (
+        <div className="flex flex-col items-center">
+          <span
+            className={classNames('font-grifter', {
+              'text-gray-400': data?.peerCount === undefined,
+            })}
+          >
+            {data?.peerCount ?? 'N/A'}
+          </span>
+          <span className="font-medium text-gray-300 leading-5">
+            {pluralize('peer', data?.peerCount ?? 0)}
+          </span>
+        </div>
+      )}
+      {isLoading && (
+        <div className="flex flex-col items-center">
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-gray-300" />
+          <span className="font-medium text-gray-300 leading-5">
+            connecting
+          </span>
+        </div>
+      )}
+      {data?.status === 'ONLINE' && (
+        <div className="flex flex-col items-center justify-between">
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-emerald-300" />
+          <span className="font-medium text-gray-300 leading-5">online</span>
+        </div>
+      )}
+      {data?.status === 'OFFLINE' && (
+        <div className="flex flex-col items-center">
+          <GrStatusDisabledSmall className="mt-[1px] mb-1 text-red-400" />
+          <span className="font-medium text-gray-300 leading-5">offline</span>
+        </div>
+      )}
+      {!isLoading && !data?.status && (
+        <div className="flex flex-col items-center">
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-gray-300" />
+          <span className="font-medium text-gray-300 leading-5">
+            status unknown
+          </span>
+        </div>
+      )}
+    </div>
+  ) : (
     <div className={classNames('flex items-center gap-x-3', className)}>
       {isLoading && (
         <>
@@ -52,7 +104,12 @@ export default function BlockchainHealth({ className }: BlockchainHealthProps) {
         <>
           <GrStatusGoodSmall className="text-emerald-300" />
           <span>
-            <span className="font-bold">{data?.peerCount}</span> online peers
+            {showPeerCount && data?.peerCount !== undefined && (
+              <span>
+                <span className="font-bold">{data?.peerCount}</span> online{' '}
+                {pluralize('peer', data?.peerCount ?? 0)}
+              </span>
+            )}
           </span>
         </>
       )}

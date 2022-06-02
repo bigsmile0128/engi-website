@@ -7,6 +7,7 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 
 import { isDevEnv } from 'utils';
 import Logo from 'components/Logo';
+import MenuSvg from 'components/home/img/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
 
 interface NavbarProps {
@@ -16,20 +17,17 @@ interface NavbarProps {
 export default function Navbar({ className }: NavbarProps) {
   return (
     <header>
-      <Popover className="relative">
-        <div className="flex items-center justify-between max-w-page p-6 sm:px-0">
-          <div className="flex mr-10">
-            <Logo className="h-8 w-8" />
-          </div>
-          <div className="-mr-2 -my-2 md:hidden">
-            <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
-              <span className="sr-only">Open menu</span>
-              <MenuIcon className="h-6 w-6" aria-hidden="true" />
-            </Popover.Button>
-          </div>
+      <Popover className="">
+        <div className="flex items-center sm:justify-between max-w-page p-6 sm:px-0">
+          <Link href="/">
+            <a className="flex mr-10">
+              <Logo className="h-8 w-8" />
+            </a>
+          </Link>
+          {/* non-mobile nav */}
           <Popover.Group
             as="nav"
-            className="flex-1 hidden md:flex space-x-16 justify-start ml-12"
+            className="flex-1 hidden sm:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
           >
             <Link href="/litepaper">
               <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -42,58 +40,66 @@ export default function Navbar({ className }: NavbarProps) {
               </a>
             </Link>
           </Popover.Group>
-          <BlockchainHealth className="hidden md:flex" />
+          <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
+          <BlockchainHealth className="hidden sm:flex lg:hidden" />
+          <BlockchainHealth className="hidden lg:flex" isStacked />
+          {/* mobile nav */}
+          <div className="ml-6 -mr-2 -my-2 sm:hidden">
+            <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
+              <span className="sr-only">Open menu</span>
+              <MenuSvg className="h-6 w-6" aria-hidden="true" />
+            </Popover.Button>
+          </div>
         </div>
+        {/* mobile nav popover menu */}
         <Transition
           as={Fragment}
           enter="duration-200 ease-out"
-          enterFrom="opacity-0 scale-95"
-          enterTo="opacity-100 scale-100"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
           leave="duration-100 ease-in"
-          leaveFrom="opacity-100 scale-100"
-          leaveTo="opacity-0 scale-95"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
           <Popover.Panel
             focus
-            className="absolute z-30 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+            className="fixed z-30 inset-0 transition transform origin-top-right sm:hidden"
           >
-            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-gray-800 divide-y-2 divide-gray-50">
-              <div className="pt-5 pb-6 px-5">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <Logo className="h-8 w-8" />
-                  </div>
-                  <div className="-mr-2">
-                    <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
-                      <span className="sr-only">Close menu</span>
-                      <XIcon className="h-6 w-6" aria-hidden="true" />
-                    </Popover.Button>
-                  </div>
+            <div className="w-full h-full bg-[#374151] flex flex-col p-6">
+              <div className="flex items-center justify-between mt-[2px]">
+                <div>
+                  <Logo className="h-8 w-8" />
                 </div>
-                <div className="mt-6">
-                  <nav className="grid grid-cols-1 gap-4">
-                    <Link href="/">
-                      <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                        <span>Home</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
-                    </Link>
-                    <Link href="/litepaper">
-                      <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                        <span>Litepaper</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
-                    </Link>
-                    <Link href="/press">
-                      <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                        <span>Press</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
-                    </Link>
-                    <BlockchainHealth className="justify-self-center mt-8" />
-                  </nav>
+                <div className="-mr-2">
+                  <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
+                    <span className="sr-only">Close menu</span>
+                    <XIcon className="h-6 w-6" aria-hidden="true" />
+                  </Popover.Button>
                 </div>
               </div>
+              <div className="mt-6">
+                <nav className="grid grid-cols-1 gap-4">
+                  <Link href="/">
+                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                      <span>Home</span>
+                      <ChevronRightIcon className="h-6" />
+                    </a>
+                  </Link>
+                  <Link href="/litepaper">
+                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                      <span>Litepaper</span>
+                      <ChevronRightIcon className="h-6" />
+                    </a>
+                  </Link>
+                  <Link href="/press">
+                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                      <span>Press</span>
+                      <ChevronRightIcon className="h-6" />
+                    </a>
+                  </Link>
+                </nav>
+              </div>
+              <BlockchainHealth className="mt-auto mx-auto" isStacked />
             </div>
           </Popover.Panel>
         </Transition>
