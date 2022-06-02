@@ -6,9 +6,9 @@ import CopyLink from '../CopyLink';
 import Modal, { ModalProps } from '../Modal';
 import { SiDiscord, SiInstagram, SiTiktok, SiTwitter } from 'react-icons/si';
 
-export default function ShareModal({ open, setOpen }: ModalProps) {
+export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
   return (
-    <Modal open={open} setOpen={setOpen}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="flex items-center justify-between">
         <Dialog.Title
           as="h3"
@@ -19,7 +19,7 @@ export default function ShareModal({ open, setOpen }: ModalProps) {
         <button
           type="button"
           className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-          onClick={() => setOpen(false)}
+          onClick={() => setIsOpen(false)}
         >
           <span className="sr-only">Close</span>
           <XIcon className="h-6 w-6" aria-hidden="true" />

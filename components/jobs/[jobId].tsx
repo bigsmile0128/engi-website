@@ -60,7 +60,7 @@ export default function JobDetails() {
     </div>
   ) : (
     <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex flex-col lg:flex-row items-start gap-x-12">
-      <ShareModal open={modalOpen} setOpen={setModalOpen} />
+      <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
       <div className="flex flex-1 flex-col">
         <div className="flex items-center">
           <Link href="/jobs" passHref>

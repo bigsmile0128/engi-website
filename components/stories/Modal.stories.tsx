@@ -10,19 +10,19 @@ export default {
 };
 
 const Template = (args) => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
-      <Modal open={modalOpen} setOpen={setModalOpen}>
+      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className="text-white">
           <div className="flex items-center justify-between">
             <h1 className="font-grifter text-3xl -mb-2">Header</h1>
             <button
               type="button"
               className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-300"
-              onClick={() => setModalOpen(false)}
+              onClick={() => setIsOpen(false)}
             >
               <span className="sr-only">Close</span>
               <XIcon className="h-6 w-6" aria-hidden="true" />
