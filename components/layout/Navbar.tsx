@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { Popover, Transition } from '@headlessui/react';
+import { Dialog, Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
@@ -15,6 +15,8 @@ interface NavbarProps {
 }
 
 export default function Navbar({ className }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header>
       <Popover className="">
@@ -45,63 +47,85 @@ export default function Navbar({ className }: NavbarProps) {
           <BlockchainHealth className="hidden lg:flex" isStacked />
           {/* mobile nav */}
           <div className="ml-6 -mr-2 -my-2 sm:hidden">
-            <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
+            <button
+              className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300"
+              onClick={() => setIsOpen(true)}
+            >
               <span className="sr-only">Open menu</span>
               <MenuSvg className="h-6 w-6" aria-hidden="true" />
-            </Popover.Button>
+            </button>
           </div>
         </div>
         {/* mobile nav popover menu */}
-        <Transition
-          as={Fragment}
-          enter="duration-200 ease-out"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="duration-100 ease-in"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <Popover.Panel
-            focus
-            className="fixed z-30 inset-0 transition transform origin-top-right sm:hidden"
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-10"
+            onClose={() => setIsOpen(false)}
           >
-            <div className="w-full h-full bg-[#374151] flex flex-col p-6">
-              <div className="flex items-center justify-between mt-[2px]">
-                <div>
-                  <Logo className="h-8 w-8" />
-                </div>
-                <div className="-mr-2">
-                  <Popover.Button className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300">
-                    <span className="sr-only">Close menu</span>
-                    <XIcon className="h-6 w-6" aria-hidden="true" />
-                  </Popover.Button>
-                </div>
-              </div>
-              <div className="mt-6">
-                <nav className="grid grid-cols-1 gap-4">
-                  <Link href="/">
-                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                      <span>Home</span>
-                      <ChevronRightIcon className="h-6" />
-                    </a>
-                  </Link>
-                  <Link href="/litepaper">
-                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                      <span>Litepaper</span>
-                      <ChevronRightIcon className="h-6" />
-                    </a>
-                  </Link>
-                  <Link href="/press">
-                    <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
-                      <span>Press</span>
-                      <ChevronRightIcon className="h-6" />
-                    </a>
-                  </Link>
-                </nav>
-              </div>
-              <BlockchainHealth className="mt-auto mx-auto" isStacked />
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 backdrop-blur-[10px]" />
+            </Transition.Child>
+            <div className="fixed inset-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <Dialog.Panel className="w-full h-full flex flex-col bg-[#374151] p-6">
+                  <div className="flex items-center justify-between mt-[2px]">
+                    <div>
+                      <Logo className="h-8 w-8" />
+                    </div>
+                    <div className="-mr-2">
+                      <button
+                        className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span className="sr-only">Close menu</span>
+                        <XIcon className="h-6 w-6" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-6">
+                    <nav className="grid grid-cols-1 gap-4">
+                      <Link href="/">
+                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                          <span>Home</span>
+                          <ChevronRightIcon className="h-6" />
+                        </a>
+                      </Link>
+                      <Link href="/litepaper">
+                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                          <span>Litepaper</span>
+                          <ChevronRightIcon className="h-6" />
+                        </a>
+                      </Link>
+                      <Link href="/press">
+                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                          <span>Press</span>
+                          <ChevronRightIcon className="h-6" />
+                        </a>
+                      </Link>
+                    </nav>
+                  </div>
+                  <BlockchainHealth className="mt-auto mx-auto" isStacked />
+                </Dialog.Panel>
+              </Transition.Child>
             </div>
-          </Popover.Panel>
+          </Dialog>
         </Transition>
       </Popover>
     </header>
