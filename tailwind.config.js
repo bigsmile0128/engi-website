@@ -11,7 +11,6 @@ module.exports = {
     extend: {
       fontFamily: {
         grifter: ['GRIFTER', 'sans-serif'],
-        'roboto-mono': ['Roboto Mono'],
       },
       backgroundImage: {
         landing: "url('~/public/img/landing.svg')",
