@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import Image from 'next/image';
-import { MdArrowBack, MdCheck, MdHistory } from 'react-icons/md';
+import { MdArrowBack, MdHistory } from 'react-icons/md';
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
-import { SiStorybook } from 'react-icons/si';
 import 'animate.css';
 
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
 import Arrow from 'components/Arrow';
-import CodePreview from 'components/CodePreview';
 import Transition from 'components/Transition';
 import EngiIcon from './img/engi.svg';
 import StorybookIcon from './img/storybook.svg';
-import figmaPlugin from './img/figma-plugin.png';
 import FigmaIcon from './img/figma2.svg';
+import FigmaCodeBlock from './FigmaCodeBlock';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -144,73 +141,35 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
           </div>
         </div>
       </div>
-      <div
-        id="arrow-start"
-        className="mt-8 justify-self-end overflow-hidden sm:mr-8 md:mr-0 relative md:absolute md:bottom-0 md:left-1/2 lg:left-56 xl:left-1/4 md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30"
-      >
-        <Transition
-          // set explicit width and height because elements are position absolute
-          className={classNames('w-[314px] h-[103px]')}
+      <div className="mt-8 justify-self-end overflow-hidden sm:mr-8 md:mr-0 relative md:absolute md:bottom-0 md:left-1/2 lg:left-56 xl:left-1/4 md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30">
+        <FigmaCodeBlock
           isToggled={showSameStory}
-        >
-          <div className="flex flex-col items-start absolute left-0 top-0">
-            <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
-              Button.tsx
-            </div>
-            <CodePreview
-              id="arrow-start1"
-              value={code}
-              borderClassName="border-emerald-300"
-              customStyle={{
-                width: 337,
-              }}
-            />
-          </div>
-          <div className="flex flex-col items-start absolute left-0 top-0">
-            <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
-              Button.tsx
-            </div>
-            <CodePreview
-              id="arrow-start2"
-              value={incorrectCode}
-              borderClassName="border-red-400"
-              customStyle={{
-                width: 337,
-              }}
-            />
-          </div>
-        </Transition>
+          codeProps={{
+            className: 'w-[320px]',
+            id: 'arrow-start1',
+          }}
+        />
       </div>
       {/* arrow for non-mobile screen */}
-      <Transition className="hidden sm:block" isToggled={showSameStory}>
-        <Arrow start="arrow-start1" end="arrow-end" endAnchor="bottom" />
-        <Arrow start="arrow-start2" end="arrow-end" endAnchor="bottom" />
-      </Transition>
+      <Arrow
+        className="hidden sm:block"
+        start="arrow-star1t"
+        end="arrow-end"
+        endAnchor="bottom"
+      />
       {/* arrow for mobile screen with different anchor positions */}
-      <Transition className="sm:hidden" isToggled={showSameStory}>
-        <Arrow
-          start="arrow-start1"
-          end="arrow-end"
-          startAnchor={{
-            position: 'top',
-            offset: {
-              x: 16,
-            },
-          }}
-          endAnchor="right"
-        />
-        <Arrow
-          start="arrow-start2"
-          end="arrow-end"
-          startAnchor={{
-            position: 'top',
-            offset: {
-              x: 16,
-            },
-          }}
-          endAnchor="right"
-        />
-      </Transition>
+      <Arrow
+        className="sm:hidden"
+        start="arrow-star1t"
+        end="arrow-end"
+        startAnchor={{
+          position: 'top',
+          offset: {
+            x: 16,
+          },
+        }}
+        endAnchor="right"
+      />
     </div>
   );
 }

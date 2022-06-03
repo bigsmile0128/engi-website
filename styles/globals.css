@@ -68,3 +68,11 @@ select:-webkit-autofill:focus {
   padding-right: 1.5em !important;
   padding-left: 0.4em;
 }
+
+.typed-cursor {
+  display: inline-flex;
+  justify-content: center;
+  width: 4px;
+  overflow: hidden;
+  transform: translateY(-1px);
+}
