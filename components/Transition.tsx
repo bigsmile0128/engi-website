@@ -37,6 +37,7 @@ export default function Transition({
               : 'absolute left-1/2 -translate-x-1/2 top-0',
             child.props?.className ?? ''
           ),
+          key: i,
         };
         return React.cloneElement(child, props);
       })}

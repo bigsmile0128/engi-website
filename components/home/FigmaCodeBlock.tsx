@@ -22,8 +22,8 @@ export default function FigmaCodeBlock({
         '<span class="text-purple-400"> className=<span class="text-emerald-300">"btn"</span>></span>{text}',
         '<span class="text-purple-400">></span>Click Me',
       ],
-      typeSpeed: 10,
-      backSpeed: 15,
+      typeSpeed: 30,
+      backSpeed: 30,
       loop: true,
       onStringTyped: (arrayPos, self) => {
         self.stop();
