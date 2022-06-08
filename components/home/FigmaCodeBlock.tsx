@@ -6,12 +6,14 @@ type FigmaCodeBlockProps = {
   className?: string;
   isToggled: boolean;
   codeProps?: any;
+  codeContainerClassName?: string;
 };
 
 export default function FigmaCodeBlock({
   className,
   codeProps = {},
   isToggled,
+  codeContainerClassName,
 }: FigmaCodeBlockProps) {
   const el = useRef(null);
   const typed = useRef(null);
@@ -46,7 +48,12 @@ export default function FigmaCodeBlock({
       <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
         Button.tsx
       </div>
-      <div className="relative flex text-[11px] font-bold bg-[#253520aa] leading-5">
+      <div
+        className={classNames(
+          'relative flex text-[11px] font-bold bg-[#253520aa] leading-5',
+          codeContainerClassName
+        )}
+      >
         <div
           className={classNames(
             'border-l-[1px] z-10',

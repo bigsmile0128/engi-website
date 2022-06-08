@@ -41,8 +41,8 @@ export default function Arrow({
   return (
     <div className={classNames('', className)}>
       <Xarrow
-        start="arrow-start1"
-        end="arrow-end"
+        start={start}
+        end={end}
         color={color}
         strokeWidth={strokeWidth}
         headSize={headSize}
