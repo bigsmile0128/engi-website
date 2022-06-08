@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Dialog, Popover, Transition } from '@headlessui/react';
@@ -41,6 +41,13 @@ export default function Navbar({ className }: NavbarProps) {
                 Press
               </a>
             </Link>
+            {isDevEnv() && (
+              <Link href="/jobs">
+                <a className="text-base font-medium text-gray-300 hover:text-white">
+                  Jobs
+                </a>
+              </Link>
+            )}
           </Popover.Group>
           <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
           <BlockchainHealth className="hidden sm:flex lg:hidden" />
@@ -102,23 +109,43 @@ export default function Navbar({ className }: NavbarProps) {
                   <div className="mt-6">
                     <nav className="grid grid-cols-1 gap-4">
                       <Link href="/">
-                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                        <a
+                          className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                          onClick={() => setIsOpen(false)}
+                        >
                           <span>Home</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
                       <Link href="/litepaper">
-                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                        <a
+                          className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                          onClick={() => setIsOpen(false)}
+                        >
                           <span>Litepaper</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
                       <Link href="/press">
-                        <a className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500">
+                        <a
+                          className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                          onClick={() => setIsOpen(false)}
+                        >
                           <span>Press</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
+                      {isDevEnv() && (
+                        <Link href="/jobs">
+                          <a
+                            className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            <span>Jobs</span>
+                            <ChevronRightIcon className="h-6" />
+                          </a>
+                        </Link>
+                      )}
                     </nav>
                   </div>
                   <BlockchainHealth className="mt-auto mx-auto" isStacked />
