@@ -38,8 +38,7 @@
     "react-slider": "^2.0.0",
     "react-syntax-highlighter": "^15.5.0",
     "react-tooltip": "^4.2.21",
-    "react-xarrows": "^2.0.2",
-    "typed.js": "^2.0.12"
+    "react-xarrows": "^2.0.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^6.0.0",

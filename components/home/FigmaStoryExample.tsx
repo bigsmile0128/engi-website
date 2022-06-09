@@ -71,7 +71,7 @@ export default function FigmaStoryExample({
                 className="relative border-2 border-[#ffffff22] h-24 xs:h-28 sm:h-36 w-24 xs:w-28 sm:w-36"
                 id={boxEndArrowId}
               >
-                <Transition isToggled={isToggled}>
+                <Transition className="h-full" isToggled={isToggled}>
                   <div className="absolute top-1/3 left-1/4 flex items-center justify-center bg-[#F27B50] px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap">
                     Edit Profile
                   </div>
@@ -79,7 +79,7 @@ export default function FigmaStoryExample({
                     Click Me
                   </div>
                 </Transition>
-                <div className="absolute bg-[#030219] rounded-full p-2.5 sm:p-3.5 -translate-x-1/4 -translate-y-1/4">
+                <div className="absolute bg-[#030219] rounded-full p-2.5 sm:p-3.5 top-0 left-0 -translate-x-1/4 -translate-y-1/4">
                   <StorybookIcon className="h-5 xs:h-6 sm:h-7 w-5 xs:w-6 sm:w-7" />
                 </div>
               </div>

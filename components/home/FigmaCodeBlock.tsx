@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import classNames from 'classnames';
-import Typed from 'typed.js';
+import Transition from 'components/Transition';
 
 type FigmaCodeBlockProps = {
   className?: string;
@@ -15,34 +15,6 @@ export default function FigmaCodeBlock({
   isToggled,
   codeContainerClassName,
 }: FigmaCodeBlockProps) {
-  const el = useRef(null);
-  const typed = useRef(null);
-
-  useEffect(() => {
-    const options = {
-      strings: [
-        '<span class="text-purple-400"> className=<span class="text-emerald-300">"btn"</span>></span>{text}',
-        '<span class="text-purple-400">></span>Click Me',
-      ],
-      typeSpeed: 30,
-      backSpeed: 30,
-      loop: true,
-      onStringTyped: (arrayPos, self) => {
-        self.stop();
-      },
-    };
-
-    typed.current = new Typed(el.current, options);
-
-    return () => {
-      typed.current.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
-    typed.current?.start();
-  }, [isToggled]);
-
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
@@ -72,13 +44,28 @@ export default function FigmaCodeBlock({
               <span>{' Button = ({ text }) => ('}</span>
             </span>
           </div>
-          <div>
+          <div className="flex">
             <span className="relative px-2.5 mr-2 z-50">2</span>
-            <span>
-              <span className="text-purple-400">{'  <button'}</span>
-              <span ref={el} />
-              <span className="text-purple-400">{'</button>'}</span>
-            </span>
+            <Transition
+              isToggled={isToggled}
+              className="h-full inline relative whitespace-pre"
+              addPositionClasses={false}
+            >
+              <span className="absolute left-0 top-0">
+                <span className="text-purple-400">
+                  {'  <button className='}
+                </span>
+                <span className="text-emerald-300">{'"btn"'}</span>
+                <span className="text-purple-400">{'>'}</span>
+                {'{text}'}
+                <span className="text-purple-400">{'</button>'}</span>
+              </span>
+              <span className="absolute left-0 top-0">
+                <span className="text-purple-400">{'  <button>'}</span>
+                {'Click Me'}
+                <span className="text-purple-400">{'</button>'}</span>
+              </span>
+            </Transition>
           </div>
           <div>
             <span className="relative px-2.5 mr-2 z-50">3</span>

@@ -7,6 +7,7 @@ type TransitionProps = {
   isToggled: boolean;
   entrance?: string;
   exit?: string;
+  addPositionClasses?: boolean;
 };
 
 // transition between two child elements using animate.css
@@ -16,6 +17,7 @@ export default function Transition({
   isToggled,
   entrance = 'animate__fadeIn',
   exit = 'animate__fadeOut',
+  addPositionClasses = true,
 }: TransitionProps) {
   const hasPositionAttributes = children.some((child) =>
     /[\s-"](top|left|bottom|right)/.test(child.props?.className)
@@ -23,7 +25,7 @@ export default function Transition({
 
   return (
     <div
-      className={classNames(hasPositionAttributes ? '' : 'relative', className)}
+      className={classNames(addPositionClasses ? 'relative' : '', className)}
     >
       {React.Children.map(children, (child, i) => {
         const props = {
@@ -31,10 +33,11 @@ export default function Transition({
             'animate__animated',
             // @ts-expect-error switch class based on isToggled, but invert for second child
             i % 2 == isToggled ? entrance : exit,
+            addPositionClasses ? 'absolute' : '',
             // if child does not have position attributes, then center it horizontally by default
-            hasPositionAttributes
-              ? ''
-              : 'absolute left-1/2 -translate-x-1/2 top-0',
+            addPositionClasses && !hasPositionAttributes
+              ? 'left-1/2 -translate-x-1/2 top-0'
+              : '',
             child.props?.className ?? ''
           ),
           key: i,
