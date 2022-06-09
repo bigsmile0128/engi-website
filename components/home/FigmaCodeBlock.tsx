@@ -28,7 +28,7 @@ export default function FigmaCodeBlock({
       >
         <div
           className={classNames(
-            'border-l-[1px] z-10',
+            'border-l-[1px] z-10 transition duration-700',
             isToggled ? 'border-red-400' : 'border-emerald-300'
           )}
         />
