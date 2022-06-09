@@ -29,7 +29,7 @@ export default function FigmaCodeBlock({
         <div
           className={classNames(
             'border-l-[1px] z-10',
-            isToggled ? 'border-emerald-400' : 'border-emerald-300'
+            isToggled ? 'border-red-400' : 'border-emerald-300'
           )}
         />
         <div className="absolute h-full w-[28px] bg-gray-600" />
