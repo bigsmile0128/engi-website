@@ -4,19 +4,19 @@ import Transition from 'components/Transition';
 
 type FigmaCodeBlockProps = {
   className?: string;
-  isToggled: boolean;
   codeProps?: any;
   codeContainerClassName?: string;
+  id?: string;
 };
 
 export default function FigmaCodeBlock({
   className,
   codeProps = {},
-  isToggled,
   codeContainerClassName,
+  id,
 }: FigmaCodeBlockProps) {
   return (
-    <div className={classNames('flex flex-col items-start', className)}>
+    <div className={classNames('flex flex-col items-start', className)} id={id}>
       <div className="text-[11px] font-bold bg-[#253520aa] px-2 py-1">
         Button.tsx
       </div>
@@ -26,12 +26,13 @@ export default function FigmaCodeBlock({
           codeContainerClassName
         )}
       >
-        <div
-          className={classNames(
-            'border-l-[1px] z-10 transition duration-700',
-            isToggled ? 'border-red-400' : 'border-emerald-300'
-          )}
-        />
+        <Transition
+          className="w-[1px] basis-[1px] z-10 relative"
+          addPositionClasses={false}
+        >
+          <div className="absolute inset-0 bg-emerald-300" />
+          <div className="absolute inset-0 bg-red-400" />
+        </Transition>
         <div className="absolute h-full w-[28px] bg-gray-600" />
         <code
           className={classNames('whitespace-pre py-1.5', codeProps?.className)}
@@ -46,12 +47,8 @@ export default function FigmaCodeBlock({
           </div>
           <div className="flex">
             <span className="relative px-2.5 mr-2 z-50">2</span>
-            <Transition
-              isToggled={isToggled}
-              className="h-full inline relative whitespace-pre"
-              addPositionClasses={false}
-            >
-              <span className="absolute left-0 top-0">
+            <Transition className="w-full">
+              <span className="left-0 whitespace-pre">
                 <span className="text-purple-400">
                   {'  <button className='}
                 </span>
@@ -60,7 +57,7 @@ export default function FigmaCodeBlock({
                 {'{text}'}
                 <span className="text-purple-400">{'</button>'}</span>
               </span>
-              <span className="absolute left-0 top-0">
+              <span className="left-0 whitespace-pre">
                 <span className="text-purple-400">{'  <button>'}</span>
                 {'Click Me'}
                 <span className="text-purple-400">{'</button>'}</span>

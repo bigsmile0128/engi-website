@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { MdArrowBack, MdHistory } from 'react-icons/md';
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
-import 'animate.css';
 
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
-import Arrow from 'components/Arrow';
-import Transition from 'components/Transition';
-import EngiIcon from './img/engi.svg';
-import StorybookIcon from './img/storybook.svg';
-import FigmaIcon from './img/figma2.svg';
 import FigmaCodeBlock from './FigmaCodeBlock';
 import FigmaStoryExample from './FigmaStoryExample';
+import Arrow from 'components/Arrow';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -31,13 +24,6 @@ const Button = () => (
 `.trim();
 
 export default function FigmaPreview({ className }: FigmaPreviewProps) {
-  const [showSameStory, setShowSameStory] = useState(false);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => setShowSameStory(!showSameStory), 4000);
-    return () => clearTimeout(timeout);
-  }, [showSameStory]);
-
   return (
     <div className={classNames('grid relative', className)}>
       <div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
@@ -60,26 +46,24 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         </div>
         <FigmaStoryExample
           className="hidden sm:block md:p-20 lg:p-4 xl:p-12"
-          isToggled={showSameStory}
           spanEndArrowId="arrow-end1"
         />
       </div>
       <div className="w-full mt-4 sm:mt-8 justify-self-end overflow-hidden sm:mr-0 relative sm:w-auto sm:absolute sm:-bottom-4 sm:left-1/3 md:left-1/2 lg:left-56 xl:left-1/4 sm:translate-y-full md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30">
         <FigmaCodeBlock
-          isToggled={showSameStory}
           codeContainerClassName="w-full"
           codeProps={{
             className: 'w-full sm:w-[320px] py-2',
             id: 'arrow-start1',
           }}
+          id="arrow-start2"
         />
       </div>
       <FigmaStoryExample
         className="mt-8 sm:hidden"
-        isToggled={showSameStory}
         boxEndArrowId="arrow-end2"
       />
-      {/* arrow for non-mobile screen */}
+      {/* arrows for different screen sizes */}
       <Arrow
         className="hidden sm:block lg:hidden xl:block"
         start="arrow-start1"
@@ -93,10 +77,9 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         startAnchor="top"
         endAnchor="bottom"
       />
-      {/* arrow for mobile screen with different anchor positions */}
       <Arrow
         className="sm:hidden"
-        start="arrow-start1"
+        start="arrow-start2"
         end="arrow-end2"
         startAnchor="bottom"
         curveness={0.9}

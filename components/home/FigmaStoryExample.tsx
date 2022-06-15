@@ -12,14 +12,12 @@ import FigmaIcon from './img/figma2.svg';
 
 type FigmaStoryExampleProps = {
   className?: string;
-  isToggled: boolean;
   boxEndArrowId?: string;
   spanEndArrowId?: string;
 };
 
 export default function FigmaStoryExample({
   className,
-  isToggled,
   spanEndArrowId,
   boxEndArrowId,
 }: FigmaStoryExampleProps) {
@@ -42,10 +40,7 @@ export default function FigmaStoryExample({
               <MdHistory />
             </div>
           </div>
-          <Transition
-            isToggled={isToggled}
-            className="text-md whitespace-nowrap xs:text-xl font-bold -mt-5 xs:-mt-6 h-10"
-          >
+          <Transition className="text-md whitespace-nowrap xs:text-xl font-bold -mt-5 xs:-mt-6 h-10">
             <div className="flex flex-col items-center justify-center">
               <p>Well done!</p>
               <p>
@@ -65,13 +60,16 @@ export default function FigmaStoryExample({
               <p>the Same Story</p>
             </div>
           </Transition>
-          <div className="flex items-center justify-between gap-x-4 xs:gap-x-12 mt-8 px-2 xs:px-2 sm:px-8 pb-2">
+          <div className="flex items-center justify-between gap-x-4 xs:gap-x-12 mt-10 px-2 xs:px-2 sm:px-8 pb-2">
             <div className="flex flex-col items-center justify-center gap-y-2">
               <div
                 className="relative border-2 border-[#ffffff22] h-24 xs:h-28 sm:h-36 w-24 xs:w-28 sm:w-36"
                 id={boxEndArrowId}
               >
-                <Transition className="h-full" isToggled={isToggled}>
+                <Transition
+                  className="h-full relative"
+                  addPositionClasses={false}
+                >
                   <div className="absolute top-1/3 left-1/4 flex items-center justify-center bg-[#F27B50] px-2 py-1 xs:px-4 xs:py-2 sm:px-8 sm:py-4 text-xs font-bold rounded-md whitespace-nowrap">
                     Edit Profile
                   </div>
@@ -90,7 +88,7 @@ export default function FigmaStoryExample({
                 Rendered Code
               </span>
             </div>
-            <Transition className="w-8 h-8 mb-8" isToggled={isToggled}>
+            <Transition className="w-8 h-8 mb-8">
               <AiFillCheckCircle className="text-emerald-300" size={32} />
               <AiFillCloseCircle className="text-red-400" size={32} />
             </Transition>

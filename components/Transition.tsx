@@ -4,9 +4,6 @@ import classNames from 'classnames';
 type TransitionProps = {
   children: any;
   className?: string;
-  isToggled: boolean;
-  entrance?: string;
-  exit?: string;
   addPositionClasses?: boolean;
 };
 
@@ -14,36 +11,38 @@ type TransitionProps = {
 export default function Transition({
   children,
   className,
-  isToggled,
-  entrance = 'animate__fadeIn',
-  exit = 'animate__fadeOut',
   addPositionClasses = true,
 }: TransitionProps) {
   const hasPositionAttributes = children.some((child) =>
-    /[\s-"](top|left|bottom|right)/.test(child.props?.className)
+    /[\s-"]?(top|left|bottom|right|inset)/.test(child.props?.className)
   );
 
   return (
     <div
       className={classNames(addPositionClasses ? 'relative' : '', className)}
     >
-      {React.Children.map(children, (child, i) => {
-        const props = {
-          className: classNames(
-            'animate__animated',
-            // @ts-expect-error switch class based on isToggled, but invert for second child
-            i % 2 == isToggled ? entrance : exit,
-            addPositionClasses ? 'absolute' : '',
-            // if child does not have position attributes, then center it horizontally by default
-            addPositionClasses && !hasPositionAttributes
-              ? 'left-1/2 -translate-x-1/2 top-0'
-              : '',
-            child.props?.className ?? ''
-          ),
-          key: i,
-        };
-        return React.cloneElement(child, props);
-      })}
+      <div
+        className={classNames(
+          'fade-in-out',
+          addPositionClasses ? 'absolute' : '',
+          addPositionClasses && !hasPositionAttributes
+            ? 'left-1/2 -translate-x-1/2 top-0'
+            : ''
+        )}
+      >
+        {children?.[0]}
+      </div>
+      <div
+        className={classNames(
+          'fade-out-in',
+          addPositionClasses ? 'absolute' : '',
+          addPositionClasses && !hasPositionAttributes
+            ? 'left-1/2 -translate-x-1/2 top-0'
+            : ''
+        )}
+      >
+        {children?.[1]}
+      </div>
     </div>
   );
 }
