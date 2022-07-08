@@ -1,20 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
-  children?: any;
-  disabled?: boolean;
-}
+import { HTMLMotionProps, motion } from 'framer-motion';
 
 export default function Button({
   className,
   disabled,
   children,
   ...props
-}: ButtonProps) {
+}: HTMLMotionProps<'button'>) {
   return (
-    <button
+    <motion.button
       className={classNames(
         'relative bg-white font-bold text-sm text-black focus:outline-none focus:ring-1 focus:ring-emerald-200 peer px-8 py-4 text-md disabled:text-gray-400 border-t border-t-white border-b border-b-transparent',
         // hover and active states
@@ -27,6 +22,6 @@ export default function Button({
       {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

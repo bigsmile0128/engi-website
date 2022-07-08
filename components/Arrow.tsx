@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 
 const Xarrow = dynamic(() => import('react-xarrows'), { ssr: false });
 
@@ -15,6 +16,7 @@ type ArrowProps = {
   headSize?: number;
   startAnchor?: any;
   strokeWidth?: number;
+  [key: string]: any;
 };
 
 export default function Arrow({
@@ -28,6 +30,7 @@ export default function Arrow({
   start,
   startAnchor,
   strokeWidth = 1,
+  ...props
 }: ArrowProps) {
   // undefined anchor props will throw an error
   const arrowProps: Record<string, any> = {};
@@ -39,7 +42,7 @@ export default function Arrow({
   }
 
   return (
-    <div className={classNames('', className)}>
+    <motion.div className={classNames('', className)} {...props}>
       <Xarrow
         start={start}
         end={end}
@@ -53,6 +56,6 @@ export default function Arrow({
         }}
         {...arrowProps}
       />
-    </div>
+    </motion.div>
   );
 }

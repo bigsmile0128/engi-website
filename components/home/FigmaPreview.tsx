@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useXarrow } from 'react-xarrows';
 
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
@@ -24,32 +27,73 @@ const Button = () => (
 `.trim();
 
 export default function FigmaPreview({ className }: FigmaPreviewProps) {
+  const control = useAnimation();
+  const [ref, inView] = useInView();
+  const updateXarrow = useXarrow();
+
+  useEffect(() => {
+    if (inView) {
+      control.start('visible');
+    }
+  }, [inView]);
+
+  const variants = {
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    hidden: { opacity: 0, y: 200 },
+  };
+
+  const motionProps = {
+    initial: 'hidden',
+    variants: variants,
+  };
+
   return (
-    <div className={classNames('grid relative', className)}>
-      <div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
-        <div className="relative flex flex-col h-full">
+    <motion.div
+      className={classNames('grid relative', className)}
+      animate={control}
+      initial="hidden"
+    >
+      <motion.div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
+        <motion.div className="relative flex flex-col h-full">
           <GridPattern size={64} />
           {/* specific units to line up text precisely with grid on XL */}
-          <div className="flex-1 flex flex-col items-start p-8 xs:p-12 lg:p-6 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
-            <h2 className="font-grifter text-white text-5xl">
+          <motion.div className="flex-1 flex flex-col items-start p-8 xs:p-12 lg:p-6 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
+            <motion.h2
+              className="font-grifter text-white text-5xl"
+              variants={variants}
+            >
               <span className="inline md:block">FIGMA plugin</span>
-            </h2>
-            <p className="mt-8 text-gray-300">
+            </motion.h2>
+            <motion.p className="mt-8 text-gray-300" variants={variants}>
               Same Story is a Figma-Storybook equivalency checker and free,
               open-source, pre-release of the Engi Figma Plugin, lets product
               teams easily answer the question “Does my code tell the same story
               as my designs?”
-            </p>
+            </motion.p>
+            {/* slide into view when this div is visible */}
+            <div ref={ref}></div>
             {/* specific units to line up button precisely with grid on XL */}
-            <Button className="mt-8 xl:mt-[3.2rem]">Learn More</Button>
-          </div>
-        </div>
+            <Button className="mt-8 xl:mt-[3.2rem]" variants={variants}>
+              Learn More
+            </Button>
+          </motion.div>
+        </motion.div>
         <FigmaStoryExample
-          className="hidden sm:block md:p-20 lg:p-4 xl:p-12"
+          className="hidden sm:block md:m-20 lg:m-4 xl:m-12"
           spanEndArrowId="arrow-end1"
+          variants={variants}
         />
-      </div>
-      <div className="w-full mt-4 sm:mt-8 justify-self-end overflow-hidden sm:mr-0 relative sm:w-auto sm:absolute sm:-bottom-4 sm:left-1/3 md:left-1/2 lg:left-56 xl:left-1/4 sm:translate-y-full md:translate-y-1/2 lg:translate-y-2/3 xl:translate-y-1/2 w-30">
+      </motion.div>
+      <motion.div
+        className={classNames(
+          'w-full mt-4 justify-self-end overflow-hidden relative',
+          'sm:mt-8 sm:mr-0 sm:w-auto sm:absolute sm:-bottom-32 sm:left-1/3',
+          'md:left-1/2 md:-bottom-16',
+          'lg:left-56',
+          'xl:left-1/4'
+        )}
+        variants={variants}
+      >
         <FigmaCodeBlock
           codeContainerClassName="w-full"
           codeProps={{
@@ -58,7 +102,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
           }}
           id="arrow-start2"
         />
-      </div>
+      </motion.div>
       <FigmaStoryExample
         className="mt-8 sm:hidden"
         boxEndArrowId="arrow-end2"
@@ -69,6 +113,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         start="arrow-start1"
         end="arrow-end1"
         endAnchor="bottom"
+        variants={variants}
       />
       <Arrow
         className="hidden lg:block xl:hidden"
@@ -76,6 +121,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         end="arrow-end1"
         startAnchor="top"
         endAnchor="bottom"
+        variants={variants}
       />
       <Arrow
         className="sm:hidden"
@@ -84,7 +130,8 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         startAnchor="bottom"
         curveness={0.9}
         endAnchor="top"
+        variants={variants}
       />
-    </div>
+    </motion.div>
   );
 }
