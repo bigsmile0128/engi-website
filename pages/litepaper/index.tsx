@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-interface PressPageProps {
+interface LitepaperProps {
   className?: string;
 }
 
-export default function PressPage({ className }: PressPageProps) {
+export default function Litepaper({ className }: LitepaperProps) {
   return (
     <div
       className={classNames(
@@ -13,7 +13,7 @@ export default function PressPage({ className }: PressPageProps) {
         className
       )}
     >
-      <h1 className="font-grifter text-6xl">Press Page</h1>
+      <h1 className="font-grifter text-6xl">Litepaper</h1>
       <section className="mb-4">
         <p className="font-grifter text-lg mb-4">
           Section <span className="text-emerald-300">1</span>
