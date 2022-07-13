@@ -24,11 +24,11 @@ const Home: NextPage = () => {
       <FigmaPreview className="max-w-page p-6 sm:p-0 mt-24" />
       {isDevEnv() && (
         <>
-          <CalloutCards className="max-w-3xl lg:max-w-4xl mx-auto px-6 md:px-0 mt-24 sm:mt-32" />
-          <BlockQuote className="max-w-3xl lg:max-w-4xl mx-6 md:mx-auto mt-24 sm:mt-32" />
+          <CalloutCards className="max-w-page p-6 sm:p-0 mt-24 sm:mt-32" />
+          <BlockQuote className="max-w-page p-6 sm:p-0 mt-24 sm:mt-32" />
           <GlobalConnection className="mt-32" />
-          <Features className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-40" />
-          <AlternatingFeatures className="max-w-3xl lg:max-w-4xl mx-auto mt-32" />
+          <Features className="max-w-page p-6 sm:p-0 mt-40" />
+          <AlternatingFeatures className="max-w-page p-6 sm:p-0 mt-32" />
           <LanguageDivider className="my-32 sm:my-48" />
           <CallToAction className="" />
         </>

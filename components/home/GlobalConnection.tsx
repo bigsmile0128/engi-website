@@ -12,7 +12,7 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
   return (
     <div className={classNames('relative flex justify-center', className)}>
       <GridPattern offset={-1} />
-      <div className="md:flex items-center justify-center max-w-3xl lg:max-w-4xl py-12 md:py-0 z-10">
+      <div className="md:flex items-center justify-center max-w-page py-12 md:py-0 z-10">
         <div className="flex flex-col mb-12 md:mb-0 px-12 sm:px-0">
           <h2 className="font-grifter text-3xl">
             Global products built by global engineering
