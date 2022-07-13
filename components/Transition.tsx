@@ -7,7 +7,7 @@ type TransitionProps = {
   addPositionClasses?: boolean;
 };
 
-// transition between two child elements using animate.css
+// transition between two child elements
 export default function Transition({
   children,
   className,

@@ -7,8 +7,6 @@ import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 import Layout from 'components/layout';
 
-import 'animate.css';
-
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',
   integrations: [new BrowserTracing()],

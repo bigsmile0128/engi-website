@@ -55,11 +55,7 @@ export default function JobPreview({
           className="md:hidden flex items-center p-6 pb-0 gap-x-4"
           titleClassName="w-full"
         />
-        <div
-          className={classNames('flex-1 flex justify-between p-6', {
-            'animate-pulse': isSkeleton,
-          })}
-        >
+        <div className={classNames('flex-1 flex justify-between p-6')}>
           <LanguageAndTitle
             language={language}
             title={title}
