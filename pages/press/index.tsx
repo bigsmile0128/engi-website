@@ -10,7 +10,7 @@ export default function PressPage({ className }: PressPageProps) {
     // TODO: make responsive
     <div
       className={classNames(
-        'flex flex-col gap-y-12 max-w-3xl lg:max-w-4xl mx-auto mt-32',
+        'flex flex-col gap-y-12 max-w-page mt-32',
         className
       )}
     >

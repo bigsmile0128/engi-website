@@ -19,15 +19,15 @@ const Home: NextPage = () => {
       <Head>
         <title>Engi</title>
       </Head>
-      <Hero className="max-w-page p-6 sm:p-0" />
-      <FigmaPreview className="max-w-page p-6 sm:p-0 mt-24" />
+      <Hero className="max-w-page" />
+      <FigmaPreview className="max-w-page mt-24" />
       {isBeta() && (
         <>
-          <CalloutCards className="max-w-page p-6 sm:p-0 mt-24 sm:mt-32" />
-          <BlockQuote className="max-w-page p-6 sm:p-0 mt-24 sm:mt-32" />
+          <CalloutCards className="max-w-page mt-24 sm:mt-32" />
+          <BlockQuote className="max-w-page mt-24 sm:mt-32" />
           <GlobalConnection className="mt-32" />
-          <Features className="max-w-page p-6 sm:p-0 mt-40" />
-          <AlternatingFeatures className="max-w-page p-6 sm:p-0 mt-32" />
+          <Features className="max-w-page mt-40" />
+          <AlternatingFeatures className="max-w-page mt-32" />
           <LanguageDivider className="my-32 sm:my-48" />
           <CallToAction className="" />
         </>

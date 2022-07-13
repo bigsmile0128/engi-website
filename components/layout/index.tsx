@@ -8,10 +8,10 @@ type LayoutProps = {
 
 export default function Layout({ children }) {
   return (
-    <div className="bg-landing bg-cover relative min-h-screen">
+    <div className="bg-landing bg-cover relative min-h-screen flex flex-col">
       <Navbar />
       <div className="overflow-hidden">{children}</div>
-      <Footer />
+      <Footer className="mt-auto" />
     </div>
   );
 }
