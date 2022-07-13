@@ -37,13 +37,7 @@ export default function SearchResultsHeader({
   const [sortDir, setSortDir] = useState(SortDirection.DESCENDING);
 
   return (
-    <header
-      className={classNames(
-        'md:flex items-center',
-        { 'animate-pulse': isLoading },
-        className
-      )}
-    >
+    <header className={classNames('md:flex items-center', className)}>
       <h4 className={classNames('font-grifter', isLoading ? 'skeleton' : '')}>
         <span>
           Found {numResults ?? 0}{' '}
@@ -114,7 +108,7 @@ export default function SearchResultsHeader({
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Listbox.Options className="origin-top-right absolute z-10 right-0 mt-2 w-40 rounded-md overflow-hidden bg-[#00000022] divide-y divide-[#ffffff22] ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Listbox.Options className="origin-top-right absolute z-10 right-0 mt-2 w-40 rounded-md overflow-hidden bg-gray-700 divide-y divide-[#ffffff22] ring-1 ring-black ring-opacity-5 focus:outline-none">
                     {publishingOptions.map((option) => (
                       <Listbox.Option
                         key={option.title}
