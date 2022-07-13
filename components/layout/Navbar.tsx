@@ -5,7 +5,7 @@ import { Dialog, Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-import { isDevEnv } from 'utils';
+import { isBeta } from 'utils';
 import Logo from 'components/Logo';
 import MenuSvg from 'components/home/img/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
@@ -41,7 +41,7 @@ export default function Navbar({ className }: NavbarProps) {
                 Press
               </a>
             </Link>
-            {isDevEnv() && (
+            {isBeta() && (
               <Link href="/jobs">
                 <a className="text-base font-medium text-gray-300 hover:text-white">
                   Jobs
@@ -135,7 +135,7 @@ export default function Navbar({ className }: NavbarProps) {
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
-                      {isDevEnv() && (
+                      {isBeta() && (
                         <Link href="/jobs">
                           <a
                             className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"

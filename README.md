@@ -15,6 +15,10 @@ docker build -t engi-website .
 docker run -p 3000:3000 engi-website
 ```
 
+### Versions
+
+Set environment variable `NEXT_PUBLIC_VERSION` to `PREVIEW` (landing page only) or `BETA` in command line or `.env.production` file.
+
 ## CI/CD
 
 [CircleCI](https://app.circleci.com/pipelines/github/engi-network/website) is invoked each time you push to GitHub.
