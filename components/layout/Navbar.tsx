@@ -5,7 +5,7 @@ import { Dialog, Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-import { isBeta } from 'utils';
+import { isBeta, isDevEnv } from 'utils';
 import Logo from 'components/Logo';
 import MenuSvg from 'components/home/img/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
@@ -29,7 +29,7 @@ export default function Navbar({ className }: NavbarProps) {
           {/* non-mobile nav */}
           <Popover.Group
             as="nav"
-            className="flex-1 hidden sm:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
+            className="flex-1 hidden sm:flex gap-x-8 ml-8 md:gap-x-12 lg:gap-x-16 lg:ml-12"
           >
             <Link href="/litepaper">
               <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -42,9 +42,18 @@ export default function Navbar({ className }: NavbarProps) {
               </a>
             </Link>
             {isBeta() && (
-              <Link href="/jobs">
+              <>
+                <Link href="/jobs">
+                  <a className="text-base font-medium text-gray-300 hover:text-white">
+                    Jobs
+                  </a>
+                </Link>
+              </>
+            )}
+            {isDevEnv() && (
+              <Link href="/hire">
                 <a className="text-base font-medium text-gray-300 hover:text-white">
-                  Jobs
+                  Hire
                 </a>
               </Link>
             )}
@@ -136,12 +145,25 @@ export default function Navbar({ className }: NavbarProps) {
                         </a>
                       </Link>
                       {isBeta() && (
-                        <Link href="/jobs">
+                        <>
+                          <Link href="/jobs">
+                            <a
+                              className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              <span>Jobs</span>
+                              <ChevronRightIcon className="h-6" />
+                            </a>
+                          </Link>
+                        </>
+                      )}
+                      {isDevEnv() && (
+                        <Link href="/hire">
                           <a
                             className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                             onClick={() => setIsOpen(false)}
                           >
-                            <span>Jobs</span>
+                            <span>Hire</span>
                             <ChevronRightIcon className="h-6" />
                           </a>
                         </Link>
