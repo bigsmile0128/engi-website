@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
   });
 
   // artificial delay
-  await sleep(5000);
+  await sleep(3000);
 
   res.json({
     numResults: jobs.length,

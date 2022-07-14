@@ -71,7 +71,7 @@ export default function JobDetails() {
           <h1
             className={classNames(
               'font-grifter text-3xl px-4',
-              isLoading ? `skeleton animate-pulse mx-2` : ''
+              isLoading ? `skeleton mx-2` : ''
             )}
           >
             <span className="whitespace-nowrap -mb-2 block">
@@ -142,10 +142,10 @@ export default function JobDetails() {
               isLoading ? '' : 'hidden'
             )}
           >
-            <div className={`skeleton animate-pulse h-5 w-5/5`} />
-            <div className={`skeleton animate-pulse h-5 w-3/5`} />
-            <div className={`skeleton animate-pulse h-5 w-4/5`} />
-            <div className={`skeleton animate-pulse h-5 w-3/5`} />
+            <div className={`skeleton h-5 w-5/5`} />
+            <div className={`skeleton h-5 w-3/5`} />
+            <div className={`skeleton h-5 w-4/5`} />
+            <div className={`skeleton h-5 w-3/5`} />
           </div>
           <span className={isLoading ? 'hidden' : ''}>{data?.description}</span>
         </div>
