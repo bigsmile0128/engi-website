@@ -36,26 +36,25 @@ export default function Navbar({ className }: NavbarProps) {
                 Litepaper
               </a>
             </Link>
-            <Link href="/press">
-              <a className="text-base font-medium text-gray-300 hover:text-white">
-                Press
-              </a>
-            </Link>
-            {isBeta() && (
+            {isBeta() && <></>}
+            {isDevEnv() && (
               <>
+                <Link href="/press">
+                  <a className="text-base font-medium text-gray-300 hover:text-white">
+                    Press
+                  </a>
+                </Link>
                 <Link href="/jobs">
                   <a className="text-base font-medium text-gray-300 hover:text-white">
                     Jobs
                   </a>
                 </Link>
+                <Link href="/hire">
+                  <a className="text-base font-medium text-gray-300 hover:text-white">
+                    Hire
+                  </a>
+                </Link>
               </>
-            )}
-            {isDevEnv() && (
-              <Link href="/hire">
-                <a className="text-base font-medium text-gray-300 hover:text-white">
-                  Hire
-                </a>
-              </Link>
             )}
           </Popover.Group>
           <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
@@ -135,17 +134,18 @@ export default function Navbar({ className }: NavbarProps) {
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
-                      <Link href="/press">
-                        <a
-                          className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <span>Press</span>
-                          <ChevronRightIcon className="h-6" />
-                        </a>
-                      </Link>
-                      {isBeta() && (
+                      {isBeta() && <></>}
+                      {isDevEnv() && (
                         <>
+                          <Link href="/press">
+                            <a
+                              className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              <span>Press</span>
+                              <ChevronRightIcon className="h-6" />
+                            </a>
+                          </Link>
                           <Link href="/jobs">
                             <a
                               className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
@@ -155,18 +155,16 @@ export default function Navbar({ className }: NavbarProps) {
                               <ChevronRightIcon className="h-6" />
                             </a>
                           </Link>
+                          <Link href="/hire">
+                            <a
+                              className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              <span>Hire</span>
+                              <ChevronRightIcon className="h-6" />
+                            </a>
+                          </Link>
                         </>
-                      )}
-                      {isDevEnv() && (
-                        <Link href="/hire">
-                          <a
-                            className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                            onClick={() => setIsOpen(false)}
-                          >
-                            <span>Hire</span>
-                            <ChevronRightIcon className="h-6" />
-                          </a>
-                        </Link>
                       )}
                     </nav>
                   </div>
