@@ -5,7 +5,7 @@ import { Dialog, Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-import { isBeta, isDevEnv } from 'utils';
+import { isBeta, isDev } from 'utils';
 import Logo from 'components/Logo';
 import MenuSvg from 'components/home/img/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
@@ -37,7 +37,7 @@ export default function Navbar({ className }: NavbarProps) {
               </a>
             </Link>
             {isBeta() && <></>}
-            {isDevEnv() && (
+            {isDev() && (
               <>
                 <Link href="/press">
                   <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -60,6 +60,18 @@ export default function Navbar({ className }: NavbarProps) {
           <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
           <BlockchainHealth className="hidden sm:flex lg:hidden" />
           <BlockchainHealth className="hidden lg:flex" isStacked />
+          <Link href="/signup">
+            <a>
+              <button
+                className={classNames(
+                  'hidden sm:block px-6 py-4 text-white font-bold ml-8',
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                )}
+              >
+                Get Started
+              </button>
+            </a>
+          </Link>
           {/* mobile nav */}
           <div className="ml-6 -mr-2 -my-2 sm:hidden">
             <button
@@ -135,7 +147,7 @@ export default function Navbar({ className }: NavbarProps) {
                         </a>
                       </Link>
                       {isBeta() && <></>}
-                      {isDevEnv() && (
+                      {isDev() && (
                         <>
                           <Link href="/press">
                             <a
@@ -169,6 +181,18 @@ export default function Navbar({ className }: NavbarProps) {
                     </nav>
                   </div>
                   <BlockchainHealth className="mt-auto mx-auto" isStacked />
+                  <Link href="/signup">
+                    <a onClick={() => setIsOpen(false)}>
+                      <button
+                        className={classNames(
+                          'mt-8 py-4 w-full text-white font-bold',
+                          'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                        )}
+                      >
+                        Get Started
+                      </button>
+                    </a>
+                  </Link>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
