@@ -54,7 +54,9 @@ export default function JobCreatorInfo({
       </div>
       <div className="my-6 w-full border-t border-gray-400 opacity-50" />
       <span className="font-bold mb-2">Job Link</span>
-      <CopyLink value={window.location.href} />
+      <CopyLink
+        value={typeof window !== 'undefined' ? window.location.href : ''}
+      />
     </div>
   );
 }

@@ -41,7 +41,9 @@ export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
       </div>
       <div className="mt-4 sm:mt-8">
         <p className="font-bold mb-2 text-lg">Job Link</p>
-        <CopyLink value={window.location.href} />
+        <CopyLink
+          value={typeof window !== 'undefined' ? window.location.href : ''}
+        />
       </div>
     </Modal>
   );
