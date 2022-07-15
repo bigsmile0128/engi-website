@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BiImport } from 'react-icons/bi';
 import * as bip39 from 'bip39';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
+import { useMutation } from 'react-query';
+import axios, { AxiosError } from 'axios';
+import { gql } from 'graphql-request';
 
 type SignupProps = {
   className?: string;
@@ -11,7 +15,7 @@ type SignupProps = {
 enum Step {
   WELCOME,
   NEW,
-  IMPORT,
+  IMPORT_WALLET,
   CREATE_WALLET,
   CONFIRM_WALLET,
   USERNAME,
@@ -21,13 +25,74 @@ enum Step {
 
 export default function Signup({ className }: SignupProps) {
   const [currentStep, setCurrentStep] = useState(Step.WELCOME);
-  const [mnemonic, setMnemonic] = useState(bip39.generateMnemonic());
+  const [passphrase, setPassphrase] = useState('');
+  const [mnemonic, setMnemonic] = useState('');
   const [confirmationWords, setConfirmationWords] = useState<string[]>([]);
+  const [confirmationPassphrase, setConfirmationPassphrase] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmationPassword, setConfirmationPassword] = useState('');
+
+  const registerMutation = useMutation<any, AxiosError, any>(
+    async (userObj: any) => {
+      await axios.post('/api/graphql', {
+        query: gql`
+          mutation CreateUser(
+            $name: String!
+            $mnemonic: String!
+            $mnemonicSalt: String!
+            $password: String!
+          ) {
+            createUser(
+              user: {
+                name: $name
+                mnemonic: $mnemonic
+                mnemonicSalt: $mnemonicSalt
+                password: $password
+              }
+            ) {
+              name
+              address
+              createdOn
+              encoded
+              metadata {
+                content
+                type
+                version
+              }
+            }
+          }
+        `,
+        operationName: 'CreateUser',
+        variables: {
+          name: userObj.username,
+          password: userObj.password,
+          mnemonic: userObj.mnemonic,
+          mnemonicSalt: userObj.passphrase,
+        },
+      });
+    }
+  );
+
+  useEffect(() => {
+    // reset fields when going back to initial seelction
+    if (currentStep === Step.NEW) {
+      setPassphrase('');
+      setMnemonic('');
+    }
+  }, [currentStep]);
+
+  useEffect(() => {
+    if (registerMutation.isSuccess) {
+      console.log('registerMutation.isSuccess', registerMutation.isSuccess);
+      setCurrentStep(Step.FINISH);
+    }
+  }, [registerMutation.isSuccess]);
 
   return (
     <div
       className={classNames(
-        'max-w-page mt-20 lg:!max-w-2xl',
+        'max-w-page my-20 lg:!max-w-2xl',
         'bg-[#00000022] !p-12 rounded-lg',
         className
       )}
@@ -55,7 +120,7 @@ export default function Signup({ className }: SignupProps) {
         {currentStep === Step.NEW && (
           <>
             <h1 className="font-bold text-5xl mb-8">New to Engi?</h1>
-            <div className="flex gap-8">
+            <div className="flex flex-col sm:flex-row gap-8">
               <div className="flex flex-col gap-y-2 border border-gray-300 p-8 w-50 h-64">
                 <BiImport className="text-4xl" />
                 <span className="text-sm font-bold">
@@ -67,6 +132,7 @@ export default function Signup({ className }: SignupProps) {
                     'w-full py-4 text-white font-bold mt-auto',
                     'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                   )}
+                  onClick={() => setCurrentStep(Step.IMPORT_WALLET)}
                 >
                   Import Wallet
                 </button>
@@ -80,11 +146,73 @@ export default function Signup({ className }: SignupProps) {
                     'w-full py-4 text-white font-bold mt-auto',
                     'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                   )}
-                  onClick={() => setCurrentStep(Step.CREATE_WALLET)}
+                  onClick={() => {
+                    setMnemonic(bip39.generateMnemonic());
+                    setCurrentStep(Step.CREATE_WALLET);
+                  }}
                 >
                   Create Wallet
                 </button>
               </div>
+            </div>
+          </>
+        )}
+        {currentStep === Step.IMPORT_WALLET && (
+          <>
+            <h1 className="font-bold text-5xl mb-8">Secret Backup Phrase</h1>
+            <textarea
+              className={classNames(
+                'w-full mb-8 border border-gray-400 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent'
+              )}
+              value={mnemonic}
+              onChange={(e) => setMnemonic(e.target.value.trim())}
+              placeholder="Secret Backup Phrase"
+            />
+            <input
+              className={classNames(
+                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+              )}
+              type="password"
+              name="passphrase"
+              id="passphrase"
+              placeholder="Passphrase"
+              value={passphrase}
+              onChange={(e) => setPassphrase(e.target.value)}
+            />
+            <div className="flex w-full gap-x-4">
+              <button
+                className={classNames(
+                  'flex-1 py-4 text-white font-bold',
+                  // TODO: change color for Back button
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                )}
+                onClick={() => setCurrentStep(Step.NEW)}
+              >
+                Back
+              </button>
+              <button
+                className={classNames(
+                  'flex-1 py-4 text-white font-bold',
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                )}
+                onClick={() => {
+                  if (!mnemonic) {
+                    toast.error('A secret backup phrase is required.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else if (!passphrase) {
+                    toast.error('A passphrase is required.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else {
+                    setCurrentStep(Step.CREATE_WALLET);
+                  }
+                }}
+              >
+                Next
+              </button>
             </div>
           </>
         )}
@@ -102,7 +230,17 @@ export default function Signup({ className }: SignupProps) {
             <div className="border border-white p-8 px-16 text-center text-lg mb-8">
               {mnemonic}
             </div>
-            {/* TODO: mandatory passphrase */}
+            <input
+              className={classNames(
+                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+              )}
+              type="password"
+              name="passphrase"
+              id="passphrase"
+              placeholder="Passphrase"
+              value={passphrase}
+              onChange={(e) => setPassphrase(e.target.value)}
+            />
             <div className="flex w-full gap-x-4">
               <button
                 className={classNames(
@@ -119,7 +257,16 @@ export default function Signup({ className }: SignupProps) {
                   'flex-1 py-4 text-white font-bold',
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
-                onClick={() => setCurrentStep(Step.CONFIRM_WALLET)}
+                onClick={() => {
+                  if (!passphrase) {
+                    toast.error('A passphrase is required.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else {
+                    setCurrentStep(Step.CONFIRM_WALLET);
+                  }
+                }}
               >
                 Next
               </button>
@@ -153,32 +300,50 @@ export default function Signup({ className }: SignupProps) {
                 </button>
               ))}
             </div>
-            {/* TODO: mandatory passphrase */}
-            <div className="w-full grid grid-rows-4 grid-cols-4 gap-x-12 gap-y-4">
-              {mnemonic.split(' ').map((word) => (
-                <button
-                  key={word}
-                  className={classNames(
-                    'flex-1 py-2 text-white text-sm',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus:ring-2',
-                    confirmationWords.includes(word) ? '!bg-[#ffffff22]' : ''
-                  )}
-                  onClick={() => {
-                    let newConfirmationWords: string[];
-                    if (confirmationWords.includes(word)) {
-                      newConfirmationWords = confirmationWords.filter(
-                        (w) => w !== word
-                      );
-                    } else {
-                      newConfirmationWords = [...confirmationWords, word];
-                    }
-                    setConfirmationWords(newConfirmationWords);
-                  }}
-                  // TODO: display tooltip and disable if not matching
-                >
-                  {word}
-                </button>
-              ))}
+            <input
+              className={classNames(
+                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+              )}
+              type="password"
+              name="passphrase"
+              id="passphrase"
+              placeholder="Confirm Passphrase"
+              value={confirmationPassphrase}
+              onChange={(e) => setConfirmationPassphrase(e.target.value)}
+            />
+            <div
+              className={classNames(
+                'w-full grid gap-x-12 gap-y-4 mb-8',
+                'grid-cols-2',
+                'sm:grid-cols-4'
+              )}
+            >
+              {mnemonic
+                .split(' ')
+                .sort()
+                .map((word) => (
+                  <button
+                    key={word}
+                    className={classNames(
+                      'flex-1 py-2 text-white text-sm',
+                      'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus:ring-2',
+                      confirmationWords.includes(word) ? '!bg-[#ffffff22]' : ''
+                    )}
+                    onClick={() => {
+                      let newConfirmationWords: string[];
+                      if (confirmationWords.includes(word)) {
+                        newConfirmationWords = confirmationWords.filter(
+                          (w) => w !== word
+                        );
+                      } else {
+                        newConfirmationWords = [...confirmationWords, word];
+                      }
+                      setConfirmationWords(newConfirmationWords);
+                    }}
+                  >
+                    {word}
+                  </button>
+                ))}
             </div>
             <div className="flex w-full gap-x-4">
               <button
@@ -196,7 +361,21 @@ export default function Signup({ className }: SignupProps) {
                   'flex-1 py-4 text-white font-bold',
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
-                onClick={() => setCurrentStep(Step.USERNAME)}
+                onClick={() => {
+                  if (confirmationWords.join(' ') !== mnemonic) {
+                    toast.error('The secret backup phrase does not match.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else if (confirmationPassphrase !== passphrase) {
+                    toast.error('The passphrase does not match.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else {
+                    setCurrentStep(Step.USERNAME);
+                  }
+                }}
               >
                 Next
               </button>
@@ -215,6 +394,8 @@ export default function Signup({ className }: SignupProps) {
                 name="username"
                 id="username"
                 placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
               />
               <input
                 className={classNames(
@@ -224,15 +405,19 @@ export default function Signup({ className }: SignupProps) {
                 name="password"
                 id="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <input
                 className={classNames(
                   'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
                 )}
-                type="password-confirmation"
+                type="password"
                 name="password-confirmation"
                 id="password-confirmation"
                 placeholder="Confirm Password"
+                value={confirmationPassword}
+                onChange={(e) => setConfirmationPassword(e.target.value)}
               />
             </div>
             <div className="flex w-full gap-x-4">
@@ -251,7 +436,31 @@ export default function Signup({ className }: SignupProps) {
                   'flex-1 py-4 text-white font-bold',
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
-                onClick={() => setCurrentStep(Step.FINISH)}
+                onClick={() => {
+                  if (!username) {
+                    toast.error('A username is required.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else if (!password) {
+                    toast.error('A password is required.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else if (confirmationPassword !== password) {
+                    toast.error('The confirmation password does not match.', {
+                      position: 'top-center',
+                      autoClose: 3000,
+                    });
+                  } else {
+                    registerMutation.mutate({
+                      username,
+                      password,
+                      mnemonic,
+                      passphrase,
+                    });
+                  }
+                }}
               >
                 Create
               </button>

@@ -6,6 +6,9 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 import Layout from 'components/layout';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',
@@ -38,6 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </Layout>
         <ReactQueryDevtools initialIsOpen={false} />
+        <ToastContainer />
       </QueryClientProvider>
     </>
   );
