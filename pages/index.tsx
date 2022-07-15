@@ -7,7 +7,6 @@ import FigmaPreview from 'components/home/FigmaPreview';
 import Features from 'components/home/Features';
 import CalloutCards from 'components/home/CalloutCards';
 import BlockQuote from 'components/home/BlockQuote';
-import LanguageDivider from 'components/home/LanguageDivider';
 import GlobalConnection from 'components/home/GlobalConnection';
 import AlternatingFeatures from 'components/home/AlternatingFeatures';
 import CallToAction from 'components/home/CallToAction';
@@ -20,16 +19,19 @@ const Home: NextPage = () => {
         <title>Engi</title>
       </Head>
       <Hero className="max-w-page" />
-      <FigmaPreview className="max-w-page mt-24" />
       {isBeta() && (
         <>
-          <CalloutCards className="max-w-page mt-24 sm:mt-32" />
-          <BlockQuote className="max-w-page mt-24 sm:mt-32" />
-          <GlobalConnection className="mt-32" />
+          <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" />
           <Features className="max-w-page mt-40" />
+        </>
+      )}
+      <FigmaPreview className="max-w-page mt-40 mb-48" />
+      {isBeta() && (
+        <>
           <AlternatingFeatures className="max-w-page mt-32" />
-          <LanguageDivider className="my-32 sm:my-48" />
-          <CallToAction className="" />
+          <GlobalConnection className="mt-32" />
+          <BlockQuote className="max-w-page mt-24 sm:mt-32" />
+          <CallToAction className="mt-32" />
         </>
       )}
     </div>

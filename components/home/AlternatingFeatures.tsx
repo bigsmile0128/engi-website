@@ -16,46 +16,17 @@ export default function AlternatingFeatures({
 }: AlternatingFeaturesProps) {
   return (
     <div className={classNames('', className)}>
-      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0">
-        <div className="mb-12 md:mb-0">
-          <h2 className="font-grifter text-3xl mb-4">Figma Plugins</h2>
-          <p className="text-gray-400">
-            Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate
-            bar gummies tiramisu ice cream liquorice chocolate cake.
-          </p>
-        </div>
-        <div className="max-w-md md:max-w-none mx-auto">
-          <Image
-            className="h-3/4 w-3/4 mx-auto"
-            src={cubes}
-            alt="figma plugins"
-          />
-        </div>
-      </div>
-      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-48">
+      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center">
         <div className="mb-12 md:mb-0 col-start-2">
-          <h2 className="font-grifter text-3xl mb-4">Website</h2>
+          <h2 className="font-grifter text-3xl mb-4">
+            Your Workflows Supercharged
+          </h2>
           <p className="text-gray-400">
-            Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate
-            bar gummies tiramisu ice cream liquorice chocolate cake.
+            {`As an innovative technology businesses, you can seamlessly integrate Engi's new crowdsourced programming into your existing workflows. Engi supports all popular testing frameworks for languages such as Rust, TypeScript, Python, C#, and more. Draft Ul engineering jobs straight from your design tools or from your version control systems.`}
           </p>
         </div>
         <div className="max-w-md md:max-w-none mx-auto relative col-start-1">
-          <Image src={ipad} alt="ipad website" />
-        </div>
-      </div>
-      <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mt-48">
-        <div className="mb-12 md:mb-0">
-          <h2 className="font-grifter text-3xl mb-4">
-            Clients &amp; Integrations
-          </h2>
-          <p className="text-gray-400">
-            Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate
-            bar gummies tiramisu ice cream liquorice chocolate cake.
-          </p>
-        </div>
-        <div className="max-w-md md:max-w-none mx-auto">
-          <Image src={blocks} alt="clients and integrations" />
+          <Image src={blocks} alt="workflows" />
         </div>
       </div>
     </div>

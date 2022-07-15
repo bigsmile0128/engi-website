@@ -1,16 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import EmailRegistration from './EmailRegistration';
-import {
-  SiJava,
-  SiJavascript,
-  SiPython,
-  SiReact,
-  SiRust,
-} from 'react-icons/si';
 import HeroTextSvg from './img/hero-text.svg';
-import HeroTextCenteredSvg from './img/hero-text-centered.svg';
+import HeroTopSvg from './img/hero-top.svg';
+import HeroBottomSvg from './img/hero-bottom.svg';
+import sitePreviewImg from './img/site-preview.png';
+import Image from 'next/image';
 
 interface HeroProps {
   className?: string;
@@ -19,33 +14,47 @@ interface HeroProps {
 export default function Hero({ className }: HeroProps) {
   return (
     <div className={classNames('flex flex-col items-start', className)}>
-      <div className="w-full max-w-5xl mt-20 mb-8">
-        <HeroTextSvg className="hidden lg:block w-full" />
-        <HeroTextCenteredSvg className="block lg:hidden w-full" />
+      <div className="w-full mt-20 mb-16 lg:mb-24 flex gap-x-12">
+        <HeroTextSvg className="max-w-2xl" />
+        <p className="w-1/3 hidden lg:block text-lg">
+          Write code and get paid instantly. Have a design? Engage worldwide
+          talent and build products faster.
+        </p>
       </div>
-      <div className="w-full flex flex-col items-center text-center lg:text-left lg:items-start xl:flex-row xl:justify-start xl:gap-x-24">
-        <div className="">
-          <p className="leading-8 inline xs:block">
-            <span className="text-[#59746A] bg-emerald-300 shadow-[0_0_0_2px_rgb(110,231,183)]">
-              Engi
-            </span>{' '}
-            is a gig economy for coders built on the blockchain.
-          </p>
-          <p className="leading-8 inline xs:block ml-1 xs:ml-0">
-            No need to apply. Write code, get paid instantly.
-          </p>
-          <EmailRegistration className="w-full max-w-md mt-12" />
-        </div>
-        <div className="flex items-center gap-x-6 sm:gap-x-8 mt-24 xs:mt-12 xl:mt-0">
-          <SiRust className="text-gray-300" size={36} />
-          <SiPython className="text-gray-300" size={36} />
-          <SiJavascript className="text-gray-300" size={36} />
-          <SiReact className="text-gray-300" size={36} />
-          <SiJava className="text-gray-300 hidden xs:block" size={36} />
-          <div className="flex flex-col text-sm text-gray-200">
-            <span>+ more</span>
-            <span>languages</span>
+      <div className="w-full grid justify-center grid-cols-1 lg:justify-between lg:grid-cols-2 lg:gap-x-4">
+        <div className="flex flex-col whitespace-nowrap gap-y-4">
+          <div className="shrink-0 flex gap-x-4 items-center justify-between mb-4">
+            <div className="flex items-center gap-x-3 text-white">
+              <div className="h-4 w-4 bg-white rounded-full"></div>
+              <span className="text-sm sm:text-md">
+                New
+                <span className="hidden sm:inline"> Jobs</span>
+              </span>
+            </div>
+            <div className="flex items-center gap-x-3 text-emerald-300">
+              <div className="h-4 w-4 bg-emerald-300 rounded-full"></div>
+              <span className="text-sm sm:text-md">
+                Completed
+                <span className="hidden sm:inline"> Jobs</span>
+              </span>
+            </div>
+            <div className="flex items-center gap-x-3 text-orange-500">
+              <div className="h-4 w-4 bg-orange-500 rounded-full"></div>
+              <span className="text-sm sm:text-md">
+                Active
+                <span className="hidden sm:inline"> Jobs</span>
+              </span>
+            </div>
           </div>
+          <HeroTopSvg />
+          <HeroBottomSvg />
+        </div>
+        <div className="-mt-10 row-start-1 lg:col-start-2">
+          <Image
+            className="w-full h-auto"
+            src={sitePreviewImg}
+            alt="site-preview"
+          />
         </div>
       </div>
     </div>
