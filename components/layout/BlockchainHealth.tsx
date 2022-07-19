@@ -96,13 +96,13 @@ export default function BlockchainHealth({
     <div className={classNames('flex items-center gap-x-3', className)}>
       {isLoading && (
         <>
-          <GrStatusGoodSmall className="text-gray-300" />
+          <GrStatusGoodSmall className="text-sm text-gray-300" />
           <span>connecting...</span>
         </>
       )}
       {data?.status === 'ONLINE' && (
         <>
-          <GrStatusGoodSmall className="text-emerald-300" />
+          <GrStatusGoodSmall className="text-sm text-emerald-300" />
           <span>
             {showPeerCount && data?.peerCount !== undefined && (
               <span>
@@ -115,13 +115,13 @@ export default function BlockchainHealth({
       )}
       {data?.status === 'OFFLINE' && (
         <>
-          <GrStatusDisabledSmall className="text-red-400" />
+          <GrStatusDisabledSmall className="text-sm text-red-400" />
           <span>offline</span>
         </>
       )}
       {!isLoading && !data?.status && (
         <>
-          <GrStatusGoodSmall className="text-gray-300" />
+          <GrStatusGoodSmall className="text-sm text-gray-300" />
           <span>status unknown</span>
         </>
       )}

@@ -5,7 +5,6 @@ import { useInView } from 'react-intersection-observer';
 
 import { MdArrowBack, MdHistory } from 'react-icons/md';
 import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
-import 'animate.css';
 
 import Transition from 'components/Transition';
 import EngiIcon from './img/engi.svg';

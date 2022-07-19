@@ -9,6 +9,9 @@ import Layout from 'components/layout';
 import { ToastContainer } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import UserContext, { User } from 'utils/contexts/userContext';
+import { useCallback, useEffect, useState } from 'react';
+import store from 'store2';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',
@@ -21,6 +24,18 @@ Sentry.init({
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [user, _setUser] = useState<User>(null);
+
+  // fetch user info from local storage since there is no actual login
+  useEffect(() => {
+    _setUser(store.get('user'));
+  }, []);
+
+  const setUser = useCallback((user) => {
+    _setUser(user);
+    store.set('user', user);
+  }, []);
+
   return (
     <>
       <Script
@@ -37,11 +52,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         `}
       </Script>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <ToastContainer />
+        <UserContext.Provider value={{ user, setUser }}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <ToastContainer />
+        </UserContext.Provider>
       </QueryClientProvider>
     </>
   );

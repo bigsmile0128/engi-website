@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { BiImport } from 'react-icons/bi';
 import * as bip39 from 'bip39';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+import { HiOutlineCheckCircle, HiXCircle } from 'react-icons/hi';
+import UserContext from 'utils/contexts/userContext';
 
 type SignupProps = {
   className?: string;
@@ -24,6 +27,7 @@ enum Step {
 }
 
 export default function Signup({ className }: SignupProps) {
+  const { user, setUser } = useContext(UserContext);
   const [currentStep, setCurrentStep] = useState(Step.WELCOME);
   const [passphrase, setPassphrase] = useState('');
   const [mnemonic, setMnemonic] = useState('');
@@ -32,10 +36,11 @@ export default function Signup({ className }: SignupProps) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmationPassword, setConfirmationPassword] = useState('');
+  const [walletId, setWalletId] = useState('');
 
   const registerMutation = useMutation<any, AxiosError, any>(
     async (userObj: any) => {
-      await axios.post('/api/graphql', {
+      const response = await axios.post('/api/graphql', {
         query: gql`
           mutation CreateUser(
             $name: String!
@@ -71,11 +76,22 @@ export default function Signup({ className }: SignupProps) {
           mnemonicSalt: userObj.passphrase,
         },
       });
+      const walletId = response.data?.data?.createUser?.address;
+      if (walletId) {
+        setUser({
+          walletId,
+        });
+      }
     }
   );
 
+  const { isLoading: isLoadingWallet, data: isValidWallet } = useQuery(
+    ['wallet', walletId],
+    () => isWalletValid(walletId)
+  );
+
   useEffect(() => {
-    // reset fields when going back to initial seelction
+    // reset fields when going back to initial selection
     if (currentStep === Step.NEW) {
       setPassphrase('');
       setMnemonic('');
@@ -84,11 +100,11 @@ export default function Signup({ className }: SignupProps) {
 
   useEffect(() => {
     if (registerMutation.isSuccess) {
-      console.log('registerMutation.isSuccess', registerMutation.isSuccess);
       setCurrentStep(Step.FINISH);
     }
   }, [registerMutation.isSuccess]);
 
+  // TODO: adjust padding and margin on mobile
   return (
     <div
       className={classNames(
@@ -159,26 +175,30 @@ export default function Signup({ className }: SignupProps) {
         )}
         {currentStep === Step.IMPORT_WALLET && (
           <>
-            <h1 className="font-bold text-5xl mb-8">Secret Backup Phrase</h1>
-            <textarea
-              className={classNames(
-                'w-full mb-8 border border-gray-400 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent'
-              )}
-              value={mnemonic}
-              onChange={(e) => setMnemonic(e.target.value.trim())}
-              placeholder="Secret Backup Phrase"
-            />
-            <input
-              className={classNames(
-                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
-              )}
-              type="password"
-              name="passphrase"
-              id="passphrase"
-              placeholder="Passphrase"
-              value={passphrase}
-              onChange={(e) => setPassphrase(e.target.value)}
-            />
+            <h1 className="font-bold text-5xl mb-8">Import Wallet</h1>
+            <div className="relative w-full mb-8">
+              <input
+                className={classNames(
+                  'w-full p-4 pr-8',
+                  'border border-gray-400 text-white placeholder:text-gray-300 outline-none focus:ring-2 bg-transparent'
+                )}
+                type="text"
+                name="wallet"
+                id="wallet"
+                placeholder="Wallet ID"
+                value={walletId}
+                onChange={(e) => setWalletId(e.target.value)}
+              />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                {isLoadingWallet ? (
+                  <AiOutlineLoading3Quarters className="text-lg animate-spin text-gray-400 mr-1" />
+                ) : isValidWallet ? (
+                  <HiOutlineCheckCircle className="text-2xl text-emerald-300" />
+                ) : walletId && !isValidWallet ? (
+                  <HiXCircle className="text-2xl text-red-400" />
+                ) : null}
+              </div>
+            </div>
             <div className="flex w-full gap-x-4">
               <button
                 className={classNames(
@@ -196,19 +216,9 @@ export default function Signup({ className }: SignupProps) {
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
                 onClick={() => {
-                  if (!mnemonic) {
-                    toast.error('A secret backup phrase is required.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
-                  } else if (!passphrase) {
-                    toast.error('A passphrase is required.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
-                  } else {
-                    setCurrentStep(Step.CREATE_WALLET);
-                  }
+                  // TODO: validate wallet?
+                  setCurrentStep(Step.FINISH);
+                  setUser({ walletId });
                 }}
               >
                 Next
@@ -230,7 +240,7 @@ export default function Signup({ className }: SignupProps) {
             <div className="border border-white p-8 px-16 text-center text-lg mb-8">
               {mnemonic}
             </div>
-            <input
+            {/* <input
               className={classNames(
                 'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
               )}
@@ -240,7 +250,7 @@ export default function Signup({ className }: SignupProps) {
               placeholder="Passphrase"
               value={passphrase}
               onChange={(e) => setPassphrase(e.target.value)}
-            />
+            /> */}
             <div className="flex w-full gap-x-4">
               <button
                 className={classNames(
@@ -258,14 +268,15 @@ export default function Signup({ className }: SignupProps) {
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
                 onClick={() => {
-                  if (!passphrase) {
-                    toast.error('A passphrase is required.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
-                  } else {
-                    setCurrentStep(Step.CONFIRM_WALLET);
-                  }
+                  // if (!passphrase) {
+                  //   toast.error('A passphrase is required.', {
+                  //     position: 'top-center',
+                  //     autoClose: 3000,
+                  //   });
+                  // } else {
+                  //   setCurrentStep(Step.CONFIRM_WALLET);
+                  // }
+                  setCurrentStep(Step.CONFIRM_WALLET);
                 }}
               >
                 Next
@@ -300,7 +311,7 @@ export default function Signup({ className }: SignupProps) {
                 </button>
               ))}
             </div>
-            <input
+            {/* <input
               className={classNames(
                 'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
               )}
@@ -310,7 +321,7 @@ export default function Signup({ className }: SignupProps) {
               placeholder="Confirm Passphrase"
               value={confirmationPassphrase}
               onChange={(e) => setConfirmationPassphrase(e.target.value)}
-            />
+            /> */}
             <div
               className={classNames(
                 'w-full grid gap-x-12 gap-y-4 mb-8',
@@ -367,11 +378,11 @@ export default function Signup({ className }: SignupProps) {
                       position: 'top-center',
                       autoClose: 3000,
                     });
-                  } else if (confirmationPassphrase !== passphrase) {
-                    toast.error('The passphrase does not match.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
+                    // } else if (confirmationPassphrase !== passphrase) {
+                    //   toast.error('The passphrase does not match.', {
+                    //     position: 'top-center',
+                    //     autoClose: 3000,
+                    //   });
                   } else {
                     setCurrentStep(Step.USERNAME);
                   }
@@ -491,4 +502,27 @@ export default function Signup({ className }: SignupProps) {
       </div>
     </div>
   );
+}
+
+async function isWalletValid(walletId): Promise<boolean> {
+  if (!walletId) {
+    return false;
+  }
+  const { data } = await axios.post('/api/graphql', {
+    query: gql`
+      query WalletCheckQuery($id: ID!) {
+        account(id: $id) {
+          data {
+            free
+          }
+        }
+      }
+    `,
+    variables: {
+      id: walletId,
+    },
+    operationName: 'WalletCheckQuery',
+  });
+
+  return !!data.data.account;
 }

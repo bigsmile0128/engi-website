@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Dialog, Popover, Transition } from '@headlessui/react';
@@ -9,12 +9,17 @@ import { isBeta, isDev } from 'utils';
 import Logo from 'components/Logo';
 import MenuSvg from 'components/home/img/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
+import UserContext from 'utils/contexts/userContext';
+import Avvvatars from 'avvvatars-react';
+import Balance from 'components/Balance';
+import UserInfo from 'components/navbar/UserInfo';
 
 interface NavbarProps {
   className?: string;
 }
 
 export default function Navbar({ className }: NavbarProps) {
+  const { user, setUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -58,20 +63,31 @@ export default function Navbar({ className }: NavbarProps) {
             )}
           </Popover.Group>
           <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
-          <BlockchainHealth className="hidden sm:flex lg:hidden" />
-          <BlockchainHealth className="hidden lg:flex" isStacked />
-          <Link href="/signup">
-            <a>
-              <button
-                className={classNames(
-                  'hidden sm:block px-6 py-4 text-white font-bold ml-8',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
-                )}
-              >
-                Get Started
-              </button>
-            </a>
-          </Link>
+          {user ? (
+            <UserInfo
+              className="hidden sm:flex"
+              user={user}
+              setUser={setUser}
+            />
+          ) : (
+            <>
+              {/* TODO: use hook to grab viewport size and render only one element */}
+              <BlockchainHealth className="hidden sm:flex lg:hidden" />
+              <BlockchainHealth className="hidden lg:flex" isStacked />
+              <Link href="/signup">
+                <a>
+                  <button
+                    className={classNames(
+                      'hidden sm:block px-6 py-4 text-white font-bold ml-8',
+                      'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                    )}
+                  >
+                    Get Started
+                  </button>
+                </a>
+              </Link>
+            </>
+          )}
           {/* mobile nav */}
           <div className="ml-6 -mr-2 -my-2 sm:hidden">
             <button
@@ -180,19 +196,29 @@ export default function Navbar({ className }: NavbarProps) {
                       )}
                     </nav>
                   </div>
-                  <BlockchainHealth className="mt-auto mx-auto" isStacked />
-                  <Link href="/signup">
-                    <a onClick={() => setIsOpen(false)}>
-                      <button
-                        className={classNames(
-                          'mt-8 py-4 w-full text-white font-bold',
-                          'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
-                        )}
-                      >
-                        Get Started
-                      </button>
-                    </a>
-                  </Link>
+                  {user ? (
+                    <UserInfo
+                      className="mt-auto mx-auto"
+                      user={user}
+                      setUser={setUser}
+                    />
+                  ) : (
+                    <>
+                      <BlockchainHealth className="mt-auto mx-auto" isStacked />
+                      <Link href="/signup">
+                        <a onClick={() => setIsOpen(false)}>
+                          <button
+                            className={classNames(
+                              'mt-8 py-4 w-full text-white font-bold',
+                              'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                            )}
+                          >
+                            Get Started
+                          </button>
+                        </a>
+                      </Link>
+                    </>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
