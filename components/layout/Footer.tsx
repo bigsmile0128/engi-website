@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
 import classNames from 'classnames';
 
 import LogoSvg from 'components/home/img/logo.svg';
 import LogoAltSvg from 'components/home/img/logo_alt.svg';
-import { SiDiscord, SiLinkedin, SiTiktok, SiTwitter } from 'react-icons/si';
+import SocialMedia from './SocialMedia';
+import Link from 'next/link';
 
 interface FooterProps {
   className?: string;
@@ -14,47 +14,47 @@ export default function Footer({ className }: FooterProps) {
   return (
     <div
       className={classNames(
-        'bg-[#070706bb] flex items-center justify-center px-12 py-16 xs:py-6',
+        'bg-[#070706bb] flex items-center justify-center py-16',
         className
       )}
     >
-      <div className="w-full max-w-3xl lg:max-w-4xl flex flex-col xs:flex-row items-center justify-between gap-x-12 sm:gap-x-16">
-        <LogoSvg className="h-8 fill-emerald-300 shrink-0 hidden xs:block" />
-        <LogoAltSvg className="h-10 mb-12 block xs:hidden" />
-        <div className="flex items-center gap-x-8 text-2xl">
-          <Link href="https://discord.gg/XfzX7GPt">
-            <a
-              className="p-2 hover:text-gray-300"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SiDiscord />
-            </a>
-          </Link>
-          {/* <Link href="https://twitter.com/engi_network">
-            <a className="p-2 hover:text-gray-300" target="_blank" rel="noreferrer">
-              <SiTiktok />
-            </a>
-          </Link> */}
-          <Link href="https://linkedin.com/company/engi-network">
-            <a
-              className="p-2 hover:text-gray-300"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SiLinkedin />
-            </a>
-          </Link>
-          <Link href="https://twitter.com/engi_network">
-            <a
-              className="p-2 hover:text-gray-300"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <SiTwitter />
-            </a>
-          </Link>
+      <div className="max-w-page">
+        <div className="flex flex-col md:flex-col lg:flex-row gap-x-16">
+          <div className="flex flex-col">
+            <span className="flex items-center justify-between mb-4 lg:mb-16">
+              <LogoAltSvg className="h-10 fill-emerald-300" />
+              <SocialMedia className="hidden md:flex lg:hidden" />
+            </span>
+            <p className="border-t border-gray-600 py-4 md:w-3/4 lg:w-full">
+              Accessible and affordable software engineering engagements for
+              all. Leverage the Engi network to embolden your technology teams
+              or participate and earn cash writing code today.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-x-16 gap-y-12 mt-8 md:mt-16 lg:mt-0 whitespace-nowrap">
+            <div className="flex flex-col gap-y-4 sm:gap-y-6">
+              <h4 className="text-lg font-bold text-emerald-300">Earn $ENGI</h4>
+              <Link href="/litepaper">Search Jobs</Link>
+              <Link href="/litepaper">Download Tools</Link>
+              <Link href="/litepaper">Documentation</Link>
+            </div>
+            <div className="flex flex-col gap-y-4 sm:gap-y-6">
+              <h4 className="text-lg font-bold text-emerald-300">Buy $ENGI</h4>
+              <Link href="/litepaper">Get Started</Link>
+              <Link href="/litepaper">Post a Job</Link>
+              <Link href="/litepaper">Integrate Workflows</Link>
+            </div>
+            <div className="flex flex-col gap-y-4 sm:gap-y-6">
+              <h4 className="text-lg font-bold text-emerald-300">
+                For Investors
+              </h4>
+              <Link href="/litepaper">Litepaper</Link>
+              <Link href="/press">Press</Link>
+              <Link href="/litepaper">{`Team & Governance`}</Link>
+            </div>
+          </div>
         </div>
+        <SocialMedia className="md:hidden lg:flex border-t border-gray-600 justify-end pt-8 mt-24" />
       </div>
     </div>
   );

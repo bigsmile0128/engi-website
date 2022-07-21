@@ -14,7 +14,7 @@ import { isBeta } from 'utils';
 
 const Home: NextPage = () => {
   return (
-    <div className="pb-16 sm:pb-32 lg:pb-40">
+    <div className="">
       <Head>
         <title>Engi</title>
       </Head>
