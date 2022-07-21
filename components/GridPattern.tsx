@@ -5,12 +5,16 @@ interface GridPatternProps {
   className?: string;
   size?: number;
   offset?: number;
+  sizeX?: number;
+  sizeY?: number;
 }
 
 export default function GridPattern({
   className,
   size = 60,
   offset = 0,
+  sizeX,
+  sizeY,
 }: GridPatternProps) {
   return (
     <svg
@@ -23,15 +27,15 @@ export default function GridPattern({
           id={`grid-${size}`}
           x={offset}
           y={offset}
-          width={size}
-          height={size}
+          width={sizeX ?? size}
+          height={sizeY ?? size}
           patternUnits="userSpaceOnUse"
         >
           <rect
             stroke="rgba(255,255,255,.1)"
             fill="none"
-            width={size}
-            height={size}
+            width={sizeX ?? size}
+            height={sizeY ?? size}
           ></rect>
         </pattern>
       </defs>

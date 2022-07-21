@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
 
 import Hero from 'components/home/Hero';
 import FigmaPreview from 'components/home/FigmaPreview';
@@ -11,6 +10,7 @@ import GlobalConnection from 'components/home/GlobalConnection';
 import AlternatingFeatures from 'components/home/AlternatingFeatures';
 import CallToAction from 'components/home/CallToAction';
 import { isBeta } from 'utils';
+import Stats from 'components/home/Statistics';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +21,7 @@ const Home: NextPage = () => {
       <Hero className="max-w-page" />
       {isBeta() && (
         <>
+          <Stats className="max-w-page mt-40" />
           <CalloutCards className="max-w-page mt-32 sm:mt-32 lg:mt-24" />
           <Features className="max-w-page mt-40" />
         </>
