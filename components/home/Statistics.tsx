@@ -25,10 +25,13 @@ export default function Statistics({ className }: StatisticsProps) {
         </div>
         <div className="flex flex-col items-center">
           <span className="font-grifter text-5xl sm:text-4xl md:text-5xl xl:text-7xl">
-            4700+
+            4,700+
           </span>
           <span className="text-lg">Lines of Code</span>
         </div>
+      </div>
+      <div className="absolute bottom-1 right-1 text-xs text-gray-400">
+        For display purposes only
       </div>
     </div>
   );
