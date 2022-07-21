@@ -16,6 +16,7 @@ export default function GridPattern({
   sizeX,
   sizeY,
 }: GridPatternProps) {
+  const patternId = `grid-${sizeX ?? size}x${sizeY ?? size}`;
   return (
     <svg
       className={classNames('absolute', className)}
@@ -24,7 +25,7 @@ export default function GridPattern({
     >
       <defs>
         <pattern
-          id={`grid-${size}`}
+          id={patternId}
           x={offset}
           y={offset}
           width={sizeX ?? size}
@@ -44,7 +45,7 @@ export default function GridPattern({
         y="0"
         width="100%"
         height="100%"
-        fill={`url(#grid-${size})`}
+        fill={`url(#${patternId})`}
       ></rect>
     </svg>
   );

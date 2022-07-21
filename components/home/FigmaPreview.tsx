@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import FigmaCodeBlock from './FigmaCodeBlock';
 import FigmaStoryExample from './FigmaStoryExample';
 import Arrow from 'components/Arrow';
+import Link from 'next/link';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -83,9 +84,13 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             {/* slide into view when this div is visible */}
             <div ref={ref}></div>
             {/* specific units to line up button precisely with grid on XL */}
-            <Button className="mt-8 xl:mt-[3.2rem]" variants={variants}>
-              Learn More
-            </Button>
+            <Link href="/litepaper">
+              <a>
+                <Button className="mt-8 xl:mt-[3.2rem]" variants={variants}>
+                  Learn More
+                </Button>
+              </a>
+            </Link>
           </motion.div>
         </motion.div>
         <FigmaStoryExample
