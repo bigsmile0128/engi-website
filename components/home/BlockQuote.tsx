@@ -3,9 +3,15 @@ import classNames from 'classnames';
 
 interface BlockQuoteProps {
   className?: string;
+  value: string | JSX.Element;
+  subtitle?: string;
 }
 
-export default function BlockQuote({ className }: BlockQuoteProps) {
+export default function BlockQuote({
+  className,
+  value,
+  subtitle,
+}: BlockQuoteProps) {
   return (
     <div
       className={classNames(
@@ -14,7 +20,7 @@ export default function BlockQuote({ className }: BlockQuoteProps) {
       )}
     >
       <svg
-        className="scale-75 -mt-5 fill-emerald-300"
+        className="scale-75 -mt-5 fill-emerald-300 shrink-0"
         width="38"
         height="28"
         viewBox="0 0 38 28"
@@ -25,10 +31,8 @@ export default function BlockQuote({ className }: BlockQuoteProps) {
         />
       </svg>
       <div className="flex flex-col gap-y-4">
-        <h2 className="font-grifter text-3xl">We built engi using engi</h2>
-        <p className="text-gray-400">
-          Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate bar.
-        </p>
+        <h2 className="font-grifter text-3xl">{value}</h2>
+        {subtitle && <p className="text-gray-400">{subtitle}</p>}
       </div>
     </div>
   );

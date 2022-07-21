@@ -30,7 +30,11 @@ const Home: NextPage = () => {
         <>
           <AlternatingFeatures className="max-w-page mt-32" />
           <GlobalConnection className="mt-32" />
-          <BlockQuote className="max-w-page mt-24 sm:mt-32" />
+          <BlockQuote
+            className="max-w-page mt-24 sm:mt-32"
+            value="We built engi using engi"
+            subtitle="Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate bar."
+          />
           <CallToAction className="mt-32" />
         </>
       )}

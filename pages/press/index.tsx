@@ -74,7 +74,10 @@ export default function PressPage({ className }: PressPageProps) {
         </p>
       </section>
       <section className="mb-8">
-        <BlockQuote />
+        <BlockQuote
+          value="We built engi using engi"
+          subtitle="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam"
+        />
       </section>
     </div>
   );
