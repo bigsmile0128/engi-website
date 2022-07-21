@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <Hero className="max-w-page" />
       {isBeta() && (
         <>
-          <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" />
+          <CalloutCards className="max-w-page mt-32 sm:mt-32 lg:mt-24" />
           <Features className="max-w-page mt-40" />
         </>
       )}
