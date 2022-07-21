@@ -30,6 +30,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
   const control = useAnimation();
   const [ref, inView] = useInView();
   const updateXarrow = useXarrow();
+  const arrowControl = useAnimation();
 
   useEffect(() => {
     if (inView) {
@@ -38,7 +39,11 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
   }, [inView]);
 
   const variants = {
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8 },
+    },
     hidden: { opacity: 0, y: 200 },
   };
 
@@ -52,6 +57,11 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       className={classNames('grid relative', className)}
       animate={control}
       initial="hidden"
+      onAnimationComplete={() => {
+        updateXarrow();
+        arrowControl.start('arrowVisible');
+      }}
+      transition={{ staggerChildren: 0.15 }}
     >
       <motion.div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
         <motion.div className="relative flex flex-col h-full">
@@ -113,7 +123,12 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         start="arrow-start1"
         end="arrow-end1"
         endAnchor="bottom"
-        variants={variants}
+        animate={arrowControl}
+        initial="arrowHidden"
+        variants={{
+          arrowVisible: { opacity: 1 },
+          arrowHidden: { opacity: 0 },
+        }}
       />
       <Arrow
         className="hidden lg:block xl:hidden"
@@ -121,7 +136,12 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         end="arrow-end1"
         startAnchor="top"
         endAnchor="bottom"
-        variants={variants}
+        animate={arrowControl}
+        initial="arrowHidden"
+        variants={{
+          arrowVisible: { opacity: 1 },
+          arrowHidden: { opacity: 0 },
+        }}
       />
       <Arrow
         className="sm:hidden"
@@ -130,7 +150,12 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
         startAnchor="bottom"
         curveness={0.9}
         endAnchor="top"
-        variants={variants}
+        animate={arrowControl}
+        initial="arrowHidden"
+        variants={{
+          arrowVisible: { opacity: 1 },
+          arrowHidden: { opacity: 0 },
+        }}
       />
     </motion.div>
   );
