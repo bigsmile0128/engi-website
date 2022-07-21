@@ -30,9 +30,6 @@ export default function Statistics({ className }: StatisticsProps) {
           <span className="text-lg">Lines of Code</span>
         </div>
       </div>
-      <div className="absolute bottom-1 right-1 text-xs text-gray-400">
-        For display purposes only
-      </div>
     </div>
   );
 }

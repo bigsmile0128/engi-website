@@ -55,6 +55,10 @@ export default function Footer({ className }: FooterProps) {
           </div>
         </div>
         <SocialMedia className="md:hidden lg:flex border-t border-gray-600 justify-end pt-8 mt-24" />
+        <p className="text-xs text-gray-600 mt-12 lg:mt-0">
+          Engi is building our Beta in public. Numbers and testimonials on this
+          early product page are for demonstration purposes.
+        </p>
       </div>
     </div>
   );
