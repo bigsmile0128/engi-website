@@ -6,6 +6,7 @@ import cubes from './img/cubes.png';
 import ipad from './img/ipad.png';
 import iphone from './img/iphone.png';
 import blocks from './img/blocks.png';
+import PlaceholderButton from './PlaceholderButton';
 
 interface AlternatingFeaturesProps {
   className?: string;
@@ -24,6 +25,7 @@ export default function AlternatingFeatures({
           <p className="text-gray-400">
             {`As an innovative technology businesses, you can seamlessly integrate Engi's new crowdsourced programming into your existing workflows. Engi supports all popular testing frameworks for languages such as Rust, TypeScript, Python, C#, and more. Draft Ul engineering jobs straight from your design tools or from your version control systems.`}
           </p>
+          <PlaceholderButton className="mt-8" />
         </div>
         <div className="max-w-md md:max-w-none mx-auto relative col-start-1">
           <Image src={blocks} alt="workflows" />
