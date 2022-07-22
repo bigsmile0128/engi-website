@@ -11,6 +11,7 @@ import AlternatingFeatures from 'components/home/AlternatingFeatures';
 import CallToAction from 'components/home/CallToAction';
 import { isBeta } from 'utils';
 import Stats from 'components/home/Statistics';
+import WorldOfEngineers from 'components/home/WorldOfEngineers';
 
 const Home: NextPage = () => {
   return (
@@ -23,6 +24,7 @@ const Home: NextPage = () => {
         <>
           <Stats className="max-w-page mt-40 lg:mt-24" />
           <CalloutCards className="max-w-page mt-32 sm:mt-32 lg:mt-24" />
+          <WorldOfEngineers className="max-w-page mt-40" />
           <Features className="max-w-page mt-40" />
         </>
       )}
