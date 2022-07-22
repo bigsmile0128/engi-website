@@ -92,7 +92,9 @@ export default function Features({ className }: FeaturesProps) {
                 <button
                   className={classNames(
                     'flex flex-1 flex-col items-center text-center border-b px-12 pb-8',
-                    selected ? 'border-emerald-300' : 'border-gray-400'
+                    selected
+                      ? 'border-emerald-300 border-b-2'
+                      : 'border-gray-400'
                   )}
                 >
                   <span className="text-xl text-emerald-300 mb-4">{name}</span>
