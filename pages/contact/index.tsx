@@ -1,13 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import SocialMedia from 'components/layout/SocialMedia';
 import Button from 'components/Button';
+import { useMutation } from 'react-query';
+import axios, { AxiosError } from 'axios';
+import { toast } from 'react-toastify';
 
 interface ContactUsPageProps {
   className?: string;
 }
 
 export default function ContactUsPage({ className }: ContactUsPageProps) {
+  const emailMutation = useMutation<any, AxiosError>(
+    async ({ firstName, lastName, email, subject, message }: any) => {
+      await axios.post('/api/contact_us', {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        subject,
+        message,
+      });
+    }
+  );
+
+  const [formData, setFormData] = useState<Record<string, string>>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+
+  useEffect(() => {
+    if (emailMutation.isSuccess) {
+      toast.success('Successfully sent email.', { position: 'bottom-right' });
+    }
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+  }, [emailMutation.isSuccess]);
+
+  useEffect(() => {
+    if (emailMutation.isError) {
+      toast.error('Failed to send email.', { position: 'bottom-right' });
+    }
+  }, [emailMutation.isError]);
+
   return (
     <div
       className={classNames(
@@ -16,7 +58,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
       )}
     >
       <div className="basis-1/2 lg:basis-3/5 flex flex-col">
-        <h1 className="font-grifter text-5xl">
+        <h1 className="font-grifter text-4xl lg:text-5xl">
           Questions about{' '}
           <span className="inline-block relative text-gray-700 px-2">
             <div className="absolute w-full h-full scale-y-110 inset-0 -mt-1 bg-emerald-300 z-0" />
@@ -41,17 +83,61 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
         </p>
         <SocialMedia className="mt-12" />
       </div>
-      <div className="md:basis-1/2 lg:basis-2/5 flex-1 flex flex-col gap-y-8">
-        <div className="flex flex-col gap-y-2">
-          <label htmlFor="name" className="font-bold text-lg">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            placeholder="Name"
-            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
-          />
+      <form
+        className="md:basis-1/2 lg:basis-2/5 flex-1 flex flex-col gap-y-6"
+        onSubmit={(e) => {
+          e.preventDefault();
+          const fieldsToVerify = [
+            { label: 'First Name', key: 'firstName' },
+            { label: 'Last Name', key: 'lastName' },
+            { label: 'Email', key: 'email' },
+            { label: 'Subject', key: 'subject' },
+            { label: 'Message', key: 'message' },
+          ];
+          const missingFields = fieldsToVerify
+            .filter(({ label, key }) => !formData[key])
+            .map((field) => field.label);
+          if (missingFields.length > 0) {
+            toast.error(
+              `Some fields are missing: ${missingFields.join(', ')}.`,
+              { position: 'bottom-right' }
+            );
+          } else {
+            emailMutation.mutate(formData);
+          }
+        }}
+      >
+        <div className="flex gap-x-4">
+          <div className="flex flex-col gap-y-2">
+            <label htmlFor="firstName" className="font-bold text-lg">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="First Name"
+              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+              value={formData?.firstName ?? ''}
+              onChange={(e) =>
+                setFormData({ ...formData, firstName: e.target.value })
+              }
+            />
+          </div>
+          <div className="flex flex-col gap-y-2">
+            <label htmlFor="lastName" className="font-bold text-lg">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Last Name"
+              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+              value={formData?.lastName ?? ''}
+              onChange={(e) =>
+                setFormData({ ...formData, lastName: e.target.value })
+              }
+            />
+          </div>
         </div>
         <div className="flex flex-col gap-y-2">
           <label htmlFor="email" className="font-bold text-lg">
@@ -62,6 +148,10 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             id="email"
             placeholder="Email"
             className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            value={formData?.email ?? ''}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
           />
         </div>
         <div className="flex flex-col gap-y-2">
@@ -73,10 +163,28 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             id="subject"
             placeholder="Subject"
             className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            value={formData?.subject ?? ''}
+            onChange={(e) =>
+              setFormData({ ...formData, subject: e.target.value })
+            }
           />
         </div>
-        <Button>Submit</Button>
-      </div>
+        <div className="flex flex-col gap-y-2">
+          <label htmlFor="subject" className="font-bold text-lg">
+            Message
+          </label>
+          <textarea
+            id="subject"
+            placeholder="Subject"
+            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            value={formData?.message ?? ''}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
+          />
+        </div>
+        <Button type="submit">Submit</Button>
+      </form>
     </div>
   );
 }
