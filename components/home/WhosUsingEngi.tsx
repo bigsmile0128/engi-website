@@ -15,7 +15,7 @@ export default function WhosUsingEngi({ className }: WhosUsingEngiProps) {
         className=""
         value="We built engi using engi"
         title="Who's using engi?"
-        subtitle="Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate bar."
+        subtitle="The Engi protocol itself uses the network to build real software."
       />
       <Testimonials className="mt-24" />
     </div>
