@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
-import sitePreviewImg from './img/site-preview.png';
+import worldImg from './img/world-of-engi.png';
 import PlaceholderButton from './PlaceholderButton';
 
 type WorldOfEngineersProps = {
@@ -12,7 +12,7 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
   return (
     <div
       className={classNames(
-        'max-w-page md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center',
+        'max-w-page md:grid grid-cols-2 grid-flow-row-dense gap-8 items-center',
         className
       )}
     >
@@ -32,10 +32,10 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
         </p>
         <PlaceholderButton className="mt-8" />
       </div>
-      <div className="max-w-md md:max-w-none mx-auto">
+      <div className="max-w-md md:max-w-none mx-auto overflow-visible">
         <Image
-          className="h-3/4 w-3/4 mx-auto"
-          src={sitePreviewImg}
+          className="mx-auto drop-shadow-2xl"
+          src={worldImg}
           alt="figma plugins"
         />
       </div>
