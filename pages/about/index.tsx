@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
+import aboutImg from 'components/press/img/about1.png';
 import deskImg from 'components/press/img/desk.jpg';
 import BlockQuote from 'components/home/BlockQuote';
 import GridPattern from 'components/GridPattern';
@@ -39,7 +40,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
           <div className="max-w-md md:max-w-none mx-auto">
             <Image
               className="h-3/4 w-3/4 mx-auto"
-              src={deskImg}
+              src={aboutImg}
               alt="figma plugins"
             />
           </div>
@@ -62,7 +63,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
       </div>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="flex flex-col items-center py-16">
+        <div className="flex flex-col items-center py-16 border-y border-white/30">
           <h2 className="text-4xl font-grifter mb-16">Values</h2>
           <div className="flex flex-col sm:flex-row items-center gap-x-12 gap-y-24">
             <div className="flex flex-col items-center gap-y-8">
