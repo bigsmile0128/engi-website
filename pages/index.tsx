@@ -12,6 +12,7 @@ import CallToAction from 'components/home/CallToAction';
 import { isBeta } from 'utils';
 import Stats from 'components/home/Statistics';
 import WorldOfEngineers from 'components/home/WorldOfEngineers';
+import WhosUsingEngi from 'components/home/WhosUsingEngi';
 
 const Home: NextPage = () => {
   return (
@@ -33,11 +34,7 @@ const Home: NextPage = () => {
         <>
           <AlternatingFeatures className="max-w-page mt-32" />
           <GlobalConnection className="mt-32" />
-          <BlockQuote
-            className="max-w-page mt-24 sm:mt-32"
-            value="We built engi using engi"
-            subtitle="Cupcake ipsum dolor sit amet. Tootsie roll sesame snaps chocolate bar."
-          />
+          <WhosUsingEngi className="max-w-page mt-24 sm:mt-32" />
           <CallToAction className="mt-32" />
         </>
       )}
