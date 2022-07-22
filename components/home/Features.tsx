@@ -4,10 +4,12 @@ import { Fragment } from 'react';
 import { Tab } from '@headlessui/react';
 import GridPattern from 'components/GridPattern';
 import Button from 'components/Button';
-import TokenContractSvg from 'components/home/img/token-contract.svg';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ForwardSlashSvg from 'components/icons/forward-slash.svg';
+import TokenContractSvg from 'components/home/img/token-contract.svg';
+import GovernanceSvg from 'components/home/img/features2.svg';
+import WhereverSvg from 'components/home/img/features3.svg';
 
 interface FeaturesProps {
   className?: string;
@@ -132,7 +134,7 @@ function Tab1({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="px-8 py-16 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
           <span className="uppercase mb-4">Secure</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
@@ -156,7 +158,7 @@ function Tab2({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="px-8 py-16 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
           <span className="uppercase mb-4">Open</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
@@ -170,7 +172,7 @@ function Tab2({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
-        <TokenContractSvg className="w-full h-auto" />
+        <GovernanceSvg className="w-auto h-full" />
       </div>
     </div>
   );
@@ -181,7 +183,7 @@ function Tab3({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="px-8 py-16 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
           <span className="uppercase mb-4">
             Whoever
             <br />
@@ -198,8 +200,8 @@ function Tab3({ className }: { className?: string }) {
           <Button className="mt-8">Coming Soon</Button>
         </div>
       </div>
-      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
-        <TokenContractSvg className="w-full h-auto" />
+      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0">
+        <WhereverSvg className="w-auto h-full" />
       </div>
     </div>
   );
