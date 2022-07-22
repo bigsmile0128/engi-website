@@ -41,6 +41,11 @@ export default function Navbar({ className }: NavbarProps) {
                 Litepaper
               </a>
             </Link>
+            <Link href="/contact">
+              <a className="text-base font-medium text-gray-300 hover:text-white">
+                Contact Us
+              </a>
+            </Link>
             {isBeta() && <></>}
             {isDev() && (
               <>
@@ -159,6 +164,15 @@ export default function Navbar({ className }: NavbarProps) {
                           onClick={() => setIsOpen(false)}
                         >
                           <span>Litepaper</span>
+                          <ChevronRightIcon className="h-6" />
+                        </a>
+                      </Link>
+                      <Link href="/contact">
+                        <a
+                          className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span>Contact Us</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>

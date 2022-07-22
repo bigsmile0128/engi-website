@@ -11,12 +11,19 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
   return (
     <div
       className={classNames(
-        'max-w-page flex flex-col md:flex-row gap-16 mt-32 mb-32',
+        'max-w-page flex flex-col md:flex-row gap-16 my-32',
         className
       )}
     >
-      <div className="flex-1 flex flex-col">
-        <h1 className="font-grifter text-6xl">Contact Us</h1>
+      <div className="basis-1/2 lg:basis-3/5 flex flex-col">
+        <h1 className="font-grifter text-5xl">
+          Questions about{' '}
+          <span className="inline-block relative text-gray-700 px-2">
+            <div className="absolute w-full h-full scale-y-110 inset-0 -mt-1 bg-emerald-300 z-0" />
+            <span className="relative z-10">Engi</span>
+          </span>
+          ?
+        </h1>
         <p className="mt-12">
           Whether you’re a business looking to accelerate your software team or
           a freelance programmer looking to work flexibly from anywhere in the
@@ -34,7 +41,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
         </p>
         <SocialMedia className="mt-12" />
       </div>
-      <div className="flex-1 flex flex-col gap-y-8">
+      <div className="md:basis-1/2 lg:basis-2/5 flex-1 flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
           <label htmlFor="name" className="font-bold text-lg">
             Name

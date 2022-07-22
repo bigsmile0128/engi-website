@@ -9,7 +9,7 @@ export default function Litepaper({ className }: LitepaperProps) {
   return (
     <div
       className={classNames(
-        'flex flex-col gap-y-12 max-w-page mt-32',
+        'flex flex-col gap-y-12 max-w-page my-32',
         className
       )}
     >
