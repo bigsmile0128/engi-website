@@ -9,6 +9,8 @@ import axios from 'axios';
 import { gql } from 'graphql-request';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import copy from 'copy-to-clipboard';
+import { toast } from 'react-toastify';
 
 type UserInfoProps = {
   className?: string;
@@ -35,7 +37,6 @@ export default function UserInfo({ className, user, setUser }: UserInfoProps) {
             My Wallet
             <ChevronDownIcon className="h-4 w-4 ml-2" />
           </Menu.Button>
-
           <Transition
             as={React.Fragment}
             enter="transition duration-100 ease-out"
@@ -45,9 +46,25 @@ export default function UserInfo({ className, user, setUser }: UserInfoProps) {
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151ee] whitespace-nowrap">
+            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151ee] whitespace-nowrap flex flex-col">
               <Menu.Item>
-                <button className="px-6 py-1" onClick={() => setUser(null)}>
+                <button
+                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  onClick={() => {
+                    copy(user?.walletId);
+                    toast.success('Copied wallet address.', {
+                      position: 'bottom-right',
+                    });
+                  }}
+                >
+                  Copy Wallet Address
+                </button>
+              </Menu.Item>
+              <Menu.Item>
+                <button
+                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  onClick={() => setUser(null)}
+                >
                   Log out
                 </button>
               </Menu.Item>
