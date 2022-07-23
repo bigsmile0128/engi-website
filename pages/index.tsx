@@ -29,7 +29,7 @@ const Home: NextPage = () => {
           <Features className="max-w-page mt-40" />
         </>
       )}
-      <FigmaPreview className="max-w-page mt-40 mb-48" />
+      {/* <FigmaPreview className="max-w-page mt-40 mb-48" /> */}
       {isBeta() && (
         <>
           <AlternatingFeatures className="max-w-page mt-32" />
