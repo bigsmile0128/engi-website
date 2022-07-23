@@ -19,7 +19,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           Enter your email address and get started today!
         </p>
         <EmailRegistration
-          className="sm:w-full sm:max-w-md mx-6"
+          className="w-full sm:max-w-md mx-6"
           inputClassName="bg-gray-800 z-10"
         />
       </div>
