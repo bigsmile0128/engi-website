@@ -34,23 +34,37 @@ export default function Footer({ className }: FooterProps) {
           <div className="flex flex-col sm:flex-row gap-x-16 gap-y-12 mt-8 md:mt-16 lg:mt-0 whitespace-nowrap">
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-emerald-300">Earn $ENGI</h4>
-              <Link href="/litepaper">Search Jobs</Link>
-              <Link href="/litepaper">Download Tools</Link>
-              <Link href="/litepaper">Documentation</Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Search Jobs
+              </Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Download Tools
+              </Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Documentation
+              </Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-emerald-300">Buy $ENGI</h4>
-              <Link href="/litepaper">Get Started</Link>
-              <Link href="/litepaper">Post a Job</Link>
-              <Link href="/litepaper">Integrate Workflows</Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Get Started
+              </Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Post a Job
+              </Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Integrate Workflows
+              </Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-emerald-300">
                 For Investors
               </h4>
-              <Link href="/litepaper">Litepaper</Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                Litepaper
+              </Link>
               <Link href="/press">Press</Link>
-              <Link href="/litepaper">{`Team & Governance`}</Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">{`Team & Governance`}</Link>
             </div>
           </div>
         </div>

@@ -34,7 +34,7 @@ export default function Navbar({ className }: NavbarProps) {
             as="nav"
             className="flex-1 hidden sm:flex gap-x-8 ml-8 md:gap-x-12 lg:gap-x-16 lg:ml-12"
           >
-            <Link href="/litepaper">
+            <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
               <a className="text-base font-medium text-gray-300 hover:text-white">
                 Litepaper
               </a>

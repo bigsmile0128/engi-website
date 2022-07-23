@@ -20,6 +20,16 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       ],
     },
     {
+      target:
+        'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
+      pathRewrite: [
+        {
+          patternStr: '^/api/litepaper',
+          replaceStr: '',
+        },
+      ],
+    },
+    {
       target: process.env.API_URL,
       pathRewrite: [
         {
