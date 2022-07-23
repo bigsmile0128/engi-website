@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
+import qs from 'qs';
 
 import TimeEstimate from '../../components/TimeEstimate';
 import SearchFilterList from '../../components/jobs/SearchFilterList';
@@ -27,8 +28,13 @@ async function fetchJobs(searchParams) {
 }
 
 export default function JobDiscovery() {
-  const searchParams = new URLSearchParams();
-  const setSearchParams = () => {};
+  const router = useRouter();
+  const searchParams = new URLSearchParams(
+    qs.stringify(router.query, { indices: false })
+  );
+  const setSearchParams = (query) => {
+    router.push({ query });
+  };
 
   const { isLoading, isError, data, refetch } = useQuery(
     ['fetchJobs', searchParams.toString()],
