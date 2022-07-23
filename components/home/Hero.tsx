@@ -15,7 +15,7 @@ export default function Hero({ className }: HeroProps) {
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <div className="w-full mt-20 mb-16 lg:mb-24 flex gap-x-12">
-        <HeroTextSvg className="max-w-2xl" />
+        <HeroTextSvg className="max-w-2xl h-48" />
         <p className="w-1/3 hidden lg:block text-lg">
           Write code and get paid instantly. Have a design? Engage worldwide
           talent and build products faster.
