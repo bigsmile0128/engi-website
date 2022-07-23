@@ -10,6 +10,11 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
+  server.use(express.json());
+  server.use(express.urlencoded({ extended: true }));
+
+  server.use('/api/jobs', jobs);
+
   server.all('*', (req, res) => {
     return handle(req, res);
   });
@@ -17,9 +22,4 @@ app.prepare().then(() => {
   server.listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
   });
-
-  server.use(express.json());
-  server.use(express.urlencoded({ extended: true }));
-
-  server.use('/jobs', jobs);
 });
