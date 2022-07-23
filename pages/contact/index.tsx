@@ -11,7 +11,7 @@ interface ContactUsPageProps {
 }
 
 export default function ContactUsPage({ className }: ContactUsPageProps) {
-  const emailMutation = useMutation<any, AxiosError>(
+  const emailMutation = useMutation<any, AxiosError, any>(
     async ({ firstName, lastName, email, subject, message }: any) => {
       await axios.post('/api/contact_us', {
         first_name: firstName,
