@@ -10,6 +10,7 @@ import { gql } from 'graphql-request';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { HiOutlineCheckCircle, HiXCircle } from 'react-icons/hi';
 import UserContext from 'utils/contexts/userContext';
+import { isDev } from 'utils';
 
 type SignupProps = {
   className?: string;
@@ -27,12 +28,11 @@ enum Step {
 }
 
 export default function Signup({ className }: SignupProps) {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [currentStep, setCurrentStep] = useState(Step.WELCOME);
   const [passphrase, setPassphrase] = useState('');
   const [mnemonic, setMnemonic] = useState('');
   const [confirmationWords, setConfirmationWords] = useState<string[]>([]);
-  const [confirmationPassphrase, setConfirmationPassphrase] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmationPassword, setConfirmationPassword] = useState('');
@@ -240,17 +240,6 @@ export default function Signup({ className }: SignupProps) {
             <div className="border border-white p-8 px-16 text-center text-lg mb-8">
               {mnemonic}
             </div>
-            {/* <input
-              className={classNames(
-                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
-              )}
-              type="password"
-              name="passphrase"
-              id="passphrase"
-              placeholder="Passphrase"
-              value={passphrase}
-              onChange={(e) => setPassphrase(e.target.value)}
-            /> */}
             <div className="flex w-full gap-x-4">
               <button
                 className={classNames(
@@ -268,14 +257,6 @@ export default function Signup({ className }: SignupProps) {
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
                 onClick={() => {
-                  // if (!passphrase) {
-                  //   toast.error('A passphrase is required.', {
-                  //     position: 'top-center',
-                  //     autoClose: 3000,
-                  //   });
-                  // } else {
-                  //   setCurrentStep(Step.CONFIRM_WALLET);
-                  // }
                   setCurrentStep(Step.CONFIRM_WALLET);
                 }}
               >
@@ -485,7 +466,7 @@ export default function Signup({ className }: SignupProps) {
               {`You've set up your wallet. You can start working on Engi jobs.`}
             </p>
             <p className="mb-8">{`We're happy to meet you!`}</p>
-            <Link href="/jobs">
+            <Link href={isDev() ? '/jobs' : '/'}>
               <a>
                 <button
                   className={classNames(
