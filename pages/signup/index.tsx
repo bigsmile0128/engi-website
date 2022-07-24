@@ -78,6 +78,10 @@ export default function Signup({ className }: SignupProps) {
       });
       const walletId = response.data?.data?.createUser?.address;
       if (walletId) {
+        if (typeof window !== undefined) {
+          window.gtag('event', 'create_wallet', { walletId });
+        }
+
         setUser({
           walletId,
         });
