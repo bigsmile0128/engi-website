@@ -278,21 +278,21 @@ export default function Signup({ className }: SignupProps) {
               Please select each word in order to confirm your secret phrase.
             </p>
             <div className="w-full flex items-start flex-wrap gap-4 border border-white min-h-[132px] p-4 text-center text-lg mb-8">
-              {confirmationWords.map((word) => (
+              {confirmationWords.map((wordId) => (
                 // TODO: add entrance/exit animations
                 <button
-                  key={word}
+                  key={wordId}
                   className={classNames(
                     'text-sm px-4 py-2',
                     'bg-[#ffffff22] outline-none focus:ring-2'
                   )}
                   onClick={() =>
                     setConfirmationWords(
-                      confirmationWords.filter((w) => w !== word)
+                      confirmationWords.filter((wi) => wi !== wordId)
                     )
                   }
                 >
-                  {word}
+                  {wordId.replace(/[^A-Za-z]/g, '')}
                 </button>
               ))}
             </div>
@@ -317,29 +317,35 @@ export default function Signup({ className }: SignupProps) {
               {mnemonic
                 .split(' ')
                 .sort()
-                .map((word) => (
-                  <button
-                    key={word}
-                    className={classNames(
-                      'flex-1 py-2 text-white text-sm',
-                      'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus:ring-2',
-                      confirmationWords.includes(word) ? '!bg-[#ffffff22]' : ''
-                    )}
-                    onClick={() => {
-                      let newConfirmationWords: string[];
-                      if (confirmationWords.includes(word)) {
-                        newConfirmationWords = confirmationWords.filter(
-                          (w) => w !== word
-                        );
-                      } else {
-                        newConfirmationWords = [...confirmationWords, word];
-                      }
-                      setConfirmationWords(newConfirmationWords);
-                    }}
-                  >
-                    {word}
-                  </button>
-                ))}
+                .map((word, i) => {
+                  const wordId = word + i;
+
+                  return (
+                    <button
+                      key={wordId}
+                      className={classNames(
+                        'flex-1 py-2 text-white text-sm',
+                        'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus:ring-2',
+                        confirmationWords.includes(wordId)
+                          ? '!bg-[#ffffff22]'
+                          : ''
+                      )}
+                      onClick={() => {
+                        let newConfirmationWords: string[];
+                        if (confirmationWords.includes(wordId)) {
+                          newConfirmationWords = confirmationWords.filter(
+                            (wi) => wi !== wordId
+                          );
+                        } else {
+                          newConfirmationWords = [...confirmationWords, wordId];
+                        }
+                        setConfirmationWords(newConfirmationWords);
+                      }}
+                    >
+                      {word}
+                    </button>
+                  );
+                })}
             </div>
             <div className="flex w-full gap-x-4">
               <button
@@ -358,7 +364,11 @@ export default function Signup({ className }: SignupProps) {
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                 )}
                 onClick={() => {
-                  if (confirmationWords.join(' ') !== mnemonic) {
+                  if (
+                    confirmationWords
+                      .map((wi) => wi.replace(/[^A-Za-z]/g, ''))
+                      .join(' ') !== mnemonic
+                  ) {
                     toast.error('The secret backup phrase does not match.', {
                       position: 'top-center',
                       autoClose: 3000,
