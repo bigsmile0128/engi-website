@@ -7,9 +7,10 @@ import Button from 'components/Button';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ForwardSlashSvg from 'components/icons/forward-slash.svg';
-import TokenContractSvg from 'components/home/img/token-contract.svg';
-import GovernanceSvg from 'components/home/img/features2.svg';
-import WhereverSvg from 'components/home/img/features3.svg';
+import TokenContractSvg from 'components/home/img/features1.svg';
+import featuresSrc2 from 'components/home/img/features2.png';
+import featuresSrc3 from 'components/home/img/features3.png';
+import Image from 'next/image';
 
 interface FeaturesProps {
   className?: string;
@@ -172,7 +173,7 @@ function Tab2({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
-        <GovernanceSvg className="w-auto h-full" />
+        <Image src={featuresSrc2} alt="source" />
       </div>
     </div>
   );
@@ -195,13 +196,13 @@ function Tab3({ className }: { className?: string }) {
           </h4>
           <p className="text-lg text-gray-300 leading-normal">
             Anyone can start coding on Engi right away. No interviews, no
-            commutes. Just you and your leet coding skillz.
+            commutes.
           </p>
           <Button className="mt-8">Coming Soon</Button>
         </div>
       </div>
-      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0">
-        <WhereverSvg className="w-auto h-full" />
+      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border">
+        <Image src={featuresSrc3} alt="wherever" />
       </div>
     </div>
   );
