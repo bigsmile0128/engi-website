@@ -8,8 +8,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ForwardSlashSvg from 'components/icons/forward-slash.svg';
 import TokenContractSvg from 'components/home/img/features1.svg';
-import featuresSrc2 from 'components/home/img/features2.png';
-import featuresSrc3 from 'components/home/img/features3.png';
+import featuresSrc2 from '../../public/img/home/features2.png';
+import featuresSrc3 from '../../public/img/home/features3.png';
 import Image from 'next/image';
 
 interface FeaturesProps {
