@@ -54,6 +54,8 @@ export default function Hero({ className }: HeroProps) {
             className="w-full h-auto"
             src={sitePreviewImg}
             alt="site-preview"
+            layout="responsive"
+            loading="lazy"
           />
         </div>
       </div>
