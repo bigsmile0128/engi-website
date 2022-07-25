@@ -81,7 +81,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
       <div className="max-w-page mb-32">
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mb-24">
           <div className="mb-12 md:mb-0 text-center md:text-left">
-            <h2 className="font-grifter text-3xl mb-4 ">Our Mission</h2>
+            <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
+              Our Mission
+            </h2>
             <p className="text-gray-300">
               To unlock human innovation and end global poverty through
               always-available and accessible engineering work and to accelerate
@@ -99,7 +101,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         </div>
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0">
           <div className="mb-12 md:mb-0 col-start-2 text-center md:text-left">
-            <h2 className="font-grifter text-3xl mb-4">Who we are</h2>
+            <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
+              Who we are
+            </h2>
             <p className="text-gray-300">
               Engi deletes applications, interviews, bosses, time zones,
               borders, language barriers, and “culture fit” from professional
