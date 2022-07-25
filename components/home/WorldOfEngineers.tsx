@@ -32,11 +32,13 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
         </p>
         <PlaceholderButton className="mt-8" />
       </div>
-      <div className="max-w-md md:max-w-none mx-auto overflow-visible">
+      <div>
         <Image
           className="mx-auto drop-shadow-2xl"
           src={worldImg}
           alt="figma plugins"
+          layout="responsive"
+          loading="lazy"
         />
       </div>
     </div>

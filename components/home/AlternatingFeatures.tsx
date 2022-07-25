@@ -1,10 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
-
-import cubes from './img/cubes.png';
-import ipad from './img/ipad.png';
-import iphone from './img/iphone.png';
 import blocks from './img/blocks.png';
 import PlaceholderButton from './PlaceholderButton';
 
@@ -27,8 +23,13 @@ export default function AlternatingFeatures({
           </p>
           <PlaceholderButton className="mt-8" />
         </div>
-        <div className="max-w-md md:max-w-none mx-auto relative col-start-1">
-          <Image src={blocks} alt="workflows" />
+        <div className="max-w-md md:max-w-none relative col-start-1">
+          <Image
+            src={blocks}
+            alt="workflows"
+            layout="responsive"
+            loading="lazy"
+          />
         </div>
       </div>
     </div>
