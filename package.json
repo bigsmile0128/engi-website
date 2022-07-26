@@ -48,6 +48,7 @@
     "react-toastify": "^9.0.5",
     "react-tooltip": "^4.2.21",
     "react-xarrows": "^2.0.2",
+    "sharp": "^0.30.7",
     "store2": "^2.14.2",
     "webpack-bundle-analyzer": "^4.5.0"
   },

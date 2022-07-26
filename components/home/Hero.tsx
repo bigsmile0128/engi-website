@@ -56,6 +56,7 @@ export default function Hero({ className }: HeroProps) {
             layout="responsive"
             loading="lazy"
             placeholder="blur"
+            sizes="50vw"
           />
         </div>
       </div>
