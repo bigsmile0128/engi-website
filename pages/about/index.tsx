@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import aboutImg from 'components/press/img/about1.png';
 import deskImg from 'components/press/img/desk.jpg';
@@ -13,6 +14,7 @@ import EniacSvg from 'components/about/img/eniac.svg';
 import BlockQuote from 'components/home/BlockQuote';
 import GridPattern from 'components/GridPattern';
 import TeamMember from 'components/about/TeamMember';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface AboutUsPageProps {
   className?: string;
@@ -62,6 +64,39 @@ const members = [
 ];
 
 export default function AboutUsPage({ className }: AboutUsPageProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const canScrollPrev = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollPrev();
+    }
+    return false;
+  }, [emblaApi]);
+
+  const canScrollNext = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollNext();
+    }
+    return false;
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
+
   return (
     <div
       className={classNames('flex flex-col mt-16 sm:mt-32 mb-32', className)}
@@ -80,7 +115,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
       </div>
       <div className="max-w-page mb-32">
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mb-24">
-          <div className="mb-12 md:mb-0 text-center md:text-left">
+          <div className="mb-12 md:mb-0">
             <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
               Our Mission
             </h2>
@@ -100,7 +135,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
           </div>
         </div>
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0">
-          <div className="mb-12 md:mb-0 col-start-2 text-center md:text-left">
+          <div className="mb-12 md:mb-0 col-start-2">
             <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
               Who we are
             </h2>
@@ -118,8 +153,8 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         </div>
       </div>
       <div className="relative">
-        <GridPattern offset={-1} />
-        <div className="flex flex-col items-center py-16 border-y border-white/30">
+        <GridPattern className="hidden sm:block" offset={-1} />
+        <div className="flex flex-col items-center sm:py-16 border-y-0 sm:border-y-1 border-white/30">
           <h2 className="text-3xl sm:text-5xl font-grifter mb-16">Values</h2>
           <div className="flex flex-col sm:flex-row items-center gap-x-12 gap-y-24">
             <div className="flex flex-col items-center gap-y-8">
@@ -205,10 +240,46 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
             Shattering borders, time zones, and language barriers.
           </p>
         </div>
-        <GlobeSvg className="w-full mt-16 sm:mt-12 scale-150 sm:scale-100" />
+        <GlobeSvg className="w-full mt-16 sm:mt-12 scale-125 sm:scale-100" />
+        <div className="w-full relative mt-16 md:hidden">
+          <div className="embla" ref={emblaRef}>
+            <div className="flex gap-8">
+              {members.map((member) => (
+                <TeamMember
+                  key={member.name + member.companies.toString()}
+                  role={member.role}
+                  name={member.name}
+                  companies={member.companies}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center justify-center mt-8 gap-x-16">
+            <button
+              className={classNames(
+                'h-8 w-8',
+                !canScrollPrev() ? 'text-white/20' : ''
+              )}
+              onClick={scrollPrev}
+              disabled={!canScrollPrev()}
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              className={classNames(
+                'h-8 w-8',
+                !canScrollNext() ? 'text-white/20' : ''
+              )}
+              onClick={scrollNext}
+              disabled={!canScrollNext()}
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </div>
         <div
           className={classNames(
-            'grid',
+            'hidden sm:grid',
             'mt-16 sm:mt-12 xl:mt-24',
             'xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
             'gap-4 xl:gap-8'
@@ -216,7 +287,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         >
           {members.map((member) => (
             <TeamMember
-              key={member.name}
+              key={member.name + member.companies.toString()}
               role={member.role}
               name={member.name}
               companies={member.companies}

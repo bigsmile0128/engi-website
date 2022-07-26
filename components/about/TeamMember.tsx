@@ -38,7 +38,7 @@ export default function TeamMember({
       <div className="flex flex-col p-4 bg-black/20 border border-white/30 border-t-0">
         <p className="text-emerald-300">{role}</p>
         <p className="font-bold border-b border-white/30 pb-2 mb-2">{name}</p>
-        <p>Previously Building @</p>
+        <p className="whitespace-nowrap">Previously Building @</p>
         <div className="flex items-center gap-x-4 mt-2">
           {companies.includes('Apple') && <AppleSvg className="h-5" />}
           {companies.includes('Google') && <GoogleSvg className="h-5" />}

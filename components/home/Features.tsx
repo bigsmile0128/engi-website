@@ -43,6 +43,20 @@ export default function Features({ className }: FeaturesProps) {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  const canScrollPrev = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollPrev();
+    }
+    return false;
+  }, [emblaApi]);
+
+  const canScrollNext = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollNext();
+    }
+    return false;
+  }, [emblaApi]);
+
   useEffect(() => {
     if (emblaApi) {
       emblaApi.on('select', () => {
@@ -75,14 +89,22 @@ export default function Features({ className }: FeaturesProps) {
           </div>
         </div>
         <button
-          className="absolute h-8 w-8 top-1/2 -translate-y-1/2 left-0"
+          className={classNames(
+            'absolute h-8 w-8 top-1/2 -translate-y-1/2 left-0',
+            !canScrollPrev() ? 'text-white/20' : ''
+          )}
           onClick={scrollPrev}
+          disabled={!canScrollPrev()}
         >
           <ChevronLeftIcon />
         </button>
         <button
-          className="absolute h-8 w-8 top-1/2 -translate-y-1/2 right-0"
+          className={classNames(
+            'absolute h-8 w-8 top-1/2 -translate-y-1/2 right-0',
+            !canScrollNext() ? 'text-white/20' : ''
+          )}
           onClick={scrollNext}
+          disabled={!canScrollNext()}
         >
           <ChevronRightIcon />
         </button>
