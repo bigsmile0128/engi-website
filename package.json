@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:analyze": "ANALYZE=true next dev",
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@headlessui/react": "^1.6.4",
     "@heroicons/react": "^1.0.6",
+    "@next/bundle-analyzer": "^12.2.3",
     "@react-icons/all-files": "^4.1.0",
     "@sentry/react": "^6.19.2",
     "@sentry/tracing": "^6.19.2",

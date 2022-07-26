@@ -1,5 +1,6 @@
-const path = require('path');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -11,14 +12,6 @@ const nextConfig = {
       // exclude: path.resolve(__dirname, 'public/img'),
       use: ['@svgr/webpack'],
     });
-
-    config.plugins.push(
-      new BundleAnalyzerPlugin({
-        analyzerMode: 'server',
-        analyzerPort: isServer ? 8888 : 8889,
-        openAnalyzer: true,
-      })
-    );
 
     return config;
   },
@@ -34,4 +27,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);
