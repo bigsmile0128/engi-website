@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import BlockQuote from './BlockQuote';
 import Avvvatars from 'avvvatars-react';
-import { AiOutlineLink } from 'react-icons/ai';
+import { AiOutlineLink } from '@react-icons/all-files/ai/AiOutlineLink';
 
 type WhosUsingEngiProps = {
   className?: string;

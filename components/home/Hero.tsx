@@ -51,7 +51,6 @@ export default function Hero({ className }: HeroProps) {
         </div>
         <div className="-mt-10 row-start-1 lg:col-start-2">
           <Image
-            className="w-full h-auto"
             src={sitePreviewImg}
             alt="site-preview"
             layout="responsive"

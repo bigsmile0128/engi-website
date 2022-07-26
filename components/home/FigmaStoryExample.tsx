@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 
-import { MdArrowBack, MdHistory } from 'react-icons/md';
-import { AiFillCheckCircle, AiFillCloseCircle } from 'react-icons/ai';
+import { MdArrowBack } from '@react-icons/all-files/md/MdArrowBack';
+import { MdHistory } from '@react-icons/all-files/md/MdHistory';
+import { AiFillCheckCircle } from '@react-icons/all-files/ai/AiFillCheckCircle';
+import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
 import Transition from 'components/Transition';
 import EngiIcon from './img/engi.svg';

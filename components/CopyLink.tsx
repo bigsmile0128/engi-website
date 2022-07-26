@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import { MdCheck } from 'react-icons/md';
-import { RiFileCopyLine } from 'react-icons/ri';
+import { MdCheck } from '@react-icons/all-files/md/MdCheck';
+import { RiFileCopyLine } from '@react-icons/all-files/ri/RiFileCopyLine';
 import copy from 'copy-to-clipboard';
 import ReactTooltip from 'react-tooltip';
 

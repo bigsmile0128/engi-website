@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { BiImport } from 'react-icons/bi';
+import { BiImport } from '@react-icons/all-files/bi/BiImport';
 import * as bip39 from 'bip39';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import { useMutation, useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
-import { HiOutlineCheckCircle, HiXCircle } from 'react-icons/hi';
+import { AiOutlineLoading3Quarters } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters';
+import { HiOutlineCheckCircle } from '@react-icons/all-files/hi/HiOutlineCheckCircle';
+import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
 import UserContext from 'utils/contexts/userContext';
 import { isDev } from 'utils';
 

@@ -4,7 +4,10 @@ import { XIcon } from '@heroicons/react/outline';
 
 import CopyLink from '../CopyLink';
 import Modal, { ModalProps } from '../Modal';
-import { SiDiscord, SiInstagram, SiTiktok, SiTwitter } from 'react-icons/si';
+import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
+import { SiInstagram } from '@react-icons/all-files/si/SiInstagram';
+import { SiTiktok } from '@react-icons/all-files/si/SiTiktok';
+import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
 
 export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
   return (

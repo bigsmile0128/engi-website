@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { AiFillCalendar } from 'react-icons/ai';
+import { AiFillCalendar } from '@react-icons/all-files/ai/AiFillCalendar';
 
 interface JobInfoProps {
   className?: string;

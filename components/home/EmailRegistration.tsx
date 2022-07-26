@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { AiOutlineLoading } from 'react-icons/ai';
+import React, { useState } from 'react';
+import { AiOutlineLoading } from '@react-icons/all-files/ai/AiOutlineLoading';
 import axios, { AxiosError } from 'axios';
 import { Mutation, useMutation } from 'react-query';
 import classNames from 'classnames';
@@ -7,7 +7,8 @@ import * as Sentry from '@sentry/react';
 
 import Button from 'components/Button';
 import EmailModal from './EmailModal';
-import { MdCheck, MdErrorOutline } from 'react-icons/md';
+import { MdCheck } from '@react-icons/all-files/md/MdCheck';
+import { MdErrorOutline } from '@react-icons/all-files/md/MdErrorOutline';
 
 interface EmailRegistrationProps {
   className?: string;

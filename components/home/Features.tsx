@@ -148,6 +148,8 @@ function Tab1({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
+        {/* <Image src={TokenContractSvg} layout="responsive" alt="token-contract-svg" /> */}
+
         <TokenContractSvg className="w-full h-auto" />
       </div>
     </div>
