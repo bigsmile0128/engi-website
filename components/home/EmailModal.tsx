@@ -14,7 +14,7 @@ import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
 
 import Modal, { ModalProps } from 'components/Modal';
 import Button from 'components/Button';
-import EnvelopeSvg from './img/envelope.svg';
+import EnvelopeSvg from 'public/img/home/envelope.svg';
 import CopyLink from 'components/CopyLink';
 import Checkbox from 'components/Checkbox';
 

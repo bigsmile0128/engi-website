@@ -1,10 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import HeroTextSvg from './img/hero-text.svg';
-import HeroTopSvg from './img/hero-top.svg';
-import HeroBottomSvg from './img/hero-bottom.svg';
-import sitePreviewImg from '../../public/img/home/site-preview.png';
+import HeroTextSvg from 'public/img/home/hero-text.svg';
+import HeroTopSvg from 'public/img/home/hero-top.svg';
+import HeroBottomSvg from 'public/img/home/hero-bottom.svg';
+import sitePreviewImg from 'public/img/home/site-preview.png';
 import Image from 'next/image';
 
 interface HeroProps {

@@ -7,9 +7,9 @@ import { AiFillCheckCircle } from '@react-icons/all-files/ai/AiFillCheckCircle';
 import { AiFillCloseCircle } from '@react-icons/all-files/ai/AiFillCloseCircle';
 
 import Transition from 'components/Transition';
-import EngiIcon from './img/engi.svg';
-import StorybookIcon from './img/storybook.svg';
-import FigmaIcon from './img/figma2.svg';
+import EngiIcon from 'public/img/home/engi.svg';
+import StorybookIcon from 'public/img/home/storybook.svg';
+import FigmaIcon from 'public/img/home/figma2.svg';
 
 type FigmaStoryExampleProps = {
   className?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
-import worldImg from '../../public/img/home/world-of-engi.png';
+import worldImg from 'public/img/home/world-of-engi.png';
 import PlaceholderButton from './PlaceholderButton';
 
 type WorldOfEngineersProps = {

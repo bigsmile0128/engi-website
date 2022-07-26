@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Dialog, Popover, Transition } from '@headlessui/react';
@@ -7,7 +7,7 @@ import { ChevronRightIcon } from '@heroicons/react/solid';
 
 import { isBeta, isDev } from 'utils';
 import Logo from 'components/Logo';
-import MenuSvg from 'components/home/img/menu.svg';
+import MenuSvg from 'public/img/home/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
 import UserContext from 'utils/contexts/userContext';
 import UserInfo from 'components/navbar/UserInfo';

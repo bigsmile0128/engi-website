@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import dynamic from 'next/dynamic';
 
-import LogoSvg from 'components/home/img/logo.svg';
+import LogoSvg from 'public/img/home/logo.svg';
 
 type LogoProps = {
   className?: string;
