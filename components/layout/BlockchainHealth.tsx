@@ -3,14 +3,8 @@ import classNames from 'classnames';
 import { useQuery } from 'react-query';
 import { request, gql } from 'graphql-request';
 import pluralize from 'pluralize';
-import { BiHealth } from 'react-icons/bi';
-import { MdSignalWifiStatusbarNotConnected } from 'react-icons/md';
-import {
-  GrStatusDisabledSmall,
-  GrStatusGoodSmall,
-  GrStatusWarningSmall,
-  GrStatusWarning,
-} from 'react-icons/gr';
+import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
+import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 
 type BlockchainHealthProps = {
   className?: string;

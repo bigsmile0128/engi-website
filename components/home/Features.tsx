@@ -7,9 +7,9 @@ import Button from 'components/Button';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ForwardSlashSvg from 'components/icons/forward-slash.svg';
-import TokenContractSvg from 'components/home/img/features1.svg';
-import featuresSrc2 from 'components/home/img/features2.png';
-import featuresSrc3 from 'components/home/img/features3.png';
+import TokenContractSvg from 'public/img/home/features1.svg';
+import featuresSrc2 from 'public/img/home/features2.png';
+import featuresSrc3 from 'public/img/home/features3.png';
 import Image from 'next/image';
 
 interface FeaturesProps {
@@ -170,6 +170,8 @@ function Tab1({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
+        {/* <Image src={TokenContractSvg} layout="responsive" alt="token-contract-svg" /> */}
+
         <TokenContractSvg className="w-full h-auto" />
       </div>
     </div>

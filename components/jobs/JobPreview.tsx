@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import { AiOutlineUser } from 'react-icons/ai';
-import { SiPython } from 'react-icons/si';
+import { AiOutlineUser } from '@react-icons/all-files/ai/AiOutlineUser';
+import { SiPython } from '@react-icons/all-files/si/SiPython';
 import Link from 'next/link';
 import TimeEstimate from '../TimeEstimate';
 

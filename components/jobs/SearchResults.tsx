@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ReactPaginate from 'react-paginate';
-import { AiOutlineEllipsis } from 'react-icons/ai';
-import { IoMdRefresh } from 'react-icons/io';
+import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
+import { IoMdRefresh } from '@react-icons/all-files/io/IoMdRefresh';
 
 import JobPreview from './JobPreview';
 

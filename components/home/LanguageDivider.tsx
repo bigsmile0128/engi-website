@@ -1,6 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import { SiPython, SiReact, SiRust, SiTypescript } from 'react-icons/si';
+import { SiPython } from '@react-icons/all-files/si/SiPython';
+import { SiReact } from '@react-icons/all-files/si/SiReact';
+import { SiRust } from '@react-icons/all-files/si/SiRust';
+import { SiTypescript } from '@react-icons/all-files/si/SiTypescript';
 
 interface LanguageDividerProps {
   className?: string;

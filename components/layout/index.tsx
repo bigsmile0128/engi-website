@@ -1,17 +1,24 @@
-import React from 'react';
+import cn from 'classnames';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import styles from './layout.module.css';
 
 type LayoutProps = {
   children?: React.ReactNode;
 };
 
-export default function Layout({ children }) {
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="bg-landing bg-cover relative min-h-screen flex flex-col">
+    <main
+      className={cn(
+        'relative min-h-screen flex flex-col test-bg',
+        styles.main_bg
+      )}
+    >
+      <div className="absolute w-full h-full -z-40"></div>
       <Navbar />
       <div className="overflow-hidden">{children}</div>
       <Footer className="mt-auto" />
-    </div>
+    </main>
   );
 }

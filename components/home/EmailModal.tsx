@@ -3,20 +3,18 @@ import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
 import { XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
-import {
-  SiDiscord,
-  SiJava,
-  SiJavascript,
-  SiLinkedin,
-  SiPython,
-  SiRust,
-  SiTiktok,
-  SiTwitter,
-} from 'react-icons/si';
+
+import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
+import { SiJava } from '@react-icons/all-files/si/SiJava';
+import { SiJavascript } from '@react-icons/all-files/si/SiJavascript';
+import { SiLinkedin } from '@react-icons/all-files/si/SiLinkedin';
+import { SiPython } from '@react-icons/all-files/si/SiPython';
+import { SiRust } from '@react-icons/all-files/si/SiRust';
+import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
 
 import Modal, { ModalProps } from 'components/Modal';
 import Button from 'components/Button';
-import EnvelopeSvg from './img/envelope.svg';
+import EnvelopeSvg from 'public/img/home/envelope.svg';
 import CopyLink from 'components/CopyLink';
 import Checkbox from 'components/Checkbox';
 

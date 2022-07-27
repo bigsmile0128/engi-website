@@ -1,7 +1,8 @@
 import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
-import { FiSearch } from 'react-icons/fi';
-import { HiSortAscending, HiSortDescending } from 'react-icons/hi';
+import { FiSearch } from '@react-icons/all-files/fi/FiSearch';
+import { HiSortAscending } from '@react-icons/all-files/hi/HiSortAscending';
+import { HiSortDescending } from '@react-icons/all-files/hi/HiSortDescending';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import pluralize from 'pluralize';

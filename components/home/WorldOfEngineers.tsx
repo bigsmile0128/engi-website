@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
-import worldImg from './img/world-of-engi.png';
+import worldImg from 'public/img/home/world-of-engi.png';
 import PlaceholderButton from './PlaceholderButton';
 
 type WorldOfEngineersProps = {
@@ -39,6 +39,7 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
           alt="figma plugins"
           layout="responsive"
           loading="lazy"
+          placeholder="blur"
         />
       </div>
     </div>

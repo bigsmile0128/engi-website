@@ -2,7 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 
-import { SiDiscord, SiLinkedin, SiTiktok, SiTwitter } from 'react-icons/si';
+import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
+import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
+import { SiLinkedin } from '@react-icons/all-files/si/SiLinkedin';
 
 type SocialMediaProps = {
   className?: string;

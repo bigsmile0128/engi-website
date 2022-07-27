@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { BiTime } from 'react-icons/bi';
+import { BiTime } from '@react-icons/all-files/bi/BiTime';
 
 interface TimeEstimateProps {
   className?: string;

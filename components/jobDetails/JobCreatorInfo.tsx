@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { MdVerifiedUser } from 'react-icons/md';
+import { MdVerifiedUser } from '@react-icons/all-files/md/MdVerifiedUser';
 import Image from 'next/image';
 
 import avatarImg from './avatar.png';

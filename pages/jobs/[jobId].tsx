@@ -5,8 +5,8 @@ import { useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { HiOutlineChevronLeft } from 'react-icons/hi';
-import { IoMdShareAlt } from 'react-icons/io';
+import { HiOutlineChevronLeft } from '@react-icons/all-files/hi/HiOutlineChevronLeft';
+import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import * as Sentry from '@sentry/react';
 
 import PaymentInfo from 'components/jobDetails/PaymentInfo';

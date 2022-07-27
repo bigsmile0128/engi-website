@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import GridPattern from 'components/GridPattern';
 import Image from 'next/image';
-import globeImg from './img/globe.png';
+import globeImg from 'public/img/home/globe.png';
 import PlaceholderButton from './PlaceholderButton';
 
 interface GlobalConnectionProps {

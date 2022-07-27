@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import LogoSvg from 'components/home/img/logo.svg';
-import LogoAltSvg from 'components/home/img/logo_alt.svg';
+import LogoAltSvg from 'public/img/home/logo_alt.svg';
 import SocialMedia from './SocialMedia';
 import Link from 'next/link';
 
