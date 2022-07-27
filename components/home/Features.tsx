@@ -116,7 +116,7 @@ export default function Features({ className }: FeaturesProps) {
               {({ selected }) => (
                 <button
                   className={classNames(
-                    'flex flex-1 flex-col items-center text-center border-b px-12 pb-8',
+                    'flex flex-1 flex-col items-center text-center border-b px-12 py-8 focus:outline-none focus:ring-1 ring-emerald-300',
                     selected
                       ? 'border-emerald-300 border-b-2'
                       : 'border-gray-400'
@@ -138,13 +138,13 @@ export default function Features({ className }: FeaturesProps) {
         </Tab.List>
         <Tab.Panels className="mt-12">
           <Tab.Panel>
-            <Tab1 />
+            <Tab1 className="lg:h-96 xl:h-[30rem]" />
           </Tab.Panel>
           <Tab.Panel>
-            <Tab2 />
+            <Tab2 className="lg:h-96 xl:h-[30rem]" />
           </Tab.Panel>
           <Tab.Panel>
-            <Tab3 />
+            <Tab3 className="lg:h-96 xl:h-[30rem]" />
           </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
@@ -157,7 +157,7 @@ function Tab1({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">Secure</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
@@ -170,8 +170,6 @@ function Tab1({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
-        {/* <Image src={TokenContractSvg} layout="responsive" alt="token-contract-svg" /> */}
-
         <TokenContractSvg className="w-full h-auto" />
       </div>
     </div>
@@ -183,7 +181,7 @@ function Tab2({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">Open</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
@@ -208,7 +206,7 @@ function Tab3({ className }: { className?: string }) {
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern offset={-1} />
-        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 lg:border-b-1">
+        <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">
             Whoever
             <br />
@@ -225,8 +223,8 @@ function Tab3({ className }: { className?: string }) {
           <Button className="mt-8">Coming Soon</Button>
         </div>
       </div>
-      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border">
-        <Image src={featuresSrc3} alt="wherever" />
+      <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border children:!h-full">
+        <Image src={featuresSrc3} className="object-cover" alt="wherever" />
       </div>
     </div>
   );
