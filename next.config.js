@@ -25,6 +25,7 @@ const nextConfig = {
       allowFutureImage: true,
     },
   },
+  output: 'standalone',
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
