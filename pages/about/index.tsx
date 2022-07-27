@@ -1,19 +1,106 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
+import useEmblaCarousel from 'embla-carousel-react';
 
 import aboutImg from 'components/press/img/about1.png';
 import deskImg from 'components/press/img/desk.jpg';
+import GlobeSvg from 'components/about/img/globe.svg';
+import UpfrontSvg from 'components/about/img/upfront.svg';
+import CompoundSvg from 'components/about/img/compound.svg';
+import TribeSvg from 'components/about/img/tribe.svg';
+import ShineSvg from 'components/about/img/shine.svg';
+import EniacSvg from 'components/about/img/eniac.svg';
 import BlockQuote from 'components/home/BlockQuote';
 import GridPattern from 'components/GridPattern';
+import TeamMember from 'components/about/TeamMember';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface AboutUsPageProps {
   className?: string;
 }
 
+const members = [
+  {
+    name: 'Garrett',
+    role: 'CEO',
+    companies: ['Apple'],
+  },
+  {
+    name: 'Jay',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+  {
+    name: 'Mike',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+  {
+    name: 'Chris',
+    role: 'Software Engineer',
+    companies: ['Apple'],
+  },
+  {
+    name: 'Chris',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+  {
+    name: 'Georgios',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+  {
+    name: 'Mark',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+  {
+    name: 'Thomas',
+    role: 'Software Engineer',
+    companies: ['Google'],
+  },
+];
+
 export default function AboutUsPage({ className }: AboutUsPageProps) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
+
+  const canScrollPrev = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollPrev();
+    }
+    return false;
+  }, [emblaApi]);
+
+  const canScrollNext = useCallback(() => {
+    if (emblaApi) {
+      return emblaApi.canScrollNext();
+    }
+    return false;
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+      });
+    }
+  }, [emblaApi]);
+
   return (
-    <div className={classNames('flex flex-col my-32 mb-32', className)}>
+    <div
+      className={classNames('flex flex-col mt-16 sm:mt-32 mb-32', className)}
+    >
       <div className="max-w-page mb-24 md:!max-w-2xl">
         <h1 className="font-grifter text-3xl sm:text-5xl text-center !leading-tight">
           Accelerating the <span className="text-emerald-300">future</span> of
@@ -29,7 +116,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
       <div className="max-w-page mb-32">
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0 mb-24">
           <div className="mb-12 md:mb-0">
-            <h2 className="font-grifter text-3xl mb-4">Our Mission</h2>
+            <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
+              Our Mission
+            </h2>
             <p className="text-gray-300">
               To unlock human innovation and end global poverty through
               always-available and accessible engineering work and to accelerate
@@ -47,7 +136,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         </div>
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0">
           <div className="mb-12 md:mb-0 col-start-2">
-            <h2 className="font-grifter text-3xl mb-4">Who we are</h2>
+            <h2 className="font-grifter text-3xl sm:text-5xl mb-4">
+              Who we are
+            </h2>
             <p className="text-gray-300">
               Engi deletes applications, interviews, bosses, time zones,
               borders, language barriers, and “culture fit” from professional
@@ -62,9 +153,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         </div>
       </div>
       <div className="relative">
-        <GridPattern offset={-1} />
-        <div className="flex flex-col items-center py-16 border-y border-white/30">
-          <h2 className="text-4xl font-grifter mb-16">Values</h2>
+        <GridPattern className="hidden sm:block" offset={-1} />
+        <div className="flex flex-col items-center sm:py-16 border-y-0 sm:border-y-1 border-white/30">
+          <h2 className="text-3xl sm:text-5xl font-grifter mb-16">Values</h2>
           <div className="flex flex-col sm:flex-row items-center gap-x-12 gap-y-24">
             <div className="flex flex-col items-center gap-y-8">
               <div className="border border-gray-500 h-20 w-20 flex items-center justify-center bg-gray-800/60 z-10">
@@ -141,6 +232,91 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
             </span>
           }
         />
+      </div>
+      <div className="max-w-page mt-32 flex flex-col items-center w-full">
+        <div className="text-center">
+          <h2 className="font-grifter text-3xl sm:text-5xl">Meet the Team!</h2>
+          <p className="text-lg text-gray-300 mt-4">
+            Shattering borders, time zones, and language barriers.
+          </p>
+        </div>
+        <GlobeSvg className="w-full mt-16 sm:mt-12 scale-125 sm:scale-100" />
+        <div className="w-full relative mt-16 md:hidden">
+          <div className="embla" ref={emblaRef}>
+            <div className="flex gap-8">
+              {members.map((member) => (
+                <TeamMember
+                  key={member.name + member.companies.toString()}
+                  role={member.role}
+                  name={member.name}
+                  companies={member.companies}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center justify-center mt-8 gap-x-16">
+            <button
+              className={classNames(
+                'h-8 w-8',
+                !canScrollPrev() ? 'text-white/20' : ''
+              )}
+              onClick={scrollPrev}
+              disabled={!canScrollPrev()}
+            >
+              <ChevronLeftIcon />
+            </button>
+            <button
+              className={classNames(
+                'h-8 w-8',
+                !canScrollNext() ? 'text-white/20' : ''
+              )}
+              onClick={scrollNext}
+              disabled={!canScrollNext()}
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </div>
+        <div
+          className={classNames(
+            'hidden sm:grid',
+            'mt-16 sm:mt-12 xl:mt-24',
+            'xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+            'gap-4 xl:gap-8'
+          )}
+        >
+          {members.map((member) => (
+            <TeamMember
+              key={member.name + member.companies.toString()}
+              role={member.role}
+              name={member.name}
+              companies={member.companies}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="max-w-page mt-32 flex flex-col xl:flex-row gap-x-8">
+        <div className="text-center xl:text-left xl:basis-1/2">
+          <h2 className="font-grifter text-3xl sm:text-5xl">Our Investors</h2>
+          <p className="mt-4 text-gray-300">
+            Our investors are some of the top leaders of their industries.
+          </p>
+        </div>
+        <div className="flex flex-col mt-8 xl:mt-0">
+          <div
+            className={classNames(
+              'flex flex-col sm:flex-row flex-wrap justify-center items-center gap-12',
+              'mt-8 xl:mt-0',
+              'xl:basis-1/2'
+            )}
+          >
+            <UpfrontSvg className="h-8" />
+            <CompoundSvg className="h-8" />
+            <TribeSvg className="h-8" />
+            <ShineSvg className="h-8" />
+            <EniacSvg className="h-8" />
+          </div>
+        </div>
       </div>
     </div>
   );
