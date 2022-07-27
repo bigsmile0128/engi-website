@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { HiUser } from 'react-icons/hi';
+import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import randomColor from 'randomcolor';
 
 import AppleSvg from './img/apple.svg';
