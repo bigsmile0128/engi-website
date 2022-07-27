@@ -23,13 +23,8 @@ export default function AlternatingFeatures({
           </p>
           <PlaceholderButton className="mt-8" />
         </div>
-        <div className="max-w-md md:max-w-none relative col-start-1">
-          <Image
-            src={blocks}
-            alt="workflows"
-            layout="responsive"
-            loading="lazy"
-          />
+        <div className="max-w-md md:max-w-none relative col-start-1 mx-auto mt-16 md:mt-0">
+          <Image src={blocks} alt="workflows" loading="lazy" />
         </div>
       </div>
     </div>
