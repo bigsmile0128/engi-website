@@ -14,14 +14,20 @@ interface HeroProps {
 export default function Hero({ className }: HeroProps) {
   return (
     <div className={classNames('flex flex-col items-start', className)}>
-      <div className="w-full mt-20 mb-16 lg:mb-24 flex gap-x-12">
-        <HeroTextSvg className="max-w-2xl h-48" />
-        <p className="w-1/3 hidden lg:block text-lg">
+      <div className="w-full lg:mb-24 flex flex-col lg:flex-row gap-x-12 pt-8 sm:pt-24">
+        <HeroTextSvg className="max-w-2xl sm:w-2/3 lg:w-full lg:h-48" />
+        <p className="lg:w-1/3 sm:hidden lg:block text-lg mt-8 text-gray-200">
           Write code and get paid instantly. Have a design? Engage worldwide
           talent and build products faster.
         </p>
       </div>
-      <div className="w-full grid justify-center grid-cols-1 lg:justify-between lg:grid-cols-2 lg:gap-x-4">
+      <div
+        className={classNames(
+          'w-full grid justify-center grid-cols-1',
+          'mt-12',
+          'lg:justify-between lg:grid-cols-2 lg:gap-x-4'
+        )}
+      >
         <div className="flex flex-col whitespace-nowrap gap-y-4">
           <div className="shrink-0 flex gap-x-4 items-center justify-between mb-4">
             <div className="flex items-center gap-x-3 text-white">
