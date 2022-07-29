@@ -161,7 +161,7 @@ export default function Navbar({ className }: NavbarProps) {
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
-                      <Link href="/litepaper">
+                      <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                         <a
                           className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                           onClick={() => setIsOpen(false)}
