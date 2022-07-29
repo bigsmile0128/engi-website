@@ -75,7 +75,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             >
               <span className="inline md:block">FIGMA plugin</span>
             </motion.h2>
-            <motion.p className="mt-8 text-gray-300" variants={variants}>
+            <motion.p className="mt-8 text-secondary" variants={variants}>
               Same Story is a Figma-Storybook equivalency checker and free,
               open-source, pre-release of the Engi Figma Plugin, lets product
               teams easily answer the question “Does my code tell the same story

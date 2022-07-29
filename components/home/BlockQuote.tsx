@@ -36,7 +36,7 @@ export default function BlockQuote({
         </svg>
         <div className="flex flex-col gap-y-4">
           <span className="font-grifter text-3xl">{value}</span>
-          {subtitle && <p className="text-gray-400">{subtitle}</p>}
+          {subtitle && <p className="text-secondary">{subtitle}</p>}
         </div>
       </div>
     </div>

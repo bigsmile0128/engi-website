@@ -41,7 +41,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         <h3 className="font-grifter text-2xl sm:text-3xl">
           Write code, <span className="text-emerald-300">get paid</span>
         </h3>
-        <p className="text-gray-300 text-lg pr-16 mt-4">
+        <p className="text-secondary text-lg pr-16 mt-4">
           No need to apply. Get paid instantly regardless of your time zone or
           language.
         </p>
@@ -65,7 +65,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         <h3 className="font-grifter text-2xl sm:text-3xl">
           Build products <span className="text-emerald-300">faster</span>
         </h3>
-        <p className="text-gray-300 text-lg pr-16 mt-4">
+        <p className="text-secondary text-lg pr-16 mt-4">
           No sourcing. No recruiting. Find worldwide talent instantly.
         </p>
         <Button className="mt-12">Coming Soon</Button>

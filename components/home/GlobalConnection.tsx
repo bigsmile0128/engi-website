@@ -25,7 +25,7 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
             <h2 className="font-grifter text-3xl lg:text-4xl">
               Global products built by global engineering
             </h2>
-            <p className="text-gray-300 mt-2">
+            <p className="text-secondary mt-2">
               Shattering borders, time zones, and language barriers
             </p>
             <PlaceholderButton className="mt-8" />

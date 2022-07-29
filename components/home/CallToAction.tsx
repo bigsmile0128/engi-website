@@ -15,7 +15,7 @@ export default function CallToAction({ className }: CallToActionProps) {
         <h2 className="font-grifter text-5xl mb-8 text-center">
           Ready to join engi?
         </h2>
-        <p className="mb-12 text-gray-300 text-center">
+        <p className="mb-12 text-secondary text-center">
           Enter your email address and get started today!
         </p>
         <EmailRegistration

@@ -81,7 +81,7 @@ export default function EmailRegistration({
           <input
             id="email-address"
             className={classNames(
-              'w-full border border-gray-400 xs:border-r-0 p-4 text-white placeholder:text-gray-300 text-sm focus:outline-none focus:ring-1 bg-transparent',
+              'w-full border border-gray-400 xs:border-r-0 p-4 text-white placeholder:text-secondary text-sm focus:outline-none focus:ring-1 bg-transparent',
               registerMutation.isError
                 ? 'border-red-400 fill-red-400 focus:ring-red-300 !bg-[#f8717122]'
                 : '',
@@ -139,7 +139,7 @@ export default function EmailRegistration({
           <span>
             Want more personalized updates?{' '}
             <button
-              className="font-medium text-white underline hover:cursor-pointer hover:text-gray-300"
+              className="font-medium text-white underline hover:cursor-pointer hover:text-secondary"
               onClick={() => setModalOpen(true)}
             >
               Tell us more about you.

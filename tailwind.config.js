@@ -12,8 +12,9 @@ module.exports = {
       fontFamily: {
         grifter: ['GRIFTER', 'sans-serif'],
       },
-      backgroundImage: {
-        landing: "url('~/public/img/landing.svg')",
+      colors: {
+        primary: '#FFFFFF',
+        secondary: '#D7D7D7',
       },
     },
   },

@@ -97,7 +97,7 @@ export default function EmailModal({
                 </span>
               </Dialog.Title>
               <button
-                className="text-white hover:text-gray-300 focus:outline-none focus:ring-1 focus:ring-emerald-200"
+                className="text-white hover:text-secondary focus:outline-none focus:ring-1 focus:ring-emerald-200"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
@@ -223,7 +223,7 @@ export default function EmailModal({
               <span className="block">{"We'll keep you"}</span>
               <span className="text-emerald-300">updated</span>
             </Dialog.Title>
-            <p className="mt-6 text-gray-300 max-w-xs">
+            <p className="mt-6 text-secondary max-w-xs">
               You can also share this amazing journey with your friends.
             </p>
             <EnvelopeSvg className="h-40 w-40 mx-auto my-8" />
@@ -250,7 +250,7 @@ export default function EmailModal({
                 <span className="text-emerald-300">Share</span>
               </Dialog.Title>
               <button
-                className="text-white hover:text-gray-300 focus:outline-none focus:ring-1 focus:ring-emerald-200"
+                className="text-white hover:text-secondary focus:outline-none focus:ring-1 focus:ring-emerald-200"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
@@ -262,7 +262,7 @@ export default function EmailModal({
             <div className="flex items-center justify-between mt-12 gap-x-4 xs:gap-x-8  text-xl xs:text-2xl">
               <Link href="https://twitter.com/engi_network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -270,13 +270,13 @@ export default function EmailModal({
                 </a>
               </Link>
               {/* <Link href="https://twitter.com/engi_network">
-                <a className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300" target="_blank" rel="noreferrer">
+                <a className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary" target="_blank" rel="noreferrer">
                   <SiTiktok />
                 </a>
               </Link> */}
               <Link href="https://linkedin.com/company/engi-network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -285,7 +285,7 @@ export default function EmailModal({
               </Link>
               <Link href="https://twitter.com/engi_network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-gray-300"
+                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -307,7 +307,7 @@ export function InterestButton({ active, label, value, onClick }) {
         'py-3 px-6 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-200 border',
         active
           ? 'text-gray-800 border-emerald-300 bg-emerald-300 font-medium'
-          : 'border-gray-500 text-gray-300 hover:bg-gray-700 active:bg-gray-600'
+          : 'border-gray-500 text-secondary hover:bg-gray-700 active:bg-gray-600'
       )}
       key={value}
       onClick={() => onClick(value)}

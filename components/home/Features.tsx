@@ -126,7 +126,7 @@ export default function Features({ className }: FeaturesProps) {
                   <span
                     className={classNames(
                       'text-md',
-                      selected ? 'text-white font-medium' : 'text-gray-300'
+                      selected ? 'text-white font-medium' : 'text-secondary'
                     )}
                   >
                     {description}
@@ -163,7 +163,7 @@ function Tab1({ className }: { className?: string }) {
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
             Economics
           </h4>
-          <p className="text-lg text-gray-300 leading-normal">
+          <p className="text-lg text-secondary leading-normal">
             A transparent, performant, and secure marketplace for coding work.
           </p>
           <Button className="mt-8">Coming Soon</Button>
@@ -187,7 +187,7 @@ function Tab2({ className }: { className?: string }) {
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
             {'Source & Governed'}
           </h4>
-          <p className="text-lg text-gray-300 leading-normal">
+          <p className="text-lg text-secondary leading-normal">
             Participants in the Engi Network own their destiny and the future of
             technical work.
           </p>
@@ -216,7 +216,7 @@ function Tab3({ className }: { className?: string }) {
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
             Wherever
           </h4>
-          <p className="text-lg text-gray-300 leading-normal">
+          <p className="text-lg text-secondary leading-normal">
             Anyone can start coding on Engi right away. No interviews, no
             commutes.
           </p>

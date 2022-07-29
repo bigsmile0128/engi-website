@@ -69,7 +69,7 @@ function User({ className, name, subtitle }: UserProps) {
         <span className="font-bold text-emerald-300">{name}</span>
         <span className="flex items-center gap-x-2">
           <AiOutlineLink className="inline text-emerald-300" />
-          {subtitle}
+          <span className="text-secondary">{subtitle}</span>
         </span>
       </div>
     </div>

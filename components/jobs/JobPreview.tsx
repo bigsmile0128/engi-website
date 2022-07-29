@@ -154,7 +154,7 @@ export default function JobPreview({
               </span>
               <span
                 className={classNames(
-                  'text-sm text-gray-300',
+                  'text-sm text-secondary',
                   isSkeleton ? `h-4 skeleton` : ''
                 )}
               >

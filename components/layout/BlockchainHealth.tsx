@@ -52,15 +52,15 @@ export default function BlockchainHealth({
           >
             {data?.peerCount ?? 'N/A'}
           </span>
-          <span className="font-medium text-gray-300 leading-5">
+          <span className="font-medium text-secondary leading-5">
             {pluralize('peer', data?.peerCount ?? 0)}
           </span>
         </div>
       )}
       {isLoading && (
         <div className="flex flex-col items-center">
-          <GrStatusGoodSmall className="mt-[1px] mb-1 text-gray-300" />
-          <span className="font-medium text-gray-300 leading-5">
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-secondary" />
+          <span className="font-medium text-secondary leading-5">
             connecting
           </span>
         </div>
@@ -68,19 +68,19 @@ export default function BlockchainHealth({
       {data?.status === 'ONLINE' && (
         <div className="flex flex-col items-center justify-between">
           <GrStatusGoodSmall className="mt-[1px] mb-1 text-emerald-300" />
-          <span className="font-medium text-gray-300 leading-5">online</span>
+          <span className="font-medium text-secondary leading-5">online</span>
         </div>
       )}
       {data?.status === 'OFFLINE' && (
         <div className="flex flex-col items-center">
           <GrStatusDisabledSmall className="mt-[1px] mb-1 text-red-400" />
-          <span className="font-medium text-gray-300 leading-5">offline</span>
+          <span className="font-medium text-secondary leading-5">offline</span>
         </div>
       )}
       {!isLoading && !data?.status && (
         <div className="flex flex-col items-center">
-          <GrStatusGoodSmall className="mt-[1px] mb-1 text-gray-300" />
-          <span className="font-medium text-gray-300 leading-5">
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-secondary" />
+          <span className="font-medium text-secondary leading-5">
             status unknown
           </span>
         </div>
@@ -90,7 +90,7 @@ export default function BlockchainHealth({
     <div className={classNames('flex items-center gap-x-3', className)}>
       {isLoading && (
         <>
-          <GrStatusGoodSmall className="text-sm text-gray-300" />
+          <GrStatusGoodSmall className="text-sm text-secondary" />
           <span>connecting...</span>
         </>
       )}
@@ -115,7 +115,7 @@ export default function BlockchainHealth({
       )}
       {!isLoading && !data?.status && (
         <>
-          <GrStatusGoodSmall className="text-sm text-gray-300" />
+          <GrStatusGoodSmall className="text-sm text-secondary" />
           <span>status unknown</span>
         </>
       )}

@@ -14,9 +14,14 @@ interface HeroProps {
 export default function Hero({ className }: HeroProps) {
   return (
     <div className={classNames('flex flex-col items-start', className)}>
-      <div className="w-full lg:mb-24 flex flex-col lg:flex-row gap-x-12 pt-8 sm:pt-24">
+      <div
+        className={classNames(
+          'w-full flex flex-col lg:flex-row gap-x-12',
+          'lg:mb-24 pt-8 sm:pt-16 md:pt-24'
+        )}
+      >
         <HeroTextSvg className="max-w-2xl sm:w-2/3 lg:w-full lg:h-48" />
-        <p className="lg:w-1/3 sm:hidden lg:block text-lg mt-8 text-gray-200">
+        <p className="lg:w-1/3 sm:hidden lg:block text-lg mt-8 text-secondary">
           Write code and get paid instantly. Have a design? Engage worldwide
           talent and build products faster.
         </p>
