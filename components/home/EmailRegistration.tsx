@@ -81,7 +81,9 @@ export default function EmailRegistration({
           <input
             id="email-address"
             className={classNames(
-              'w-full border border-gray-400 xs:border-r-0 p-4 text-white placeholder:text-secondary text-sm focus:outline-none focus:ring-1 bg-transparent',
+              'w-full border border-white/30 xs:border-r-0 p-4 bg-[#232323]',
+              'text-white placeholder:text-tertiary text-sm',
+              'focus:outline-none focus:ring-1',
               registerMutation.isError
                 ? 'border-red-400 fill-red-400 focus:ring-red-300 !bg-[#f8717122]'
                 : '',
