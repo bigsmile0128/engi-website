@@ -24,8 +24,8 @@ const Home: NextPage = () => {
       {isBeta() && (
         <>
           <Stats className="mt-24 xl:mt-40" />
-          <CalloutCards className="max-w-page mt-32 sm:mt-32 lg:mt-24" />
-          <WorldOfEngineers className="max-w-page mt-40" />
+          <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" />
+          <WorldOfEngineers className="max-w-page mt-24 lg:mt-40" />
           <Features className="max-w-page mt-40" />
         </>
       )}
