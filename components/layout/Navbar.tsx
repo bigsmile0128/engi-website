@@ -29,7 +29,7 @@ export default function Navbar({ className }: NavbarProps) {
     }
 
     return blockchainHealthProps;
-  }, [sm, md, lg, xl]);
+  }, [md, lg]);
 
   return (
     <header>
