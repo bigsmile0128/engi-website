@@ -17,7 +17,7 @@ export default function Hero({ className }: HeroProps) {
       <div
         className={classNames(
           'w-full flex flex-col lg:flex-row gap-x-12',
-          'lg:mb-24 pt-8 sm:pt-16 md:pt-24'
+          'lg:mb-24 pt-8 sm:pt-16 lg:pt-24'
         )}
       >
         <HeroTextSvg className="max-w-2xl sm:w-2/3 lg:w-full lg:h-48" />

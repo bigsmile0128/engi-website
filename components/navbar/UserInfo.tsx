@@ -16,9 +16,15 @@ type UserInfoProps = {
   className?: string;
   user: User;
   setUser: (user: User) => void;
+  blockchainHealthProps?: any;
 };
 
-export default function UserInfo({ className, user, setUser }: UserInfoProps) {
+export default function UserInfo({
+  className,
+  user,
+  setUser,
+  blockchainHealthProps,
+}: UserInfoProps) {
   const { isLoading, data: balance } = useQuery(
     ['userInfo', user.walletId],
     async () => {
@@ -74,7 +80,7 @@ export default function UserInfo({ className, user, setUser }: UserInfoProps) {
         <div className="flex items-center gap-x-4">
           <Balance isLoading={isLoading} value={balance} />
           <div className="h-5 w-[1px] bg-gray-400"></div>
-          <BlockchainHealth className="!gap-x-2" />
+          <BlockchainHealth className="!gap-x-2" {...blockchainHealthProps} />
         </div>
       </div>
     </div>

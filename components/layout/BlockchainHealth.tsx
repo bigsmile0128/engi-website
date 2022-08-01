@@ -98,11 +98,13 @@ export default function BlockchainHealth({
         <>
           <GrStatusGoodSmall className="text-sm text-emerald-300" />
           <span>
-            {showPeerCount && data?.peerCount !== undefined && (
+            {showPeerCount && data?.peerCount !== undefined ? (
               <span>
                 <span className="font-bold">{data?.peerCount}</span> online{' '}
                 {pluralize('peer', data?.peerCount ?? 0)}
               </span>
+            ) : (
+              <span>online</span>
             )}
           </span>
         </>

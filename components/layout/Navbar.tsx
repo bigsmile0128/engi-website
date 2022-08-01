@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from 'react';
+import React, { Fragment, useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Dialog, Popover, Transition } from '@headlessui/react';
@@ -11,6 +11,7 @@ import MenuSvg from 'public/img/home/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
 import UserContext from 'utils/contexts/userContext';
 import UserInfo from 'components/navbar/UserInfo';
+import useBreakpoint from 'utils/hooks/useBreakpoint';
 
 interface NavbarProps {
   className?: string;
@@ -18,12 +19,22 @@ interface NavbarProps {
 
 export default function Navbar({ className }: NavbarProps) {
   const { user, setUser } = useContext(UserContext);
+  const { sm, md, lg, xl } = useBreakpoint();
   const [isOpen, setIsOpen] = useState(false);
+
+  const blockchainHealthPropsTablet = useMemo(() => {
+    const blockchainHealthProps: any = {};
+    if (md && !lg) {
+      blockchainHealthProps.showPeerCount = false;
+    }
+
+    return blockchainHealthProps;
+  }, [sm, md, lg, xl]);
 
   return (
     <header>
       <Popover className="">
-        <div className="flex items-center sm:justify-between max-w-page p-6 sm:px-0">
+        <div className="flex items-center md:justify-between max-w-page p-6 md:px-0">
           <Link href="/">
             <a className="flex mr-10">
               <Logo className="h-8 w-8" />
@@ -32,7 +43,7 @@ export default function Navbar({ className }: NavbarProps) {
           {/* non-mobile nav */}
           <Popover.Group
             as="nav"
-            className="flex-1 hidden sm:flex gap-x-8 ml-8 md:gap-x-12 lg:gap-x-16 lg:ml-12"
+            className="flex-1 hidden md:flex gap-x-8 ml-8 md:gap-x-12 lg:gap-x-16 lg:ml-12"
           >
             <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
               <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -41,22 +52,17 @@ export default function Navbar({ className }: NavbarProps) {
             </Link>
             <Link href="/contact">
               <a className="text-base font-medium text-gray-300 hover:text-white">
-                Contact Us
+                Contact
               </a>
             </Link>
             <Link href="/about">
               <a className="text-base font-medium text-gray-300 hover:text-white">
-                About Us
+                About
               </a>
             </Link>
             {isBeta() && (
               <>
-                <Link href="/press">
-                  <a className="text-base font-medium text-gray-300 hover:text-white">
-                    Press
-                  </a>
-                </Link>
-                <Link href="/jobs">
+                {/* <Link href="/jobs">
                   <a className="text-base font-medium text-gray-300 hover:text-white">
                     Jobs
                   </a>
@@ -65,28 +71,28 @@ export default function Navbar({ className }: NavbarProps) {
                   <a className="text-base font-medium text-gray-300 hover:text-white">
                     Hire
                   </a>
-                </Link>
+                </Link> */}
               </>
             )}
             {isDev() && <></>}
           </Popover.Group>
-          <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
+          <BlockchainHealth className="md:hidden ml-auto !gap-x-6" isStacked />
           {user ? (
             <UserInfo
-              className="hidden sm:flex"
+              className="hidden md:flex"
               user={user}
               setUser={setUser}
+              blockchainHealthProps={blockchainHealthPropsTablet}
             />
           ) : (
             <>
-              {/* TODO: use hook to grab viewport size and render only one element */}
-              <BlockchainHealth className="hidden sm:flex lg:hidden" />
-              <BlockchainHealth className="hidden lg:flex" isStacked />
+              {lg && <BlockchainHealth className="hidden lg:flex" isStacked />}
               <Link href="/signup">
                 <a>
                   <button
                     className={classNames(
-                      'hidden sm:block px-6 py-4 text-white font-bold ml-8',
+                      'hidden md:block px-6 py-4 ml-8',
+                      'text-white font-bold whitespace-nowrap',
                       'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
                     )}
                   >
@@ -97,7 +103,7 @@ export default function Navbar({ className }: NavbarProps) {
             </>
           )}
           {/* mobile nav */}
-          <div className="ml-6 -mr-2 -my-2 sm:hidden">
+          <div className="ml-6 -mr-2 -my-2 md:hidden">
             <button
               className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-emerald-300"
               onClick={() => setIsOpen(true)}
@@ -175,7 +181,7 @@ export default function Navbar({ className }: NavbarProps) {
                           className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                           onClick={() => setIsOpen(false)}
                         >
-                          <span>Contact Us</span>
+                          <span>Contact</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
@@ -184,23 +190,14 @@ export default function Navbar({ className }: NavbarProps) {
                           className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                           onClick={() => setIsOpen(false)}
                         >
-                          <span>About Us</span>
+                          <span>About</span>
                           <ChevronRightIcon className="h-6" />
                         </a>
                       </Link>
                       {isBeta() && <></>}
                       {isDev() && (
                         <>
-                          <Link href="/press">
-                            <a
-                              className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                              onClick={() => setIsOpen(false)}
-                            >
-                              <span>Press</span>
-                              <ChevronRightIcon className="h-6" />
-                            </a>
-                          </Link>
-                          <Link href="/jobs">
+                          {/* <Link href="/jobs">
                             <a
                               className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                               onClick={() => setIsOpen(false)}
@@ -217,7 +214,7 @@ export default function Navbar({ className }: NavbarProps) {
                               <span>Hire</span>
                               <ChevronRightIcon className="h-6" />
                             </a>
-                          </Link>
+                          </Link> */}
                         </>
                       )}
                     </nav>
