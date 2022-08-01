@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
-import deskImg from 'components/press/img/desk.jpg';
+import deskImg from 'public/img/press/desk.jpg';
 import BlockQuote from 'components/home/BlockQuote';
 
 interface PressPageProps {

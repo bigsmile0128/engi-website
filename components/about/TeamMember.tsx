@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import randomColor from 'randomcolor';
 
-import AppleSvg from './img/apple.svg';
-import GoogleSvg from './img/google.svg';
-import AmazonSvg from './img/amazon.svg';
+import AppleSvg from '../../public/img/about/apple.svg';
+import GoogleSvg from '../../public/img/about/google.svg';
+import AmazonSvg from '../../public/img/about/amazon.svg';
 
 type TeamMemberProps = {
   className?: string;
