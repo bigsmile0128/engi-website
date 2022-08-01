@@ -1,4 +1,5 @@
 import { Html, Head, Main, NextScript } from 'next/document';
+import { isDev } from 'utils';
 
 export default function Document() {
   return (
@@ -7,7 +8,7 @@ export default function Document() {
         <link rel="icon" href="/favicon.ico" />
         <meta name="color-scheme" content="dark" />
       </Head>
-      <body>
+      <body className={isDev() ? 'debug-screens' : ''}>
         <Main />
         <NextScript />
       </body>

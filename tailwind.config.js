@@ -23,5 +23,6 @@ module.exports = {
     plugin(function ({ addVariant }) {
       addVariant('children', '& > *');
     }),
+    require('tailwindcss-debug-screens'),
   ],
 };

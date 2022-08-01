@@ -49,8 +49,7 @@ export default function Navbar({ className }: NavbarProps) {
                 About Us
               </a>
             </Link>
-            {isBeta() && <></>}
-            {isDev() && (
+            {isBeta() && (
               <>
                 <Link href="/press">
                   <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -69,6 +68,7 @@ export default function Navbar({ className }: NavbarProps) {
                 </Link>
               </>
             )}
+            {isDev() && <></>}
           </Popover.Group>
           <BlockchainHealth className="sm:hidden ml-auto !gap-x-6" isStacked />
           {user ? (

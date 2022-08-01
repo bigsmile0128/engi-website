@@ -51,6 +51,7 @@
     "react-xarrows": "^2.0.2",
     "sharp": "^0.30.7",
     "store2": "^2.14.2",
+    "tailwindcss-debug-screens": "^2.2.1",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
