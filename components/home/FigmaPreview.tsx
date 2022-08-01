@@ -66,7 +66,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
     >
       <motion.div className="flex flex-col lg:flex-row lg:items-center border border-[#43ffff1a]">
         <motion.div className="relative flex flex-col h-full">
-          <GridPattern size={64} />
+          <GridPattern id="figma-preview" size={64} />
           {/* specific units to line up text precisely with grid on XL */}
           <motion.div className="flex-1 flex flex-col items-start p-8 xs:p-12 lg:p-6 xl:px-[4rem] xl:pt-[5.8rem] border-b lg:border-b-0 lg:border-r border-[#ffffff22] z-[5]">
             <motion.h2

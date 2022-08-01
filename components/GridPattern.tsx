@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 interface GridPatternProps {
   className?: string;
+  id: string; // id to prevent conflicts
   size?: number;
   offset?: number;
   sizeX?: number;
@@ -11,12 +12,12 @@ interface GridPatternProps {
 
 export default function GridPattern({
   className,
+  id,
   size = 60,
   offset = 0,
   sizeX,
   sizeY,
 }: GridPatternProps) {
-  const patternId = `grid-${sizeX ?? size}x${sizeY ?? size}`;
   return (
     <svg
       className={classNames('absolute', className)}
@@ -25,7 +26,7 @@ export default function GridPattern({
     >
       <defs>
         <pattern
-          id={patternId}
+          id={id}
           x={offset}
           y={offset}
           width={sizeX ?? size}
@@ -40,13 +41,7 @@ export default function GridPattern({
           ></rect>
         </pattern>
       </defs>
-      <rect
-        x="0"
-        y="0"
-        width="100%"
-        height="100%"
-        fill={`url(#${patternId})`}
-      ></rect>
+      <rect x="0" y="0" width="100%" height="100%" fill={`url(#${id})`}></rect>
     </svg>
   );
 }

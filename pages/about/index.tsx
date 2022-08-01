@@ -153,7 +153,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
         </div>
       </div>
       <div className="relative">
-        <GridPattern className="hidden sm:block" offset={-1} />
+        <GridPattern id="values" className="hidden sm:block" offset={-1} />
         <div className="flex flex-col items-center sm:py-16 border-y-0 sm:border-y-1 border-white/30">
           <h2 className="text-3xl sm:text-5xl font-grifter mb-16">Values</h2>
           <div className="flex flex-col sm:flex-row items-center gap-x-12 gap-y-24">

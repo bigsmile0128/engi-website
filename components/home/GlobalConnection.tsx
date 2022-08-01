@@ -16,10 +16,14 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
       className={classNames('relative flex flex-col justify-center', className)}
     >
       <div className="hidden sm:block absolute top-0 bottom-1/3 left-0 right-0">
-        <GridPattern offset={-1} />
+        <GridPattern id="global" offset={-1} />
       </div>
       <div className="relative">
-        <GridPattern className="block sm:hidden" offset={-1} />
+        <GridPattern
+          id="global-mobile"
+          className="block sm:hidden"
+          offset={-1}
+        />
         <div className="max-w-page py-12 z-10">
           <div
             className={classNames(

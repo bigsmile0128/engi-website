@@ -69,15 +69,20 @@ export default function Statistics({ className }: StatisticsProps) {
       )}
     >
       <GridPattern
+        id="stats"
         className="hidden sm:block top-0 left-0"
         sizeY={40}
         offset={-1}
       />
-      <GridPattern className="sm:hidden top-0 left-0" offset={-1} />
+      <GridPattern
+        id="stats-mobile"
+        className="sm:hidden top-0 left-0"
+        offset={-1}
+      />
       <div
         className={classNames(
           'hidden sm:flex items-center justify-between',
-          'px-8 py-16 gap-y-16'
+          'px-8 pt-16 md:pb-14 lg:px-24 xl:px-40'
         )}
       >
         {stats.map(({ name, value }) => (

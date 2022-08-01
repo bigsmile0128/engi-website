@@ -10,7 +10,7 @@ interface CallToActionProps {
 export default function CallToAction({ className }: CallToActionProps) {
   return (
     <div className={classNames('relative', className)}>
-      <GridPattern offset={-1} />
+      <GridPattern id="call-to-action" offset={-1} />
       <div className="flex flex-col items-center justify-center px-6 py-24 md:px-0 z-10">
         <h2 className="font-grifter text-5xl mb-8 text-center">
           Ready to join engi?

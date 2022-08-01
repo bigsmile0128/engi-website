@@ -156,7 +156,7 @@ function Tab1({ className }: { className?: string }) {
   return (
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
-        <GridPattern offset={-1} />
+        <GridPattern id="tab1" offset={-1} />
         <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">Secure</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
@@ -180,7 +180,7 @@ function Tab2({ className }: { className?: string }) {
   return (
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
-        <GridPattern offset={-1} />
+        <GridPattern id="tab2" offset={-1} />
         <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">Open</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
@@ -205,7 +205,7 @@ function Tab3({ className }: { className?: string }) {
   return (
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
-        <GridPattern offset={-1} />
+        <GridPattern id="tab3" offset={-1} />
         <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">
             Whoever

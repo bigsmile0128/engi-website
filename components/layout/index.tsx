@@ -9,12 +9,7 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <main
-      className={cn(
-        'relative min-h-screen flex flex-col test-bg',
-        styles.main_bg
-      )}
-    >
+    <main className={cn('relative min-h-screen flex flex-col', styles.main_bg)}>
       <div className="absolute w-full h-full -z-40"></div>
       <Navbar />
       <div className="overflow-hidden">{children}</div>

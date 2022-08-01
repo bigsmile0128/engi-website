@@ -13,4 +13,5 @@ export const Primary = Template.bind({});
 Primary.args = {
   size: 60,
   offset: 0,
+  id: 'id',
 };
