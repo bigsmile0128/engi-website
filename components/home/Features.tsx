@@ -67,7 +67,7 @@ export default function Features({ className }: FeaturesProps) {
 
   return (
     <div className={classNames('', className)}>
-      <div className="max-w-3xl mx-auto text-center mb-12">
+      <div className="max-w-3xl mx-auto sm:text-center mb-12">
         <h2 className="font-grifter text-3xl font-extrabold text-slate-100">
           Built by programmers, for programmers
         </h2>

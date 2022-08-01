@@ -21,7 +21,11 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
       <div className="relative">
         <GridPattern className="block sm:hidden" offset={-1} />
         <div className="max-w-page py-12 z-10">
-          <div className="relative flex flex-col items-center px-12 sm:px-0 text-center">
+          <div
+            className={classNames(
+              'relative flex flex-col items-start sm:items-center sm:text-center'
+            )}
+          >
             <h2 className="font-grifter text-3xl lg:text-4xl">
               Global products built by global engineering
             </h2>
@@ -32,7 +36,7 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
           </div>
         </div>
       </div>
-      <div className="w-full max-w-5xl mx-auto mt-24 sm:mt-0 scale-125 sm:scale-100">
+      <div className="w-full max-w-5xl mx-auto mt-8 sm:mt-0 scale-125 sm:scale-100">
         <Image src={globeImg} loading="lazy" alt="global-connections" />
       </div>
     </div>
