@@ -72,6 +72,7 @@ export default function Statistics({ className }: StatisticsProps) {
         id="stats"
         className="hidden sm:block top-0 left-0"
         sizeY={40}
+        sizeX={61}
         offset={-1}
       />
       <GridPattern
