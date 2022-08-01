@@ -21,23 +21,15 @@ const Home: NextPage = () => {
         <title>Engi</title>
       </Head>
       <Hero className="max-w-page" />
-      {isBeta() && (
-        <>
-          <Stats className="mt-24 xl:mt-40" />
-          <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" />
-          <WorldOfEngineers className="max-w-page mt-24 lg:mt-40" />
-          <Features className="max-w-page mt-32 lg:mt-40" />
-        </>
-      )}
+      <Stats className="mt-24 xl:mt-40" />
+      <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" />
+      <WorldOfEngineers className="max-w-page mt-24 lg:mt-40" />
+      <Features className="max-w-page mt-32 lg:mt-40" />
       {/* <FigmaPreview className="max-w-page mt-40 mb-48" /> */}
-      {isBeta() && (
-        <>
-          <AlternatingFeatures className="max-w-page mt-32" />
-          <GlobalConnection className="mt-32" />
-          <WhosUsingEngi className="max-w-page mt-24 sm:mt-32" />
-          <CallToAction className="mt-32" />
-        </>
-      )}
+      <AlternatingFeatures className="max-w-page mt-32" />
+      <GlobalConnection className="mt-32" />
+      <WhosUsingEngi className="max-w-page mt-24 sm:mt-32" />
+      <CallToAction className="mt-32" />
     </div>
   );
 };
