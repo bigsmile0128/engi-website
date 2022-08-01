@@ -73,7 +73,7 @@ export default function Features({ className }: FeaturesProps) {
         </h2>
       </div>
       <div className="relative md:hidden">
-        <div className="embla" ref={emblaRef}>
+        <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {features.map(({ name, description }) => (
               <div

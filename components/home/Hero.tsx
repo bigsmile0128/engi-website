@@ -7,6 +7,7 @@ import HeroBottomSvg from 'public/img/home/hero-bottom.svg';
 import sitePreviewImg from 'public/img/home/site-preview.png';
 import Image from 'next/image';
 import Button from 'components/Button';
+import Link from 'next/link';
 
 interface HeroProps {
   className?: string;
@@ -67,7 +68,13 @@ export default function Hero({ className }: HeroProps) {
             placeholder="blur"
             sizes="50vw"
           />
-          <Button className="w-full mt-8 mb-12 sm:hidden">Get Started</Button>
+          <Link href="/signup">
+            <a>
+              <Button className="w-full mt-8 mb-12 sm:hidden">
+                Get Started
+              </Button>
+            </a>
+          </Link>
         </div>
       </div>
     </div>
