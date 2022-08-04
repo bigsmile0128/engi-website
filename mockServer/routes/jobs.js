@@ -18,7 +18,7 @@ function createJobs(numJobs) {
 
   const jobs = [];
   for (let i = 0; i < numJobs; i++) {
-    const numTests = _.random(5, 25);
+    const numTests = _.random(5, 10);
     jobs.push({
       language: languages[_.random(0, languages.length - 1)],
       title: `${_.startCase(faker.hacker.verb())} the ${faker.hacker.noun()}`,
@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
   });
 
   // artificial delay
-  await sleep(3000);
+  await sleep(2500);
 
   res.json({
     numResults: jobs.length,
@@ -74,12 +74,18 @@ router.get('/', async (req, res) => {
   });
 });
 
+router.get('/current', async (req, res) => {
+  // artificial delay
+  await sleep(2500);
+  res.json(createJobs(10));
+});
+
 router.get('/:id', async (req, res) => {
   const id = req.params.id;
   const job = jobDb.find((job) => job.id === id);
 
   // artificial delay
-  await sleep(1500);
+  await sleep(2500);
 
   res.json(job || jobDb[0] || createJobs(1)[0]);
 });

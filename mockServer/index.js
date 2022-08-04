@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/contact', contact);
-app.use('/jobs', jobs);
 app.use('/contact_us', contact_us);
+app.use('/jobs', jobs);
 
 app.listen(PORT, () => {
   console.log(`Mock server is running on port ${PORT}.`);
