@@ -15,7 +15,7 @@ export default function SocialMedia({ className }: SocialMediaProps) {
     <div
       className={classNames('flex items-center gap-x-8 text-2xl', className)}
     >
-      <Link href="https://discord.gg/XfzX7GPt">
+      <Link href="https://discord.gg/S67BnJWN27">
         <a className="p-2 hover:text-gray-300" target="_blank" rel="noreferrer">
           <SiDiscord />
         </a>
