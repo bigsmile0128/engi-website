@@ -31,14 +31,14 @@ export default function CurrentJobs({ className }: CurrentJobsProps) {
       <div className="flex flex-col gap-y-6">
         {isLoading ? (
           <>
-            <RecommendedJob isSkeleton />
-            <RecommendedJob isSkeleton />
+            <JobItem isSkeleton />
+            <JobItem isSkeleton />
           </>
         ) : data?.length > 0 ? (
           data
             .slice(0, 2)
             .map((job) => (
-              <RecommendedJob
+              <JobItem
                 key={job.id}
                 id={job.id}
                 title={job.title}
@@ -59,7 +59,7 @@ async function fetchCurrentJobs() {
   return response.data;
 }
 
-type RecommendedJobProps = {
+type JobItemProps = {
   className?: string;
   id?: string;
   title?: string;
@@ -68,14 +68,14 @@ type RecommendedJobProps = {
   isSkeleton?: boolean;
 };
 
-function RecommendedJob({
+function JobItem({
   className,
   id,
   title,
   testsPassed,
   numTests,
   isSkeleton,
-}: RecommendedJobProps) {
+}: JobItemProps) {
   return (
     <div className="flex flex-col">
       <Link href={isSkeleton ? '' : `/jobs/${id}`}>

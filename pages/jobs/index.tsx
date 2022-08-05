@@ -9,6 +9,7 @@ import SearchFilterList from '../../components/jobs/SearchFilterList';
 import SearchResultsHeader from '../../components/jobs/SearchResultsHeader';
 import SearchResults from '../../components/jobs/SearchResults';
 import CurrentJobs from 'components/jobs/CurrentJobs';
+import RecommendedJobs from 'components/jobs/RecommendedJobs';
 
 export default function JobDiscovery() {
   const router = useRouter();
@@ -36,13 +37,14 @@ export default function JobDiscovery() {
 
   return (
     <div className="max-w-page flex flex-col mt-12">
-      <div className="md:flex items-start justify-between gap-x-4 md:mb-8">
+      <div className="md:flex items-start justify-between gap-x-4">
         <h1 className="text-white font-grifter text-8xl">Jobs</h1>
         <CurrentJobs className="mt-12 md:mt-0 md:w-1/2 md:max-w-md" />
       </div>
-      <div className="flex mt-8 md:mt-12 gap-x-12 flex-col lg:flex-row">
+      <RecommendedJobs className="mt-12" />
+      <div className="flex mt-12 gap-x-12 flex-col lg:flex-row">
         <SearchFilterList
-          className="shrink-0 mb-12 md:mb-20 flex gap-x-12 lg:block"
+          className="hidden lg:block"
           filterClassName="w-32 md:w-48"
           searchParams={searchParams}
           onChange={setSearchParams}

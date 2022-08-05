@@ -64,7 +64,6 @@ router.get('/', async (req, res) => {
     return true;
   });
 
-  // artificial delay
   await sleep(2500);
 
   res.json({
@@ -75,7 +74,11 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/current', async (req, res) => {
-  // artificial delay
+  await sleep(2500);
+  res.json(createJobs(10));
+});
+
+router.get('/recommended', async (req, res) => {
   await sleep(2500);
   res.json(createJobs(10));
 });
@@ -84,7 +87,6 @@ router.get('/:id', async (req, res) => {
   const id = req.params.id;
   const job = jobDb.find((job) => job.id === id);
 
-  // artificial delay
   await sleep(2500);
 
   res.json(job || jobDb[0] || createJobs(1)[0]);

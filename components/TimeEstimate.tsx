@@ -13,8 +13,8 @@ export default function TimeEstimate({
 }: TimeEstimateProps) {
   return (
     <div className={classNames('flex items-center', className)}>
-      <BiTime className="text-medium text-gray-300" />
-      <span className="block ml-1 text-sm text-secondary">{duration}</span>
+      <BiTime className="text-medium text-white/60 mb-[1px]" />
+      <span className="ml-1 text-sm text-primary">{duration}</span>
     </div>
   );
 }
