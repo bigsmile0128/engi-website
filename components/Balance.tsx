@@ -14,7 +14,7 @@ export default function Balance({ className, value, isLoading }: BalanceProps) {
     typeof value === 'number' ? (value / Math.pow(10, 18)).toFixed(2) : 'N/A';
   return (
     <div className={classNames('flex items-center gap-x-2', className)}>
-      <span className="text-emerald-300 h-4 w-4 flex items-center justify-center">
+      <span className="text-green-primary h-4 w-4 flex items-center justify-center">
         <EngiIcon />
       </span>
       <span

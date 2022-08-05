@@ -12,14 +12,14 @@ interface LanguageDividerProps {
 export default function LanguageDivider({ className }: LanguageDividerProps) {
   return (
     <div className={classNames('', className)}>
-      <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-emerald-300 to-gray-800"></div>
+      <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-primary to-gray-800"></div>
       <div className="w-full h-32 bg-[#232323cc] flex justify-center items-center gap-x-12 sm:gap-x-16">
-        <SiPython className="h-8 w-8 fill-emerald-300" />
-        <SiReact className="h-8 w-8 fill-emerald-300" />
-        <SiRust className="h-8 w-8 fill-emerald-300" />
-        <SiTypescript className="h-8 w-8 fill-emerald-300" />
+        <SiPython className="h-8 w-8 fill-green-primary" />
+        <SiReact className="h-8 w-8 fill-green-primary" />
+        <SiRust className="h-8 w-8 fill-green-primary" />
+        <SiTypescript className="h-8 w-8 fill-green-primary" />
       </div>
-      <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-emerald-300 to-gray-800"></div>
+      <div className="max-w-full h-px mx-auto bg-gradient-to-r from-gray-800 via-green-primary to-gray-800"></div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ export default function PressPage({ className }: PressPageProps) {
       <h1 className="font-grifter text-6xl">Press Page</h1>
       <section className="mb-8">
         <p className="font-grifter text-lg mb-4">
-          Section <span className="text-emerald-300">1</span>
+          Section <span className="text-green-primary">1</span>
         </p>
         <p className="leading-8">
           Engi empowers programmers to flexibly earn money writing code. Work
@@ -33,7 +33,7 @@ export default function PressPage({ className }: PressPageProps) {
       </section>
       <section className="mb-8">
         <p className="font-grifter text-lg mb-4">
-          Section <span className="text-emerald-300">2</span>
+          Section <span className="text-green-primary">2</span>
         </p>
         <p className="leading-8">
           Engi empowers programmers to flexibly earn money writing code. Work
@@ -49,7 +49,7 @@ export default function PressPage({ className }: PressPageProps) {
       </section>
       <section className="mb-8">
         <p className="font-grifter text-lg mb-4">
-          Section <span className="text-emerald-300">3</span>
+          Section <span className="text-green-primary">3</span>
         </p>
         <p className="leading-8">
           Engi empowers programmers to flexibly earn money writing code. Work
@@ -62,7 +62,7 @@ export default function PressPage({ className }: PressPageProps) {
       </section>
       <section className="mb-8">
         <p className="font-grifter text-lg mb-4">
-          Section <span className="text-emerald-300">4</span>
+          Section <span className="text-green-primary">4</span>
         </p>
         <p className="leading-8">
           Engi empowers programmers to flexibly earn money writing code. Work

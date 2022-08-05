@@ -53,7 +53,7 @@ export default function FigmaStoryExample({
             <p>Well done!</p>
             <p>
               It&rsquo;s the
-              <span className="bg-emerald-300 text-black p-0.5 ml-1">
+              <span className="bg-green-primary text-black p-0.5 ml-1">
                 Same Story
               </span>
             </p>
@@ -97,7 +97,7 @@ export default function FigmaStoryExample({
             </span>
           </div>
           <Transition className="w-8 h-8 mb-8">
-            <AiFillCheckCircle className="text-emerald-300" size={32} />
+            <AiFillCheckCircle className="text-green-primary" size={32} />
             <AiFillCloseCircle className="text-red-400" size={32} />
           </Transition>
           <div className="flex flex-col items-center justify-center gap-y-2">

@@ -30,7 +30,7 @@ export default function FigmaCodeBlock({
           className="w-[1px] basis-[1px] z-10 relative"
           addPositionClasses={false}
         >
-          <div className="absolute inset-0 bg-emerald-300" />
+          <div className="absolute inset-0 bg-green-primary" />
           <div className="absolute inset-0 bg-red-400" />
         </Transition>
         <div className="absolute h-full w-[28px] bg-gray-600" />
@@ -52,7 +52,7 @@ export default function FigmaCodeBlock({
                 <span className="text-purple-400">
                   {'  <button className='}
                 </span>
-                <span className="text-emerald-300">{'"btn"'}</span>
+                <span className="text-green-primary">{'"btn"'}</span>
                 <span className="text-purple-400">{'>'}</span>
                 {'{text}'}
                 <span className="text-purple-400">{'</button>'}</span>

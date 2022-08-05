@@ -154,7 +154,7 @@ function Testimonials({ className }: { className?: string }) {
         <button
           className={classNames(
             'h-12 w-12 p-3 bg-black/20',
-            !canScrollPrev() ? 'text-white' : 'text-emerald-300'
+            !canScrollPrev() ? 'text-white' : 'text-green-primary'
           )}
           onClick={scrollPrev}
           disabled={!canScrollPrev()}
@@ -164,7 +164,7 @@ function Testimonials({ className }: { className?: string }) {
         <button
           className={classNames(
             'h-12 w-12 p-3 bg-black/20',
-            !canScrollNext() ? 'text-white' : 'text-emerald-300'
+            !canScrollNext() ? 'text-white' : 'text-green-primary'
           )}
           onClick={scrollNext}
           disabled={!canScrollNext()}
@@ -187,9 +187,9 @@ function User({ className, name, subtitle }: UserProps) {
     <div className={classNames('flex items-center gap-x-4', className)}>
       <Avvvatars size={48} value={name} style="shape" />
       <div className="flex flex-col items-start">
-        <span className="font-bold text-emerald-300">{name}</span>
+        <span className="font-bold text-green-primary">{name}</span>
         <span className="flex items-center gap-x-2">
-          <AiOutlineLink className="inline text-emerald-300" />
+          <AiOutlineLink className="inline text-green-primary" />
           <span className="text-secondary">{subtitle}</span>
         </span>
       </div>

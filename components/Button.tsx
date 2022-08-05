@@ -15,7 +15,7 @@ export default function Button({
         // hover and active states
         disabled
           ? ''
-          : "active:bg-gray-300 before:border-b-2 before:border-emerald-300 before:content-[''] before:absolute before:inset-0 before:bottom-[-1px] before:mx-auto before:w-0 before:ease-in-out before:duration-500 hover:before:w-full",
+          : "active:bg-gray-300 before:border-b-2 before:border-green-primary before:content-[''] before:absolute before:inset-0 before:bottom-[-1px] before:mx-auto before:w-0 before:ease-in-out before:duration-500 hover:before:w-full",
         className
       )}
       disabled={disabled}

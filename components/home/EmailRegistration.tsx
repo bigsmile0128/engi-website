@@ -110,13 +110,14 @@ export default function EmailRegistration({
           className={classNames(
             'shrink-0 flex items-center justify-center w-full xs:w-40 z-10',
             {
-              'bg-emerald-300 border-t-emerald-300': registerMutation.isSuccess,
+              'bg-green-primary border-t-green-primary':
+                registerMutation.isSuccess,
             }
           )}
           disabled={registerMutation.isSuccess || registerMutation.isError}
         >
           {registerMutation.isLoading ? (
-            <AiOutlineLoading className="animate-spin text-lg text-emerald-300" />
+            <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
           ) : registerMutation.isSuccess ? (
             <div className="h-4 text-black">
               <MdCheck size={24} className="-my-1" />
@@ -135,7 +136,7 @@ export default function EmailRegistration({
       )}
       {registerMutation.isSuccess && (
         <p className="text-left text-xs mt-2 flex flex-col gap-y-1">
-          <span className="text-emerald-300">
+          <span className="text-green-primary">
             {"Success! You'll be notified."}
           </span>
           <span>

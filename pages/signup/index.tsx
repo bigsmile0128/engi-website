@@ -198,7 +198,7 @@ export default function Signup({ className }: SignupProps) {
                 {isLoadingWallet ? (
                   <AiOutlineLoading3Quarters className="text-lg animate-spin text-gray-400 mr-1" />
                 ) : isValidWallet ? (
-                  <HiOutlineCheckCircle className="text-2xl text-emerald-300" />
+                  <HiOutlineCheckCircle className="text-2xl text-green-primary" />
                 ) : walletId && !isValidWallet ? (
                   <HiXCircle className="text-2xl text-red-400" />
                 ) : null}

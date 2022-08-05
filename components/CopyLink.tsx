@@ -32,9 +32,9 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
         data-tip="Copy"
       >
         {copied ? (
-          <MdCheck className="text-emerald-300" size={24} />
+          <MdCheck className="text-green-primary" size={24} />
         ) : (
-          <RiFileCopyLine className="hover:text-emerald-300" size={24} />
+          <RiFileCopyLine className="hover:text-green-primary" size={24} />
         )}
       </button>
       <ReactTooltip

@@ -44,7 +44,7 @@ export default function JobCreatorInfo({
       >
         <span className="font-bold mb-4">About job creator</span>
         <div className="flex items-center gap-x-2 mb-4">
-          <MdVerifiedUser className="text-emerald-300" size={24} />
+          <MdVerifiedUser className="text-green-primary" size={24} />
           <span className="text-sm">Payment method verified</span>
         </div>
         <span className="text-sm text-gray-400 mb-1">97 jobs posted</span>

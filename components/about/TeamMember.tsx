@@ -36,7 +36,7 @@ export default function TeamMember({
         <HiUser size={80} />
       </div>
       <div className="flex flex-col p-4 bg-black/20 border border-white/30 border-t-0">
-        <p className="text-emerald-300">{role}</p>
+        <p className="text-green-primary">{role}</p>
         <p className="font-bold border-b border-white/30 pb-2 mb-2">{name}</p>
         <p className="whitespace-nowrap">Previously Building @</p>
         <div className="flex items-center gap-x-4 mt-2">

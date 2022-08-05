@@ -36,11 +36,11 @@ export default function Hire({ className }: HireProps) {
                     className="absolute inset-0 flex items-center"
                     aria-hidden="true"
                   >
-                    <div className="h-0.5 w-full bg-emerald-300" />
+                    <div className="h-0.5 w-full bg-green-primary" />
                   </div>
                   <a
                     href="#"
-                    className="relative w-8 h-8 flex items-center justify-center bg-emerald-300 rounded-full hover:bg-indigo-900"
+                    className="relative w-8 h-8 flex items-center justify-center bg-green-primary rounded-full hover:bg-indigo-900"
                   >
                     <span className="text-black">{stepIdx}</span>
                     <span className="sr-only">{step.name}</span>
@@ -60,7 +60,7 @@ export default function Hire({ className }: HireProps) {
                     aria-current="step"
                   >
                     <span
-                      className="h-2.5 w-2.5 bg-emerald-300 rounded-full"
+                      className="h-2.5 w-2.5 bg-green-primary rounded-full"
                       aria-hidden="true"
                     />
                     <span className="sr-only">{step.name}</span>

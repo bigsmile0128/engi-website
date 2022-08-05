@@ -103,7 +103,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
     >
       <div className="max-w-page mb-24 md:!max-w-2xl">
         <h1 className="font-grifter text-3xl sm:text-5xl text-center !leading-tight">
-          Accelerating the <span className="text-emerald-300">future</span> of
+          Accelerating the <span className="text-green-primary">future</span> of
           software engineering
         </h1>
         <p className="mt-8 text-gray-300 text-center">
@@ -172,7 +172,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
                   />
                 </svg>
               </div>
-              <h3 className="font-bold text-lg text-emerald-300">Empowering</h3>
+              <h3 className="font-bold text-lg text-green-primary">
+                Empowering
+              </h3>
               <p className="w-60 sm:w-40 md:w-48 lg:w-72 text-center text-lg">
                 Learn To Love Growth And Change And You Will Be A Success
               </p>
@@ -192,7 +194,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
                   />
                 </svg>
               </div>
-              <h3 className="font-bold text-lg text-emerald-300">
+              <h3 className="font-bold text-lg text-green-primary">
                 Accelerating
               </h3>
               <p className="w-60 sm:w-40 md:w-48 lg:w-72 text-center text-lg">
@@ -214,7 +216,9 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
                   />
                 </svg>
               </div>
-              <h3 className="font-bold text-lg text-emerald-300">Disrupting</h3>
+              <h3 className="font-bold text-lg text-green-primary">
+                Disrupting
+              </h3>
               <p className="w-60 sm:w-40 md:w-48 lg:w-72 text-center text-lg">
                 Learn To Love Growth And Change And You Will Be A Success
               </p>
@@ -228,7 +232,7 @@ export default function AboutUsPage({ className }: AboutUsPageProps) {
             <span>
               Engi is a gig economy for coders built on the blockchain. No need
               to apply. Write code,{' '}
-              <span className="text-emerald-300">get paid instantly</span>.
+              <span className="text-green-primary">get paid instantly</span>.
             </span>
           }
         />

@@ -21,7 +21,7 @@ const Template = (args) => {
             <h1 className="font-grifter text-3xl -mb-2">Header</h1>
             <button
               type="button"
-              className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+              className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-primary"
               onClick={() => setIsOpen(false)}
             >
               <span className="sr-only">Close</span>

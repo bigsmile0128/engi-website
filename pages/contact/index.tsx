@@ -61,7 +61,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
         <h1 className="font-grifter text-4xl lg:text-5xl">
           Questions about{' '}
           <span className="inline-block relative text-gray-700 px-2">
-            <div className="absolute w-full h-full scale-y-110 inset-0 -mt-1 bg-emerald-300 z-0" />
+            <div className="absolute w-full h-full scale-y-110 inset-0 -mt-1 bg-green-primary z-0" />
             <span className="relative z-10">Engi</span>
           </span>
           ?

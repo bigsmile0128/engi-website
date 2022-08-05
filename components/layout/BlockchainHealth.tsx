@@ -67,7 +67,7 @@ export default function BlockchainHealth({
       )}
       {data?.status === 'ONLINE' && (
         <div className="flex flex-col items-center justify-between">
-          <GrStatusGoodSmall className="mt-[1px] mb-1 text-emerald-300" />
+          <GrStatusGoodSmall className="mt-[1px] mb-1 text-green-primary" />
           <span className="font-medium text-secondary leading-5">online</span>
         </div>
       )}
@@ -96,7 +96,7 @@ export default function BlockchainHealth({
       )}
       {data?.status === 'ONLINE' && (
         <>
-          <GrStatusGoodSmall className="text-sm text-emerald-300" />
+          <GrStatusGoodSmall className="text-sm text-green-primary" />
           <span>
             {showPeerCount && data?.peerCount !== undefined ? (
               <span>

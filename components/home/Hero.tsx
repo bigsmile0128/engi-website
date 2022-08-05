@@ -47,8 +47,8 @@ export default function Hero({ className }: HeroProps) {
               <div className="h-4 w-4 bg-white rounded-full"></div>
               <span className="text-xs sm:text-base">New Jobs</span>
             </div>
-            <div className="flex items-center gap-x-1 sm:gap-x-3 text-emerald-300">
-              <div className="h-4 w-4 bg-emerald-300 rounded-full"></div>
+            <div className="flex items-center gap-x-1 sm:gap-x-3 text-green-primary">
+              <div className="h-4 w-4 bg-green-primary rounded-full"></div>
               <span className="text-xs sm:text-base">Completed Jobs</span>
             </div>
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-orange-500">

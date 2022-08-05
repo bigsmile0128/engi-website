@@ -165,7 +165,7 @@ function Reward({ className, value, isSkeleton }: RewardProps) {
         className
       )}
     >
-      <EngiIcon className="h-4 w-auto text-emerald-300 mb-1" />
+      <EngiIcon className="h-4 w-auto text-green-primary mb-1" />
       <span
         className={classNames(
           'ml-1 font-grifter text-3xl',

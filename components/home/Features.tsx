@@ -80,7 +80,7 @@ export default function Features({ className }: FeaturesProps) {
                 key={name}
                 className="relative grow-0 shrink-0 basis-full flex flex-col items-center text-center px-12"
               >
-                <span className="text-xl text-emerald-300 mb-4">{name}</span>
+                <span className="text-xl text-green-primary mb-4">{name}</span>
                 <span className={classNames('text-md text-white font-medium')}>
                   {description}
                 </span>
@@ -116,13 +116,15 @@ export default function Features({ className }: FeaturesProps) {
               {({ selected }) => (
                 <button
                   className={classNames(
-                    'flex flex-1 flex-col items-center text-center border-b px-12 py-8 focus:outline-none focus:ring-1 ring-emerald-300',
+                    'flex flex-1 flex-col items-center text-center border-b px-12 py-8 focus:outline-none focus:ring-1 ring-green-primary',
                     selected
-                      ? 'border-emerald-300 border-b-2'
+                      ? 'border-green-primary border-b-2'
                       : 'border-gray-400'
                   )}
                 >
-                  <span className="text-xl text-emerald-300 mb-4">{name}</span>
+                  <span className="text-xl text-green-primary mb-4">
+                    {name}
+                  </span>
                   <span
                     className={classNames(
                       'text-md',

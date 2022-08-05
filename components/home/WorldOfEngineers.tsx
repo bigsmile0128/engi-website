@@ -20,7 +20,7 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
         <h2 className="font-grifter text-3xl mb-4 whitespace-nowrap">
           World of{' '}
           <span className="relative text-gray-700">
-            <div className="absolute w-full h-10 inset-0 -top-2 bg-emerald-300 z-0" />
+            <div className="absolute w-full h-10 inset-0 -top-2 bg-green-primary z-0" />
             <span className="relative z-10">Engi</span>
           </span>
           neers

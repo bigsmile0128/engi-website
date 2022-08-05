@@ -84,7 +84,7 @@ function JobItem({
             'flex items-center gap-x-1 mb-5',
             isSkeleton
               ? 'children:skeleton pointer-events-none'
-              : 'hover:text-emerald-300'
+              : 'hover:text-green-primary'
           )}
         >
           <span className={isSkeleton ? 'w-1/3' : ''}>

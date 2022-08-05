@@ -7,7 +7,7 @@ export default function NotFound() {
       <main className="flex-grow flex flex-col justify-center max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16">
           <div className="text-center">
-            <p className="text-sm font-grifter text-emerald-300 uppercase tracking-wide">
+            <p className="text-sm font-grifter text-green-primary uppercase tracking-wide">
               404 error
             </p>
             <h1 className="mt-8 text-4xl font-grifter text-white tracking-tight sm:text-5xl">
@@ -18,7 +18,7 @@ export default function NotFound() {
             </p>
             <div className="mt-6">
               <Link href="/" passHref>
-                <a className="text-base font-medium text-emerald-300 hover:text-emerald-400">
+                <a className="text-base font-medium text-green-primary hover:text-emerald-400">
                   Go back home<span aria-hidden="true"> &rarr;</span>
                 </a>
               </Link>

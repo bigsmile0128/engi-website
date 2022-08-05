@@ -93,7 +93,7 @@ export default function EmailModal({
                 className="font-grifter text-3xl text-white"
               >
                 <span>
-                  Tell us <span className="text-emerald-300">more!</span>
+                  Tell us <span className="text-green-primary">more!</span>
                 </span>
               </Dialog.Title>
               <button
@@ -221,7 +221,7 @@ export default function EmailModal({
           <div className="">
             <Dialog.Title as="h3" className="font-grifter text-3xl text-white">
               <span className="block">{"We'll keep you"}</span>
-              <span className="text-emerald-300">updated</span>
+              <span className="text-green-primary">updated</span>
             </Dialog.Title>
             <p className="mt-6 text-secondary max-w-xs">
               You can also share this amazing journey with your friends.
@@ -247,7 +247,7 @@ export default function EmailModal({
                 as="h3"
                 className="font-grifter text-3xl text-white"
               >
-                <span className="text-emerald-300">Share</span>
+                <span className="text-green-primary">Share</span>
               </Dialog.Title>
               <button
                 className="text-white hover:text-secondary focus:outline-none focus:ring-1 focus:ring-emerald-200"
@@ -262,7 +262,7 @@ export default function EmailModal({
             <div className="flex items-center justify-between mt-12 gap-x-4 xs:gap-x-8  text-xl xs:text-2xl">
               <Link href="https://twitter.com/engi_network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
+                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -270,13 +270,13 @@ export default function EmailModal({
                 </a>
               </Link>
               {/* <Link href="https://twitter.com/engi_network">
-                <a className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary" target="_blank" rel="noreferrer">
+                <a className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary" target="_blank" rel="noreferrer">
                   <SiTiktok />
                 </a>
               </Link> */}
               <Link href="https://linkedin.com/company/engi-network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
+                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -285,7 +285,7 @@ export default function EmailModal({
               </Link>
               <Link href="https://twitter.com/engi_network">
                 <a
-                  className="p-3 xs:p-4 border border-emerald-300 rounded-full hover:text-secondary"
+                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -306,7 +306,7 @@ export function InterestButton({ active, label, value, onClick }) {
       className={classNames(
         'py-3 px-6 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-200 border',
         active
-          ? 'text-gray-800 border-emerald-300 bg-emerald-300 font-medium'
+          ? 'text-gray-800 border-green-primary bg-green-primary font-medium'
           : 'border-gray-500 text-secondary hover:bg-gray-700 active:bg-gray-600'
       )}
       key={value}
@@ -322,7 +322,7 @@ export function LanguageButton({ className = '', active, children, ...props }) {
     <button
       className={classNames(
         'py-3 flex items-center justify-center border border-gray-500 bg-gradient-to-r from-[#ffffff22] via-[#ffffff11]',
-        active ? 'border-emerald-300' : 'hover:border-gray-300'
+        active ? 'border-green-primary' : 'hover:border-gray-300'
       )}
       {...props}
     >

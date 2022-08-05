@@ -24,7 +24,7 @@ export default function BlockQuote({
       {title && <h2 className="mb-16 text-4xl font-grifter">{title}</h2>}
       <div className="flex justify-center gap-x-2">
         <svg
-          className="scale-75 -mt-5 fill-emerald-300 shrink-0"
+          className="scale-75 -mt-5 fill-green-primary shrink-0"
           width="38"
           height="28"
           viewBox="0 0 38 28"
