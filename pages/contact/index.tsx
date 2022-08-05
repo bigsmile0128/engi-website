@@ -170,12 +170,12 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
           />
         </div>
         <div className="flex flex-col gap-y-2">
-          <label htmlFor="subject" className="font-bold text-lg">
+          <label htmlFor="message" className="font-bold text-lg">
             Message
           </label>
           <textarea
-            id="subject"
-            placeholder="Subject"
+            id="message"
+            placeholder="Message"
             className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
             value={formData?.message ?? ''}
             onChange={(e) =>
