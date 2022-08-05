@@ -43,8 +43,8 @@ export default function JobPreview({
     <Link href={`/jobs/${id}`} passHref>
       <a
         className={classNames(
-          'bg-[#00000022] text-gray-200',
-          isSkeleton ? 'pointer-events-none' : 'hover:bg-[#ffffff22]',
+          'bg-black/[.14] text-gray-200',
+          isSkeleton ? 'pointer-events-none' : 'hover:bg-black/40',
           className
         )}
       >
