@@ -1,17 +1,19 @@
 import React from 'react';
 import classNames from 'classnames';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import ReactPaginate from 'react-paginate';
-import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
 import { IoMdRefresh } from '@react-icons/all-files/io/IoMdRefresh';
 
-import JobPreview from './JobPreview';
+import JobPreview from '../JobPreview';
+import { Job } from 'types';
+import JobTable from './JobTable';
+import ReactPaginate from 'react-paginate';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
+import MobileJobTable from './MobileJobTable';
 
 interface SearchResultsProps {
   className?: string;
   isLoading: boolean;
-  results: Record<string, any>[];
-  numResults: number;
+  results: Job[];
   numPages: number;
   isError: boolean;
   refresh: () => void;
@@ -21,7 +23,6 @@ export default function SearchResults({
   className,
   isLoading,
   results,
-  numResults,
   numPages,
   isError,
   refresh,
@@ -30,15 +31,14 @@ export default function SearchResults({
   const setSearchParams = (...args: any) => {};
   // use 1-based pagination instead of 0-based
   const page = Number(searchParams.get('page')) || 1;
-  const ref = React.useRef(null);
 
   return (
     <div
       className={classNames('flex flex-col gap-y-4 scroll-mt-20', className)}
-      ref={ref}
     >
       {isLoading && (
         <>
+          {/* TODO: update skeleton to match job table */}
           {Array.from({ length: 10 }).map((_, i) => (
             <JobPreview key={i} isSkeleton />
           ))}
@@ -58,9 +58,12 @@ export default function SearchResults({
       )}
       {!isLoading && !isError && (
         <>
-          {results.map((job) => (
-            <JobPreview key={job.id} {...job} isSkeleton={isLoading} />
-          ))}
+          <JobTable
+            className="hidden sm:block"
+            data={results}
+            numPages={numPages}
+          />
+          <MobileJobTable className="sm:hidden" data={results} />
           <ReactPaginate
             pageCount={numPages}
             previousLabel={
@@ -77,11 +80,6 @@ export default function SearchResults({
             }
             breakLabel={<AiOutlineEllipsis className="h-5 w-5 text-gray-300" />}
             onPageChange={(e) => {
-              // scroll to top of results on pagination
-              ref.current?.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-              });
               const newSearchParams = Object.fromEntries(searchParams);
               if (e.selected === 0) {
                 delete newSearchParams.page;
@@ -91,7 +89,7 @@ export default function SearchResults({
                 page: (e.selected + 1).toString(),
               });
             }}
-            className="flex items-center self-center mt-2"
+            className="flex items-center self-center mt-8 pb-8"
             pageClassName=""
             breakClassName="flex items-center justify-center w-8"
             pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
