@@ -47,46 +47,44 @@ export default function RecommendedJobs({ className }: RecommendedJobsProps) {
               leaveTo="transform scale-95 opacity-0"
             >
               <Disclosure.Panel>
-                <div className="overflow-auto">
-                  {isLoading ? (
-                    <div className="flex items-center gap-x-4 md:gap-x-0 md:justify-between">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <JobCard
-                          key={i}
-                          className={classNames(
-                            'shrink-0 w-[210px] h-[215px]',
-                            // only display enough cards to fit width on desktop, otherwise scroll on mobile
-                            i === 3 ? 'md:hidden lg:flex' : '',
-                            i === 4 ? 'md:hidden xl:flex' : ''
-                          )}
-                          isSkeleton
-                        />
-                      ))}
-                    </div>
-                  ) : data?.length > 0 ? (
-                    <div
-                      className={classNames(
-                        'flex items-center gap-x-4 md:gap-x-0 md:justify-between'
-                      )}
-                    >
-                      {data.map((job, i) => (
-                        <JobCard
-                          key={job.id}
-                          className={classNames(
-                            'shrink-0 w-[210px] h-[215px]',
-                            // only display enough cards to fit width on desktop, otherwise scroll on mobile
-                            i === 3 ? 'md:hidden lg:flex' : '',
-                            i === 4 ? 'md:hidden xl:flex' : '',
-                            i >= 5 ? 'md:hidden' : ''
-                          )}
-                          {...job}
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-secondary">No current jobs.</p>
-                  )}
-                </div>
+                {isLoading ? (
+                  <div className="flex items-center gap-x-4 md:justify-between">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <JobCard
+                        key={i}
+                        className={classNames(
+                          'shrink-0 flex-1 h-[215px]',
+                          // only display enough cards to fit view
+                          i === 1 ? 'hidden sm:flex' : '',
+                          i === 2 ? 'hidden md:flex' : '',
+                          i === 3 ? 'hidden lg:flex' : '',
+                          i === 4 ? 'hidden xl:flex' : ''
+                        )}
+                        isSkeleton
+                      />
+                    ))}
+                  </div>
+                ) : data?.length > 0 ? (
+                  <div className="flex items-center gap-x-4 md:justify-between">
+                    {data.map((job, i) => (
+                      <JobCard
+                        key={job.id}
+                        className={classNames(
+                          'shrink-0 flex-1 h-[215px]',
+                          // only display enough cards to fit view
+                          i === 1 ? 'hidden sm:flex' : '',
+                          i === 2 ? 'hidden md:flex' : '',
+                          i === 3 ? 'hidden lg:flex' : '',
+                          i === 4 ? 'hidden xl:flex' : '',
+                          i >= 5 ? 'hidden' : ''
+                        )}
+                        {...job}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-secondary">No current jobs.</p>
+                )}
               </Disclosure.Panel>
             </Transition>
           </>

@@ -51,14 +51,13 @@ export default function JobDiscovery() {
         />
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader
-            className="shrink-0 mb-6"
+            className="shrink-0 mb-8 md:mb-6 mt-4 md:mt-0"
             numResults={data?.numResults}
             isLoading={isLoading}
           />
           <SearchResults
             isLoading={isLoading}
             results={data?.results ?? []}
-            numResults={data?.numResults ?? 0}
             numPages={data?.numPages ?? 0}
             isError={isError}
             refresh={refetch}

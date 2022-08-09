@@ -16,7 +16,7 @@ import { useRouter } from 'next/router';
 
 type JobTableProps = {
   className?: string;
-  data?: any[];
+  data?: Job[];
   numPages?: number;
   isLoading?: boolean;
 };
@@ -84,8 +84,24 @@ export default function JobTable({
     [columnHelper, isLoading]
   );
 
+  const _data = useMemo<Job[]>(() => {
+    if (isLoading) {
+      return Array.from({ length: 10 }).map((_, i) => ({
+        id: i.toString(),
+        language: 'Python',
+        title: 'Placeholder',
+        numTests: 10,
+        testsPassed: 0,
+        timeEstimate: 10,
+        reward: 100,
+        numContributors: 10,
+      }));
+    }
+    return data ?? [];
+  }, [data, isLoading]);
+
   const table = useReactTable({
-    data,
+    data: _data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

@@ -21,13 +21,13 @@ export default function Activity({
     <div className={classNames('flex items-end gap-x-4', className)}>
       <div
         className={classNames(
-          'flex items-center -mb-1',
+          'flex items-center',
           isSkeleton ? 'children:skeleton' : ''
         )}
       >
         <UserIcon className="h-4 w-auto text-white/60" />
         <span className="font-bold md:w-6 ml-1">{numContributors}</span>
-        <span className="block md:hidden text-sm text-[#C2C2C2] ml-1">{`(${testsPassed}/${numTests})`}</span>
+        <span className="block md:hidden text-sm text-[#C2C2C2] ml-1 self-end mb-[2px]">{`(${testsPassed}/${numTests})`}</span>
       </div>
       <div className="hidden md:block w-20 xl:w-32">
         <div className="flex flex-col items-center w-full">
@@ -39,7 +39,7 @@ export default function Activity({
           >
             <span>
               {!isSkeleton && testsPassed && numTests
-                ? `${testsPassed} / ${numTests}`
+                ? `${testsPassed} / ${numTests ?? 1}`
                 : ''}
               {isSkeleton && 'tests'}
             </span>

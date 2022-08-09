@@ -37,13 +37,13 @@ export default function Payout({ className, reward, isSkeleton }: PayoutProps) {
           )}
         >
           <span className="font-bold text-orange-primary text-sm">+</span>
-          <span className="font-bold text-sm text-[#C2C2C2]">50</span>
+          <span className="font-bold text-sm text-[#C2C2C2]">e50</span>
         </div>
       </div>
       <div
         className={classNames(
           'hidden xl:block h-12 w-12 ml-auto',
-          isSkeleton ? 'children:skeleton p-1.5' : ''
+          isSkeleton ? 'children:skeleton' : ''
         )}
       >
         <PieChart width={48} height={48}>

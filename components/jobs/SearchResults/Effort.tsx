@@ -16,13 +16,10 @@ export default function Effort({
   return (
     <div className={classNames('flex items-end gap-x-2', className)}>
       <TimeEstimate
-        className={classNames(
-          'w-20 -mb-1',
-          isSkeleton ? 'children:skeleton' : ''
-        )}
+        className={classNames('w-20', isSkeleton ? 'children:skeleton' : '')}
         duration={`${timeEstimate} hours`}
       />
-      <div className="hidden md:block relative h-[20px] w-[40px] overflow-hidden">
+      <div className="hidden xl:block relative h-[20px] w-[40px] overflow-hidden mb-1">
         <div
           className={classNames(
             'absolute h-[40px] w-[40px] left-0 right-0 top-0 rounded-full',

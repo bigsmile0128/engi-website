@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { IoMdRefresh } from '@react-icons/all-files/io/IoMdRefresh';
 
-import JobPreview from '../JobPreview';
 import { Job } from 'types';
 import JobTable from './JobTable';
 import ReactPaginate from 'react-paginate';
@@ -38,10 +37,8 @@ export default function SearchResults({
     >
       {isLoading && (
         <>
-          {/* TODO: update skeleton to match job table */}
-          {Array.from({ length: 10 }).map((_, i) => (
-            <JobPreview key={i} isSkeleton />
-          ))}
+          <JobTable className="hidden sm:block" isLoading />
+          <MobileJobTable className="sm:hidden" isLoading />
         </>
       )}
       {isError && (

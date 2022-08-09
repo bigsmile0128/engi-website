@@ -6,33 +6,43 @@ type JobInfoProps = {
   className?: string;
   title?: string;
   isSkeleton?: boolean;
+  titleClassName?: string;
+  iconClassName?: string;
 };
 
 export default function JobInfo({
   className,
   title,
   isSkeleton,
+  titleClassName,
+  iconClassName,
 }: JobInfoProps) {
   return (
-    <div className={classNames('', className)}>
-      <div
-        className={classNames('mb-1', isSkeleton ? `self-start skeleton` : '')}
-      >
+    <div
+      className={classNames(
+        'flex flex-col gap-y-1',
+        isSkeleton ? 'children:skeleton' : '',
+        className
+      )}
+    >
+      <div>
         <SiPython
           className={classNames(
             'h-7 w-7 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
             {
               invisible: isSkeleton,
-            }
+            },
+            iconClassName
           )}
         />
       </div>
       <span
-        className={classNames('font-bond text-gray-200 text-sm w-48 truncate')}
+        className={classNames(
+          'font-bold text-gray-200 w-48 truncate',
+          titleClassName
+        )}
       >
-        <div className={classNames('truncate', isSkeleton ? 'skeleton' : '')}>
-          <span>{title ?? 'N/A'}</span>
-        </div>
+        {title ?? 'N/A'}
       </span>
     </div>
   );
