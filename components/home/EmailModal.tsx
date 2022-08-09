@@ -228,7 +228,11 @@ export default function EmailModal({
             </p>
             <EnvelopeSvg className="h-40 w-40 mx-auto my-8" />
           </div>
-          <Button className="w-full" onClick={() => setPage(Page.SHARE)}>
+          <Button
+            className="w-full"
+            variant="primary"
+            onClick={() => setPage(Page.SHARE)}
+          >
             Share
           </Button>
           <button

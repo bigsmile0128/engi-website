@@ -14,7 +14,9 @@ const Template = (args) => {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>Open Modal</Button>
+      <Button variant="primary" onClick={() => setIsOpen(true)}>
+        Open Modal
+      </Button>
       <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
         <div className="text-white">
           <div className="flex items-center justify-between">

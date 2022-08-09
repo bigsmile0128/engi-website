@@ -168,7 +168,9 @@ function Tab1({ className }: { className?: string }) {
           <p className="text-lg text-secondary leading-normal">
             A transparent, performant, and secure marketplace for coding work.
           </p>
-          <Button className="mt-8">Coming Soon</Button>
+          <Button variant="primary" className="mt-8">
+            Coming Soon
+          </Button>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
@@ -193,7 +195,9 @@ function Tab2({ className }: { className?: string }) {
             Participants in the Engi Network own their destiny and the future of
             technical work.
           </p>
-          <Button className="mt-8">Coming Soon</Button>
+          <Button variant="primary" className="mt-8">
+            Coming Soon
+          </Button>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
@@ -222,7 +226,9 @@ function Tab3({ className }: { className?: string }) {
             Anyone can start coding on Engi right away. No interviews, no
             commutes.
           </p>
-          <Button className="mt-8">Coming Soon</Button>
+          <Button variant="primary" className="mt-8">
+            Coming Soon
+          </Button>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border children:!h-full">

@@ -45,7 +45,9 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           No need to apply. Get paid instantly regardless of your time zone or
           language.
         </p>
-        <Button className="mt-12">Coming Soon</Button>
+        <Button variant="primary" className="mt-12">
+          Coming Soon
+        </Button>
       </div>
       <div className="relative flex-1 flex flex-col justify-between sm:items-start border border-gray-400 bg-gray-800/30 px-8 pt-12 pb-8">
         <div className="absolute hidden sm:block right-0 bottom-0 opacity-30">
@@ -68,7 +70,9 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         <p className="text-secondary text-lg sm:pr-16 mt-4">
           No sourcing. No recruiting. Find worldwide talent instantly.
         </p>
-        <Button className="mt-12">Coming Soon</Button>
+        <Button variant="primary" className="mt-12">
+          Coming Soon
+        </Button>
       </div>
     </div>
   );

@@ -86,7 +86,11 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             {/* specific units to line up button precisely with grid on XL */}
             <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
               <a>
-                <Button className="mt-8 xl:mt-[3.2rem]" variants={variants}>
+                <Button
+                  variant="primary"
+                  className="mt-8 xl:mt-[3.2rem]"
+                  variants={variants}
+                >
                   Learn More
                 </Button>
               </a>

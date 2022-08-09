@@ -29,16 +29,16 @@ export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
         </button>
       </div>
       <div className="mt-8 flex items-center justify-between">
-        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:text-gray-200 active:text-gray-300">
+        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:border-green-primary">
           <SiTwitter className="text-xl sm:text-3xl" />
         </button>
-        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:text-gray-200 active:text-gray-300">
+        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:border-green-primary">
           <SiInstagram className="text-xl sm:text-3xl" />
         </button>
-        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:text-gray-200 active:text-gray-300">
+        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:border-green-primary">
           <SiDiscord className="text-xl sm:text-3xl" />
         </button>
-        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:text-gray-200 active:text-gray-300">
+        <button className="border border-gray-500 rounded-full p-3 sm:p-4 hover:border-green-primary">
           <SiTiktok className="text-xl sm:text-3xl" />
         </button>
       </div>

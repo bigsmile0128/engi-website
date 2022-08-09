@@ -107,6 +107,7 @@ export default function EmailRegistration({
         </div>
         <Button
           type="submit"
+          variant="primary"
           className={classNames(
             'shrink-0 flex items-center justify-center w-full xs:w-40 z-10',
             {

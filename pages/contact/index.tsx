@@ -183,7 +183,9 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             }
           />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );

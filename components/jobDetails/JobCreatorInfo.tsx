@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { MdVerifiedUser } from '@react-icons/all-files/md/MdVerifiedUser';
 import Image from 'next/image';
 
 import avatarImg from './avatar.png';
-import CopyLink from '../CopyLink';
+import Button from 'components/Button';
+import ShareModal from './ShareModal';
 
 interface JobCreatorInfoProps {
   className?: string;
@@ -15,8 +16,11 @@ export default function JobCreatorInfo({
   className,
   isLoading = false,
 }: JobCreatorInfoProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
-    <div className={classNames('p-6 flex flex-col bg-[#00000022]', className)}>
+    <div className={classNames('p-6 flex flex-col', className)}>
+      <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
       <button className="p-4 text-black mb-8 font-bold bg-gray-300 hover:bg-gray-200 active:bg-gray-100 outline-none focus:ring-4">
         Get Started
       </button>
@@ -53,10 +57,7 @@ export default function JobCreatorInfo({
         </span>
       </div>
       <div className="my-6 w-full border-t border-gray-400 opacity-50" />
-      <span className="font-bold mb-2">Job Link</span>
-      <CopyLink
-        value={typeof window !== 'undefined' ? window.location.href : ''}
-      />
+      <Button onClick={() => setModalOpen(true)}>Share</Button>
     </div>
   );
 }
