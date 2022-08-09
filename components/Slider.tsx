@@ -19,10 +19,10 @@ export default function Slider(props) {
             {...props}
             className={classNames(
               props.className,
-              'h-3 w-3 bg-green-400 rounded-full relative flex justify-center items-center'
+              'h-3 w-3 bg-green-primary rounded-full relative flex justify-center items-center'
             )}
           >
-            <span className="-mt-10 text-green-400 text-xs">
+            <span className="-mt-10 text-green-primary text-xs">
               {state.valueNow}
             </span>
           </div>
@@ -33,7 +33,7 @@ export default function Slider(props) {
           <div
             {...props}
             className={classNames(props.className, 'h-0.5 top-[5px]', {
-              'bg-green-400': props.key === '-1',
+              'bg-green-primary': props.key === '-1',
               'bg-[#FFFFFF22]': props.key === '-0' || props.key === '-2',
             })}
           />
