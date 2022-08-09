@@ -43,7 +43,7 @@ export default function Navbar({ className }: NavbarProps) {
           {/* non-mobile nav */}
           <Popover.Group
             as="nav"
-            className="flex-1 hidden md:flex gap-x-8 ml-8 md:gap-x-12 lg:gap-x-16 lg:ml-12"
+            className="flex-1 hidden md:flex gap-x-8 ml-8 lg:gap-x-16 lg:ml-12"
           >
             <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
               <a className="text-base font-medium text-gray-300 hover:text-white">
@@ -76,7 +76,7 @@ export default function Navbar({ className }: NavbarProps) {
             )}
             {isDev() && <></>}
           </Popover.Group>
-          <BlockchainHealth className="md:hidden ml-auto !gap-x-6" isStacked />
+          <BlockchainHealth className="lg:hidden ml-auto !gap-x-6" isStacked />
           {user ? (
             <UserInfo
               className="hidden md:flex"
