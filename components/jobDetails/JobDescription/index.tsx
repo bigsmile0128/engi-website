@@ -4,6 +4,7 @@ import { Job } from 'types';
 import Tag from 'components/Tag';
 import dayjs from 'dayjs';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
+import TextSkeleton from 'components/TextSkeleton';
 
 type JobDescriptionProps = {
   className?: string;
@@ -21,13 +22,38 @@ export default function JobDescription({
       <p className={classNames('', isLoading ? 'skeleton' : 'text-secondary')}>
         {`Posted ${dayjs(job?.created).fromNow()}`}
       </p>
-      <h2 className="mt-8 font-grifter text-xl">Languages required</h2>
-      <p className="mt-4 flex-flex-wrap gap-4">
+      <h2
+        className={classNames(
+          'mt-8 font-grifter text-xl',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Languages required
+      </h2>
+      <p
+        className={classNames(
+          'mt-4 flex-flex-wrap gap-4',
+          isLoading ? 'children:skeleton children:rounded-none' : ''
+        )}
+      >
         <Tag>
-          <SiPython className="text-orange-primary mr-2" /> Python
+          <SiPython className="text-orange-primary mr-2" /> <span>Python</span>
         </Tag>
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
+      <h2
+        className={classNames(
+          'mt-8 font-grifter text-xl',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Job Description
+      </h2>
+      {isLoading ? (
+        <TextSkeleton className="mt-4 gap-y-2" />
+      ) : (
+        <p className="mt-4 text-secondary leading-7">{job?.description}</p>
+      )}
     </div>
   );
 }
