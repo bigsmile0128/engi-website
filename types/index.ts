@@ -7,4 +7,6 @@ export type Job = {
   reward?: number;
   numContributors?: number;
   id?: string;
+  description?: string;
+  created?: string;
 };
