@@ -5,6 +5,7 @@ import Tag from 'components/Tag';
 import dayjs from 'dayjs';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
 import TextSkeleton from 'components/TextSkeleton';
+import Payout from './Payout';
 
 type JobDescriptionProps = {
   className?: string;
@@ -54,6 +55,7 @@ export default function JobDescription({
       ) : (
         <p className="mt-4 text-secondary leading-7">{job?.description}</p>
       )}
+      <Payout className="mt-8" />
     </div>
   );
 }

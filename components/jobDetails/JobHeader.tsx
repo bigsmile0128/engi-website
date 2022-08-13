@@ -33,9 +33,7 @@ export default function JobHeader({
             isLoading ? `skeleton mx-2` : ''
           )}
         >
-          <span className="whitespace-nowrap -mb-2 block">
-            {job?.title ?? 'Placeholder'}
-          </span>
+          <span className="-mb-2 block">{job?.title ?? 'Placeholder'}</span>
         </h1>
         <button className="" onClick={() => setModalOpen(true)}>
           <IoMdShareAlt className="h-6 w-6" />
