@@ -1,7 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
 import Statistic from 'components/Statistic';
-import { RiGroupFill, RiLineChartFill } from 'react-icons/ri';
+import {
+  RiCheckboxCircleLine,
+  RiGroupFill,
+  RiLineChartFill,
+} from 'react-icons/ri';
 import ProgressBar from 'components/ProgressBar';
 
 type ActivityStatsProps = {
@@ -44,7 +48,7 @@ export default function ActivityStats({
         />
         <Statistic
           className="col-span-1"
-          icon={<RiLineChartFill className="text-green-primary h-5 w-5" />}
+          icon={<RiCheckboxCircleLine className="text-green-primary h-5 w-5" />}
           value="200"
           title="Total Submissions"
           isLoading={isLoading}
