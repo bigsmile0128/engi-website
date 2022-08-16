@@ -14,15 +14,15 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
   const [copied, setCopied] = useState(false);
 
   return (
-    <div className={classNames('flex border border-gray-400', className)}>
+    <div className={classNames('flex border border-white/40', className)}>
       <input
         type="text"
         disabled
         value={value}
-        className="flex-1 p-3 pr-0 bg-transparent text-white text-sm truncate"
+        className="flex-1 p-3 pr-0 bg-transparent text-secondary text-sm truncate"
       />
       <button
-        className="p-2 bg-transparent focus:ring-2 outline-none"
+        className="p-2 bg-transparent focus:ring-2 outline-none text-green-primary hover:text-green-primary/80"
         onClick={() => {
           copy(value);
           setCopied(true);
@@ -34,7 +34,7 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
         {copied ? (
           <MdCheck className="text-green-primary" size={24} />
         ) : (
-          <RiFileCopyLine className="hover:text-green-primary" size={24} />
+          <RiFileCopyLine className="" size={24} />
         )}
       </button>
       <ReactTooltip

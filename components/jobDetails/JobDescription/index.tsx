@@ -7,6 +7,7 @@ import { SiPython } from '@react-icons/all-files/si/SiPython';
 import TextSkeleton from 'components/TextSkeleton';
 import Payout from './Payout';
 import Effort from './Effort';
+import CopyLink from 'components/CopyLink';
 
 type JobDescriptionProps = {
   className?: string;
@@ -58,6 +59,20 @@ export default function JobDescription({
       )}
       <Payout className="mt-8" isLoading={isLoading} />
       <Effort className="mt-8" isLoading={isLoading} />
+      <div className="mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6">
+        <div className="flex flex-col gap-y-2">
+          <h2 className="font-grifter text-xl">Job Link</h2>
+          <CopyLink
+            value={typeof window !== 'undefined' ? window.location.href : ''}
+          />
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <h2 className="font-grifter text-xl">Repo Link</h2>
+          <CopyLink
+            value={typeof window !== 'undefined' ? window.location.href : ''}
+          />
+        </div>
+      </div>
     </div>
   );
 }
