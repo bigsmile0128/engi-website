@@ -31,7 +31,7 @@ export default function JobDescription({
           isLoading ? 'skeleton' : ''
         )}
       >
-        Languages required
+        Language required
       </h2>
       <p
         className={classNames(
