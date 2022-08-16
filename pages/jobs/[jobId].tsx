@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Link from 'next/link';
 import { useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { HiOutlineChevronLeft } from '@react-icons/all-files/hi/HiOutlineChevronLeft';
-import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import * as Sentry from '@sentry/react';
 
-import PaymentInfo from 'components/jobDetails/PaymentInfo';
-import JobInfo from 'components/jobDetails/JobInfo';
-
-import Tag from 'components/Tag';
-import JobCreatorInfo from 'components/jobDetails/JobCreatorInfo';
 import { useRouter } from 'next/router';
 import { Job } from 'types';
 import JobHeader from 'components/jobDetails/JobHeader';
 import JobDescription from 'components/jobDetails/JobDescription';
+import JobActivity from 'components/jobDetails/JobActivity';
 
 dayjs.extend(relativeTime);
 
@@ -46,15 +39,12 @@ export default function JobDetails(props) {
       </p>
     </div>
   ) : (
-    <div className="max-w-7xl mx-auto p-8 sm:p-16 md:p-24 flex flex-col lg:flex-row items-start gap-x-12">
+    <div className="max-w-page mt-12 mb-24 flex flex-col lg:flex-row gap-16">
       <div className="flex flex-1 flex-col">
         <JobHeader isLoading={isLoading} job={data} />
         <JobDescription className="mt-8" isLoading={isLoading} job={data} />
       </div>
-      <JobCreatorInfo
-        className="shrink-0 mt-6 lg:mt-0 w-full md:w-96 lg:w-auto lg:basis-80"
-        isLoading={isLoading}
-      />
+      <JobActivity isLoading={isLoading} />
     </div>
   );
 }
