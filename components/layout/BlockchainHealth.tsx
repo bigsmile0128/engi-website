@@ -5,6 +5,7 @@ import { request, gql } from 'graphql-request';
 import pluralize from 'pluralize';
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
+import * as Sentry from '@sentry/react';
 
 type BlockchainHealthProps = {
   className?: string;
@@ -38,6 +39,7 @@ export default function BlockchainHealth({
     },
     {
       retry: false,
+      onError: Sentry.captureException,
     }
   );
 
