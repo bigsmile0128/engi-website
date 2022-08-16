@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { RiFileZipFill, RiTimeFill } from 'react-icons/ri';
-import { Stat } from './Payout';
+import Statistic from 'components/Statistic';
 
 type EffortProps = {
   className?: string;
@@ -18,16 +18,16 @@ export default function Effort({
     <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
       <h2 className="font-grifter text-xl">Effort</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
-        <Stat
+        <Statistic
           icon={<RiFileZipFill className="text-orange-primary h-5 w-5" />}
-          name={<span className="font-bold text-xl ml-0.5">82gb</span>}
-          subtitle={<span>Job size</span>}
+          value="82gb"
+          title="Job size"
           isLoading={isLoading}
         />
-        <Stat
+        <Statistic
           icon={<RiTimeFill className="text-green-primary h-5 w-5" />}
-          name={<span className="font-bold text-xl ml-0.5">2 hours</span>}
-          subtitle={<span>Time</span>}
+          value="2 hours"
+          title="Time"
           isLoading={isLoading}
         />
         <div

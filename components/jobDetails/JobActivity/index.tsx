@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Button from 'components/Button';
 import ShareModal from '../ShareModal';
 import JobCreator from './JobCreator';
+import ActivityStats from './ActivityStats';
 
 interface JobActivityProps {
   className?: string;
@@ -21,11 +22,14 @@ export default function JobActivity({
       <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
       <Button variant="primary">Get Started</Button>
       <JobCreator
-        className="mx-auto mt-8 lg:px-10 w-full lg:w-96"
+        className="mx-auto mt-8 sm:px-6 w-full"
         isLoading={isLoading}
       />
       <div className="my-12 w-full border-t border-gray-400 opacity-50" />
-      <Button onClick={() => setModalOpen(true)}>Share</Button>
+      <ActivityStats className="sm:px-6" isLoading={isLoading} />
+      <Button className="mt-16" onClick={() => setModalOpen(true)}>
+        Share
+      </Button>
     </div>
   );
 }

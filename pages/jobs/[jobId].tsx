@@ -44,7 +44,10 @@ export default function JobDetails(props) {
         <JobHeader isLoading={isLoading} job={data} />
         <JobDescription className="mt-8" isLoading={isLoading} job={data} />
       </div>
-      <JobActivity isLoading={isLoading} />
+      <JobActivity
+        className="lg:basis-[400px] xl:basis-[430px]"
+        isLoading={isLoading}
+      />
     </div>
   );
 }

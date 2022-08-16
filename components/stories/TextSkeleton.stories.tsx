@@ -12,4 +12,5 @@ const Template = (args) => <TextSkeleton {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
   numLines: 4,
+  className: 'gap-y-1',
 };
