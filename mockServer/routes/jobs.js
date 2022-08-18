@@ -3,6 +3,7 @@ const _ = require('lodash');
 const { faker } = require('@faker-js/faker');
 const { v4: uuid } = require('uuid');
 const dayjs = require('dayjs');
+const { mockDescription } = require('../mockData');
 
 const router = express.Router();
 
@@ -22,9 +23,10 @@ function createJobs(numJobs) {
     jobs.push({
       language: languages[_.random(0, languages.length - 1)],
       title: `${_.startCase(faker.hacker.verb())} the ${faker.hacker.noun()}`,
-      description: Array.from({ length: 5 })
-        .map(() => faker.hacker.phrase())
-        .join(' '),
+      description: mockDescription,
+      // description: Array.from({ length: 5 })
+      //   .map(() => faker.hacker.phrase())
+      //   .join(' '),
       numTests,
       testsPassed: _.random(1, numTests),
       timeEstimate: _.random(1, 20),

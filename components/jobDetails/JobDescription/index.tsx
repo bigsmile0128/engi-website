@@ -8,6 +8,7 @@ import TextSkeleton from 'components/TextSkeleton';
 import Payout from './Payout';
 import Effort from './Effort';
 import CopyLink from 'components/CopyLink';
+import Markdown from 'components/Markdown';
 
 type JobDescriptionProps = {
   className?: string;
@@ -55,7 +56,9 @@ export default function JobDescription({
       {isLoading ? (
         <TextSkeleton className="mt-4 gap-y-2" />
       ) : (
-        <p className="mt-4 text-secondary leading-7">{job?.description}</p>
+        <>
+          <Markdown className="">{job?.description}</Markdown>
+        </>
       )}
       <Payout className="mt-8" isLoading={isLoading} />
       <Effort className="mt-8" isLoading={isLoading} />
