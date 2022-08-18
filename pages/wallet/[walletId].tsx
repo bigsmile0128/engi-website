@@ -1,6 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
+import Button from 'components/Button';
+import { RiExchangeLine } from 'react-icons/ri';
+import EngiIcon from 'components/icons/EngiIcon';
 import CopyButton from 'components/CopyButton';
 import GridPattern from 'components/GridPattern';
 
@@ -34,6 +37,14 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
                 />
               </div>
             </div>
+            <Button className="flex justify-center items-center whitespace-nowrap">
+              <RiExchangeLine className="h-5 w-5" />
+              <span className="ml-3">
+                Move{' '}
+                <EngiIcon className="inline-block h-2.5 w-2.5 text-green-primary" />
+                ngi
+              </span>
+            </Button>
           </div>
         </div>
       </div>

@@ -11,6 +11,8 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
+import MenuItemLink from 'components/MenuItemLink';
 
 type UserInfoProps = {
   className?: string;
@@ -53,6 +55,14 @@ export default function UserInfo({
             leaveTo="transform scale-95 opacity-0"
           >
             <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151ee] whitespace-nowrap flex flex-col">
+              <Menu.Item>
+                <MenuItemLink
+                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  href={`/wallet/${user?.walletId}`}
+                >
+                  View Wallet
+                </MenuItemLink>
+              </Menu.Item>
               <Menu.Item>
                 <button
                   className="px-6 py-1 text-gray-300 hover:text-white"
