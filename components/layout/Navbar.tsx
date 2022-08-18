@@ -11,7 +11,6 @@ import MenuSvg from 'public/img/home/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
 import UserContext from 'utils/contexts/userContext';
 import UserInfo from 'components/navbar/UserInfo';
-import useBreakpoint from 'utils/hooks/useBreakpoint';
 
 interface NavbarProps {
   className?: string;
@@ -19,17 +18,7 @@ interface NavbarProps {
 
 export default function Navbar({ className }: NavbarProps) {
   const { user, setUser } = useContext(UserContext);
-  const { sm, md, lg, xl } = useBreakpoint();
   const [isOpen, setIsOpen] = useState(false);
-
-  const blockchainHealthPropsTablet = useMemo(() => {
-    const blockchainHealthProps: any = {};
-    if (md && !lg) {
-      blockchainHealthProps.showPeerCount = false;
-    }
-
-    return blockchainHealthProps;
-  }, [md, lg]);
 
   return (
     <header>
@@ -76,17 +65,16 @@ export default function Navbar({ className }: NavbarProps) {
             )}
             {isDev() && <></>}
           </Popover.Group>
-          <BlockchainHealth className="lg:hidden ml-auto !gap-x-6" isStacked />
+          <BlockchainHealth className="md:hidden ml-auto !gap-x-6" isStacked />
           {user ? (
             <UserInfo
               className="hidden md:flex"
               user={user}
               setUser={setUser}
-              blockchainHealthProps={blockchainHealthPropsTablet}
             />
           ) : (
             <>
-              {lg && <BlockchainHealth className="hidden lg:flex" isStacked />}
+              <BlockchainHealth className="hidden lg:flex" isStacked />
               <Link href="/signup">
                 <a>
                   <button
