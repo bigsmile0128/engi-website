@@ -6,6 +6,7 @@ import { RiExchangeLine } from 'react-icons/ri';
 import EngiIcon from 'components/icons/EngiIcon';
 import CopyButton from 'components/CopyButton';
 import GridPattern from 'components/GridPattern';
+import Balance from 'components/wallet/Balance';
 
 type WalletDetailsProps = {
   className?: string;
@@ -46,6 +47,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
               </span>
             </Button>
           </div>
+          <Balance className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
         </div>
       </div>
     </div>
