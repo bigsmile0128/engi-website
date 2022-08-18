@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { monokai } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import remarkGfm from 'remark-gfm';
 
 type MarkdownProps = {
