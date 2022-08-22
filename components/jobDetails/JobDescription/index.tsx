@@ -45,14 +45,6 @@ export default function JobDescription({
         </Tag>
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
-      <h2
-        className={classNames(
-          'mt-8 font-grifter text-xl',
-          isLoading ? 'skeleton' : ''
-        )}
-      >
-        Job Description
-      </h2>
       {isLoading ? (
         <TextSkeleton className="mt-4 gap-y-2" />
       ) : (

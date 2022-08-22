@@ -23,38 +23,41 @@ export default function Markdown({
           <h1
             className={classNames(
               'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-bold text-white text-3xl'
+              'font-grifter text-white text-3xl'
             )}
           >
             {children}
           </h1>
         ),
         h2: ({ children }) => (
-          <h1
+          <h2
             className={classNames(
               'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-bold text-white text-2xl'
+              'font-grifter text-white text-2xl'
             )}
           >
             {children}
-          </h1>
+          </h2>
         ),
         h3: ({ children }) => (
-          <h1
-            className={classNames('mt-6 mb-4', 'font-bold text-white text-xl')}
-          >
-            {children}
-          </h1>
-        ),
-        h4: ({ children }) => (
-          <h1
+          <h3
             className={classNames(
-              'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-bold text-white text-lg'
+              'mt-6 mb-4',
+              'font-grifter text-white text-xl'
             )}
           >
             {children}
-          </h1>
+          </h3>
+        ),
+        h4: ({ children }) => (
+          <h4
+            className={classNames(
+              'mt-6 mb-4 pb-1 border-b border-b-white/30',
+              'font-grifter text-white text-lg'
+            )}
+          >
+            {children}
+          </h4>
         ),
         code: ({ node, inline, className, children, ...props }) => {
           const match = /language-(\w+)/.exec(className || '');
