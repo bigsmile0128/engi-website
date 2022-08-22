@@ -6,6 +6,7 @@ import { HiSortDescending } from '@react-icons/all-files/hi/HiSortDescending';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/solid';
 import pluralize from 'pluralize';
+import SearchInput from 'components/SearchInput';
 
 interface SearchResultsHeaderProps {
   className?: string;
@@ -53,29 +54,11 @@ export default function SearchResultsHeader({
           'mt-4 md:mt-0 md:ml-12'
         )}
       >
-        <div
-          className={classNames(
-            'relative flex items-center',
-            'border-b border-[#ffffff22] focus-within:border-green-primary',
-            isLoading ? 'border-b-0 skeleton' : ''
-          )}
-        >
-          <div className="flex items-center justify-center absolute pointer-events-none">
-            <FiSearch className="h-6 w-6 text-gray-300" />
-          </div>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            className={classNames(
-              'block w-full sm:w-56 bg-transparent outline-none pl-8',
-              'placeholder:text-secondary',
-              'border-b border-transparent'
-            )}
-            placeholder="Search for a job"
-            autoComplete="off"
-          />
-        </div>
+        <SearchInput
+          className="sm:w-56"
+          isLoading={isLoading}
+          placeholder="Search jobs"
+        />
         <div className={classNames('ml-auto', isLoading ? 'skeleton' : '')}>
           <Listbox value={selected} onChange={setSelected}>
             {({ open }) => (

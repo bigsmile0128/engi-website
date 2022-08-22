@@ -7,6 +7,7 @@ import EngiIcon from 'components/icons/EngiIcon';
 import CopyButton from 'components/CopyButton';
 import GridPattern from 'components/GridPattern';
 import Balance from 'components/wallet/Balance';
+import Transactions from 'components/wallet/Transactions';
 
 type WalletDetailsProps = {
   className?: string;
@@ -20,7 +21,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
     <div className={classNames('mt-12 mb-24', className)}>
       <div className="relative">
         <GridPattern
-          className="h-[200%] -mt-6"
+          className="h-[130%] -mt-6"
           id="wallet-details"
           offset={-1}
         />
@@ -49,6 +50,9 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
           </div>
           <Balance className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
         </div>
+      </div>
+      <div className="max-w-page">
+        <Transactions className="mt-20" />
       </div>
     </div>
   );
