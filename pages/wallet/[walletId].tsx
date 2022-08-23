@@ -18,7 +18,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
   const { walletId } = router.query;
 
   return (
-    <div className={classNames('mt-12 mb-24', className)}>
+    <div className={classNames('mt-12 mb-36', className)}>
       <div className="relative">
         <GridPattern
           className="h-[130%] -mt-6"
