@@ -12,6 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import UserContext, { User } from 'utils/contexts/userContext';
 import { useCallback, useEffect, useState } from 'react';
 import store from 'store2';
+import { isProduction } from 'utils';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',
@@ -38,19 +39,23 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
-        strategy="afterInteractive"
-      />
-      <Script id="google-analytics" strategy="afterInteractive">
-        {`
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && isProduction() && (
+        <>
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
           gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
         `}
-      </Script>
+          </Script>
+        </>
+      )}
       <QueryClientProvider client={queryClient}>
         <UserContext.Provider value={{ user, setUser }}>
           <Layout>
