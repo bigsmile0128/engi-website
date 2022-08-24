@@ -83,7 +83,7 @@ export default function Statistics({ className }: StatisticsProps) {
       <div
         className={classNames(
           'hidden sm:flex items-center justify-between',
-          'px-8 pt-16 md:pb-14 lg:px-24 xl:px-40'
+          'px-8 pt-16 pb-14 lg:px-24 xl:px-40'
         )}
       >
         {stats.map(({ name, value }) => (
