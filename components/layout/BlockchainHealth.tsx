@@ -6,6 +6,7 @@ import pluralize from 'pluralize';
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import * as Sentry from '@sentry/react';
+import axios from 'axios';
 
 type BlockchainHealthProps = {
   className?: string;
@@ -21,9 +22,8 @@ export default function BlockchainHealth({
   const { isLoading, isError, data } = useQuery(
     ['blockchainHealth'],
     async () => {
-      const { health } = await request(
-        '/api/graphql',
-        gql`
+      const response = await axios.post('/api/graphql', {
+        query: gql`
           query EngiHealthStatusQuery {
             health {
               chain
@@ -33,8 +33,9 @@ export default function BlockchainHealth({
               peerCount
             }
           }
-        `
-      );
+        `,
+      });
+      const health = response.data?.data?.health;
       return health;
     },
     {
