@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
     <main className={cn('relative min-h-screen flex flex-col', styles.main_bg)}>
       <div className="absolute w-full h-full -z-40"></div>
       <Navbar />
-      <div className="overflow-hidden">{children}</div>
+      <div className="">{children}</div>
       <Footer className="mt-auto" />
     </main>
   );
