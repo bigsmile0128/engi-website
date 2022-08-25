@@ -38,7 +38,15 @@ export default function SelectMenu({
                     'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-primary group'
                   )}
                 >
-                  <p className="ml-2.5 font-bold underline underline-offset-1 text-white group-hover:decoration-green-primary">
+                  <p
+                    className={classNames(
+                      'ml-2.5 group-hover:decoration-green-primary',
+                      // if option has no value, assume it's a default option and don't highlight it
+                      value?.value
+                        ? 'font-bold underline underline-offset-1 text-white'
+                        : 'text-secondary group-hover:text-white'
+                    )}
+                  >
                     {value?.label ?? buttonLabel}
                   </p>
                   <ChevronDownIcon

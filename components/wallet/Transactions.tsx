@@ -10,6 +10,7 @@ type TransactionsProps = {
 };
 
 const sortOptions = [
+  { label: 'Sort by', value: '' },
   { label: 'Newest', value: 'NEWEST' },
   {
     label: 'Amount',
@@ -17,10 +18,37 @@ const sortOptions = [
   },
 ];
 
+const transactionTypeOptions = [
+  {
+    label: 'All Types',
+    value: '',
+  },
+  {
+    label: 'Deposit',
+    value: 'DEPOSIT',
+  },
+  {
+    label: 'Withdrawal',
+    value: 'WITHDRAWAL',
+  },
+  {
+    label: 'Transfer',
+    value: 'TRANSFER',
+  },
+  {
+    label: 'Income',
+    value: 'INCOME',
+  },
+  {
+    label: 'Salary',
+    value: 'SALARY',
+  },
+];
+
 const statusOptions = [
   {
-    label: 'All Status',
-    value: 'ALL',
+    label: 'All Statuses',
+    value: '',
   },
   {
     label: 'Success',
@@ -43,6 +71,9 @@ export default function Transactions({
   const [sortField, setSortField] = useState<Option | null>(sortOptions[0]);
   const [sortDir, setSortDir] = useState<SortDirection>(SortDirection.DESC);
   const [status, setStatus] = useState(statusOptions[0]);
+  const [transactionType, setTransactionType] = useState(
+    transactionTypeOptions[0]
+  );
   return (
     <div className={classNames('', className)}>
       <h2 className="font-bold text-2xl">Transactions</h2>
@@ -52,7 +83,14 @@ export default function Transactions({
           isLoading={isLoading}
           placeholder="Search jobs"
         />
-        <div className="flex items-center ml-auto gap-x-8">
+        <div className="flex items-center ml-auto gap-x-6">
+          <SelectMenu
+            className="hidden sm:block"
+            options={transactionTypeOptions}
+            value={transactionType}
+            onChange={setTransactionType}
+            buttonLabel="Type"
+          />
           <SelectMenu
             className="hidden sm:block"
             options={statusOptions}
