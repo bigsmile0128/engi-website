@@ -100,7 +100,7 @@ export default function UserInfo({
 async function getBalance(walletId) {
   const response = await axios.post('/api/graphql', {
     query: gql`
-      query WalletCheck($id: ID!) {
+      query WalletCheck($id: String!) {
         account(id: $id) {
           data {
             free
