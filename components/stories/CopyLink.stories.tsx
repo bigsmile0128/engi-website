@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <CopyLink {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   className: 'w-64',
   value: 'https://engi.network/jobs/12345',
 };

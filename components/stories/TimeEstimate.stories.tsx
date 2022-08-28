@@ -9,7 +9,7 @@ export default {
 
 const Template = (args) => <TimeEstimate {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   duration: '2 hours',
 };

@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <ProgressBar {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   percentage: 0.5,
   label: '5/10',
 };

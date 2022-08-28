@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <Tag {...args}>React</Tag>;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   className: 'text-white',
   value: 'https://engi.network/jobs/12345',
 };

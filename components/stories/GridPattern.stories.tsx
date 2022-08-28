@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <GridPattern {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   size: 60,
   offset: 0,
   id: 'id',

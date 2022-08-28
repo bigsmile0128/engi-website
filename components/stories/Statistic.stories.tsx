@@ -10,8 +10,8 @@ export default {
 
 const Template = (args) => <Statistic {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   icon: <AiFillCreditCard className="text-orange-primary h-5 w-5" />,
   value: 'e100',
   title: 'Funding',

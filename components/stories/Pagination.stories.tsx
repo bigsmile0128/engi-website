@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <Pagination {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   pageCount: 10,
   forcePage: 3,
 };

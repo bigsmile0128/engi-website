@@ -13,7 +13,7 @@ const Template = (args) => (
   </div>
 );
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
 const options = [
   {
@@ -26,7 +26,7 @@ const options = [
   },
 ];
 
-Primary.args = {
+Default.args = {
   className: 'ml-24',
   options,
   value: options[0],

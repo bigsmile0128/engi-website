@@ -9,10 +9,10 @@ export default {
 
 const Template = (args) => <Button {...args}>Button</Button>;
 
+export const Default = Template.bind({});
+Default.args = {};
+
 export const Primary = Template.bind({});
 Primary.args = {
   variant: 'primary',
 };
-
-export const Default = Template.bind({});
-Default.args = {};

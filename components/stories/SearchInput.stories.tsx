@@ -9,8 +9,8 @@ export default {
 
 const Template = (args) => <SearchInput {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Default = Template.bind({});
+Default.args = {
   className: 'w-64',
   isLoading: false,
   placeholder: 'Search jobs',

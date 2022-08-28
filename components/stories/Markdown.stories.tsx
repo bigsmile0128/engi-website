@@ -10,5 +10,5 @@ export default {
 
 const Template = (args) => <Markdown {...args}>{mockDescription}</Markdown>;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Default = Template.bind({});
+Default.args = {};
