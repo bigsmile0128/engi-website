@@ -5,7 +5,7 @@ import { SiPython } from '@react-icons/all-files/si/SiPython';
 type JobInfoProps = {
   className?: string;
   title?: string;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
   titleClassName?: string;
   iconClassName?: string;
 };
@@ -13,7 +13,7 @@ type JobInfoProps = {
 export default function JobInfo({
   className,
   title,
-  isSkeleton,
+  isLoading,
   titleClassName,
   iconClassName,
 }: JobInfoProps) {
@@ -21,7 +21,7 @@ export default function JobInfo({
     <div
       className={classNames(
         'flex flex-col gap-y-1 items-start',
-        isSkeleton ? 'children:skeleton' : '',
+        isLoading ? 'children:skeleton' : '',
         className
       )}
     >
@@ -30,7 +30,7 @@ export default function JobInfo({
           className={classNames(
             'h-7 w-7 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
             {
-              invisible: isSkeleton,
+              invisible: isLoading,
             },
             iconClassName
           )}

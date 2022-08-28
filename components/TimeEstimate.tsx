@@ -5,19 +5,19 @@ import { BiTime } from '@react-icons/all-files/bi/BiTime';
 interface TimeEstimateProps {
   className?: string;
   duration: string;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 }
 
 export default function TimeEstimate({
   className,
   duration,
-  isSkeleton,
+  isLoading,
 }: TimeEstimateProps) {
   return (
     <div
       className={classNames(
         'flex items-center',
-        isSkeleton ? 'children:skeleton' : '',
+        isLoading ? 'children:skeleton' : '',
         className
       )}
     >

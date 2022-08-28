@@ -15,7 +15,7 @@ interface JobPreviewProps {
   reward?: number;
   numContributors?: number;
   id?: string;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 }
 
 export default function JobPreview({
@@ -27,7 +27,7 @@ export default function JobPreview({
   timeEstimate,
   reward,
   numContributors,
-  isSkeleton,
+  isLoading,
   id,
 }: JobPreviewProps) {
   return (
@@ -37,31 +37,31 @@ export default function JobPreview({
           className={classNames(
             'bg-black/[.14] text-gray-200',
             // 'bg-red-300',
-            isSkeleton ? 'pointer-events-none' : 'hover:bg-black/40',
+            isLoading ? 'pointer-events-none' : 'hover:bg-black/40',
             className
           )}
         >
           <JobInfo
             title={title}
-            isSkeleton={isSkeleton}
+            isLoading={isLoading}
             className="md:hidden flex items-center p-6 pb-0 gap-x-4"
           />
           <div className={classNames('flex-1 flex justify-between p-6')}>
             <JobInfo
               title={title}
-              isSkeleton={isSkeleton}
+              isLoading={isLoading}
               className="hidden md:flex flex-col justify-between"
             />
             <div className="hidden sm:flex flex-col justify-between items-start">
               <span
-                className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}
+                className={classNames('text-xs', isLoading ? 'skeleton' : '')}
               >
                 <span>contributors</span>
               </span>
               <div
                 className={classNames(
                   'flex items-center',
-                  isSkeleton ? 'hidden' : ''
+                  isLoading ? 'hidden' : ''
                 )}
               >
                 <AiOutlineUser className="text-medium" />
@@ -69,13 +69,13 @@ export default function JobPreview({
                   {numContributors ?? 'N/A'}
                 </span>
               </div>
-              <span className={isSkeleton ? `text-xs skeleton` : 'hidden'}>
+              <span className={isLoading ? `text-xs skeleton` : 'hidden'}>
                 <span>placeholder</span>
               </span>
             </div>
             <div className="flex flex-col justify-between items-start sm:w-20 md:w-32">
               <span
-                className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}
+                className={classNames('text-xs', isLoading ? 'skeleton' : '')}
               >
                 <span>test progress</span>
               </span>
@@ -83,26 +83,26 @@ export default function JobPreview({
                 <span
                   className={classNames(
                     'text-xs mb-1',
-                    isSkeleton ? `h-2 skeleton` : ''
+                    isLoading ? `h-2 skeleton` : ''
                   )}
                 >
                   <span>
-                    {!isSkeleton && testsPassed && numTests
+                    {!isLoading && testsPassed && numTests
                       ? `${testsPassed} / ${numTests}`
                       : ''}
-                    {isSkeleton && 'tests'}
+                    {isLoading && 'tests'}
                   </span>
                 </span>
                 <div
                   className={classNames(
                     'rounded-full w-full overflow-hidden',
-                    isSkeleton ? 'skeleton' : 'bg-gray-200'
+                    isLoading ? 'skeleton' : 'bg-gray-200'
                   )}
                 >
                   <div
                     className={classNames(
                       'h-1.5 rounded-full',
-                      isSkeleton ? 'invisible' : 'bg-green-400'
+                      isLoading ? 'invisible' : 'bg-green-400'
                     )}
                     style={{ width: `${(testsPassed / numTests || 0) * 100}%` }}
                   />
@@ -111,21 +111,21 @@ export default function JobPreview({
             </div>
             <div className="flex flex-col justify-between items-start">
               <span
-                className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}
+                className={classNames('text-xs', isLoading ? 'skeleton' : '')}
               >
                 <span>estimated time</span>
               </span>
               <TimeEstimate
-                className={classNames(isSkeleton ? 'hidden' : '')}
+                className={classNames(isLoading ? 'hidden' : '')}
                 duration={timeEstimate ? `${timeEstimate} hours` : 'N/A'}
               />
-              <span className={isSkeleton ? `text-xs skeleton` : 'hidden'}>
+              <span className={isLoading ? `text-xs skeleton` : 'hidden'}>
                 <span>placeholder</span>
               </span>
             </div>
             <div className="flex flex-col justify-between">
               <span
-                className={classNames('text-xs', isSkeleton ? 'skeleton' : '')}
+                className={classNames('text-xs', isLoading ? 'skeleton' : '')}
               >
                 <span>minimum wage</span>
               </span>
@@ -133,24 +133,24 @@ export default function JobPreview({
                 <span
                   className={classNames(
                     'mr-1',
-                    isSkeleton ? `h-5 skeleton` : 'font-grifter -mb-[4px]'
+                    isLoading ? `h-5 skeleton` : 'font-grifter -mb-[4px]'
                   )}
                 >
                   <span>
-                    {!isSkeleton && (reward ? `$${reward}` : 'N/A')}
-                    {isSkeleton && '$100'}
+                    {!isLoading && (reward ? `$${reward}` : 'N/A')}
+                    {isLoading && '$100'}
                   </span>
                 </span>
                 <span
                   className={classNames(
                     'text-sm text-secondary',
-                    isSkeleton ? `h-4 skeleton` : ''
+                    isLoading ? `h-4 skeleton` : ''
                   )}
                 >
                   <span>
-                    {!isSkeleton &&
+                    {!isLoading &&
                       (reward ? `e${Math.floor(reward * 1.6)}` : '')}
-                    {isSkeleton && 'e100'}
+                    {isLoading && 'e100'}
                   </span>
                 </span>
               </div>

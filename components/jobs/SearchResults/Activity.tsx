@@ -7,7 +7,7 @@ type ActivityProps = {
   numTests?: number;
   testsPassed?: number;
   numContributors?: number;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 };
 
 export default function Activity({
@@ -15,14 +15,14 @@ export default function Activity({
   numTests,
   testsPassed,
   numContributors,
-  isSkeleton,
+  isLoading,
 }: ActivityProps) {
   return (
     <div className={classNames('flex items-end gap-x-4', className)}>
       <div
         className={classNames(
           'flex items-center',
-          isSkeleton ? 'children:skeleton' : ''
+          isLoading ? 'children:skeleton' : ''
         )}
       >
         <UserIcon className="h-4 w-auto text-white/60" />
@@ -34,26 +34,26 @@ export default function Activity({
           <span
             className={classNames(
               'text-xs mb-1',
-              isSkeleton ? `h-2 skeleton` : ''
+              isLoading ? `h-2 skeleton` : ''
             )}
           >
             <span>
-              {!isSkeleton && testsPassed && numTests
+              {!isLoading && testsPassed && numTests
                 ? `${testsPassed} / ${numTests ?? 1}`
                 : ''}
-              {isSkeleton && 'tests'}
+              {isLoading && 'tests'}
             </span>
           </span>
           <div
             className={classNames(
               'rounded-full w-full overflow-hidden',
-              isSkeleton ? 'skeleton' : 'bg-white/10'
+              isLoading ? 'skeleton' : 'bg-white/10'
             )}
           >
             <div
               className={classNames(
                 'h-1.5 rounded-full',
-                isSkeleton ? 'invisible' : 'bg-[#F27B50]'
+                isLoading ? 'invisible' : 'bg-[#F27B50]'
               )}
               style={{ width: `${(testsPassed / numTests || 0) * 100}%` }}
             />

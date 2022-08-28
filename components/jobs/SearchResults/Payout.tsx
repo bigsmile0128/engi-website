@@ -6,12 +6,12 @@ import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 type PayoutProps = {
   className?: string;
   reward?: number;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 };
 
 const COLORS = ['#65FEB7', '#65FEB799', '#65FEB733'];
 
-export default function Payout({ className, reward, isSkeleton }: PayoutProps) {
+export default function Payout({ className, reward, isLoading }: PayoutProps) {
   const data = [
     { name: 'Winning Payout', value: 100 },
     { name: 'Honors Bracket', value: 30 },
@@ -24,7 +24,7 @@ export default function Payout({ className, reward, isSkeleton }: PayoutProps) {
         <div
           className={classNames(
             'flex items-center gap-x-1',
-            isSkeleton ? 'children:skeleton' : ''
+            isLoading ? 'children:skeleton' : ''
           )}
         >
           <EngiIcon className="h-[11px] w-auto text-green-primary" />
@@ -33,7 +33,7 @@ export default function Payout({ className, reward, isSkeleton }: PayoutProps) {
         <div
           className={classNames(
             'flex items-center gap-x-2 ml-2',
-            isSkeleton ? 'children:skeleton' : ''
+            isLoading ? 'children:skeleton' : ''
           )}
         >
           <span className="font-bold text-orange-primary text-sm">+</span>
@@ -43,7 +43,7 @@ export default function Payout({ className, reward, isSkeleton }: PayoutProps) {
       <div
         className={classNames(
           'hidden xl:block h-12 w-12 ml-auto',
-          isSkeleton ? 'children:skeleton' : ''
+          isLoading ? 'children:skeleton' : ''
         )}
       >
         <PieChart width={48} height={48}>

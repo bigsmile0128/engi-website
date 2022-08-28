@@ -60,7 +60,7 @@ export default function RecommendedJobs({ className }: RecommendedJobsProps) {
                           i === 3 ? 'hidden lg:flex' : '',
                           i === 4 ? 'hidden xl:flex' : ''
                         )}
-                        isSkeleton
+                        isLoading
                       />
                     ))}
                   </div>
@@ -105,7 +105,7 @@ type JobCardProps = {
   title?: string;
   timeEstimate?: number;
   reward?: number;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 };
 
 function JobCard({
@@ -114,15 +114,15 @@ function JobCard({
   title,
   timeEstimate,
   reward,
-  isSkeleton,
+  isLoading,
 }: JobCardProps) {
   return (
-    <Link href={isSkeleton ? '' : `/jobs/${id}`}>
+    <Link href={isLoading ? '' : `/jobs/${id}`}>
       <a
         className={classNames(
           'flex flex-col p-6 gap-y-2 items-start',
           'bg-black/[.14] hover:bg-black/40',
-          isSkeleton ? 'pointer-events-none' : '',
+          isLoading ? 'pointer-events-none' : '',
           className
         )}
       >
@@ -130,19 +130,19 @@ function JobCard({
           className={classNames(
             'px-4 py-1 rounded-full',
             'whitespace-nowrap text-sm',
-            isSkeleton ? 'skeleton' : 'bg-[#EFEFEF]/[.13]'
+            isLoading ? 'skeleton' : 'bg-[#EFEFEF]/[.13]'
           )}
         >
           Top Activity
         </span>
         <TimeEstimate
-          className={isSkeleton ? 'skeleton' : ''}
+          className={isLoading ? 'skeleton' : ''}
           duration={`${timeEstimate} hours`}
         />
-        <span className={classNames('font-bold', isSkeleton ? 'skeleton' : '')}>
+        <span className={classNames('font-bold', isLoading ? 'skeleton' : '')}>
           {title}
         </span>
-        <Reward className="mt-auto" value={reward} isSkeleton={isSkeleton} />
+        <Reward className="mt-auto" value={reward} isLoading={isLoading} />
       </a>
     </Link>
   );
@@ -151,15 +151,15 @@ function JobCard({
 type RewardProps = {
   className?: string;
   value?: number;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 };
 
-function Reward({ className, value, isSkeleton }: RewardProps) {
+function Reward({ className, value, isLoading }: RewardProps) {
   return (
     <div
       className={classNames(
         'flex items-end whitespace-nowrap',
-        isSkeleton ? 'children:skeleton' : '',
+        isLoading ? 'children:skeleton' : '',
         className
       )}
     >
@@ -167,14 +167,14 @@ function Reward({ className, value, isSkeleton }: RewardProps) {
       <span
         className={classNames(
           'ml-1 font-grifter text-3xl',
-          isSkeleton ? 'h-8' : '-mb-[7px]'
+          isLoading ? 'h-8' : '-mb-[7px]'
         )}
       >
-        {isSkeleton ? 100 : value}
+        {isLoading ? 100 : value}
       </span>
       <div className="flex items-center ml-4 text-white/60">
         <span>e</span>
-        <span className="ml-0.5">{isSkeleton ? 100 : value + 30}</span>
+        <span className="ml-0.5">{isLoading ? 100 : value + 30}</span>
       </div>
     </div>
   );

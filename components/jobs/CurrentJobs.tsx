@@ -31,8 +31,8 @@ export default function CurrentJobs({ className }: CurrentJobsProps) {
       <div className="flex flex-col gap-y-6">
         {isLoading ? (
           <>
-            <JobItem isSkeleton />
-            <JobItem isSkeleton />
+            <JobItem isLoading />
+            <JobItem isLoading />
           </>
         ) : data?.length > 0 ? (
           data
@@ -65,7 +65,7 @@ type JobItemProps = {
   title?: string;
   numTests?: number;
   testsPassed?: number;
-  isSkeleton?: boolean;
+  isLoading?: boolean;
 };
 
 function JobItem({
@@ -74,20 +74,20 @@ function JobItem({
   title,
   testsPassed,
   numTests,
-  isSkeleton,
+  isLoading,
 }: JobItemProps) {
   return (
     <div className="flex flex-col">
-      <Link href={isSkeleton ? '' : `/jobs/${id}`}>
+      <Link href={isLoading ? '' : `/jobs/${id}`}>
         <a
           className={classNames(
             'flex items-center gap-x-1 mb-5',
-            isSkeleton
+            isLoading
               ? 'children:skeleton pointer-events-none'
               : 'hover:text-green-primary'
           )}
         >
-          <span className={isSkeleton ? 'w-1/3' : ''}>
+          <span className={isLoading ? 'w-1/3' : ''}>
             {title ?? 'No job title'}
           </span>
           <ChevronRightIcon className="h-4 w-4" />
@@ -96,10 +96,10 @@ function JobItem({
       <div
         className={classNames(
           'flex items-center',
-          isSkeleton ? 'children:skeleton' : ''
+          isLoading ? 'children:skeleton' : ''
         )}
       >
-        {Array.from({ length: isSkeleton ? 1 : numTests }).map((_, i) => (
+        {Array.from({ length: isLoading ? 1 : numTests }).map((_, i) => (
           <div
             key={i}
             className={classNames(

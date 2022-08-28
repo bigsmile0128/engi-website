@@ -49,7 +49,7 @@ export default function MobileJobTable({
               className="!flex-row items-center gap-x-2"
               title={job.title}
               iconClassName="!h-8 !w-8 !bg-[#EFEFEF]/[.13]"
-              isSkeleton={isLoading}
+              isLoading={isLoading}
             />
             <div className="flex items-center justify-between mt-6">
               <div className="flex items-center gap-x-2">
@@ -63,12 +63,12 @@ export default function MobileJobTable({
                 >
                   ACTIVITY
                 </label>
-                <Activity isSkeleton={isLoading} {...job} />
+                <Activity isLoading={isLoading} {...job} />
               </div>
               <TimeEstimate
                 className="mr-4"
                 duration={`${job.timeEstimate} hours`}
-                isSkeleton={isLoading}
+                isLoading={isLoading}
               />
             </div>
             <div className="flex items-center gap-x-2 mt-4">
@@ -82,7 +82,7 @@ export default function MobileJobTable({
               >
                 PAYOUT
               </label>
-              <Payout isSkeleton={isLoading} {...job} />
+              <Payout isLoading={isLoading} {...job} />
             </div>
           </a>
         </Link>

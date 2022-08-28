@@ -41,7 +41,7 @@ export default function JobTable({
         header: 'Job info',
         cell: (props) => {
           const job = props.row.original;
-          return <JobInfo title={job.title} isSkeleton={isLoading} />;
+          return <JobInfo title={job.title} isLoading={isLoading} />;
         },
       }),
       columnHelper.accessor('numTests', {
@@ -53,7 +53,7 @@ export default function JobTable({
               numContributors={job.numContributors}
               numTests={job.numTests}
               testsPassed={job.testsPassed}
-              isSkeleton={isLoading}
+              isLoading={isLoading}
             />
           );
         },
@@ -63,7 +63,7 @@ export default function JobTable({
         cell: (props) => {
           const job = props.row.original;
           return (
-            <Effort timeEstimate={job.timeEstimate} isSkeleton={isLoading} />
+            <Effort timeEstimate={job.timeEstimate} isLoading={isLoading} />
           );
         },
       }),
@@ -75,7 +75,7 @@ export default function JobTable({
             <Payout
               className="shrink-0"
               reward={job.reward}
-              isSkeleton={isLoading}
+              isLoading={isLoading}
             />
           );
         },
