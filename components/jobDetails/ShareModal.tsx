@@ -21,7 +21,7 @@ export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
         </Dialog.Title>
         <button
           type="button"
-          className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-primary"
+          className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 outline-none focus-visible:ring-2 focus-visible:ring-green-primary"
           onClick={() => setIsOpen(false)}
         >
           <span className="sr-only">Close</span>

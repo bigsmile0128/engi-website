@@ -35,7 +35,7 @@ export default function SelectMenu({
                 <Listbox.Button
                   className={classNames(
                     'flex items-center py-2',
-                    'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-primary group'
+                    'outline-none focus-visible:ring-1 focus-visible:ring-green-primary group'
                   )}
                 >
                   <p
@@ -66,7 +66,7 @@ export default function SelectMenu({
                   className={classNames(
                     'origin-top-right absolute z-10 right-0 mt-2 w-40 overflow-hidden',
                     'rounded-md bg-black/50 divide-y divide-[#ffffff22]',
-                    'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-primary'
+                    'outline-none focus-visible:ring-1 focus-visible:ring-green-primary'
                   )}
                 >
                   {options.map((option) => (

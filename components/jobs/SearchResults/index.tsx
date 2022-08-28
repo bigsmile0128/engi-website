@@ -45,7 +45,7 @@ export default function SearchResults({
         <div className="flex flex-col items-center justify-center py-12">
           <p className="font-grifter text-3xl mb-6">Something went wrong...</p>
           <button
-            className="flex items-center justify-center text-gray-300 py-3 pl-4 pr-5 border border-gray-300 text-sm font-semibold bg-[#00000022] hover:bg-[#ffffff22] outline-none focus:ring-green-400 focus:ring-2"
+            className="flex items-center justify-center text-gray-300 py-3 pl-4 pr-5 border border-gray-300 text-sm font-semibold bg-[#00000022] hover:bg-[#ffffff22] outline-none focus-visible:ring-green-400 focus-visible:ring-2"
             onClick={refresh}
           >
             <IoMdRefresh className="h-5 w-5 mr-2" />

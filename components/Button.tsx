@@ -26,7 +26,7 @@ export default function Button({
         className={classNames(
           'relative bg-white px-8 py-4',
           'font-bold text-black disabled:text-gray-400',
-          'focus:outline-none focus:ring-1 focus:ring-green-primary',
+          'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
           'border-t border-t-white border-b border-b-transparent',
           // hover and active states
           disabled ? '' : hoverClasses,
@@ -46,7 +46,7 @@ export default function Button({
         'relative bg-black/20 px-8 py-4',
         'font-bold text-white disabled:text-gray-400',
         'border border-white',
-        'focus:outline-none focus:ring-1 focus:ring-green-primary',
+        'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
         // hover and active states
         disabled ? '' : 'hover:bg-black/30 active:bg-black/40',
         className

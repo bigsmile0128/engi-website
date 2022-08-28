@@ -116,7 +116,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
               type="text"
               id="firstName"
               placeholder="First Name"
-              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent"
               value={formData?.firstName ?? ''}
               onChange={(e) =>
                 setFormData({ ...formData, firstName: e.target.value })
@@ -131,7 +131,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
               type="text"
               id="lastName"
               placeholder="Last Name"
-              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+              className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent"
               value={formData?.lastName ?? ''}
               onChange={(e) =>
                 setFormData({ ...formData, lastName: e.target.value })
@@ -147,7 +147,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             type="text"
             id="email"
             placeholder="Email"
-            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent"
             value={formData?.email ?? ''}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -162,7 +162,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             type="text"
             id="subject"
             placeholder="Subject"
-            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent"
             value={formData?.subject ?? ''}
             onChange={(e) =>
               setFormData({ ...formData, subject: e.target.value })
@@ -176,7 +176,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
           <textarea
             id="message"
             placeholder="Message"
-            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent"
+            className="w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent"
             value={formData?.message ?? ''}
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })

@@ -97,7 +97,7 @@ export default function EmailModal({
                 </span>
               </Dialog.Title>
               <button
-                className="text-white hover:text-secondary focus:outline-none focus:ring-1 focus:ring-emerald-200"
+                className="text-white hover:text-secondary outline-none focus-visible:ring-1 focus-visible:ring-emerald-200"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
@@ -254,7 +254,7 @@ export default function EmailModal({
                 <span className="text-green-primary">Share</span>
               </Dialog.Title>
               <button
-                className="text-white hover:text-secondary focus:outline-none focus:ring-1 focus:ring-emerald-200"
+                className="text-white hover:text-secondary outline-none focus-visible:ring-1 focus-visible:ring-emerald-200"
                 onClick={() => setIsOpen(false)}
               >
                 <span className="sr-only">Close</span>
@@ -308,7 +308,7 @@ export function InterestButton({ active, label, value, onClick }) {
   return (
     <button
       className={classNames(
-        'py-3 px-6 text-sm focus:outline-none focus:ring-1 focus:ring-emerald-200 border',
+        'py-3 px-6 text-sm outline-none focus-visible:ring-1 focus-visible:ring-emerald-200 border',
         active
           ? 'text-gray-800 border-green-primary bg-green-primary font-medium'
           : 'border-gray-500 text-secondary hover:bg-gray-700 active:bg-gray-600'

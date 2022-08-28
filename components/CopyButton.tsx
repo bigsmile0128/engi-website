@@ -26,7 +26,7 @@ export default function CopyButton({
     <>
       <button
         className={classNames(
-          'bg-transparent focus:ring-2 outline-none text-white/30 hover:text-white/70',
+          'bg-transparent focus-visible:ring-2 outline-none text-white/30 hover:text-white/70',
           className
         )}
         onClick={() => {

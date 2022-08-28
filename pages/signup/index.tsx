@@ -130,7 +130,7 @@ export default function Signup({ className }: SignupProps) {
             <button
               className={classNames(
                 'px-16 py-4 text-white font-bold',
-                'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
               )}
               onClick={() => setCurrentStep(Step.NEW)}
             >
@@ -151,7 +151,7 @@ export default function Signup({ className }: SignupProps) {
                 <button
                   className={classNames(
                     'w-full py-4 text-white font-bold mt-auto',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                   )}
                   onClick={() => setCurrentStep(Step.IMPORT_WALLET)}
                 >
@@ -165,7 +165,7 @@ export default function Signup({ className }: SignupProps) {
                 <button
                   className={classNames(
                     'w-full py-4 text-white font-bold mt-auto',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                   )}
                   onClick={() => {
                     setMnemonic(bip39.generateMnemonic());
@@ -185,7 +185,7 @@ export default function Signup({ className }: SignupProps) {
               <input
                 className={classNames(
                   'w-full p-4 pr-8',
-                  'border border-gray-400 text-white placeholder:text-gray-300 outline-none focus:ring-2 bg-transparent'
+                  'border border-gray-400 text-white placeholder:text-gray-300 outline-none focus-visible:ring-2 bg-transparent'
                 )}
                 type="text"
                 name="wallet"
@@ -209,7 +209,7 @@ export default function Signup({ className }: SignupProps) {
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
                   // TODO: change color for Back button
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => setCurrentStep(Step.NEW)}
               >
@@ -218,7 +218,7 @@ export default function Signup({ className }: SignupProps) {
               <button
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => {
                   // TODO: validate wallet?
@@ -250,7 +250,7 @@ export default function Signup({ className }: SignupProps) {
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
                   // TODO: change color for Back button
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => setCurrentStep(Step.NEW)}
               >
@@ -259,7 +259,7 @@ export default function Signup({ className }: SignupProps) {
               <button
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => {
                   setCurrentStep(Step.CONFIRM_WALLET);
@@ -285,7 +285,7 @@ export default function Signup({ className }: SignupProps) {
                   key={wordId}
                   className={classNames(
                     'text-sm px-4 py-2',
-                    'bg-[#ffffff22] outline-none focus:ring-2'
+                    'bg-[#ffffff22] outline-none focus-visible:ring-2'
                   )}
                   onClick={() =>
                     setConfirmationWords(
@@ -299,7 +299,7 @@ export default function Signup({ className }: SignupProps) {
             </div>
             {/* <input
               className={classNames(
-                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+                'mb-8 w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
               )}
               type="password"
               name="passphrase"
@@ -326,7 +326,7 @@ export default function Signup({ className }: SignupProps) {
                       key={wordId}
                       className={classNames(
                         'flex-1 py-2 text-white text-sm',
-                        'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus:ring-2',
+                        'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 outline-none focus-visible:ring-2',
                         confirmationWords.includes(wordId)
                           ? '!bg-[#ffffff22]'
                           : ''
@@ -353,7 +353,7 @@ export default function Signup({ className }: SignupProps) {
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
                   // TODO: change color for Back button
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => setCurrentStep(Step.CREATE_WALLET)}
               >
@@ -362,7 +362,7 @@ export default function Signup({ className }: SignupProps) {
               <button
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => {
                   if (
@@ -395,7 +395,7 @@ export default function Signup({ className }: SignupProps) {
             <div className="flex flex-col gap-y-8 w-3/4 mb-12">
               <input
                 className={classNames(
-                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
                 )}
                 type="text"
                 name="username"
@@ -406,7 +406,7 @@ export default function Signup({ className }: SignupProps) {
               />
               <input
                 className={classNames(
-                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
                 )}
                 type="password"
                 name="password"
@@ -417,7 +417,7 @@ export default function Signup({ className }: SignupProps) {
               />
               <input
                 className={classNames(
-                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 focus:outline-none focus:ring-1 bg-transparent'
+                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
                 )}
                 type="password"
                 name="password-confirmation"
@@ -432,7 +432,7 @@ export default function Signup({ className }: SignupProps) {
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
                   // TODO: change color for Back button
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => setCurrentStep(Step.CONFIRM_WALLET)}
               >
@@ -441,7 +441,7 @@ export default function Signup({ className }: SignupProps) {
               <button
                 className={classNames(
                   'flex-1 py-4 text-white font-bold',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
                 onClick={() => {
                   if (!username) {
@@ -486,7 +486,7 @@ export default function Signup({ className }: SignupProps) {
                 <button
                   className={classNames(
                     'px-16 py-4 text-white font-bold',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus:ring-2'
+                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                   )}
                 >
                   Finish

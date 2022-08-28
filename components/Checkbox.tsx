@@ -28,7 +28,7 @@ export default function Checkbox({
       />
       <div
         tabIndex={0}
-        className="bg-[#ffffff22] border border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-3 focus:outline-none focus:ring-2"
+        className="bg-[#ffffff22] border border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-3 outline-none focus-visible:ring-2"
         onKeyPress={(e) => {
           if (e.key === ' ') {
             onChange(!checked);
