@@ -25,7 +25,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
           id="wallet-details"
           offset={-1}
         />
-        <div className="max-w-page xl:max-w-4xl">
+        <div className="max-w-page xl:max-w-4xl relative">
           <div className="flex flex-col gap-y-8 sm:flex-row gap-x-12 justify-between">
             <div className="flex flex-col gap-y-4">
               <h1 className="font-bold text-2xl">Wallet</h1>
