@@ -100,7 +100,7 @@ export default function SortMenu({
                 <Listbox.Options
                   className={classNames(
                     'origin-top-right absolute z-10 right-0 mt-2 w-40 overflow-hidden',
-                    'rounded-md bg-black/50 divide-y divide-[#ffffff22]',
+                    'rounded-md bg-black/90 divide-y divide-[#ffffff22]',
                     'outline-none focus-visible:ring-1 focus-visible:ring-green-primary'
                   )}
                 >
@@ -129,7 +129,7 @@ export default function SortMenu({
                               {selected ? (
                                 <span
                                   className={
-                                    active ? 'text-white' : 'text-green-primary'
+                                    active ? 'text-black' : 'text-green-primary'
                                   }
                                 >
                                   <CheckIcon

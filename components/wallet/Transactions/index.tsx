@@ -9,6 +9,7 @@ import { useQuery } from 'react-query';
 import TransactionTable from './TransactionTable';
 import Pagination from 'components/Pagination';
 import MobileTransactionTable from './MobileTransactionTable';
+import { TransactionType } from 'types';
 
 type TransactionsProps = {
   className?: string;
@@ -31,20 +32,20 @@ const transactionTypeOptions = [
     value: '',
   },
   {
-    label: 'Deposit',
-    value: 'DEPOSIT',
-  },
-  {
-    label: 'Withdrawal',
-    value: 'WITHDRAWAL',
+    label: 'Exchange',
+    value: TransactionType.EXCHANGE,
   },
   {
     label: 'Transfer',
-    value: 'TRANSFER',
+    value: TransactionType.TRANSFER,
+  },
+  {
+    label: 'Spend',
+    value: TransactionType.SPEND,
   },
   {
     label: 'Income',
-    value: 'INCOME',
+    value: TransactionType.INCOME,
   },
 ];
 
@@ -83,16 +84,20 @@ export default function Transactions({
   );
 
   const { isLoading, isFetching, data } = useQuery(
-    ['walletTransactions', walletId, page],
+    ['walletTransactions', walletId, page, transactionType],
     () => {
       if (!walletId) {
         return null;
       }
-      return fetchTransactions({
+      const query: TransactionSearchParams = {
         accountId: walletId,
         skip: page * PAGE_SIZE,
         limit: PAGE_SIZE,
-      });
+      };
+      if (transactionType?.value) {
+        query.type = transactionType.value;
+      }
+      return fetchTransactions(query);
     },
     {
       keepPreviousData: true,
@@ -145,7 +150,7 @@ export default function Transactions({
         isLoading={isLoading || isFetching}
       />
       <div className="flex justify-center">
-        {data && (
+        {data?.items?.length > 0 && (
           <Pagination
             pageCount={Math.ceil((data?.totalCount ?? 0) / PAGE_SIZE)}
             forcePage={page}
