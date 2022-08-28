@@ -8,8 +8,6 @@ const nextConfig = {
   webpack(config, { isServer }) {
     config.module.rules.push({
       test: /\.svg$/,
-      // don't include images used for tailwind background
-      // exclude: path.resolve(__dirname, 'public/img'),
       use: ['@svgr/webpack'],
     });
 

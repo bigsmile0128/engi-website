@@ -52,7 +52,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
         </div>
       </div>
       <div className="max-w-page">
-        <Transactions className="mt-20" />
+        <Transactions className="mt-20" walletId={walletId?.toString()} />
       </div>
     </div>
   );

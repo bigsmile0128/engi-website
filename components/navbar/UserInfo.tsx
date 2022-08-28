@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { User } from 'utils/contexts/userContext';
 import Avvvatars from 'avvvatars-react';
-import Balance from 'components/Balance';
+import EngiAmount from 'components/EngiAmount';
 import BlockchainHealth from 'components/layout/BlockchainHealth';
 import { useQuery } from 'react-query';
 import axios from 'axios';
@@ -11,7 +11,6 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
-import Link from 'next/link';
 import MenuItemLink from 'components/MenuItemLink';
 
 type UserInfoProps = {
@@ -88,7 +87,12 @@ export default function UserInfo({
           </Transition>
         </Menu>
         <div className="flex items-center gap-x-4">
-          <Balance isLoading={isLoading} value={balance} />
+          <EngiAmount
+            iconClassName="!h-4 !w-4"
+            valueClassName="!font-default font-bold text-base mb-0 ml-2"
+            isLoading={isLoading}
+            value={balance}
+          />
           <div className="h-5 w-[1px] bg-gray-400"></div>
           <BlockchainHealth className="!gap-x-2" {...blockchainHealthProps} />
         </div>

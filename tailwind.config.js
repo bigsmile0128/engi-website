@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       fontFamily: {
         grifter: ['GRIFTER', 'sans-serif'],
+        default: ['Helvetica Neue', 'Arial'],
       },
       colors: {
         primary: '#FFFFFF',
@@ -18,6 +19,7 @@ module.exports = {
         tertiary: '#8A8A8A',
         'green-primary': '#65FEB7',
         'orange-primary': '#F27B50',
+        'red-primary': '#FF5F5F',
       },
     },
   },

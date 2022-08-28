@@ -3,9 +3,16 @@ import classNames from 'classnames';
 import SearchInput from 'components/SearchInput';
 import SortMenu, { Option, SortDirection } from 'components/SortMenu';
 import SelectMenu from 'components/SelectMenu';
+import axios from 'axios';
+import { gql } from 'graphql-request';
+import { useQuery } from 'react-query';
+import TransactionTable from './TransactionTable';
+import Pagination from 'components/Pagination';
+import MobileTransactionTable from './MobileTransactionTable';
 
 type TransactionsProps = {
   className?: string;
+  walletId: string;
   isLoading?: boolean;
 };
 
@@ -39,10 +46,6 @@ const transactionTypeOptions = [
     label: 'Income',
     value: 'INCOME',
   },
-  {
-    label: 'Salary',
-    value: 'SALARY',
-  },
 ];
 
 const statusOptions = [
@@ -64,16 +67,40 @@ const statusOptions = [
   },
 ];
 
+const PAGE_SIZE = 10;
+
 export default function Transactions({
   className,
-  isLoading,
+  walletId,
 }: TransactionsProps) {
   const [sortField, setSortField] = useState<Option | null>(sortOptions[0]);
   const [sortDir, setSortDir] = useState<SortDirection>(SortDirection.DESC);
   const [status, setStatus] = useState(statusOptions[0]);
+  // skip first N results for pagination
+  const [page, setPage] = useState(0);
   const [transactionType, setTransactionType] = useState(
     transactionTypeOptions[0]
   );
+
+  const { isLoading, isFetching, data } = useQuery(
+    ['walletTransactions', walletId, page],
+    () => {
+      if (!walletId) {
+        return null;
+      }
+      return fetchTransactions({
+        accountId: walletId,
+        skip: page * PAGE_SIZE,
+        limit: PAGE_SIZE,
+      });
+    },
+    {
+      keepPreviousData: true,
+      staleTime: 5000,
+      refetchOnWindowFocus: false,
+    }
+  );
+
   return (
     <div className={classNames('', className)}>
       <h2 className="font-bold text-2xl">Transactions</h2>
@@ -107,6 +134,59 @@ export default function Transactions({
           />
         </div>
       </div>
+      <TransactionTable
+        className="hidden sm:block"
+        data={data?.items ?? []}
+        isLoading={isLoading || isFetching}
+      />
+      <MobileTransactionTable
+        className="sm:hidden mt-8"
+        data={data?.items ?? []}
+        isLoading={isLoading || isFetching}
+      />
+      <div className="flex justify-center">
+        {data && (
+          <Pagination
+            pageCount={Math.ceil((data?.totalCount ?? 0) / PAGE_SIZE)}
+            forcePage={page}
+            onPageChange={(e) => setPage(e.selected)}
+          />
+        )}
+      </div>
     </div>
   );
+}
+
+type TransactionSearchParams = {
+  accountId: string;
+  skip: number;
+  limit: number;
+  type?: string;
+};
+
+async function fetchTransactions(query: TransactionSearchParams) {
+  const response = await axios.post('/api/graphql', {
+    query: gql`
+      query WalletTransactions($query: TransactionsPagedQueryArguments!) {
+        transactions(query: $query) {
+          totalCount
+          items {
+            number
+            hash
+            dateTime
+            type
+            executor
+            isSuccessful
+            otherParticipants
+            amount
+            jobId
+          }
+        }
+      }
+    `,
+    variables: {
+      query,
+    },
+  });
+  return response.data?.data?.transactions;
 }

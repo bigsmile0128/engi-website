@@ -1,3 +1,3 @@
-import EngiIcon from 'components/icons/engi.svg';
+import EngiIcon from 'public/img/engi.svg';
 
 export default EngiIcon;
