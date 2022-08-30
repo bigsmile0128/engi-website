@@ -9,13 +9,15 @@ import {
 } from 'react-icons/ri';
 import EngiIcon from 'components/icons/EngiIcon';
 import Statistic from 'components/Statistic';
+import { Job } from 'types';
 
 type PayoutProps = {
   className?: string;
   isLoading?: boolean;
+  data?: Job;
 };
 
-export default function Payout({ className, isLoading }: PayoutProps) {
+export default function Payout({ className, isLoading, data }: PayoutProps) {
   return (
     <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
       <h2 className="font-grifter text-xl">Payout</h2>
@@ -25,7 +27,7 @@ export default function Payout({ className, isLoading }: PayoutProps) {
           value={
             <div className="flex items-center">
               <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-0.5">100</span>
+              <span className="ml-1">{data?.funding.toString()}</span>
             </div>
           }
           title={<span>Funding</span>}
@@ -36,7 +38,8 @@ export default function Payout({ className, isLoading }: PayoutProps) {
           value={
             <div className="flex items-center">
               <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-0.5">194</span>
+              {/* TODO: replace with real data when available */}
+              <span className="ml-1 !text-secondary !font-normal">N/A</span>
             </div>
           }
           title={<span>Bonus</span>}
@@ -47,7 +50,8 @@ export default function Payout({ className, isLoading }: PayoutProps) {
           value={
             <div className="flex items-center">
               <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-0.5">300</span>
+              {/* TODO: replace with real data when available */}
+              <span className="ml-1 !text-secondary !font-normal">N/A</span>
             </div>
           }
           title={<span>Per Assertion</span>}
@@ -58,7 +62,8 @@ export default function Payout({ className, isLoading }: PayoutProps) {
           value={
             <div className="flex items-center">
               <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-0.5">100</span>
+              {/* TODO: replace with real data when available */}
+              <span className="ml-1 !text-secondary !font-normal">N/A</span>
             </div>
           }
           title={<span>Honors Bracket</span>}
@@ -69,7 +74,8 @@ export default function Payout({ className, isLoading }: PayoutProps) {
           value={
             <div className="flex items-center">
               <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-0.5">194</span>
+              {/* TODO: replace with real data when available */}
+              <span className="ml-1 !text-secondary !font-normal">N/A</span>
             </div>
           }
           title={<span>Winning Payout</span>}

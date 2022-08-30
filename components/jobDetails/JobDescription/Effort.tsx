@@ -20,13 +20,15 @@ export default function Effort({
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
         <Statistic
           icon={<RiFileZipFill className="text-orange-primary h-5 w-5" />}
-          value="82gb"
+          // TODO: replace with real data when available
+          value="N/A"
           title="Job size"
           isLoading={isLoading}
         />
         <Statistic
           icon={<RiTimeFill className="text-green-primary h-5 w-5" />}
-          value="2 hours"
+          // TODO: replace with real data when available
+          value="N/A"
           title="Time"
           isLoading={isLoading}
         />
@@ -37,7 +39,8 @@ export default function Effort({
           )}
         >
           <div className="col-start-1 font-bold text-xl place-self-start">
-            Medium
+            {/* TODO: replace with real data when available */}
+            N/A
           </div>
           <span className="col-start-1 row-start-2 text-secondary place-self-start">
             Difficulty

@@ -24,6 +24,16 @@ export enum JobStatus {
   COMPLETE = 'COMPLETE',
 }
 
+export enum Language {
+  C = 'C',
+  C_SHARP = 'C_SHARP',
+  JAVA = 'JAVA',
+  JAVASCRIPT = 'JAVASCRIPT',
+  PYTHON = 'PYTHON',
+  RUST = 'RUST',
+  TYPESCRIPT = 'TYPESCRIPT',
+}
+
 export type Job = {
   id: string;
   creator: string;
@@ -33,7 +43,7 @@ export type Job = {
     branch: string;
     commit: string;
   };
-  language: string;
+  language: Language;
   name: string;
   tests: Test[];
   requirements: {

@@ -1,9 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Job } from 'types';
-import Tag from 'components/Tag';
 import dayjs from 'dayjs';
-import { SiPython } from '@react-icons/all-files/si/SiPython';
 import TextSkeleton from 'components/TextSkeleton';
 import Payout from './Payout';
 import Effort from './Effort';
@@ -11,6 +9,7 @@ import CopyLink from 'components/CopyLink';
 import Markdown from 'components/Markdown';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import LanguageTag from 'components/LanguageTag';
 
 type JobDescriptionProps = {
   className?: string;
@@ -59,9 +58,7 @@ export default function JobDescription({
           isLoading ? 'children:skeleton children:rounded-none' : ''
         )}
       >
-        <Tag>
-          <SiPython className="text-orange-primary mr-2" /> <span>Python</span>
-        </Tag>
+        <LanguageTag value={data?.language} isLoading={isLoading} />
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
       {isLoading || isLoadingDescription ? (
@@ -77,7 +74,7 @@ export default function JobDescription({
           </Markdown>
         </>
       )}
-      <Payout className="mt-8" isLoading={isLoading} />
+      <Payout className="mt-8" isLoading={isLoading} data={data} />
       <Effort className="mt-8" isLoading={isLoading} />
       <div className="mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6">
         <div className="flex flex-col gap-y-2">

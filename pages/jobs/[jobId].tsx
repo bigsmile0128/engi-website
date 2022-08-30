@@ -37,8 +37,6 @@ export default function JobDetails(props) {
     }
   );
 
-  console.log('data', data);
-
   return isError ? (
     <div className="flex flex-col items-center justify-center py-24">
       <p className="font-grifter text-3xl text-center">
