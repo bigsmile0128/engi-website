@@ -9,13 +9,13 @@ import { Job } from 'types';
 type JobHeaderProps = {
   className?: string;
   isLoading?: boolean;
-  job?: Job;
+  data?: Job;
 };
 
 export default function JobHeader({
   className,
   isLoading,
-  job,
+  data,
 }: JobHeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
   return (
@@ -33,7 +33,9 @@ export default function JobHeader({
             isLoading ? `skeleton mx-2` : ''
           )}
         >
-          <span className="-mb-2 block">{job?.title ?? 'Placeholder'}</span>
+          <span className="-mb-2 block">
+            {isLoading ? 'Placeholder' : data?.name}
+          </span>
         </h1>
         <button className="" onClick={() => setModalOpen(true)}>
           <IoMdShareAlt className="h-6 w-6" />

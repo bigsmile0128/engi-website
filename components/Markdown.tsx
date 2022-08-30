@@ -62,16 +62,25 @@ export default function Markdown({
         code: ({ node, inline, className, children, ...props }) => {
           const match = /language-(\w+)/.exec(className || '');
           return !inline && match ? (
-            <SyntaxHighlighter
-              style={monokai}
-              language={match[1]}
-              className="my-2"
+            <div className="w-full overflow-auto">
+              <SyntaxHighlighter
+                style={monokai}
+                language={match[1]}
+                className="my-2 w-full"
+                wrapLongLines
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            </div>
+          ) : (
+            <code
+              className={classNames(
+                'bg-black/50 break-word whitespace-pre-wrap',
+                className
+              )}
               {...props}
             >
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <code className={classNames('bg-black/50', className)} {...props}>
               {children}
             </code>
           );

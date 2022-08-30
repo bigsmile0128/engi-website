@@ -34,7 +34,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       pathRewrite: [
         {
           patternStr:
-            process.env.NODE_ENV === 'development' ? '^/api' : '^/api/(?!jobs)',
+            process.env.NODE_ENV === 'development'
+              ? '^/api'
+              : '^/api/(?!jobs|repos)',
           replaceStr: '/',
         },
       ],
