@@ -88,9 +88,7 @@ export default function JobDescription({
         </div>
         <div className="flex flex-col gap-y-2">
           <h2 className="font-grifter text-xl">Repo Link</h2>
-          <CopyLink
-            value={typeof window !== 'undefined' ? window.location.href : ''}
-          />
+          <CopyLink value={data?.repository?.url ?? ''} />
         </div>
       </div>
     </div>
