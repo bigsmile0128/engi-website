@@ -1,9 +1,13 @@
+export enum TestResult {
+  'PASSED' = 'PASSED',
+  'FAILED' = 'FAILED',
+  'IGNORED' = 'IGNORED',
+}
+
 export type Test = {
   id: string;
   result: string;
-  resultMessage: string;
   required: string;
-  requiredMessage: string;
 };
 
 export type Solution = {
@@ -37,7 +41,7 @@ export enum Language {
 export type Job = {
   id: string;
   creator: string;
-  funding: number;
+  funding: string;
   repository?: {
     url: string;
     branch: string;

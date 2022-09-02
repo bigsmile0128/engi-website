@@ -17,6 +17,10 @@ export default function Activity({
   numContributors,
   isLoading,
 }: ActivityProps) {
+  if (!isLoading && numTests === 0) {
+    return null;
+  }
+
   return (
     <div className={classNames('flex items-end gap-x-4', className)}>
       <div

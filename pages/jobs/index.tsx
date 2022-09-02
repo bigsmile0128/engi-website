@@ -10,6 +10,10 @@ import SearchResultsHeader from '../../components/jobs/SearchResultsHeader';
 import SearchResults from '../../components/jobs/SearchResults';
 import CurrentJobs from 'components/jobs/CurrentJobs';
 import RecommendedJobs from 'components/jobs/RecommendedJobs';
+import { gql } from 'graphql-request';
+import { Language } from 'types';
+
+const PAGE_SIZE = 10;
 
 export default function JobDiscovery() {
   const router = useRouter();
@@ -22,7 +26,11 @@ export default function JobDiscovery() {
 
   const { isLoading, isError, data, refetch } = useQuery(
     ['fetchJobs', searchParams.toString()],
-    () => fetchJobs(searchParams),
+    () =>
+      fetchJobs({
+        skip: 0,
+        limit: 25,
+      }),
     {
       onError: (error: AxiosError) => {
         Sentry.captureException(error, (scope) => {
@@ -52,13 +60,13 @@ export default function JobDiscovery() {
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader
             className="shrink-0 mb-8 md:mb-6 mt-4 md:mt-0"
-            numResults={data?.numResults}
+            numResults={data?.totalCount}
             isLoading={isLoading}
           />
           <SearchResults
             isLoading={isLoading}
-            results={data?.results ?? []}
-            numPages={data?.numPages ?? 0}
+            results={data?.items ?? []}
+            numPages={Math.ceil((data?.totalCount ?? 0) / PAGE_SIZE)}
             isError={isError}
             refresh={refetch}
           />
@@ -68,18 +76,83 @@ export default function JobDiscovery() {
   );
 }
 
-async function fetchJobs(searchParams) {
-  const searchParamsObj = Object.fromEntries(searchParams);
+type JobsQueryArguments = {
+  skip: number;
+  limit: number;
+  orderByProperty?: 'CREATED_ON' | 'FUNDING';
+  orderByDirection?: 'ASC' | 'DESC';
+  creator?: string;
+  status?: string;
+  search?: string;
+  language?: Language;
+  minFunding?: number;
+  maxFunding?: number;
+};
 
-  // convert 1-based indexing to 0-based indexing
-  if (searchParamsObj.page) {
-    const page = Number(searchParamsObj.page);
-    searchParamsObj.page = (page - 1).toString();
-  }
+async function fetchJobs(query: JobsQueryArguments) {
+  const response = await axios.post('/api/graphql', {
+    query: gql`
+      query JobSearch($query: JobsQueryArguments!) {
+        jobs(query: $query) {
+          totalCount
+          items {
+            id
+            creator
+            funding
+            repository {
+              url
+              branch
+              commit
+            }
+            language
+            name
+            tests {
+              ...test
+            }
+            requirements {
+              isEditable
+              isAddable
+              isDeletable
+            }
+            solution {
+              solutionId
+              jobId
+              author
+              patchUrl
+              attempt {
+                attemptId
+                attempter
+                tests {
+                  ...test
+                }
+              }
+            }
+            attemptCount
+            createdOn {
+              ...blockReference
+            }
+            updatedOn {
+              ...blockReference
+            }
+            status
+          }
+        }
+      }
 
-  const response = await axios.get('/api/jobs', {
-    params: searchParamsObj,
+      fragment test on Test {
+        id
+        result
+        required
+      }
+
+      fragment blockReference on BlockReference {
+        number
+        dateTime
+      }
+    `,
+    variables: {
+      query,
+    },
   });
-
-  return response.data;
+  return response.data?.data?.jobs ?? {};
 }

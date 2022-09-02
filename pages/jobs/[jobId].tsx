@@ -113,9 +113,7 @@ async function fetchJobDetails(jobId) {
       fragment test on Test {
         id
         result
-        resultMessage
         required
-        requiredMessage
       }
 
       fragment blockReference on BlockReference {

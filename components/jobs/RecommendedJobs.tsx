@@ -172,10 +172,6 @@ function Reward({ className, value, isLoading }: RewardProps) {
       >
         {isLoading ? 100 : value}
       </span>
-      <div className="flex items-center ml-4 text-white/60">
-        <span>e</span>
-        <span className="ml-0.5">{isLoading ? 100 : value + 30}</span>
-      </div>
     </div>
   );
 }

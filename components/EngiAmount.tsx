@@ -7,7 +7,7 @@ type EngiAmountProps = {
   iconClassName?: string;
   valueClassName?: string;
   isLoading?: boolean;
-  value?: number;
+  value?: string;
 };
 
 export default function EngiAmount({
@@ -17,9 +17,14 @@ export default function EngiAmount({
   value,
   isLoading,
 }: EngiAmountProps) {
-  // stored internally as fixed point decimal 18 value
+  // stored as fixed point decimal 18 value in D40 string
+  // e.g. 0000000000000000000000000000000000000001
+  // use first 24 digits to display 2 decimal places because the rightmost 18 represent decimals
+  // remove leading zeros
   const displayValue =
-    typeof value === 'number' ? (value / Math.pow(10, 18)).toFixed(2) : 'N/A';
+    value?.length === 40
+      ? (value.slice(0, 22) + '.' + value.slice(22, 24)).replace(/^0{0,21}/, '')
+      : 'N/A';
 
   return (
     <div

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import classNames from 'classnames';
-import { Job } from 'types';
+import { Job, TestResult } from 'types';
 import {
   ColumnDef,
   createColumnHelper,
@@ -13,6 +13,8 @@ import Activity from './Activity';
 import Effort from './Effort';
 import Payout from './Payout';
 import { useRouter } from 'next/router';
+import EngiAmount from 'components/EngiAmount';
+import TimeEstimate from 'components/TimeEstimate';
 
 type JobTableProps = {
   className?: string;
@@ -37,44 +39,52 @@ export default function JobTable({
   const columnHelper = createColumnHelper<Job>();
   const columns: ColumnDef<Job>[] = useMemo(
     () => [
-      columnHelper.accessor('title', {
+      columnHelper.accessor('name', {
         header: 'Job info',
         cell: (props) => {
           const job = props.row.original;
-          return <JobInfo title={job.title} isLoading={isLoading} />;
+          return <JobInfo title={job.name} isLoading={isLoading} />;
         },
       }),
-      columnHelper.accessor('numTests', {
+      columnHelper.accessor('tests', {
         header: 'Activity',
         cell: (props) => {
           const job = props.row.original;
           return (
             <Activity
-              numContributors={job.numContributors}
-              numTests={job.numTests}
-              testsPassed={job.testsPassed}
+              numContributors={job.attemptCount}
+              numTests={job.tests?.length}
+              testsPassed={
+                job.tests?.filter((test) => test.result === TestResult.PASSED)
+                  .length
+              }
               isLoading={isLoading}
             />
           );
         },
       }),
-      columnHelper.accessor('timeEstimate', {
+      // TODO: update with effort once available in job schema
+      columnHelper.accessor('attemptCount', {
         header: 'Effort',
         cell: (props) => {
           const job = props.row.original;
           return (
-            <Effort timeEstimate={job.timeEstimate} isLoading={isLoading} />
+            <TimeEstimate
+              className="mr-4"
+              duration="N/A"
+              isLoading={isLoading}
+            />
           );
         },
       }),
-      columnHelper.accessor('reward', {
-        header: 'Payout',
+      columnHelper.accessor('funding', {
+        header: 'Funding',
         cell: (props) => {
           const job = props.row.original;
           return (
-            <Payout
+            <EngiAmount
               className="shrink-0"
-              reward={job.reward}
+              value={job.funding}
               isLoading={isLoading}
             />
           );
@@ -88,13 +98,6 @@ export default function JobTable({
     if (isLoading) {
       return Array.from({ length: 10 }).map((_, i) => ({
         id: i.toString(),
-        language: 'Python',
-        title: 'Placeholder',
-        numTests: 10,
-        testsPassed: 0,
-        timeEstimate: 10,
-        reward: 100,
-        numContributors: 10,
       }));
     }
     return data ?? [];

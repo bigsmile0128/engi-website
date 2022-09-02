@@ -4,8 +4,8 @@ import { Job } from 'types';
 import JobInfo from './JobInfo';
 import Link from 'next/link';
 import Activity from './Activity';
-import Payout from './Payout';
 import TimeEstimate from 'components/TimeEstimate';
+import EngiAmount from 'components/EngiAmount';
 
 type MobileJobTableProps = {
   className?: string;
@@ -22,13 +22,6 @@ export default function MobileJobTable({
     if (isLoading) {
       return Array.from({ length: 10 }).map((_, i) => ({
         id: i.toString(),
-        language: 'Python',
-        title: 'Placeholder',
-        numTests: 10,
-        testsPassed: 0,
-        timeEstimate: 10,
-        reward: 100,
-        numContributors: 10,
       }));
     }
     return data ?? [];
@@ -47,7 +40,7 @@ export default function MobileJobTable({
           >
             <JobInfo
               className="!flex-row items-center gap-x-2"
-              title={job.title}
+              title={job.name}
               iconClassName="!h-8 !w-8 !bg-[#EFEFEF]/[.13]"
               isLoading={isLoading}
             />
@@ -67,7 +60,7 @@ export default function MobileJobTable({
               </div>
               <TimeEstimate
                 className="mr-4"
-                duration={`${job.timeEstimate} hours`}
+                duration="N/A"
                 isLoading={isLoading}
               />
             </div>
@@ -82,7 +75,7 @@ export default function MobileJobTable({
               >
                 PAYOUT
               </label>
-              <Payout isLoading={isLoading} {...job} />
+              <EngiAmount isLoading={isLoading} value={job.funding} />
             </div>
           </a>
         </Link>

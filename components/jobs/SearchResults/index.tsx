@@ -29,7 +29,7 @@ export default function SearchResults({
   const searchParams = new URLSearchParams();
   const setSearchParams = (...args: any) => {};
   // use 1-based pagination instead of 0-based
-  const page = Number(searchParams.get('page')) || 1;
+  const page = Number(searchParams.get('page')) || 0;
 
   return (
     <div
