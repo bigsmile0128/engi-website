@@ -15,6 +15,8 @@ import Payout from './Payout';
 import { useRouter } from 'next/router';
 import EngiAmount from 'components/EngiAmount';
 import TimeEstimate from 'components/TimeEstimate';
+import JobStatus from './JobStatus';
+import Tag from 'components/Tag';
 
 type JobTableProps = {
   className?: string;
@@ -43,38 +45,45 @@ export default function JobTable({
         header: 'Job info',
         cell: (props) => {
           const job = props.row.original;
-          return <JobInfo title={job.name} isLoading={isLoading} />;
-        },
-      }),
-      columnHelper.accessor('tests', {
-        header: 'Activity',
-        cell: (props) => {
-          const job = props.row.original;
           return (
-            <Activity
-              numContributors={job.attemptCount}
-              numTests={job.tests?.length}
-              testsPassed={
-                job.tests?.filter((test) => test.result === TestResult.PASSED)
-                  .length
-              }
+            <JobInfo
               isLoading={isLoading}
+              name={job?.name}
+              createdOn={job?.createdOn?.dateTime}
             />
           );
         },
       }),
+      columnHelper.accessor('status', {
+        header: 'Job Status',
+        cell: (props) => {
+          const job = props.row.original;
+          return <JobStatus isLoading={isLoading} status={job?.status} />;
+        },
+      }),
+      // columnHelper.accessor('tests', {
+      //   header: 'Activity',
+      //   cell: (props) => {
+      //     const job = props.row.original;
+      //     return (
+      //       <Activity
+      //         numContributors={job.attemptCount}
+      //         numTests={job.tests?.length}
+      //         testsPassed={
+      //           job.tests?.filter((test) => test.result === TestResult.PASSED)
+      //             .length
+      //         }
+      //         isLoading={isLoading}
+      //       />
+      //     );
+      //   },
+      // }),
       // TODO: update with effort once available in job schema
       columnHelper.accessor('attemptCount', {
-        header: 'Effort',
+        header: 'Difficulty',
         cell: (props) => {
           const job = props.row.original;
-          return (
-            <TimeEstimate
-              className="mr-4"
-              duration="N/A"
-              isLoading={isLoading}
-            />
-          );
+          return <Tag className="py-1">Easy</Tag>;
         },
       }),
       columnHelper.accessor('funding', {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import axios, { AxiosError } from 'axios';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 import * as Sentry from '@sentry/react';
 
 import { useRouter } from 'next/router';
@@ -11,8 +9,6 @@ import JobHeader from 'components/jobDetails/JobHeader';
 import JobDescription from 'components/jobDetails/JobDescription';
 import JobActivity from 'components/jobDetails/JobActivity';
 import { gql } from 'graphql-request';
-
-dayjs.extend(relativeTime);
 
 export default function JobDetails(props) {
   const router = useRouter();
