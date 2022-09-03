@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import { Job } from 'types';
-import JobInfo from './JobInfo';
+import JobInfo, { MobileJobInfo } from './JobInfo';
 import Link from 'next/link';
 import Activity from './Activity';
 import TimeEstimate from 'components/TimeEstimate';
 import EngiAmount from 'components/EngiAmount';
+import JobStatus from './JobStatus';
+import Tag from 'components/Tag';
 
 type MobileJobTableProps = {
   className?: string;
@@ -38,44 +40,19 @@ export default function MobileJobTable({
               isLoading ? '' : 'hover:bg-black/40'
             )}
           >
-            <JobInfo
-              className="!flex-row items-center gap-x-2"
-              title={job.name}
-              iconClassName="!h-8 !w-8 !bg-[#EFEFEF]/[.13]"
+            <MobileJobInfo
               isLoading={isLoading}
+              name={job.name}
+              createdOn={job?.createdOn?.dateTime}
             />
-            <div className="flex items-center justify-between mt-6">
-              <div className="flex items-center gap-x-2">
-                <label
-                  htmlFor="activity"
-                  className={classNames(
-                    'w-16',
-                    'font-medium text-xs',
-                    isLoading ? 'skeleton' : 'text-secondary'
-                  )}
-                >
-                  ACTIVITY
-                </label>
-                <Activity isLoading={isLoading} {...job} />
-              </div>
-              <TimeEstimate
-                className="mr-4"
-                duration="N/A"
-                isLoading={isLoading}
-              />
-            </div>
             <div className="flex items-center gap-x-2 mt-4">
-              <label
-                htmlFor="activity"
-                className={classNames(
-                  'w-16',
-                  'font-medium text-xs',
-                  isLoading ? 'skeleton' : 'text-secondary'
-                )}
-              >
-                PAYOUT
-              </label>
-              <EngiAmount isLoading={isLoading} value={job.funding} />
+              <JobStatus isLoading={isLoading} status={job?.status} />
+              <Tag className="py-1 ml-auto">Easy</Tag>
+              <EngiAmount
+                className="ml-8"
+                isLoading={isLoading}
+                value={job.funding}
+              />
             </div>
           </a>
         </Link>

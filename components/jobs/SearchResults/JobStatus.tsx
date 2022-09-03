@@ -21,13 +21,13 @@ export default function JobStatus({
   let icon;
   let text;
   if (status === JobStatusType.ACTIVE) {
-    icon = <RiFlashlightFill className="text-orange-primary" />;
+    icon = <RiFlashlightFill className="text-lg text-orange-primary" />;
     text = 'Work Started';
   } else if (status == JobStatusType.COMPLETE) {
-    icon = <RiCheckboxCircleLine className="text-green-primary" />;
+    icon = <RiCheckboxCircleLine className="text-lg text-green-primary" />;
     text = 'Work Done';
   } else {
-    icon = <RiRocket2Fill />;
+    icon = <RiRocket2Fill className="text-lg" />;
     text = 'Ready to Work';
   }
   return (
@@ -39,7 +39,7 @@ export default function JobStatus({
       )}
     >
       {icon}
-      <span className="whitespace-nowrap">{text}</span>
+      <span className="truncate">{text}</span>
     </div>
   );
 }

@@ -46,3 +46,36 @@ export default function JobInfo({
     </div>
   );
 }
+
+export function MobileJobInfo({
+  className,
+  name,
+  createdOn,
+  isLoading,
+}: JobInfoProps) {
+  return (
+    <div className={classNames('flex items-center gap-x-4', className)}>
+      <SiPython
+        className={classNames(
+          'h-10 w-10 text-green-primary rounded-full p-2.5 bg-[#EFEFEF]/[.13]',
+          {
+            'invisible skeleton': isLoading,
+          }
+        )}
+      />
+      <div
+        className={classNames(
+          'flex flex-col gap-y-0.5',
+          isLoading ? 'children:skeleton' : ''
+        )}
+      >
+        <span className={classNames('font-bold truncate')}>
+          {name ?? 'N/A'}
+        </span>
+        <span className="text-xs text-white/80">
+          Created {dayjs(createdOn).fromNow()}
+        </span>
+      </div>
+    </div>
+  );
+}
