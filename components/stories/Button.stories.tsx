@@ -16,3 +16,8 @@ export const Primary = Template.bind({});
 Primary.args = {
   variant: 'primary',
 };
+
+export const Tag = Template.bind({});
+Tag.args = {
+  variant: 'tag',
+};

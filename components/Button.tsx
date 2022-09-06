@@ -1,9 +1,10 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
+import Tag from './Tag';
 
 type ButtonProps = {
-  variant?: 'primary' | 'default';
+  variant?: 'primary' | 'default' | 'tag';
 };
 
 export default function Button({
@@ -36,6 +37,25 @@ export default function Button({
         {...props}
       >
         {children}
+      </motion.button>
+    );
+  } else if (variant === 'tag') {
+    return (
+      <motion.button
+        className={classNames(
+          'outline-none focus-visible:ring-1 focus-visible:ring-green-primary/60',
+          className
+        )}
+        disabled={disabled}
+        {...props}
+      >
+        <Tag
+          className={classNames(
+            disabled ? 'text-white/60' : 'hover:border-green-primary/60'
+          )}
+        >
+          {children}
+        </Tag>
       </motion.button>
     );
   }

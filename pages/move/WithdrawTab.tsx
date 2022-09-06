@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import Input from 'components/Input';
-import { RiSearchLine } from 'react-icons/ri';
+import { RiArrowLeftRightLine, RiSearchLine } from 'react-icons/ri';
 import Checkbox from 'components/Checkbox';
 import ButtonSelect from 'components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
+import Button from 'components/Button';
 
 type WithdrawTabProps = {
   className?: string;
@@ -55,6 +56,36 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
           placeholder="Enter a wallet address"
         />
         <RiSearchLine className="text-secondary absolute top-1/2 left-4 -translate-y-1/2 h-5 w-5" />
+      </div>
+      <label htmlFor="amount" className="mt-8 font-bold text-xl">
+        {"What's the amount?"}
+      </label>
+      <div className="flex items-center mt-2 gap-x-4">
+        <div className="relative flex-1">
+          <Input
+            className="pr-20 w-full"
+            type="number"
+            name="amount"
+            placeholder="0.00"
+          />
+          <Button
+            variant="tag"
+            className="absolute top-1/2 right-3 -translate-y-1/2"
+          >
+            Max
+          </Button>
+        </div>
+        <button className="hover:text-green-primary">
+          <RiArrowLeftRightLine className="h-5 w-5" />
+        </button>
+        <div className="flex-1">
+          <Input
+            className=""
+            type="number"
+            name="converted"
+            placeholder="0.00"
+          />
+        </div>
       </div>
       <Checkbox
         className="font-medium mt-8"
