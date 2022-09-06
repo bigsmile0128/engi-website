@@ -7,6 +7,7 @@ import { RiSearchLine } from 'react-icons/ri';
 import Checkbox from 'components/Checkbox';
 import WithdrawTab from './WithdrawTab';
 import DepositTab from './DepositTab';
+import TransferTab from './TransferTab';
 
 type MoveEngiProps = {
   className?: string;
@@ -58,7 +59,7 @@ export default function MoveEngi({ className }: MoveEngiProps) {
               <DepositTab />
             </Tab.Panel>
             <Tab.Panel>
-              <div>Transfer</div>
+              <TransferTab />
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>

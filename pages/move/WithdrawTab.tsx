@@ -6,6 +6,7 @@ import Checkbox from 'components/Checkbox';
 import ButtonSelect from 'components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
 import Button from 'components/Button';
+import WalletInput from './WalletInput';
 
 type WithdrawTabProps = {
   className?: string;
@@ -45,18 +46,7 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
   return (
     <div className={classNames('flex flex-col', className)}>
       <CurrencySelect className="" />
-      <label htmlFor="wallet-address" className="font-bold text-xl mt-8">
-        Wallet Address
-      </label>
-      <div className="relative mt-2">
-        <Input
-          className="w-full pl-11"
-          type="text"
-          name="wallet-address"
-          placeholder="Enter a wallet address"
-        />
-        <RiSearchLine className="text-secondary absolute top-1/2 left-4 -translate-y-1/2 h-5 w-5" />
-      </div>
+      <WalletInput className="mt-8" />
       <label htmlFor="amount" className="mt-8 font-bold text-xl">
         {"What's the amount?"}
       </label>
