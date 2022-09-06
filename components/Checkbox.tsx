@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import React from 'react';
 
 interface CheckboxProps {
@@ -16,7 +17,7 @@ export default function Checkbox({
   onChange,
 }: CheckboxProps) {
   return (
-    <div className="flex items-center relative">
+    <div className={classNames('flex items-center relative', className)}>
       <input
         tabIndex={-1}
         type="checkbox"
