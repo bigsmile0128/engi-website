@@ -50,7 +50,10 @@ export default function MobileTransactionTable({
             >
               {transaction.executor}
             </div>
-            <EngiAmount value={transaction.amount} isLoading={isLoading} />
+            <EngiAmount
+              value={transaction.amount.toString()}
+              isLoading={isLoading}
+            />
           </div>
           <TransactionTime
             className="mt-2"

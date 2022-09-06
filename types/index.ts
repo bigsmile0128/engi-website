@@ -58,11 +58,11 @@ export type Job = {
   solution?: Solution;
   attemptCount: number;
   createdOn?: {
-    number: string;
+    number: number;
     dateTime: string;
   };
   updatedOn?: {
-    number: string;
+    number: number;
     dateTime: string;
   };
   status: JobStatus;

@@ -79,7 +79,10 @@ export default function TransactionTable({
         cell: (props) => {
           const transaction = props.row.original;
           return (
-            <EngiAmount value={transaction.amount} isLoading={isLoading} />
+            <EngiAmount
+              value={transaction.amount.toString()}
+              isLoading={isLoading}
+            />
           );
         },
       }),

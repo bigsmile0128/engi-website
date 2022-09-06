@@ -17,6 +17,7 @@ import EngiAmount from 'components/EngiAmount';
 import TimeEstimate from 'components/TimeEstimate';
 import JobStatus from './JobStatus';
 import Tag from 'components/Tag';
+import { mockJob } from 'types/mock';
 
 type JobTableProps = {
   className?: string;
@@ -106,6 +107,7 @@ export default function JobTable({
   const _data = useMemo<Job[]>(() => {
     if (isLoading) {
       return Array.from({ length: 10 }).map((_, i) => ({
+        ...mockJob,
         id: i.toString(),
       }));
     }

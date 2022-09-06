@@ -42,13 +42,13 @@ export default function JobPreview({
           )}
         >
           <JobInfo
-            title={title}
+            name={title}
             isLoading={isLoading}
             className="md:hidden flex items-center p-6 pb-0 gap-x-4"
           />
           <div className={classNames('flex-1 flex justify-between p-6')}>
             <JobInfo
-              title={title}
+              name={title}
               isLoading={isLoading}
               className="hidden md:flex flex-col justify-between"
             />
