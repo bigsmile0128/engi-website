@@ -13,9 +13,7 @@ module.exports = async ({ config, mode }) => {
   });
 
   config.module.rules.forEach((rule) => {
-    console.log('rule.test', rule.test);
     if (rule.test?.source?.includes('|svg')) {
-      console.log(rule.test.source);
       rule.test = new RegExp(
         rule.test.source.replace('|svg', ''),
         rule.test.flags
@@ -23,7 +21,6 @@ module.exports = async ({ config, mode }) => {
     }
   });
 
-  console.log(config.module.rules);
   // Return the altered config
   return config;
 };

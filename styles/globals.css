@@ -137,8 +137,8 @@ code {
 }
 
 input:checked + div {
-  @apply border-green-400;
-  @apply bg-green-400;
+  @apply border-green-primary;
+  @apply bg-green-primary;
 }
 input:checked + div svg {
   @apply block;
