@@ -4,6 +4,7 @@ import Input from 'components/Input';
 import { RiSearchLine } from 'react-icons/ri';
 import Checkbox from 'components/Checkbox';
 import ButtonSelect from 'components/ButtonSelect';
+import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
 
 type WithdrawTabProps = {
   className?: string;
@@ -42,7 +43,8 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
 
   return (
     <div className={classNames('flex flex-col', className)}>
-      <label htmlFor="wallet-address" className="font-bold text-xl">
+      <CurrencySelect className="" />
+      <label htmlFor="wallet-address" className="font-bold text-xl mt-8">
         Wallet Address
       </label>
       <div className="relative mt-2">
@@ -70,6 +72,85 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         onChange={(repeatFrequency) => setRepeatFrequency(repeatFrequency)}
         disabled={!repeatTransaction}
       />
+    </div>
+  );
+}
+
+enum Currency {
+  BITCOIN = 'BITCOIN',
+  ETHEREUM = 'ETHEREUM',
+  LITECOIN = 'LITECOIN',
+  TETHER = 'TETHER',
+}
+
+const currencyOptions = [
+  {
+    label: 'Bitcoin',
+    value: Currency.BITCOIN,
+  },
+  {
+    label: 'Ethereum',
+    value: Currency.ETHEREUM,
+  },
+  {
+    label: 'Litecoin',
+    value: Currency.LITECOIN,
+  },
+];
+
+function CurrencySelect({ className }) {
+  const [value, setValue] = useState(Currency.BITCOIN);
+
+  return (
+    <div className={classNames('flex items-center gap-x-4', className)}>
+      {currencyOptions.map((option) => (
+        <button
+          key={option.value}
+          className={classNames(
+            'flex-1 flex flex-col items-center justify-center py-6',
+            'outline-none focus-visible:ring-1 ring-green-primary/60',
+            option.value === value
+              ? 'font-bold text-white border border-green-primary'
+              : 'font-medium text-white/80 border border-white/20'
+          )}
+          onClick={() => setValue(option.value)}
+        >
+          {option.value === Currency.BITCOIN && (
+            <SiBitcoin
+              className={classNames(
+                'h-8 w-8',
+                option.value === value ? 'text-green-primary' : ''
+              )}
+            />
+          )}
+          {option.value === Currency.ETHEREUM && (
+            <SiEthereum
+              className={classNames(
+                'h-8 w-8',
+                option.value === value ? 'text-green-primary' : ''
+              )}
+            />
+          )}
+          {option.value === Currency.LITECOIN && (
+            <SiLitecoin
+              className={classNames(
+                'h-8 w-8',
+                option.value === value ? 'text-green-primary' : ''
+              )}
+            />
+          )}
+          <span className="mt-4">{option.label}</span>
+          {option.value === Currency.BITCOIN && (
+            <span className="font-normal text-sm mt-2">1 engi - 2000</span>
+          )}
+          {option.value === Currency.ETHEREUM && (
+            <span className="font-normal text-sm mt-2">1 engi - 1000</span>
+          )}
+          {option.value === Currency.LITECOIN && (
+            <span className="font-normal text-sm mt-2">1 engi - 500</span>
+          )}
+        </button>
+      ))}
     </div>
   );
 }
