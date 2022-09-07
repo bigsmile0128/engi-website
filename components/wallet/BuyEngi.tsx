@@ -24,7 +24,7 @@ function substrateToHex(address) {
 
   return (
     '0x' +
-    Array.from(ar, function (byte) {
+    Array.from(ar, function (byte: any) {
       return ('0' + (byte & 0xff).toString(16)).slice(-2);
     }).join('')
   );
