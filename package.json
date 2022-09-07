@@ -19,6 +19,7 @@
     "@heroicons/react": "^1.0.6",
     "@next/bundle-analyzer": "^12.2.3",
     "@octokit/core": "^4.0.5",
+    "@polkadot/util-crypto": "^10.1.7",
     "@react-icons/all-files": "^4.1.0",
     "@sentry/react": "^6.19.2",
     "@sentry/tracing": "^6.19.2",
@@ -63,6 +64,7 @@
     "sharp": "^0.30.7",
     "store2": "^2.14.2",
     "tailwindcss-debug-screens": "^2.2.1",
+    "web3": "^1.7.5",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
