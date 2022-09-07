@@ -21,6 +21,7 @@ export default function MobileJobTable({
   data,
   isLoading,
 }: MobileJobTableProps) {
+  // @ts-ignore
   const _data = useMemo<Job[]>(() => {
     if (isLoading) {
       return Array.from({ length: 10 }).map((_, i) => ({

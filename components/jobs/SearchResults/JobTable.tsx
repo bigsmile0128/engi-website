@@ -109,7 +109,7 @@ export default function JobTable({
       return Array.from({ length: 10 }).map((_, i) => ({
         ...mockJob,
         id: i.toString(),
-      }));
+      })) as Job[];
     }
     return data ?? [];
   }, [data, isLoading]);
