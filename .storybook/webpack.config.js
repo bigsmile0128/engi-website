@@ -21,6 +21,14 @@ module.exports = async ({ config, mode }) => {
     }
   });
 
+  config.resolve.fallback = {
+    https: false,
+    http: false,
+    crypto: false,
+    stream: false,
+    path: false,
+  };
+
   // Return the altered config
   return config;
 };
