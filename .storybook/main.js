@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   stories: ['../components/**/*.stories.@(ts|tsx)'],
   addons: [
@@ -15,6 +13,7 @@ module.exports = {
         },
       },
     },
+    'storybook-addon-mock/register',
   ],
   framework: '@storybook/react',
   core: {
