@@ -60,7 +60,6 @@ export default function JobDetails(props) {
 }
 
 async function fetchJobDetails(jobId) {
-  console.log('=====+>');
   const response = await axios.post('/api/graphql', {
     query: gql`
       query JobDetails($id: String!) {
@@ -124,5 +123,6 @@ async function fetchJobDetails(jobId) {
       id: jobId,
     },
   });
+
   return response.data?.data?.jobs?.items?.[0] ?? null;
 }
