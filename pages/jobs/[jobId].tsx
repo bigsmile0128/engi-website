@@ -13,12 +13,14 @@ import { gql } from 'graphql-request';
 export default function JobDetails(props) {
   const router = useRouter();
   const { jobId } = router.query;
+  console.log('jobId====>', jobId);
   const { isLoading, isError, data } = useQuery<Job>(
     ['jobDetails', jobId],
     () => {
       if (!jobId) {
         return null;
       }
+      console.log('========>', jobId);
       return fetchJobDetails(jobId);
     },
     {
@@ -58,6 +60,7 @@ export default function JobDetails(props) {
 }
 
 async function fetchJobDetails(jobId) {
+  console.log('=====+>');
   const response = await axios.post('/api/graphql', {
     query: gql`
       query JobDetails($id: String!) {

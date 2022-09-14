@@ -6,8 +6,10 @@ import '!style-loader!css-loader!postcss-loader!../styles/globals.css';
 import React from 'react';
 
 import * as NextImage from 'next/image';
+import * as NextFutureImage from 'next/future/image';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
 
 const queryClient = new QueryClient();
 
@@ -28,11 +30,19 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  nextRouter: {
+    Provider: RouterContext.Provider,
+  },
 };
 
 const OriginalNextImage = NextImage.default;
 
 Object.defineProperty(NextImage, 'default', {
+  configurable: true,
+  value: (props) => <OriginalNextImage {...props} unoptimized />,
+});
+
+Object.defineProperty(NextFutureImage, 'default', {
   configurable: true,
   value: (props) => <OriginalNextImage {...props} unoptimized />,
 });

@@ -63,6 +63,7 @@
     "remark-gfm": "^3.0.1",
     "sharp": "^0.30.7",
     "store2": "^2.14.2",
+    "storybook-addon-next-router": "^4.0.0",
     "tailwindcss-debug-screens": "^2.2.1",
     "web3": "^1.7.5",
     "webpack-bundle-analyzer": "^4.5.0"

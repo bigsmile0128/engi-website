@@ -14,6 +14,7 @@ module.exports = {
       },
     },
     'storybook-addon-mock/register',
+    'storybook-addon-next-router',
   ],
   framework: '@storybook/react',
   core: {
