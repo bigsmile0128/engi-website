@@ -1,6 +1,7 @@
 import React from 'react';
+import cn from 'classnames';
 import withMock from 'storybook-addon-mock';
-
+import styles from './common_bg.module.css';
 import ContactUs from '../../../pages/contact';
 
 export default {
@@ -9,7 +10,11 @@ export default {
   decorators: [withMock],
 };
 
-const Template = (args) => <ContactUs {...args} />;
+const Template = (args) => (
+  <div className={cn('py-20', styles.main_bg)}>
+    <ContactUs {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 

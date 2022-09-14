@@ -1,5 +1,7 @@
 import React from 'react';
 import withMock from 'storybook-addon-mock';
+import cn from 'classnames';
+import styles from './common_bg.module.css';
 
 import Jobs from '../../../pages/jobs';
 
@@ -9,7 +11,11 @@ export default {
   decorators: [withMock],
 };
 
-const Template = (args) => <Jobs {...args} />;
+const Template = (args) => (
+  <div className={cn('py-20', styles.main_bg)}>
+    <Jobs {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 
