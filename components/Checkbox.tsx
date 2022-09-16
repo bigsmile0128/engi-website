@@ -7,6 +7,7 @@ interface CheckboxProps {
   label: string;
   checked: boolean;
   onChange: (checked) => void;
+  labelClassName?: string;
 }
 
 export default function Checkbox({
@@ -15,6 +16,7 @@ export default function Checkbox({
   label,
   checked,
   onChange,
+  labelClassName,
 }: CheckboxProps) {
   return (
     <div className={classNames('flex items-center relative', className)}>
@@ -52,7 +54,10 @@ export default function Checkbox({
           </g>
         </svg>
       </div>
-      <label htmlFor={id} className="text-sm text-white select-none">
+      <label
+        htmlFor={id}
+        className={classNames('text-sm text-white select-none', labelClassName)}
+      >
         {label}
       </label>
     </div>
