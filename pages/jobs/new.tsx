@@ -4,6 +4,7 @@ import GridPattern from 'components/GridPattern';
 import Steps from 'components/Steps';
 import RepositoryTab from 'components/jobCreation/RepositoryTab';
 import TestsTab from 'components/jobCreation/TestsTab';
+import DetailsTab from 'components/jobCreation/DetailsTab';
 
 type NewJobProps = {
   className?: string;
@@ -12,6 +13,8 @@ type NewJobProps = {
 export default function NewJob({ className }: NewJobProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [repoUrl, setRepoUrl] = useState('');
+  const [jobName, setJobName] = useState('');
+
   return (
     <div className={classNames('mt-24 mb-24', className)}>
       <div
@@ -53,6 +56,15 @@ export default function NewJob({ className }: NewJobProps) {
             onChange={(selectedTests) => {
               // set selected tests when real data is available
               setCurrentStep(2);
+            }}
+            goBack={() => setCurrentStep(0)}
+          />
+        )}
+        {currentStep === 2 && (
+          <DetailsTab
+            onChange={({ jobName }) => {
+              setJobName(jobName);
+              setCurrentStep(3);
             }}
             goBack={() => setCurrentStep(0)}
           />
