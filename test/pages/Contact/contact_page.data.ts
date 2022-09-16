@@ -1,4 +1,4 @@
-import { Specification } from '../../../types';
+import { Specification } from 'same-story-jest-plugin/lib/models/specification';
 import { v4 as uuidv4 } from 'uuid';
 
 const checkId: string = uuidv4();
