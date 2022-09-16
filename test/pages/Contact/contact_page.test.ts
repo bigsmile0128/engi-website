@@ -1,13 +1,12 @@
 import { contactUsData } from './contact_page.data';
-
-const timeout = 60_000 * 5;
+import { SS_TIMEOUT } from '../config';
 
 describe('Contact page', () => {
   test(
-    'are they same story?',
+    'is the contact page matching the figma design?',
     async () => {
       await expect(contactUsData).toBeSameStory();
     },
-    timeout
+    SS_TIMEOUT
   );
 });

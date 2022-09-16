@@ -16,11 +16,7 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "node_modules/same-story-jest-plugin/types/index.d.ts"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "files": ["node_modules/same-story-jest-plugin/types/index.d.ts"],
   "exclude": ["node_modules"]
 }

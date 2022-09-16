@@ -109,4 +109,5 @@ export interface Specification {
   url_check_frame: string;
   width: string;
   dataPath: string;
+  debug?: boolean;
 }
