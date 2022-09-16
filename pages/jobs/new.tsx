@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import GridPattern from 'components/GridPattern';
 import Steps from 'components/Steps';
+import RepositoryTab from 'components/jobCreation/RepositoryTab';
 
 type NewJobProps = {
   className?: string;
 };
 
 export default function NewJob({ className }: NewJobProps) {
-  const [current, setCurrent] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [repoUrl, setRepoUrl] = useState('');
   return (
     <div className={classNames('mt-24 mb-24', className)}>
       <div
@@ -24,8 +26,8 @@ export default function NewJob({ className }: NewJobProps) {
           </h1>
           <Steps
             className="mt-8"
-            current={current}
-            onChange={setCurrent}
+            current={currentStep}
+            onChange={setCurrentStep}
             steps={[
               { title: 'Repository' },
               { title: 'Tests' },
@@ -35,6 +37,16 @@ export default function NewJob({ className }: NewJobProps) {
             ]}
           />
         </div>
+      </div>
+      <div className="max-w-page md:!max-w-xl mt-12">
+        {currentStep === 0 && (
+          <RepositoryTab
+            onChange={(repoUrl) => {
+              setCurrentStep(1);
+              setRepoUrl(repoUrl);
+            }}
+          />
+        )}
       </div>
     </div>
   );
