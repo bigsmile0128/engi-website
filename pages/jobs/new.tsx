@@ -5,6 +5,7 @@ import Steps from 'components/Steps';
 import RepositoryTab from 'components/jobCreation/RepositoryTab';
 import TestsTab from 'components/jobCreation/TestsTab';
 import DetailsTab from 'components/jobCreation/DetailsTab';
+import FundingTab from 'components/jobCreation/FundingTab';
 
 type NewJobProps = {
   className?: string;
@@ -14,6 +15,7 @@ export default function NewJob({ className }: NewJobProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [repoUrl, setRepoUrl] = useState('');
   const [jobName, setJobName] = useState('');
+  const [funding, setFunding] = useState(0);
 
   return (
     <div className={classNames('mt-24 mb-24', className)}>
@@ -54,7 +56,7 @@ export default function NewJob({ className }: NewJobProps) {
         {currentStep === 1 && (
           <TestsTab
             onChange={(selectedTests) => {
-              // set selected tests when real data is available
+              // TODO: set selected tests when real data is available
               setCurrentStep(2);
             }}
             goBack={() => setCurrentStep(0)}
@@ -66,7 +68,16 @@ export default function NewJob({ className }: NewJobProps) {
               setJobName(jobName);
               setCurrentStep(3);
             }}
-            goBack={() => setCurrentStep(0)}
+            goBack={() => setCurrentStep(1)}
+          />
+        )}
+        {currentStep === 3 && (
+          <FundingTab
+            onChange={({ funding }) => {
+              setFunding(funding);
+              setCurrentStep(4);
+            }}
+            goBack={() => setCurrentStep(2)}
           />
         )}
       </div>

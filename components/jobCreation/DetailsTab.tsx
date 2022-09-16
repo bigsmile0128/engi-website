@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import Button from 'components/Button';
-import Switch from 'components/Switch';
-import Checkbox from 'components/Checkbox';
 import Input from 'components/Input';
 
 type DetailsTabProps = {
