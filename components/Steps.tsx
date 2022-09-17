@@ -57,7 +57,7 @@ export function Step({
   return (
     <button
       className={classNames(
-        'relative flex flex-col items-center gap-y-8 w-[100px]',
+        'relative flex flex-col items-center gap-y-8 w-[100px] pt-[12px]',
         'outline-none focus-visible:ring-1 ring-green-primary',
         className
       )}
@@ -95,7 +95,7 @@ export function Step({
       {showTail && (
         <span
           className={classNames(
-            'absolute top-[8px] w-full left-0 text-[0px] ml-[58px]',
+            'absolute top-[20px] w-full left-0 text-[0px] ml-[58px]',
             "after:inline-block after:content-[''] after:h-[2px] after:w-full",
             {
               'after:bg-green-primary': completed,

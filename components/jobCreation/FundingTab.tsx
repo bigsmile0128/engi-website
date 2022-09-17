@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import Button from 'components/Button';
 import EngiAmount from 'components/EngiAmount';
-import EngiIcon from 'components/icons/EngiIcon';
 
 type FundingTabProps = {
   className?: string;
@@ -34,13 +33,12 @@ export default function FundingTab({
           <EngiAmount className="mt-4" value={123} />
         </div>
       </div>
-      <div className="flex items-end mt-12">
-        <EngiIcon className="h-8 w-8 text-green-primary mb-[18px] mr-1" />
+      <div className="flex items-end mt-12 font-grifter text-6xl">
+        <span className="mr-1">e</span>
         <input
           id="funding"
           className={classNames(
             'block w-48 mt-4',
-            'font-grifter text-6xl',
             'bg-transparent border-b border-white/30',
             'outline-none focus-visible:border-b-green-primary'
           )}

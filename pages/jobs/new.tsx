@@ -94,6 +94,8 @@ export default function NewJob({ className }: NewJobProps) {
             // TODO: connect to job creation API
             onChange={() => {}}
             setCurrentStep={setCurrentStep}
+            jobName={jobName}
+            funding={funding}
           />
         )}
       </div>
