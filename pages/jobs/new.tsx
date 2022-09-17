@@ -6,13 +6,22 @@ import RepositoryTab from 'components/jobCreation/RepositoryTab';
 import TestsTab from 'components/jobCreation/TestsTab';
 import DetailsTab from 'components/jobCreation/DetailsTab';
 import FundingTab from 'components/jobCreation/FundingTab';
+import PreviewTab from 'components/jobCreation/PreviewTab';
 
 type NewJobProps = {
   className?: string;
 };
 
+export enum JobStep {
+  REPOSITORY,
+  TESTS,
+  DETAILS,
+  FUNDING,
+  PREVIEW,
+}
+
 export default function NewJob({ className }: NewJobProps) {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(JobStep.REPOSITORY);
   const [repoUrl, setRepoUrl] = useState('');
   const [jobName, setJobName] = useState('');
   const [funding, setFunding] = useState(0);
@@ -27,8 +36,8 @@ export default function NewJob({ className }: NewJobProps) {
       >
         <GridPattern className="top-0 left-0" id="new-job-header" offset={-1} />
         <div className="flex flex-col items-center justify-center relative z-10">
-          <h1 className="font-grifter text-3xl sm:text-5xl lg:text-7xl">
-            Web UI + Figma job
+          <h1 className="font-grifter text-5xl text-center lg:text-7xl">
+            New Engi Job
           </h1>
           <Steps
             className="mt-8"
@@ -45,39 +54,46 @@ export default function NewJob({ className }: NewJobProps) {
         </div>
       </div>
       <div className="max-w-page md:!max-w-xl mt-12">
-        {currentStep === 0 && (
+        {currentStep === JobStep.REPOSITORY && (
           <RepositoryTab
             onChange={(repoUrl) => {
-              setCurrentStep(1);
+              setCurrentStep(JobStep.TESTS);
               setRepoUrl(repoUrl);
             }}
           />
         )}
-        {currentStep === 1 && (
+        {currentStep === JobStep.TESTS && (
           <TestsTab
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
-              setCurrentStep(2);
+              setCurrentStep(JobStep.DETAILS);
             }}
-            goBack={() => setCurrentStep(0)}
+            goBack={() => setCurrentStep(JobStep.REPOSITORY)}
           />
         )}
-        {currentStep === 2 && (
+        {currentStep === JobStep.DETAILS && (
           <DetailsTab
             onChange={({ jobName }) => {
               setJobName(jobName);
-              setCurrentStep(3);
+              setCurrentStep(JobStep.FUNDING);
             }}
-            goBack={() => setCurrentStep(1)}
+            goBack={() => setCurrentStep(JobStep.TESTS)}
           />
         )}
-        {currentStep === 3 && (
+        {currentStep === JobStep.FUNDING && (
           <FundingTab
             onChange={({ funding }) => {
               setFunding(funding);
-              setCurrentStep(4);
+              setCurrentStep(JobStep.PREVIEW);
             }}
-            goBack={() => setCurrentStep(2)}
+            goBack={() => setCurrentStep(JobStep.DETAILS)}
+          />
+        )}
+        {currentStep === JobStep.PREVIEW && (
+          <PreviewTab
+            // TODO: connect to job creation API
+            onChange={() => {}}
+            setCurrentStep={setCurrentStep}
           />
         )}
       </div>

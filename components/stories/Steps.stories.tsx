@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Steps from '../Steps';
 
@@ -7,14 +7,15 @@ export default {
   component: Steps,
 };
 
-const Template = (args) => <Steps {...args} />;
+const Template = (args) => {
+  const [current, setCurrent] = useState(args.current ?? 0);
+  return <Steps {...args} current={current} onChange={setCurrent} />;
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  className: 'p-6 bg-white/20',
+  className: '',
   current: 1,
-  onChange: () => {},
-  direction: 'horizontal',
   steps: [
     { title: 'Repository' },
     { title: 'Tests' },
