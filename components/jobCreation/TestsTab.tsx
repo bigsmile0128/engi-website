@@ -54,16 +54,18 @@ export default function TestsTab({
           </div>
         ))}
       </div>
-      <Button
-        className="block !px-24 mt-8"
-        variant="primary"
-        onClick={() => onChange(Array.from(selectedTests))}
-      >
-        Continue
-      </Button>
-      <button className="mt-8 font-bold underline" onClick={goBack}>
-        Back
-      </button>
+      <div className="flex justify-end gap-x-4 mt-8">
+        <Button className="" onClick={goBack}>
+          Back
+        </Button>
+        <Button
+          className="block !px-24"
+          variant="primary"
+          onClick={() => onChange(Array.from(selectedTests))}
+        >
+          Continue
+        </Button>
+      </div>
     </div>
   );
 }

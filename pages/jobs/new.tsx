@@ -24,7 +24,7 @@ export default function NewJob({ className }: NewJobProps) {
   const [currentStep, setCurrentStep] = useState(JobStep.REPOSITORY);
   const [repoUrl, setRepoUrl] = useState('');
   const [jobName, setJobName] = useState('');
-  const [funding, setFunding] = useState(0);
+  const [funding, setFunding] = useState('');
 
   return (
     <div className={classNames('mt-24 mb-24', className)}>
@@ -56,6 +56,7 @@ export default function NewJob({ className }: NewJobProps) {
       <div className="max-w-page md:!max-w-xl mt-12">
         {currentStep === JobStep.REPOSITORY && (
           <RepositoryTab
+            defaultValue={repoUrl}
             onChange={(repoUrl) => {
               setCurrentStep(JobStep.TESTS);
               setRepoUrl(repoUrl);
@@ -73,6 +74,7 @@ export default function NewJob({ className }: NewJobProps) {
         )}
         {currentStep === JobStep.DETAILS && (
           <DetailsTab
+            defaultValue={jobName}
             onChange={({ jobName }) => {
               setJobName(jobName);
               setCurrentStep(JobStep.FUNDING);
@@ -82,6 +84,7 @@ export default function NewJob({ className }: NewJobProps) {
         )}
         {currentStep === JobStep.FUNDING && (
           <FundingTab
+            defaultValue={funding}
             onChange={({ funding }) => {
               setFunding(funding);
               setCurrentStep(JobStep.PREVIEW);

@@ -7,14 +7,16 @@ type FundingTabProps = {
   className?: string;
   onChange: ({ funding }) => void;
   goBack: () => void;
+  defaultValue?: string;
 };
 
 export default function FundingTab({
   className,
   onChange,
   goBack,
+  defaultValue,
 }: FundingTabProps) {
-  const [funding, setFunding] = useState('');
+  const [funding, setFunding] = useState(defaultValue ?? '');
 
   return (
     <div className={classNames('', className)}>
@@ -48,17 +50,19 @@ export default function FundingTab({
           onChange={(e) => setFunding(e.target.value)}
         />
       </div>
-      <Button
-        className="block !px-24 mt-16"
-        variant="primary"
-        onClick={() => onChange({ funding })}
-        disabled={!funding}
-      >
-        Continue
-      </Button>
-      <button className="mt-8 font-bold underline" onClick={goBack}>
-        Back
-      </button>
+      <div className="flex justify-end gap-x-4 mt-16">
+        <Button className="" onClick={goBack}>
+          Back
+        </Button>
+        <Button
+          className="block !px-24"
+          variant="primary"
+          onClick={() => onChange({ funding })}
+          disabled={!funding}
+        >
+          Continue
+        </Button>
+      </div>
     </div>
   );
 }

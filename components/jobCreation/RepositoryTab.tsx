@@ -11,13 +11,15 @@ import TargetSvg from 'public/img/jobCreation/target.svg';
 type RepositoryTabProps = {
   className?: string;
   onChange: (repoUrl) => void;
+  defaultValue?: string;
 };
 
 export default function RepositoryTab({
   className,
   onChange,
+  defaultValue,
 }: RepositoryTabProps) {
-  const [repoUrl, setRepoUrl] = useState('');
+  const [repoUrl, setRepoUrl] = useState(defaultValue ?? '');
   const [modalType, setModalType] = useState('');
   const {
     isLoading,
@@ -29,6 +31,8 @@ export default function RepositoryTab({
   } = useQuery(['analyze', repoUrl], () => validateRepo(repoUrl), {
     enabled: false,
     refetchOnWindowFocus: false,
+    // disable cache so modal doesn't show up when going back to this step
+    cacheTime: 0,
   });
 
   useEffect(() => {
@@ -46,8 +50,11 @@ export default function RepositoryTab({
         Enter existing repository URL for creating a new job. The directory must
         be a Rust project and have a .git directory.
       </p>
-      <h4 className="font-bold text-xl mt-12">Enter Repository</h4>
+      <label htmlFor="repo-url" className="block font-bold text-xl mt-12">
+        Enter Repository
+      </label>
       <Input
+        id="repo-url"
         className="block mt-4 w-full max-w-sm"
         type="text"
         placeholder="Repository URL"
