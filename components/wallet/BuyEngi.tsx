@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '../icons/EngiIcon';
 import Input from 'components/Input';
 import Button from 'components/Button';
 import { RiSearchLine } from 'react-icons/ri';
-import Web3 from 'web3';
-const uc = require('@polkadot/util-crypto');
-import engiPurchaseAbi from './engiPurchaseAbi.json';
+import {
+  useConnectEthereumExtension,
+  useBuyEngiWithEth,
+} from 'utils/api/ethereum-extension';
 
 type EngiAmountProps = {
   account: string;
@@ -17,19 +18,6 @@ type EngiAmountProps = {
   value?: string;
 };
 
-const PURCHASE_CONTRACT_ADDRESS = '0xF7150Be741157ef36EFF47D5464028b950a0df1C';
-
-function substrateToHex(address) {
-  var ar = uc.decodeAddress(address);
-
-  return (
-    '0x' +
-    Array.from(ar, function (byte: any) {
-      return ('0' + (byte & 0xff).toString(16)).slice(-2);
-    }).join('')
-  );
-}
-
 export default function EngiAmount({
   className,
   iconClassName,
@@ -38,46 +26,10 @@ export default function EngiAmount({
   // currently signed in user's substrate wallet address
   account,
 }: EngiAmountProps) {
-  console.log(account);
   // the value to purchase in WEI
   const [value, setValue] = useState(0);
-  const [ethereum, setEthereum] = useState();
-
-  useEffect(() => {
-    (async () => {
-      // @ts-ignore
-      if (window.ethereum) {
-        // @ts-ignore
-        const ethereumAccounts = await window.ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        setEthereum(ethereumAccounts[0]);
-      }
-    })();
-  }, []);
-
-  const web3 = useMemo(() => new Web3(Web3.givenProvider), []);
-
-  const EngiPurchaseContract = useMemo(
-    () =>
-      new web3.eth.Contract(
-        // @ts-ignore
-        engiPurchaseAbi,
-        PURCHASE_CONTRACT_ADDRESS
-      ),
-    []
-  );
-
-  const buy = useCallback(async () => {
-    await web3.eth.sendTransaction({
-      from: ethereum,
-      to: PURCHASE_CONTRACT_ADDRESS,
-      value,
-      data: EngiPurchaseContract.methods
-        .deposit(substrateToHex(account))
-        .encodeABI(),
-    });
-  }, [ethereum, account, value, EngiPurchaseContract]);
+  const { data: ethereumAccounts } = useConnectEthereumExtension();
+  const { mutate: buy } = useBuyEngiWithEth();
 
   return (
     <div
@@ -120,7 +72,14 @@ export default function EngiAmount({
           </span>
         </div>
       </div>
-      <Button onClick={buy}>buy</Button>
+      <Button
+        onClick={() =>
+          buy({ account, from: ethereumAccounts?.[0], amount: value })
+        }
+        disabled={!ethereumAccounts || ethereumAccounts.length == 0}
+      >
+        buy
+      </Button>
     </div>
   );
 }
