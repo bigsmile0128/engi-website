@@ -9,6 +9,7 @@ import Button from 'components/Button';
 import EmailModal from './EmailModal';
 import { MdCheck } from '@react-icons/all-files/md/MdCheck';
 import { MdErrorOutline } from '@react-icons/all-files/md/MdErrorOutline';
+import { SENDGRID_LIST_NAME } from 'types';
 
 interface EmailRegistrationProps {
   className?: string;
@@ -25,7 +26,7 @@ export default function EmailRegistration({
   const registerMutation = useMutation<any, AxiosError>(
     async (email) => {
       await axios.put('/api/upsertContact', {
-        contact_list_name: 'engi-newsletter',
+        contact_list_name: SENDGRID_LIST_NAME.ENGI_NEWSLETTER,
         email,
       });
     },

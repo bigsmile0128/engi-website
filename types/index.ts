@@ -92,3 +92,7 @@ export interface DFormValue {
   name: string;
   value: string;
 }
+
+export enum SENDGRID_LIST_NAME {
+  ENGI_NEWSLETTER = 'engi-newsletter',
+}

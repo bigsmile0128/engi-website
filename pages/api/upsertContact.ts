@@ -2,11 +2,16 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import client from '@sendgrid/client';
 import { HttpMethod } from '@sendgrid/helpers/classes/request';
 import { ClientRequest } from '@sendgrid/client/src/request';
+import { SENDGRID_LIST_NAME } from '../../types';
 
 client.setApiKey(process.env.SENDGRID_API_KEY || '');
 
+const mapNameToId: Record<SENDGRID_LIST_NAME, string> = {
+  [SENDGRID_LIST_NAME.ENGI_NEWSLETTER]: '3b228e62-867a-4a44-9413-b906adb1f287',
+};
+
 async function upsertContact(req: NextApiRequest, res: NextApiResponse) {
-  const { email } = req.body;
+  const { email, contact_list_name } = req.body;
 
   const data = {
     contacts: [
@@ -14,7 +19,7 @@ async function upsertContact(req: NextApiRequest, res: NextApiResponse) {
         email,
       },
     ],
-    list_ids: ['3b228e62-867a-4a44-9413-b906adb1f287'],
+    list_ids: [mapNameToId[contact_list_name]],
   };
 
   const request: ClientRequest = {
