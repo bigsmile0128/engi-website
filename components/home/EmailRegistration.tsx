@@ -24,10 +24,9 @@ export default function EmailRegistration({
 
   const registerMutation = useMutation<any, AxiosError>(
     async (email) => {
-      await axios.post('/api/contact', {
+      await axios.put('/api/upsertContact', {
         contact_list_name: 'engi-newsletter',
         email,
-        attributes: {},
       });
     },
     {

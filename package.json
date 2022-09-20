@@ -23,6 +23,7 @@
     "@octokit/core": "^4.0.5",
     "@polkadot/util-crypto": "^10.1.7",
     "@react-icons/all-files": "^4.1.0",
+    "@sendgrid/client": "^7.7.0",
     "@sentry/react": "^6.19.2",
     "@sentry/tracing": "^6.19.2",
     "@storybook/theming": "^6.5.10",
