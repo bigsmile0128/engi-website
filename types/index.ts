@@ -95,4 +95,5 @@ export interface DFormValue {
 
 export enum SENDGRID_LIST_NAME {
   ENGI_NEWSLETTER = 'engi-newsletter',
+  CONTACT_US = 'contact-us',
 }

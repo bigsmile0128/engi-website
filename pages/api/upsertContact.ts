@@ -8,19 +8,42 @@ client.setApiKey(process.env.SENDGRID_API_KEY || '');
 
 const mapNameToId: Record<SENDGRID_LIST_NAME, string> = {
   [SENDGRID_LIST_NAME.ENGI_NEWSLETTER]: '3b228e62-867a-4a44-9413-b906adb1f287',
+  [SENDGRID_LIST_NAME.CONTACT_US]: '9625f53a-048f-4831-ae03-3d12a0194d0f',
 };
 
 async function upsertContact(req: NextApiRequest, res: NextApiResponse) {
-  const { email, contact_list_name } = req.body;
+  const { email, contact_list_name, first_name, last_name, subject, message } =
+    req.body;
 
-  const data = {
-    contacts: [
-      {
-        email,
-      },
-    ],
-    list_ids: [mapNameToId[contact_list_name]],
-  };
+  let data;
+
+  if (contact_list_name === SENDGRID_LIST_NAME.CONTACT_US) {
+    data = {
+      contacts: [
+        {
+          email,
+          first_name,
+          last_name,
+          custom_fields: {
+            e1_T: subject,
+            e2_T: message,
+          },
+        },
+      ],
+      list_ids: [mapNameToId[contact_list_name]],
+    };
+  }
+
+  if (contact_list_name === SENDGRID_LIST_NAME.ENGI_NEWSLETTER) {
+    data = {
+      contacts: [
+        {
+          email,
+        },
+      ],
+      list_ids: [mapNameToId[contact_list_name]],
+    };
+  }
 
   const request: ClientRequest = {
     url: `/v3/marketing/contacts`,

@@ -5,6 +5,7 @@ import Button from 'components/Button';
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
+import { SENDGRID_LIST_NAME } from 'types';
 
 interface ContactUsPageProps {
   className?: string;
@@ -13,7 +14,8 @@ interface ContactUsPageProps {
 export default function ContactUsPage({ className }: ContactUsPageProps) {
   const emailMutation = useMutation<any, AxiosError, any>(
     async ({ firstName, lastName, email, subject, message }: any) => {
-      await axios.post('/api/contact_us', {
+      await axios.put('/api/upsertContact', {
+        contact_list_name: SENDGRID_LIST_NAME.CONTACT_US,
         first_name: firstName,
         last_name: lastName,
         email,
