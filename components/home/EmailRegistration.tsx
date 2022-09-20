@@ -143,8 +143,10 @@ export default function EmailRegistration({
           <span>
             Want more personalized updates?{' '}
             <button
-              className="font-medium text-white underline hover:cursor-pointer hover:text-secondary"
-              onClick={() => setModalOpen(true)}
+              className="font-medium text-white underline hover:cursor-pointer hover:text-secondary z-10"
+              onClick={() => {
+                setModalOpen(true);
+              }}
             >
               Tell us more about you.
             </button>
