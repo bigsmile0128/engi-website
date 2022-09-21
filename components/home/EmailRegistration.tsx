@@ -25,7 +25,7 @@ export default function EmailRegistration({
 
   const registerMutation = useMutation<any, AxiosError>(
     async (email) => {
-      await axios.put('/api/upsertContact', {
+      await axios.put('/api/subscribe-newsletter', {
         contact_list_name: SENDGRID_LIST_NAME.ENGI_NEWSLETTER,
         email,
       });

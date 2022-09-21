@@ -14,7 +14,7 @@ interface ContactUsPageProps {
 export default function ContactUsPage({ className }: ContactUsPageProps) {
   const emailMutation = useMutation<any, AxiosError, any>(
     async ({ firstName, lastName, email, subject, message }: any) => {
-      await axios.put('/api/upsertContact', {
+      await axios.put('/api/contact-us', {
         contact_list_name: SENDGRID_LIST_NAME.CONTACT_US,
         first_name: firstName,
         last_name: lastName,
