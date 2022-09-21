@@ -5,8 +5,8 @@ import {
   mapToTemplateId,
   REPLY_EMAIL,
   TEMPLATE_NAME,
-} from '../../utils/constants/sendgrid';
-import { sendMail, upsertContact } from '../../utils/sendgrid';
+} from '~/utils/constants/sendgrid';
+import { sendMail, upsertContact } from '~/utils/sendgrid';
 
 async function subscribeNewsletterApi(
   req: NextApiRequest,
