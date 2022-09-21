@@ -14,7 +14,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "rootDir": "./"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "files": ["node_modules/same-story-jest-plugin/types/index.d.ts"],

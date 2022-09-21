@@ -1,4 +1,8 @@
 {
-    "editor.tabSize": 2,
-    "css.customData": [".vscode/tailwindcss.json"]
+  "editor.tabSize": 2,
+  "css.customData": [".vscode/tailwindcss.json"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.formatOnSave": true
 }

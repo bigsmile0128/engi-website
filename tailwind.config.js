@@ -1,8 +1,9 @@
+const path = require('path');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
-  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  content: [path.join(__dirname, './src/**/*.(js|jsx|ts|tsx)')],
   theme: {
     screens: {
       xs: '475px',
