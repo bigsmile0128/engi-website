@@ -12,7 +12,6 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import MenuItemLink from '~/components/MenuItemLink';
-import Link from 'next/link';
 
 type UserInfoProps = {
   className?: string;
