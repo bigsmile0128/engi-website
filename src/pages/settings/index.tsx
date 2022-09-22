@@ -1,12 +1,10 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
+import Meta from '~/components/global/Meta/Meta';
 
 const Settings: NextPage = () => {
   return (
     <div>
-      <Head>
-        <title>Engi</title>
-      </Head>
+      <Meta title="Engi" />
       settings page
     </div>
   );
