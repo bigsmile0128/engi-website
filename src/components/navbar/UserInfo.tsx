@@ -12,6 +12,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import MenuItemLink from '~/components/MenuItemLink';
+import Link from 'next/link';
 
 type UserInfoProps = {
   className?: string;
@@ -74,6 +75,14 @@ export default function UserInfo({
                 >
                   Copy Wallet Address
                 </button>
+              </Menu.Item>
+              <Menu.Item>
+                <MenuItemLink
+                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  href="/settings"
+                >
+                  Settings
+                </MenuItemLink>
               </Menu.Item>
               <Menu.Item>
                 <button
