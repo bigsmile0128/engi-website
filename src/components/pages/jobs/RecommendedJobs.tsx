@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useQuery } from 'react-query';
 import Link from 'next/link';
 import TimeEstimate from '~/components/TimeEstimate';
-import EngiIcon from '~/components/icons/EngiIcon';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 
 type RecommendedJobsProps = {
   className?: string;

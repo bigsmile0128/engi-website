@@ -7,7 +7,7 @@ import {
   RiTrophyFill,
   RiWallet3Fill,
 } from 'react-icons/ri';
-import EngiIcon from '~/components/icons/EngiIcon';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 import Statistic from '~/components/Statistic';
 import { Job } from '~/types';
 

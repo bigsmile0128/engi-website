@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 
 import deskImg from 'public/img/press/desk.jpg';
-import BlockQuote from '~/components/home/BlockQuote';
+import BlockQuote from '~/components/pages/home/BlockQuote';
 
 interface PressPageProps {
   className?: string;

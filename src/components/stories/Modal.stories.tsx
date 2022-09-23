@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 
 import Button from '../global/Button/Button';
-import Modal from '../Modal';
+import Modal from '../global/Modal/Modal';
 
 export default {
   title: 'Modal',

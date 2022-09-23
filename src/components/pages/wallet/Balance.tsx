@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import EngiIcon from '~/components/icons/EngiIcon';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 import { RiArrowUpLine } from 'react-icons/ri';
 
 type BalanceProps = {
