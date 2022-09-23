@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { User } from '~/utils/contexts/userContext';
 import Avvvatars from 'avvvatars-react';
 import EngiAmount from '~/components/EngiAmount';
-import BlockchainHealth from '~/components/layout/BlockchainHealth';
+import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { gql } from 'graphql-request';

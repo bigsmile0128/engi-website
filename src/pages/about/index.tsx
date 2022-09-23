@@ -13,7 +13,7 @@ import ShineSvg from 'public/img/about/shine.svg';
 import EniacSvg from 'public/img/about/eniac.svg';
 import BlockQuote from '~/components/home/BlockQuote';
 import GridPattern from '~/components/GridPattern';
-import TeamMember from '~/components/about/TeamMember';
+import TeamMember from '~/components/pages/about/TeamMember';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 interface AboutUsPageProps {

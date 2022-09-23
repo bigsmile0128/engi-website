@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { MdModeEdit } from 'react-icons/md';
 import { SiJava, SiPython, SiRust, SiTypescript } from 'react-icons/si';
 import EngiAmount from '~/components/EngiAmount';
-import Balance from '~/components/account/Balance';
+import Balance from '~/components/pages/account/Balance';
 
 type AccountDetailsProps = {
   className?: string;

@@ -10,7 +10,7 @@ import Logo from '~/components/Logo';
 import MenuSvg from 'public/img/home/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
 import UserContext from '~/utils/contexts/userContext';
-import UserInfo from '~/components/navbar/UserInfo';
+import UserInfo from './navbar/UserInfo';
 
 interface NavbarProps {
   className?: string;

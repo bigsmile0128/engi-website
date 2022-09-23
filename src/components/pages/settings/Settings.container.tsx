@@ -9,7 +9,9 @@ function SettingContainer() {
         <div className="w-3/12">
           <SettingsMenu items={SETTINGS_LINKS} />
         </div>
-        <div className="w-8/12">right</div>
+        <div className="w-8/12">
+          <div className="bg-[#232323]/10 backdrop-blur-[100px]">right</div>
+        </div>
       </div>
     </div>
   );

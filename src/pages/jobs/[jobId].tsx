@@ -5,9 +5,9 @@ import * as Sentry from '@sentry/react';
 
 import { useRouter } from 'next/router';
 import { Job } from '~/types';
-import JobHeader from '~/components/jobDetails/JobHeader';
-import JobDescription from '~/components/jobDetails/JobDescription';
-import JobActivity from '~/components/jobDetails/JobActivity';
+import JobHeader from '~/components/pages/jobDetails/JobHeader';
+import JobDescription from '~/components/pages/jobDetails/JobDescription';
+import JobActivity from '~/components/pages/jobDetails/JobActivity';
 import { gql } from 'graphql-request';
 
 export default function JobDetails(props) {

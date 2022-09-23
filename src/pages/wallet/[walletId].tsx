@@ -6,8 +6,8 @@ import { RiExchangeLine } from 'react-icons/ri';
 import EngiIcon from '~/components/icons/EngiIcon';
 import CopyButton from '~/components/CopyButton';
 import GridPattern from '~/components/GridPattern';
-import Balance from '~/components/wallet/Balance';
-import Transactions from '~/components/wallet/Transactions';
+import Balance from '~/components/pages/wallet/Balance';
+import Transactions from '~/components/pages/wallet/Transactions';
 
 type WalletDetailsProps = {
   className?: string;

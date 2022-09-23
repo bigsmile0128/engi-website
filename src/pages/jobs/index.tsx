@@ -5,11 +5,11 @@ import axios, { AxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
 import qs from 'qs';
 
-import SearchFilterList from '~/components/jobs/SearchFilterList';
-import SearchResultsHeader from '~/components/jobs/SearchResultsHeader';
-import SearchResults from '~/components/jobs/SearchResults';
-import CurrentJobs from '~/components/jobs/CurrentJobs';
-import RecommendedJobs from '~/components/jobs/RecommendedJobs';
+import SearchFilterList from '~/components/pages/jobs/SearchFilterList';
+import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
+import SearchResults from '~/components/pages/jobs/SearchResults';
+import CurrentJobs from '~/components/pages/jobs/CurrentJobs';
+import RecommendedJobs from '~/components/pages/jobs/RecommendedJobs';
 import { gql } from 'graphql-request';
 import { Language } from '~/types';
 

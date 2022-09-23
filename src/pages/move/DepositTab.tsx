@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import classNames from 'classnames';
-import WalletInput from './WalletInput';
-import BuyEngi from '~/components/wallet/BuyEngi';
+import BuyEngi from '~/components/pages/wallet/BuyEngi';
 import UserContext from '~/utils/contexts/userContext';
 
 type DepositTabProps = {

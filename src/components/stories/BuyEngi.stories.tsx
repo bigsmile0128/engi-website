@@ -1,6 +1,6 @@
 import React from 'react';
 
-import BuyEngi from '../wallet/BuyEngi';
+import BuyEngi from '../pages/wallet/BuyEngi';
 
 export default {
   title: 'BuyEngi',

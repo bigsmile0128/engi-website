@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
-import Layout from '~/components/layout';
+import Layout from '~/components/modules/layout';
 import { ToastContainer } from 'react-toastify';
 
 import UserContext, { User } from '~/utils/contexts/userContext';

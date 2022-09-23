@@ -1,15 +1,15 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 
-import Hero from '~/components/home/Hero';
-import Features from '~/components/home/Features';
-import CalloutCards from '~/components/home/CalloutCards';
-import GlobalConnection from '~/components/home/GlobalConnection';
-import AlternatingFeatures from '~/components/home/AlternatingFeatures';
-import CallToAction from '~/components/home/CallToAction';
-import Stats from '~/components/home/Statistics';
-import WorldOfEngineers from '~/components/home/WorldOfEngineers';
-import WhosUsingEngi from '~/components/home/WhosUsingEngi';
+import Hero from '~/components/pages/home/Hero';
+import Features from '~/components/pages/home/Features';
+import CalloutCards from '~/components/pages/home/CalloutCards';
+import GlobalConnection from '~/components/pages/home/GlobalConnection';
+import AlternatingFeatures from '~/components/pages/home/AlternatingFeatures';
+import CallToAction from '~/components/pages/home/CallToAction';
+import Stats from '~/components/pages/home/Statistics';
+import WorldOfEngineers from '~/components/pages/home/WorldOfEngineers';
+import WhosUsingEngi from '~/components/pages/home/WhosUsingEngi';
 
 const Home: NextPage = () => {
   return (
