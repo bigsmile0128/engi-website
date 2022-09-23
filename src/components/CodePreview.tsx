@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';

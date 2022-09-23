@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
-import GridPattern from '~/components/GridPattern';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 type StatisticsProps = {

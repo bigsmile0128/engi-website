@@ -12,11 +12,11 @@ import { SiPython } from '@react-icons/all-files/si/SiPython';
 import { SiRust } from '@react-icons/all-files/si/SiRust';
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
 
-import Modal, { ModalProps } from '~/components/Modal';
-import Button from '~/components/Button';
+import Modal, { ModalProps } from '~/components/global/Modal/Modal';
+import Button from '~/components/global/Button/Button';
 import EnvelopeSvg from 'public/img/home/envelope.svg';
 import CopyLink from '~/components/CopyLink';
-import Checkbox from '~/components/Checkbox';
+import Checkbox from '~/components/global/Checkbox/Checkbox';
 
 enum Interest {
   PROGRAMMER = 'engi-programmer',

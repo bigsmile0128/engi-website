@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import Input from '~/components/Input';
-import Button from '~/components/Button';
+import Input from '~/components/global/Input/Input';
+import Button from '~/components/global/Button/Button';
 import { useQuery } from 'react-query';
 import { AiOutlineLoading } from 'react-icons/ai';
-import Modal from '~/components/Modal';
+import Modal from '~/components/global/Modal/Modal';
 import { Dialog } from '@headlessui/react';
 import TargetSvg from 'public/img/jobCreation/target.svg';
 

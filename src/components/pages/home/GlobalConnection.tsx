@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 
-import GridPattern from '~/components/GridPattern';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
 import Image from 'next/image';
 import globeImg from 'public/img/home/globe.png';
 import PlaceholderButton from './PlaceholderButton';

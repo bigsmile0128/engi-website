@@ -7,7 +7,7 @@ import axios from 'axios';
 import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import TransactionTable from './TransactionTable';
-import Pagination from '~/components/Pagination';
+import Pagination from '~/components/global/Pagination/Pagination';
 import MobileTransactionTable from './MobileTransactionTable';
 import { TransactionType } from '~/types';
 

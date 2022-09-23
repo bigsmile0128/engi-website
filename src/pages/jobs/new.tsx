@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import GridPattern from '~/components/GridPattern';
-import Steps from '~/components/Steps';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
+import Steps from '~/components/global/Steps/Steps';
 import RepositoryTab from '~/components/pages/jobCreation/RepositoryTab';
 import TestsTab from '~/components/pages/jobCreation/TestsTab';
 import DetailsTab from '~/components/pages/jobCreation/DetailsTab';

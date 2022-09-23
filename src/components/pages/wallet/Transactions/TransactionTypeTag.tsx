@@ -9,7 +9,7 @@ import {
   RiExchangeLine,
   RiMoneyDollarBoxLine,
 } from 'react-icons/ri';
-import Tag from '~/components/Tag';
+import Tag from '~/components/global/Tag/Tag';
 
 type TransactionTypeTagProps = {
   className?: string;

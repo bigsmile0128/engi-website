@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import EngiAmount from '~/components/EngiAmount';
 
 type FundingTabProps = {

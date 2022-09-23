@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import WalletInput from './WalletInput';
-import Input from '~/components/Input';
+import Input from '~/components/global/Input/Input';
 import { RiInformationLine } from 'react-icons/ri';
 import dynamic from 'next/dynamic';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';

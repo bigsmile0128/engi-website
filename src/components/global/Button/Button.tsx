@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import Tag from './Tag';
+import Tag from '../Tag/Tag';
 
 type ButtonProps = {
   variant?: 'primary' | 'default' | 'tag';

@@ -12,7 +12,7 @@ import JobInfo from './JobInfo';
 import { useRouter } from 'next/router';
 import EngiAmount from '~/components/EngiAmount';
 import JobStatus from './JobStatus';
-import Tag from '~/components/Tag';
+import Tag from '~/components/global/Tag/Tag';
 import { mockJob } from '~/types/mock';
 
 type JobTableProps = {

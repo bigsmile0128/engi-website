@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import Steps from '../Steps';
+import Steps from '../global/Steps/Steps';
 
 export default {
   title: 'Steps',

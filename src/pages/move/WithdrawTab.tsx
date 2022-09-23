@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Input from '~/components/Input';
+import Input from '~/components/global/Input/Input';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
 import Checkbox from '~/components/Checkbox';
 import ButtonSelect from '~/components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import WalletInput from './WalletInput';
 
 type WithdrawTabProps = {

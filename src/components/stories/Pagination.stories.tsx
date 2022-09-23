@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Pagination from '../Pagination';
+import Pagination from '../global/Pagination/Pagination';
 
 export default {
   title: 'Pagination',

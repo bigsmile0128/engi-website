@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import EngiIcon from './icons/EngiIcon';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 
 type EngiAmountProps = {
   className?: string;

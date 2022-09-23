@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import classNames from 'classnames';
 import { Dialog, Transition } from '@headlessui/react';
 
 export interface ModalProps {

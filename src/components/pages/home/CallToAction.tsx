@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import GridPattern from '~/components/GridPattern';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
 import EmailRegistration from './EmailRegistration';
 
 interface CallToActionProps {

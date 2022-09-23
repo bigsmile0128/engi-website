@@ -11,8 +11,8 @@ import CompoundSvg from 'public/img/about/compound.svg';
 import TribeSvg from 'public/img/about/tribe.svg';
 import ShineSvg from 'public/img/about/shine.svg';
 import EniacSvg from 'public/img/about/eniac.svg';
-import BlockQuote from '~/components/home/BlockQuote';
-import GridPattern from '~/components/GridPattern';
+import BlockQuote from '~/components/pages/home/BlockQuote';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
 import TeamMember from '~/components/pages/about/TeamMember';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 

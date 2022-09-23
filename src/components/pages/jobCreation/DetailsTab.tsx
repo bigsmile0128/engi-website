@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Button from '~/components/Button';
-import Input from '~/components/Input';
+import Button from '~/components/global/Button/Button';
+import Input from '~/components/global/Input/Input';
 
 type DetailsTabProps = {
   className?: string;

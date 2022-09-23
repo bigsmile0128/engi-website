@@ -2,8 +2,8 @@ import React from 'react';
 import { Dialog } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
-import CopyLink from '../CopyLink';
-import Modal, { ModalProps } from '../Modal';
+import CopyLink from '~/components/CopyLink';
+import Modal, { ModalProps } from '~/components/global/Modal/Modal';
 import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
 import { SiInstagram } from '@react-icons/all-files/si/SiInstagram';
 import { SiTiktok } from '@react-icons/all-files/si/SiTiktok';

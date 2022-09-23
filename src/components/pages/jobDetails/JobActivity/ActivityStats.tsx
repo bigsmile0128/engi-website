@@ -6,7 +6,7 @@ import {
   RiGroupFill,
   RiLineChartFill,
 } from 'react-icons/ri';
-import ProgressBar from '~/components/ProgressBar';
+import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
 
 type ActivityStatsProps = {
   className?: string;

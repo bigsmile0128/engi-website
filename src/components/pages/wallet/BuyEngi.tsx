@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import EngiIcon from '../icons/EngiIcon';
-import Input from '~/components/Input';
-import Button from '~/components/Button';
+import EngiIcon from '~/components/global/icons/EngiIcon';
+import Input from '~/components/global/Input/Input';
+import Button from '~/components/global/Button/Button';
 import { RiSearchLine } from 'react-icons/ri';
 import {
   useConnectEthereumExtension,

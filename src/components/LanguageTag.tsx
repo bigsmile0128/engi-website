@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Tag from './Tag';
+import Tag from './global/Tag/Tag';
 import { Language } from '~/types';
 import { RiCodeLine } from 'react-icons/ri';
 import {

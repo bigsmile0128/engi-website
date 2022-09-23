@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
-import Button from '~/components/Button';
-import Switch from '~/components/Switch';
+import Button from '~/components/global/Button/Button';
+import Switch from '~/components/global/Switch/Switch';
 import Checkbox from '~/components/Checkbox';
 
 type TestsTabProps = {

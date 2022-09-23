@@ -1,6 +1,6 @@
 import React from 'react';
 
-import GridPattern from '../GridPattern';
+import GridPattern from '../global/GridPattern/GridPattern';
 
 export default {
   title: 'GridPattern',
