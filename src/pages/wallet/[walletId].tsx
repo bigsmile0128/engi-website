@@ -8,6 +8,7 @@ import CopyButton from '~/components/CopyButton';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import Balance from '~/components/pages/wallet/Balance';
 import Transactions from '~/components/pages/wallet/Transactions';
+import Activity from '~/components/pages/wallet/Activity';
 
 type WalletDetailsProps = {
   className?: string;
@@ -49,6 +50,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
             </Button>
           </div>
           <Balance className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
+          <Activity className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
         </div>
       </div>
       <div className="max-w-page">
