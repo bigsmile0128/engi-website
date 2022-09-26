@@ -7,19 +7,17 @@ import React from 'react';
 
 import * as NextImage from 'next/image';
 import * as NextFutureImage from 'next/future/image';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
+import { withScreenshot } from 'storycap-engi';
 
 const queryClient = new QueryClient();
 
 export const decorators = [
   (story) => (
-    <QueryClientProvider client={queryClient}>
-      {story()}
-      <ReactQueryDevtools />
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{story()}</QueryClientProvider>
   ),
+  withScreenshot,
 ];
 
 export const parameters = {
@@ -32,6 +30,9 @@ export const parameters = {
   },
   nextRouter: {
     Provider: RouterContext.Provider,
+  },
+  screenshot: {
+    waitFor: 'fontLoading',
   },
 };
 

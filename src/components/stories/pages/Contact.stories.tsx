@@ -8,6 +8,11 @@ export default {
   title: 'Pages/Contact Page',
   component: ContactUs,
   decorators: [withMock],
+  parameters: {
+    screenshot: {
+      delay: 2000,
+    },
+  },
 };
 
 const Template = (args) => (
@@ -19,7 +24,6 @@ const Template = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {};
-
 Default.parameters = {
   mockData: [
     {

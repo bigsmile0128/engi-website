@@ -1,1 +1,22 @@
 <meta name="color-scheme" content="dark" />
+<link
+  rel="preload"
+  href="../public/fonts/grifterbold.otf"
+  as="font"
+  onload="this.setAttribute('loaded', 'loaded')"
+/>
+
+<script>
+  function fontLoading() {
+    const loaded = () =>
+      !!document.querySelector('link[rel="preload"][loaded="loaded"]');
+    if (loaded()) return Promise.resolve();
+    return new Promise((resolve, reject) => {
+      const id = setInterval(() => {
+        if (!loaded()) return;
+        clearInterval(id);
+        resolve();
+      }, 50);
+    });
+  }
+</script>
