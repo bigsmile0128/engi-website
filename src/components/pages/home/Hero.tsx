@@ -6,7 +6,7 @@ import HeroTopSvg from 'public/img/home/hero-top.svg';
 import HeroBottomSvg from 'public/img/home/hero-bottom.svg';
 import sitePreviewImg from 'public/img/home/site-preview.png';
 import Image from 'next/image';
-import Button from '~/components/global/Button/Button';
+import Button from '~/components/Button';
 import Link from 'next/link';
 
 interface HeroProps {

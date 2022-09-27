@@ -13,7 +13,9 @@ import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
 import UserContext from '~/utils/contexts/userContext';
 import { isDev } from '~/utils';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
-import { useRegisterUser } from '~/utils/auth/api';
+import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
+import Button from '~/components/Button';
+import { consoleSandbox } from '@sentry/utils';
 
 type SignupProps = {
   className?: string;
@@ -41,8 +43,11 @@ export default function Signup({ className }: SignupProps) {
     data: substrateAccounts,
   } = useConnectPolkadotExtension();
 
-  const display = useMemo(
-    () => substrateAccounts?.[0]?.meta?.name,
+  const {
+    address,
+    meta: { name: display, source },
+  } = useMemo(
+    () => substrateAccounts?.[0] ?? { meta: {} },
     [substrateAccounts]
   );
 
@@ -51,6 +56,8 @@ export default function Signup({ className }: SignupProps) {
     isSuccess: registered,
     data: walletId,
   } = useRegisterUser();
+
+  const { mutate: login } = useLoginUser();
 
   const { isLoading: isLoadingWallet, data: isValidWallet } = useQuery(
     ['wallet', walletId],
@@ -73,41 +80,51 @@ export default function Signup({ className }: SignupProps) {
 
   // TODO: adjust padding and margin on mobile
   return (
-    <div
-      className={classNames(
-        'max-w-page my-20 lg:!max-w-2xl',
-        'bg-[#00000022] !p-12 rounded-lg',
-        className
-      )}
-    >
-      <div className="flex flex-col items-center">
+    <div className={classNames('max-w-page lg:py-20', className)}>
+      <div className="">
         {currentStep === Step.SIGN_IN && (
-          <>
-            <h1 className="font-bold text-5xl mb-4">Welcome to Engi!</h1>
-            <p className="mb-8">
-              Where you’ll be able to browse millions of jobs, write code and
-              get paid.
-            </p>
-            <p className="mb-8">{`We're happy to meet you!`}</p>
-            <button
-              className={classNames(
-                'px-16 py-4 text-white font-bold',
-                'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-              )}
-              onClick={() => setCurrentStep(Step.NEW)}
+          <div className="flex">
+            <div
+              style={{ flexBasis: '60%' }}
+              className="flex flex-col items-center lg:p-20"
             >
-              Sign In
-            </button>
-            <button
-              className={classNames(
-                'px-16 py-4 text-white font-bold',
-                'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-              )}
-              onClick={() => setCurrentStep(Step.SIGN_UP)}
+              <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
+              <p className="mb-8 max-w-sm text-center text-lg">
+                Don't miss your next job. Sign in to stay updated on your
+                professional world
+              </p>
+              <Button
+                className="w-full"
+                onClick={() => login({ address, source })}
+              >
+                Sign In
+              </Button>
+            </div>
+
+            <div
+              style={{ flexBasis: '40%' }}
+              className="flex flex-col items-center lg:p-20 overflow-visible relative"
             >
-              Sign Up
-            </button>
-          </>
+              <span
+                style={{
+                  top: '-100%',
+                  right: '-9999px',
+                  height: '9999px',
+                  zIndex: -1,
+                }}
+                className="absolute bottom-0 right-0 left-0 bg-[#00000022]"
+              />
+              <h1 className="font-bold text-5xl mb-4">New here?</h1>
+              <p className="mb-8 text-lg">Time to register my keys with Engi</p>
+              <Button
+                variant="primary"
+                className="w-full"
+                onClick={() => setCurrentStep(Step.SIGN_UP)}
+              >
+                Create New Wallet
+              </Button>
+            </div>
+          </div>
         )}
         {currentStep === Step.SIGN_UP && (
           <>
@@ -143,7 +160,7 @@ export default function Signup({ className }: SignupProps) {
                   // TODO: change color for Back button
                   'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
                 )}
-                onClick={() => setCurrentStep(Step.SIGN_UP)}
+                onClick={() => setCurrentStep(Step.SIGN_IN)}
               >
                 Back
               </button>

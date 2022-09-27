@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import SocialMedia from '~/components/modules/layout/SocialMedia';
-import Button from '~/components/global/Button/Button';
+import Button from '~/components/Button';
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';

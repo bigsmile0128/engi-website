@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import Input from '~/components/global/Input/Input';
-import Button from '~/components/global/Button/Button';
+import Button from '~/components/Button';
 import { RiSearchLine } from 'react-icons/ri';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';

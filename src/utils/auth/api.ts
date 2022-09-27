@@ -2,6 +2,7 @@ import { encryptMnemonic } from './encrypt';
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
+import { NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE } from '../polkadot/constants';
 
 // The payload required to register a user with Engi
 type RegisterUser = {
@@ -44,7 +45,57 @@ export const useRegisterUser = () =>
         },
       });
 
-      console.log(response);
       return response?.data?.data?.registerUser?.address;
     }
   );
+
+type LoginUser = {
+  address: string;
+  // The Web3 extension source ('polkadot-js', 'talisman') used to sign a login payload
+  // - this is retrieved from `account.meta.source` of a connected extension account
+  // - see useConnectPolkadotExtension
+  source: string;
+};
+
+export const useLoginUser = () =>
+  useMutation<any, AxiosError, any>(async ({ address, source }: LoginUser) => {
+    const { web3FromSource } = require('@polkadot/extension-dapp');
+
+    const injector = await web3FromSource(source);
+
+    const signRaw = injector?.signer?.signRaw;
+
+    if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
+
+    const { signature } = await signRaw({
+      address,
+      type: 'bytes',
+    });
+
+    const response = await axios.post('/api/graphql', {
+      query: gql`
+        mutation LoginUser(
+          $address: String!
+          $signature: String!
+          $signedOn: String!
+        ) {
+          login(
+            args: {
+              address: $address
+              signature: { signedOn: $signedOn, value: $signature }
+            }
+          ) {
+            address
+          }
+        }
+      `,
+      operationName: 'LoginUser',
+      variables: {
+        address,
+        signedOn: Date.now(),
+        signature,
+      },
+    });
+
+    return response?.data?.data?.loginUser?.address;
+  });
