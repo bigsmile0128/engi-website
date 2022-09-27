@@ -12,6 +12,7 @@ import { HiOutlineCheckCircle } from '@react-icons/all-files/hi/HiOutlineCheckCi
 import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
 import UserContext from '~/utils/contexts/userContext';
 import { isDev } from '~/utils';
+import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 
 type SignupProps = {
   className?: string;
@@ -38,6 +39,13 @@ export default function Signup({ className }: SignupProps) {
   const [password, setPassword] = useState('');
   const [confirmationPassword, setConfirmationPassword] = useState('');
   const [walletId, setWalletId] = useState('');
+
+  const {
+    isLoading,
+    isError,
+    error,
+    data: substrateAccounts,
+  } = useConnectPolkadotExtension();
 
   const registerMutation = useMutation<any, AxiosError, any>(
     async (userObj: any) => {

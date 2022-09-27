@@ -4,10 +4,8 @@ import EngiIcon from '~/components/global/icons/EngiIcon';
 import Input from '~/components/global/Input/Input';
 import Button from '~/components/global/Button/Button';
 import { RiSearchLine } from 'react-icons/ri';
-import {
-  useConnectEthereumExtension,
-  useBuyEngiWithEth,
-} from '~/utils/api/ethereum-extension';
+import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
+import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
 
 type EngiAmountProps = {
   account: string;
