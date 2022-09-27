@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "NODE_ENV=production node server.js",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006",
     "server": "nodemon ./mockServer",
     "prepare": "husky install",
     "build-storybook": "build-storybook -s public",
