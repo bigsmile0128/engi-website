@@ -90,8 +90,8 @@ export default function Signup({ className }: SignupProps) {
             >
               <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
               <p className="mb-8 max-w-sm text-center text-lg">
-                Don't miss your next job. Sign in to stay updated on your
-                professional world
+                {`Don't miss your next job. Sign in to stay updated on your
+                professional world`}
               </p>
               <Button
                 className="w-full"

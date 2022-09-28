@@ -34,6 +34,7 @@ function UploadAvatar() {
     <div className="p-8">
       <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
       <h6>Help us personalize your avatar.</h6>
+      {!!image ? renderImageCropper() : renderDropzone()}
     </div>
   );
 }
