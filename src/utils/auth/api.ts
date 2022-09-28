@@ -15,6 +15,8 @@ type RegisterUser = {
 
 // User's create their private keys outside of Engi such as in Subwallet, Talisman, or on the Polkadot UI
 // - users securely register their keys with Engi
+// - errors if,
+//   - API returns `DUPE_EMAIL` error code for a user that's already been registered
 export const useRegisterUser = () =>
   useMutation<any, AxiosError, any>(
     async ({ display, email, mnemonic }: RegisterUser) => {
@@ -37,6 +39,10 @@ export const useRegisterUser = () =>
           },
         },
       });
+
+      const errors = response?.data?.errors;
+
+      if (errors?.length) throw new Error(errors[0].message);
 
       return response?.data?.data?.registerUser?.address;
     }
