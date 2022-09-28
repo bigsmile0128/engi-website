@@ -12,6 +12,12 @@ type RegisterUser = {
   mnemonic: string;
 };
 
+type RegisterUserMutationArguments = {
+  display: string;
+  email: string;
+  mnemonic: string;
+};
+
 // User's create their private keys outside of Engi such as in Subwallet, Talisman, or on the Polkadot UI
 // - users securely register their keys with Engi
 export const useRegisterUser = () =>
@@ -21,27 +27,19 @@ export const useRegisterUser = () =>
 
       const response = await axios.post('/api/graphql', {
         query: gql`
-          mutation RegisterUser(
-            $display: String!
-            $email: String!
-            $encryptedPkcs8Key: String!
-          ) {
-            createUser(
-              user: {
-                display: $display
-                email: $email
-                encryptedPkcs8Key: $encryptedPkcs8Key
-              }
-            ) {
-              address
+          mutation RegisterUser($user: CreateUserArguments!) {
+            auth {
+              register(user: $user)
             }
           }
         `,
         operationName: 'RegisterUser',
         variables: {
-          display,
-          email,
-          encryptedPkcs8Key,
+          user: {
+            display,
+            email,
+            encryptedPkcs8Key,
+          },
         },
       });
 
