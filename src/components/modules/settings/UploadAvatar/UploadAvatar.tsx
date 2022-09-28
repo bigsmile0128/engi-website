@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '~/components/global/Button/Button';
-import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
+import ImageCropper from '~/components/global/ImageCropper';
 import Dropzone from './Dropzone';
 
 function UploadAvatar() {

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { AiOutlineUser } from '@react-icons/all-files/ai/AiOutlineUser';
 import Link from 'next/link';
-import TimeEstimate from '../TimeEstimate';
+import TimeEstimate from '~/components/TimeEstimate';
 import JobInfo from './SearchResults/JobInfo';
 
 interface JobPreviewProps {

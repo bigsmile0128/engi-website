@@ -14,6 +14,7 @@ import { isProduction } from '~/utils';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
+import '~/utils/datetime/dayjs-extend';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',

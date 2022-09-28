@@ -2,9 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-
-dayjs.extend(relativeTime);
 
 type JobInfoProps = {
   className?: string;

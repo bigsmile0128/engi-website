@@ -30,7 +30,7 @@ function ImageCropper() {
           step={0.1}
           aria-labelledby="Zoom"
           onChange={(e) => {
-            setZoom(e.target.value);
+            setZoom(parseFloat(e.target.value));
           }}
           className="zoom-range"
         />
