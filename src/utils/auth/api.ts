@@ -72,26 +72,23 @@ export const useLoginUser = () =>
 
     const response = await axios.post('/api/graphql', {
       query: gql`
-        mutation LoginUser(
-          $address: String!
-          $signature: String!
-          $signedOn: String!
-        ) {
-          login(
-            args: {
-              address: $address
-              signature: { signedOn: $signedOn, value: $signature }
+        mutation LoginUser($loginArgs: LoginArguments!) {
+          auth {
+            login(args: $loginArgs) {
+              accessToken
             }
-          ) {
-            address
           }
         }
       `,
       operationName: 'LoginUser',
       variables: {
-        address,
-        signedOn: Date.now(),
-        signature,
+        loginArgs: {
+          address,
+          signature: {
+            signedOn: new Date().toISOString(),
+            value: signature,
+          },
+        },
       },
     });
 
