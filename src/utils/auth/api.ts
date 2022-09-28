@@ -3,18 +3,13 @@ import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
 import { NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE } from '../polkadot/constants';
+import { stringToHex } from '@polkadot/util';
 
 // The payload required to register a user with Engi
 type RegisterUser = {
   display: string;
   email: string;
   // This is encrypted to `encryptedPkcs8Key` before being sent in the request
-  mnemonic: string;
-};
-
-type RegisterUserMutationArguments = {
-  display: string;
-  email: string;
   mnemonic: string;
 };
 
@@ -65,8 +60,11 @@ export const useLoginUser = () =>
 
     if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
 
+    const time = new Date();
+
     const { signature } = await signRaw({
       address,
+      data: stringToHex(`${address}|${time.getTime()}`),
       type: 'bytes',
     });
 
@@ -85,12 +83,12 @@ export const useLoginUser = () =>
         loginArgs: {
           address,
           signature: {
-            signedOn: new Date().toISOString(),
+            signedOn: time.toISOString(),
             value: signature,
           },
         },
       },
     });
 
-    return response?.data?.data?.loginUser?.address;
+    return response?.data?.data?.loginUser?.accessToken;
   });
