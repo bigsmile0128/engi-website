@@ -12,7 +12,7 @@
     "storybook": "start-storybook -p 6006",
     "server": "nodemon ./mockServer",
     "prepare": "husky install",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook",
     "test": "jest -c ./jest.config.js",
     "storycap:all": "storycap --verbose --server-timeout 100000 --capture-max-retry-count 6 --server-cmd \"start-storybook -p 9001\" \"http://localhost:9001\""
   },
