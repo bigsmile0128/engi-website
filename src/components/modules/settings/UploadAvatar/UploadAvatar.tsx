@@ -3,13 +3,16 @@ import Dropzone from './Dropzone';
 
 function UploadAvatar() {
   const handleClickSave = () => {};
+  const onFileDrop = (file: File) => {
+    console.log('files===>', file);
+  };
 
   return (
     <div className="p-8">
       <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
-      <h6>Help us personalize avatar.</h6>
+      <h6>Help us personalize your avatar.</h6>
       <div className="my-12">
-        <Dropzone />
+        <Dropzone onFileDrop={onFileDrop} />
       </div>
       <div className="text-center">
         <Button onClick={handleClickSave} variant="primary" className="w-2/5">
