@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Button from '~/components/global/Button/Button';
+import Button from '~/components/Button';
 
 interface CalloutCardsProps {
   className?: string;

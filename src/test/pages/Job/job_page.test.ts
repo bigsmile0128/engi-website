@@ -1,7 +1,7 @@
 import { SS_TIMEOUT } from '../config';
 import { jobData } from './job_page.data';
 
-describe('Job page', () => {
+xdescribe('Job page', () => {
   test(
     'is the job page matching the figma design?',
     async () => {

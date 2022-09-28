@@ -13,7 +13,7 @@ export default function Footer({ className }: FooterProps) {
   return (
     <div
       className={classNames(
-        'bg-[#070706bb] flex items-center justify-center py-16',
+        'bg-[#070706] flex items-center justify-center py-16',
         className
       )}
     >
