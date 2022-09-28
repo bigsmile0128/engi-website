@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Fragment } from 'react';
 import { Tab } from '@headlessui/react';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import ForwardSlashSvg from '~/components/global/icons/forward-slash.svg';

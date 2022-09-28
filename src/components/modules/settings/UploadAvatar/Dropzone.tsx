@@ -6,6 +6,17 @@ interface Props {
   onFileDrop: (file: File) => void;
 }
 
+const MAX_FILE_SIZE_BYTE = 10 * 1024 * 1024;
+
+const dropzoneConfig = {
+  maxFiles: 1,
+  maxSize: MAX_FILE_SIZE_BYTE,
+  multiple: false,
+  accept: {
+    'image/*': [],
+  },
+};
+
 function Dropzone({ onFileDrop }: Props) {
   const onDrop = useCallback(
     (acceptedFiles: Array<File>) => {
@@ -25,14 +36,17 @@ function Dropzone({ onFileDrop }: Props) {
     [onFileDrop]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    ...dropzoneConfig,
+  });
 
   return (
     <div
       {...getRootProps()}
       className="flex justify-center border border-dashed border-[white]/30 py-20"
     >
-      <input {...getInputProps({ multiple: false, accept: 'image/*' })} />
+      <input {...getInputProps()} />
       <div>
         <div className="flex w-fit border border-[white]/60 backdrop-blur-[11px] bg-[#161b28]/30 p-4 m-auto mb-6">
           <Image

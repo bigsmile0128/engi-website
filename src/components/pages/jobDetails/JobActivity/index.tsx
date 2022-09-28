@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import ShareModal from '../ShareModal';
 import JobCreator from './JobCreator';
 import ActivityStats from './ActivityStats';

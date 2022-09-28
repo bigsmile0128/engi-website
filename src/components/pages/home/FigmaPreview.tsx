@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { useXarrow } from 'react-xarrows';
 
 import GridPattern from '~/components/global/GridPattern/GridPattern';
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import FigmaCodeBlock from './FigmaCodeBlock';
 import FigmaStoryExample from './FigmaStoryExample';
 import Arrow from '~/components/global/Arrow/Arrow';

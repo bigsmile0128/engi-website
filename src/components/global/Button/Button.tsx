@@ -1,7 +1,6 @@
-import React from 'react';
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
-import Tag from '../global/Tag/Tag';
+import Tag from '~/components/global/Tag/Tag';
 
 type ButtonProps = {
   variant?: 'primary' | 'default' | 'tag';

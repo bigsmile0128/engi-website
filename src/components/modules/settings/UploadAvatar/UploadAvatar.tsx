@@ -1,16 +1,18 @@
-import Button from '~/components/Button';
+import { useState } from 'react';
+import Button from '~/components/global/Button/Button';
+import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
 import Dropzone from './Dropzone';
 
 function UploadAvatar() {
+  const [image, setImage] = useState<File>();
   const handleClickSave = () => {};
   const onFileDrop = (file: File) => {
     console.log('files===>', file);
+    setImage(file);
   };
 
-  return (
-    <div className="p-8">
-      <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
-      <h6>Help us personalize your avatar.</h6>
+  const renderDropzone = () => (
+    <div>
       <div className="my-12">
         <Dropzone onFileDrop={onFileDrop} />
       </div>
@@ -19,6 +21,19 @@ function UploadAvatar() {
           Save
         </Button>
       </div>
+    </div>
+  );
+
+  const renderImageCropper = () => (
+    <div>
+      <ImageCropper />
+    </div>
+  );
+
+  return (
+    <div className="p-8">
+      <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
+      <h6>Help us personalize your avatar.</h6>
     </div>
   );
 }

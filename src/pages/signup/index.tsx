@@ -14,7 +14,7 @@ import UserContext from '~/utils/contexts/userContext';
 import { isDev } from '~/utils';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
-import Button from '~/components/Button';
+import Button from '~/components/global/Button/Button';
 import { consoleSandbox } from '@sentry/utils';
 
 type SignupProps = {
