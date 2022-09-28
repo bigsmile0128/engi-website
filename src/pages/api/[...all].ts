@@ -14,8 +14,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       target: 'https://api.engi.prod.zmvp.host',
       pathRewrite: [
         {
-          patternStr: '^/api/graphql',
-          replaceStr: '/api/graphql',
+          patternStr: '^/api',
+          replaceStr: '/api',
         },
       ],
     },
