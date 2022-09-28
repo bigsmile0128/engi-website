@@ -54,6 +54,7 @@
     "randomcolor": "^0.6.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-dropzone": "^14.2.2",
     "react-icons": "^4.4.0",
     "react-intersection-observer": "^9.3.4",
     "react-markdown": "^8.0.3",

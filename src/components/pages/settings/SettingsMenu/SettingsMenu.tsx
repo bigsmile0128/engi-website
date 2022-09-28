@@ -1,16 +1,21 @@
 import cn from 'classnames';
 import { useState } from 'react';
+import { SETTINGS_TAB } from '../Settings.utils';
 
 interface Props {
-  items: Array<{ key: string; title: string }>;
+  items: Array<{ key: SETTINGS_TAB; title: string }>;
   className?: string;
+  onChange: (key: SETTINGS_TAB) => void;
 }
 
-function SettingsMenu({ items, className }: Props) {
-  const [selectedTab, setSelectedTab] = useState(-1);
+function SettingsMenu({ items, className, onChange }: Props) {
+  const [selectedTab, setSelectedTab] = useState<SETTINGS_TAB>(
+    SETTINGS_TAB.PERSONAL_INFO
+  );
 
-  const handleClick = (index: number) => () => {
-    setSelectedTab(index);
+  const handleClick = (key: SETTINGS_TAB) => () => {
+    setSelectedTab(key);
+    onChange(key);
   };
 
   return (
@@ -18,10 +23,9 @@ function SettingsMenu({ items, className }: Props) {
       {items.map(({ key, title }, index) => (
         <li
           key={key}
-          onClick={handleClick(index)}
+          onClick={handleClick(key)}
           className={cn('pl-6', {
-            'bg-[#232323]/80 text-green-primary font-bold':
-              index === selectedTab,
+            'bg-[#232323]/80 text-green-primary font-bold': key === selectedTab,
           })}
         >
           <button
