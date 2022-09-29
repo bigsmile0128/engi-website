@@ -1,6 +1,6 @@
 const uc = require('@polkadot/util-crypto');
 
-const substrateToHex = (address) => {
+export const substrateToHex = (address) => {
   const ar = uc.decodeAddress(address);
 
   return (

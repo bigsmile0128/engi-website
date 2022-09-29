@@ -54,8 +54,20 @@ export default function Signup({ className }: SignupProps) {
   const {
     mutate: register,
     isSuccess: registered,
+    isError: failedToRegister,
+    error: registerError,
     data: walletId,
   } = useRegisterUser();
+
+  // display registration errors
+  useEffect(() => {
+    if (failedToRegister) {
+      toast.error(registerError.message, {
+        position: 'top-center',
+        autoClose: 3000,
+      });
+    }
+  }, [failedToRegister, registerError]);
 
   const { mutate: login } = useLoginUser();
 

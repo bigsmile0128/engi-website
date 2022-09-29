@@ -6,6 +6,7 @@ import {
   PURCHASE_CONTRACT_ADDRESS,
   NO_GLOBAL_ETHEREUM_ERROR_MESSAGE,
 } from './constants';
+import { substrateToHex } from './substrate';
 
 const EngiPurchaseContract = new Web3Provider.eth.Contract(
   // @ts-ignore
