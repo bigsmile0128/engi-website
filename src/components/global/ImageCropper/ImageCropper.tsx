@@ -1,7 +1,7 @@
-import { ChangeEvent, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import Cropper from 'react-easy-crop';
 import { Point, Area } from 'react-easy-crop/types';
-import styles from './ImageCropper.module.css';
+import SliderControls from './SliderControls/SliderControls';
 
 function ImageCropper() {
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
@@ -11,8 +11,8 @@ function ImageCropper() {
     console.log(croppedArea, croppedAreaPixels);
   }, []);
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setZoom(Number(event.target.value));
+  const handleChange = (value: number) => {
+    setZoom(value);
   };
 
   return (
@@ -29,20 +29,7 @@ function ImageCropper() {
           showGrid={false}
         />
       </div>
-      <div
-        className={`flex items-center justify-center left-0 right-0 absolute -bottom-10 bg-[#232323]/80 backdrop-blur-[2px] rounded-[4px] py-4 ${styles.controls}`}
-      >
-        <input
-          type="range"
-          value={zoom}
-          min={1}
-          max={3}
-          step={0.1}
-          aria-labelledby="Zoom"
-          onChange={handleChange}
-          className={styles.zoom_range}
-        />
-      </div>
+      <SliderControls onChange={handleChange} />
     </div>
   );
 }
