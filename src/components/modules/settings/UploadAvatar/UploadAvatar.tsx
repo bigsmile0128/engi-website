@@ -27,7 +27,7 @@ function UploadAvatar() {
   const renderImageCropper = () => (
     <div>
       <div className="mt-9 min-h-[400px]">
-        <ImageCropper />
+        <ImageCropper imageSrc="https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000" />
       </div>
       <div className="text-center">
         <Button onClick={handleClickSave} variant="primary" className="w-2/5">
