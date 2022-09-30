@@ -25,7 +25,7 @@ function UploadAvatar() {
   );
 
   const renderImageCropper = () => (
-    <div className="mt-9">
+    <div className="mt-9 min-h-[400px]">
       <ImageCropper />
     </div>
   );
