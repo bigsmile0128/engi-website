@@ -2,13 +2,34 @@ import { useState } from 'react';
 import Button from '~/components/global/Button/Button';
 import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
 import Dropzone from './Dropzone';
+import { uploadImageToS3 } from '~/services/aws';
+// import { v4 as uuidv4 } from 'uuid';
 
 function UploadAvatar() {
   const [image, setImage] = useState<File>();
-  const handleClickSave = () => {};
+  const [hasUploaded, setHasUploaded] = useState<boolean>(false);
+
+  const handleUploaded = async () => {
+    try {
+      // const checkId: string = uuidv4();
+      const response = await uploadImageToS3({
+        file: image,
+        name: `${image.name}`,
+      });
+      console.log('=======>', response);
+
+      setHasUploaded(true);
+    } catch (error) {
+      console.log('======> error', error);
+    }
+  };
+
+  const handleSaveCroppedImage = () => {};
+
   const onFileDrop = (file: File) => {
     console.log('files===>', file);
     setImage(file);
+    setHasUploaded(false);
   };
 
   const renderDropzone = () => (
@@ -17,7 +38,12 @@ function UploadAvatar() {
         <Dropzone onFileDrop={onFileDrop} />
       </div>
       <div className="text-center">
-        <Button onClick={handleClickSave} variant="primary" className="w-2/5">
+        <Button
+          onClick={handleUploaded}
+          variant="primary"
+          className="w-2/5"
+          disabled={!image}
+        >
           Save
         </Button>
       </div>
@@ -30,7 +56,11 @@ function UploadAvatar() {
         <ImageCropper imageSrc="https://img.huffingtonpost.com/asset/5ab4d4ac2000007d06eb2c56.jpeg?cache=sih0jwle4e&ops=1910_1000" />
       </div>
       <div className="text-center">
-        <Button onClick={handleClickSave} variant="primary" className="w-2/5">
+        <Button
+          onClick={handleSaveCroppedImage}
+          variant="primary"
+          className="w-2/5"
+        >
           Save
         </Button>
       </div>
@@ -41,7 +71,7 @@ function UploadAvatar() {
     <div className="p-8">
       <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
       <h6>Help us personalize your avatar.</h6>
-      {!!image ? renderImageCropper() : renderDropzone()}
+      {hasUploaded ? renderImageCropper() : renderDropzone()}
     </div>
   );
 }
