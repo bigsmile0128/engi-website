@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '~/components/global/Button/Button';
-import ImageCropper from '~/components/global/ImageCropper';
+import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
 import Dropzone from './Dropzone';
 
 function UploadAvatar() {
@@ -25,7 +25,7 @@ function UploadAvatar() {
   );
 
   const renderImageCropper = () => (
-    <div>
+    <div className="mt-9">
       <ImageCropper />
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { ChangeEvent, useState, useCallback } from 'react';
 import Cropper from 'react-easy-crop';
 import { Point, Area } from 'react-easy-crop/types';
 function ImageCropper() {
@@ -8,6 +8,10 @@ function ImageCropper() {
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     console.log(croppedArea, croppedAreaPixels);
   }, []);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setZoom(Number(event.target.value));
+  };
 
   return (
     <div className="relative h-[350px] w-[350px] m-auto">
@@ -22,7 +26,7 @@ function ImageCropper() {
           onZoomChange={setZoom}
         />
       </div>
-      <div className="flex items-center absolute bottom-0 -translate-x-2/4">
+      <div className="flex items-center justify-center left-0 right-0 absolute -bottom-10 bg-[#232323]/80 backdrop-blur-[2px] rounded-[4px] py-4">
         <input
           type="range"
           value={zoom}
@@ -30,9 +34,7 @@ function ImageCropper() {
           max={3}
           step={0.1}
           aria-labelledby="Zoom"
-          onChange={(e) => {
-            setZoom(parseFloat(e.target.value));
-          }}
+          onChange={handleChange}
           className="zoom-range"
         />
       </div>
