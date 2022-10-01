@@ -98,7 +98,6 @@ export default () => {
     substrateAccounts,
     failedToConnectForAccounts,
     connectionStatesDisplay,
-    isRetryingConnection,
   ]);
 
   const {

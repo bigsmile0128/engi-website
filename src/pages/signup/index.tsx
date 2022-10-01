@@ -17,6 +17,7 @@ import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
 import Button from '~/components/global/Button/Button';
 import { consoleSandbox } from '@sentry/utils';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
+import RegisterWallet from '~/components/RegisterWallet/RegisterWallet';
 
 type SignupProps = {
   className?: string;
@@ -108,7 +109,9 @@ export default function Signup({ className }: SignupProps) {
                 className="absolute bottom-0 right-0 left-0 bg-[#00000022]"
               />
               <h1 className="font-bold text-5xl mb-4">New here?</h1>
-              <p className="mb-8 text-lg">Time to register my keys with Engi</p>
+              <p className="mb-8 text-lg text-center">
+                Import a Substrate compatible wallet to get started
+              </p>
               <Button
                 variant="primary"
                 className="w-full"
@@ -119,82 +122,7 @@ export default function Signup({ className }: SignupProps) {
             </div>
           </div>
         )}
-        {currentStep === Step.SIGN_UP && (
-          <>
-            <h1 className="font-bold text-5xl mb-12">Register User</h1>
-            <div className="flex flex-col gap-y-8 w-3/4 mb-12">
-              <input
-                className={classNames(
-                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
-                )}
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <input
-                className={classNames(
-                  'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
-                )}
-                type="mnemonic"
-                name="mnemonic"
-                id="mnemonic"
-                placeholder="Mnemonic"
-                value={mnemonic}
-                onChange={(e) => setMnemonic(e.target.value)}
-              />
-            </div>
-            <div className="flex w-full gap-x-4">
-              <button
-                className={classNames(
-                  'flex-1 py-4 text-white font-bold',
-                  // TODO: change color for Back button
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-                )}
-                onClick={() => setCurrentStep(Step.SIGN_IN)}
-              >
-                Back
-              </button>
-              <button
-                className={classNames(
-                  'flex-1 py-4 text-white font-bold',
-                  'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-                )}
-                onClick={() => {
-                  if (!display) {
-                    toast.error('A display name is required.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
-                  } else if (!email) {
-                    toast.error('An email is required.', {
-                      position: 'top-center',
-                      autoClose: 3000,
-                    });
-                  } else if (!mnemonic) {
-                    toast.error(
-                      'A mnemonic is required to register. This is not sent over the wire.',
-                      {
-                        position: 'top-center',
-                        autoClose: 3000,
-                      }
-                    );
-                  } else {
-                    register({
-                      display,
-                      email,
-                      mnemonic,
-                    });
-                  }
-                }}
-              >
-                Create
-              </button>
-            </div>
-          </>
-        )}
+        {currentStep === Step.SIGN_UP && <RegisterWallet />}
         {currentStep === Step.FINISH_SIGN_UP && (
           <>
             <h1 className="font-bold text-5xl mb-4">Congratulations!</h1>
