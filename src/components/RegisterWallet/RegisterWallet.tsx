@@ -71,7 +71,13 @@ export default function RegisterWallet() {
 
   return (
     <div className={'max-w-page lg:py-20'}>
-      <h1 className="font-bold text-5xl mb-12">Register User</h1>
+      <h1 className="font-bold text-5xl mb-12">Register Wallet</h1>
+
+      <p className="my-2 text-lg max-w-xl text-white text-opacity-70">
+        Register your email with your private key and gain secure multi-factor
+        signatures, account recovery, and more
+      </p>
+
       <div className="flex items-center">
         {substrateAccounts ? (
           <>
@@ -102,7 +108,7 @@ export default function RegisterWallet() {
           </span>
         )}
       </div>
-      <div className="flex flex-col gap-y-8 mb-12">
+      <div className="flex gap-x-4 mb-12">
         <input
           className={classNames(
             'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
@@ -112,6 +118,7 @@ export default function RegisterWallet() {
           id="email"
           placeholder="Email"
           value={email}
+          required
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
@@ -123,6 +130,7 @@ export default function RegisterWallet() {
           id="mnemonic"
           placeholder="Mnemonic"
           value={mnemonic}
+          required
           onChange={(e) => setMnemonic(e.target.value)}
         />
       </div>
@@ -138,18 +146,28 @@ export default function RegisterWallet() {
           Back
         </button>
         <button
-          className={classNames(
-            'flex-1 py-4 text-white font-bold',
-            'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-          )}
-          disabled={!display || !email || !mnemonic}
-          onClick={() => {
-            register({
-              display,
-              email,
-              mnemonic,
-            });
-          }}
+          className={classNames({
+            'flex-1 py-4 text-white font-bold': true,
+            'bg-[#00000022] border border-white outline-none focus-visible:ring-2':
+              true,
+            'disabled cursor-not-allowed text-opacity-50 border-opacity-50':
+              !display || !email || !mnemonic,
+            'hover:bg-gray-700 cursor-pointer active:bg-gray-600':
+              display && email && mnemonic,
+          })}
+          {...(!display || !email || !mnemonic
+            ? {
+                disabled: true,
+              }
+            : {
+                onClick: () => {
+                  register({
+                    display,
+                    email,
+                    mnemonic,
+                  });
+                },
+              })}
         >
           Create
         </button>
