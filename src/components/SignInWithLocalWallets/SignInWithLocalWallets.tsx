@@ -156,6 +156,10 @@ export default function SignInWithLocalWallets() {
         />
       ) : connectingToExtensions ? (
         <Connecting />
+      ) : !substrateAccounts?.length ? (
+        <div className="py-4 px-8 flex items-center">
+          <span className="mx-4 font-light">No Connected Accounts</span>
+        </div>
       ) : (
         substrateAccounts && (
           <>
@@ -179,10 +183,6 @@ export default function SignInWithLocalWallets() {
                 <Dots className="flex-shrink-0" />
               </div>
             ))}
-
-            <div className="py-4 px-8 flex items-center">
-              <span className="mx-4 font-light">No Connected Accounts</span>
-            </div>
           </>
         )
       )}
