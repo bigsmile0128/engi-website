@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import SelectMenu from '../SelectMenu';
 import { useRegisterUser } from '~/utils/auth/api';
+import { useRouter } from 'next/router';
 
 export default function RegisterWallet() {
   const {
@@ -32,6 +33,8 @@ export default function RegisterWallet() {
   const [email, setEmail] = useState<string>(null);
   const [mnemonic, setMnemonic] = useState<string>(null);
 
+  const { back: goBackToSignUp } = useRouter();
+
   // display registration states
   const registerStatesDisplay = useRef(null);
   useEffect(() => {
@@ -43,11 +46,13 @@ export default function RegisterWallet() {
     } else if (registeredWallet) {
       // update loading or error toasts
       toast.update(registerStatesDisplay.current, {
-        render: 'Registered! Please confirm your email.',
+        render: 'Registered! Please confirm your email then sign in.',
         type: toast.TYPE.SUCCESS,
         autoClose: 3000,
         isLoading: false,
       });
+
+      goBackToSignUp();
     } else if (failedToRegister) {
       toast.update(registerStatesDisplay.current, {
         render: `${registerError.message} Please retry.`,
@@ -65,7 +70,7 @@ export default function RegisterWallet() {
   ]);
 
   return (
-    <div>
+    <div className={'max-w-page lg:py-20'}>
       <h1 className="font-bold text-5xl mb-12">Register User</h1>
       <SelectMenu
         buttonLabel="Connected Accounts"
@@ -107,9 +112,7 @@ export default function RegisterWallet() {
             // TODO: change color for Back button
             'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
           )}
-          onClick={() => {
-            // TODO: nav back
-          }}
+          onClick={goBackToSignUp}
         >
           Back
         </button>

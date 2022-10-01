@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import { useLoginUser } from '~/utils/auth/api';
@@ -69,6 +70,8 @@ export default function SignInWithLocalWallets() {
     refetch: retryConnecting,
   } = useConnectPolkadotExtension();
 
+  const { push: pushRoute } = useRouter();
+
   // display connection states
   const connectionStatesDisplay = useRef(null);
   useEffect(() => {
@@ -132,6 +135,8 @@ export default function SignInWithLocalWallets() {
         autoClose: 3000,
         type: toast.TYPE.SUCCESS,
       });
+
+      pushRoute('jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
         render: `${loginError.message} Please try again.`,

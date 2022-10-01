@@ -18,6 +18,7 @@ import Button from '~/components/global/Button/Button';
 import { consoleSandbox } from '@sentry/utils';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
 import RegisterWallet from '~/components/RegisterWallet/RegisterWallet';
+import { useRouter } from 'next/router';
 
 type SignupProps = {
   className?: string;
@@ -32,118 +33,49 @@ enum Step {
 }
 
 export default function Signup({ className }: SignupProps) {
-  const { setUser } = useContext(UserContext);
-  const [currentStep, setCurrentStep] = useState(Step.SIGN_IN);
-  const [mnemonic, setMnemonic] = useState('');
-  const [confirmationWords, setConfirmationWords] = useState<string[]>([]);
-  const [email, setEmail] = useState('');
-
-  const {
-    mutate: register,
-    isSuccess: registered,
-    isError: failedToRegister,
-    error: registerError,
-    data: walletId,
-  } = useRegisterUser();
-
-  // display registration errors
-  useEffect(() => {
-    if (failedToRegister) {
-      toast.error(registerError.message, {
-        position: 'top-center',
-        autoClose: 3000,
-      });
-    }
-  }, [failedToRegister, registerError]);
-
-  const { mutate: login } = useLoginUser();
-
-  const { isLoading: isLoadingWallet, data: isValidWallet } = useQuery(
-    ['wallet', walletId],
-    () => isWalletValid(walletId)
-  );
-
-  useEffect(() => {
-    // reset fields when going back to initial selection
-    if (currentStep === Step.SIGN_IN) {
-      setMnemonic('');
-      setEmail('');
-    }
-  }, [currentStep]);
-
-  useEffect(() => {
-    if (registered) {
-      setCurrentStep(Step.FINISH_SIGN_UP);
-    }
-  }, [registered]);
+  const { push: pushRoute } = useRouter();
 
   // TODO: adjust padding and margin on mobile
   return (
     <div className={classNames('max-w-page lg:py-20', className)}>
-      <div className="">
-        {currentStep === Step.SIGN_IN && (
-          <div className="flex">
-            <div
-              style={{ flexBasis: '60%' }}
-              className="flex flex-col items-center lg:p-20"
-            >
-              <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
-              <p className="mb-8 max-w-sm text-center text-lg">
-                {`Don't miss your next job. Sign in to stay updated on your
+      <div className="flex">
+        <div
+          style={{ flexBasis: '60%' }}
+          className="flex flex-col items-center lg:p-20"
+        >
+          <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
+          <p className="mb-8 max-w-sm text-center text-lg">
+            {`Don't miss your next job. Sign in to stay updated on your
                 professional world`}
-              </p>
-              <SignInWithLocalWallets />
-            </div>
+          </p>
+          <SignInWithLocalWallets />
+        </div>
 
-            <div
-              style={{ flexBasis: '40%' }}
-              className="flex flex-col items-center lg:p-20 overflow-visible relative"
-            >
-              <span
-                style={{
-                  top: '-100%',
-                  right: '-9999px',
-                  height: '9999px',
-                  zIndex: -1,
-                }}
-                className="absolute bottom-0 right-0 left-0 bg-[#00000022]"
-              />
-              <h1 className="font-bold text-5xl mb-4">New here?</h1>
-              <p className="mb-8 text-lg text-center">
-                Import a Substrate compatible wallet to get started
-              </p>
-              <Button
-                variant="primary"
-                className="w-full"
-                onClick={() => setCurrentStep(Step.SIGN_UP)}
-              >
-                Register Wallet
-              </Button>
-            </div>
-          </div>
-        )}
-        {currentStep === Step.SIGN_UP && <RegisterWallet />}
-        {currentStep === Step.FINISH_SIGN_UP && (
-          <>
-            <h1 className="font-bold text-5xl mb-4">Congratulations!</h1>
-            <p className="mb-8">
-              {`You've set up your wallet. You can start working on Engi jobs.`}
-            </p>
-            <p className="mb-8">{`We're happy to meet you!`}</p>
-            <Link href={isDev() ? '/jobs' : '/'}>
-              <a>
-                <button
-                  className={classNames(
-                    'px-16 py-4 text-white font-bold',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-                  )}
-                >
-                  Finish
-                </button>
-              </a>
-            </Link>
-          </>
-        )}
+        <div
+          style={{ flexBasis: '40%' }}
+          className="flex flex-col items-center lg:p-20 overflow-visible relative"
+        >
+          <span
+            style={{
+              top: '-100%',
+              right: '-9999px',
+              height: '9999px',
+              zIndex: -1,
+            }}
+            className="absolute bottom-0 right-0 left-0 bg-[#00000022]"
+          />
+          <h1 className="font-bold text-5xl mb-4">New here?</h1>
+          <p className="mb-8 text-lg text-center">
+            Import a Substrate compatible wallet to get started
+          </p>
+          <Button
+            variant="primary"
+            className="w-full"
+            onClick={() => pushRoute('signup/register')}
+          >
+            Register Wallet
+          </Button>
+        </div>
       </div>
     </div>
   );
