@@ -40,7 +40,7 @@ export default function RegisterWallet() {
   useEffect(() => {
     if (registeringUser) {
       registerStatesDisplay.current = toast('Registering user...', {
-        position: 'bottom-center',
+        position: 'top-center',
         isLoading: true,
       });
     } else if (registeredWallet) {

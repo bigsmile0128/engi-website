@@ -21,7 +21,7 @@ export default function Confirm() {
   useEffect(() => {
     if (confirmingEmail) {
       confirmEmailStatesDisplay.current = toast('Confirming email...', {
-        position: 'bottom-center',
+        position: 'top-center',
         isLoading: true,
       });
     } else if (emailConfirmed) {

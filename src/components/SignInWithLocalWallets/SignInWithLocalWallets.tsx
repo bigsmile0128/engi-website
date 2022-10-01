@@ -77,7 +77,7 @@ export default function SignInWithLocalWallets() {
   useEffect(() => {
     if (connectingToExtensions) {
       connectionStatesDisplay.current = toast('Connecting extensions...', {
-        position: 'bottom-center',
+        position: 'top-center',
         isLoading: true,
       });
     } else if (substrateAccounts) {
@@ -125,7 +125,7 @@ export default function SignInWithLocalWallets() {
   useEffect(() => {
     if (loggingUserIn) {
       loginStatesDisplay.current = toast('Logging in...', {
-        position: 'bottom-center',
+        position: 'top-center',
         isLoading: true,
       });
     } else if (loggedIn) {
