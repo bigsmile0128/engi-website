@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import SelectMenu from '../SelectMenu';
 import { useRegisterUser } from '~/utils/auth/api';
 
-export default () => {
+export default function RegisterWallet() {
   const {
     isLoading: connectingToExtensions,
     isError: failedToConnectForAccounts,
@@ -61,6 +61,7 @@ export default () => {
     registeredWallet,
     failedToRegister,
     registerStatesDisplay,
+    registerError,
   ]);
 
   return (
@@ -131,4 +132,4 @@ export default () => {
       </div>
     </div>
   );
-};
+}

@@ -28,7 +28,7 @@ const User = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_1350_26587)">
+    <g clipPath="url(#clip0_1350_26587)">
       <path
         d="M7.5 41.25C7.5 37.2718 9.08035 33.4564 11.8934 30.6434C14.7064 27.8304 18.5218 26.25 22.5 26.25C26.4782 26.25 30.2936 27.8304 33.1066 30.6434C35.9196 33.4564 37.5 37.2718 37.5 41.25H33.75C33.75 38.2663 32.5647 35.4048 30.455 33.295C28.3452 31.1853 25.4837 30 22.5 30C19.5163 30 16.6548 31.1853 14.545 33.295C12.4353 35.4048 11.25 38.2663 11.25 41.25H7.5ZM22.5 24.375C16.2844 24.375 11.25 19.3406 11.25 13.125C11.25 6.90937 16.2844 1.875 22.5 1.875C28.7156 1.875 33.75 6.90937 33.75 13.125C33.75 19.3406 28.7156 24.375 22.5 24.375ZM22.5 20.625C26.6438 20.625 30 17.2688 30 13.125C30 8.98125 26.6438 5.625 22.5 5.625C18.3562 5.625 15 8.98125 15 13.125C15 17.2688 18.3562 20.625 22.5 20.625Z"
         fill="white"
@@ -58,7 +58,7 @@ const CouldNotConnectToExtension = ({ error, retry }) => (
   </div>
 );
 
-export default () => {
+export default function SignInWithLocalWallets() {
   // load all accounts from all extensions the user wishes to connect
   const {
     isLoading: connectingToExtensions,
@@ -156,6 +156,7 @@ export default () => {
           <>
             {substrateAccounts?.map(({ address, meta: { name, source } }) => (
               <div
+                key={`${source}|${name}|${address}`}
                 className="py-4 px-8 flex items-center hover:bg-[#ffffff10] cursor-pointer"
                 onClick={() => login({ address, source })}
               >
@@ -182,4 +183,4 @@ export default () => {
       )}
     </div>
   );
-};
+}
