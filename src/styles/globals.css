@@ -182,3 +182,10 @@ select:-webkit-autofill:focus {
   overflow: hidden;
   transform: translateY(-1px);
 }
+
+:root {
+  --toastify-color-light: #07070690;
+  --toastify-font-family: 'Helvetica Neue', 'Arial';
+  --toastify-text-color-light: rgba(255, 255, 255, 0.8);
+  --toastify-color-success: #65feb7;
+}
