@@ -18,7 +18,7 @@ type RegisterUser = {
 // - errors if,
 //   - API returns `DUPE_EMAIL` error code for a user that's already been registered
 export const useRegisterUser = () =>
-  useMutation<any, AxiosError, any>(
+  useMutation<string, AxiosError, any>(
     async ({ display, email, mnemonic }: RegisterUser) => {
       const encryptedPkcs8Key = await encryptMnemonic(mnemonic);
 
@@ -44,7 +44,7 @@ export const useRegisterUser = () =>
 
       if (errors?.length) throw new Error(errors[0].message);
 
-      return response?.data?.data?.registerUser?.address;
+      return response?.data?.data?.auth?.register;
     }
   );
 
@@ -107,5 +107,38 @@ export const useLoginUser = () =>
         address,
         accessToken: response?.data?.data?.auth?.login?.accessToken,
       };
+    }
+  );
+
+type ConfirmEmail = {
+  address: string;
+  token: string;
+};
+
+export const useConfirmEmail = () =>
+  useMutation<{ address: string; token: string }, AxiosError, any>(
+    async ({ address, token }: ConfirmEmail) => {
+      const response = await axios.post('/api/graphql', {
+        query: gql`
+          mutation ConfirmEmail($confirmEmailArgs: ConfirmEmailArguments!) {
+            auth {
+              confirmEmail(args: $confirmEmailArgs)
+            }
+          }
+        `,
+        operationName: 'ConfirmEmail',
+        variables: {
+          confirmEmailArgs: {
+            address,
+            token,
+          },
+        },
+      });
+
+      if (response?.data?.errors?.length) {
+        throw new Error(response?.data?.errors?.[0]?.message);
+      }
+
+      return response?.data?.data?.auth?.confirmEmail;
     }
   );

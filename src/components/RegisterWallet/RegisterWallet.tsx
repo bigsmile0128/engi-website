@@ -43,7 +43,7 @@ export default function RegisterWallet() {
     } else if (registeredWallet) {
       // update loading or error toasts
       toast.update(registerStatesDisplay.current, {
-        render: 'Registered!',
+        render: 'Registered! Please confirm your email.',
         type: toast.TYPE.SUCCESS,
         autoClose: 3000,
         isLoading: false,
