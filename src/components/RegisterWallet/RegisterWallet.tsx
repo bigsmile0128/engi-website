@@ -73,21 +73,32 @@ export default function RegisterWallet() {
     <div className={'max-w-page lg:py-20'}>
       <h1 className="font-bold text-5xl mb-12">Register User</h1>
       <div className="flex items-center">
-        <SelectMenu
-          className="my-4 text-xl w-full"
-          buttonLabel={
-            walletToImport ? walletToImport.display : 'Select Account'
-          }
-          options={substrateAccounts.map(
-            ({ address: value, meta: { name: label } }) => ({ label, value })
-          )}
-          onChange={({ label, value }) =>
-            setWalletToImport({ address: value, display: label })
-          }
-        />
-        {walletToImport && (
-          <span className="font-medium text-xl truncate">
-            {walletToImport.address}
+        {substrateAccounts ? (
+          <>
+            <SelectMenu
+              className="my-4 text-xl w-full"
+              buttonLabel={
+                walletToImport ? walletToImport.display : 'Select Account'
+              }
+              options={substrateAccounts.map(
+                ({ address: value, meta: { name: label } }) => ({
+                  label,
+                  value,
+                })
+              )}
+              onChange={({ label, value }) =>
+                setWalletToImport({ address: value, display: label })
+              }
+            />
+            {walletToImport && (
+              <span className="font-medium text-xl truncate">
+                {walletToImport.address}
+              </span>
+            )}
+          </>
+        ) : (
+          <span className="font-bold text-lg text-red-500 py-4">
+            No Accounts Detected
           </span>
         )}
       </div>
