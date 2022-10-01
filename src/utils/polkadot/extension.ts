@@ -2,6 +2,7 @@ import { useQuery } from 'react-query';
 import {
   QUERY_KEY_CONNECT_POLKADOT_EXTENSION,
   POLKADOT_APP_NAME,
+  NO_EXTENSIONS_CONNECTED_ERROR_MESSAGE,
 } from './constants';
 
 // Connect to the window's Polkadot provider by retrieving accounts
@@ -22,8 +23,10 @@ export const useConnectPolkadotExtension = () =>
       } = require('@polkadot/extension-dapp');
 
       // this needs to be called first, before other requests
-      // - unused returned list of enabled extensions such as 'talisman', 'polkadot-js'
-      await web3Enable(POLKADOT_APP_NAME);
+      const enabledExtensions = await web3Enable(POLKADOT_APP_NAME);
+
+      if (!enabledExtensions.length)
+        throw new Error(NO_EXTENSIONS_CONNECTED_ERROR_MESSAGE);
 
       // returns an array of { address, meta: { name, source } }
       // meta.source contains the name of the extension that provides this account

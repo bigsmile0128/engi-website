@@ -16,6 +16,7 @@ import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
 import Button from '~/components/global/Button/Button';
 import { consoleSandbox } from '@sentry/utils';
+import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
 
 type SignupProps = {
   className?: string;
@@ -35,21 +36,6 @@ export default function Signup({ className }: SignupProps) {
   const [mnemonic, setMnemonic] = useState('');
   const [confirmationWords, setConfirmationWords] = useState<string[]>([]);
   const [email, setEmail] = useState('');
-
-  const {
-    isLoading,
-    isError,
-    error,
-    data: substrateAccounts,
-  } = useConnectPolkadotExtension();
-
-  const {
-    address,
-    meta: { name: display, source },
-  } = useMemo(
-    () => substrateAccounts?.[0] ?? { meta: {} },
-    [substrateAccounts]
-  );
 
   const {
     mutate: register,
@@ -105,12 +91,7 @@ export default function Signup({ className }: SignupProps) {
                 {`Don't miss your next job. Sign in to stay updated on your
                 professional world`}
               </p>
-              <Button
-                className="w-full"
-                onClick={() => login({ address, source })}
-              >
-                Sign In
-              </Button>
+              <SignInWithLocalWallets />
             </div>
 
             <div
@@ -133,7 +114,7 @@ export default function Signup({ className }: SignupProps) {
                 className="w-full"
                 onClick={() => setCurrentStep(Step.SIGN_UP)}
               >
-                Create New Wallet
+                Register Wallet
               </Button>
             </div>
           </div>
