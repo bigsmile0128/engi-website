@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import Input from '~/components/global/Input/Input';
@@ -7,7 +7,7 @@ import { RiSearchLine } from 'react-icons/ri';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
 
-type EngiAmountProps = {
+type BuyEngiProps = {
   account: string;
   className?: string;
   iconClassName?: string;
@@ -16,16 +16,18 @@ type EngiAmountProps = {
   value?: string;
 };
 
-export default function EngiAmount({
+export default function BuyEngi({
   className,
   iconClassName,
   valueClassName,
   isLoading,
   // currently signed in user's substrate wallet address
   account,
-}: EngiAmountProps) {
+}: BuyEngiProps) {
   // the value to purchase in WEI
   const [value, setValue] = useState(0);
+  // handles unexpected NaN
+  const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
   const { data: ethereumAccounts } = useConnectEthereumExtension();
   const { mutate: buy } = useBuyEngiWithEth();
 
@@ -40,7 +42,7 @@ export default function EngiAmount({
       <div className="flex items-center justify-between">
         <div className="flex-col">
           <label htmlFor="wallet-address" className="font-bold text-xl">
-            Purchase ENGI with ETH
+            How much would you like to purchase?
           </label>
           <div className="relative mt-2">
             <Input
@@ -48,10 +50,19 @@ export default function EngiAmount({
               type="number"
               name="wallet-address"
               placeholder="Enter ETH"
-              value={value / Math.pow(10, 18)}
-              onChange={({ target }) =>
-                setValue(parseFloat(target.value) * Math.pow(10, 18))
-              }
+              // display WEI in ETH
+              // - unpin value when NaN, undefined, or start of decimal
+              //   for easy clearing and starting of fractional purchase
+              //   amount
+              // - shows placeholder or raw input when unset
+              {...(value && { value: displayValue })}
+              onChange={({ target }) => {
+                // @ts-ignore because isNaN handles strings isNaN('.1') is false, isNaN('1a') is true
+                if (isNaN(target.value)) return;
+
+                // set as wei
+                setValue(parseFloat(target.value) * Math.pow(10, 18));
+              }}
             />
             <RiSearchLine className="text-secondary absolute top-1/2 left-4 -translate-y-1/2 h-5 w-5" />
           </div>
@@ -66,7 +77,7 @@ export default function EngiAmount({
               valueClassName
             )}
           >
-            {value / Math.pow(10, 18)}
+            {displayValue}
           </span>
         </div>
       </div>

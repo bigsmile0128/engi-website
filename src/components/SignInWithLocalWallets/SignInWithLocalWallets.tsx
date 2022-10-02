@@ -167,7 +167,9 @@ export default function SignInWithLocalWallets() {
               <div
                 key={`${source}|${name}|${address}`}
                 className="py-4 px-8 flex items-center hover:bg-[#ffffff10] cursor-pointer"
-                onClick={() => login({ address, source })}
+                onClick={() => {
+                  login({ address, source });
+                }}
               >
                 <img
                   className="flex-shrink-0"
