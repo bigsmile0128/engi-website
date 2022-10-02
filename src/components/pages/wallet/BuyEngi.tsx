@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import Input from '~/components/global/Input/Input';
@@ -6,6 +6,13 @@ import Button from '~/components/global/Button/Button';
 import { RiSearchLine } from 'react-icons/ri';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
+import { PreviewMoveEngi } from '~/pages/wallet/move';
+import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {
+  ssr: false,
+});
 
 type BuyEngiProps = {
   account: string;
@@ -14,6 +21,7 @@ type BuyEngiProps = {
   valueClassName?: string;
   isLoading?: boolean;
   value?: string;
+  setPreviewMove: Dispatch<PreviewMoveEngi>;
 };
 
 export default function BuyEngi({
@@ -23,26 +31,85 @@ export default function BuyEngi({
   isLoading,
   // currently signed in user's substrate wallet address
   account,
+  setPreviewMove,
 }: BuyEngiProps) {
   // the value to purchase in WEI
   const [value, setValue] = useState(0);
   // handles unexpected NaN
   const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
+
+  useEffect(() => {
+    setPreviewMove({ amount: value, move: 'Deposit' });
+  }, [value]);
   const { data: ethereumAccounts } = useConnectEthereumExtension();
-  const { mutate: buy } = useBuyEngiWithEth();
+  const {
+    mutate: buy,
+    isLoading: userConfirmingBuyTransaction,
+    isError: failedToBuyEngi,
+    error: buyEngiError,
+    data: confirmedBuyTransaction,
+  } = useBuyEngiWithEth();
+
+  // display buy states
+  const buyEngiStatesDisplay = useRef(null);
+  useEffect(() => {
+    if (userConfirmingBuyTransaction) {
+      buyEngiStatesDisplay.current = toast('Awaiting confirmation...', {
+        position: 'top-center',
+        isLoading: true,
+      });
+    } else if (confirmedBuyTransaction) {
+      // update loading or error toasts
+      toast.update(buyEngiStatesDisplay.current, {
+        render: 'Transaction Queued!',
+        type: toast.TYPE.SUCCESS,
+        autoClose: 3000,
+        isLoading: false,
+      });
+    } else if (failedToBuyEngi) {
+      toast.update(buyEngiStatesDisplay.current, {
+        render: `${buyEngiError.message} Please try again.`,
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+        isLoading: false,
+      });
+    }
+  }, [
+    userConfirmingBuyTransaction,
+    confirmedBuyTransaction,
+    failedToBuyEngi,
+    buyEngiError,
+    buyEngiStatesDisplay,
+  ]);
 
   return (
     <div
       className={classNames(
-        'flex-col items-center whitespace-nowrap',
+        'flex-col items-center whitespace-nowrap space-y-10',
         isLoading ? 'children:skeleton' : '',
         className
       )}
     >
-      <div className="flex items-center justify-between">
-        <div className="flex-col">
+      <div className="grid grid-cols-2 gap-6">
+        <div className="truncate flex flex-col space-y-2">
           <label htmlFor="wallet-address" className="font-bold text-xl">
-            How much would you like to purchase?
+            Account
+          </label>
+
+          <div className="flex flex-col justify-center h-full">
+            <span
+              data-tip="Sign in with a different account to change this value."
+              className="font-light text-lg truncate text-ellipsis"
+            >
+              {account}
+            </span>
+          </div>
+          <ReactTooltip place="bottom" effect="solid" />
+        </div>
+
+        <div className="flex-col space-y-2">
+          <label htmlFor="wallet-address" className="font-bold text-xl">
+            Amount
           </label>
           <div className="relative mt-2">
             <Input
@@ -67,27 +134,17 @@ export default function BuyEngi({
             <RiSearchLine className="text-secondary absolute top-1/2 left-4 -translate-y-1/2 h-5 w-5" />
           </div>
         </div>
-        <div className="flex items-center flex-1 justify-center mt-8">
-          <EngiIcon
-            className={classNames('h-5 w-5 text-green-primary', iconClassName)}
-          />
-          <span
-            className={classNames(
-              'font-grifter text-2xl text-white -mb-1 ml-1',
-              valueClassName
-            )}
-          >
-            {displayValue}
-          </span>
-        </div>
       </div>
+
       <Button
+        className="w-full"
         onClick={() =>
           buy({ account, from: ethereumAccounts?.[0], amount: value })
         }
-        disabled={!ethereumAccounts || ethereumAccounts.length == 0}
+        disabled={!account || !ethereumAccounts?.length || !value}
+        variant={'primary'}
       >
-        buy
+        Confirm
       </Button>
     </div>
   );

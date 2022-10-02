@@ -12,6 +12,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import MenuItemLink from '~/components/MenuItemLink';
+import { useBalance } from '~/utils/balances/userBalance';
 
 type UserInfoProps = {
   className?: string;
@@ -26,12 +27,7 @@ export default function UserInfo({
   setUser,
   blockchainHealthProps,
 }: UserInfoProps) {
-  const { isLoading, data: balance } = useQuery(
-    ['userInfo', user.walletId],
-    async () => {
-      return await getBalance(user.walletId);
-    }
-  );
+  const { isLoading, data: balance } = useBalance(user.walletId);
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
@@ -107,22 +103,4 @@ export default function UserInfo({
       </div>
     </div>
   );
-}
-
-async function getBalance(walletId) {
-  const response = await axios.post('/api/graphql', {
-    query: gql`
-      query WalletCheck($id: String!) {
-        account(id: $id) {
-          data {
-            free
-          }
-        }
-      }
-    `,
-    variables: {
-      id: walletId,
-    },
-  });
-  return response.data?.data?.account?.data?.free ?? null;
 }

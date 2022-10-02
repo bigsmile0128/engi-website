@@ -15,8 +15,8 @@ type WalletDetailsProps = {
 };
 
 export default function WalletDetails({ className }: WalletDetailsProps) {
-  const router = useRouter();
-  const { walletId } = router.query;
+  const { push: pushRoute, query } = useRouter();
+  const { walletId } = query;
 
   return (
     <div className={classNames('mt-12 mb-80', className)}>
@@ -40,7 +40,10 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
                 />
               </div>
             </div>
-            <Button className="flex justify-center items-center whitespace-nowrap">
+            <Button
+              className="flex justify-center items-center whitespace-nowrap"
+              onClick={() => pushRoute('move')}
+            >
               <RiExchangeLine className="h-5 w-5" />
               <span className="ml-3">
                 Move{' '}

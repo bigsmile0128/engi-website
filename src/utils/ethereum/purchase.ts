@@ -16,7 +16,7 @@ const EngiPurchaseContract = new Web3Provider.eth.Contract(
 
 // Ask the user to sign a transaction of the purchase contract's `deposit` method
 export const useBuyEngiWithEth = () =>
-  useMutation(
+  useMutation<any, Error, any>(
     async ({
       account,
       from,
