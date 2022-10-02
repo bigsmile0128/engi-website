@@ -11,6 +11,7 @@ import { ToastContainer } from 'react-toastify';
 import UserContext, { User } from '~/utils/contexts/userContext';
 import store from 'store2';
 import { isProduction } from '~/utils';
+import { usePersistedUserState } from '~/utils/auth/persisted';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
@@ -27,7 +28,7 @@ Sentry.init({
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, _setUser] = useState<User>(null);
+  const [user, _setUser] = usePersistedUserState(null);
 
   // fetch user info from local storage since there is no actual login
   useEffect(() => {
