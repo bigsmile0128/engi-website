@@ -6,8 +6,8 @@ import { useConfirmEmail } from '~/utils/auth/api';
 // The confirm email URL sent to users when registering their wallets
 // with engi
 export default function Confirm() {
-  const router = useRouter();
-  const { address, token } = router.query;
+  const { query, push: pushRoute } = useRouter();
+  const { address, token } = query;
   const {
     mutate: confirmEmail,
     isLoading: confirmingEmail,
@@ -46,6 +46,12 @@ export default function Confirm() {
     confirmEmailError,
     confirmEmailStatesDisplay,
   ]);
+
+  useEffect(() => {
+    if (emailConfirmed) {
+      pushRoute('signup');
+    }
+  }, [emailConfirmed]);
 
   useEffect(() => {
     if (address && token) {

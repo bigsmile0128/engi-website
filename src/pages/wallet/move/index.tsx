@@ -14,12 +14,12 @@ type MoveEngiProps = {
   className?: string;
 };
 
-const tabNames = ['Withdraw', 'Deposit', 'Transfer'];
+const tabNames = ['Withdraw', 'Deposit', 'Transfer'] as const;
 
 export type PreviewMoveEngi = {
   // +/- should be reflected in this amount
   amount: number;
-  move: tabNames;
+  move: typeof tabNames[number];
 };
 
 // display a preview of a move
