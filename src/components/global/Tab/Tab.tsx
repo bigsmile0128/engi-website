@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { Children, ReactNode, useState } from 'react';
 
 interface Props {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   defaultIndex?: number;
   onChange?: (index: number) => void;
@@ -45,9 +45,9 @@ function Tab({
               key={index}
               className={({ selected }) =>
                 cn(
-                  'py-2.5 text-sm leading-5 font-medium focus:outline-none',
+                  'text-sm leading-5 font-medium focus:outline-none',
                   selected
-                    ? 'bg-primary-green text-secondary-bg'
+                    ? ''
                     : 'text-primary-white hover:bg-white/[0.12] hover:text-blue-100'
                 )
               }
@@ -56,13 +56,15 @@ function Tab({
             </HeadlessTab>
           ))}
         </HeadlessTab.List>
-        <HeadlessTab.Panels className="mt-4">
-          {Children.map(children, (child, idx) => (
-            <HeadlessTab.Panel key={idx} className={cn('focus:outline-none')}>
-              {child}
-            </HeadlessTab.Panel>
-          ))}
-        </HeadlessTab.Panels>
+        {!!children && (
+          <HeadlessTab.Panels className="mt-4">
+            {Children.map(children, (child, idx) => (
+              <HeadlessTab.Panel key={idx} className={cn('focus:outline-none')}>
+                {child}
+              </HeadlessTab.Panel>
+            ))}
+          </HeadlessTab.Panels>
+        )}
       </HeadlessTab.Group>
     </div>
   );
