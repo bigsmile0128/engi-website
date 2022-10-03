@@ -26,6 +26,10 @@ export const SETTINGS_LINKS: Array<{ key: SETTINGS_TAB; title: string }> = [
     title: 'Email',
   },
   {
+    key: SETTINGS_TAB.NOTIFICATION,
+    title: 'Notifications',
+  },
+  {
     key: SETTINGS_TAB.PAYMENT,
     title: 'Payment',
   },
