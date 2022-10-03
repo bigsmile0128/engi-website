@@ -10,6 +10,7 @@ interface Props {
   onChange?: (index: number) => void;
   tabLabels: Array<ReactNode>;
   tabListClassname?: string;
+  id?: string;
 }
 
 function Tab({
@@ -19,6 +20,7 @@ function Tab({
   defaultIndex = 0,
   className,
   tabListClassname,
+  id,
 }: Props) {
   const [selectedTab, setSelectTab] = useState<number>(-1);
   const handleTabChange = (index: number) => {
@@ -33,7 +35,7 @@ function Tab({
   );
 
   return (
-    <div className={rootClasses}>
+    <div className={rootClasses} id={id}>
       <HeadlessTab.Group
         onChange={handleTabChange}
         selectedIndex={selectedTab}
