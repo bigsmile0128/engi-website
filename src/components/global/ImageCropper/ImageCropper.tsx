@@ -13,7 +13,6 @@ function ImageCropper({ imageSrc }: Props) {
   const [area, setArea] = useState<Area>({ x: 0, y: 0, width: 0, height: 0 });
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels);
     setArea(croppedAreaPixels);
   }, []);
 

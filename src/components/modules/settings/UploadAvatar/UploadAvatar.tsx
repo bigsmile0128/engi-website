@@ -3,7 +3,6 @@ import Button from '~/components/global/Button/Button';
 import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
 import Dropzone from './Dropzone';
 import { uploadImageToS3 } from '~/services/aws';
-// import { v4 as uuidv4 } from 'uuid';
 
 function UploadAvatar() {
   const [image, setImage] = useState<File>();
@@ -11,23 +10,20 @@ function UploadAvatar() {
 
   const handleUploaded = async () => {
     try {
-      // const checkId: string = uuidv4();
       const response = await uploadImageToS3({
         file: image,
         name: `${image.name}`,
       });
-      console.log('=======>', response);
 
       setHasUploaded(true);
     } catch (error) {
-      console.log('======> error', error);
+      console.error(error);
     }
   };
 
   const handleSaveCroppedImage = () => {};
 
   const onFileDrop = (file: File) => {
-    console.log('files===>', file);
     setImage(file);
     setHasUploaded(false);
   };

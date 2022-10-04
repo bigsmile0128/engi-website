@@ -9,7 +9,6 @@ function SettingContainer() {
   );
 
   const handleChange = (key: SETTINGS_TAB) => {
-    console.log('selectedTab', key);
     setSelectedTab(key);
   };
 
