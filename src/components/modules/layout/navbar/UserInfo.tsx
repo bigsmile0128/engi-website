@@ -13,6 +13,7 @@ import copy from 'copy-to-clipboard';
 import { toast } from 'react-toastify';
 import MenuItemLink from '~/components/MenuItemLink';
 import { useBalance } from '~/utils/balances/userBalance';
+import { useRouter } from 'next/router';
 
 type UserInfoProps = {
   className?: string;
@@ -28,6 +29,7 @@ export default function UserInfo({
   blockchainHealthProps,
 }: UserInfoProps) {
   const { isLoading, data: balance } = useBalance(user.walletId);
+  const { push: pushRoute } = useRouter();
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
@@ -49,7 +51,7 @@ export default function UserInfo({
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151ee] whitespace-nowrap flex flex-col">
+            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10">
               <Menu.Item>
                 <MenuItemLink
                   className="px-6 py-1 text-gray-300 hover:text-white"
@@ -82,7 +84,10 @@ export default function UserInfo({
               <Menu.Item>
                 <button
                   className="px-6 py-1 text-gray-300 hover:text-white"
-                  onClick={() => setUser(null)}
+                  onClick={() => {
+                    setUser(null);
+                    pushRoute('signup');
+                  }}
                 >
                   Log out
                 </button>
