@@ -140,7 +140,7 @@ export default function SignInWithLocalWallets() {
       pushRoute('jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
-        render: `${loginError?.message} Please try again.`,
+        render: `${loginError?.message} Make sure you've confirmed your email address and please try again.`,
         isLoading: false,
         autoClose: 5000,
         type: toast.TYPE.ERROR,
