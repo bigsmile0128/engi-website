@@ -40,7 +40,8 @@ export default function BuyEngi({
 
   useEffect(() => {
     setPreviewMove({ amount: value, move: 'Deposit' });
-  }, [value]);
+  }, [setPreviewMove, value]);
+
   const { data: ethereumAccounts } = useConnectEthereumExtension();
   const {
     mutate: buy,
