@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from '~/components/global/Button/Button';
 import ImageCropper from '~/components/global/ImageCropper/ImageCropper';
-import Dropzone from './Dropzone';
 import { uploadImageToS3 } from '~/services/aws';
+import Dropzone from './Dropzone';
 
 function UploadAvatar() {
   const [image, setImage] = useState<File>();
