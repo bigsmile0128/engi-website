@@ -1,0 +1,11 @@
+.lang_item {
+  background: linear-gradient(
+    97.66deg,
+    rgba(255, 255, 255, 0.1) 8%,
+    rgba(255, 255, 255, 0) 92.75%
+  );
+}
+
+.lang_item[data-checked='true'] svg path {
+  fill: #65feb7;
+}

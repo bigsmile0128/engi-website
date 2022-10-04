@@ -1,12 +1,14 @@
 import { ReactNode, useState } from 'react';
+import cn from 'classnames';
 
 interface Props {
   items: Array<ReactNode>;
   onSelect: (values: Array<number>) => void;
   multi?: boolean;
+  className?: string;
 }
 
-function Selection({ items, onSelect, multi = false }: Props) {
+function Selection({ items, onSelect, multi = false, className }: Props) {
   const [selectedItems, setSelectedItems] = useState<Array<number>>([]);
 
   const handleClick = (index: number) => () => {
@@ -28,11 +30,17 @@ function Selection({ items, onSelect, multi = false }: Props) {
     setSelectedItems(temp);
   };
 
+  const rootClasses = cn(className, 'flex flex-wrap justify-center gap-5');
+
   return (
-    <div className="flex flex-wrap justify-center gap-5">
+    <div className={rootClasses}>
       {items.map((item, index) => {
         return (
-          <div key={`multi_select_${index}`} onClick={handleClick(index)}>
+          <div
+            key={`multi_select_${index}`}
+            onClick={handleClick(index)}
+            className="cursor-pointer"
+          >
             {item}
           </div>
         );

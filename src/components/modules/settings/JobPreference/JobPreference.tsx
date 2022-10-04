@@ -7,6 +7,8 @@ import HtmlIcon from 'public/img/settings/html5.svg';
 import RustIcon from 'public/img/settings/rust.svg';
 import TypescriptIcon from 'public/img/settings/typescript.svg';
 import ReactIcon from 'public/img/settings/reactjs.svg';
+import cn from 'classnames';
+import styles from './JobPreference.module.css';
 
 type SelectItem = {
   icon: ReactNode;
@@ -46,17 +48,35 @@ const itemData: SelectItem[] = [
 
 function JobPreference() {
   const [selectedLangs, setSelectedLangs] = useState<Array<number>>([]);
-  const renderItems = () => {
-    return itemData.map(({ icon, title }) => (
-      <div
-        key={title}
-        className="flex justify-between items-center border border-white/20 px-4 py-3"
-      >
-        <div className="mr-2">{icon}</div>
-        <div className="text-xl">{title}</div>
-      </div>
-    ));
-  };
+  const renderItems = () =>
+    itemData.map(({ icon, title }, index) => {
+      const foundIndex = selectedLangs.indexOf(index);
+      const isSelected = foundIndex > -1;
+      const itemClasses = cn(
+        { 'border-green-primary/20': isSelected },
+        { 'border-white/20': !isSelected },
+        styles.lang_item,
+        'flex justify-between items-center border px-4 py-3'
+      );
+
+      return (
+        <button
+          key={title}
+          className={itemClasses}
+          data-checked={isSelected}
+          aria-label={title}
+        >
+          <div className="mr-2">{icon}</div>
+          <div
+            className={cn('text-xl', {
+              'text-green-primary font-bold': isSelected,
+            })}
+          >
+            {title}
+          </div>
+        </button>
+      );
+    });
 
   const handleSelect = (values: Array<number>) => {
     setSelectedLangs(values);
@@ -67,10 +87,15 @@ function JobPreference() {
       <h2 className="font-grifter font-bold text-3xl">
         What languages does your company use?{' '}
       </h2>
-      <h6 className="text-secondary">
+      <h6 className="text-secondary mt-4">
         Help us personalize your job recommendations.
       </h6>
-      <Select items={renderItems()} onSelect={handleSelect} multi />
+      <Select
+        items={renderItems()}
+        onSelect={handleSelect}
+        multi
+        className="mt-12"
+      />
     </div>
   );
 }
