@@ -37,7 +37,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
     if (inView) {
       control.start('visible');
     }
-  }, [inView]);
+  }, [control, inView]);
 
   const variants = {
     visible: {

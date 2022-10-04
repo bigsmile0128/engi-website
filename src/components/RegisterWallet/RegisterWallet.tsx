@@ -67,6 +67,7 @@ export default function RegisterWallet() {
     failedToRegister,
     registerStatesDisplay,
     registerError,
+    goBackToSignUp,
   ]);
 
   return (

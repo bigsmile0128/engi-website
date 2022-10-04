@@ -1,3 +1,4 @@
+import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
@@ -52,7 +53,7 @@ const CouldNotConnectToExtension = ({ error, retry }) => (
   >
     <div className="py-4 px-8 flex items-center">
       <div className="flex flex-col">
-        {error.message}
+        {error?.message}
         <span className="font-light">Retry Connecting</span>
       </div>
     </div>
@@ -118,7 +119,7 @@ export default function SignInWithLocalWallets() {
 
       setUser({ walletId, accessToken });
     }
-  }, [loggedIn]);
+  }, [loggedIn, setUser]);
 
   // display login states
   const loginStatesDisplay = useRef(null);
@@ -139,13 +140,20 @@ export default function SignInWithLocalWallets() {
       pushRoute('jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
-        render: `${loginError.message} Please try again.`,
+        render: `${loginError?.message} Please try again.`,
         isLoading: false,
         autoClose: 5000,
         type: toast.TYPE.ERROR,
       });
     }
-  }, [loggingUserIn, loggedIn, failedToLogin, loginStatesDisplay]);
+  }, [
+    loggingUserIn,
+    loggedIn,
+    failedToLogin,
+    loginStatesDisplay,
+    pushRoute,
+    loginError?.message,
+  ]);
 
   return (
     <div className="bg-[#07070690]">
@@ -171,9 +179,12 @@ export default function SignInWithLocalWallets() {
                   login({ address, source });
                 }}
               >
-                <img
+                <Image
+                  src={''}
+                  width={45}
+                  height={45}
                   className="flex-shrink-0"
-                  style={{ width: '45px', height: '45px' }}
+                  alt=""
                 />
                 <div className="flex flex-col flex-1 mx-4 truncate">
                   <span className="text-lg font-bold">{name}</span>

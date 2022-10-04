@@ -33,11 +33,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   // fetch user info from local storage since there is no actual login
   useEffect(() => {
     _setUser(store.get('user'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setUser = useCallback((user) => {
     _setUser(user);
     store.set('user', user);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
