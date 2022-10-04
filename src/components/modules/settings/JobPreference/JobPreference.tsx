@@ -8,6 +8,7 @@ import RustIcon from 'public/img/settings/rust.svg';
 import TypescriptIcon from 'public/img/settings/typescript.svg';
 import ReactIcon from 'public/img/settings/reactjs.svg';
 import cn from 'classnames';
+import Button from '~/components/global/Button/Button';
 import styles from './JobPreference.module.css';
 
 type SelectItem = {
@@ -82,6 +83,10 @@ function JobPreference() {
     setSelectedLangs(values);
   };
 
+  const handleSave = () => {};
+  const disableSave =
+    !selectedLangs || (!!selectedLangs && selectedLangs.length <= 0);
+
   return (
     <div className="p-8">
       <h2 className="font-grifter font-bold text-3xl">
@@ -96,6 +101,16 @@ function JobPreference() {
         multi
         className="mt-12"
       />
+      <div className="text-center mt-8">
+        <Button
+          onClick={handleSave}
+          variant="primary"
+          className="w-2/5"
+          disabled={disableSave}
+        >
+          Save
+        </Button>
+      </div>
     </div>
   );
 }
