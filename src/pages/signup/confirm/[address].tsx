@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { toast } from 'react-toastify';
+import { Id as ToastId, toast } from 'react-toastify';
 import { useConfirmEmail } from '~/utils/auth/api';
 
 // The confirm email URL sent to users when registering their wallets
@@ -17,7 +17,8 @@ export default function Confirm() {
   } = useConfirmEmail();
 
   // display confirmation states
-  const confirmEmailStatesDisplay = useRef(null);
+  const confirmEmailStatesDisplay = useRef<ToastId | null>(null);
+
   useEffect(() => {
     if (confirmingEmail) {
       confirmEmailStatesDisplay.current = toast('Confirming email...', {
@@ -25,6 +26,10 @@ export default function Confirm() {
         isLoading: true,
       });
     } else if (emailConfirmed) {
+      if (!confirmEmailStatesDisplay.current) {
+        return;
+      }
+
       toast.update(confirmEmailStatesDisplay.current, {
         render: 'Email confirmed! Welcome to Engi',
         isLoading: false,
@@ -32,6 +37,10 @@ export default function Confirm() {
         type: toast.TYPE.SUCCESS,
       });
     } else if (failedToConfirmEmail) {
+      if (!confirmEmailStatesDisplay.current) {
+        return;
+      }
+
       toast.update(confirmEmailStatesDisplay.current, {
         render: `${confirmEmailError.message} Please try again.`,
         isLoading: false,
@@ -51,13 +60,13 @@ export default function Confirm() {
     if (emailConfirmed) {
       pushRoute('signup');
     }
-  }, [emailConfirmed]);
+  }, [emailConfirmed, pushRoute]);
 
   useEffect(() => {
     if (address && token) {
       confirmEmail({ address, token });
     }
-  }, [address, token]);
+  }, [address, confirmEmail, token]);
 
   return (
     <div className="p-20 text-center font-bold text-xl">
