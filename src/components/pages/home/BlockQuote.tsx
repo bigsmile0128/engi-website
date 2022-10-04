@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 interface BlockQuoteProps {
   className?: string;
-  value: string | JSX.Element;
-  title?: string;
   subtitle?: string;
+  title?: string;
+  value: string | JSX.Element;
 }
 
 export default function BlockQuote({

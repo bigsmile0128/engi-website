@@ -62,10 +62,10 @@ async function fetchCurrentJobs() {
 type JobItemProps = {
   className?: string;
   id?: string;
-  title?: string;
+  isLoading?: boolean;
   numTests?: number;
   testsPassed?: number;
-  isLoading?: boolean;
+  title?: string;
 };
 
 function JobItem({

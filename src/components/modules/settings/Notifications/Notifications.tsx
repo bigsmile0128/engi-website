@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Switch from '~/components/global/Switch/Switch';
 
 enum NOTIFICATION_FIELDS {
-  NEWS_LETTER = 'newsLetter',
   NEW_JOBS = 'new_jobs',
+  NEWS_LETTER = 'newsLetter',
   TECH_UPDATES = 'tech_updates',
 }
 

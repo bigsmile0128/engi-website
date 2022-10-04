@@ -12,8 +12,8 @@ const ReactTooltip = dynamic(() => import('react-tooltip'), {
 
 type CopyButtonProps = {
   className?: string;
-  value?: string;
   size?: number;
+  value?: string;
 };
 
 export default function CopyButton({

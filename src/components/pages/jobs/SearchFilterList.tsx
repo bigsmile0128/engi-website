@@ -5,9 +5,9 @@ import Slider from '~/components/global/Slider/Slider';
 
 interface SearchFilterListProps {
   className?: string;
-  searchParams: URLSearchParams;
-  onChange: (searchParams) => void;
   filterClassName?: string;
+  onChange: (searchParams) => void;
+  searchParams: URLSearchParams;
 }
 
 const languages = [

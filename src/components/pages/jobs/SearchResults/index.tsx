@@ -11,11 +11,11 @@ import MobileJobTable from './MobileJobTable';
 
 interface SearchResultsProps {
   className?: string;
-  isLoading: boolean;
-  results: Job[];
-  numPages: number;
   isError: boolean;
+  isLoading: boolean;
+  numPages: number;
   refresh: () => void;
+  results: Job[];
 }
 
 export default function SearchResults({

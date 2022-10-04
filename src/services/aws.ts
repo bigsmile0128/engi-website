@@ -1,6 +1,6 @@
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-provider-cognito-identity';
 import {
-  GetObjectCommand,
+  // GetObjectCommand,
   S3Client,
   PutObjectCommand,
 } from '@aws-sdk/client-s3';
@@ -22,8 +22,9 @@ export async function uploadImageToS3({
   name,
   file,
 }: {
-  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   file: any;
+  name: string;
 }) {
   const key = `profile_images/${name}`;
 
@@ -36,12 +37,8 @@ export async function uploadImageToS3({
     Key: key,
   };
 
-  try {
-    const command = new PutObjectCommand(params);
-    const response = await s3Client.send(command);
+  const command = new PutObjectCommand(params);
+  const response = await s3Client.send(command);
 
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  return response;
 }

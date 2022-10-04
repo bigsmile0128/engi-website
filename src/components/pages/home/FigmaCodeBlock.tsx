@@ -4,8 +4,8 @@ import Transition from '~/components/Transition';
 
 type FigmaCodeBlockProps = {
   className?: string;
-  codeProps?: any;
   codeContainerClassName?: string;
+  codeProps?: any;
   id?: string;
 };
 

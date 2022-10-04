@@ -3,9 +3,10 @@ import classNames from 'classnames';
 
 interface GridPatternProps {
   className?: string;
-  id: string; // id to prevent conflicts
-  size?: number;
+  id: string;
   offset?: number;
+  // id to prevent conflicts
+  size?: number;
   sizeX?: number;
   sizeY?: number;
 }

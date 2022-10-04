@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, Fragment } from 'react';
 import classNames from 'classnames';
-import { Fragment } from 'react';
 import { Tab } from '@headlessui/react';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import Button from '~/components/global/Button/Button';

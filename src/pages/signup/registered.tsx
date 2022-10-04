@@ -7,9 +7,9 @@ export default function Registered() {
     <div>
       <h1 className="font-bold text-5xl mb-4">Congratulations!</h1>
       <p className="mb-8">
-        {`You've set up your wallet. You can start working on Engi jobs.`}
+        {"You've set up your wallet. You can start working on Engi jobs."}
       </p>
-      <p className="mb-8">{`We're happy to meet you!`}</p>
+      <p className="mb-8">{"We're happy to meet you!"}</p>
       <Link href={isDev() ? '/jobs' : '/'}>
         <a>
           <button

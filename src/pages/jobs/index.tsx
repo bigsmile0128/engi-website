@@ -77,16 +77,16 @@ export default function JobDiscovery() {
 }
 
 type JobsQueryArguments = {
-  skip: number;
-  limit: number;
-  orderByProperty?: 'CREATED_ON' | 'FUNDING';
-  orderByDirection?: 'ASC' | 'DESC';
   creator?: string;
-  status?: string;
-  search?: string;
   language?: Language;
-  minFunding?: number;
+  limit: number;
   maxFunding?: number;
+  minFunding?: number;
+  orderByDirection?: 'ASC' | 'DESC';
+  orderByProperty?: 'CREATED_ON' | 'FUNDING';
+  search?: string;
+  skip: number;
+  status?: string;
 };
 
 async function fetchJobs(query: JobsQueryArguments) {

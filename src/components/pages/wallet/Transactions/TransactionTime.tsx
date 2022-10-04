@@ -3,15 +3,16 @@ import classNames from 'classnames';
 import { AiTwotoneCalendar } from 'react-icons/ai';
 import dayjs from 'dayjs';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const localizedFormat = require('dayjs/plugin/localizedFormat');
 dayjs.extend(localizedFormat);
 
 type TransactionTimeProps = {
   className?: string;
   iconClassName?: string;
-  valueClassName?: string;
   isLoading?: boolean;
   value?: string;
+  valueClassName?: string;
 };
 
 export default function TransactionTime({

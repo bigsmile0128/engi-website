@@ -4,9 +4,9 @@ import classNames from 'classnames';
 type StatisticProps = {
   className?: string;
   icon: JSX.Element;
+  isLoading?: boolean;
   title: string | JSX.Element;
   value: string | number | JSX.Element;
-  isLoading?: boolean;
 };
 
 export default function Statistic({

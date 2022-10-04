@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import classNames from 'classnames';
 
 type HireProps = {
@@ -14,8 +13,6 @@ const steps = [
 ];
 
 export default function Hire({ className }: HireProps) {
-  const [currentStep, setCurrentStep] = useState(0);
-
   return (
     <div
       className={classNames('max-w-page mt-24 flex justify-center', className)}

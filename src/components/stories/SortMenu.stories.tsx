@@ -27,9 +27,9 @@ const options = [
 ];
 Default.args = {
   className: 'ml-24',
-  options,
-  value: options[0],
   onChange: () => {},
-  sortDirection: SortDirection.DESC,
   onChangeSortDirection: () => {},
+  options,
+  sortDirection: SortDirection.DESC,
+  value: options[0],
 };

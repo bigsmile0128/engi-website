@@ -15,8 +15,8 @@ import {
 
 type LanguageTagProps = {
   className?: string;
-  value?: Language;
   isLoading?: boolean;
+  value?: Language;
 };
 
 const displayNameMap = {

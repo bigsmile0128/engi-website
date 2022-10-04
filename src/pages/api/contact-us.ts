@@ -28,19 +28,19 @@ async function contactUsApi(req: NextApiRequest, res: NextApiResponse) {
   };
 
   const msg: MailDataRequired = {
+    dynamicTemplateData: {
+      first_name,
+      subject,
+    },
+    from: { email: REPLY_EMAIL },
     personalizations: [
       {
         to: email,
         from: REPLY_EMAIL,
       },
     ],
-    to: { email },
-    from: { email: REPLY_EMAIL },
     templateId: mapToTemplateId[TEMPLATE_NAME.CONTACT_US_REPLY],
-    dynamicTemplateData: {
-      first_name,
-      subject,
-    },
+    to: { email },
   };
 
   try {

@@ -6,8 +6,8 @@ import Checkbox from '~/components/global/Checkbox/Checkbox';
 
 type TestsTabProps = {
   className?: string;
-  onChange: (selectedTests: any[]) => void;
   goBack: () => void;
+  onChange: (selectedTests: any[]) => void;
 };
 
 export default function TestsTab({

@@ -13,8 +13,8 @@ import Button from '~/components/global/Button/Button';
 
 interface ProfessionTabProps {
   image: ReactNode;
-  title: string;
   selected?: boolean;
+  title: string;
 }
 
 const tabData = [

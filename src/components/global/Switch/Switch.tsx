@@ -3,10 +3,10 @@ import classNames from 'classnames';
 import { Switch as BaseSwitch } from '@headlessui/react';
 
 type SwitchProps = {
-  className?: string;
   checked: boolean;
-  onChange: (checked) => void;
+  className?: string;
   label?: string;
+  onChange: (checked) => void;
 };
 
 export default function Switch({

@@ -6,12 +6,12 @@ const checkId: string = uuidv4();
 export const contactUsData: Specification = {
   check_id: checkId,
   component: 'Contact Page',
-  height: '100',
-  path: 'Pages',
-  story: 'Default',
-  width: '1400',
-  repository: 'engi-network/website',
-  url_check_frame: '',
   dataPath: '../same-story-api/test/data/Contact',
   debug: true,
+  height: '100',
+  path: 'Pages',
+  repository: 'engi-network/website',
+  story: 'Default',
+  url_check_frame: '',
+  width: '1400',
 };

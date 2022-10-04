@@ -7,15 +7,15 @@ import JobInfo from './SearchResults/JobInfo';
 
 interface JobPreviewProps {
   className?: string;
-  language?: string;
-  title?: string;
-  numTests?: number;
-  testsPassed?: number;
-  timeEstimate?: number;
-  reward?: number;
-  numContributors?: number;
   id?: string;
   isLoading?: boolean;
+  language?: string;
+  numContributors?: number;
+  numTests?: number;
+  reward?: number;
+  testsPassed?: number;
+  timeEstimate?: number;
+  title?: string;
 }
 
 export default function JobPreview({
@@ -69,7 +69,7 @@ export default function JobPreview({
                   {numContributors ?? 'N/A'}
                 </span>
               </div>
-              <span className={isLoading ? `text-xs skeleton` : 'hidden'}>
+              <span className={isLoading ? 'text-xs skeleton' : 'hidden'}>
                 <span>placeholder</span>
               </span>
             </div>
@@ -83,7 +83,7 @@ export default function JobPreview({
                 <span
                   className={classNames(
                     'text-xs mb-1',
-                    isLoading ? `h-2 skeleton` : ''
+                    isLoading ? 'h-2 skeleton' : ''
                   )}
                 >
                   <span>
@@ -119,7 +119,7 @@ export default function JobPreview({
                 className={classNames(isLoading ? 'hidden' : '')}
                 duration={timeEstimate ? `${timeEstimate} hours` : 'N/A'}
               />
-              <span className={isLoading ? `text-xs skeleton` : 'hidden'}>
+              <span className={isLoading ? 'text-xs skeleton' : 'hidden'}>
                 <span>placeholder</span>
               </span>
             </div>
@@ -133,7 +133,7 @@ export default function JobPreview({
                 <span
                   className={classNames(
                     'mr-1',
-                    isLoading ? `h-5 skeleton` : 'font-grifter -mb-[4px]'
+                    isLoading ? 'h-5 skeleton' : 'font-grifter -mb-[4px]'
                   )}
                 >
                   <span>
@@ -144,7 +144,7 @@ export default function JobPreview({
                 <span
                   className={classNames(
                     'text-sm text-secondary',
-                    isLoading ? `h-4 skeleton` : ''
+                    isLoading ? 'h-4 skeleton' : ''
                   )}
                 >
                   <span>

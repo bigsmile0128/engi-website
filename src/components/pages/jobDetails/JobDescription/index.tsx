@@ -13,8 +13,8 @@ import LanguageTag from '~/components/LanguageTag';
 
 type JobDescriptionProps = {
   className?: string;
-  isLoading?: boolean;
   data?: Job;
+  isLoading?: boolean;
 };
 
 export default function JobDescription({

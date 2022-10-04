@@ -9,9 +9,9 @@ import AmazonSvg from 'public/img/about/amazon.svg';
 
 type TeamMemberProps = {
   className?: string;
+  companies: string[];
   name: string;
   role: string;
-  companies: string[];
 };
 
 export default function TeamMember({

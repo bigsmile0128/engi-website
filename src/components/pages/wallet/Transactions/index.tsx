@@ -13,8 +13,8 @@ import { TransactionType } from '~/types';
 
 type TransactionsProps = {
   className?: string;
-  walletId: string;
   isLoading?: boolean;
+  walletId: string;
 };
 
 const sortOptions = [
@@ -164,8 +164,8 @@ export default function Transactions({
 
 type TransactionSearchParams = {
   accountId: string;
-  skip: number;
   limit: number;
+  skip: number;
   type?: string;
 };
 

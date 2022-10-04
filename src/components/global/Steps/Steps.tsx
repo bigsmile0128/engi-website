@@ -3,10 +3,11 @@ import classNames from 'classnames';
 
 type StepsProps = {
   className?: string;
-  steps: { title: string }[];
-  current: number; // current step
+  current: number;
+  // current step
   onChange: (current: number) => void;
   stepClassName?: string;
+  steps: { title: string }[];
 };
 
 export default function Steps({
@@ -38,12 +39,12 @@ export default function Steps({
 }
 
 type StepProps = {
-  className?: string;
-  title: string;
   active?: boolean;
+  className?: string;
   completed?: boolean;
   onClick?: () => void;
   showTail?: boolean;
+  title: string;
 };
 
 export function Step({

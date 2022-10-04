@@ -3,12 +3,13 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type CodePreviewProps = {
+  borderClassName?: string;
   className?: string;
+  // display border left of line numbers
+  customStyle?: any;
+  id?: string;
   language?: string;
   value: string;
-  id?: string;
-  borderClassName?: string; // display border left of line numbers
-  customStyle?: any;
 };
 
 export default function CodePreview({

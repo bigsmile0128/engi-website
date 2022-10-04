@@ -5,9 +5,9 @@ import Input from '~/components/global/Input/Input';
 
 type DetailsTabProps = {
   className?: string;
-  onChange: ({ jobName }) => void;
-  goBack: () => void;
   defaultValue?: string;
+  goBack: () => void;
+  onChange: ({ jobName }) => void;
 };
 
 export default function DetailsTab({

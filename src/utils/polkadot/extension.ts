@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { useQuery } from 'react-query';
 import {
   QUERY_KEY_CONNECT_POLKADOT_EXTENSION,
@@ -16,11 +17,7 @@ export const useConnectPolkadotExtension = () =>
     async () => {
       if (typeof window === 'undefined') return;
 
-      const {
-        web3Accounts,
-        web3Enable,
-        web3FromAddress,
-      } = require('@polkadot/extension-dapp');
+      const { web3Accounts, web3Enable } = require('@polkadot/extension-dapp');
 
       // this needs to be called first, before other requests
       const enabledExtensions = await web3Enable(POLKADOT_APP_NAME);
@@ -35,13 +32,13 @@ export const useConnectPolkadotExtension = () =>
     {
       // Default hold extension connection
       // - invalidate the query to refresh
-      staleTime: Infinity,
       cacheTime: Infinity,
-      // Don't retry connection if user cancels request
-      retry: 0,
-      // Don't retry connection if user has canceled request before
-      retryOnMount: false,
-      // Don't refetch after closing the extension
       refetchOnWindowFocus: false,
+      retry: 0,
+      retryOnMount: false,
+      staleTime: Infinity,
+      // Don't retry connection if user cancels request
+      // Don't retry connection if user has canceled request before
+      // Don't refetch after closing the extension
     }
   );

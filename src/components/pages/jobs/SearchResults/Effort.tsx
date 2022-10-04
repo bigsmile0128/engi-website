@@ -4,8 +4,8 @@ import TimeEstimate from '~/components/TimeEstimate';
 
 type EffortProps = {
   className?: string;
-  timeEstimate?: number;
   isLoading?: boolean;
+  timeEstimate?: number;
 };
 
 export default function Effort({

@@ -102,10 +102,10 @@ async function fetchRecommendedJobs() {
 type JobCardProps = {
   className?: string;
   id?: string;
-  title?: string;
-  timeEstimate?: number;
-  reward?: number;
   isLoading?: boolean;
+  reward?: number;
+  timeEstimate?: number;
+  title?: string;
 };
 
 function JobCard({
@@ -150,8 +150,8 @@ function JobCard({
 
 type RewardProps = {
   className?: string;
-  value?: number;
   isLoading?: boolean;
+  value?: number;
 };
 
 function Reward({ className, value, isLoading }: RewardProps) {

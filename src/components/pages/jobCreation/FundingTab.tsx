@@ -5,9 +5,9 @@ import EngiAmount from '~/components/EngiAmount';
 
 type FundingTabProps = {
   className?: string;
-  onChange: ({ funding }) => void;
-  goBack: () => void;
   defaultValue?: string;
+  goBack: () => void;
+  onChange: ({ funding }) => void;
 };
 
 export default function FundingTab({

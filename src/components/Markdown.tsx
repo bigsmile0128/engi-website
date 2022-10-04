@@ -6,8 +6,8 @@ import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import remarkGfm from 'remark-gfm';
 
 type MarkdownProps = {
-  className?: string;
   children: any;
+  className?: string;
 };
 
 export default function Markdown({

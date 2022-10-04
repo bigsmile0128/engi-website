@@ -10,8 +10,8 @@ import TargetSvg from 'public/img/jobCreation/target.svg';
 
 type RepositoryTabProps = {
   className?: string;
-  onChange: (repoUrl) => void;
   defaultValue?: string;
+  onChange: (repoUrl) => void;
 };
 
 export default function RepositoryTab({

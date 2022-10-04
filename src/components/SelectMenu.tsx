@@ -9,12 +9,12 @@ export type Option = {
 };
 
 type SelectMenuProps = {
+  buttonLabel: string;
   className?: string;
   isLoading?: boolean;
-  value?: Option;
-  options: Option[];
   onChange: (value: Option) => void;
-  buttonLabel: string;
+  options: Option[];
+  value?: Option;
 };
 
 export default function SelectMenu({

@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from 'react-query';
-import Web3 from 'web3';
+import { useMutation } from 'react-query';
 import engiPurchaseAbi from './engiPurchaseAbi.json';
 import {
   Web3Provider,
@@ -9,6 +8,7 @@ import {
 import { substrateToHex } from './substrate';
 
 const EngiPurchaseContract = new Web3Provider.eth.Contract(
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   engiPurchaseAbi,
   PURCHASE_CONTRACT_ADDRESS
@@ -16,6 +16,7 @@ const EngiPurchaseContract = new Web3Provider.eth.Contract(
 
 // Ask the user to sign a transaction of the purchase contract's `deposit` method
 export const useBuyEngiWithEth = () =>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useMutation<any, Error, any>(
     async ({
       account,
@@ -24,10 +25,10 @@ export const useBuyEngiWithEth = () =>
     }: {
       // the user's Engi wallet that will receive tokens
       account: string;
-      // the user's Ethereum wallet that must have funds > `amount`
-      from: string;
       // the amount of ETH to withdraw in exchange for ENGI
       amount: number;
+      // the user's Ethereum wallet that must have funds > `amount`
+      from: string;
     }) => {
       if (!window.ethereum) throw new Error(NO_GLOBAL_ETHEREUM_ERROR_MESSAGE);
 

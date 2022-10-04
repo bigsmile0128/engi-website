@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import SocialMedia from '~/components/modules/layout/SocialMedia';
@@ -16,21 +17,21 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
     async ({ firstName, lastName, email, subject, message }: any) => {
       await axios.put('/api/contact-us', {
         contact_list_name: SENDGRID_LIST_NAME.CONTACT_US,
+        email,
         first_name: firstName,
         last_name: lastName,
-        email,
-        subject,
         message,
+        subject,
       });
     }
   );
 
   const [formData, setFormData] = useState<Record<string, string>>({
+    email: '',
     firstName: '',
     lastName: '',
-    email: '',
-    subject: '',
     message: '',
+    subject: '',
   });
 
   useEffect(() => {
@@ -38,11 +39,11 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
       toast.success('Successfully sent email.', { position: 'bottom-right' });
     }
     setFormData({
+      email: '',
       firstName: '',
       lastName: '',
-      email: '',
-      subject: '',
       message: '',
+      subject: '',
     });
   }, [emailMutation.isSuccess]);
 
@@ -97,7 +98,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
             { label: 'Message', key: 'message' },
           ];
           const missingFields = fieldsToVerify
-            .filter(({ label, key }) => !formData[key])
+            .filter(({ key }) => !formData[key])
             .map((field) => field.label);
           if (missingFields.length > 0) {
             toast.error(

@@ -18,10 +18,10 @@ type BuyEngiProps = {
   account: string;
   className?: string;
   iconClassName?: string;
-  valueClassName?: string;
   isLoading?: boolean;
-  value?: string;
   setPreviewMove: Dispatch<PreviewMoveEngi>;
+  value?: string;
+  valueClassName?: string;
 };
 
 export default function BuyEngi({
@@ -125,6 +125,7 @@ export default function BuyEngi({
               // - shows placeholder or raw input when unset
               {...(value && { value: displayValue })}
               onChange={({ target }) => {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore because isNaN handles strings isNaN('.1') is false, isNaN('1a') is true
                 if (isNaN(target.value)) return;
 

@@ -2,10 +2,10 @@ import { ReactNode, useState } from 'react';
 import cn from 'classnames';
 
 interface Props {
-  items: Array<ReactNode>;
-  onSelect: (values: Array<number>) => void;
-  multi?: boolean;
   className?: string;
+  items: Array<ReactNode>;
+  multi?: boolean;
+  onSelect: (values: Array<number>) => void;
 }
 
 function Selection({ items, onSelect, multi = false, className }: Props) {

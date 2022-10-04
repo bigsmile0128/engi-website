@@ -4,10 +4,10 @@ import { UserIcon } from '@heroicons/react/outline';
 
 type ActivityProps = {
   className?: string;
+  isLoading?: boolean;
+  numContributors?: number;
   numTests?: number;
   testsPassed?: number;
-  numContributors?: number;
-  isLoading?: boolean;
 };
 
 export default function Activity({
@@ -38,7 +38,7 @@ export default function Activity({
           <span
             className={classNames(
               'text-xs mb-1',
-              isLoading ? `h-2 skeleton` : ''
+              isLoading ? 'h-2 skeleton' : ''
             )}
           >
             <span>

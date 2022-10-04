@@ -14,9 +14,9 @@ type WithdrawTabProps = {
 
 enum RepeatFrequency {
   DAILY = 'DAILY',
-  WEEKLY = 'WEEKLY',
   EVERY_OTHER_WEEK = 'EVERY_OTHER_WEEK',
   MONTHLY = 'MONTHLY',
+  WEEKLY = 'WEEKLY',
 }
 
 const repeatOptions = [

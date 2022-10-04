@@ -24,18 +24,18 @@ async function subscribeNewsletterApi(
   };
 
   const msg: MailDataRequired = {
+    dynamicTemplateData: {
+      first_name: 'there',
+    },
+    from: { email: REPLY_EMAIL },
     personalizations: [
       {
         to: email,
         from: REPLY_EMAIL,
       },
     ],
-    to: { email },
-    from: { email: REPLY_EMAIL },
     templateId: mapToTemplateId[TEMPLATE_NAME.WELCOME_NEWSLETTER],
-    dynamicTemplateData: {
-      first_name: 'there',
-    },
+    to: { email },
   };
 
   try {

@@ -1,4 +1,6 @@
 import { ReactNode, useState } from 'react';
+import cn from 'classnames';
+
 import Select from '~/components/global/Select/Select';
 import JavaScriptIcon from 'public/img/settings/javascript.svg';
 import CPlusPlusIcon from 'public/img/settings/c-plus-plus.svg';
@@ -7,7 +9,6 @@ import HtmlIcon from 'public/img/settings/html5.svg';
 import RustIcon from 'public/img/settings/rust.svg';
 import TypescriptIcon from 'public/img/settings/typescript.svg';
 import ReactIcon from 'public/img/settings/reactjs.svg';
-import cn from 'classnames';
 import Button from '~/components/global/Button/Button';
 import styles from './JobPreference.module.css';
 
@@ -83,7 +84,9 @@ function JobPreference() {
     setSelectedLangs(values);
   };
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    //
+  };
   const disableSave =
     !selectedLangs || (!!selectedLangs && selectedLangs.length <= 0);
 

@@ -24,13 +24,13 @@ export const useConnectEthereumExtension = () =>
     {
       // Default hold extension connection
       // - invalidate the query to refresh
-      staleTime: Infinity,
       cacheTime: Infinity,
-      // Don't retry connection if user cancels request
-      retry: 0,
-      // Don't retry connection if user has canceled request before
-      retryOnMount: false,
-      // Don't refetch after closing the extension
       refetchOnWindowFocus: false,
+      retry: 0,
+      retryOnMount: false,
+      staleTime: Infinity,
+      // Don't retry connection if user cancels request
+      // Don't retry connection if user has canceled request before
+      // Don't refetch after closing the extension
     }
   );

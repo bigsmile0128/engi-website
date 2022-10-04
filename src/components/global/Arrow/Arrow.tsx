@@ -6,17 +6,17 @@ import { motion } from 'framer-motion';
 const Xarrow = dynamic(() => import('react-xarrows'), { ssr: false });
 
 type ArrowProps = {
-  end: string;
-  start: string;
-  color?: string;
+  [key: string]: any;
   className?: string;
+  color?: string;
   curveness?: number;
   dashness?: boolean;
+  end: string;
   endAnchor?: any;
   headSize?: number;
+  start: string;
   startAnchor?: any;
   strokeWidth?: number;
-  [key: string]: any;
 };
 
 export default function Arrow({

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -8,7 +8,7 @@ import { BrowserTracing } from '@sentry/tracing';
 import Layout from '~/components/modules/layout';
 import { ToastContainer } from 'react-toastify';
 
-import UserContext, { User } from '~/utils/contexts/userContext';
+import UserContext from '~/utils/contexts/userContext';
 import store from 'store2';
 import { isProduction } from '~/utils';
 import { usePersistedUserState } from '~/utils/auth/persisted';

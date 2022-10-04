@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 import React from 'react';
 import withMock from 'storybook-addon-mock';
 import cn from 'classnames';
@@ -32,9 +33,9 @@ Default.parameters = {
           jobs: {
             items: [
               {
-                id: 4,
                 creator: 'abc123',
                 funding: 'abc123',
+                id: 4,
                 repository: {
                   url: 'xyz789',
                   branch: 'abc123',

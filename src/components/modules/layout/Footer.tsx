@@ -67,7 +67,9 @@ export default function Footer({ className }: FooterProps) {
                 Litepaper
               </Link>
               <Link href="/press">Press</Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">{`Team & Governance`}</Link>
+              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+                {'Team & Governance'}
+              </Link>
             </div>
           </div>
         </div>

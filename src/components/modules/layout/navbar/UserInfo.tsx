@@ -16,10 +16,10 @@ import { useBalance } from '~/utils/balances/userBalance';
 import { useRouter } from 'next/router';
 
 type UserInfoProps = {
-  className?: string;
-  user: User;
-  setUser: (user: User) => void;
   blockchainHealthProps?: any;
+  className?: string;
+  setUser: (user: User) => void;
+  user: User;
 };
 
 export default function UserInfo({

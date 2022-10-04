@@ -10,7 +10,7 @@ import JobDescription from '~/components/pages/jobDetails/JobDescription';
 import JobActivity from '~/components/pages/jobDetails/JobActivity';
 import { gql } from 'graphql-request';
 
-export default function JobDetails(props) {
+export default function JobDetails() {
   const router = useRouter();
   const { jobId } = router.query;
   const { isLoading, isError, data } = useQuery<Job>(

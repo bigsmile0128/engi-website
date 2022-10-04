@@ -19,7 +19,9 @@ export default function AlternatingFeatures({
             Your Workflows Supercharged
           </h2>
           <p className="text-secondary">
-            {`As an innovative technology businesses, you can seamlessly integrate Engi's new crowdsourced programming into your existing workflows. Engi supports all popular testing frameworks for languages such as Rust, TypeScript, Python, C#, and more. Draft Ul engineering jobs straight from your design tools or from your version control systems.`}
+            {
+              "As an innovative technology businesses, you can seamlessly integrate Engi's new crowdsourced programming into your existing workflows. Engi supports all popular testing frameworks for languages such as Rust, TypeScript, Python, C#, and more. Draft Ul engineering jobs straight from your design tools or from your version control systems."
+            }
           </p>
           <PlaceholderButton className="mt-8" />
         </div>

@@ -18,8 +18,8 @@ import { mockJob } from '~/types/mock';
 type JobTableProps = {
   className?: string;
   data?: Job[];
-  numPages?: number;
   isLoading?: boolean;
+  numPages?: number;
 };
 
 export default function JobTable({

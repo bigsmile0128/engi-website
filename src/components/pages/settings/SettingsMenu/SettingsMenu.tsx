@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { SETTINGS_TAB } from '../Settings.utils';
 
 interface Props {
-  items: Array<{ key: SETTINGS_TAB; title: string }>;
   className?: string;
+  items: Array<{ key: SETTINGS_TAB; title: string }>;
   onChange: (key: SETTINGS_TAB) => void;
 }
 

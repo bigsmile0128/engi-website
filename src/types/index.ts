@@ -1,31 +1,31 @@
 export enum TestResult {
-  'PASSED' = 'PASSED',
   'FAILED' = 'FAILED',
   'IGNORED' = 'IGNORED',
+  'PASSED' = 'PASSED',
 }
 
 export type Test = {
   id: string;
-  result: string;
   required: string;
+  result: string;
 };
 
 export type Solution = {
-  solutionId: string;
-  jobId: string;
-  author: string;
-  patchUrl: string;
   attempt: {
     attemptId: string;
     attempter: string;
     tests: Test[];
   };
+  author: string;
+  jobId: string;
+  patchUrl: string;
+  solutionId: string;
 };
 
 export enum JobStatus {
-  OPEN = 'OPEN',
   ACTIVE = 'ACTIVE',
   COMPLETE = 'COMPLETE',
+  OPEN = 'OPEN',
 }
 
 export enum Language {
@@ -39,52 +39,52 @@ export enum Language {
 }
 
 export type Job = {
-  id: string;
-  creator: string;
-  funding: string;
-  repository?: {
-    url: string;
-    branch: string;
-    commit: string;
-  };
-  language: Language;
-  name: string;
-  tests: Test[];
-  requirements: {
-    isEditable: string;
-    isAddable: string;
-    isDeletable: string;
-  };
-  solution?: Solution;
   attemptCount: number;
   createdOn?: {
-    number: number;
     dateTime: string;
-  };
-  updatedOn?: {
     number: number;
-    dateTime: string;
   };
+  creator: string;
+  funding: string;
+  id: string;
+  language: Language;
+  name: string;
+  repository?: {
+    branch: string;
+    commit: string;
+    url: string;
+  };
+  requirements: {
+    isAddable: string;
+    isDeletable: string;
+    isEditable: string;
+  };
+  solution?: Solution;
   status: JobStatus;
+  tests: Test[];
+  updatedOn?: {
+    dateTime: string;
+    number: number;
+  };
 };
 
 export enum TransactionType {
   EXCHANGE = 'EXCHANGE',
-  TRANSFER = 'TRANSFER',
-  SPEND = 'SPEND',
   INCOME = 'INCOME',
+  SPEND = 'SPEND',
+  TRANSFER = 'TRANSFER',
 }
 
 export type Transaction = {
-  number: number;
-  hash: string;
-  dateTime: string;
-  type: TransactionType;
-  executor: string;
-  isSuccessful: boolean;
-  otherParticipants?: string[];
   amount: number;
+  dateTime: string;
+  executor: string;
+  hash: string;
+  isSuccessful: boolean;
   jobId?: string;
+  number: number;
+  otherParticipants?: string[];
+  type: TransactionType;
 };
 
 // copies from same story figma plugin repo
@@ -94,6 +94,6 @@ export interface DFormValue {
 }
 
 export enum SENDGRID_LIST_NAME {
-  ENGI_NEWSLETTER = 'engi-newsletter',
   CONTACT_US = 'contact-us',
+  ENGI_NEWSLETTER = 'engi-newsletter',
 }

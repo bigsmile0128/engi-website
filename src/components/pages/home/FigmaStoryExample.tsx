@@ -12,10 +12,10 @@ import StorybookIcon from 'public/img/home/storybook.svg';
 import FigmaIcon from 'public/img/home/figma2.svg';
 
 type FigmaStoryExampleProps = {
-  className?: string;
-  boxEndArrowId?: string;
-  spanEndArrowId?: string;
   [key: string]: any;
+  boxEndArrowId?: string;
+  className?: string;
+  spanEndArrowId?: string;
 };
 
 export default function FigmaStoryExample({

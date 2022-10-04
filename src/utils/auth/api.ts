@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { encryptMnemonic } from './encrypt';
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
@@ -57,8 +58,9 @@ type LoginUser = {
 };
 
 export const useLoginUser = () =>
-  useMutation<{ address: string; accessToken: string }, AxiosError, any>(
+  useMutation<{ accessToken: string; address: string }, AxiosError, any>(
     async ({ address, source }: LoginUser) => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { web3FromSource } = require('@polkadot/extension-dapp');
 
       const injector = await web3FromSource(source);

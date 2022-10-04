@@ -5,10 +5,10 @@ import EngiIcon from '~/components/global/icons/EngiIcon';
 type EngiAmountProps = {
   className?: string;
   iconClassName?: string;
-  valueClassName?: string;
   isLoading?: boolean;
-  value?: number | string;
   suffix?: string;
+  value?: number | string;
+  valueClassName?: string;
 };
 
 export default function EngiAmount({

@@ -5,9 +5,9 @@ import dayjs from 'dayjs';
 
 type JobInfoProps = {
   className?: string;
-  name?: string;
   createdOn?: string;
   isLoading?: boolean;
+  name?: string;
 };
 
 export default function JobInfo({

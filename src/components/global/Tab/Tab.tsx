@@ -1,4 +1,3 @@
-import React from 'react';
 import { Tab as HeadlessTab } from '@headlessui/react';
 import cn from 'classnames';
 import { Children, ReactNode, useState } from 'react';
@@ -7,10 +6,10 @@ interface Props {
   children?: ReactNode;
   className?: string;
   defaultIndex?: number;
+  id?: string;
   onChange?: (index: number) => void;
   tabLabels: Array<ReactNode>;
   tabListClassname?: string;
-  id?: string;
 }
 
 function Tab({

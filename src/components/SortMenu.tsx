@@ -17,11 +17,11 @@ export type Option = {
 type SortMenuProps = {
   className?: string;
   isLoading?: boolean;
-  value?: Option;
-  options: Option[];
   onChange: (value: Option) => void;
-  sortDirection: SortDirection;
   onChangeSortDirection: (sortDirection: SortDirection) => void;
+  options: Option[];
+  sortDirection: SortDirection;
+  value?: Option;
 };
 
 export default function SortMenu({

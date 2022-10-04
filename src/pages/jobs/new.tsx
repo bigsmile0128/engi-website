@@ -67,6 +67,7 @@ export default function NewJob({ className }: NewJobProps) {
           <TestsTab
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
+              console.log('selected tests', selectedTests);
               setCurrentStep(JobStep.DETAILS);
             }}
             goBack={() => setCurrentStep(JobStep.REPOSITORY)}
@@ -94,8 +95,9 @@ export default function NewJob({ className }: NewJobProps) {
         )}
         {currentStep === JobStep.PREVIEW && (
           <PreviewTab
-            // TODO: connect to job creation API
-            onChange={() => {}}
+            onChange={() => {
+              // TODO: connect to job creation API
+            }}
             setCurrentStep={setCurrentStep}
             jobName={jobName}
             funding={funding}

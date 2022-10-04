@@ -26,6 +26,6 @@ Default.args = {
   className: '',
   options,
   value: options[0].value,
-  onChange: (value) => {},
+  onChange: () => {},
   disabled: false,
 };

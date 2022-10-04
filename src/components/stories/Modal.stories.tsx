@@ -9,7 +9,7 @@ export default {
   component: Modal,
 };
 
-const Template = (args) => {
+const Template = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

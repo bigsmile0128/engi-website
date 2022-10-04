@@ -19,6 +19,7 @@ export default function MobileJobTable({
   data,
   isLoading,
 }: MobileJobTableProps) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const _data = useMemo<Job[]>(() => {
     if (isLoading) {

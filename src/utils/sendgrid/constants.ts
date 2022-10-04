@@ -8,8 +8,8 @@ export const mapNameToId: Record<SENDGRID_LIST_NAME, string> = {
 export const REPLY_EMAIL = 'newsletter@engi.network';
 
 export enum TEMPLATE_NAME {
-  WELCOME_NEWSLETTER = 'welcome-newsletter',
   CONTACT_US_REPLY = 'contact-us-reply',
+  WELCOME_NEWSLETTER = 'welcome-newsletter',
 }
 
 export const mapToTemplateId: Record<TEMPLATE_NAME, string> = {

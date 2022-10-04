@@ -3,9 +3,9 @@ import { FiMinus, FiPlus } from 'react-icons/fi';
 import { ChangeEvent, useState } from 'react';
 
 interface Props {
-  onChange: (value: number) => void;
-  min: number;
   max: number;
+  min: number;
+  onChange: (value: number) => void;
 }
 
 const SLIDER_STEP = 0.1;

@@ -20,8 +20,8 @@ const TransactionTime = dynamic(() => import('./TransactionTime'), {
 type TransactionTableProps = {
   className?: string;
   data?: Transaction[];
-  numPages?: number;
   isLoading?: boolean;
+  numPages?: number;
 };
 
 export default function TransactionTable({

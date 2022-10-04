@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 import React from 'react';
 import withMock from 'storybook-addon-mock';
 import styles from './common_bg.module.css';

@@ -8,8 +8,8 @@ import { Job } from '~/types';
 
 type JobHeaderProps = {
   className?: string;
-  isLoading?: boolean;
   data?: Job;
+  isLoading?: boolean;
 };
 
 export default function JobHeader({
@@ -30,7 +30,7 @@ export default function JobHeader({
         <h1
           className={classNames(
             'font-grifter text-3xl px-4',
-            isLoading ? `skeleton mx-2` : ''
+            isLoading ? 'skeleton mx-2' : ''
           )}
         >
           <span className="-mb-2 block">

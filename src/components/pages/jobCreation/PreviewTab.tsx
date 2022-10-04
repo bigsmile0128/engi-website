@@ -6,10 +6,10 @@ import { MdModeEdit } from 'react-icons/md';
 
 type PreviewTabProps = {
   className?: string;
-  setCurrentStep: (JobStep) => void;
-  onChange: () => void;
-  jobName: string;
   funding: string;
+  jobName: string;
+  onChange: () => void;
+  setCurrentStep: (JobStep) => void;
 };
 
 export default function PreviewTab({

@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 type TransitionProps = {
+  addPositionClasses?: boolean;
   children: any;
   className?: string;
-  addPositionClasses?: boolean;
 };
 
 // transition between two child elements

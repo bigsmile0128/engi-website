@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 
 interface TagProps {
-  className?: string;
   children?: any;
+  className?: string;
 }
 
 export default function Tag({ className, children }: TagProps) {

@@ -1,30 +1,29 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
-import { BiImport } from '@react-icons/all-files/bi/BiImport';
-import * as bip39 from 'bip39';
-import Link from 'next/link';
-import { toast } from 'react-toastify';
-import { useMutation, useQuery } from 'react-query';
-import axios, { AxiosError } from 'axios';
+// import { BiImport } from '@react-icons/all-files/bi/BiImport';
+// import * as bip39 from 'bip39';
+// import Link from 'next/link';
+// import { toast } from 'react-toastify';
+// import { useMutation, useQuery } from 'react-query';
+import axios from 'axios';
 import { gql } from 'graphql-request';
-import { AiOutlineLoading3Quarters } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters';
-import { HiOutlineCheckCircle } from '@react-icons/all-files/hi/HiOutlineCheckCircle';
-import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
-import UserContext from '~/utils/contexts/userContext';
-import { isDev } from '~/utils';
-import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
-import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
+// import { AiOutlineLoading3Quarters } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters';
+// import { HiOutlineCheckCircle } from '@react-icons/all-files/hi/HiOutlineCheckCircle';
+// import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
+// import UserContext from '~/utils/contexts/userContext';
+// import { isDev } from '~/utils';
+// import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
+// import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
 import Button from '~/components/global/Button/Button';
-import { consoleSandbox } from '@sentry/utils';
+// import { consoleSandbox } from '@sentry/utils';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
-import RegisterWallet from '~/components/RegisterWallet/RegisterWallet';
+// import RegisterWallet from '~/components/RegisterWallet/RegisterWallet';
 import { useRouter } from 'next/router';
 
 type SignupProps = {
   className?: string;
 };
 
-enum Step {
+export enum Step {
   // the default step when arriving on the signup page
   SIGN_IN,
   // if a new user is registering for the first time
@@ -81,7 +80,7 @@ export default function Signup({ className }: SignupProps) {
   );
 }
 
-async function isWalletValid(walletId): Promise<boolean> {
+export async function isWalletValid(walletId): Promise<boolean> {
   if (!walletId) {
     return false;
   }

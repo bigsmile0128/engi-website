@@ -13,8 +13,8 @@ import { Job } from '~/types';
 
 type PayoutProps = {
   className?: string;
-  isLoading?: boolean;
   data?: Job;
+  isLoading?: boolean;
 };
 
 export default function Payout({ className, isLoading, data }: PayoutProps) {

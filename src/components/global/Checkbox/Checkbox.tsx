@@ -2,12 +2,12 @@ import classNames from 'classnames';
 import React from 'react';
 
 interface CheckboxProps {
+  checked: boolean;
   className?: string;
   id: string;
   label: string;
-  checked: boolean;
-  onChange: (checked) => void;
   labelClassName?: string;
+  onChange: (checked) => void;
 }
 
 export default function Checkbox({

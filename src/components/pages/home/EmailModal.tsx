@@ -19,17 +19,17 @@ import CopyLink from '~/components/CopyLink';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 
 enum Interest {
-  PROGRAMMER = 'engi-programmer',
   BUSINESS = 'engi-business',
-  INVESTOR = 'engi-investor',
   CURIOUS = 'engi-curious',
+  INVESTOR = 'engi-investor',
+  PROGRAMMER = 'engi-programmer',
 }
 
 enum BusinessReason {
-  UI = 'ui-engineering',
-  SMART_CONTRACT = 'smart-contract',
   LIBRARY = 'library',
   OTHER = 'other',
+  SMART_CONTRACT = 'smart-contract',
+  UI = 'ui-engineering',
 }
 
 interface EmailModalProps extends ModalProps {

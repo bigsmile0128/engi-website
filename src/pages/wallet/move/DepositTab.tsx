@@ -5,8 +5,8 @@ import UserContext from '~/utils/contexts/userContext';
 import { PreviewMoveEngi } from '~/pages/wallet/move';
 
 type DepositTabProps = {
-  setPreviewMove?: Dispatch<PreviewMoveEngi>;
   className?: string;
+  setPreviewMove?: Dispatch<PreviewMoveEngi>;
 };
 
 export default function DepositTab({

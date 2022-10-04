@@ -5,8 +5,8 @@ import { Cell, Pie, PieChart, Tooltip } from 'recharts';
 
 type PayoutProps = {
   className?: string;
-  reward?: number;
   isLoading?: boolean;
+  reward?: number;
 };
 
 const COLORS = ['#65FEB7', '#65FEB799', '#65FEB733'];

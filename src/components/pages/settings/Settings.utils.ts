@@ -1,11 +1,11 @@
 export enum SETTINGS_TAB {
+  EMAIL = 'email',
+  JOB_PREF = 'job_preference',
+  NOTIFICATION = 'notification',
+  PASSWORD = 'password',
+  PAYMENT = 'payment',
   PERSONAL_INFO = 'personal_info',
   UPLOAD_AVATAR = 'upload_avatar',
-  PASSWORD = 'password',
-  EMAIL = 'email',
-  NOTIFICATION = 'notification',
-  PAYMENT = 'payment',
-  JOB_PREF = 'job_preference',
 }
 
 export const SETTINGS_LINKS: Array<{ key: SETTINGS_TAB; title: string }> = [

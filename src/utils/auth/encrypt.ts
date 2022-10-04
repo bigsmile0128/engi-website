@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { REGISTER_ENCRYPT_KEY_URL } from './constants';
 const { Keyring } = require('@polkadot/keyring');
 const { u8aToBuffer } = require('@polkadot/util');

@@ -1,7 +1,7 @@
 export enum PERSONAL_INFO_FELID {
+  COMPANY_NAME = 'company_name',
   NAME = 'name',
   NICKNAME = 'nickname',
-  COMPANY_NAME = 'company_name',
 }
 
 export interface PersonalInfoValues {

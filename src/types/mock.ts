@@ -1,3 +1,4 @@
+/* eslint-disable sort-keys */
 import { Job, JobStatus, Language } from '~/types';
 
 export const mockJob: Job = {

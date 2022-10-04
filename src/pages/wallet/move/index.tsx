@@ -1,6 +1,5 @@
 import React, { Fragment, useContext, useState } from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
 import { Tab } from '@headlessui/react';
 import DepositTab from './DepositTab';
 import TransferTab from './TransferTab';

@@ -3,8 +3,8 @@ import classNames from 'classnames';
 
 type ProgressBarProps = {
   className?: string;
-  percentage?: number;
   label?: string;
+  percentage?: number;
 };
 
 export default function ProgressBar({

@@ -64,7 +64,7 @@ const members = [
 ];
 
 export default function AboutUsPage({ className }: AboutUsPageProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel();
 
   const scrollPrev = useCallback(() => {

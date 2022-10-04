@@ -6,9 +6,9 @@ import SortMenu, { Option, SortDirection } from '~/components/SortMenu';
 
 interface SearchResultsHeaderProps {
   className?: string;
+  error?: Error;
   isLoading: boolean;
   numResults?: number;
-  error?: Error;
 }
 
 const sortOptions = [

@@ -9,10 +9,10 @@ type Option = {
 
 type ButtonSelectProps = {
   className?: string;
+  disabled?: boolean;
+  onChange: (value) => void;
   options?: Option[];
   value?: any;
-  onChange: (value) => void;
-  disabled?: boolean;
 };
 
 export default function ButtonSelect({

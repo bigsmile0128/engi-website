@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
 export interface ModalProps {
+  children?: any;
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
-  children?: any;
 }
 
 export default function Modal({ isOpen, setIsOpen, children }: ModalProps) {

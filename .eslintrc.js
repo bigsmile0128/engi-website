@@ -8,9 +8,19 @@ module.exports = {
     'plugin:storybook/recommended',
   ],
   ignorePatterns: ['*.md'],
+  overrides: [
+    {
+      files: ['**/*.stories.*'],
+      rules: {
+        'import/no-anonymous-default-export': 'off',
+      },
+    },
+  ],
+  plugins: ['typescript-sort-keys'],
   rules: {
-    'import/no-anonymous-default-export': 0,
+    '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
+    'import/no-anonymous-default-export': 0,
     'no-duplicate-imports': 'error',
     quotes: [
       'error',
@@ -35,7 +45,7 @@ module.exports = {
       {
         caseSensitive: false,
         natural: true,
-        minKeys: 5,
+        minKeys: 10,
       },
     ],
     'typescript-sort-keys/interface': 'error',
@@ -48,13 +58,4 @@ module.exports = {
       },
     ],
   },
-  overrides: [
-    {
-      files: ['**/*.stories.*'],
-      rules: {
-        'import/no-anonymous-default-export': 'off',
-      },
-    },
-  ],
-  plugins: ['typescript-sort-keys'],
 };
