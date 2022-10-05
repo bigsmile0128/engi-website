@@ -28,7 +28,11 @@ export default function UserInfo({
   setUser,
   blockchainHealthProps,
 }: UserInfoProps) {
-  const { isLoading, data: balance } = useBalance(user.walletId);
+  const {
+    isLoading: isLoadingBalance,
+    data: balance,
+    isFetched: hasLoadedBalanceAtLeastOnce,
+  } = useBalance(user.walletId);
   const { push: pushRoute } = useRouter();
 
   return (
@@ -99,7 +103,7 @@ export default function UserInfo({
           <EngiAmount
             iconClassName="!h-4 !w-4"
             valueClassName="!font-default font-bold text-base mb-0 ml-2"
-            isLoading={isLoading}
+            isLoading={isLoadingBalance && !hasLoadedBalanceAtLeastOnce}
             value={balance}
           />
           <div className="h-5 w-[1px] bg-gray-400"></div>
