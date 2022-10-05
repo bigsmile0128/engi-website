@@ -31,7 +31,7 @@ export default function Confirm() {
       }
 
       toast.update(confirmEmailStatesDisplay.current, {
-        render: 'Email confirmed! Welcome to Engi',
+        render: 'Email confirmed! Please sign in.',
         isLoading: false,
         autoClose: 3000,
         type: toast.TYPE.SUCCESS,

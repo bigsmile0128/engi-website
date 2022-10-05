@@ -39,7 +39,7 @@ export default function UserInfo({
       <div className="flex flex-col items-start">
         <Menu className="relative" as="div">
           <Menu.Button className="flex items-center whitespace-nowrap">
-            My Wallet
+            {user?.display}
             <ChevronDownIcon className="h-4 w-4 ml-2" />
           </Menu.Button>
           <Transition

@@ -1,35 +1,13 @@
 import classNames from 'classnames';
-// import { BiImport } from '@react-icons/all-files/bi/BiImport';
-// import * as bip39 from 'bip39';
-// import Link from 'next/link';
-// import { toast } from 'react-toastify';
-// import { useMutation, useQuery } from 'react-query';
 import axios from 'axios';
 import { gql } from 'graphql-request';
-// import { AiOutlineLoading3Quarters } from '@react-icons/all-files/ai/AiOutlineLoading3Quarters';
-// import { HiOutlineCheckCircle } from '@react-icons/all-files/hi/HiOutlineCheckCircle';
-// import { HiXCircle } from '@react-icons/all-files/hi/HiXCircle';
-// import UserContext from '~/utils/contexts/userContext';
-// import { isDev } from '~/utils';
-// import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
-// import { useLoginUser, useRegisterUser } from '~/utils/auth/api';
 import Button from '~/components/global/Button/Button';
-// import { consoleSandbox } from '@sentry/utils';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
-// import RegisterWallet from '~/components/RegisterWallet/RegisterWallet';
 import { useRouter } from 'next/router';
 
 type SignupProps = {
   className?: string;
 };
-
-export enum Step {
-  // the default step when arriving on the signup page
-  SIGN_IN,
-  // if a new user is registering for the first time
-  SIGN_UP,
-  FINISH_SIGN_UP,
-}
 
 export default function Signup({ className }: SignupProps) {
   const { push: pushRoute } = useRouter();
