@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { RiExchangeLine, RiTerminalFill } from 'react-icons/ri';
 import { BsChatLeftDots } from 'react-icons/bs';
@@ -14,8 +13,8 @@ export enum SETTINGS_TAB {
   UPLOAD_AVATAR = 'upload_avatar',
 }
 
-interface LinkItem {
-  icon: ReactNode;
+export interface LinkItem {
+  icon: (props) => JSX.Element;
   key: SETTINGS_TAB;
   title: string;
 }

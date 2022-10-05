@@ -20,7 +20,11 @@ function SettingContainer() {
       <h1 className="text-7xl font-bold">Settings</h1>
       <div className="flex justify-between">
         <div className="w-3/12">
-          <SettingsMenu items={SETTINGS_LINKS} onChange={handleChange} />
+          <SettingsMenu
+            items={SETTINGS_LINKS}
+            onChange={handleChange}
+            className="bg-[#232323]/10 backdrop-blur-[100px] py-1"
+          />
         </div>
         <div className="w-8/12">
           <div className="bg-[#232323]/10 backdrop-blur-[100px]">
@@ -76,7 +80,10 @@ function SettingContainer() {
                     </h2>
                   </div>
                   <nav className="space-y-2 px-2 mt-12">
-                    nav items
+                    <SettingsMenu
+                      items={SETTINGS_LINKS}
+                      onChange={handleChange}
+                    />
                     {/* {navigation.map((item) => (
                         <a
                           key={item.name}
