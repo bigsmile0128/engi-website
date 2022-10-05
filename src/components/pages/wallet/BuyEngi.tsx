@@ -1,6 +1,5 @@
 import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
-import EngiIcon from '~/components/global/icons/EngiIcon';
 import Input from '~/components/global/Input/Input';
 import Button from '~/components/global/Button/Button';
 import { RiSearchLine } from 'react-icons/ri';
@@ -26,8 +25,6 @@ type BuyEngiProps = {
 
 export default function BuyEngi({
   className,
-  iconClassName,
-  valueClassName,
   isLoading,
   // currently signed in user's substrate wallet address
   account,
