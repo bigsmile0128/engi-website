@@ -26,7 +26,7 @@ function Dropzone({ onFileDrop }: Props) {
 
       const files = acceptedFiles.map((file) => {
         const reader = new FileReader();
-        reader.onload = (event) => {};
+        reader.onload = () => {};
         reader.readAsDataURL(file);
         return file;
       });

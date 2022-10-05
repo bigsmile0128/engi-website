@@ -23,7 +23,7 @@ const mapTabToComponent: Record<SETTINGS_TAB, React.ReactNode> = {
 };
 
 function SettingsPanel({ selectedTab }: Props) {
-  return <div>{mapTabToComponent[selectedTab]}</div>;
+  return <>{mapTabToComponent[selectedTab]}</>;
 }
 
 export default SettingsPanel;

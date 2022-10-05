@@ -28,11 +28,13 @@ function Notifications() {
 
   return (
     <div className="p-8">
-      <h5 className="text-xl font-bold">Notification Settings</h5>
-      <p className="text-secondary mt-4">
+      <h5 className="text-xl font-bold hidden md:block">
+        Notification Settings
+      </h5>
+      <p className="text-secondary mt-4 hidden md:block">
         Do you want to receive the following notifications?
       </p>
-      <h5 className="text-xl font-bold mb-4 mt-8">Email updates</h5>
+      <h5 className="text-xl font-bold mb-4 md:mt-8">Email updates</h5>
       <div className="flex flex-col gap-8">
         <label className="flex justify-between ">
           <span className="text-xl">Weekly newsletter</span>

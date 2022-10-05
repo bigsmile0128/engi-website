@@ -15,6 +15,7 @@ function UploadAvatar() {
         name: `${image.name}`,
       });
 
+      console.log('response', response);
       setHasUploaded(true);
     } catch (error) {
       console.error(error);
@@ -65,8 +66,12 @@ function UploadAvatar() {
 
   return (
     <div className="p-8">
-      <h2 className="font-grifter font-bold text-3xl">Upload your Avatar</h2>
-      <h6 className="text-secondary">Help us personalize your avatar.</h6>
+      <h2 className="font-grifter font-bold text-3xl hidden md:block">
+        Upload your Avatar
+      </h2>
+      <h6 className="text-secondary hidden md:block">
+        Help us personalize your avatar.
+      </h6>
       {hasUploaded ? renderImageCropper() : renderDropzone()}
     </div>
   );

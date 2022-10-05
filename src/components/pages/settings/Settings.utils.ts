@@ -56,3 +56,13 @@ export const SETTINGS_LINKS: LinkItem[] = [
     icon: RiTerminalFill,
   },
 ];
+
+export const mapSettingsTabToTitle: Record<SETTINGS_TAB, string> = {
+  [SETTINGS_TAB.EMAIL]: 'Verify your email',
+  [SETTINGS_TAB.JOB_PREF]: 'What languages does your company use?',
+  [SETTINGS_TAB.NOTIFICATION]: 'Notification Settings',
+  [SETTINGS_TAB.PASSWORD]: 'Password settings',
+  [SETTINGS_TAB.PAYMENT]: 'Payment settings',
+  [SETTINGS_TAB.PERSONAL_INFO]: 'Update your account info',
+  [SETTINGS_TAB.UPLOAD_AVATAR]: 'Upload your avatar',
+};

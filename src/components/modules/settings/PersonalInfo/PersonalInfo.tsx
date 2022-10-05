@@ -82,17 +82,17 @@ function PersonalInfo() {
 
   return (
     <div className="p-8">
-      <h2 className="font-grifter font-bold text-3xl">
+      <h2 className="font-grifter font-bold text-3xl hidden md:block">
         Update your account info
       </h2>
-      <h6 className="text-secondary mt-4">
+      <h6 className="text-secondary mt-4 hidden md:block">
         Help us personalize your job recommendations.
       </h6>
-      <form>
+      <form className="md:mt-12">
         <fieldset>
           <label
             htmlFor="profession-tab"
-            className="block font-bold text-xl mt-12 mb-3"
+            className="block font-bold text-xl mb-3"
           >
             Are you a freelancer or business?
           </label>

@@ -1,9 +1,13 @@
 import { useState, Fragment } from 'react';
 import SettingsMenu from './SettingsMenu/SettingsMenu';
-import { SETTINGS_LINKS, SETTINGS_TAB } from './Settings.utils';
+import {
+  mapSettingsTabToTitle,
+  SETTINGS_LINKS,
+  SETTINGS_TAB,
+} from './Settings.utils';
 import SettingsPanel from './SettingsPanel/SettingsPanel';
 import { Dialog, Transition } from '@headlessui/react';
-import { ChevronLeftIcon, MenuAlt3Icon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, MenuIcon } from '@heroicons/react/outline';
 
 function SettingContainer() {
   const [selectedTab, setSelectedTab] = useState<SETTINGS_TAB>(
@@ -13,6 +17,7 @@ function SettingContainer() {
 
   const handleChange = (key: SETTINGS_TAB) => {
     setSelectedTab(key);
+    setSidebarOpen(false);
   };
 
   const renderForNonMobile = () => (
@@ -36,7 +41,7 @@ function SettingContainer() {
   );
 
   const renderForMobile = () => (
-    <div>
+    <div className="block md:hidden">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -84,19 +89,6 @@ function SettingContainer() {
                       items={SETTINGS_LINKS}
                       onChange={handleChange}
                     />
-                    {/* {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
-                            item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-600',
-                            'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                          )}
-                        >
-                          <item.icon className="mr-4 h-6 w-6 flex-shrink-0 text-indigo-300" aria-hidden="true" />
-                          {item.name}
-                        </a>
-                      ))} */}
                   </nav>
                 </div>
               </Dialog.Panel>
@@ -104,17 +96,20 @@ function SettingContainer() {
           </div>
         </Dialog>
       </Transition.Root>
-      <div>
+      <div className="flex items-center border-b border-white/30 pb-4">
         <button
           type="button"
-          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          className="px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset mb-1"
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
-          <MenuAlt3Icon className="h-6 w-6" aria-hidden="true" />
+          <MenuIcon className="h-6 w-6 text-white" aria-hidden="true" />
         </button>
-        <SettingsPanel selectedTab={selectedTab} />
+        <h2 className="font-grifter font-bold text-2xl block md:hidden">
+          {mapSettingsTabToTitle[selectedTab]}
+        </h2>
       </div>
+      <SettingsPanel selectedTab={selectedTab} />
     </div>
   );
 
