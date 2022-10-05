@@ -3,7 +3,7 @@ import SettingsMenu from './SettingsMenu/SettingsMenu';
 import { SETTINGS_LINKS, SETTINGS_TAB } from './Settings.utils';
 import SettingsPanel from './SettingsPanel/SettingsPanel';
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon, MenuAlt3Icon } from '@heroicons/react/outline';
 
 function SettingContainer() {
   const [selectedTab, setSelectedTab] = useState<SETTINGS_TAB>(
@@ -60,32 +60,23 @@ function SettingContainer() {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-indigo-700 pt-5 pb-4">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-in-out duration-300"
-                  enterFrom="opacity-0"
-                  enterTo="opacity-100"
-                  leave="ease-in-out duration-300"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <div className="absolute top-0 right-0 -mr-12 pt-2">
+              <Dialog.Panel className="relative flex w-full flex-1 flex-col bg-black pt-5 pb-4">
+                <div className="mt-5 h-0 flex-1 overflow-y-auto px-6">
+                  <div className="flex">
                     <button
                       type="button"
-                      className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                       onClick={() => setSidebarOpen(false)}
+                      className="flex-shrink"
                     >
                       <span className="sr-only">Close sidebar</span>
-                      <XIcon
-                        className="h-6 w-6 text-white"
-                        aria-hidden="true"
-                      />
+                      <ChevronLeftIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
+                    <h2 className="flex-grow text-center text-xl font-bold">
+                      Settings
+                    </h2>
                   </div>
-                </Transition.Child>
-                <div className="mt-5 h-0 flex-1 overflow-y-auto">
-                  <nav className="space-y-1 px-2">
+                  <nav className="space-y-2 px-2 mt-12">
+                    nav items
                     {/* {navigation.map((item) => (
                         <a
                           key={item.name}
@@ -103,14 +94,18 @@ function SettingContainer() {
                 </div>
               </Dialog.Panel>
             </Transition.Child>
-            <div className="w-14 flex-shrink-0" aria-hidden="true">
-              {/* Dummy element to force sidebar to shrink to fit close icon */}
-            </div>
           </div>
         </Dialog>
       </Transition.Root>
-      <div>Menu</div>
       <div>
+        <button
+          type="button"
+          className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
+          onClick={() => setSidebarOpen(true)}
+        >
+          <span className="sr-only">Open sidebar</span>
+          <MenuAlt3Icon className="h-6 w-6" aria-hidden="true" />
+        </button>
         <SettingsPanel selectedTab={selectedTab} />
       </div>
     </div>

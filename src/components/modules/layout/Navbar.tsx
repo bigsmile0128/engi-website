@@ -1,11 +1,10 @@
 import React, { Fragment, useContext, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { Dialog, Menu, Popover, Transition } from '@headlessui/react';
+import { Dialog, Menu, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
-import { isBeta, isDev } from '~/utils';
 import Logo from '~/components/Logo';
 import MenuSvg from 'public/img/home/menu.svg';
 import BlockchainHealth from './BlockchainHealth';
