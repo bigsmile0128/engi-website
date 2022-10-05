@@ -11,8 +11,8 @@ export type Option = {
 type SelectMenuProps = {
   buttonLabel: string;
   className?: string;
-  labelClassName?: string;
   isLoading?: boolean;
+  labelClassName?: string;
   onChange: (value: Option) => void;
   options: Option[];
   value?: Option;

@@ -51,11 +51,11 @@ export const useRegisterUser = () =>
 
 type LoginUser = {
   address: string;
+  display: string;
   // The Web3 extension source ('polkadot-js', 'talisman') used to sign a login payload
   // - this is retrieved from `account.meta.source` of a connected extension account
   // - see useConnectPolkadotExtension
   source: string;
-  display: string;
 };
 
 export const useLoginUser = () =>

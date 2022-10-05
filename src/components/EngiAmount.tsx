@@ -21,7 +21,7 @@ export default function EngiAmount({
   isLoading,
   suffix,
 }: EngiAmountProps) {
-  let displayValue: string = useMemo(
+  const displayValue: string = useMemo(
     () =>
       displayAdaInEngi(typeof value === 'string' ? parseFloat(value) : value),
     [value]
