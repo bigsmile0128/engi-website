@@ -90,7 +90,7 @@ export default function UserInfo({
                   className="px-6 py-1 text-gray-300 hover:text-white"
                   onClick={() => {
                     setUser(null);
-                    pushRoute('signup');
+                    pushRoute('/signup');
                   }}
                 >
                   Log out

@@ -42,7 +42,7 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
             </div>
             <Button
               className="flex justify-center items-center whitespace-nowrap"
-              onClick={() => pushRoute('move')}
+              onClick={() => pushRoute('/wallet/move')}
             >
               <RiExchangeLine className="h-5 w-5" />
               <span className="ml-3">

@@ -137,7 +137,7 @@ export default function SignInWithLocalWallets() {
         type: toast.TYPE.SUCCESS,
       });
 
-      pushRoute('jobs');
+      pushRoute('/jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
         render: `${loginError?.message} Make sure you've confirmed your email address and please try again.`,
@@ -194,6 +194,7 @@ export default function SignInWithLocalWallets() {
                       {address}
                     </span>
                   </div>
+
                   <Dots className="flex-shrink-0" />
                 </div>
               )

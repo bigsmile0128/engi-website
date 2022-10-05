@@ -76,7 +76,7 @@ export default function Signup({ className }: SignupProps) {
           <Button
             variant="primary"
             className="w-full"
-            onClick={() => pushRoute('signup/register')}
+            onClick={() => pushRoute('/signup/register')}
           >
             Register Wallet
           </Button>
