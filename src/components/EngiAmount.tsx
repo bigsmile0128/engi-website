@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import { displayAdaInEngi } from '~/utils/currency/conversion';
+import ReactTooltip from 'react-tooltip';
 
 type EngiAmountProps = {
   className?: string;
@@ -27,30 +28,39 @@ export default function EngiAmount({
   );
 
   return (
-    <div
-      className={classNames(
-        'flex items-center whitespace-nowrap',
-        isLoading ? 'children:skeleton' : '',
-        className
-      )}
+    <span
+      data-tip={`${value || 0} ADA`}
+      data-tip-disabled={isLoading}
+      data-place="bottom"
+      data-class="font-medium"
+      data-effect="solid"
     >
-      <EngiIcon
+      <div
         className={classNames(
-          'text-green-primary',
-          iconClassName || 'h-3.5 w-3.5'
-        )}
-      />
-      <span
-        className={classNames(
-          {
-            'text-secondary': !isLoading && displayValue === 'N/A',
-          },
-          valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
+          'flex items-center whitespace-nowrap',
+          isLoading ? 'children:skeleton' : '',
+          className
         )}
       >
-        {displayValue}
-        {suffix}
-      </span>
-    </div>
+        <EngiIcon
+          className={classNames(
+            'text-green-primary',
+            iconClassName || 'h-3.5 w-3.5'
+          )}
+        />
+        <span
+          className={classNames(
+            {
+              'text-secondary': !isLoading && displayValue === 'N/A',
+            },
+            valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
+          )}
+        >
+          {displayValue}
+          {suffix}
+        </span>
+      </div>
+      <ReactTooltip />
+    </span>
   );
 }

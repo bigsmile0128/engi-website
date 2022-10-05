@@ -17,7 +17,7 @@ export default function Signup({ className }: SignupProps) {
     <div className={classNames('max-w-page lg:py-20', className)}>
       <div className="flex">
         <div
-          style={{ flexBasis: '60%' }}
+          style={{ flexBasis: '55%' }}
           className="flex flex-col items-center lg:p-20"
         >
           <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
@@ -29,7 +29,7 @@ export default function Signup({ className }: SignupProps) {
         </div>
 
         <div
-          style={{ flexBasis: '40%' }}
+          style={{ flexBasis: '45%', flexShrink: 0 }}
           className="flex flex-col items-center lg:p-20 overflow-visible relative"
         >
           <span
@@ -43,7 +43,32 @@ export default function Signup({ className }: SignupProps) {
           />
           <h1 className="font-bold text-5xl mb-4">New here?</h1>
           <p className="mb-8 text-lg text-center">
-            Import a Substrate compatible wallet to get started
+            Easily register using your favorite Substrate compatible wallet such
+            as{' '}
+            <a
+              href="https://talisman.xyz/"
+              target="_blank"
+              className="hover:text-blue-200 text-blue-300"
+            >
+              Talisman
+            </a>
+            ,{' '}
+            <a
+              href="https://subwallet.app/"
+              target="_blank"
+              className="hover:text-blue-200 text-blue-300"
+            >
+              SubWallet
+            </a>
+            , or{' '}
+            <a
+              href="https://polkadot.js.org/extension/"
+              target="_blank"
+              className="hover:text-blue-200 text-blue-300"
+            >
+              PolkadotJS
+            </a>
+            &nbsp;
           </p>
           <Button
             variant="primary"

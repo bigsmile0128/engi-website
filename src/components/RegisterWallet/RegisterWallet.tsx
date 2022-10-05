@@ -5,6 +5,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import SelectMenu from '../SelectMenu';
 import { useRegisterUser } from '~/utils/auth/api';
 import { useRouter } from 'next/router';
+import { RefreshIcon } from '@heroicons/react/outline';
+import ReactTooltip from 'react-tooltip';
 
 export default function RegisterWallet() {
   const {
@@ -12,6 +14,8 @@ export default function RegisterWallet() {
     isError: failedToConnectForAccounts,
     error: connectExtensionError,
     data: substrateAccounts,
+    refetch: retryConnecting,
+    isRefetching: retryingConnection,
   } = useConnectPolkadotExtension();
 
   const {
@@ -31,7 +35,6 @@ export default function RegisterWallet() {
   const display = useMemo(() => walletToImport?.display, [walletToImport]);
 
   const [email, setEmail] = useState<string>(null);
-  const [mnemonic, setMnemonic] = useState<string>(null);
 
   const { back: goBackToSignUp } = useRouter();
 
@@ -72,43 +75,61 @@ export default function RegisterWallet() {
 
   return (
     <div className={'max-w-page lg:py-20'}>
-      <h1 className="font-bold text-5xl mb-12">Register Wallet</h1>
+      <h1 className="font-bold text-5xl mb-12">Register Account</h1>
 
       <p className="my-2 text-lg max-w-xl text-white text-opacity-70">
-        Register your email with your private key and gain secure multi-factor
-        signatures, account recovery, and more
+        Join with an email to receive job notifications, payment receipts, and
+        network updates
       </p>
 
-      <div className="flex items-center">
-        {substrateAccounts ? (
-          <>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          {substrateAccounts || connectingToExtensions ? (
             <SelectMenu
+              isLoading={connectingToExtensions}
               className="my-4 text-xl w-full"
+              labelClassName="ml-0"
               buttonLabel={
                 walletToImport ? walletToImport.display : 'Select Account'
               }
-              options={substrateAccounts.map(
-                ({ address: value, meta: { name: label } }) => ({
-                  label,
-                  value,
-                })
-              )}
+              options={
+                substrateAccounts?.map?.(
+                  ({ address: value, meta: { name: label } }) => ({
+                    label,
+                    value,
+                  })
+                ) ?? []
+              }
               onChange={({ label, value }) =>
                 setWalletToImport({ address: value, display: label })
               }
             />
-            {walletToImport && (
-              <span className="font-medium text-xl truncate">
-                {walletToImport.address}
-              </span>
-            )}
-          </>
-        ) : (
-          <span className="font-bold text-lg text-red-500 py-4">
-            No Accounts Detected
+          ) : (
+            <span className="font-bold text-lg text-red-500 py-4">
+              No Accounts Detected
+            </span>
+          )}
+
+          <RefreshIcon
+            onClick={() => retryConnecting()}
+            className={`text-gray-50 text-opacity-70 h-5 w-5 ml-1 cursor-pointer ${
+              retryingConnection && 'animate-spin'
+            }`}
+            data-tip="Refetch Connected Accounts"
+            data-class="bg-black bg-opacity-50 font-medium"
+            data-place="top"
+            data-effect="solid"
+          />
+          <ReactTooltip />
+        </div>
+
+        {walletToImport && (
+          <span className="font-medium text-xl truncate">
+            {walletToImport.address}
           </span>
         )}
       </div>
+
       <div className="flex gap-x-4 mb-12">
         <input
           className={classNames(
@@ -122,18 +143,6 @@ export default function RegisterWallet() {
           required
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          className={classNames(
-            'w-full border border-gray-400 p-4 text-white placeholder:text-gray-300 outline-none focus-visible:ring-1 bg-transparent'
-          )}
-          type="mnemonic"
-          name="mnemonic"
-          id="mnemonic"
-          placeholder="Mnemonic"
-          value={mnemonic}
-          required
-          onChange={(e) => setMnemonic(e.target.value)}
-        />
       </div>
       <div className="flex w-full gap-x-4">
         <button
@@ -143,6 +152,10 @@ export default function RegisterWallet() {
             'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
           )}
           onClick={goBackToSignUp}
+          data-tip="Cancel Registration"
+          data-place="top"
+          data-class="bg-black bg-opacity-50 font-medium"
+          data-effect="solid"
         >
           Back
         </button>
@@ -152,20 +165,23 @@ export default function RegisterWallet() {
             'bg-[#00000022] border border-white outline-none focus-visible:ring-2':
               true,
             'disabled cursor-not-allowed text-opacity-50 border-opacity-50':
-              !display || !email || !mnemonic,
+              !display || !email,
             'hover:bg-gray-700 cursor-pointer active:bg-gray-600':
-              display && email && mnemonic,
+              display && email,
           })}
-          {...(!display || !email || !mnemonic
+          {...(!display || !email
             ? {
-                disabled: true,
+                ['data-tip']: 'Wallet Selection & Email Required',
+                ['data-place']: 'top',
+                ['data-class']:
+                  'bg-black bg-opacity-50 font-medium text-red-300',
+                ['data-effect']: 'solid',
               }
             : {
                 onClick: () => {
                   register({
                     display,
                     email,
-                    mnemonic,
                   });
                 },
               })}
@@ -173,6 +189,7 @@ export default function RegisterWallet() {
           Create
         </button>
       </div>
+      <ReactTooltip />
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function UserInfo({
       <div className="">
         <Avvvatars value={user?.walletId} style="shape" size={48} />
       </div>
-      <div className="flex flex-col items-start">
+      <div className="flex flex-col items-end">
         <Menu className="relative" as="div">
           <Menu.Button className="flex items-center whitespace-nowrap">
             {user?.display}

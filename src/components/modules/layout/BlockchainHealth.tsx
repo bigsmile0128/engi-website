@@ -7,6 +7,7 @@ import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisable
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import * as Sentry from '@sentry/react';
 import axios from 'axios';
+import ReactTooltip from 'react-tooltip';
 
 type BlockchainHealthProps = {
   className?: string;
@@ -93,8 +94,13 @@ export default function BlockchainHealth({
     <div className={classNames('flex items-center gap-x-3', className)}>
       {isLoading && (
         <>
-          <GrStatusGoodSmall className="text-sm text-secondary" />
-          <span>connecting...</span>
+          <GrStatusGoodSmall
+            className="text-sm text-blue-400 animate-pulse"
+            data-tip="Establishing Network Connection..."
+            data-place="bottom"
+            data-class="font-medium"
+          />
+          <ReactTooltip />
         </>
       )}
       {data?.status === 'ONLINE' && (
@@ -114,14 +120,24 @@ export default function BlockchainHealth({
       )}
       {data?.status === 'OFFLINE' && (
         <>
-          <GrStatusDisabledSmall className="text-sm text-red-400" />
-          <span>offline</span>
+          <GrStatusDisabledSmall
+            className="text-sm text-red-400"
+            data-tip="Engi Appears Offline"
+            data-place="bottom"
+            data-class="font-medium"
+          />
+          <ReactTooltip />
         </>
       )}
       {!isLoading && !data?.status && (
         <>
-          <GrStatusGoodSmall className="text-sm text-secondary" />
-          <span>status unknown</span>
+          <GrStatusGoodSmall
+            className="text-sm text-secondary"
+            data-tip="Network Status Unknown"
+            data-place="bottom"
+            data-class="font-medium"
+          />
+          <ReactTooltip />
         </>
       )}
     </div>

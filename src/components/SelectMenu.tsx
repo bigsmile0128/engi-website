@@ -11,6 +11,7 @@ export type Option = {
 type SelectMenuProps = {
   buttonLabel: string;
   className?: string;
+  labelClassName?: string;
   isLoading?: boolean;
   onChange: (value: Option) => void;
   options: Option[];
@@ -19,6 +20,7 @@ type SelectMenuProps = {
 
 export default function SelectMenu({
   className,
+  labelClassName,
   isLoading,
   options,
   value,
@@ -44,7 +46,8 @@ export default function SelectMenu({
                       // if option has no value, assume it's a default option and don't highlight it
                       value?.value
                         ? 'font-bold underline underline-offset-1 text-white'
-                        : 'text-secondary group-hover:text-white'
+                        : 'text-secondary group-hover:text-white',
+                      labelClassName
                     )}
                   >
                     {value?.label ?? buttonLabel}

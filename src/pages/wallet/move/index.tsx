@@ -116,7 +116,7 @@ export default function MoveEngi({ className }: MoveEngiProps) {
                   <span
                     className={'font-grifter text-5xl text-white -mb-3 ml-1'}
                   >
-                    {displayAdaInEngi(balance + previewMove.amount)}
+                    {displayAdaInEngi((balance || 0) + previewMove.amount)}
                   </span>
                 </div>
               </div>
