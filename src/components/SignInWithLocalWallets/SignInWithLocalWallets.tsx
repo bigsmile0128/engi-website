@@ -115,9 +115,9 @@ export default function SignInWithLocalWallets() {
   const { setUser } = useContext(UserContext);
   useEffect(() => {
     if (loggedIn) {
-      const { address: walletId, accessToken } = loggedIn;
+      const { address: walletId, accessToken, display } = loggedIn;
 
-      setUser({ walletId, accessToken });
+      setUser({ walletId, accessToken, display });
     }
   }, [loggedIn, setUser]);
 
@@ -171,31 +171,33 @@ export default function SignInWithLocalWallets() {
       ) : (
         substrateAccounts && (
           <>
-            {substrateAccounts?.map(({ address, meta: { name, source } }) => (
-              <div
-                key={`${source}|${name}|${address}`}
-                className="py-4 px-8 flex items-center hover:bg-[#ffffff10] cursor-pointer"
-                onClick={() => {
-                  login({ address, source });
-                }}
-              >
-                <Image
-                  src={''}
-                  width={45}
-                  height={45}
-                  className="flex-shrink-0"
-                  alt=""
-                />
-                <div className="flex flex-col flex-1 mx-4 truncate">
-                  <span className="text-lg font-bold">{name}</span>
-                  {/* nested truncate yields responsive clipped ellipsis */}
-                  <span className="text-sm font-light truncate text-ellipsis">
-                    {address}
-                  </span>
+            {substrateAccounts?.map(
+              ({ address, meta: { name: display, source } }) => (
+                <div
+                  key={`${source}|${name}|${address}`}
+                  className="py-4 px-8 flex items-center hover:bg-[#ffffff10] cursor-pointer"
+                  onClick={() => {
+                    login({ address, source, display });
+                  }}
+                >
+                  <Image
+                    src={''}
+                    width={45}
+                    height={45}
+                    className="flex-shrink-0"
+                    alt=""
+                  />
+                  <div className="flex flex-col flex-1 mx-4 truncate">
+                    <span className="text-lg font-bold">{display}</span>
+                    {/* nested truncate yields responsive clipped ellipsis */}
+                    <span className="text-sm font-light truncate text-ellipsis">
+                      {address}
+                    </span>
+                  </div>
+                  <Dots className="flex-shrink-0" />
                 </div>
-                <Dots className="flex-shrink-0" />
-              </div>
-            ))}
+              )
+            )}
           </>
         )
       )}

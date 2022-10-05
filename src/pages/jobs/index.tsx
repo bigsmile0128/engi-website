@@ -47,9 +47,9 @@ export default function JobDiscovery() {
     <div className="max-w-page flex flex-col mt-12">
       <div className="md:flex items-start justify-between gap-x-4">
         <h1 className="text-white font-grifter text-8xl">Jobs</h1>
-        <CurrentJobs className="mt-12 md:mt-0 md:w-1/2 md:max-w-md" />
+        {/* <CurrentJobs className="mt-12 md:mt-0 md:w-1/2 md:max-w-md" /> */}
       </div>
-      <RecommendedJobs className="mt-12" />
+      {/* <RecommendedJobs className="mt-12" /> */}
       <div className="flex mt-12 gap-x-12 flex-col lg:flex-row">
         <SearchFilterList
           className="hidden lg:block"
@@ -60,13 +60,13 @@ export default function JobDiscovery() {
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader
             className="shrink-0 mb-8 md:mb-6 mt-4 md:mt-0"
-            numResults={data?.totalCount}
+            numResults={data?.result?.totalCount}
             isLoading={isLoading}
           />
           <SearchResults
             isLoading={isLoading}
-            results={data?.items ?? []}
-            numPages={Math.ceil((data?.totalCount ?? 0) / PAGE_SIZE)}
+            results={data?.result?.items ?? []}
+            numPages={Math.ceil((data?.result?.totalCount ?? 0) / PAGE_SIZE)}
             isError={isError}
             refresh={refetch}
           />
@@ -94,55 +94,63 @@ async function fetchJobs(query: JobsQueryArguments) {
     query: gql`
       query JobSearch($query: JobsQueryArguments!) {
         jobs(query: $query) {
-          totalCount
-          items {
-            id
-            creator
-            funding
-            repository {
-              url
-              branch
-              commit
-            }
-            language
-            name
-            tests {
-              ...test
-            }
-            requirements {
-              isEditable
-              isAddable
-              isDeletable
-            }
-            solution {
-              solutionId
-              jobId
-              author
-              patchUrl
-              attempt {
-                attemptId
-                attempter
-                tests {
-                  ...test
+          result {
+            totalCount
+            items {
+              id
+              creator
+              funding
+              repository {
+                url
+                branch
+                commit
+              }
+              language
+              name
+              tests {
+                ...test
+              }
+              requirements {
+                isEditable
+                isAddable
+                isDeletable
+              }
+              solution {
+                solutionId
+                jobId
+                author
+                patchUrl
+                attempt {
+                  attemptId
+                  attempter
+                  tests {
+                    ...testAttempt
+                  }
                 }
               }
+              attemptCount
+              createdOn {
+                ...blockReference
+              }
+              updatedOn {
+                ...blockReference
+              }
+              status
             }
-            attemptCount
-            createdOn {
-              ...blockReference
-            }
-            updatedOn {
-              ...blockReference
-            }
-            status
           }
         }
       }
 
       fragment test on Test {
         id
-        result
+        analysisResult
         required
+      }
+
+      fragment testAttempt on TestAttempt {
+        id
+        result
+        failedResultMessage
       }
 
       fragment blockReference on BlockReference {

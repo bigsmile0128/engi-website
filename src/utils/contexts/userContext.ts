@@ -3,6 +3,7 @@ import { createContext } from 'react';
 export type User = {
   accessToken: string;
   walletId: string;
+  display: string;
 } | null;
 
 const UserContext = createContext({

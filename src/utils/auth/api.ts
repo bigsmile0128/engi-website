@@ -55,62 +55,66 @@ type LoginUser = {
   // - this is retrieved from `account.meta.source` of a connected extension account
   // - see useConnectPolkadotExtension
   source: string;
+  display: string;
 };
 
 export const useLoginUser = () =>
-  useMutation<{ accessToken: string; address: string }, AxiosError, any>(
-    async ({ address, source }: LoginUser) => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { web3FromSource } = require('@polkadot/extension-dapp');
+  useMutation<
+    { accessToken: string; address: string; display: string },
+    AxiosError,
+    any
+  >(async ({ address, source, display }: LoginUser) => {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { web3FromSource } = require('@polkadot/extension-dapp');
 
-      const injector = await web3FromSource(source);
+    const injector = await web3FromSource(source);
 
-      const signRaw = injector?.signer?.signRaw;
+    const signRaw = injector?.signer?.signRaw;
 
-      if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
+    if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
 
-      const time = new Date();
+    const time = new Date();
 
-      // this opens the user's browser extension
-      // - the request to sign the message can be rejected
-      const { signature } = await signRaw({
-        address,
-        data: stringToHex(`${address}|${time.getTime()}`),
-        type: 'bytes',
-      });
+    // this opens the user's browser extension
+    // - the request to sign the message can be rejected
+    const { signature } = await signRaw({
+      address,
+      data: stringToHex(`${address}|${time.getTime()}`),
+      type: 'bytes',
+    });
 
-      const response = await axios.post('/api/graphql', {
-        query: gql`
-          mutation LoginUser($loginArgs: LoginArguments!) {
-            auth {
-              login(args: $loginArgs) {
-                accessToken
-              }
+    const response = await axios.post('/api/graphql', {
+      query: gql`
+        mutation LoginUser($loginArgs: LoginArguments!) {
+          auth {
+            login(args: $loginArgs) {
+              accessToken
             }
           }
-        `,
-        operationName: 'LoginUser',
-        variables: {
-          loginArgs: {
-            address,
-            signature: {
-              signedOn: time.toISOString(),
-              value: signature,
-            },
+        }
+      `,
+      operationName: 'LoginUser',
+      variables: {
+        loginArgs: {
+          address,
+          signature: {
+            signedOn: time.toISOString(),
+            value: signature,
           },
         },
-      });
+      },
+    });
 
-      if (response?.data?.errors?.length) {
-        throw new Error(response?.data?.errors?.[0]?.message);
-      }
-
-      return {
-        address,
-        accessToken: response?.data?.data?.auth?.login?.accessToken,
-      };
+    if (response?.data?.errors?.length) {
+      throw new Error(response?.data?.errors?.[0]?.message);
     }
-  );
+
+    return {
+      address,
+      accessToken: response?.data?.data?.auth?.login?.accessToken,
+      display,
+    };
+  });
 
 type ConfirmEmail = {
   address: string;
