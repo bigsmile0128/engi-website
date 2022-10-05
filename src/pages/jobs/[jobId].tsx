@@ -60,56 +60,64 @@ export default function JobDetails() {
 async function fetchJobDetails(jobId) {
   const response = await axios.post('/api/graphql', {
     query: gql`
-      query JobDetails($id: String!) {
-        jobs(query: { search: $id }) {
-          items {
-            id
-            creator
-            funding
-            repository {
-              url
-              branch
-              commit
-            }
-            language
-            name
-            tests {
-              ...test
-            }
-            requirements {
-              isEditable
-              isAddable
-              isDeletable
-            }
-            solution {
-              solutionId
-              jobId
-              author
-              patchUrl
-              attempt {
-                attemptId
-                attempter
-                tests {
-                  ...test
+      query JobDetails {
+        jobs(query: { search: "id:5918463588561635990" }) {
+          result {
+            items {
+              id
+              creator
+              funding
+              repository {
+                url
+                branch
+                commit
+              }
+              language
+              name
+              tests {
+                ...test
+              }
+              requirements {
+                isEditable
+                isAddable
+                isDeletable
+              }
+              solution {
+                solutionId
+                jobId
+                author
+                patchUrl
+                attempt {
+                  attemptId
+                  attempter
+                  tests {
+                    ...testAttempt
+                  }
                 }
               }
+              attemptCount
+              createdOn {
+                ...blockReference
+              }
+              updatedOn {
+                ...blockReference
+              }
+              status
             }
-            attemptCount
-            createdOn {
-              ...blockReference
-            }
-            updatedOn {
-              ...blockReference
-            }
-            status
           }
         }
       }
 
       fragment test on Test {
         id
-        result
+        analysisResult
         required
+      }
+
+      fragment testAttempt on TestAttempt {
+        id
+        result
+        failedResultMessage
       }
 
       fragment blockReference on BlockReference {
