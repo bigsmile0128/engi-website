@@ -24,7 +24,7 @@ function TeamMember({
   });
 
   return (
-    <div className={classNames('flex flex-col', className)}>
+    <div className={classNames('flex flex-col min-w-[264px]', className)}>
       {photoLink ? (
         <div>
           <Image
