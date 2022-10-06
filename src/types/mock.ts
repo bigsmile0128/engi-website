@@ -29,4 +29,5 @@ export const mockJob: Job = {
     dateTime: '2022-08-26T16:19:24Z',
   },
   status: JobStatus.OPEN,
+  solutionUserCount: 0,
 };
