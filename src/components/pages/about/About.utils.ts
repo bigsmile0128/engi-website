@@ -43,24 +43,6 @@ export const members: Array<TeamMember> = [
     photoLink: '/img/about/members/garrett.jpg',
   },
   {
-    name: 'Jay H',
-    role: 'Software Engineer',
-    companies: [
-      {
-        name: 'Blavity',
-        iconLink: '/img/about/companies/blavity.png',
-      },
-    ],
-    socialLinks: [
-      {
-        name: 'Twitter',
-        link: 'https://twitter.com/cryptobuilder_7',
-        iconLink: '/img/about/social/twitter.png',
-      },
-    ],
-    photoLink: '/img/about/members/jay.png',
-  },
-  {
     name: 'Mike Maring',
     role: 'VP of Product',
     companies: [
@@ -92,11 +74,6 @@ export const members: Array<TeamMember> = [
     photoLink: '/img/about/members/mike.png',
   },
   {
-    name: 'Chris Y',
-    role: 'Software Engineer',
-    photoLink: '/img/about/members/yung.png',
-  },
-  {
     name: 'Christopher Kelly',
     role: 'Software Engineer',
     companies: [
@@ -111,6 +88,30 @@ export const members: Array<TeamMember> = [
       },
     ],
   },
+  {
+    name: 'Jay H',
+    role: 'Software Engineer',
+    companies: [
+      {
+        name: 'Blavity',
+        iconLink: '/img/about/companies/blavity.png',
+      },
+    ],
+    socialLinks: [
+      {
+        name: 'Twitter',
+        link: 'https://twitter.com/cryptobuilder_7',
+        iconLink: '/img/about/social/twitter.png',
+      },
+    ],
+    photoLink: '/img/about/members/jay.png',
+  },
+  {
+    name: 'Chris Y',
+    role: 'Software Engineer',
+    photoLink: '/img/about/members/yung.png',
+  },
+
   {
     name: 'Georgios Diamantopoulos',
     role: 'Software Engineer',
