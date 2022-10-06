@@ -23,7 +23,7 @@ export default function Signup({ className }: SignupProps) {
           <h1 className="font-bold text-5xl mb-4">Welcome back</h1>
           <p className="mb-8 max-w-sm text-center text-lg">
             {
-              "Get back to building whether you're buying software or writing it yourself"
+              "Whether you're buying software or writing it yourself, use your registered wallet to get back to building"
             }
           </p>
           <SignInWithLocalWallets />
