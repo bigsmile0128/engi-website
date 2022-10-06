@@ -10,7 +10,7 @@ export const NO_GLOBAL_ETHEREUM_ERROR_MESSAGE =
 
 export const Web3Provider = new Web3(Web3.givenProvider);
 
-// - Mainnet:
+// - Mainnet: https://etherscan.io/address/0x59CE40c888a7bF39FE12e277cEeC1EB7f41Ef71a
 // - Goerli: https://goerli.etherscan.io/address/0xF7150Be741157ef36EFF47D5464028b950a0df1C
 export const PURCHASE_CONTRACT_ADDRESS =
-  '0xF7150Be741157ef36EFF47D5464028b950a0df1C';
+  process.env.ENGI_PURCHASE_CONTRACT_ADDRESS;
