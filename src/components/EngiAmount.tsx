@@ -39,6 +39,7 @@ export default function EngiAmount({
       data-place="bottom"
       data-class="font-medium"
       data-effect="solid"
+      data-for="engi-amount"
     >
       <div
         className={classNames(
@@ -65,7 +66,7 @@ export default function EngiAmount({
           {suffix}
         </span>
       </div>
-      <ReactTooltip />
+      <ReactTooltip id="engi-amount" />
     </span>
   );
 }
