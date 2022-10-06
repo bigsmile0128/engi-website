@@ -7,6 +7,7 @@ import { useLoginUser } from '~/utils/auth/api';
 import UserContext from '~/utils/contexts/userContext';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 import { RefreshIcon } from '@heroicons/react/outline';
+import Avvvatars from 'avvvatars-react';
 
 const Dots = (props) => (
   <svg
@@ -206,13 +207,7 @@ export default function SignInWithLocalWallets() {
                     login({ address, source, display });
                   }}
                 >
-                  <Image
-                    src={''}
-                    width={45}
-                    height={45}
-                    className="flex-shrink-0"
-                    alt=""
-                  />
+                  <Avvvatars value={address} style="shape" size={45} />
                   <div className="flex flex-col flex-1 mx-4 truncate">
                     <span className="text-lg font-bold">{display}</span>
                     {/* nested truncate yields responsive clipped ellipsis */}
