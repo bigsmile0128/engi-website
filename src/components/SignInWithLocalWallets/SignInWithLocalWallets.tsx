@@ -2,6 +2,7 @@ import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 import { useLoginUser } from '~/utils/auth/api';
 import UserContext from '~/utils/contexts/userContext';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
@@ -47,17 +48,26 @@ const User = () => (
 const Connecting = () => <span className="h-2 skeleton" />;
 
 const CouldNotConnectToExtension = ({ error, retry }) => (
-  <div
-    className="bg-[#07070690] hover:bg-[#ffffff10] cursor-pointer"
-    onClick={retry}
-  >
-    <div className="py-4 px-8 flex items-center">
-      <div className="flex flex-col">
-        {error?.message}
-        <span className="font-light">Retry Connecting</span>
+  <>
+    <div
+      className="bg-[#07070690] hover:bg-[#ffffff10] cursor-pointer"
+      onClick={retry}
+      data-tip="Retry After Installing Browser Wallet Extension"
+      data-for="retryconnecting"
+      data-class="bg-black bg-opacity-50 font-medium"
+      data-place="bottom"
+      data-effect="solid"
+    >
+      <div className="py-4 px-8 flex items-center">
+        <div className="flex flex-col">
+          {error?.message}
+          <span className="font-light">Click to Retry Connecting</span>
+        </div>
       </div>
     </div>
-  </div>
+
+    <ReactTooltip id="retryconnecting" />
+  </>
 );
 
 export default function SignInWithLocalWallets() {
@@ -69,6 +79,8 @@ export default function SignInWithLocalWallets() {
     data: substrateAccounts,
     // TODO: retrying, need to invalidate cache before
     refetch: retryConnecting,
+    isRefetchError: failedRetryingConnection,
+    isRefetching: retryingConnection,
   } = useConnectPolkadotExtension();
 
   const { push: pushRoute } = useRouter();
@@ -76,7 +88,7 @@ export default function SignInWithLocalWallets() {
   // display connection states
   const connectionStatesDisplay = useRef(null);
   useEffect(() => {
-    if (connectingToExtensions) {
+    if (connectingToExtensions || retryingConnection) {
       connectionStatesDisplay.current = toast('Connecting extensions...', {
         position: 'top-center',
         isLoading: true,
@@ -89,7 +101,7 @@ export default function SignInWithLocalWallets() {
         autoClose: 3000,
         isLoading: false,
       });
-    } else if (failedToConnectForAccounts) {
+    } else if (failedToConnectForAccounts || failedRetryingConnection) {
       toast.update(connectionStatesDisplay.current, {
         render: 'Please retry connecting a Substrate compatible extension.',
         type: toast.TYPE.ERROR,
@@ -102,6 +114,8 @@ export default function SignInWithLocalWallets() {
     substrateAccounts,
     failedToConnectForAccounts,
     connectionStatesDisplay,
+    retryingConnection,
+    failedRetryingConnection,
   ]);
 
   const {
@@ -140,7 +154,7 @@ export default function SignInWithLocalWallets() {
       pushRoute('/jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
-        render: `${loginError?.message} Make sure you've confirmed your email address and please try again.`,
+        render: `Make sure you've registered and confirmed your email address`,
         isLoading: false,
         autoClose: 5000,
         type: toast.TYPE.ERROR,

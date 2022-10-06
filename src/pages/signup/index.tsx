@@ -20,10 +20,9 @@ export default function Signup({ className }: SignupProps) {
           style={{ flexBasis: '55%' }}
           className="flex flex-col items-center lg:p-20"
         >
-          <h1 className="font-bold text-4xl mb-4">Welcome back</h1>
+          <h1 className="font-bold text-5xl mb-4">Welcome back</h1>
           <p className="mb-8 max-w-sm text-center text-lg">
-            {`Don't miss your next job. Sign in to stay updated on your
-                professional world`}
+            {`Get back to building whether you're buying software or writing it yourself`}
           </p>
           <SignInWithLocalWallets />
         </div>

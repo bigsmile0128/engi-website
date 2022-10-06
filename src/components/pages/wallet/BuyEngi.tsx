@@ -52,14 +52,14 @@ export default function BuyEngi({
   const buyEngiStatesDisplay = useRef(null);
   useEffect(() => {
     if (userConfirmingBuyTransaction) {
-      buyEngiStatesDisplay.current = toast('Awaiting confirmation...', {
+      buyEngiStatesDisplay.current = toast('Transaction pending...', {
         position: 'top-center',
         isLoading: true,
       });
     } else if (confirmedBuyTransaction) {
       // update loading or error toasts
       toast.update(buyEngiStatesDisplay.current, {
-        render: 'Transaction Queued!',
+        render: 'Purchase Successful!',
         type: toast.TYPE.SUCCESS,
         autoClose: 3000,
         isLoading: false,

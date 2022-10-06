@@ -105,9 +105,19 @@ export default function RegisterWallet() {
               }
             />
           ) : (
-            <span className="font-bold text-lg text-red-500 py-4">
-              No Accounts Detected
-            </span>
+            <>
+              <span
+                className="font-bold text-lg text-red-500 my-4"
+                data-tip="Installing a Compatible Wallet then Retry"
+                data-class="bg-black bg-opacity-50 font-medium"
+                data-place="top"
+                data-effect="solid"
+                data-for="noaccounts"
+              >
+                No Accounts Detected
+              </span>
+              <ReactTooltip id="noaccounts" />
+            </>
           )}
 
           <RefreshIcon
@@ -115,7 +125,7 @@ export default function RegisterWallet() {
             className={`text-gray-50 text-opacity-70 h-5 w-5 ml-1 cursor-pointer ${
               retryingConnection && 'animate-spin'
             }`}
-            data-tip="Refetch Connected Accounts"
+            data-tip="Retry Connecting to Accounts"
             data-class="bg-black bg-opacity-50 font-medium"
             data-place="top"
             data-effect="solid"
