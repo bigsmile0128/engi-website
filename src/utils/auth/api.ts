@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { encryptMnemonic } from './encrypt';
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
@@ -8,10 +7,11 @@ import { stringToHex } from '@polkadot/util';
 
 // The payload required to register a user with Engi
 type RegisterUser = {
+  address: string;
   display: string;
   email: string;
-  // This is encrypted to `encryptedPkcs8Key` before being sent in the request
-  mnemonic?: string;
+  // The Web3 extension source ('polkadot-js', 'talisman') to generate the register signature
+  source: string;
 };
 
 // User's create their private keys outside of Engi such as in Subwallet, Talisman, or on the Polkadot UI
@@ -20,23 +20,47 @@ type RegisterUser = {
 //   - API returns `DUPE_EMAIL` error code for a user that's already been registered
 export const useRegisterUser = () =>
   useMutation<string, AxiosError, any>(
-    async ({ display, email, mnemonic }: RegisterUser) => {
+    async ({ address, display, email, source }: RegisterUser) => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { web3FromSource } = require('@polkadot/extension-dapp');
+
+      const injector = await web3FromSource(source);
+
+      const signRaw = injector?.signer?.signRaw;
+
+      if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
+
+      const time = new Date();
+
+      // this opens the user's browser extension
+      // - the request to sign the message can be rejected
+      const { signature } = await signRaw({
+        address,
+        data: stringToHex(`${address}|${time.getTime()}`),
+        type: 'bytes',
+      });
+
       const response = await axios.post('/api/graphql', {
         query: gql`
-          mutation RegisterUser($user: CreateUserArguments!) {
+          mutation RegisterUser(
+            $user: CreateUserArguments!
+            $signature: SignatureArguments!
+          ) {
             auth {
-              register(user: $user)
+              register(user: $user, signature: $signature)
             }
           }
         `,
         operationName: 'RegisterUser',
         variables: {
           user: {
+            address,
             display,
             email,
-            encryptedPkcs8Key: mnemonic
-              ? await encryptMnemonic(mnemonic)
-              : null,
+          },
+          signature: {
+            signedOn: time.toISOString(),
+            value: signature,
           },
         },
       });
@@ -45,7 +69,7 @@ export const useRegisterUser = () =>
 
       if (errors?.length) throw new Error(errors[0].message);
 
-      return response?.data?.data?.auth?.register;
+      return response?.data?.data?.auth?.register ?? address;
     }
   );
 

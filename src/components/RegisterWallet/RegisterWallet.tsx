@@ -31,8 +31,8 @@ export default function RegisterWallet() {
   const [walletToImport, setWalletToImport] = useState<{
     address: string;
     display: string;
+    source: string;
   }>(null);
-  const display = useMemo(() => walletToImport?.display, [walletToImport]);
 
   const [email, setEmail] = useState<string>(null);
 
@@ -94,15 +94,16 @@ export default function RegisterWallet() {
               }
               options={
                 substrateAccounts?.map?.(
-                  ({ address: value, meta: { name: label } }) => ({
+                  ({ address, meta: { name: label, source } }) => ({
                     label,
-                    value,
+                    value: `${source}-ENGI-${address}`,
                   })
                 ) ?? []
               }
-              onChange={({ label, value }) =>
-                setWalletToImport({ address: value, display: label })
-              }
+              onChange={({ label, value }) => {
+                const [source, address] = value.split('-ENGI-');
+                setWalletToImport({ address, display: label, source });
+              }}
             />
           ) : (
             <>
@@ -175,11 +176,11 @@ export default function RegisterWallet() {
             'bg-[#00000022] border border-white outline-none focus-visible:ring-2':
               true,
             'disabled cursor-not-allowed text-opacity-50 border-opacity-50':
-              !display || !email,
+              !walletToImport || !email,
             'hover:bg-gray-700 cursor-pointer active:bg-gray-600':
-              display && email,
+              walletToImport && email,
           })}
-          {...(!display || !email
+          {...(!walletToImport || !email
             ? {
                 ['data-tip']: 'Wallet Selection & Email Required',
                 ['data-place']: 'top',
@@ -190,7 +191,9 @@ export default function RegisterWallet() {
             : {
                 onClick: () => {
                   register({
-                    display,
+                    address: walletToImport.address,
+                    display: walletToImport.display,
+                    source: walletToImport.source,
                     email,
                   });
                 },
