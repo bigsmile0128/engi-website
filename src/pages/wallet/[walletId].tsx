@@ -9,6 +9,7 @@ import GridPattern from '~/components/global/GridPattern/GridPattern';
 import Balance from '~/components/pages/wallet/Balance';
 import Transactions from '~/components/pages/wallet/Transactions';
 import Activity from '~/components/pages/wallet/Activity';
+import { useBalance } from '~/utils/balances/userBalance';
 
 type WalletDetailsProps = {
   className?: string;
@@ -52,8 +53,11 @@ export default function WalletDetails({ className }: WalletDetailsProps) {
               </span>
             </Button>
           </div>
-          <Balance className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
-          <Activity className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" />
+          <Balance
+            className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]"
+            walletId={walletId?.toString()}
+          />
+          {/* <Activity className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]" /> */}
         </div>
       </div>
       <div className="max-w-page">
