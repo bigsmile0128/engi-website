@@ -176,13 +176,8 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
         <div className="w-full relative mt-16 md:hidden">
           <div className="embla" ref={emblaRef}>
             <div className="flex gap-8">
-              {members.map((member) => (
-                <TeamMember
-                  key={member.name + member.companies.toString()}
-                  role={member.role}
-                  name={member.name}
-                  companies={member.companies}
-                />
+              {members.map((member, index) => (
+                <TeamMember key={member.name + index} {...member} />
               ))}
             </div>
           </div>
@@ -217,13 +212,8 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
             'gap-4 xl:gap-8'
           )}
         >
-          {members.map((member) => (
-            <TeamMember
-              key={member.name + member.companies.toString()}
-              role={member.role}
-              name={member.name}
-              companies={member.companies}
-            />
+          {members.map((member, index) => (
+            <TeamMember key={member.name + index} {...member} />
           ))}
         </div>
       </div>

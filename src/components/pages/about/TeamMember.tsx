@@ -1,50 +1,103 @@
-import React from 'react';
+import Image from 'next/future/image';
 import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
+import { BiBuildings } from 'react-icons/bi';
 import randomColor from 'randomcolor';
 
-import AppleSvg from 'public/img/about/apple.svg';
-import GoogleSvg from 'public/img/about/google.svg';
-import AmazonSvg from 'public/img/about/amazon.svg';
+import { TeamMember as TeamMemberType } from './About.utils';
 
-type TeamMemberProps = {
+interface Props extends TeamMemberType {
   className?: string;
-  companies: string[];
-  name: string;
-  role: string;
-};
+}
 
-export default function TeamMember({
+function TeamMember({
   className,
   name,
   role,
   companies,
-}: TeamMemberProps) {
+  photoLink,
+  socialLinks,
+}: Props) {
   const backgroundColor = randomColor({
-    seed: name + companies.toString(),
+    seed: name,
     luminosity: 'light',
   });
 
   return (
     <div className={classNames('flex flex-col', className)}>
-      <div
-        className={classNames('h-32 flex items-center justify-center px-12')}
-        style={{
-          backgroundColor,
-        }}
-      >
-        <HiUser size={80} />
-      </div>
+      {photoLink ? (
+        <div>
+          <Image
+            src={photoLink}
+            alt={name + 'photo'}
+            width={200}
+            height={200}
+            className="w-full"
+          />
+        </div>
+      ) : (
+        <div
+          className={classNames(
+            'h-[264px] flex items-center justify-center px-12'
+          )}
+          style={{
+            backgroundColor,
+          }}
+        >
+          <HiUser size={150} />
+        </div>
+      )}
+
       <div className="flex flex-col p-4 bg-black/20 border border-white/30 border-t-0">
-        <p className="text-green-primary">{role}</p>
+        <div className="flex items-center">
+          <p className="text-green-primary flex-grow">{role}</p>
+          {socialLinks?.map(({ name, link, iconLink }) => (
+            <a
+              href={link}
+              target="_blank"
+              rel="noreferrer"
+              key={name}
+              className="ml-2"
+            >
+              <Image
+                src={iconLink}
+                alt={name}
+                width={20}
+                height={20}
+                className="w-5"
+              />
+            </a>
+          ))}
+        </div>
         <p className="font-bold border-b border-white/30 pb-2 mb-2">{name}</p>
-        <p className="whitespace-nowrap">Previously Building @</p>
-        <div className="flex items-center gap-x-4 mt-2">
-          {companies.includes('Apple') && <AppleSvg className="h-5" />}
-          {companies.includes('Google') && <GoogleSvg className="h-5" />}
-          {companies.includes('Amazon') && <AmazonSvg className="h-5" />}
+        <div>
+          <p className="whitespace-nowrap">Previously Building @</p>
+          <div className="flex items-center gap-x-4 mt-2">
+            {companies ? (
+              companies?.map(({ name, iconLink }, index) =>
+                iconLink ? (
+                  <Image
+                    key={name + index}
+                    src={iconLink}
+                    alt={name}
+                    width={20}
+                    height={20}
+                    className="h-5"
+                  />
+                ) : (
+                  <div>
+                    <BiBuildings className="h-5 w-5" />
+                  </div>
+                )
+              )
+            ) : (
+              <BiBuildings className="h-5 w-5" />
+            )}
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default TeamMember;
