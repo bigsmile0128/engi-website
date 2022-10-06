@@ -11,11 +11,7 @@ type BalanceProps = {
 };
 
 export default function Balance({ className, walletId }: BalanceProps) {
-  const {
-    isLoading: isLoadingBalance,
-    data: balance,
-    isFetched: hasLoadedBalanceAtLeastOnce,
-  } = useBalance(walletId);
+  const { isLoading, data: balance } = useBalance(walletId);
   return (
     <div
       className={classNames(
@@ -29,6 +25,7 @@ export default function Balance({ className, walletId }: BalanceProps) {
           value={balance}
           iconClassName="h-6 w-6"
           valueClassName="font-grifter text-4xl -mb-1 ml-1"
+          isLoading={isLoading}
         />
       </div>
       <div className="flex items-center whitespace-nowrap text-secondary mt-4 sm:mt-0 sm:ml-12 sm:mb-4">
