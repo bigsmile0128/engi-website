@@ -6,6 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import { useLoginUser } from '~/utils/auth/api';
 import UserContext from '~/utils/contexts/userContext';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
+import { RefreshIcon } from '@heroicons/react/outline';
 
 const Dots = (props) => (
   <svg
@@ -181,6 +182,17 @@ export default function SignInWithLocalWallets() {
       ) : !substrateAccounts?.length ? (
         <div className="py-4 px-8 flex items-center">
           <span className="mx-4 font-light">No Connected Accounts</span>
+          <RefreshIcon
+            onClick={() => retryConnecting()}
+            className={`text-gray-50 text-opacity-70 h-5 w-5 ml-1 cursor-pointer ${
+              retryingConnection && 'animate-spin'
+            }`}
+            data-tip="Retry Connecting to Accounts"
+            data-class="bg-black bg-opacity-50 font-medium"
+            data-place="right"
+            data-effect="solid"
+          />
+          <ReactTooltip />
         </div>
       ) : (
         substrateAccounts && (
