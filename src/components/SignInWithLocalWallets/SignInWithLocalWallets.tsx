@@ -155,7 +155,7 @@ export default function SignInWithLocalWallets() {
       pushRoute('/jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
-        render: `Make sure you've registered and confirmed your email address`,
+        render: "Make sure you've registered and confirmed your email address",
         isLoading: false,
         autoClose: 5000,
         type: toast.TYPE.ERROR,
