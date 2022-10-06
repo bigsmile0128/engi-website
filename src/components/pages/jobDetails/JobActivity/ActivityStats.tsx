@@ -7,16 +7,20 @@ import {
   RiLineChartFill,
 } from 'react-icons/ri';
 import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
+import { Job } from '~/types';
 
 type ActivityStatsProps = {
   className?: string;
+  data?: Job;
   isLoading?: boolean;
 };
 
 export default function ActivityStats({
   className,
   isLoading,
+  data,
 }: ActivityStatsProps) {
+  const averageProgress = data?.averageProgress;
   return (
     <div className={classNames('', className)}>
       <h2 className="font-grifter text-xl">Activity</h2>
@@ -25,9 +29,7 @@ export default function ActivityStats({
           className="col-span-2"
           icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
           value="Leader Progress"
-          title={
-            <ProgressBar className="w-full" percentage={0.5} label="5/10" />
-          }
+          title={<ProgressBar className="w-full" percentage={0} label="N/A" />}
           isLoading={isLoading}
         />
         <Statistic
@@ -35,21 +37,30 @@ export default function ActivityStats({
           icon={<RiLineChartFill className="text-green-primary h-5 w-5" />}
           value="Average Progress"
           title={
-            <ProgressBar className="w-full" percentage={0.8} label="8/10" />
+            <ProgressBar
+              className="w-full"
+              percentage={
+                averageProgress?.numerator ??
+                0 / (averageProgress?.denominator ?? 1)
+              }
+              label={`${averageProgress?.numerator ?? 0}/${
+                averageProgress?.denominator ?? 0
+              }`}
+            />
           }
           isLoading={isLoading}
         />
         <Statistic
           className="col-span-1"
           icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-          value="200"
+          value={data?.solutionUserCount}
           title="Total Contributors"
           isLoading={isLoading}
         />
         <Statistic
           className="col-span-1"
           icon={<RiCheckboxCircleLine className="text-green-primary h-5 w-5" />}
-          value="200"
+          value={data?.attemptCount}
           title="Total Submissions"
           isLoading={isLoading}
         />

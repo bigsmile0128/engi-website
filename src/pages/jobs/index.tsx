@@ -128,7 +128,6 @@ async function fetchJobs(query: JobsQueryArguments) {
                   }
                 }
               }
-              attemptCount
               createdOn {
                 ...blockReference
               }
@@ -136,6 +135,12 @@ async function fetchJobs(query: JobsQueryArguments) {
                 ...blockReference
               }
               status
+              attemptCount
+              solutionUserCount
+              averageProgress {
+                numerator
+                denominator
+              }
             }
           }
         }

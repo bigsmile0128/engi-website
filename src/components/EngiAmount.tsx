@@ -8,6 +8,7 @@ type EngiAmountProps = {
   className?: string;
   iconClassName?: string;
   isLoading?: boolean;
+  modifier?: number;
   suffix?: string;
   value?: number | string;
   valueClassName?: string;
@@ -20,11 +21,15 @@ export default function EngiAmount({
   value,
   isLoading,
   suffix,
+  modifier = 1,
 }: EngiAmountProps) {
   const displayValue: string = useMemo(
     () =>
-      displayAdaInEngi(typeof value === 'string' ? parseFloat(value) : value),
-    [value]
+      displayAdaInEngi(
+        typeof value === 'string' ? parseFloat(value) : value,
+        modifier
+      ),
+    [value, modifier]
   );
 
   return (

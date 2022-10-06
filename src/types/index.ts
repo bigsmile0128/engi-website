@@ -38,8 +38,14 @@ export enum Language {
   TYPESCRIPT = 'TYPESCRIPT',
 }
 
+export type Fractional = {
+  denominator: number;
+  numerator: number;
+};
+
 export type Job = {
   attemptCount: number;
+  averageProgress?: Fractional;
   createdOn?: {
     dateTime: string;
     number: number;
@@ -60,6 +66,7 @@ export type Job = {
     isEditable: string;
   };
   solution?: Solution;
+  solutionUserCount: number;
   status: JobStatus;
   tests: Test[];
   updatedOn?: {

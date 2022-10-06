@@ -22,23 +22,7 @@ export default function JobDescription({
   isLoading,
   data,
 }: JobDescriptionProps) {
-  const {
-    isLoading: isLoadingDescription,
-    isError,
-    data: description,
-  } = useQuery(['jobDescription', data?.id], () => {
-    // TODO: remove regex after schema is updated with ENGIN-520
-    const url = data.repository?.url;
-    // const url = 'https://github.com/ravendb/ravendb';
-    const urlMatch = url.match(/github\.com\/(.*?)\/(.*)$/);
-    if (!urlMatch) {
-      return null;
-    }
-    const owner = urlMatch[1];
-    const name = urlMatch[2];
-    return fetchReadme({ owner, name });
-  });
-
+  const description = null;
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <p className={classNames('', isLoading ? 'skeleton' : 'text-secondary')}>
@@ -61,12 +45,10 @@ export default function JobDescription({
         <LanguageTag value={data?.language} isLoading={isLoading} />
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
-      {isLoading || isLoadingDescription ? (
+      {isLoading ? (
         <TextSkeleton className="mt-4 gap-y-2" />
-      ) : isError || !description ? (
-        <div className="mt-4 text-xl text-secondary">
-          Unable to load job description.
-        </div>
+      ) : !description ? (
+        <div className="mt-4 text-xl text-secondary">Job Description N/A</div>
       ) : (
         <>
           <Markdown className="overflow-hidden break-words">
@@ -90,9 +72,4 @@ export default function JobDescription({
       </div>
     </div>
   );
-}
-
-async function fetchReadme({ owner, name }) {
-  const response = await axios.get(`/api/repos/${owner}/${name}/readme`);
-  return response.data;
 }

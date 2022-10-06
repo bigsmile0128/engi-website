@@ -24,7 +24,7 @@ export default function JobCreator({ className, isLoading }: JobCreatorProps) {
         <div>
           <Image src={avatarImg} alt="avatar" className="h-[48px] w-[48px]" />
         </div>
-        <span className="font-grifter text-xl -mb-1">Author946</span>
+        <span className="font-grifter text-xl -mb-1">Author N/A</span>
       </div>
       <div className="my-8 w-full border-t border-gray-400 opacity-50" />
       <div
@@ -40,10 +40,12 @@ export default function JobCreator({ className, isLoading }: JobCreatorProps) {
             alt="organization"
           />
         </div>
-        <span className="col-start-2 font-grifter text-xl">Polkadot</span>
+        {/* TODO: replace with repo owner */}
+        <span className="col-start-2 font-grifter text-xl">Repo Owner N/A</span>
         <div className="col-start-2 row-start-2 flex items-center gap-x-2">
           <RiGithubFill />
-          <span className="text-secondary">@polkadot/website</span>
+          {/* TODO: replace with owner/repo (e.g. @polkadot/website) */}
+          <span className="text-secondary">repository N/A</span>
         </div>
       </div>
       <div className={classNames('flex flex-col mt-8 items-start')}>
@@ -70,9 +72,9 @@ export default function JobCreator({ className, isLoading }: JobCreatorProps) {
             isLoading ? 'children:skeleton' : ''
           )}
         >
-          <li className="text-secondary">100 jobs posted</li>
-          <li className="text-secondary">100 jobs solved</li>
-          <li className="text-secondary">Member since Jul 19, 2022</li>
+          <li className="text-secondary">N/A jobs posted</li>
+          <li className="text-secondary">N/A jobs solved</li>
+          <li className="text-secondary">Member since N/A</li>
         </ul>
       </div>
     </div>

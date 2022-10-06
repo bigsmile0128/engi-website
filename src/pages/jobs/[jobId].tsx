@@ -51,6 +51,7 @@ export default function JobDetails() {
       </div>
       <JobActivity
         className="lg:basis-[400px] xl:basis-[430px]"
+        data={data}
         isLoading={isLoading}
       />
     </div>
@@ -61,49 +62,50 @@ async function fetchJobDetails(jobId) {
   const response = await axios.post('/api/graphql', {
     query: gql`
       query JobDetails {
-        jobs(query: { search: "id:5918463588561635990" }) {
-          result {
-            items {
-              id
-              creator
-              funding
-              repository {
-                url
-                branch
-                commit
-              }
-              language
-              name
+        job(id: ${jobId}) {
+          id
+          creator
+          funding
+          repository {
+            url
+            branch
+            commit
+          }
+          language
+          name
+          tests {
+            ...test
+          }
+          requirements {
+            isEditable
+            isAddable
+            isDeletable
+          }
+          solution {
+            solutionId
+            jobId
+            author
+            patchUrl
+            attempt {
+              attemptId
+              attempter
               tests {
-                ...test
+                ...testAttempt
               }
-              requirements {
-                isEditable
-                isAddable
-                isDeletable
-              }
-              solution {
-                solutionId
-                jobId
-                author
-                patchUrl
-                attempt {
-                  attemptId
-                  attempter
-                  tests {
-                    ...testAttempt
-                  }
-                }
-              }
-              attemptCount
-              createdOn {
-                ...blockReference
-              }
-              updatedOn {
-                ...blockReference
-              }
-              status
             }
+          }
+          createdOn {
+            ...blockReference
+          }
+          updatedOn {
+            ...blockReference
+          }
+          status
+          attemptCount
+          solutionUserCount
+          averageProgress {
+            numerator
+            denominator
           }
         }
       }
@@ -125,10 +127,7 @@ async function fetchJobDetails(jobId) {
         dateTime
       }
     `,
-    variables: {
-      id: jobId,
-    },
   });
 
-  return response.data?.data?.jobs?.items?.[0] ?? null;
+  return response.data?.data?.job ?? null;
 }

@@ -10,6 +10,7 @@ import {
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import Statistic from '~/components/Statistic';
 import { Job } from '~/types';
+import EngiAmount from '~/components/EngiAmount';
 
 type PayoutProps = {
   className?: string;
@@ -24,61 +25,32 @@ export default function Payout({ className, isLoading, data }: PayoutProps) {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
         <Statistic
           icon={<AiFillCreditCard className="text-orange-primary h-5 w-5" />}
-          value={
-            <div className="flex items-center">
-              <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              <span className="ml-1">{data?.funding.toString()}</span>
-            </div>
-          }
-          title={<span>Funding</span>}
+          value={<EngiAmount value={data?.funding} />}
+          title={<span>Total Funding</span>}
           isLoading={isLoading}
         />
         <Statistic
           icon={<RiWallet3Fill className="text-orange-primary h-5 w-5" />}
           value={
-            <div className="flex items-center">
-              <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              {/* TODO: replace with real data when available */}
-              <span className="ml-1 !text-secondary !font-normal">N/A</span>
-            </div>
+            <EngiAmount
+              value={data?.funding}
+              // complete payout (80% of funding)
+              modifier={0.8}
+            />
           }
-          title={<span>Bonus</span>}
+          title={<span>Complete Payout</span>}
           isLoading={isLoading}
         />
         <Statistic
           icon={<RiCoinsFill className="text-orange-primary h-5 w-5" />}
           value={
-            <div className="flex items-center">
-              <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              {/* TODO: replace with real data when available */}
-              <span className="ml-1 !text-secondary !font-normal">N/A</span>
-            </div>
+            <EngiAmount
+              value={data?.funding}
+              // per test payout (20% of payout / # of tests)
+              modifier={0.2 / (data?.tests?.length || 1)}
+            />
           }
-          title={<span>Per Assertion</span>}
-          isLoading={isLoading}
-        />
-        <Statistic
-          icon={<RiAwardFill className="text-orange-primary h-5 w-5" />}
-          value={
-            <div className="flex items-center">
-              <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              {/* TODO: replace with real data when available */}
-              <span className="ml-1 !text-secondary !font-normal">N/A</span>
-            </div>
-          }
-          title={<span>Honors Bracket</span>}
-          isLoading={isLoading}
-        />
-        <Statistic
-          icon={<RiTrophyFill className="text-orange-primary h-5 w-5" />}
-          value={
-            <div className="flex items-center">
-              <EngiIcon className="text-green-primary h-3 w-3 -mb-1" />
-              {/* TODO: replace with real data when available */}
-              <span className="ml-1 !text-secondary !font-normal">N/A</span>
-            </div>
-          }
-          title={<span>Winning Payout</span>}
+          title={<span>Per Test Payout</span>}
           isLoading={isLoading}
         />
       </div>
