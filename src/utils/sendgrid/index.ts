@@ -3,8 +3,8 @@ import client from '@sendgrid/client';
 import { ClientRequest } from '@sendgrid/client/src/request';
 import { HttpMethod } from '@sendgrid/helpers/classes/request';
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
-client.setApiKey(process.env.SENDGRID_API_KEY || '');
+sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY || '');
+client.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY || '');
 
 export async function sendMail(msg: MailDataRequired): Promise<ClientResponse> {
   const [response] = await sgMail.send(msg);

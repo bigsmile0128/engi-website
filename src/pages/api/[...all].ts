@@ -11,7 +11,7 @@ export const config = {
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const proxyOptions = [
     {
-      target: process.env.API_URL,
+      target: process.env.NEXT_PUBLIC_API_URL,
       pathRewrite: [
         {
           patternStr: '^/api',
