@@ -11,7 +11,7 @@ export const config = {
 export default (req: NextApiRequest, res: NextApiResponse) => {
   const proxyOptions = [
     {
-      target: 'https://api.engi.prod.zmvp.host',
+      target: process.env.API_URL,
       pathRewrite: [
         {
           patternStr: '^/api',
@@ -26,18 +26,6 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
         {
           patternStr: '^/api/litepaper',
           replaceStr: '',
-        },
-      ],
-    },
-    {
-      target: process.env.API_URL,
-      pathRewrite: [
-        {
-          patternStr:
-            process.env.NODE_ENV === 'development'
-              ? '^/api'
-              : '^/api/(?!jobs|repos)',
-          replaceStr: '/',
         },
       ],
     },
