@@ -32,6 +32,8 @@ export const useBuyEngiWithEth = () =>
     }) => {
       if (!window.ethereum) throw new Error(NO_GLOBAL_ETHEREUM_ERROR_MESSAGE);
 
+      console.debug(from, PURCHASE_CONTRACT_ADDRESS, account, amount);
+
       return await Web3Provider.eth.sendTransaction({
         from,
         to: PURCHASE_CONTRACT_ADDRESS,
