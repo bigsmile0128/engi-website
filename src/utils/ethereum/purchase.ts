@@ -6,6 +6,7 @@ import {
   NO_GLOBAL_ETHEREUM_ERROR_MESSAGE,
 } from './constants';
 import { substrateToHex } from './substrate';
+import Web3 from 'web3';
 
 const EngiPurchaseContract = new Web3Provider.eth.Contract(
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -32,7 +33,18 @@ export const useBuyEngiWithEth = () =>
     }) => {
       if (!window.ethereum) throw new Error(NO_GLOBAL_ETHEREUM_ERROR_MESSAGE);
 
-      console.debug(from, PURCHASE_CONTRACT_ADDRESS, account, amount);
+      const LOCALLY_CHECKSUMED = Web3.utils.toChecksumAddress(
+        process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS
+      );
+
+      console.debug(
+        from,
+        PURCHASE_CONTRACT_ADDRESS,
+        account,
+        amount,
+        process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS,
+        LOCALLY_CHECKSUMED
+      );
 
       return await Web3Provider.eth.sendTransaction({
         from,
