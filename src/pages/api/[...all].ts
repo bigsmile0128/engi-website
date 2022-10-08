@@ -15,7 +15,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
       pathRewrite: [
         {
           patternStr: '^/api',
-          replaceStr: '/api',
+          replaceStr: '/',
         },
       ],
     },
