@@ -21,6 +21,8 @@ const languages = [
 
 const MIN_HOURS = 0;
 const MAX_HOURS = 20;
+const MIN_FUNDING = 0;
+const MAX_FUNDING = 100;
 
 export default function SearchFilterList({
   className,
@@ -31,11 +33,17 @@ export default function SearchFilterList({
   const selectedLanguages = searchParams.getAll('language');
   let minHours = parseInt(searchParams.get('minHours')) || MIN_HOURS;
   let maxHours = parseInt(searchParams.get('maxHours')) || MAX_HOURS;
+  let minFunding = parseInt(searchParams.get('minFunding')) || MIN_FUNDING;
+  let maxFunding = parseInt(searchParams.get('maxFunding')) || MAX_FUNDING;
 
   // handle incorrect range in query params
   if (minHours >= maxHours) {
     minHours = MIN_HOURS;
     maxHours = MAX_HOURS;
+  }
+  if (minFunding >= maxFunding) {
+    minFunding = MIN_FUNDING;
+    maxFunding = MAX_FUNDING;
   }
 
   return (
@@ -79,6 +87,23 @@ export default function SearchFilterList({
               ...Object.fromEntries(searchParams),
               minHours,
               maxHours,
+            });
+          }}
+        />
+      </div>
+      <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
+      <div className={classNames(filterClassName)}>
+        <legend className="text-sm mb-2">Estimated Funding</legend>
+        <Slider
+          min={MIN_FUNDING}
+          max={MAX_FUNDING}
+          minDistance={1}
+          value={[minFunding, maxFunding]}
+          onAfterChange={([minFunding, maxFunding]) => {
+            onChange({
+              ...Object.fromEntries(searchParams),
+              minFunding,
+              maxFunding,
             });
           }}
         />

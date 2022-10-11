@@ -1,0 +1,1070 @@
+{
+  "data": {
+    "jobs": {
+      "result": {
+        "totalCount": 94,
+        "items": [
+          {
+            "id": "5918463588561635990",
+            "creator": "5GMyG7j1GFzRBU15FC9KUc8q64hbtbCQ5Kdjee2aDip9DWTG",
+            "funding": "0000000000000000000000000000000000000001",
+            "repository": {
+              "url": "a",
+              "branch": "j",
+              "commit": "j"
+            },
+            "language": "C_SHARP",
+            "name": "a",
+            "tests": [],
+            "requirements": {
+              "isEditable": "a",
+              "isAddable": "a",
+              "isDeletable": "a"
+            },
+            "createdOn": {
+              "number": 50675,
+              "dateTime": "2022-08-26T16:19:24Z"
+            },
+            "updatedOn": {
+              "number": 50675,
+              "dateTime": "2022-08-26T16:19:24Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "13532420363198359203",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first job",
+            "tests": [
+              {
+                "id": "1",
+                "analysisResult": "PASSED",
+                "required": false
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 231884,
+              "dateTime": "2022-09-09T14:38:30Z"
+            },
+            "updatedOn": {
+              "number": 231884,
+              "dateTime": "2022-09-09T14:38:30Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "9056778031418570139",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 270732,
+              "dateTime": "2022-09-12T15:33:06Z"
+            },
+            "updatedOn": {
+              "number": 270732,
+              "dateTime": "2022-09-12T15:33:06Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "18424255808674751104",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 270816,
+              "dateTime": "2022-09-12T15:45:42Z"
+            },
+            "updatedOn": {
+              "number": 270816,
+              "dateTime": "2022-09-12T15:45:42Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "17887960084987791085",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": false
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 271552,
+              "dateTime": "2022-09-12T17:53:30Z"
+            },
+            "updatedOn": {
+              "number": 271552,
+              "dateTime": "2022-09-12T17:53:30Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "6142798778163521342",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 284867,
+              "dateTime": "2022-09-13T16:05:00Z"
+            },
+            "updatedOn": {
+              "number": 284867,
+              "dateTime": "2022-09-13T16:05:00Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "3611570822598586180",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 285429,
+              "dateTime": "2022-09-13T17:01:12Z"
+            },
+            "updatedOn": {
+              "number": 285429,
+              "dateTime": "2022-09-13T17:01:12Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "17517475325479274986",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 285436,
+              "dateTime": "2022-09-13T17:01:54Z"
+            },
+            "updatedOn": {
+              "number": 285436,
+              "dateTime": "2022-09-13T17:01:54Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "489207203167171048",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 285522,
+              "dateTime": "2022-09-13T17:10:30.001Z"
+            },
+            "updatedOn": {
+              "number": 285522,
+              "dateTime": "2022-09-13T17:10:30.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "14059089110475151287",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 286928,
+              "dateTime": "2022-09-13T19:31:06Z"
+            },
+            "updatedOn": {
+              "number": 286928,
+              "dateTime": "2022-09-13T19:31:06Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "846092906654923436",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 286952,
+              "dateTime": "2022-09-13T19:33:30Z"
+            },
+            "updatedOn": {
+              "number": 286952,
+              "dateTime": "2022-09-13T19:33:30Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "2591750856057761083",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 286956,
+              "dateTime": "2022-09-13T19:33:54.003Z"
+            },
+            "updatedOn": {
+              "number": 286956,
+              "dateTime": "2022-09-13T19:33:54.003Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "3628626128329296719",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 286975,
+              "dateTime": "2022-09-13T19:35:48Z"
+            },
+            "updatedOn": {
+              "number": 286975,
+              "dateTime": "2022-09-13T19:35:48Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "13740322430499704679",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": false
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 287187,
+              "dateTime": "2022-09-13T19:57:00.002Z"
+            },
+            "updatedOn": {
+              "number": 287187,
+              "dateTime": "2022-09-13T19:57:00.002Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "10001004011764560558",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 301723,
+              "dateTime": "2022-09-14T20:10:36Z"
+            },
+            "updatedOn": {
+              "number": 301723,
+              "dateTime": "2022-09-14T20:10:36Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "11333360327691914047",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 302003,
+              "dateTime": "2022-09-14T20:38:36Z"
+            },
+            "updatedOn": {
+              "number": 302003,
+              "dateTime": "2022-09-14T20:38:36Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "18220420960144945441",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313389,
+              "dateTime": "2022-09-15T15:37:12.001Z"
+            },
+            "updatedOn": {
+              "number": 313389,
+              "dateTime": "2022-09-15T15:37:12.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "8725430849524674849",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313402,
+              "dateTime": "2022-09-15T15:38:30.001Z"
+            },
+            "updatedOn": {
+              "number": 313402,
+              "dateTime": "2022-09-15T15:38:30.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "3596236688991107819",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313410,
+              "dateTime": "2022-09-15T15:39:18Z"
+            },
+            "updatedOn": {
+              "number": 313410,
+              "dateTime": "2022-09-15T15:39:18Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "15433625624750962815",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313423,
+              "dateTime": "2022-09-15T15:40:36.001Z"
+            },
+            "updatedOn": {
+              "number": 313423,
+              "dateTime": "2022-09-15T15:40:36.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "4352510261732677219",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313473,
+              "dateTime": "2022-09-15T15:45:36Z"
+            },
+            "updatedOn": {
+              "number": 313473,
+              "dateTime": "2022-09-15T15:45:36Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "11999922430216875054",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313544,
+              "dateTime": "2022-09-15T15:52:42.001Z"
+            },
+            "updatedOn": {
+              "number": 313544,
+              "dateTime": "2022-09-15T15:52:42.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "14124031653783997627",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 313560,
+              "dateTime": "2022-09-15T15:54:18.001Z"
+            },
+            "updatedOn": {
+              "number": 313560,
+              "dateTime": "2022-09-15T15:54:18.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "4290354641816261369",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 314264,
+              "dateTime": "2022-09-15T17:04:42Z"
+            },
+            "updatedOn": {
+              "number": 314264,
+              "dateTime": "2022-09-15T17:04:42Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          },
+          {
+            "id": "6983328908750997399",
+            "creator": "5GFBso2tuX53bC1sQSVwjMFDcbKXmiSu5v5sXGLgzS91uCUn",
+            "funding": "0000000000000000000000000000000000000500",
+            "repository": {
+              "url": "https://github.com/engi-network/demo-csharp.git",
+              "branch": "master",
+              "commit": "2bca053a89dda2540669aecf23560161f625a8a1"
+            },
+            "language": "C_SHARP",
+            "name": "My first C# job",
+            "tests": [
+              {
+                "id": "6327b858-0fd0-99bb-d810-75db0e0aa61e",
+                "analysisResult": "PASSED",
+                "required": false
+              },
+              {
+                "id": "7db5907a-e8c2-fd08-f6cd-19fe4bb587d4",
+                "analysisResult": "PASSED",
+                "required": true
+              }
+            ],
+            "requirements": {
+              "isEditable": "*.cs",
+              "isAddable": "*.cs",
+              "isDeletable": "*.cs"
+            },
+            "createdOn": {
+              "number": 314285,
+              "dateTime": "2022-09-15T17:06:48.001Z"
+            },
+            "updatedOn": {
+              "number": 314285,
+              "dateTime": "2022-09-15T17:06:48.001Z"
+            },
+            "status": "OPEN",
+            "attemptCount": 0,
+            "solutionUserCount": 0,
+            "solution": null,
+            "averageProgress": null,
+            "leadingSolution": null
+          }
+        ]
+      }
+    }
+  }
+}
