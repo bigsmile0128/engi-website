@@ -1,91 +1,108 @@
+import React, { useState } from 'react';
 import classNames from 'classnames';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
+import Steps from '~/components/global/Steps/Steps';
+import RepositoryTab from '~/components/pages/jobCreation/RepositoryTab';
+import TestsTab from '~/components/pages/jobCreation/TestsTab';
+import DetailsTab from '~/components/pages/jobCreation/DetailsTab';
+import FundingTab from '~/components/pages/jobCreation/FundingTab';
+import PreviewTab from '~/components/pages/jobCreation/PreviewTab';
 
 type HireProps = {
   className?: string;
 };
 
-const steps = [
-  { name: 'Step 1', href: '#', status: 'complete' },
-  { name: 'Step 2', href: '#', status: 'complete' },
-  { name: 'Step 3', href: '#', status: 'current' },
-  { name: 'Step 4', href: '#', status: 'upcoming' },
-  { name: 'Step 5', href: '#', status: 'upcoming' },
-];
+export enum JobStep {
+  REPOSITORY,
+  TESTS,
+  DETAILS,
+  FUNDING,
+  PREVIEW,
+}
 
 export default function Hire({ className }: HireProps) {
+  const [currentStep, setCurrentStep] = useState(JobStep.REPOSITORY);
+  const [repoUrl, setRepoUrl] = useState('');
+  const [jobName, setJobName] = useState('');
+  const [funding, setFunding] = useState('');
+
   return (
-    <div
-      className={classNames('max-w-page mt-24 flex justify-center', className)}
-    >
-      <div className="bg-[#00000022] p-8">
-        <ol role="list" className="flex items-center">
-          {steps.map((step, stepIdx) => (
-            <li
-              key={step.name}
-              className={classNames(
-                stepIdx !== steps.length - 1 ? 'pr-8 sm:pr-20' : '',
-                'relative'
-              )}
-            >
-              {step.status === 'complete' ? (
-                <>
-                  <div
-                    className="absolute inset-0 flex items-center"
-                    aria-hidden="true"
-                  >
-                    <div className="h-0.5 w-full bg-green-primary" />
-                  </div>
-                  <a
-                    href="#"
-                    className="relative w-8 h-8 flex items-center justify-center bg-green-primary rounded-full hover:bg-indigo-900"
-                  >
-                    <span className="text-black">{stepIdx}</span>
-                    <span className="sr-only">{step.name}</span>
-                  </a>
-                </>
-              ) : step.status === 'current' ? (
-                <>
-                  <div
-                    className="absolute inset-0 flex items-center"
-                    aria-hidden="true"
-                  >
-                    <div className="h-0.5 w-full bg-gray-200" />
-                  </div>
-                  <a
-                    href="#"
-                    className="relative w-8 h-8 flex items-center justify-center bg-white rounded-full"
-                    aria-current="step"
-                  >
-                    <span
-                      className="h-2.5 w-2.5 bg-green-primary rounded-full"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">{step.name}</span>
-                  </a>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="absolute inset-0 flex items-center"
-                    aria-hidden="true"
-                  >
-                    <div className="h-0.5 w-full bg-gray-200" />
-                  </div>
-                  <a
-                    href="#"
-                    className="group relative w-8 h-8 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full hover:border-gray-400"
-                  >
-                    <span
-                      className="h-2.5 w-2.5 bg-transparent rounded-full group-hover:bg-gray-300"
-                      aria-hidden="true"
-                    />
-                    <span className="sr-only">{step.name}</span>
-                  </a>
-                </>
-              )}
-            </li>
-          ))}
-        </ol>
+    <div className={classNames('mt-24 mb-24', className)}>
+      <div
+        className={classNames(
+          'max-w-page relative py-12',
+          'border border-white/10'
+        )}
+      >
+        <GridPattern className="top-0 left-0" id="new-job-header" offset={-1} />
+        <div className="flex flex-col items-center justify-center relative z-10">
+          <h1 className="font-grifter text-5xl text-center lg:text-7xl">
+            New Engi Job
+          </h1>
+          <Steps
+            className="mt-8"
+            current={currentStep}
+            onChange={setCurrentStep}
+            steps={[
+              { title: 'Repository' },
+              { title: 'Tests' },
+              { title: 'Details' },
+              { title: 'Funding' },
+              { title: 'Preview' },
+            ]}
+          />
+        </div>
+      </div>
+      <div className="max-w-page md:!max-w-xl mt-12">
+        {currentStep === JobStep.REPOSITORY && (
+          <RepositoryTab
+            defaultValue={repoUrl}
+            onChange={(repoUrl) => {
+              setCurrentStep(JobStep.TESTS);
+              setRepoUrl(repoUrl);
+            }}
+          />
+        )}
+        {currentStep === JobStep.TESTS && (
+          <TestsTab
+            onChange={(selectedTests) => {
+              // TODO: set selected tests when real data is available
+              console.log('selected tests', selectedTests);
+              setCurrentStep(JobStep.DETAILS);
+            }}
+            goBack={() => setCurrentStep(JobStep.REPOSITORY)}
+          />
+        )}
+        {currentStep === JobStep.DETAILS && (
+          <DetailsTab
+            defaultValue={jobName}
+            onChange={({ jobName }) => {
+              setJobName(jobName);
+              setCurrentStep(JobStep.FUNDING);
+            }}
+            goBack={() => setCurrentStep(JobStep.TESTS)}
+          />
+        )}
+        {currentStep === JobStep.FUNDING && (
+          <FundingTab
+            defaultValue={funding}
+            onChange={({ funding }) => {
+              setFunding(funding);
+              setCurrentStep(JobStep.PREVIEW);
+            }}
+            goBack={() => setCurrentStep(JobStep.DETAILS)}
+          />
+        )}
+        {currentStep === JobStep.PREVIEW && (
+          <PreviewTab
+            onChange={() => {
+              // TODO: connect to job creation API
+            }}
+            setCurrentStep={setCurrentStep}
+            jobName={jobName}
+            funding={funding}
+          />
+        )}
       </div>
     </div>
   );

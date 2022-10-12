@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
-import { JobStep } from '~/pages/jobs/new';
+import { JobStep } from '~/pages/hire';
 import { MdModeEdit } from 'react-icons/md';
 
 type PreviewTabProps = {
