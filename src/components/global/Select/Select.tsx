@@ -30,7 +30,7 @@ function Selection({ items, onSelect, multi = false, className }: Props) {
     setSelectedItems(temp);
   };
 
-  const rootClasses = cn(className, 'flex flex-wrap justify-center gap-5');
+  const rootClasses = cn(className, 'flex flex-wrap justify-left gap-5');
 
   return (
     <div className={rootClasses}>
