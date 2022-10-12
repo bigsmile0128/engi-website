@@ -7,7 +7,7 @@ const ReactSlider = dynamic(import('react-slider'), { ssr: false });
 export default function Slider(props) {
   return (
     <ReactSlider
-      className="mt-8 bg-red-300"
+      className="mt-8 h-4"
       trackClassName=""
       markClassName=""
       marks
