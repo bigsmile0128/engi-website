@@ -33,17 +33,13 @@ export const useBuyEngiWithEth = () =>
     }) => {
       if (!window.ethereum) throw new Error(NO_GLOBAL_ETHEREUM_ERROR_MESSAGE);
 
-      const LOCALLY_CHECKSUMED = Web3.utils.toChecksumAddress(
-        process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS
-      );
-
+      // TODO: remove logging
       console.debug(
         from,
         PURCHASE_CONTRACT_ADDRESS,
         account,
         amount,
-        process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS,
-        LOCALLY_CHECKSUMED
+        process.env
       );
 
       return await Web3Provider.eth.sendTransaction({

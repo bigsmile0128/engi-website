@@ -1,3 +1,4 @@
+import { isStaging } from '~/utils';
 import Web3 from 'web3';
 
 // Exact selector for fetching connected provider accounts
@@ -13,6 +14,13 @@ export const Web3Provider = new Web3(Web3.givenProvider);
 // Formatted Ethereum contract address for buying ENGI w/ ETH
 // - Mainnet: https://etherscan.io/address/0x59CE40c888a7bF39FE12e277cEeC1EB7f41Ef71a
 // - Goerli: https://goerli.etherscan.io/address/0xF7150Be741157ef36EFF47D5464028b950a0df1C
-export const PURCHASE_CONTRACT_ADDRESS = Web3.utils.toChecksumAddress(
-  process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS
-);
+
+// TODO: use env process.env.NEXT_PUBLIC_ENGI_PURCHASE_CONTRACT_ADDRESS
+const MAINNET_PURCHASE_CONTRACT = '0x59CE40c888a7bF39FE12e277cEeC1EB7f41Ef71a';
+const TESTNET_PURCHASE_CONTRACT = '0xF7150Be741157ef36EFF47D5464028b950a0df1C';
+const PURCHASE_CONTRACT = isStaging()
+  ? TESTNET_PURCHASE_CONTRACT
+  : MAINNET_PURCHASE_CONTRACT;
+
+export const PURCHASE_CONTRACT_ADDRESS =
+  Web3.utils.toChecksumAddress(PURCHASE_CONTRACT);

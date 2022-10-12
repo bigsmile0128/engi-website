@@ -9,3 +9,7 @@ export function isBeta() {
 export function isProduction() {
   return process.env.NEXT_PUBLIC_VERSION === 'production';
 }
+
+export function isStaging() {
+  return process.env.NEXT_PUBLIC_ENGI_ENV === 'testnet';
+}
