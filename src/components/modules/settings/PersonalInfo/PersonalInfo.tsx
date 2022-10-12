@@ -82,10 +82,10 @@ function PersonalInfo() {
 
   return (
     <div className="p-8">
-      <h2 className="font-grifter font-bold text-3xl hidden md:block">
-        Update your account info
+      <h2 className="font-grifter font-bold text-xl hidden md:block">
+        Personal info
       </h2>
-      <h6 className="text-secondary mt-4 hidden md:block">
+      <h6 className="text-secondary mt-3 hidden md:block">
         Help us personalize your job recommendations.
       </h6>
       <form className="md:mt-12">
@@ -145,9 +145,32 @@ function PersonalInfo() {
             onChange={handleFormChange(PERSONAL_INFO_FELID.COMPANY_NAME)}
           />
         </fieldset>
-        <div className="text-center mt-9">
-          <Button onClick={handleSubmit} variant="primary" className="w-2/5">
-            Save
+        <fieldset>
+          <label
+            className="block font-bold text-xl mt-6"
+            htmlFor="company_name"
+          >
+            Phone
+          </label>
+          <Input
+            id="phone"
+            className="block w-full mt-4"
+            type="text"
+            placeholder="Enter your phone number"
+            value={formValues[PERSONAL_INFO_FELID.PHONE]}
+            onChange={handleFormChange(PERSONAL_INFO_FELID.PHONE)}
+          />
+        </fieldset>
+        <div className="text-right mt-9">
+          <Button
+            onClick={handleSubmit}
+            variant="primary"
+            className="w-2/5 mr-6"
+          >
+            Save Changes
+          </Button>
+          <Button onClick={() => {}} variant="default" className="w-1/5">
+            Cancel
           </Button>
         </div>
       </form>

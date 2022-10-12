@@ -28,7 +28,7 @@ function SettingContainer() {
           <SettingsMenu
             items={SETTINGS_LINKS}
             onChange={handleChange}
-            className="bg-[#232323]/10 backdrop-blur-[100px] py-1"
+            className="bg-[#232323]/10 backdrop-blur-[100px] py-3"
           />
         </div>
         <div className="w-8/12">

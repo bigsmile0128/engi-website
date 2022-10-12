@@ -22,12 +22,12 @@ export interface LinkItem {
 export const SETTINGS_LINKS: LinkItem[] = [
   {
     key: SETTINGS_TAB.PERSONAL_INFO,
-    title: 'Personal info',
+    title: 'Account info',
     icon: AiOutlineUser,
   },
   {
     key: SETTINGS_TAB.UPLOAD_AVATAR,
-    title: 'Upload avatar',
+    title: 'Avatar',
     icon: AiOutlineUser,
   },
   {
@@ -47,7 +47,7 @@ export const SETTINGS_LINKS: LinkItem[] = [
   },
   {
     key: SETTINGS_TAB.PAYMENT,
-    title: 'Payment',
+    title: 'Payment details',
     icon: DollarIcon,
   },
   {
