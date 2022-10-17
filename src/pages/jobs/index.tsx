@@ -10,6 +10,7 @@ import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
 import SearchResults from '~/components/pages/jobs/SearchResults';
 import { gql } from 'graphql-request';
 import { JobsQueryArguments, Language } from '~/types';
+import useJobs from '~/utils/hooks/useJobs';
 
 const PAGE_SIZE = 10;
 
@@ -22,24 +23,10 @@ export default function JobDiscovery() {
     router.push({ query });
   };
 
-  const { isLoading, isError, data, refetch } = useQuery(
-    ['fetchJobs', searchParams.toString()],
-    () =>
-      fetchJobs({
-        skip: 0,
-        limit: 25,
-      }),
-    {
-      onError: (error: AxiosError) => {
-        Sentry.captureException(error, (scope) => {
-          scope.clear();
-          scope.setTransactionName('GET /jobs');
-          scope.setTag('searchParams', searchParams.toString());
-          return scope;
-        });
-      },
-    }
-  );
+  const { isLoading, isError, data, refetch } = useJobs({
+    skip: 0,
+    limit: 25,
+  });
 
   return (
     <div className="max-w-page flex flex-col mt-12">
