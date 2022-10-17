@@ -80,7 +80,16 @@ export default function JobTable({
         header: 'Difficulty',
         cell: (props) => {
           const job = props.row.original;
-          return <Tag className="py-1">Easy</Tag>;
+          return (
+            <Tag
+              className={classNames(
+                'py-1',
+                isLoading ? 'skeleton rounded-none' : ''
+              )}
+            >
+              Easy
+            </Tag>
+          );
         },
       }),
       columnHelper.accessor('funding', {
