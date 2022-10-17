@@ -9,7 +9,7 @@ import SearchFilterList from '~/components/pages/jobs/SearchFilterList';
 import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
 import SearchResults from '~/components/pages/jobs/SearchResults';
 import { gql } from 'graphql-request';
-import { Language } from '~/types';
+import { JobsQueryArguments, Language } from '~/types';
 
 const PAGE_SIZE = 10;
 
@@ -73,19 +73,6 @@ export default function JobDiscovery() {
     </div>
   );
 }
-
-type JobsQueryArguments = {
-  creator?: string;
-  language?: Language;
-  limit: number;
-  maxFunding?: number;
-  minFunding?: number;
-  orderByDirection?: 'ASC' | 'DESC';
-  orderByProperty?: 'CREATED_ON' | 'FUNDING';
-  search?: string;
-  skip: number;
-  status?: string;
-};
 
 async function fetchJobs(query: JobsQueryArguments) {
   const response = await axios.post('/api/graphql', {

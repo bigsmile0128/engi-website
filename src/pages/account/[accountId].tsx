@@ -6,12 +6,16 @@ import { MdModeEdit } from 'react-icons/md';
 import { SiJava, SiPython, SiRust, SiTypescript } from 'react-icons/si';
 import EngiAmount from '~/components/EngiAmount';
 import Balance from '~/components/pages/account/Balance';
+import AccountTabs from '~/components/pages/account/AccountTabs';
+import { useRouter } from 'next/router';
 
 type AccountDetailsProps = {
   className?: string;
 };
 
 export default function AccountDetails({ className }: AccountDetailsProps) {
+  const router = useRouter();
+  const { accountId } = router.query;
   return (
     <div className={classNames('py-24', className)}>
       <div className="max-w-page">
@@ -48,6 +52,9 @@ export default function AccountDetails({ className }: AccountDetailsProps) {
         <div className="max-w-page">
           <Balance className="mt-12 p-8 bg-[#232323]/40 backdrop-blur-[200px]" />
         </div>
+      </div>
+      <div className="max-w-page mt-16">
+        <AccountTabs accountId={accountId} />
       </div>
     </div>
   );

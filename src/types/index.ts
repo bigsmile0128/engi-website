@@ -94,6 +94,19 @@ export type Transaction = {
   type: TransactionType;
 };
 
+export type JobsQueryArguments = {
+  creator?: string;
+  language?: Language;
+  limit: number;
+  maxFunding?: number;
+  minFunding?: number;
+  orderByDirection?: 'ASC' | 'DESC';
+  orderByProperty?: 'CREATED_ON' | 'FUNDING';
+  search?: string;
+  skip: number;
+  status?: string;
+};
+
 // copies from same story figma plugin repo
 export interface DFormValue {
   name: string;
