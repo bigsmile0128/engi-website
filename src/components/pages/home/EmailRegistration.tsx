@@ -74,9 +74,6 @@ export default function EmailRegistration({
           onEmailSignup(email);
         }}
       >
-        <label htmlFor="email-address" className="sr-only">
-          Email address
-        </label>
         <div className="flex-1 relative">
           <input
             id="email-address"
@@ -84,6 +81,7 @@ export default function EmailRegistration({
               'w-full border border-white/30 xs:border-r-0 p-4 bg-[#232323]',
               'text-white placeholder:text-tertiary text-sm',
               'outline-none focus-visible:ring-1',
+              'h-full',
               registerMutation.isError
                 ? 'border-red-400 fill-red-400 focus-visible:ring-red-300 !bg-[#f8717122]'
                 : '',
