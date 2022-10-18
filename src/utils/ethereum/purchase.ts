@@ -34,7 +34,7 @@ export const useBuyEngiWithEth = () =>
       if (!window.ethereum) throw new Error(NO_GLOBAL_ETHEREUM_ERROR_MESSAGE);
 
       // TODO: remove logging
-      console.debug(
+      console.log(
         from,
         PURCHASE_CONTRACT_ADDRESS,
         account,

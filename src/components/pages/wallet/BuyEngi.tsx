@@ -48,6 +48,8 @@ export default function BuyEngi({
     data: confirmedBuyTransaction,
   } = useBuyEngiWithEth();
 
+  console.log(process.env);
+
   // display buy states
   const buyEngiStatesDisplay = useRef(null);
   useEffect(() => {
