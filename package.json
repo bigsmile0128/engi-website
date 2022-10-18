@@ -107,9 +107,10 @@
     "@types/use-persisted-state": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "autoprefixer": "^10.4.2",
-    "eslint": "8.13.0",
+    "eslint": "^8.25.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-storybook": "^0.6.4",
     "eslint-plugin-typescript-sort-keys": "^2.1.0",
@@ -129,6 +130,9 @@
     "uuid": "^8.3.2"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": [
+      "prettier --write --ignore-unknown",
+      "eslint \"src/**/*.{ts,tsx,md}\" --fix"
+    ]
   }
 }

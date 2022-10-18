@@ -4,8 +4,8 @@ import { Tab } from '@headlessui/react';
 import CreatedJobsTab from './CreatedJobsTab';
 
 type AccountTabsProps = {
-  className?: string;
   accountId: string;
+  className?: string;
 };
 
 export default function AccountTabs({

@@ -4,8 +4,8 @@ import JobTable from '../jobs/SearchResults/JobTable';
 import useJobs from '~/utils/hooks/useJobs';
 
 type CreatedJobsTabProps = {
-  className?: string;
   accountId: string;
+  className?: string;
 };
 
 export default function CreatedJobsTab({

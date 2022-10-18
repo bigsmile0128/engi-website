@@ -6,6 +6,7 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:prettier/recommended',
     'plugin:storybook/recommended',
+    'plugin:json/recommended',
   ],
   ignorePatterns: ['*.md'],
   overrides: [

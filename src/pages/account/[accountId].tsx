@@ -15,7 +15,7 @@ type AccountDetailsProps = {
 
 export default function AccountDetails({ className }: AccountDetailsProps) {
   const router = useRouter();
-  const { accountId } = router.query;
+  const { accountId } = router.query as { accountId: string };
   return (
     <div className={classNames('py-24', className)}>
       <div className="max-w-page">
