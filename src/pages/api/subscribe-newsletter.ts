@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import {
   mapNameToId,
   mapToTemplateId,
-  REPLY_EMAIL,
+  NEWSLETTER_REPLY_EMAIL,
   TEMPLATE_NAME,
 } from '~/utils/sendgrid/constants';
 import { sendMail, upsertContact } from '~/utils/sendgrid';
@@ -27,11 +27,11 @@ async function subscribeNewsletterApi(
     dynamicTemplateData: {
       first_name: 'there',
     },
-    from: { email: REPLY_EMAIL },
+    from: { email: NEWSLETTER_REPLY_EMAIL },
     personalizations: [
       {
         to: email,
-        from: REPLY_EMAIL,
+        from: NEWSLETTER_REPLY_EMAIL,
       },
     ],
     templateId: mapToTemplateId[TEMPLATE_NAME.WELCOME_NEWSLETTER],

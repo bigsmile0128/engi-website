@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import {
   mapNameToId,
   mapToTemplateId,
-  REPLY_EMAIL,
+  CONTACT_REPLY_EMAIL,
   TEMPLATE_NAME,
 } from '~/utils/sendgrid/constants';
 import { upsertContact, sendMail } from '~/utils/sendgrid';
@@ -32,11 +32,11 @@ async function contactUsApi(req: NextApiRequest, res: NextApiResponse) {
       first_name,
       subject,
     },
-    from: { email: REPLY_EMAIL },
+    from: { email: CONTACT_REPLY_EMAIL },
     personalizations: [
       {
         to: email,
-        from: REPLY_EMAIL,
+        from: CONTACT_REPLY_EMAIL,
       },
     ],
     templateId: mapToTemplateId[TEMPLATE_NAME.CONTACT_US_REPLY],

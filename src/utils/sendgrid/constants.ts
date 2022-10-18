@@ -5,7 +5,8 @@ export const mapNameToId: Record<SENDGRID_LIST_NAME, string> = {
   [SENDGRID_LIST_NAME.CONTACT_US]: '9625f53a-048f-4831-ae03-3d12a0194d0f',
 };
 
-export const REPLY_EMAIL = 'newsletter@engi.network';
+export const NEWSLETTER_REPLY_EMAIL = 'newsletter@engi.network';
+export const CONTACT_REPLY_EMAIL = 'contact@engi.network';
 
 export enum TEMPLATE_NAME {
   CONTACT_US_REPLY = 'contact-us-reply',
