@@ -13,34 +13,34 @@ type WhosUsingEngiProps = {
 
 const testimonials = [
   {
-    name: 'bc1qxy2kgdygr',
+    name: 'bobbyjones3',
     subtitle: 'Rust Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: "There's no better way to find new jobs and get paid quickly.",
   },
   {
-    name: 'sqtzq2n0yrf24',
+    name: 'squirtle',
     subtitle: 'Python Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: "It's easy to set up with my secure wallet and quick to get started.",
   },
   {
-    name: '93p83kkfjhx0',
+    name: 'the_chemist',
     subtitle: 'React Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: 'I get to work with exactly the specs I need for a good design.',
   },
   {
-    name: 'bc1qxy2kgdygk',
+    name: 'kimhajin',
     subtitle: 'Rust Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: 'The tests tell me all I need to know for writing the code.',
   },
   {
-    name: 'sqtzq2n0yrf25',
+    name: 'lunchbot',
     subtitle: 'Python Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: "I didn't even need to communicate with the job poster and got paid!",
   },
   {
-    name: '93p83kkfjhx1',
+    name: 'cassy_jones',
     subtitle: 'React Job',
-    text: 'Browse jobs, write code, and get paid instantly no matter where you are.',
+    text: 'I wrote code and get paid all in less than a couple hours.',
   },
 ];
 
