@@ -11,7 +11,15 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
 import { withScreenshot } from 'storycap-engi';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  },
+});
 
 export const decorators = [
   (story) => (

@@ -79,7 +79,6 @@ async function fetchJobs(query: JobsQueryArguments) {
 
       fragment test on Test {
         id
-        analysisResult
         required
       }
 

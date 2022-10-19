@@ -25,7 +25,15 @@ Sentry.init({
   environment: process.env.NODE_ENV ?? 'production',
 });
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    },
+  },
+});
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [user, _setUser] = usePersistedUserState(null);

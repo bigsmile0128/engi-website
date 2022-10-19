@@ -180,6 +180,9 @@ export default function JobTable({
           ))}
         </tbody>
       </table>
+      {!isLoading && data?.length === 0 && (
+        <div className="test">no data found</div>
+      )}
     </div>
   );
 }
