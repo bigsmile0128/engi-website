@@ -6,9 +6,10 @@ import { gql, request } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { JobsQueryArguments } from '~/types';
 import * as Sentry from '@sentry/react';
+import axios from 'axios';
 
 export default function useJobs(query: JobsQueryArguments) {
-  return useQuery(['jobs', query?.toString()], () => fetchJobs(query), {
+  return useQuery(['jobs', JSON.stringify(query)], () => fetchJobs(query), {
     onError: (error) => {
       Sentry.captureException(error);
       emitFoundJobsErrorAnalyticsEvent(error);
@@ -20,9 +21,8 @@ export default function useJobs(query: JobsQueryArguments) {
 }
 
 async function fetchJobs(query: JobsQueryArguments) {
-  const data = await request(
-    '/api/graphql',
-    gql`
+  const response = await axios.post('/api/graphql', {
+    query: gql`
       query JobSearch($query: JobsQueryArguments!) {
         jobs(query: $query) {
           result {
@@ -93,9 +93,9 @@ async function fetchJobs(query: JobsQueryArguments) {
         dateTime
       }
     `,
-    {
+    variables: {
       query,
-    }
-  );
-  return data?.jobs ?? {};
+    },
+  });
+  return response.data?.data?.jobs ?? {};
 }

@@ -8,6 +8,7 @@ import ReactPaginate from 'react-paginate';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
 import MobileJobTable from './MobileJobTable';
+import { RiFileSearchLine } from 'react-icons/ri';
 
 interface SearchResultsProps {
   className?: string;
@@ -61,39 +62,54 @@ export default function SearchResults({
             numPages={numPages}
           />
           <MobileJobTable className="sm:hidden" data={results} />
-          <ReactPaginate
-            pageCount={numPages}
-            previousLabel={
-              <ChevronLeftIcon
-                className="h-5 w-5 text-gray-300 hover:text-gray-100"
-                aria-hidden="true"
-              />
-            }
-            nextLabel={
-              <ChevronRightIcon
-                className="h-5 w-5 text-gray-300 hover:text-gray-100"
-                aria-hidden="true"
-              />
-            }
-            breakLabel={<AiOutlineEllipsis className="h-5 w-5 text-gray-300" />}
-            onPageChange={(e) => {
-              const newSearchParams = Object.fromEntries(searchParams);
-              if (e.selected === 0) {
-                delete newSearchParams.page;
+          {results.length === 0 ? (
+            <div
+              className={classNames(
+                'flex flex-col items-center justify-center gap-8 mb-8 py-16 lg:py-24',
+                'bg-black/[.14]',
+                'text-3xl font-grifter'
+              )}
+            >
+              <RiFileSearchLine className="h-16 w-16" />
+              <span>No jobs found</span>
+            </div>
+          ) : (
+            <ReactPaginate
+              pageCount={numPages}
+              previousLabel={
+                <ChevronLeftIcon
+                  className="h-5 w-5 text-gray-300 hover:text-gray-100"
+                  aria-hidden="true"
+                />
               }
-              setSearchParams({
-                ...Object.fromEntries(searchParams),
-                page: (e.selected + 1).toString(),
-              });
-            }}
-            className="flex items-center self-center mt-8 pb-8"
-            pageClassName=""
-            breakClassName="flex items-center justify-center w-8"
-            pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
-            activeLinkClassName="!text-green-400 font-bold"
-            // library uses 0-based pagination, but we use 1-based for consistency with URL
-            forcePage={page - 1}
-          />
+              nextLabel={
+                <ChevronRightIcon
+                  className="h-5 w-5 text-gray-300 hover:text-gray-100"
+                  aria-hidden="true"
+                />
+              }
+              breakLabel={
+                <AiOutlineEllipsis className="h-5 w-5 text-gray-300" />
+              }
+              onPageChange={(e) => {
+                const newSearchParams = Object.fromEntries(searchParams);
+                if (e.selected === 0) {
+                  delete newSearchParams.page;
+                }
+                setSearchParams({
+                  ...Object.fromEntries(searchParams),
+                  page: (e.selected + 1).toString(),
+                });
+              }}
+              className="flex items-center self-center mt-8 pb-8"
+              pageClassName=""
+              breakClassName="flex items-center justify-center w-8"
+              pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
+              activeLinkClassName="!text-green-400 font-bold"
+              // library uses 0-based pagination, but we use 1-based for consistency with URL
+              forcePage={page - 1}
+            />
+          )}
         </>
       )}
     </div>

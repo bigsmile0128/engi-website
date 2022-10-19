@@ -1,15 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { useQuery } from 'react-query';
-import axios, { AxiosError } from 'axios';
-import * as Sentry from '@sentry/react';
 import qs from 'qs';
 
 import SearchFilterList from '~/components/pages/jobs/SearchFilterList';
 import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
 import SearchResults from '~/components/pages/jobs/SearchResults';
-import { gql } from 'graphql-request';
-import { JobsQueryArguments, Language } from '~/types';
 import useJobs from '~/utils/hooks/useJobs';
 
 const PAGE_SIZE = 10;
