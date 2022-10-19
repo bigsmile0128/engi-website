@@ -35,12 +35,22 @@ export default function Navbar({ className }: NavbarProps) {
           className="flex-1 hidden md:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
         >
           <Link href="/jobs">
-            <a className="text-base font-medium text-gray-300 hover:text-white hover:underline">
+            <a
+              className={classNames(
+                'text-base font-medium text-gray-300 hover:text-white',
+                { 'underline !text-white': router.asPath === '/jobs' }
+              )}
+            >
               Earn
             </a>
           </Link>
           <Link href="/hire">
-            <a className="text-base font-medium text-gray-300 hover:text-white hover:underline">
+            <a
+              className={classNames(
+                'text-base font-medium text-gray-300 hover:text-white',
+                { 'underline !text-white': router.asPath === '/hire' }
+              )}
+            >
               Post
             </a>
           </Link>
@@ -49,7 +59,7 @@ export default function Navbar({ className }: NavbarProps) {
               <Menu.Button
                 className={classNames(
                   'flex items-center gap-x-1',
-                  'text-secondary font-medium hover:text-white hover:underline',
+                  'text-secondary font-medium hover:text-white',
                   'outline-none focus-visible:ring-2 focus-visible:ring-green-primary'
                 )}
               >
