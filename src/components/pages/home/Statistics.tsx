@@ -6,6 +6,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import useJobs from '~/utils/hooks/useJobs';
 import _ from 'lodash';
 import { Job } from '~/types';
+import EngiAmount from '~/components/EngiAmount';
 
 type StatisticsProps = {
   className?: string;
@@ -50,6 +51,17 @@ export default function Statistics({ className }: StatisticsProps) {
     }
   }, [emblaApi]);
 
+  let funding: number;
+  try {
+    funding = data?.result?.items?.reduce(
+      (acc, job: Job) => acc + parseFloat(job.funding),
+      0
+    );
+  } catch (error) {
+    console.warn(error);
+    funding = 0;
+  }
+
   const stats = [
     {
       name: 'Active Jobs',
@@ -57,7 +69,13 @@ export default function Statistics({ className }: StatisticsProps) {
     },
     {
       name: 'Amount Funded',
-      value: 0,
+      value: (
+        <EngiAmount
+          value={funding}
+          iconClassName="h-8 w-8 -mt-2 mr-1"
+          valueClassName="text-5xl"
+        />
+      ),
     },
     {
       name: '# of Technologies',
