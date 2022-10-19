@@ -79,9 +79,6 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
         <p className="">
           Miami, Florida, 33131
           <br />
-          <br />
-          (555) 555-5555
-          <br />
           contact@engi.network
         </p>
         <SocialMedia className="mt-12" />
