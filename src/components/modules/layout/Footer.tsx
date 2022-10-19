@@ -36,8 +36,7 @@ export default function Footer({ className }: FooterProps) {
                 Earn $ENGI
               </h4>
               <Link href="/jobs">Search Jobs</Link>
-              <Link href="/jobs">Download Tools</Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+              <Link href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
                 Documentation
               </Link>
             </div>
@@ -45,11 +44,8 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Buy $ENGI
               </h4>
-              <Link href="/jobs">Get Started</Link>
+              <Link href="/signup">Get Started</Link>
               <Link href="/hire">Post a Job</Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                Integrate Workflows
-              </Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">
@@ -59,9 +55,7 @@ export default function Footer({ className }: FooterProps) {
                 Litepaper
               </Link>
               <Link href="/press">Press</Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                {'Team & Governance'}
-              </Link>
+              <Link href="/about">{'Team & Governance'}</Link>
             </div>
           </div>
         </div>
