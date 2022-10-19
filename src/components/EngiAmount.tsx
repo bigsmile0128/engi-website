@@ -2,7 +2,11 @@ import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import { displayAdaInEngi } from '~/utils/currency/conversion';
-import ReactTooltip from 'react-tooltip';
+import dynamic from 'next/dynamic';
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {
+  ssr: false,
+});
 
 type EngiAmountProps = {
   className?: string;
