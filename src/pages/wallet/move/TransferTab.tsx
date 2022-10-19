@@ -5,6 +5,7 @@ import Input from '~/components/global/Input/Input';
 import { RiInformationLine } from 'react-icons/ri';
 import dynamic from 'next/dynamic';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
+import IncompleteBanner from '~/components/IncompleteBanner';
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {
   ssr: false,
@@ -17,6 +18,7 @@ type TransferTabProps = {
 export default function TransferTab({ className }: TransferTabProps) {
   return (
     <div className={classNames('flex flex-col', className)}>
+      <IncompleteBanner className="mb-4" />
       <WalletInput />
       <label htmlFor="note" className="mt-8 font-bold text-xl">
         Amount

@@ -7,6 +7,7 @@ import ButtonSelect from '~/components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
 import Button from '~/components/global/Button/Button';
 import WalletInput from './WalletInput';
+import IncompleteBanner from '~/components/IncompleteBanner';
 
 type WithdrawTabProps = {
   className?: string;
@@ -45,6 +46,7 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
 
   return (
     <div className={classNames('flex flex-col', className)}>
+      <IncompleteBanner className="mb-4" />
       <CurrencySelect className="" />
       <WalletInput className="mt-8" />
       <label htmlFor="amount" className="mt-8 font-bold text-xl">
