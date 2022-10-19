@@ -4,6 +4,7 @@ import { gql } from 'graphql-request';
 import Button from '~/components/global/Button/Button';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
 import { useRouter } from 'next/router';
+import { InformationCircleIcon } from '@heroicons/react/outline';
 
 type SignupProps = {
   className?: string;
@@ -15,6 +16,18 @@ export default function Signup({ className }: SignupProps) {
   // TODO: adjust padding and margin on mobile
   return (
     <div className={classNames('max-w-page lg:py-20', className)}>
+      <div
+        className={classNames(
+          'w-full p-4 flex items-center gap-x-4 mb-8 sm:hidden',
+          'rounded-xl bg-yellow-400/30',
+          className
+        )}
+      >
+        <InformationCircleIcon className="h-12 w-12" />
+        <span className="font-medium text-lg">
+          Please use a desktop browser to sign up with Engi.
+        </span>
+      </div>
       <div className="flex">
         <div
           style={{ flexBasis: '55%' }}
