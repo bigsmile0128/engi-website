@@ -112,7 +112,7 @@ async function fetchJobDetails(jobId) {
 
       fragment test on Test {
         id
-        analysisResult
+        result
         required
       }
 
