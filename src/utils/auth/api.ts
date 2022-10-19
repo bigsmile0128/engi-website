@@ -3,7 +3,6 @@ import {
   emitLoginAnalyticsEvent,
   emitLoginErrorAnalyticsEvent,
   emitRegisterWalletErrorAnalyticsEvent,
-  emitRegisterWalAnalyticsEvent,
 } from './../analytics/events';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';

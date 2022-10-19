@@ -125,7 +125,15 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
               { position: 'bottom-right' }
             );
           } else {
-            emailMutation.mutate(formData);
+            emailMutation.mutate(
+              formData as {
+                email: string;
+                firstName: string;
+                lastName: string;
+                message: string;
+                subject: string;
+              }
+            );
           }
         }}
       >
