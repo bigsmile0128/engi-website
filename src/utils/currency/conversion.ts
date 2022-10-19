@@ -3,7 +3,8 @@
 // modifier to return percentage of value (e.g. complete payout is 80% of total funding)
 export const displayAdaInEngi = (ada: number, modifier = 1) => {
   const displayValue = ((ada / Math.pow(10, 18) || 0) * modifier).toFixed(2);
-  if (displayValue === '0.00') {
+  if (ada !== 0 && displayValue === '0.00') {
     return '<0.01';
   }
+  return displayValue;
 };
