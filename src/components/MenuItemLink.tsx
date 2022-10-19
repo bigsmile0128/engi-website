@@ -16,4 +16,4 @@ function MenuItemLink({ href, children, ...props }: MenuItemLinkProps) {
   );
 }
 
-export default React.forwardRef(MenuItemLink);
+export default MenuItemLink;
