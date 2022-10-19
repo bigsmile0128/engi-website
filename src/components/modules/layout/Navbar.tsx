@@ -94,6 +94,10 @@ export default function Navbar({ className }: NavbarProps) {
                       name: 'Litepaper',
                       href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
                     },
+                    {
+                      name: 'Blockchain',
+                      href: 'https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer',
+                    },
                   ].map(({ name, href }) => (
                     <Menu.Item key={name}>
                       <button
