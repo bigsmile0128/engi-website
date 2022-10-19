@@ -15,9 +15,9 @@ docker build -t engi-website .
 docker run -p 3000:3000 engi-website
 ```
 
-### Versions
+### Environment
 
-Set environment variable `NEXT_PUBLIC_VERSION` to `PREVIEW` (landing page only) or `BETA` in command line or `.env.production` file.
+Set environment variable `NEXT_PUBLIC_ENGI_ENV` to `testnet` for staging & `mainnet` for production
 
 ## CI/CD
 
