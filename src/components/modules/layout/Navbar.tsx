@@ -1,8 +1,8 @@
-import React, { Fragment, useContext, useMemo, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { Dialog, Menu, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/outline';
+import { ChevronDownIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 
 import Logo from '~/components/Logo';
@@ -35,12 +35,12 @@ export default function Navbar({ className }: NavbarProps) {
           className="flex-1 hidden md:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
         >
           <Link href="/jobs">
-            <a className="text-base font-medium text-gray-300 hover:text-white">
+            <a className="text-base font-medium text-gray-300 hover:text-white hover:underline">
               Earn
             </a>
           </Link>
           <Link href="/hire">
-            <a className="text-base font-medium text-gray-300 hover:text-white">
+            <a className="text-base font-medium text-gray-300 hover:text-white hover:underline">
               Post
             </a>
           </Link>
@@ -48,11 +48,12 @@ export default function Navbar({ className }: NavbarProps) {
             <Menu>
               <Menu.Button
                 className={classNames(
-                  'text-secondary font-medium',
+                  'flex items-center gap-x-1',
+                  'text-secondary font-medium hover:text-white hover:underline',
                   'outline-none focus-visible:ring-2 focus-visible:ring-green-primary'
                 )}
               >
-                Learn
+                Learn <ChevronDownIcon className="h-4 w-4" />
               </Menu.Button>
               <Transition
                 as={Fragment}
