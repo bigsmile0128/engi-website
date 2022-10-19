@@ -86,7 +86,13 @@ export default function Navbar({ className }: NavbarProps) {
                   ].map(({ name, href }) => (
                     <Menu.Item key={name}>
                       <button
-                        onClick={() => router.push(href)}
+                        onClick={() => {
+                          if (href.startsWith('/')) {
+                            router.push(href);
+                          } else {
+                            window?.open(href, '_blank');
+                          }
+                        }}
                         className={classNames(
                           'block rounded-md p-3',
                           'transition duration-150 ease-in-out hover:bg-black/10',
@@ -225,8 +231,19 @@ export default function Navbar({ className }: NavbarProps) {
                         <ChevronRightIcon className="h-6" />
                       </a>
                     </Link>
+                    <Link href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
+                      <a
+                        target="_blank"
+                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <span>Litepaper</span>
+                        <ChevronRightIcon className="h-6" />
+                      </a>
+                    </Link>
                     <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                       <a
+                        target="_blank"
                         className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                         onClick={() => setIsOpen(false)}
                       >
