@@ -248,7 +248,7 @@ export default function Navbar({ className }: NavbarProps) {
                         className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                         onClick={() => setIsOpen(false)}
                       >
-                        <span>Litepaper</span>
+                        <span>Documentation</span>
                         <ChevronRightIcon className="h-6" />
                       </a>
                     </Link>
