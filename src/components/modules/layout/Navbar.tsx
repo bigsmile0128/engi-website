@@ -76,6 +76,10 @@ export default function Navbar({ className }: NavbarProps) {
                       href: '/contact',
                     },
                     {
+                      name: 'Documentation',
+                      href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+                    },
+                    {
                       name: 'Litepaper',
                       href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
                     },
