@@ -67,7 +67,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <Menu.Items
                   className={classNames(
                     'focus:outline-none absolute w-56 top-full mt-2',
-                    'grid gap-1 bg-[#374151ee] p-6'
+                    'grid gap-1 bg-[#374151ee] py-1'
                   )}
                 >
                   {[
