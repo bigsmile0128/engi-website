@@ -38,7 +38,7 @@ export default function Navbar({ className }: NavbarProps) {
             <a
               className={classNames(
                 'text-base font-medium text-gray-300 hover:text-white',
-                { 'underline !text-white': router.asPath === '/jobs' }
+                { 'underline !text-white': /^\/jobs/.test(router.asPath) }
               )}
             >
               Earn
@@ -48,7 +48,7 @@ export default function Navbar({ className }: NavbarProps) {
             <a
               className={classNames(
                 'text-base font-medium text-gray-300 hover:text-white',
-                { 'underline !text-white': router.asPath === '/hire' }
+                { 'underline !text-white': /^\/hire/.test(router.asPath) }
               )}
             >
               Post
