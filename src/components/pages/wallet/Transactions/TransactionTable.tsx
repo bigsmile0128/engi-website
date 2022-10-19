@@ -12,6 +12,8 @@ import dynamic from 'next/dynamic';
 import TransactionTypeTag from './TransactionTypeTag';
 import { RiCheckboxCircleLine, RiErrorWarningLine } from 'react-icons/ri';
 import EngiAmount from '~/components/EngiAmount';
+import PolkadotSvg from 'public/img/wallet/polkadot.svg';
+import TransactionTypeIcon from './TransactionTypeIcon';
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {
   ssr: false,
@@ -74,10 +76,18 @@ export default function TransactionTable({
         cell: (props) => {
           const transaction = props.row.original;
           return (
-            <TransactionTypeTag
-              value={transaction.type}
-              isLoading={isLoading}
-            />
+            <>
+              <TransactionTypeIcon
+                className="h-8 w-8 lg:hidden"
+                value={transaction.type}
+                isLoading={isLoading}
+              />
+              <TransactionTypeTag
+                className="hidden lg:inline-flex"
+                value={transaction.type}
+                isLoading={isLoading}
+              />
+            </>
           );
         },
       }),
@@ -90,6 +100,26 @@ export default function TransactionTable({
               value={transaction.amount.toString()}
               isLoading={isLoading}
             />
+          );
+        },
+      }),
+      columnHelper.accessor('hash', {
+        header: 'Block',
+        cell: (props) => {
+          const transaction = props.row.original;
+          return (
+            <a
+              className={classNames(
+                'inline-flex items-center gap-x-2 px-3 py-1',
+                'border border-white/20 hover:border-green-primary transition-all'
+              )}
+              href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <PolkadotSvg className="h-5 w-5" />
+              <span className="">Explorer</span>
+            </a>
           );
         },
       }),
@@ -181,13 +211,10 @@ export default function TransactionTable({
             <tr
               key={row.id}
               className={classNames(
-                'bg-black/[.14] children:py-4 cursor-pointer hover:bg-black/40'
+                'bg-black/[.14] children:py-4'
+                // TODO: enable onClick to transaction details
+                // 'cursor-pointer hover:bg-black/40'
               )}
-              onClick={() => {
-                const transaction: Transaction = row.original;
-                const url = `https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`;
-                window.open(url, '_blank');
-              }}
               data-tip={row.original.hash}
             >
               {row.getVisibleCells().map((cell) => (
@@ -197,7 +224,7 @@ export default function TransactionTable({
               ))}
             </tr>
           ))}
-          <ReactTooltip effect="solid" />
+          <ReactTooltip effect="solid" place="bottom" />
         </tbody>
       </table>
     </div>

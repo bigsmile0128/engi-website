@@ -5,6 +5,7 @@ import EngiAmount from '~/components/EngiAmount';
 import TransactionTime from './TransactionTime';
 import TransactionTypeTag from './TransactionTypeTag';
 import TransactionState from './TransactionState';
+import PolkadotSvg from 'public/img/wallet/polkadot.svg';
 
 type MobileTransactionTableProps = {
   className?: string;
@@ -38,14 +39,11 @@ export default function MobileTransactionTable({
   return (
     <div className={classNames('w-full flex flex-col gap-y-4', className)}>
       {_data.map((transaction, i) => (
-        <a
+        <div
           key={transaction.dateTime + i}
-          className={classNames('p-4', 'bg-black/[.14] hover:bg-black/40')}
-          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
-          target="_blank"
-          rel="noreferrer"
+          className={classNames('p-4', 'bg-black/[.14]')}
         >
-          <div className="flex items-center justify-between">
+          <div className="flex items-center gap-x-1">
             <div
               className={classNames(
                 'w-32 font-bold text-ellipsis overflow-hidden',
@@ -54,6 +52,18 @@ export default function MobileTransactionTable({
             >
               {transaction.executor}
             </div>
+            <a
+              className={classNames(
+                'inline-flex items-center gap-x-2 px-2 py-0.5 mr-auto',
+                'border border-white/20 hover:border-green-primary transition-all'
+              )}
+              href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <PolkadotSvg className="h-4 w-4" />
+              <span className="text-sm font-medium">Explorer</span>
+            </a>
             <EngiAmount
               value={transaction.amount.toString()}
               isLoading={isLoading}
@@ -75,7 +85,7 @@ export default function MobileTransactionTable({
               isLoading={isLoading}
             />
           </div>
-        </a>
+        </div>
       ))}
     </div>
   );

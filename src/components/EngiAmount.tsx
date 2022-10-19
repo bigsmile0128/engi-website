@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import { displayAdaInEngi } from '~/utils/currency/conversion';
+import { v4 as uuidv4 } from 'uuid';
 import dynamic from 'next/dynamic';
 
 const ReactTooltip = dynamic(() => import('react-tooltip'), {
@@ -36,41 +37,40 @@ export default function EngiAmount({
     [value, modifier]
   );
 
+  const id = useMemo(() => uuidv4(), []);
+
   return (
-    <span
+    <div
+      className={classNames(
+        'flex items-center whitespace-nowrap',
+        isLoading ? 'children:skeleton' : '',
+        className
+      )}
       data-tip={`${value || 0} ADA`}
       data-tip-disabled={isLoading}
       data-place="bottom"
       data-class="font-medium"
       data-effect="solid"
-      data-for="engi-amount"
+      data-for={id}
     >
-      <div
+      <EngiIcon
         className={classNames(
-          'flex items-center whitespace-nowrap',
-          isLoading ? 'children:skeleton' : '',
-          className
+          'text-green-primary',
+          iconClassName || 'h-3.5 w-3.5'
+        )}
+      />
+      <span
+        className={classNames(
+          {
+            'text-secondary': !isLoading && displayValue === 'N/A',
+          },
+          valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
         )}
       >
-        <EngiIcon
-          className={classNames(
-            'text-green-primary',
-            iconClassName || 'h-3.5 w-3.5'
-          )}
-        />
-        <span
-          className={classNames(
-            {
-              'text-secondary': !isLoading && displayValue === 'N/A',
-            },
-            valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
-          )}
-        >
-          {displayValue}
-          {suffix}
-        </span>
-      </div>
-      <ReactTooltip id="engi-amount" />
-    </span>
+        {displayValue}
+        {suffix}
+      </span>
+      <ReactTooltip id={id} />
+    </div>
   );
 }
