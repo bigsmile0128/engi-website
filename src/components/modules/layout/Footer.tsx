@@ -35,12 +35,8 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Earn $ENGI
               </h4>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                Search Jobs
-              </Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                Download Tools
-              </Link>
+              <Link href="/jobs">Search Jobs</Link>
+              <Link href="/jobs">Download Tools</Link>
               <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                 Documentation
               </Link>
@@ -49,12 +45,8 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Buy $ENGI
               </h4>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                Get Started
-              </Link>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                Post a Job
-              </Link>
+              <Link href="/jobs">Get Started</Link>
+              <Link href="/hire">Post a Job</Link>
               <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                 Integrate Workflows
               </Link>
