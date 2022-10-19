@@ -1,3 +1,7 @@
+import {
+  emitFoundJobsErrorAnalyticsEvent,
+  emitFoundJobsAnalyticsEvent,
+} from './../analytics/events';
 import { gql, request } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { JobsQueryArguments } from '~/types';
@@ -7,6 +11,10 @@ export default function useJobs(query: JobsQueryArguments) {
   return useQuery(['jobs', query?.toString()], () => fetchJobs(query), {
     onError: (error) => {
       Sentry.captureException(error);
+      emitFoundJobsErrorAnalyticsEvent(error);
+    },
+    onSuccess(data) {
+      emitFoundJobsAnalyticsEvent(data?.jobs?.results?.items);
     },
   });
 }

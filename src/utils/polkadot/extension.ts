@@ -1,3 +1,4 @@
+import { emitConnectedPolkadotExtensionAnalyticsEvent } from './../analytics/events';
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { useQuery } from 'react-query';
 import {
@@ -40,5 +41,8 @@ export const useConnectPolkadotExtension = () =>
       // Don't retry connection if user cancels request
       // Don't retry connection if user has canceled request before
       // Don't refetch after closing the extension
+      onSuccess() {
+        emitConnectedPolkadotExtensionAnalyticsEvent();
+      },
     }
   );

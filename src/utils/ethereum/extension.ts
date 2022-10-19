@@ -1,3 +1,4 @@
+import { emitConnectedEthereumExtensionAnalyticsEvent } from './../analytics/events';
 import { useQuery } from 'react-query';
 import {
   QUERY_KEY_CONNECT_ETHEREUM_EXTENSION,
@@ -32,5 +33,8 @@ export const useConnectEthereumExtension = () =>
       // Don't retry connection if user cancels request
       // Don't retry connection if user has canceled request before
       // Don't refetch after closing the extension
+      onSuccess(data) {
+        emitConnectedEthereumExtensionAnalyticsEvent();
+      },
     }
   );

@@ -10,6 +10,10 @@ import EmailModal from './EmailModal';
 import { MdCheck } from '@react-icons/all-files/md/MdCheck';
 import { MdErrorOutline } from '@react-icons/all-files/md/MdErrorOutline';
 import { SENDGRID_LIST_NAME } from '~/types';
+import {
+  emitJoinNewsletterErrorEvent,
+  emitJoinNewsletterEvent,
+} from '~/utils/analytics/events';
 
 interface EmailRegistrationProps {
   className?: string;
@@ -23,7 +27,7 @@ export default function EmailRegistration({
   const [modalOpen, setModalOpen] = useState(false);
   const [email, setEmail] = useState('');
 
-  const registerMutation = useMutation<any, AxiosError>(
+  const registerMutation = useMutation<any, AxiosError, string>(
     async (email) => {
       await axios.put('/api/subscribe-newsletter', {
         contact_list_name: SENDGRID_LIST_NAME.ENGI_NEWSLETTER,
@@ -31,7 +35,10 @@ export default function EmailRegistration({
       });
     },
     {
-      onError: (error) => {
+      onSuccess(_, email) {
+        emitJoinNewsletterEvent(email);
+      },
+      onError: (error, email) => {
         if (error.response?.status !== 409) {
           console.warn(error);
           Sentry.captureException(error, (scope) => {
@@ -41,6 +48,8 @@ export default function EmailRegistration({
             return scope;
           });
         }
+
+        emitJoinNewsletterErrorEvent(error, email);
       },
     }
   );

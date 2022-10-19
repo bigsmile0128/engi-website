@@ -7,14 +7,28 @@ import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { SENDGRID_LIST_NAME } from '~/types';
+import {
+  emitContactUsErrorEvent,
+  emitContactUsEvent,
+} from '~/utils/analytics/events';
 
 interface ContactUsPageProps {
   className?: string;
 }
 
 export default function ContactUsPage({ className }: ContactUsPageProps) {
-  const emailMutation = useMutation<any, AxiosError, any>(
-    async ({ firstName, lastName, email, subject, message }: any) => {
+  const emailMutation = useMutation<
+    any,
+    AxiosError,
+    {
+      email: string;
+      firstName: string;
+      lastName: string;
+      message: string;
+      subject: string;
+    }
+  >(
+    async ({ firstName, lastName, email, subject, message }) => {
       await axios.put('/api/contact-us', {
         contact_list_name: SENDGRID_LIST_NAME.CONTACT_US,
         email,
@@ -23,6 +37,14 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
         message,
         subject,
       });
+    },
+    {
+      onError(error, { email }) {
+        emitContactUsErrorEvent(error, email);
+      },
+      onSuccess(_, { email }) {
+        emitContactUsEvent(email);
+      },
     }
   );
 

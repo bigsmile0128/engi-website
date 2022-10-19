@@ -1,3 +1,10 @@
+import {
+  emitRegisterWalletAnalyticsEvent,
+  emitLoginAnalyticsEvent,
+  emitLoginErrorAnalyticsEvent,
+  emitRegisterWalletErrorAnalyticsEvent,
+  emitRegisterWalAnalyticsEvent,
+} from './../analytics/events';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
@@ -70,6 +77,20 @@ export const useRegisterUser = () =>
       if (errors?.length) throw new Error(errors[0].message);
 
       return response?.data?.data?.auth?.register ?? address;
+    },
+    {
+      onSuccess(_, { address, display, email, source }) {
+        emitRegisterWalletAnalyticsEvent(address, display, email, source);
+      },
+      onError(error, { address, display, email, source }) {
+        emitRegisterWalletErrorAnalyticsEvent(
+          error,
+          address,
+          display,
+          email,
+          source
+        );
+      },
     }
   );
 
@@ -87,58 +108,68 @@ export const useLoginUser = () =>
     { accessToken: string; address: string; display: string },
     AxiosError,
     any
-  >(async ({ address, source, display }: LoginUser) => {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const { web3FromSource } = require('@polkadot/extension-dapp');
+  >(
+    async ({ address, source, display }: LoginUser) => {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { web3FromSource } = require('@polkadot/extension-dapp');
 
-    const injector = await web3FromSource(source);
+      const injector = await web3FromSource(source);
 
-    const signRaw = injector?.signer?.signRaw;
+      const signRaw = injector?.signer?.signRaw;
 
-    if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
+      if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
 
-    const time = new Date();
+      const time = new Date();
 
-    // this opens the user's browser extension
-    // - the request to sign the message can be rejected
-    const { signature } = await signRaw({
-      address,
-      data: stringToHex(`${address}|${time.getTime()}`),
-      type: 'bytes',
-    });
+      // this opens the user's browser extension
+      // - the request to sign the message can be rejected
+      const { signature } = await signRaw({
+        address,
+        data: stringToHex(`${address}|${time.getTime()}`),
+        type: 'bytes',
+      });
 
-    const response = await axios.post('/api/graphql', {
-      query: gql`
-        mutation LoginUser($loginArgs: LoginArguments!) {
-          auth {
-            login(args: $loginArgs) {
-              accessToken
+      const response = await axios.post('/api/graphql', {
+        query: gql`
+          mutation LoginUser($loginArgs: LoginArguments!) {
+            auth {
+              login(args: $loginArgs) {
+                accessToken
+              }
             }
           }
-        }
-      `,
-      operationName: 'LoginUser',
-      variables: {
-        loginArgs: {
-          address,
-          signature: {
-            signedOn: time.toISOString(),
-            value: signature,
+        `,
+        operationName: 'LoginUser',
+        variables: {
+          loginArgs: {
+            address,
+            signature: {
+              signedOn: time.toISOString(),
+              value: signature,
+            },
           },
         },
+      });
+
+      if (response?.data?.errors?.length) {
+        throw new Error(response?.data?.errors?.[0]?.message);
+      }
+
+      return {
+        address,
+        accessToken: response?.data?.data?.auth?.login?.accessToken,
+        display,
+      };
+    },
+    {
+      onSuccess({ accessToken }, { address, display, source }, context) {
+        emitLoginAnalyticsEvent(accessToken, address, display, source);
       },
-    });
-
-    if (response?.data?.errors?.length) {
-      throw new Error(response?.data?.errors?.[0]?.message);
+      onError(error, { address, display, source }) {
+        emitLoginErrorAnalyticsEvent(error, address, display, source);
+      },
     }
-
-    return {
-      address,
-      accessToken: response?.data?.data?.auth?.login?.accessToken,
-      display,
-    };
-  });
+  );
 
 type ConfirmEmail = {
   address: string;

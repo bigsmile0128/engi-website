@@ -1,3 +1,7 @@
+import {
+  emitBoughtEngiErrorAnalyticsEvent,
+  emitBoughtEngiAnalyticsEvent,
+} from './../analytics/events';
 import { useMutation } from 'react-query';
 import engiPurchaseAbi from './engiPurchaseAbi.json';
 import {
@@ -50,5 +54,13 @@ export const useBuyEngiWithEth = () =>
           .deposit(substrateToHex(account))
           .encodeABI(),
       });
+    },
+    {
+      onSuccess(_, { account, amount }) {
+        emitBoughtEngiAnalyticsEvent(account, amount);
+      },
+      onError(error, { account, amount }) {
+        emitBoughtEngiErrorAnalyticsEvent(error, account, amount);
+      },
     }
   );
