@@ -3,29 +3,18 @@ import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import useJobs from '~/utils/hooks/useJobs';
+import _ from 'lodash';
+import { Job } from '~/types';
 
 type StatisticsProps = {
   className?: string;
 };
 
-const stats = [
-  {
-    name: 'Active Jobs',
-    value: '320+',
-  },
-  {
-    name: 'Amount Funded',
-    value: '$24,900',
-  },
-  {
-    name: 'Lines of Code',
-    value: '4,700+',
-  },
-];
-
 export default function Statistics({ className }: StatisticsProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel();
+  const { isLoading, data } = useJobs({ skip: 0, limit: 100 });
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -61,6 +50,22 @@ export default function Statistics({ className }: StatisticsProps) {
     }
   }, [emblaApi]);
 
+  const stats = [
+    {
+      name: 'Active Jobs',
+      value: data?.result?.totalCount ?? 0,
+    },
+    {
+      name: 'Amount Funded',
+      value: 0,
+    },
+    {
+      name: '# of Technologies',
+      value: _.uniq(data?.result?.items?.map((job: Job) => job.language) ?? [])
+        .length,
+    },
+  ];
+
   return (
     <div
       className={classNames(
@@ -87,7 +92,13 @@ export default function Statistics({ className }: StatisticsProps) {
         )}
       >
         {stats.map(({ name, value }) => (
-          <div key={name} className="flex flex-col items-center">
+          <div
+            key={name}
+            className={classNames(
+              'flex flex-col items-center gap-y-1',
+              isLoading ? 'children:skeleton' : ''
+            )}
+          >
             <span className="font-grifter text-4xl md:text-5xl">{value}</span>
             <span className="text-lg">{name}</span>
           </div>
@@ -99,7 +110,10 @@ export default function Statistics({ className }: StatisticsProps) {
             {stats.map(({ name, value }) => (
               <div
                 key={name}
-                className="flex flex-col items-center flex-[0_0_100%] gap-y-3"
+                className={classNames(
+                  'flex flex-col items-center flex-[0_0_100%] gap-y-3',
+                  isLoading ? 'children:skeleton' : ''
+                )}
               >
                 <span className="font-grifter mt-1 text-5xl">{value}</span>
                 <span className="text-lg mt-3">{name}</span>
