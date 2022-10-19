@@ -8,6 +8,7 @@ import {
 import SettingsPanel from './SettingsPanel/SettingsPanel';
 import { Dialog, Transition } from '@headlessui/react';
 import { ChevronLeftIcon, MenuIcon } from '@heroicons/react/outline';
+import IncompleteBanner from '~/components/IncompleteBanner';
 
 function SettingContainer() {
   const [selectedTab, setSelectedTab] = useState<SETTINGS_TAB>(
@@ -21,7 +22,7 @@ function SettingContainer() {
   };
 
   const renderForNonMobile = () => (
-    <div className="hidden max-w-page my-24 md:flex flex-col gap-4">
+    <div className="hidden max-w-page mb-24 mt-12 md:flex flex-col gap-4">
       <h1 className="text-7xl font-bold">Settings</h1>
       <div className="flex justify-between">
         <div className="w-3/12">
@@ -115,6 +116,7 @@ function SettingContainer() {
 
   return (
     <>
+      <IncompleteBanner className="max-w-page mt-8 mb-12 md:mb-0" />
       {renderForNonMobile()}
       {renderForMobile()}
     </>
