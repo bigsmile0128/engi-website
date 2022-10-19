@@ -61,8 +61,8 @@ export default function JobDetails() {
 async function fetchJobDetails(jobId) {
   const response = await axios.post('/api/graphql', {
     query: gql`
-      query JobDetails {
-        job(id: ${jobId}) {
+      query JobDetails($jobId: UInt64!) {
+        job(id: $jobId) {
           id
           creator
           funding
@@ -127,6 +127,9 @@ async function fetchJobDetails(jobId) {
         dateTime
       }
     `,
+    variables: {
+      jobId,
+    },
   });
 
   return response.data?.data?.job ?? null;
