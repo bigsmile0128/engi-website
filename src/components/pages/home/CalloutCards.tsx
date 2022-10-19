@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
+import Link from 'next/link';
 
 interface CalloutCardsProps {
   className?: string;
@@ -45,9 +46,13 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           No need to apply. Get paid instantly regardless of your time zone or
           language.
         </p>
-        <Button variant="primary" className="mt-12">
-          Coming Soon
-        </Button>
+        <Link href="/jobs">
+          <a>
+            <Button variant="primary" className="mt-12">
+              View Jobs
+            </Button>
+          </a>
+        </Link>
       </div>
       <div className="relative flex-1 flex flex-col justify-between sm:items-start border border-gray-400 bg-gray-800/30 px-8 pt-12 pb-8">
         <div className="absolute hidden sm:block right-0 bottom-0 opacity-30">
@@ -70,9 +75,13 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         <p className="text-secondary text-lg sm:pr-16 mt-4">
           No sourcing. No recruiting. Find worldwide talent instantly.
         </p>
-        <Button variant="primary" className="mt-12">
-          Coming Soon
-        </Button>
+        <Link href="/hire">
+          <a>
+            <Button variant="primary" className="mt-12">
+              Post a Job
+            </Button>
+          </a>
+        </Link>
       </div>
     </div>
   );
