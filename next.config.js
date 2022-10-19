@@ -10,6 +10,7 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
+      exclude: /\/img\/about\/companies/
     });
 
     return config;
