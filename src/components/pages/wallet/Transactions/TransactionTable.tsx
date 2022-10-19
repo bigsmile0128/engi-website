@@ -13,6 +13,10 @@ import TransactionTypeTag from './TransactionTypeTag';
 import { RiCheckboxCircleLine, RiErrorWarningLine } from 'react-icons/ri';
 import EngiAmount from '~/components/EngiAmount';
 
+const ReactTooltip = dynamic(() => import('react-tooltip'), {
+  ssr: false,
+});
+
 const TransactionTime = dynamic(() => import('./TransactionTime'), {
   ssr: false,
 });
@@ -37,14 +41,17 @@ export default function TransactionTable({
         cell: (props) => {
           const transaction = props.row.original;
           return (
-            <span
-              className={classNames(
-                'block font-bold overflow-hidden text-ellipsis w-24 lg:w-32',
-                isLoading ? 'skeleton' : ''
-              )}
-            >
-              {transaction.executor}
-            </span>
+            <>
+              <span
+                className={classNames(
+                  'block font-bold overflow-hidden text-ellipsis w-24 lg:w-32',
+                  isLoading ? 'skeleton' : ''
+                )}
+                data-tip={transaction.hash}
+              >
+                {transaction.executor}
+              </span>
+            </>
           );
         },
       }),
@@ -173,7 +180,15 @@ export default function TransactionTable({
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className={classNames('bg-black/[.14] children:py-4')}
+              className={classNames(
+                'bg-black/[.14] children:py-4 cursor-pointer hover:bg-black/40'
+              )}
+              onClick={() => {
+                const transaction: Transaction = row.original;
+                const url = `https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`;
+                window.open(url, '_blank');
+              }}
+              data-tip={row.original.hash}
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4">
@@ -182,6 +197,7 @@ export default function TransactionTable({
               ))}
             </tr>
           ))}
+          <ReactTooltip effect="solid" />
         </tbody>
       </table>
     </div>

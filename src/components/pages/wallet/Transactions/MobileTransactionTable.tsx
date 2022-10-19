@@ -38,9 +38,12 @@ export default function MobileTransactionTable({
   return (
     <div className={classNames('w-full flex flex-col gap-y-4', className)}>
       {_data.map((transaction, i) => (
-        <div
+        <a
           key={transaction.dateTime + i}
-          className={classNames('p-4', 'bg-black/[.14]')}
+          className={classNames('p-4', 'bg-black/[.14] hover:bg-black/40')}
+          href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
+          target="_blank"
+          rel="noreferrer"
         >
           <div className="flex items-center justify-between">
             <div
@@ -72,7 +75,7 @@ export default function MobileTransactionTable({
               isLoading={isLoading}
             />
           </div>
-        </div>
+        </a>
       ))}
     </div>
   );
