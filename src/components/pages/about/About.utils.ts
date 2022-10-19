@@ -48,7 +48,8 @@ export const members: Array<TeamMember> = [
     companies: [
       { name: 'Google', iconLink: '/img/about/companies/google.svg' },
       {
-        name: 'Nordstrom',
+        name: 'T-Mobile',
+        iconLink: '/img/about/companies/tmobile.svg',
       },
       {
         name: 'Amazon',
@@ -110,6 +111,11 @@ export const members: Array<TeamMember> = [
     name: 'Chris Y',
     role: 'Software Engineer',
     photoLink: '/img/about/members/yung.png',
+    companies: [
+      {
+        name: 'Startup',
+      },
+    ],
   },
 
   {
@@ -137,7 +143,7 @@ export const members: Array<TeamMember> = [
     role: 'Software Engineer',
     companies: [
       { name: 'Grubhub', iconLink: '/img/about/companies/grubhub.png' },
-      { name: 'Salesforce', iconLink: '/img/about/companies/salesforce.png' },
+      { name: 'Salesforce', iconLink: '/img/about/companies/salesforce.svg' },
     ],
     socialLinks: [
       {
@@ -152,7 +158,7 @@ export const members: Array<TeamMember> = [
     role: 'Software Engineer',
     companies: [
       { name: 'Northrop Grumman', iconLink: '/img/about/companies/ng.png' },
-      { name: 'Tektronix', iconLink: '/img/about/companies/tek.png' },
+      { name: 'Tektronix', iconLink: '/img/about/companies/tek.svg' },
       { name: 'Kernel', iconLink: '/img/about/companies/kernel.png' },
     ],
   },

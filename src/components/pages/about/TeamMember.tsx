@@ -3,6 +3,11 @@ import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import { BiBuildings } from 'react-icons/bi';
 import randomColor from 'randomcolor';
+import dynamic from 'next/dynamic';
+
+const ReactTooltip = dynamic(() => import('react-tooltip'), {
+  ssr: false,
+});
 
 import { TeamMember as TeamMemberType } from './About.utils';
 
@@ -24,19 +29,19 @@ function TeamMember({
   });
 
   return (
-    <div className={classNames('flex flex-col min-w-[264px]', className)}>
+    <div className={classNames('flex flex-col min-w-[260px]', className)}>
       {photoLink ? (
         <Image
           src={photoLink}
           alt={name + 'photo'}
-          width={280}
-          height={280}
+          width={260}
+          height={260}
           className="w-full"
         />
       ) : (
         <div
           className={classNames(
-            'h-[280px] flex items-center justify-center px-12'
+            'h-[260px] flex items-center justify-center px-12'
           )}
           style={{
             backgroundColor,
@@ -81,16 +86,18 @@ function TeamMember({
                     width={20}
                     height={20}
                     className="h-5"
+                    data-tip={name}
                   />
                 ) : (
                   <div key={index}>
-                    <BiBuildings className="h-5 w-5" />
+                    <BiBuildings className="h-5 w-5" data-tip={name} />
                   </div>
                 )
               )
             ) : (
               <BiBuildings className="h-5 w-5" />
             )}
+            <ReactTooltip effect="solid" />
           </div>
         </div>
       </div>
