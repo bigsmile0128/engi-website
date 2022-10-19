@@ -1,4 +1,4 @@
-import Image from 'next/future/image';
+import Image from 'next/image';
 import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import { BiBuildings } from 'react-icons/bi';
@@ -26,15 +26,13 @@ function TeamMember({
   return (
     <div className={classNames('flex flex-col min-w-[264px]', className)}>
       {photoLink ? (
-        <div>
-          <Image
-            src={photoLink}
-            alt={name + 'photo'}
-            width={200}
-            height={200}
-            className="w-full"
-          />
-        </div>
+        <Image
+          src={photoLink}
+          alt={name + 'photo'}
+          width={280}
+          height={280}
+          className="w-full"
+        />
       ) : (
         <div
           className={classNames(

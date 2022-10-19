@@ -19,11 +19,6 @@ const nextConfig = {
     minimumCacheTTL: 60,
     domains: ['engi-email-template.s3.us-west-2.amazonaws.com', 'via.placeholder.com'],
   },
-  experimental: {
-    images: {
-      allowFutureImage: true,
-    },
-  },
   output: 'standalone',
 };
 
