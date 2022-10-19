@@ -184,7 +184,12 @@ type UserProps = {
 
 function User({ className, name, subtitle }: UserProps) {
   return (
-    <div className={classNames('flex items-center gap-x-4', className)}>
+    <div
+      className={classNames(
+        'flex items-center justify-between gap-x-4',
+        className
+      )}
+    >
       <Avvvatars size={48} value={name} style="shape" />
       <div className="flex flex-col items-start">
         <span className="font-bold text-green-primary">{name}</span>
