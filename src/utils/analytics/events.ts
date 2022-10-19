@@ -57,6 +57,8 @@ export const emitLoginErrorAnalyticsEvent = (
 export const emitFoundJobsAnalyticsEvent = (jobs: number, address?: string) => {
   if (typeof window === undefined) return;
 
+  console.log('emitting found jobs event', jobs, address);
+
   window?.gtag?.('event', 'jobs', { jobs, address });
 };
 

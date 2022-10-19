@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && isProduction() && (
+      {isProduction() && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
@@ -64,6 +64,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
 
+          console.log('loading gtag manager for engi ${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}')
           gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
         `}
           </Script>
