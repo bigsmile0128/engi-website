@@ -173,7 +173,7 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
           </p>
         </div>
         <GlobeSvg className="w-full mt-16 sm:mt-12 scale-125 sm:scale-100" />
-        <div className="w-full relative mt-16 md:hidden">
+        <div className="w-full relative mt-16 sm:hidden">
           <div className="embla" ref={emblaRef}>
             <div className="flex gap-8">
               {members.map((member, index) => (
@@ -208,7 +208,7 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
           className={classNames(
             'hidden sm:grid',
             'mt-16 sm:mt-12 xl:mt-24',
-            'xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4',
+            'xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4',
             'gap-4 xl:gap-8'
           )}
         >

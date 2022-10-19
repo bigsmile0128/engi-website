@@ -38,7 +38,7 @@ function TeamMember({
       ) : (
         <div
           className={classNames(
-            'h-[264px] flex items-center justify-center px-12'
+            'h-[280px] flex items-center justify-center px-12'
           )}
           style={{
             backgroundColor,
@@ -85,7 +85,7 @@ function TeamMember({
                     className="h-5"
                   />
                 ) : (
-                  <div>
+                  <div key={index}>
                     <BiBuildings className="h-5 w-5" />
                   </div>
                 )
