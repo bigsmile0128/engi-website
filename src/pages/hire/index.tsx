@@ -7,6 +7,7 @@ import TestsTab from '~/components/pages/jobCreation/TestsTab';
 import DetailsTab from '~/components/pages/jobCreation/DetailsTab';
 import FundingTab from '~/components/pages/jobCreation/FundingTab';
 import PreviewTab from '~/components/pages/jobCreation/PreviewTab';
+import IncompleteBanner from '~/components/IncompleteBanner';
 
 type HireProps = {
   className?: string;
@@ -28,6 +29,9 @@ export default function Hire({ className }: HireProps) {
 
   return (
     <div className={classNames('mt-24 mb-24', className)}>
+      <div className="max-w-page mb-16">
+        <IncompleteBanner />
+      </div>
       <div
         className={classNames(
           'max-w-page relative py-12',
