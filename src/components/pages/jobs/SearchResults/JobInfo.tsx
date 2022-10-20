@@ -37,7 +37,9 @@ export default function JobInfo({
           Created {dayjs(createdOn).fromNow()}
         </span>
       </div>
-      <span className={classNames('font-bold text-gray-200 w-48 truncate')}>
+      <span
+        className={classNames('font-bold text-gray-200 w-48 xl:w-80 truncate')}
+      >
         {name ?? 'N/A'}
       </span>
     </div>
