@@ -55,7 +55,8 @@ export default function MobileTransactionTable({
             <a
               className={classNames(
                 'inline-flex items-center gap-x-2 px-2 py-0.5 mr-auto',
-                'border border-white/20 hover:border-green-primary transition-all'
+                'border border-white/20 hover:border-green-primary transition-all',
+                isLoading ? 'children:skeleton' : ''
               )}
               href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
               target="_blank"

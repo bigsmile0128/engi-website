@@ -111,7 +111,8 @@ export default function TransactionTable({
             <a
               className={classNames(
                 'inline-flex items-center gap-x-2 px-3 py-1',
-                'border border-white/20 hover:border-green-primary transition-all'
+                'border border-white/20 hover:border-green-primary transition-all',
+                isLoading ? 'children:skeleton' : ''
               )}
               href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer/query/${transaction?.hash}`}
               target="_blank"
