@@ -46,7 +46,9 @@ export default function EngiAmount({
         isLoading ? 'children:skeleton' : '',
         className
       )}
-      data-tip={`${value || 0} ADA`}
+      data-tip={`${
+        typeof value === 'string' ? parseFloat(value) : value || 0
+      } ADA`}
       data-tip-disabled={isLoading}
       data-place="bottom"
       data-class="font-medium"
