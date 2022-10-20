@@ -23,7 +23,7 @@ export const useBalance = (id: string) =>
         },
       });
 
-      return response.data?.data?.account?.data?.free;
+      return response.data?.data?.account?.data?.free ?? 0;
     },
     {
       // TODO: this updates users balance every 30 seconds. move to socket
