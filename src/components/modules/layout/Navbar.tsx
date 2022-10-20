@@ -60,7 +60,12 @@ export default function Navbar({ className }: NavbarProps) {
                 className={classNames(
                   'flex items-center gap-x-1',
                   'text-secondary font-medium hover:text-white',
-                  'outline-none focus-visible:ring-2 focus-visible:ring-green-primary'
+                  'outline-none focus-visible:ring-2 focus-visible:ring-green-primary',
+                  {
+                    'underline !text-white': /^\/about|contact/.test(
+                      router.asPath
+                    ),
+                  }
                 )}
               >
                 Learn <ChevronDownIcon className="h-4 w-4" />
