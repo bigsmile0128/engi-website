@@ -8,14 +8,17 @@ import { JobsQueryArguments } from '~/types';
 import * as Sentry from '@sentry/react';
 import axios from 'axios';
 
-export default function useJobs(query: JobsQueryArguments) {
+export default function useJobs(
+  query: JobsQueryArguments,
+  currentUser?: string
+) {
   return useQuery(['jobs', JSON.stringify(query)], () => fetchJobs(query), {
     onError: (error) => {
       Sentry.captureException(error);
       emitFoundJobsErrorAnalyticsEvent(error);
     },
     onSuccess(data) {
-      emitFoundJobsAnalyticsEvent(data?.jobs?.results?.items);
+      emitFoundJobsAnalyticsEvent(data?.result?.totalCount, currentUser);
     },
   });
 }
