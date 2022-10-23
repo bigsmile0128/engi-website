@@ -32,7 +32,7 @@ function Banner() {
   return (
     <div
       className={cn(
-        'w-full py-8 sm:py-4 flex items-center bg-[#232323]/80 backdrop-blur-[12.5px]',
+        'w-full relative py-8 sm:py-4 flex items-center bg-[#232323]/80 backdrop-blur-[12.5px]',
         styles.banner
       )}
     >
