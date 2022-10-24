@@ -9,6 +9,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
 import MobileJobTable from './MobileJobTable';
 import { RiFileSearchLine } from 'react-icons/ri';
+import Button from '~/components/global/Button/Button';
+import { SiDiscord } from 'react-icons/si';
 
 interface SearchResultsProps {
   className?: string;
@@ -56,59 +58,65 @@ export default function SearchResults({
       )}
       {!isLoading && !isError && (
         <>
-          <JobTable
-            className="hidden sm:block"
-            data={results}
-            numPages={numPages}
-          />
-          <MobileJobTable className="sm:hidden" data={results} />
           {results.length === 0 ? (
             <div
               className={classNames(
-                'flex flex-col items-center justify-center gap-8 mb-8 py-16 lg:py-24',
-                'bg-black/[.14]',
-                'text-3xl font-grifter'
+                'flex flex-col items-center justify-center gap-4 mt-16'
               )}
             >
-              <RiFileSearchLine className="h-16 w-16" />
-              <span>No jobs found</span>
+              <p className="font-bold text-2xl">Jobs are coming soon!</p>
+              <p className="text-xl">
+                In the meantime, join us on Discord to hear about our updates.
+              </p>
+              <Button className="flex items-center gap-2 mt-2">
+                <SiDiscord />
+                Join us on Discord
+              </Button>
             </div>
           ) : (
-            <ReactPaginate
-              pageCount={numPages}
-              previousLabel={
-                <ChevronLeftIcon
-                  className="h-5 w-5 text-gray-300 hover:text-gray-100"
-                  aria-hidden="true"
-                />
-              }
-              nextLabel={
-                <ChevronRightIcon
-                  className="h-5 w-5 text-gray-300 hover:text-gray-100"
-                  aria-hidden="true"
-                />
-              }
-              breakLabel={
-                <AiOutlineEllipsis className="h-5 w-5 text-gray-300" />
-              }
-              onPageChange={(e) => {
-                const newSearchParams = Object.fromEntries(searchParams);
-                if (e.selected === 0) {
-                  delete newSearchParams.page;
+            <>
+              <JobTable
+                className="hidden sm:block"
+                data={results}
+                numPages={numPages}
+              />
+              <MobileJobTable className="sm:hidden" data={results} />
+              <ReactPaginate
+                pageCount={numPages}
+                previousLabel={
+                  <ChevronLeftIcon
+                    className="h-5 w-5 text-gray-300 hover:text-gray-100"
+                    aria-hidden="true"
+                  />
                 }
-                setSearchParams({
-                  ...Object.fromEntries(searchParams),
-                  page: (e.selected + 1).toString(),
-                });
-              }}
-              className="flex items-center self-center mt-8 pb-8"
-              pageClassName=""
-              breakClassName="flex items-center justify-center w-8"
-              pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
-              activeLinkClassName="!text-green-400 font-bold"
-              // library uses 0-based pagination, but we use 1-based for consistency with URL
-              forcePage={page - 1}
-            />
+                nextLabel={
+                  <ChevronRightIcon
+                    className="h-5 w-5 text-gray-300 hover:text-gray-100"
+                    aria-hidden="true"
+                  />
+                }
+                breakLabel={
+                  <AiOutlineEllipsis className="h-5 w-5 text-gray-300" />
+                }
+                onPageChange={(e) => {
+                  const newSearchParams = Object.fromEntries(searchParams);
+                  if (e.selected === 0) {
+                    delete newSearchParams.page;
+                  }
+                  setSearchParams({
+                    ...Object.fromEntries(searchParams),
+                    page: (e.selected + 1).toString(),
+                  });
+                }}
+                className="flex items-center self-center mt-8 pb-8"
+                pageClassName=""
+                breakClassName="flex items-center justify-center w-8"
+                pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
+                activeLinkClassName="!text-green-400 font-bold"
+                // library uses 0-based pagination, but we use 1-based for consistency with URL
+                forcePage={page - 1}
+              />
+            </>
           )}
         </>
       )}

@@ -2,7 +2,7 @@ import {
   emitFoundJobsErrorAnalyticsEvent,
   emitFoundJobsAnalyticsEvent,
 } from './../analytics/events';
-import { gql, request } from 'graphql-request';
+import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { JobsQueryArguments } from '~/types';
 import * as Sentry from '@sentry/react';

@@ -30,7 +30,7 @@ export default function JobDiscovery() {
   );
 
   return (
-    <div className="max-w-page flex flex-col mt-12">
+    <div className="max-w-page flex flex-col mt-12 mb-24">
       <div className="md:flex items-start justify-between gap-x-4">
         <h1 className="text-white font-grifter text-8xl">Jobs</h1>
         {/* <CurrentJobs className="mt-12 md:mt-0 md:w-1/2 md:max-w-md" /> */}

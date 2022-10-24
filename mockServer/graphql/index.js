@@ -27,6 +27,16 @@ router.post('/', async (req, res) => {
     return;
   } else if (query.includes('JobSearch')) {
     res.json(mockJobs);
+    // res.json({
+    //   data: {
+    //     jobs: {
+    //       result: {
+    //         totalCount: 0,
+    //         items: [],
+    //       },
+    //     },
+    //   },
+    // });
     return;
   }
 
