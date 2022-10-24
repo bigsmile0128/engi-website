@@ -11,6 +11,7 @@ import MobileJobTable from './MobileJobTable';
 import { RiFileSearchLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import { SiDiscord } from 'react-icons/si';
+import Link from 'next/link';
 
 interface SearchResultsProps {
   className?: string;
@@ -68,10 +69,16 @@ export default function SearchResults({
               <p className="text-xl">
                 In the meantime, join us on Discord to hear about our updates.
               </p>
-              <Button className="flex items-center gap-2 mt-2">
-                <SiDiscord />
-                Join us on Discord
-              </Button>
+              <a
+                href="https://discord.gg/S67BnJWN27"
+                target="blank"
+                rel="noreferrer"
+              >
+                <Button className="flex items-center gap-2 mt-2">
+                  <SiDiscord />
+                  Join us on Discord
+                </Button>
+              </a>
             </div>
           ) : (
             <>
