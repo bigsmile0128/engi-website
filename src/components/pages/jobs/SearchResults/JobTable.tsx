@@ -47,6 +47,7 @@ export default function JobTable({
               isLoading={isLoading}
               name={job?.name}
               createdOn={job?.createdOn?.dateTime}
+              language={job?.language}
             />
           );
         },

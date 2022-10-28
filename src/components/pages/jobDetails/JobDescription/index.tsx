@@ -42,7 +42,11 @@ export default function JobDescription({
           isLoading ? 'children:skeleton children:rounded-none' : ''
         )}
       >
-        <LanguageTag value={data?.language} isLoading={isLoading} />
+        <LanguageTag
+          value={data?.language}
+          isLoading={isLoading}
+          iconClassName="text-orange-primary"
+        />
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
       {isLoading ? (

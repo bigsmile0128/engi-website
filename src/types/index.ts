@@ -32,7 +32,7 @@ export enum Language {
   C = 'C',
   C_SHARP = 'C_SHARP',
   JAVA = 'JAVA',
-  JAVASCRIPT = 'JAVASCRIPT',
+  JAVA_SCRIPT = 'JAVA_SCRIPT',
   PYTHON = 'PYTHON',
   RUST = 'RUST',
   TYPESCRIPT = 'TYPESCRIPT',

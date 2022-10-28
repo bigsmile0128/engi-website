@@ -1,17 +1,7 @@
-import React from 'react';
 import classNames from 'classnames';
-import Tag from './global/Tag/Tag';
 import { Language } from '~/types';
-import { RiCodeLine } from 'react-icons/ri';
-import {
-  SiC,
-  SiCsharp,
-  SiJava,
-  SiJavascript,
-  SiPython,
-  SiRust,
-  SiTypescript,
-} from 'react-icons/si';
+import Tag from './global/Tag/Tag';
+import LanguageIcon from './LanguageIcon';
 
 type LanguageTagProps = {
   className?: string;
@@ -22,7 +12,7 @@ type LanguageTagProps = {
 const displayNameMap = {
   [Language.C_SHARP]: 'C#',
   [Language.JAVA]: 'Java',
-  [Language.JAVASCRIPT]: 'JavaScript',
+  [Language.JAVA_SCRIPT]: 'JavaScript',
   [Language.PYTHON]: 'Python',
   [Language.RUST]: 'Rust',
   [Language.TYPESCRIPT]: 'TypeScript',
@@ -33,41 +23,15 @@ export default function LanguageTag({
   value,
   isLoading,
 }: LanguageTagProps) {
-  let icon;
-  switch (value) {
-    case Language.C:
-      icon = <SiC className="text-orange-primary mr-2" />;
-      break;
-    case Language.C_SHARP:
-      icon = <SiCsharp className="text-orange-primary mr-2" />;
-      break;
-    case Language.JAVA:
-      icon = <SiJava className="text-orange-primary mr-2" />;
-      break;
-    case Language.JAVASCRIPT:
-      icon = <SiJavascript className="text-orange-primary mr-2" />;
-      break;
-    case Language.PYTHON:
-      icon = <SiPython className="text-orange-primary mr-2" />;
-      break;
-    case Language.RUST:
-      icon = <SiRust className="text-orange-primary mr-2" />;
-      break;
-    case Language.TYPESCRIPT:
-      icon = <SiTypescript className="text-orange-primary mr-2" />;
-      break;
-    default:
-      icon = <RiCodeLine className="text-orange-primary mr-2" />;
-  }
   return (
     <Tag
       className={classNames(
-        '',
+        'flex items-center gap-x-2',
         isLoading ? 'children:skeleton' : '',
         className
       )}
     >
-      {icon}
+      <LanguageIcon value={value} className="text-orange-primary" />
       <span>{displayNameMap[value] ?? value}</span>
     </Tag>
   );

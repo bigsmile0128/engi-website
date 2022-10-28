@@ -2,11 +2,14 @@ import React from 'react';
 import classNames from 'classnames';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
 import dayjs from 'dayjs';
+import { Language } from '~/types';
+import LanguageIcon from '~/components/LanguageIcon';
 
 type JobInfoProps = {
   className?: string;
   createdOn?: string;
   isLoading?: boolean;
+  language?: Language;
   name?: string;
 };
 
@@ -15,6 +18,7 @@ export default function JobInfo({
   name,
   createdOn,
   isLoading,
+  language,
 }: JobInfoProps) {
   return (
     <div
@@ -25,13 +29,14 @@ export default function JobInfo({
       )}
     >
       <div className="flex items-center gap-x-4">
-        <SiPython
+        <LanguageIcon
           className={classNames(
             'h-7 w-7 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
             {
               invisible: isLoading,
             }
           )}
+          value={language}
         />
         <span className="text-xs text-white/80">
           Created {dayjs(createdOn).fromNow()}
