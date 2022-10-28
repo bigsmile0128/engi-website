@@ -2,9 +2,10 @@ import cn from 'classnames';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import styles from './layout.module.css';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { XIcon } from '@heroicons/react/outline';
 import Button from '~/components/global/Button/Button';
+import lscache from 'lscache';
 
 type LayoutProps = {
   children?: React.ReactNode;
@@ -23,17 +24,24 @@ export default function Layout({ children }: LayoutProps) {
 }
 
 function Banner() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
-  if (!open) {
-    return null;
-  }
+  useEffect(() => {
+    setOpen(lscache.get('skillsbiteBanner') ?? true);
+  }, []);
+
+  const onClose = useCallback(() => {
+    setOpen(false);
+    const ttl = 60 * 24 * 7; // 7-day TTL in minutes
+    lscache.set('skillsbiteBanner', false, ttl);
+  }, []);
 
   return (
     <div
       className={cn(
-        'w-full relative py-8 sm:py-4 flex items-center bg-[#232323]/80 backdrop-blur-[12.5px]',
-        styles.banner
+        'w-full relative py-8 sm:py-4 flex items-center bg-[#232323]/80 backdrop-blur-[12.5px] shrink-0',
+        styles.banner,
+        !open ? '!hidden' : ''
       )}
     >
       <div
@@ -62,14 +70,14 @@ function Banner() {
         </div>
         <button
           className="text-white hidden sm:block mb-auto"
-          onClick={() => setOpen(false)}
+          onClick={onClose}
         >
           <XIcon className="h-8 w-8" />
         </button>
         {/* mobile button */}
         <button
           className="text-white sm:hidden absolute top-8 right-6"
-          onClick={() => setOpen(false)}
+          onClick={onClose}
         >
           <XIcon className="h-8 w-8" />
         </button>
