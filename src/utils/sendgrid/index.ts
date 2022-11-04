@@ -4,10 +4,10 @@ import { ClientRequest } from '@sendgrid/client/src/request';
 import { HttpMethod } from '@sendgrid/helpers/classes/request';
 
 function initialize(client) {
-  const apiKey = process.env.SENDGRID_API_KEY
+  const apiKey = process.env.SENDGRID_API_KEY;
 
-  if(!apiKey && process.env.NODE_ENV === 'production') {
-    throw new Error('Sendgrid key is not defined')
+  if (!apiKey && process.env.NODE_ENV === 'production') {
+    throw new Error('Sendgrid key is not defined');
   }
 
   client.setApiKey(apiKey);
@@ -31,6 +31,6 @@ export async function upsertContact(data): Promise<ClientResponse> {
   };
 
   const [response] = await client.request(request);
-  
+
   return response;
 }
