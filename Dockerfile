@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-RUN . .build_env && npm run build
+RUN . .env && npm run build
 
 # Production image, copy all the files and run next
 FROM node:lts-alpine AS runner
