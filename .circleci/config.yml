@@ -8,11 +8,17 @@ version: 2.1
 orbs:
   aws-ecr: circleci/aws-ecr@8.1.2
   terraform: circleci/terraform@3.0.1
+  aws-cli: circleci/aws-cli@3.1
 
 parameters:
   terraform-setup:
     type: string
     default: deploy/setup/engi-website
+
+executors:
+  build:
+    machine:
+      image: ubuntu-2004:202201-01
 
 commands:
   terraform-deploy:
@@ -45,59 +51,103 @@ commands:
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  deploy-staging:
-    machine:
-      image: ubuntu-2004:202201-01
+  deploy:
+    executor: build
+    parameters:
+      environment:
+        type: string
     environment:
-      TF_WORKSPACE: 'engi-website-staging'
+      TF_WORKSPACE: 'engi-website-<< parameters.environment >>'
     steps:
       - terraform-deploy
-  deploy-production:
-    machine:
-      image: ubuntu-2004:202201-01
-    environment:
-      TF_WORKSPACE: 'engi-website-production'
+  build:
+    executor: build
+    parameters:
+      environment:
+        type: string
     steps:
-      - terraform-deploy
+      - attach_workspace:
+          at: /tmp/workspace
+      - checkout
+      - run: |
+          cat /tmp/workspace/.build_env > .build_env
+          cat .build_env
+      - aws-ecr/build-and-push-image:
+          repo: 'engi-website-<< parameters.environment >>'
+          create-repo: true
+          tag: latest
+          registry-id: AWS_ID
+  fetch-aws-env:
+    executor: build
+    parameters:
+      environment:
+        type: string
+    steps:
+      - aws-cli/setup:
+          profile-name: default
+      - run: |
+          mkdir -p .workspace
+          aws ecs describe-task-definition --task-definition engi-website-<< parameters.environment >> |
+          jq -rM '.taskDefinition.containerDefinitions[] as $c | [$c.secrets[]|[.name,.valueFrom]|join(" ")] as $s | [$c.environment[]|[.name,.value]|join("=")] + $s | .[]' |
+          while read env secret_arn; do
+            if [[ -n $secret_arn ]]; then
+              echo $env="$(aws secretsmanager get-secret-value --secret-id $secret_arn | jq -rM .SecretString)"
+            else
+              echo "$env"
+            fi
+          done > .workspace/.build_env
+      - persist_to_workspace:
+          root: .workspace
+          paths:
+            - .build_env
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   build-test-push-workflow:
     jobs:
-      - aws-ecr/build-and-push-image:
-          name: 'build-and-push-staging'
-          repo: 'engi-website-staging'
-          create-repo: true
-          tag: latest
-          registry-id: AWS_ID
+      - fetch-aws-env:
           context:
             - aws
-      - aws-ecr/build-and-push-image:
+          name: fetch-aws-env-<< matrix.environment >>
+          matrix:
+            parameters:
+              environment:
+                - staging
+                - production
+      - build:
+          name: build-<< matrix.environment >>
+          matrix:
+            parameters:
+              environment:
+                - staging
+                - production
+          requires:
+            - fetch-aws-env-<< matrix.environment >>
+          context:
+            - aws
+      - deploy:
+          name: deploy-staging
+          environment: staging
+          requires:
+            - build
+          context:
+            - terraform
           filters:
-            &filters-production # this yaml anchor is setting these values to filters-production
+            branches:
+              only: master
             tags:
-              only: /^v.*/
+              only: ""
+  release-workflow:
+    jobs:
+      - deploy:
+          name: deploy-production
+          environment: production
+          context:
+            - terraform
+          filters:
             branches:
               ignore: /.*/
-          name: 'build-and-push-production'
-          repo: 'engi-website-production'
-          create-repo: true
-          tag: latest
-          registry-id: AWS_ID
-          context:
-            - aws
-      - deploy-staging:
-          requires:
-            - build-and-push-staging
-          context:
-            - github
-            - terraform
-      - deploy-production:
-          filters:
-            <<: *filters-production # this is calling the previously set yaml anchor
-          requires:
-            - build-and-push-production
-          context:
-            - github
-            - terraform
+            tags:
+              only: /^v.*/
