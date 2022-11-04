@@ -70,13 +70,15 @@ jobs:
           at: /tmp/workspace
       - checkout
       - run: |
-          cat /tmp/workspace/.build_env > .build_env
-          cat .build_env
+          cat /tmp/workspace/.env > .env
       - aws-ecr/build-and-push-image:
           repo: 'engi-website-<< parameters.environment >>'
           create-repo: true
           tag: latest
           registry-id: AWS_ID
+      - store_artifacts:
+          path: .env
+          destination: build_env
   fetch-aws-env:
     executor: build
     parameters:
@@ -95,11 +97,11 @@ jobs:
             else
               echo "$env"
             fi
-          done > .workspace/.build_env
+          done > .workspace/.env
       - persist_to_workspace:
           root: .workspace
           paths:
-            - .build_env
+            - .env
 
 
 # Invoke jobs via workflows
