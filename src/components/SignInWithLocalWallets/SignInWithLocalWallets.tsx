@@ -7,6 +7,7 @@ import UserContext from '~/utils/contexts/userContext';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 import { RefreshIcon } from '@heroicons/react/outline';
 import Avvvatars from 'avvvatars-react';
+import classNames from 'classnames';
 
 const Dots = (props) => (
   <svg
@@ -49,7 +50,13 @@ const CouldNotConnectToExtension = ({ error, retry }) => (
   </>
 );
 
-export default function SignInWithLocalWallets() {
+type SignInWithLocalWalletsProps = {
+  className?: string;
+};
+
+export default function SignInWithLocalWallets({
+  className,
+}: SignInWithLocalWalletsProps) {
   // load all accounts from all extensions the user wishes to connect
   const {
     isLoading: connectingToExtensions,
@@ -149,7 +156,7 @@ export default function SignInWithLocalWallets() {
   ]);
 
   return (
-    <div className="bg-[#07070690]">
+    <div className={classNames('bg-[#07070690]', className)}>
       {failedToConnectForAccounts ? (
         <CouldNotConnectToExtension
           error={connectExtensionError}
@@ -187,8 +194,7 @@ export default function SignInWithLocalWallets() {
                   <Avvvatars value={address} style="shape" size={45} />
                   <div className="flex flex-col flex-1 mx-4 truncate">
                     <span className="text-lg font-bold">{display}</span>
-                    {/* nested truncate yields responsive clipped ellipsis */}
-                    <span className="text-sm font-light truncate text-ellipsis">
+                    <span className="text-sm font-light truncate text-ellipsis block">
                       {address}
                     </span>
                   </div>

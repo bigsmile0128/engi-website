@@ -15,7 +15,7 @@ export default function Signup({ className }: SignupProps) {
 
   // TODO: adjust padding and margin on mobile
   return (
-    <div className={classNames('max-w-page lg:py-20', className)}>
+    <div className={classNames('max-w-page py-16', className)}>
       <div
         className={classNames(
           'w-full p-4 flex items-center gap-x-4 mb-8 sm:hidden',
@@ -29,23 +29,16 @@ export default function Signup({ className }: SignupProps) {
         </span>
       </div>
       <div className="flex">
-        <div
-          style={{ flexBasis: '55%' }}
-          className="flex flex-col items-center lg:p-20"
-        >
+        <div className="flex flex-col items-center basis-1/2 overflow-hidden pr-12">
           <h1 className="font-bold text-5xl mb-4">Welcome back</h1>
           <p className="mb-8 max-w-sm text-center text-lg">
             {
               "Whether you're buying software or writing it yourself, use your registered wallet to get back to building"
             }
           </p>
-          <SignInWithLocalWallets />
+          <SignInWithLocalWallets className="w-full" />
         </div>
-
-        <div
-          style={{ flexBasis: '45%', flexShrink: 0 }}
-          className="flex flex-col items-center lg:p-20 overflow-visible relative"
-        >
+        <div className="flex flex-col items-center overflow-visible relative basis-1/2 pl-12">
           <span
             style={{
               top: '-100%',
