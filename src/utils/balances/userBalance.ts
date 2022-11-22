@@ -8,6 +8,9 @@ export const useBalance = (id: string) =>
   useQuery(
     [QUERY_KEY_ACCOUNT_BALANCE, id],
     async () => {
+      if (!id) {
+        return 0;
+      }
       const response = await axios.post('/api/graphql', {
         query: gql`
           query WalletCheck($id: String!) {
