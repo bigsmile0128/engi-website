@@ -55,7 +55,7 @@ export default function Signup({ className }: SignupProps) {
             <a
               href="https://talisman.xyz/"
               target="_blank"
-              className="hover:text-blue-200 text-blue-300"
+              className="text-green-primary hover:underline"
               rel="noreferrer"
             >
               Talisman
@@ -64,7 +64,7 @@ export default function Signup({ className }: SignupProps) {
             <a
               href="https://subwallet.app/"
               target="_blank"
-              className="hover:text-blue-200 text-blue-300"
+              className="text-green-primary hover:underline"
               rel="noreferrer"
             >
               SubWallet
@@ -73,7 +73,7 @@ export default function Signup({ className }: SignupProps) {
             <a
               href="https://polkadot.js.org/extension/"
               target="_blank"
-              className="hover:text-blue-200 text-blue-300"
+              className="text-green-primary hover:underline"
               rel="noreferrer"
             >
               PolkadotJS
