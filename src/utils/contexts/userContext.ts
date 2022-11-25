@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export type User = {
   accessToken: string;
@@ -13,4 +13,5 @@ const UserContext = createContext({
   },
 });
 
+export const useUser = () => useContext(UserContext);
 export default UserContext;

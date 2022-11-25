@@ -1,23 +1,23 @@
-import React, { Fragment, useContext, useState } from 'react';
-import classNames from 'classnames';
-import Link from 'next/link';
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
+import classNames from 'classnames';
+import Link from 'next/link';
+import { Fragment, useState } from 'react';
 
-import Logo from '~/components/Logo';
-import MenuSvg from 'public/img/home/menu.svg';
-import BlockchainHealth from './BlockchainHealth';
-import UserContext from '~/utils/contexts/userContext';
-import UserInfo from './navbar/UserInfo';
 import { useRouter } from 'next/router';
+import MenuSvg from 'public/img/home/menu.svg';
+import Logo from '~/components/Logo';
+import { useUser } from '~/utils/contexts/userContext';
+import BlockchainHealth from './BlockchainHealth';
+import UserInfo from './navbar/UserInfo';
 
 interface NavbarProps {
   className?: string;
 }
 
 export default function Navbar({ className }: NavbarProps) {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -133,7 +133,7 @@ export default function Navbar({ className }: NavbarProps) {
           <UserInfo className="hidden md:flex" user={user} setUser={setUser} />
         ) : (
           <>
-            <BlockchainHealth className="hidden lg:flex" isStacked />
+            <BlockchainHealth className="hidden md:flex" isStacked />
             <Link href="/signup">
               <a>
                 <button

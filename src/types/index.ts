@@ -107,6 +107,31 @@ export type JobsQueryArguments = {
   status?: string;
 };
 
+export type GithubRepositoryOwner = {
+  avatarUrl?: string;
+  login: string;
+};
+
+export type GithubRepositoryWithOwner = {
+  fullName: string;
+  isPrivate: boolean;
+  name: string;
+  owner?: GithubRepositoryOwner;
+};
+
+export type Commit = {
+  author: string;
+  committer: string;
+  message: string;
+  sha: string;
+};
+
+export type UserGithubEnrollment = {
+  createdOn: string;
+  installationId: number;
+  owner?: GithubRepositoryOwner;
+};
+
 // copies from same story figma plugin repo
 export interface DFormValue {
   name: string;

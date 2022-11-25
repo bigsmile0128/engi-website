@@ -1,74 +1,187 @@
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import Input from '~/components/global/Input/Input';
-import Button from '~/components/global/Button/Button';
-import { useQuery } from 'react-query';
-import { AiOutlineLoading } from 'react-icons/ai';
-import Modal from '~/components/global/Modal/Modal';
 import { Dialog } from '@headlessui/react';
+import classNames from 'classnames';
 import TargetSvg from 'public/img/jobCreation/target.svg';
+import { useState } from 'react';
+import { AiOutlineLoading } from 'react-icons/ai';
+import { RiAddCircleLine, RiRefreshLine } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import Button from '~/components/global/Button/Button';
+import Modal from '~/components/global/Modal/Modal';
+import SelectMenu from '~/components/SelectMenu';
+import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
+import WarningBanner from '~/components/WarningBanner';
+import { useUser } from '~/utils/contexts/userContext';
+import useGithubBranchCommits from '~/utils/hooks/useGithubBranchCommits';
+import useGithubRepositories from '~/utils/hooks/useGithubRepositories';
+import useGithubRepositoryBranches from '~/utils/hooks/useGithubRepositoryBranches';
 
 type RepositoryTabProps = {
   className?: string;
-  defaultValue?: string;
   onChange: (repoUrl) => void;
 };
 
 export default function RepositoryTab({
   className,
   onChange,
-  defaultValue,
 }: RepositoryTabProps) {
-  const [repoUrl, setRepoUrl] = useState(defaultValue ?? '');
+  const { user } = useUser();
+  const [repo, setRepo] = useState(null);
+  const [branch, setBranch] = useState(null);
+  const [commit, setCommit] = useState(null);
   const [modalType, setModalType] = useState('');
+
   const {
-    isLoading,
-    isFetching,
-    fetchStatus,
-    data: isValidRepo,
-    refetch,
-    status,
-  } = useQuery(['analyze', repoUrl], () => validateRepo(repoUrl), {
-    enabled: false,
-    refetchOnWindowFocus: false,
-    // disable cache so modal doesn't show up when going back to this step
-    cacheTime: 0,
-  });
+    isLoading: isLoadingRepositories,
+    isError: isErrorRepositories,
+    data: repos,
+    isFetching: isFetchingRepositories,
+    refetch: refetchRepositories,
+  } = useGithubRepositories();
+  const {
+    isLoading: isLoadingBranches,
+    isError: isErrorBranches,
+    data: branches,
+    isFetching: isFetchingBranches,
+    refetch: refetchBranches,
+  } = useGithubRepositoryBranches(repo?.value);
+  const {
+    isLoading: isLoadingCommits,
+    isError: isErrorCommits,
+    data: commits,
+    isFetching: isFetchingCommits,
+    refetch: refetchCommits,
+  } = useGithubBranchCommits(repo?.value, branch?.value);
 
-  useEffect(() => {
-    if (isValidRepo) {
-      setModalType('success');
-    }
-  }, [isValidRepo]);
+  // TODO: implement analysis
+  const isLoadingAnalysis = false;
 
-  const isValidating = isFetching && fetchStatus === 'fetching';
+  // useEffect(() => {
+  //   if (isValidRepo) {
+  //     setModalType('success');
+  //   }
+  // }, [isValidRepo]);
 
   return (
     <div className={classNames('', className)}>
-      <h4 className="font-bold text-xl">Step 1: Enter Repository</h4>
+      {isErrorRepositories || (
+        <div className="flex flex-col gap-4 mb-8">
+          <WarningBanner>Login to refresh your access token.</WarningBanner>
+          <SignInWithLocalWallets onSuccess={() => refetchRepositories()} />
+        </div>
+      )}
+      <h4 className="font-bold text-xl">Step 1: Select Repository</h4>
       <p className="text-secondary mt-4">
-        Enter existing repository URL for creating a new job. The directory must
-        be a Rust project and have a .git directory.
+        Select an existing repository URL for creating a new job. The directory
+        must be a Rust project and have a .git directory.
       </p>
-      <label htmlFor="repo-url" className="block font-bold text-xl mt-12">
-        Enter Repository
-      </label>
-      <Input
-        id="repo-url"
-        className="block mt-4 w-full max-w-sm"
-        type="text"
-        placeholder="Repository URL"
-        value={repoUrl}
-        onChange={(e) => setRepoUrl(e.target.value)}
+      {/* TODO: switch to select with autocomplete */}
+      {/* TODO: better loader for repo loading state */}
+      {/* TODO: add labels above menus */}
+      <div className="flex items-center gap-2 mt-8">
+        <label className="font-bold text-xl">Repository</label>
+        <a
+          className="text-xl text-green-primary hover:text-green-primary/80"
+          href="https://github.com/apps/engi-bot-github-app/installations/new?state=uuid"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <RiAddCircleLine />
+        </a>
+        <button
+          className="text-xl text-green-primary hover:text-green-primary/80"
+          disabled={isLoadingRepositories || isFetchingRepositories}
+          onClick={() => refetchRepositories()}
+        >
+          <RiRefreshLine
+            className={
+              isLoadingRepositories || isFetchingRepositories
+                ? 'animate-spin'
+                : ''
+            }
+          />
+        </button>
+      </div>
+      <SelectMenu
+        options={(repos ?? []).map((repo) => ({
+          label: repo.fullName,
+          value: repo.fullName,
+        }))}
+        buttonLabel="Select a repository..."
+        labelClassName="ml-0"
+        value={repo}
+        onChange={(repo) => {
+          setRepo(repo);
+          setBranch(null);
+          setCommit(null);
+        }}
+        disabled={isLoadingRepositories || isFetchingRepositories}
+      />
+      <div className="flex items-center gap-2 mt-6">
+        <label className="font-bold text-xl">Branch</label>
+        <button
+          className="text-xl text-green-primary hover:text-green-primary/80 disabled:text-gray-400"
+          disabled={!repo || isLoadingBranches || isFetchingBranches}
+          onClick={() => refetchBranches()}
+        >
+          <RiRefreshLine
+            className={
+              isLoadingBranches || isFetchingBranches ? 'animate-spin' : ''
+            }
+          />
+        </button>
+      </div>
+      <SelectMenu
+        options={(branches ?? []).map((branch) => ({
+          label: branch,
+          value: branch,
+        }))}
+        buttonLabel="Select a branch..."
+        labelClassName="ml-0"
+        value={branch}
+        onChange={(branch) => {
+          setBranch(branch);
+          setCommit(null);
+        }}
+        disabled={!repo || isLoadingBranches || isFetchingBranches}
+      />
+      <div className="flex items-center gap-2 mt-6">
+        <label className="font-bold text-xl">Commit</label>
+        <button
+          className="text-xl text-green-primary hover:text-green-primary/80 disabled:text-gray-400"
+          disabled={!branch || isLoadingCommits || isFetchingCommits}
+          onClick={() => refetchCommits()}
+        >
+          <RiRefreshLine
+            className={
+              isLoadingCommits || isFetchingCommits ? 'animate-spin' : ''
+            }
+          />
+        </button>
+      </div>
+      <SelectMenu
+        options={(commits ?? []).map((commit) => ({
+          label: commit.message,
+          value: commit.sha,
+        }))}
+        buttonLabel="Select a commit..."
+        labelClassName="ml-0"
+        value={commit}
+        onChange={(commit) => setCommit(commit)}
+        disabled={!branch || isLoadingCommits || isFetchingCommits}
+        optionsContainerClassName="w-80"
+        optionClassName="truncate"
       />
       <Button
         variant="primary"
         className="relative mt-8 !px-24 flex items-center justify-center"
-        disabled={isValidating}
-        onClick={() => refetch()}
+        disabled={!repo || !branch || !commit || isLoadingAnalysis}
+        // TODO: implement onClick analyze
+        onClick={() => toast.info('Not yet implemented.')}
       >
-        <span className={isValidating ? 'text-transparent' : ''}>Analyze</span>
-        {isValidating && (
+        <span className={isLoadingAnalysis ? 'text-transparent' : ''}>
+          Analyze
+        </span>
+        {isLoadingAnalysis && (
           <div className="animate-spin absolute h-5 w-5">
             <AiOutlineLoading className="text-lg text-black absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
           </div>
@@ -96,7 +209,7 @@ export default function RepositoryTab({
           <Button
             className="w-full mt-8"
             variant="primary"
-            onClick={() => onChange(repoUrl)}
+            onClick={() => onChange(repo?.value)}
           >
             Continue
           </Button>
@@ -104,20 +217,4 @@ export default function RepositoryTab({
       </Modal>
     </div>
   );
-}
-
-async function sleep(ms) {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => resolve(), ms);
-  });
-}
-
-// TODO: replace with analyze API when ready
-async function validateRepo(repoUrl: string) {
-  if (!repoUrl) {
-    return false;
-  }
-
-  await sleep(2000);
-  return true;
 }

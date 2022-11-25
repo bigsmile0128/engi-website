@@ -60,7 +60,6 @@ export default function Hire({ className }: HireProps) {
       <div className="max-w-page md:!max-w-xl mt-12">
         {currentStep === JobStep.REPOSITORY && (
           <RepositoryTab
-            defaultValue={repoUrl}
             onChange={(repoUrl) => {
               setCurrentStep(JobStep.TESTS);
               setRepoUrl(repoUrl);

@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
 import qs from 'qs';
 
 import SearchFilterList from '~/components/pages/jobs/SearchFilterList';
-import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
 import SearchResults from '~/components/pages/jobs/SearchResults';
+import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
+import { useUser } from '~/utils/contexts/userContext';
 import useJobs from '~/utils/hooks/useJobs';
-import UserContext from '~/utils/contexts/userContext';
 
 const PAGE_SIZE = 10;
 
@@ -19,7 +18,7 @@ export default function JobDiscovery() {
     router.push({ query });
   };
 
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
 
   const { isLoading, isError, data, refetch, error } = useJobs(
     {

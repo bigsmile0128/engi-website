@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import ReactTooltip from 'react-tooltip';
 import { useLoginUser } from '~/utils/auth/api';
-import UserContext from '~/utils/contexts/userContext';
+import { useUser } from '~/utils/contexts/userContext';
 import { useConnectPolkadotExtension } from '~/utils/polkadot/extension';
 import { RefreshIcon } from '@heroicons/react/outline';
 import Avvvatars from 'avvvatars-react';
@@ -52,10 +52,12 @@ const CouldNotConnectToExtension = ({ error, retry }) => (
 
 type SignInWithLocalWalletsProps = {
   className?: string;
+  onSuccess?: () => void;
 };
 
 export default function SignInWithLocalWallets({
   className,
+  onSuccess,
 }: SignInWithLocalWalletsProps) {
   // load all accounts from all extensions the user wishes to connect
   const {
@@ -87,6 +89,7 @@ export default function SignInWithLocalWallets({
         autoClose: 3000,
         isLoading: false,
       });
+      onSuccess?.();
     } else if (failedToConnectForAccounts || failedRetryingConnection) {
       toast.update(connectionStatesDisplay.current, {
         render: 'Please retry connecting a Substrate compatible extension.',
@@ -102,6 +105,7 @@ export default function SignInWithLocalWallets({
     connectionStatesDisplay,
     retryingConnection,
     failedRetryingConnection,
+    onSuccess,
   ]);
 
   const {
@@ -112,7 +116,7 @@ export default function SignInWithLocalWallets({
     data: loggedIn,
   } = useLoginUser();
 
-  const { setUser } = useContext(UserContext);
+  const { setUser } = useUser();
   useEffect(() => {
     if (loggedIn) {
       const { address: walletId, accessToken, display } = loggedIn;
@@ -137,7 +141,7 @@ export default function SignInWithLocalWallets({
         type: toast.TYPE.SUCCESS,
       });
 
-      pushRoute('/jobs');
+      // pushRoute('/jobs');
     } else if (failedToLogin) {
       toast.update(loginStatesDisplay.current, {
         render: "Make sure you've registered and confirmed your email address",

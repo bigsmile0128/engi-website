@@ -1,13 +1,13 @@
-import React, { Fragment, useContext, useState } from 'react';
-import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
+import classNames from 'classnames';
+import { Fragment, useState } from 'react';
+import EngiIcon from '~/components/global/icons/EngiIcon';
+import { useBalance } from '~/utils/balances/userBalance';
+import { useUser } from '~/utils/contexts/userContext';
+import { displayAdaInEngi } from '~/utils/currency/conversion';
 import DepositTab from './DepositTab';
 import TransferTab from './TransferTab';
 import WithdrawTab from './WithdrawTab';
-import { displayAdaInEngi } from '~/utils/currency/conversion';
-import { useBalance } from '~/utils/balances/userBalance';
-import UserContext from '~/utils/contexts/userContext';
-import EngiIcon from '~/components/global/icons/EngiIcon';
 
 type MoveEngiProps = {
   className?: string;
@@ -28,7 +28,7 @@ const usePreviewMoveEngi = () => useState<PreviewMoveEngi>();
 export default function MoveEngi({ className }: MoveEngiProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [previewMove, setPreviewMove] = usePreviewMoveEngi();
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
   const { data: balance } = useBalance(user?.walletId);
 
   return (

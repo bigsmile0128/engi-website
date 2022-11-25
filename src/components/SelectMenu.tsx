@@ -11,10 +11,13 @@ export type Option = {
 type SelectMenuProps = {
   buttonLabel: string;
   className?: string;
+  disabled?: boolean;
   isLoading?: boolean;
   labelClassName?: string;
   onChange: (value: Option) => void;
+  optionClassName?: string;
   options: Option[];
+  optionsContainerClassName?: string;
   value?: Option;
 };
 
@@ -25,11 +28,14 @@ export default function SelectMenu({
   options,
   value,
   onChange,
+  optionClassName,
+  optionsContainerClassName,
   buttonLabel,
+  disabled,
 }: SelectMenuProps) {
   return (
     <div className={classNames('', isLoading ? 'skeleton' : '', className)}>
-      <Listbox value={value} onChange={onChange}>
+      <Listbox value={value} onChange={onChange} disabled={disabled}>
         {({ open }) => (
           <>
             <div className="relative inline-block">
@@ -69,7 +75,8 @@ export default function SelectMenu({
                   className={classNames(
                     'origin-top-right absolute z-10 right-0 mt-2 w-40 overflow-hidden',
                     'rounded-md bg-black/90 divide-y divide-[#ffffff22]',
-                    'outline-none focus-visible:ring-1 focus-visible:ring-green-primary'
+                    'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+                    optionsContainerClassName
                   )}
                 >
                   {options.map((option) => (
@@ -78,7 +85,8 @@ export default function SelectMenu({
                       className={({ active }) =>
                         classNames(
                           active ? 'text-black bg-green-primary' : 'text-white',
-                          'cursor-default select-none relative p-4 text-sm'
+                          'cursor-default select-none relative p-4 text-sm',
+                          optionClassName
                         )
                       }
                       value={option}
@@ -88,9 +96,10 @@ export default function SelectMenu({
                           <div className="flex flex-col">
                             <div className="flex justify-between">
                               <p
-                                className={
+                                className={classNames(
+                                  'truncate',
                                   selected ? 'font-semibold' : 'font-normal'
-                                }
+                                )}
                               >
                                 {option.label}
                               </p>

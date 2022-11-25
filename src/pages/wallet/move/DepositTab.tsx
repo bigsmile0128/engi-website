@@ -1,8 +1,8 @@
-import React, { Dispatch, useContext } from 'react';
 import classNames from 'classnames';
+import { Dispatch } from 'react';
 import BuyEngi from '~/components/pages/wallet/BuyEngi';
-import UserContext from '~/utils/contexts/userContext';
 import { PreviewMoveEngi } from '~/pages/wallet/move';
+import { useUser } from '~/utils/contexts/userContext';
 
 type DepositTabProps = {
   className?: string;
@@ -13,7 +13,7 @@ export default function DepositTab({
   className,
   setPreviewMove,
 }: DepositTabProps) {
-  const { user } = useContext(UserContext);
+  const { user } = useUser();
 
   return (
     <div className={classNames('flex flex-col', className)}>
