@@ -24,7 +24,7 @@ export default function useJobs(
 }
 
 async function fetchJobs(query: JobsQueryArguments) {
-  const response = await axios.post('/api/graphql', {
+  const { data } = await axios.post('/api/graphql', {
     query: gql`
       query JobSearch($query: JobsQueryArguments!) {
         jobs(query: $query) {
@@ -100,5 +100,10 @@ async function fetchJobs(query: JobsQueryArguments) {
       query,
     },
   });
-  return response.data?.data?.jobs ?? {};
+
+  if (data.errors?.length > 0) {
+    throw new Error(data?.errors?.[0]?.message ?? 'Unable to fetch jobs.');
+  }
+
+  return data?.jobs ?? {};
 }
