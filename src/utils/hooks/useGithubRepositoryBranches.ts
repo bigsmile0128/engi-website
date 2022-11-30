@@ -1,11 +1,13 @@
 import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
+import { useUser } from '../contexts/userContext';
 import useAxios from './useAxios';
 
 export default function useGithubRepositoryBranches(repositoryFullName) {
   const axios = useAxios();
+  const { user } = useUser();
   return useQuery<string[]>(
-    ['githubRepositoryBranches', repositoryFullName],
+    ['githubRepositoryBranches', user?.accessToken, repositoryFullName],
     async () => {
       if (!repositoryFullName) {
         return [];

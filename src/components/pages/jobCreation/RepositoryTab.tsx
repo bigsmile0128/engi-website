@@ -7,6 +7,7 @@ import { RiAddCircleLine, RiRefreshLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import Modal from '~/components/global/Modal/Modal';
+import LoginModal from '~/components/LoginModal';
 import SelectMenu from '~/components/SelectMenu';
 import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
 import WarningBanner from '~/components/WarningBanner';
@@ -63,12 +64,7 @@ export default function RepositoryTab({
 
   return (
     <div className={classNames('', className)}>
-      {isErrorRepositories || (
-        <div className="flex flex-col gap-4 mb-8">
-          <WarningBanner>Login to refresh your access token.</WarningBanner>
-          <SignInWithLocalWallets onSuccess={() => refetchRepositories()} />
-        </div>
-      )}
+      {isErrorRepositories && <LoginModal onSuccess={refetchRepositories} />}
       <h4 className="font-bold text-xl">Step 1: Select Repository</h4>
       <p className="text-secondary mt-4">
         Select an existing repository URL for creating a new job. The directory

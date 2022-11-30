@@ -4,7 +4,7 @@ import { Dialog, Transition } from '@headlessui/react';
 export interface ModalProps {
   children?: any;
   isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
+  setIsOpen?: (isOpen: boolean) => void;
 }
 
 export default function Modal({ isOpen, setIsOpen, children }: ModalProps) {
@@ -13,7 +13,7 @@ export default function Modal({ isOpen, setIsOpen, children }: ModalProps) {
       <Dialog
         as="div"
         className="relative z-10"
-        onClose={() => setIsOpen(false)}
+        onClose={() => setIsOpen?.(false)}
       >
         <Transition.Child
           as={Fragment}

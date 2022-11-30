@@ -1,12 +1,14 @@
 import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { GithubRepositoryWithOwner } from '~/types';
+import { useUser } from '../contexts/userContext';
 import useAxios from './useAxios';
 
 export default function useGithubRepositories() {
   const axios = useAxios();
+  const { user } = useUser();
   return useQuery<GithubRepositoryWithOwner[]>(
-    ['githubRepositories'],
+    ['githubRepositories', user?.accessToken],
     async () => {
       const { data } = await axios.post('/api/graphql', {
         query: gql`

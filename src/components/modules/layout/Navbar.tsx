@@ -54,7 +54,7 @@ export default function Navbar({ className }: NavbarProps) {
               Post
             </a>
           </Link>
-          <div className="relative z-50">
+          <div className="relative">
             <Menu>
               <Menu.Button
                 className={classNames(

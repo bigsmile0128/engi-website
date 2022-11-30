@@ -89,7 +89,6 @@ export default function SignInWithLocalWallets({
         autoClose: 3000,
         isLoading: false,
       });
-      onSuccess?.();
     } else if (failedToConnectForAccounts || failedRetryingConnection) {
       toast.update(connectionStatesDisplay.current, {
         render: 'Please retry connecting a Substrate compatible extension.',
@@ -105,7 +104,6 @@ export default function SignInWithLocalWallets({
     connectionStatesDisplay,
     retryingConnection,
     failedRetryingConnection,
-    onSuccess,
   ]);
 
   const {
@@ -122,8 +120,9 @@ export default function SignInWithLocalWallets({
       const { address: walletId, accessToken, display } = loggedIn;
 
       setUser({ walletId, accessToken, display });
+      onSuccess?.();
     }
-  }, [loggedIn, setUser]);
+  }, [loggedIn, setUser, onSuccess]);
 
   // display login states
   const loginStatesDisplay = useRef(null);
