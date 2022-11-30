@@ -7,11 +7,9 @@ import { RiAddCircleLine, RiRefreshLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import Modal from '~/components/global/Modal/Modal';
+import Select from '~/components/global/Select';
 import LoginModal from '~/components/LoginModal';
 import SelectMenu from '~/components/SelectMenu';
-import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
-import WarningBanner from '~/components/WarningBanner';
-import { useUser } from '~/utils/contexts/userContext';
 import useGithubBranchCommits from '~/utils/hooks/useGithubBranchCommits';
 import useGithubRepositories from '~/utils/hooks/useGithubRepositories';
 import useGithubRepositoryBranches from '~/utils/hooks/useGithubRepositoryBranches';
@@ -25,7 +23,6 @@ export default function RepositoryTab({
   className,
   onChange,
 }: RepositoryTabProps) {
-  const { user } = useUser();
   const [repo, setRepo] = useState(null);
   const [branch, setBranch] = useState(null);
   const [commit, setCommit] = useState(null);
@@ -71,8 +68,6 @@ export default function RepositoryTab({
         must be a Rust project and have a .git directory.
       </p>
       {/* TODO: switch to select with autocomplete */}
-      {/* TODO: better loader for repo loading state */}
-      {/* TODO: add labels above menus */}
       <div className="flex items-center gap-2 mt-8">
         <label className="font-bold text-xl">Repository</label>
         <a
@@ -97,20 +92,20 @@ export default function RepositoryTab({
           />
         </button>
       </div>
-      <SelectMenu
+      <Select
+        className="mt-2"
         options={(repos ?? []).map((repo) => ({
           label: repo.fullName,
           value: repo.fullName,
         }))}
-        buttonLabel="Select a repository..."
-        labelClassName="ml-0"
+        placeholder="Select a repository..."
         value={repo}
         onChange={(repo) => {
           setRepo(repo);
           setBranch(null);
           setCommit(null);
         }}
-        disabled={isLoadingRepositories || isFetchingRepositories}
+        isDisabled={isLoadingRepositories || isFetchingRepositories}
       />
       <div className="flex items-center gap-2 mt-6">
         <label className="font-bold text-xl">Branch</label>
@@ -126,19 +121,19 @@ export default function RepositoryTab({
           />
         </button>
       </div>
-      <SelectMenu
+      <Select
+        className="mt-2"
         options={(branches ?? []).map((branch) => ({
           label: branch,
           value: branch,
         }))}
-        buttonLabel="Select a branch..."
-        labelClassName="ml-0"
+        placeholder="Select a branch..."
         value={branch}
         onChange={(branch) => {
           setBranch(branch);
           setCommit(null);
         }}
-        disabled={!repo || isLoadingBranches || isFetchingBranches}
+        isDisabled={!repo || isLoadingBranches || isFetchingBranches}
       />
       <div className="flex items-center gap-2 mt-6">
         <label className="font-bold text-xl">Commit</label>
@@ -154,18 +149,16 @@ export default function RepositoryTab({
           />
         </button>
       </div>
-      <SelectMenu
+      <Select
+        className="mt-2"
         options={(commits ?? []).map((commit) => ({
           label: commit.message,
           value: commit.sha,
         }))}
-        buttonLabel="Select a commit..."
-        labelClassName="ml-0"
+        placeholder="Select a commit..."
         value={commit}
         onChange={(commit) => setCommit(commit)}
-        disabled={!branch || isLoadingCommits || isFetchingCommits}
-        optionsContainerClassName="w-80"
-        optionClassName="truncate"
+        isDisabled={!branch || isLoadingCommits || isFetchingCommits}
       />
       <Button
         variant="primary"

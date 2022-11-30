@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import cn from 'classnames';
-import MultiSelect from '~/components/global/Select/Select';
 import Button from '~/components/global/Button/Button';
 import { langData } from './JobPreference.utils';
 import styles from './JobPreference.module.css';
@@ -53,12 +52,13 @@ function JobPreference() {
       <h6 className="text-secondary mt-4 hidden md:block">
         Help us personalize your job recommendations.
       </h6>
-      <MultiSelect
+      {/* TODO: migrate to new Select component */}
+      {/* <MultiSelect
         items={renderItems()}
         onSelect={handleSelect}
         multi
         className="mt-12"
-      />
+      /> */}
       <div className="text-right mt-20">
         <Button
           onClick={handleSave}
