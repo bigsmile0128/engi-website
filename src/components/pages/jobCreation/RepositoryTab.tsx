@@ -1,15 +1,14 @@
 import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
 import TargetSvg from 'public/img/jobCreation/target.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RiAddCircleLine, RiRefreshLine } from 'react-icons/ri';
-import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import Modal from '~/components/global/Modal/Modal';
 import Select from '~/components/global/Select';
 import LoginModal from '~/components/LoginModal';
-import SelectMenu from '~/components/SelectMenu';
+import useAnalyzeRepository from '~/utils/hooks/useAnalyzeRepository';
 import useGithubBranchCommits from '~/utils/hooks/useGithubBranchCommits';
 import useGithubRepositories from '~/utils/hooks/useGithubRepositories';
 import useGithubRepositoryBranches from '~/utils/hooks/useGithubRepositoryBranches';
@@ -50,14 +49,19 @@ export default function RepositoryTab({
     refetch: refetchCommits,
   } = useGithubBranchCommits(repo?.value, branch?.value);
 
-  // TODO: implement analysis
-  const isLoadingAnalysis = false;
+  const analyzeMutation = useAnalyzeRepository({
+    repository: repo?.value,
+    branch: branch?.value,
+    commit: commit?.value,
+  });
 
-  // useEffect(() => {
-  //   if (isValidRepo) {
-  //     setModalType('success');
-  //   }
-  // }, [isValidRepo]);
+  const isLoadingAnalysis = analyzeMutation.isLoading;
+
+  useEffect(() => {
+    if (analyzeMutation.isSuccess) {
+      setModalType('success');
+    }
+  }, [analyzeMutation.isSuccess]);
 
   return (
     <div className={classNames('', className)}>
@@ -67,7 +71,6 @@ export default function RepositoryTab({
         Select an existing repository URL for creating a new job. The directory
         must be a Rust project and have a .git directory.
       </p>
-      {/* TODO: switch to select with autocomplete */}
       <div className="flex items-center gap-2 mt-8">
         <label className="font-bold text-xl">Repository</label>
         <a
@@ -164,8 +167,7 @@ export default function RepositoryTab({
         variant="primary"
         className="relative mt-8 !px-24 flex items-center justify-center"
         disabled={!repo || !branch || !commit || isLoadingAnalysis}
-        // TODO: implement onClick analyze
-        onClick={() => toast.info('Not yet implemented.')}
+        onClick={() => analyzeMutation.mutate()}
       >
         <span className={isLoadingAnalysis ? 'text-transparent' : ''}>
           Analyze

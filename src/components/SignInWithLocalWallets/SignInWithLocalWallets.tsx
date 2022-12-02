@@ -117,9 +117,7 @@ export default function SignInWithLocalWallets({
   const { setUser } = useUser();
   useEffect(() => {
     if (loggedIn) {
-      const { address: walletId, accessToken, display } = loggedIn;
-
-      setUser({ walletId, accessToken, display });
+      setUser(loggedIn);
       onSuccess?.();
     }
   }, [loggedIn, setUser, onSuccess]);

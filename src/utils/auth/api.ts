@@ -10,6 +10,7 @@ import axios, { AxiosError } from 'axios';
 import { gql } from 'graphql-request';
 import { NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE } from '../polkadot/constants';
 import { stringToHex } from '@polkadot/util';
+import { User } from '../contexts/userContext';
 
 // The payload required to register a user with Engi
 type RegisterUser = {
@@ -103,11 +104,8 @@ type LoginUser = {
 };
 
 export const useLoginUser = () =>
-  useMutation<
-    { accessToken: string; address: string; display: string },
-    AxiosError,
-    any
-  >(
+  useMutation<User, AxiosError, any>(
+    [],
     async ({ address, source, display }: LoginUser) => {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { web3FromSource } = require('@polkadot/extension-dapp');
@@ -155,9 +153,10 @@ export const useLoginUser = () =>
       }
 
       return {
-        address,
+        walletId: address,
         accessToken: response?.data?.data?.auth?.login?.accessToken,
         display,
+        source,
       };
     },
     {
