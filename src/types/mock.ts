@@ -9,6 +9,7 @@ export const mockJob: Job = {
     url: 'a',
     branch: 'j',
     commit: 'j',
+    readme: '# Readme',
   },
   language: Language.C_SHARP,
   name: 'a',
