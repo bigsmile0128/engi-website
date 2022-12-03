@@ -58,6 +58,7 @@ export type Job = {
   repository?: {
     branch: string;
     commit: string;
+    readme: string;
     url: string;
   };
   requirements: {

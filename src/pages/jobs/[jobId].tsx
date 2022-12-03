@@ -70,6 +70,7 @@ async function fetchJobDetails(jobId) {
             url
             branch
             commit
+            readme
           }
           language
           name

@@ -22,7 +22,7 @@ export default function JobDescription({
   isLoading,
   data,
 }: JobDescriptionProps) {
-  const description = null;
+  const description = data?.repository?.readme;
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <p className={classNames('', isLoading ? 'skeleton' : 'text-secondary')}>
