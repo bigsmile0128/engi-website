@@ -105,5 +105,5 @@ async function fetchJobs(query: JobsQueryArguments) {
     throw new Error(data?.errors?.[0]?.message ?? 'Unable to fetch jobs.');
   }
 
-  return data?.jobs ?? {};
+  return data?.data?.jobs ?? {};
 }
