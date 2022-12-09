@@ -31,7 +31,7 @@ export default function JobInfo({
       <div className="flex items-center gap-x-4">
         <LanguageIcon
           className={classNames(
-            'h-7 w-7 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
+            'h-7 w-7 shrink-0 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
             {
               invisible: isLoading,
             }
@@ -61,7 +61,7 @@ export function MobileJobInfo({
     <div className={classNames('flex items-center gap-x-4', className)}>
       <SiPython
         className={classNames(
-          'h-10 w-10 text-green-primary rounded-full p-2.5 bg-[#EFEFEF]/[.13]',
+          'h-10 w-10 shrink-0 text-green-primary rounded-full p-2.5 bg-[#EFEFEF]/[.13]',
           {
             'invisible skeleton': isLoading,
           }
