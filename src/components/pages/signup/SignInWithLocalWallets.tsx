@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { useEffect, useRef } from 'react';
+import { RiRefreshLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import { useLoginUser } from '~/utils/auth/api';
@@ -87,23 +88,43 @@ export default function SignInWithLocalWallets({
           </Button>
         </>
       ) : isLoadingAccounts || isRefetchingAccounts ? (
-        Array.from({ length: 1 }).map((_, i) => (
-          <SubstrateAccountButton key={i} isLoading />
-        ))
+        <>
+          <Button
+            className="flex items-center gap-1 self-end mb-1"
+            variant="link"
+            disabled
+          >
+            <span>Refresh</span>
+            <RiRefreshLine className="animate-spin" />
+          </Button>
+          {Array.from({ length: 1 }).map((_, i) => (
+            <SubstrateAccountButton key={i} isLoading />
+          ))}
+        </>
       ) : substrateAccounts?.length > 0 ? (
-        substrateAccounts?.map((account) => (
-          <SubstrateAccountButton
-            key={account.address}
-            account={account}
-            onClick={() =>
-              login({
-                address: account.address,
-                source: account.meta.source,
-                display: account.meta.name,
-              })
-            }
-          />
-        ))
+        <>
+          <Button
+            className="flex items-center gap-1 self-end mb-1"
+            variant="link"
+            onClick={() => refetchAccounts()}
+          >
+            <span>Refresh</span>
+            <RiRefreshLine />
+          </Button>
+          {substrateAccounts?.map((account) => (
+            <SubstrateAccountButton
+              key={account.address}
+              account={account}
+              onClick={() =>
+                login({
+                  address: account.address,
+                  source: account.meta.source,
+                  display: account.meta.name,
+                })
+              }
+            />
+          ))}
+        </>
       ) : (
         <>
           <span className="text-xl text-red-400">No connected accounts.</span>

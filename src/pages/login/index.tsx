@@ -18,7 +18,7 @@ export default function Login({ className }: LoginProps) {
     >
       <EngiText />
       <p className="font-bold text-4xl mt-4">Welcome back!</p>
-      <p className="text-xl text-secondary w-full text-center mt-8 mb-8 sm:mb-16">
+      <p className="text-xl text-secondary w-full text-center mt-8 mb-8 sm:mb-12">
         {
           "Don't miss your next job. Sign in to stay updated in your professional world."
         }

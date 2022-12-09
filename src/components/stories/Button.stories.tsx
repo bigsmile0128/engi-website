@@ -21,3 +21,8 @@ export const Tag = Template.bind({});
 Tag.args = {
   variant: 'tag',
 };
+
+export const Link = Template.bind({});
+Link.args = {
+  variant: 'link',
+};

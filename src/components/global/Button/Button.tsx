@@ -3,7 +3,7 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import Tag from '~/components/global/Tag/Tag';
 
 type ButtonProps = {
-  variant?: 'primary' | 'default' | 'tag';
+  variant?: 'primary' | 'default' | 'tag' | 'link';
 };
 
 export default function Button({
@@ -55,6 +55,21 @@ export default function Button({
         >
           {children}
         </Tag>
+      </motion.button>
+    );
+  } else if (variant === 'link') {
+    return (
+      <motion.button
+        className={classNames(
+          'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+          'font-medium',
+          disabled ? 'text-tertiary' : 'text-green-primary hover:underline',
+          className
+        )}
+        disabled={disabled}
+        {...props}
+      >
+        {children}
       </motion.button>
     );
   }
