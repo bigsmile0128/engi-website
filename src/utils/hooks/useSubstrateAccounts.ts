@@ -11,7 +11,7 @@ import useAccountExistence from './useAccountExistence';
 export default function useSubstrateAccounts() {
   const existMutation = useAccountExistence();
 
-  return useQuery<SubstrateAccount[]>(
+  return useQuery<SubstrateAccount[], any>(
     ['polkadotAccounts'],
     async () => {
       if (typeof window === 'undefined') return;
@@ -38,8 +38,6 @@ export default function useSubstrateAccounts() {
       } catch (error) {
         console.warn(error?.message || 'Failed to check existence.');
       }
-
-      console.log('accountExistence', accountExistence);
 
       return accounts;
     },
