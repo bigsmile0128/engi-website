@@ -32,8 +32,7 @@ function Banner() {
 
   const onClose = useCallback(() => {
     setOpen(false);
-    const ttl = 60 * 24 * 7; // 7-day TTL in minutes
-    lscache.set('skillsbiteBanner', false, ttl);
+    lscache.set('skillsbiteBanner', false);
   }, []);
 
   return (
