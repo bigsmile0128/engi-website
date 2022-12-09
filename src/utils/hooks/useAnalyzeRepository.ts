@@ -11,7 +11,7 @@ export default function useAnalyzeRepository() {
   return useMutation<string, any, any>(
     ['analyzeRepository', user?.accessToken],
     async ({ repository, branch, commit }) => {
-      const signature = await signatureMutation.mutateAsync();
+      const signature = await signatureMutation.mutateAsync(null);
       const { data } = await axios.post('/api/graphql', {
         query: gql`
           mutation AnalyzeRepo(
