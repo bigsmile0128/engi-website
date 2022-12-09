@@ -1,117 +1,152 @@
 import classNames from 'classnames';
-import axios from 'axios';
-import { gql } from 'graphql-request';
-import Button from '~/components/global/Button/Button';
-import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
 import { useRouter } from 'next/router';
-import { InformationCircleIcon } from '@heroicons/react/outline';
+import { useEffect, useState } from 'react';
+import { AiOutlineLoading } from 'react-icons/ai';
+import { RiRefreshLine } from 'react-icons/ri';
+import { components, OptionProps } from 'react-select';
+import { toast } from 'react-toastify';
+import Button from '~/components/global/Button/Button';
+import EngiText from '~/components/global/icons/EngiText';
+import Input from '~/components/global/Input/Input';
+import Select from '~/components/global/Select';
+import TextLink from '~/components/TextLink';
+import { SubstrateAccount } from '~/types';
+import { useRegisterUser } from '~/utils/auth/api';
+import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
+
+const Option = (props: OptionProps<SubstrateAccount>) => {
+  const account = props.data;
+  return (
+    <components.Option {...props}>
+      <div className="flex flex-col items-start">
+        <span className="font-medium">{account.meta.name}</span>
+        <span
+          className={classNames(
+            'w-full truncate text-sm',
+            props.isSelected ? 'text-gray-600' : 'text-secondary'
+          )}
+        >
+          {account.address}
+        </span>
+      </div>
+    </components.Option>
+  );
+};
 
 type SignupProps = {
   className?: string;
 };
 
 export default function Signup({ className }: SignupProps) {
-  const { push: pushRoute } = useRouter();
+  const router = useRouter();
+  const [account, setAccount] = useState<SubstrateAccount | null>(null);
+  const [email, setEmail] = useState('');
+  const {
+    isLoading,
+    isError,
+    data: substrateAccounts,
+    refetch,
+    isRefetching,
+  } = useSubstrateAccounts();
 
-  // TODO: adjust padding and margin on mobile
+  const registerMutation = useRegisterUser();
+
+  useEffect(() => {
+    if (registerMutation.error?.message) {
+      toast.error(registerMutation.error.message);
+    } else if (registerMutation.isSuccess) {
+      router.push('/signup/success');
+    }
+  }, [registerMutation.error, registerMutation.isSuccess, router]);
+
   return (
-    <div className={classNames('max-w-page py-16', className)}>
-      <div
-        className={classNames(
-          'w-full p-4 flex items-center gap-x-4 mb-8 sm:hidden',
-          'rounded-xl bg-yellow-400/30',
-          className
-        )}
-      >
-        <InformationCircleIcon className="h-12 w-12" />
-        <span className="font-medium text-lg">
-          Please use a desktop browser to sign up with Engi.
-        </span>
-      </div>
-      <div className="flex">
-        <div className="flex flex-col items-center basis-1/2 overflow-hidden pr-12">
-          <h1 className="font-bold text-5xl mb-4">Welcome back</h1>
-          <p className="mb-8 max-w-sm text-center text-lg">
-            {
-              "Whether you're buying software or writing it yourself, use your registered wallet to get back to building"
-            }
-          </p>
-          <SignInWithLocalWallets className="w-full" />
-        </div>
-        <div className="flex flex-col items-center overflow-visible relative basis-1/2 pl-12">
-          <span
-            style={{
-              top: '-100%',
-              right: '-9999px',
-              height: '9999px',
-              zIndex: -1,
-            }}
-            className="absolute bottom-0 right-0 left-0 bg-[#00000022]"
-          />
-          <h1 className="font-bold text-5xl mb-4">New here?</h1>
-          <p className="mb-8 text-lg text-center">
-            Easily register using your favorite Substrate compatible wallet such
-            as{' '}
-            <a
-              href="https://talisman.xyz/"
-              target="_blank"
-              className="text-green-primary hover:underline"
-              rel="noreferrer"
-            >
-              Talisman
-            </a>
-            ,{' '}
-            <a
-              href="https://subwallet.app/"
-              target="_blank"
-              className="text-green-primary hover:underline"
-              rel="noreferrer"
-            >
-              SubWallet
-            </a>
-            , or{' '}
-            <a
-              href="https://polkadot.js.org/extension/"
-              target="_blank"
-              className="text-green-primary hover:underline"
-              rel="noreferrer"
-            >
-              PolkadotJS
-            </a>
-            &nbsp;
-          </p>
-          <Button
-            variant="primary"
-            className="w-full"
-            onClick={() => pushRoute('/signup/register')}
+    <div
+      className={classNames(
+        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[470px]',
+        className
+      )}
+    >
+      <EngiText />
+      <p className="text-xl text-secondary w-full text-center mb-8 sm:mb-12 lg:mb-16">
+        {
+          "Don't miss your next job. Sign up to stay updated in your professional world."
+        }
+      </p>
+
+      <div className="flex flex-col w-full">
+        <div className="flex items-center gap-2 mt-6">
+          <label htmlFor="account" className="font-bold text-xl">
+            Account
+          </label>
+          <button
+            className="text-xl text-green-primary hover:text-green-primary/80 disabled:text-gray-400"
+            disabled={isLoading || isRefetching}
+            onClick={() => refetch()}
           >
-            Register Wallet
-          </Button>
+            <RiRefreshLine className={isRefetching ? 'animate-spin' : ''} />
+          </button>
         </div>
+        <Select
+          name="account"
+          className="mt-4 w-full"
+          options={substrateAccounts ?? []}
+          value={account}
+          onChange={(account: SubstrateAccount) => setAccount(account)}
+          getOptionLabel={(account: SubstrateAccount) => account.meta?.name}
+          getOptionValue={(account: SubstrateAccount) => account.address}
+          placeholder="Select an account..."
+          components={{
+            Option,
+          }}
+          isLoading={isLoading || isRefetching}
+        />
+        {isError && (
+          <p className="font-medium text-sm mt-2 text-red-400">
+            Failed to fetch accounts.
+          </p>
+        )}
+        <label htmlFor="email" className="font-bold text-xl mt-8">
+          Email
+        </label>
+        <Input
+          name="email"
+          className="mt-4"
+          value={email}
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Enter an email address..."
+        />
+        <Button
+          className={classNames('mt-16 flex items-center justify-center')}
+          variant="primary"
+          disabled={
+            !account || !email || isLoading || registerMutation.isLoading
+          }
+          onClick={() =>
+            registerMutation.mutate({
+              address: account.address,
+              display: account.meta.name,
+              source: account.meta.source,
+              email,
+            })
+          }
+        >
+          {registerMutation.isLoading ? (
+            <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
+          ) : (
+            <span>Register</span>
+          )}
+        </Button>
       </div>
+      <p className="mt-12">
+        Already have an account?{' '}
+        <TextLink
+          href="/login"
+          className="underline hover:text-green-primary/80"
+        >
+          Sign in
+        </TextLink>
+      </p>
     </div>
   );
-}
-
-export async function isWalletValid(walletId): Promise<boolean> {
-  if (!walletId) {
-    return false;
-  }
-  const { data } = await axios.post('/api/graphql', {
-    query: gql`
-      query WalletCheckQuery($id: ID!) {
-        account(id: $id) {
-          data {
-            free
-          }
-        }
-      }
-    `,
-    variables: {
-      id: walletId,
-    },
-    operationName: 'WalletCheckQuery',
-  });
-
-  return !!data.data.account;
 }

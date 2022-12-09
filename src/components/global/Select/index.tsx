@@ -1,5 +1,3 @@
-import React from 'react';
-import classNames from 'classnames';
 import ReactSelect, { Props } from 'react-select';
 
 export default function Select(props: Props) {
@@ -60,6 +58,10 @@ export default function Select(props: Props) {
         menu: (base) => ({
           ...base,
           backgroundColor: '#374151',
+        }),
+        loadingIndicator: (base) => ({
+          ...base,
+          color: 'rgba(255, 255, 255, 0.8)',
         }),
       }}
       {...props}

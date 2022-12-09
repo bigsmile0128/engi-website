@@ -11,9 +11,10 @@ import { gql } from 'graphql-request';
 import { NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE } from '../polkadot/constants';
 import { stringToHex } from '@polkadot/util';
 import { User } from '../contexts/userContext';
+import useSignature from '../hooks/useSignature';
 
 // The payload required to register a user with Engi
-type RegisterUser = {
+type RegisterUserArgs = {
   address: string;
   display: string;
   email: string;
@@ -25,29 +26,16 @@ type RegisterUser = {
 // - users securely register their keys with Engi
 // - errors if,
 //   - API returns `DUPE_EMAIL` error code for a user that's already been registered
-export const useRegisterUser = () =>
-  useMutation<string, AxiosError, any>(
-    async ({ address, display, email, source }: RegisterUser) => {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { web3FromSource } = require('@polkadot/extension-dapp');
-
-      const injector = await web3FromSource(source);
-
-      const signRaw = injector?.signer?.signRaw;
-
-      if (!signRaw) throw new Error(NO_POLKADOT_SOURCE_AVAILABLE_ERROR_MESSAGE);
-
-      const time = new Date();
-
-      // this opens the user's browser extension
-      // - the request to sign the message can be rejected
-      const { signature } = await signRaw({
-        address,
-        data: stringToHex(`${address}|${time.getTime()}`),
-        type: 'bytes',
+export const useRegisterUser = () => {
+  const signatureMutation = useSignature();
+  return useMutation<string, AxiosError, RegisterUserArgs>(
+    async ({ address, display, email, source }: RegisterUserArgs) => {
+      const signature = await signatureMutation.mutateAsync({
+        source,
+        walletId: address,
       });
 
-      const response = await axios.post('/api/graphql', {
+      const { data } = await axios.post('/api/graphql', {
         query: gql`
           mutation RegisterUser(
             $user: CreateUserArguments!
@@ -65,18 +53,15 @@ export const useRegisterUser = () =>
             display,
             email,
           },
-          signature: {
-            signedOn: time.toISOString(),
-            value: signature,
-          },
+          signature,
         },
       });
 
-      const errors = response?.data?.errors;
+      const errors = data.errors;
 
       if (errors?.length) throw new Error(errors[0].message);
 
-      return response?.data?.data?.auth?.register ?? address;
+      return data.data?.auth?.register ?? address;
     },
     {
       onSuccess(_, { address, display, email, source }) {
@@ -93,6 +78,7 @@ export const useRegisterUser = () =>
       },
     }
   );
+};
 
 type LoginUser = {
   address: string;

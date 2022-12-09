@@ -1,6 +1,6 @@
 import { Dialog } from '@headlessui/react';
 import Modal from './global/Modal/Modal';
-import SignInWithLocalWallets from './SignInWithLocalWallets/SignInWithLocalWallets';
+import SignInWithLocalWallets from './pages/signup/SignInWithLocalWallets';
 
 type LoginModalProps = {
   onSuccess: () => void;

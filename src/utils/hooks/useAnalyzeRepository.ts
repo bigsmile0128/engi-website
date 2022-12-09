@@ -1,27 +1,16 @@
-import { response } from 'express';
 import { gql } from 'graphql-request';
 import { useMutation } from 'react-query';
 import { useUser } from '../contexts/userContext';
 import useAxios from './useAxios';
 import useSignature from './useSignature';
 
-type AnalyzeRepositoryArgs = {
-  branch: string;
-  commit: string;
-  repository: string;
-};
-
-export default function useAnalyzeRepository({
-  repository,
-  branch,
-  commit,
-}: AnalyzeRepositoryArgs) {
+export default function useAnalyzeRepository() {
   const axios = useAxios();
   const { user } = useUser();
   const signatureMutation = useSignature();
-  return useMutation(
-    ['analyzeRepository', user?.accessToken, repository, branch, commit],
-    async () => {
+  return useMutation<string, any, any>(
+    ['analyzeRepository', user?.accessToken],
+    async ({ repository, branch, commit }) => {
       const signature = await signatureMutation.mutateAsync();
       const { data } = await axios.post('/api/graphql', {
         query: gql`

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SignInWithLocalWallets from '~/components/SignInWithLocalWallets/SignInWithLocalWallets';
+import SignInWithLocalWallets from '~/components/pages/signup/SignInWithLocalWallets';
 
 export default {
   title: 'SignInWithLocalWallets',

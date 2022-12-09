@@ -133,6 +133,17 @@ export type UserGithubEnrollment = {
   owner?: GithubRepositoryOwner;
 };
 
+export type SubstrateAccount = {
+  address: string;
+  meta: {
+    genesisHash?: string;
+    name: string;
+    source: string;
+  };
+  registered?: boolean;
+  type: string;
+};
+
 // copies from same story figma plugin repo
 export interface DFormValue {
   name: string;

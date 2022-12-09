@@ -16,7 +16,7 @@ export default function Button({
   if (variant === 'primary') {
     // underline animation on hover
     const hoverClasses = classNames(
-      'active:bg-gray-300 before:mx-auto',
+      'active:bg-gray-300 hover:bg-gray-100 before:mx-auto',
       "before:content-[''] before:absolute before:inset-0 before:bottom-[-1px]",
       'before:border-b-2 before:border-green-primary',
       'before:ease-in-out before:duration-500 before:w-0 hover:before:w-full'

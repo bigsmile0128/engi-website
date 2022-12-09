@@ -49,11 +49,7 @@ export default function RepositoryTab({
     refetch: refetchCommits,
   } = useGithubBranchCommits(repo?.value, branch?.value);
 
-  const analyzeMutation = useAnalyzeRepository({
-    repository: repo?.value,
-    branch: branch?.value,
-    commit: commit?.value,
-  });
+  const analyzeMutation = useAnalyzeRepository();
 
   const isLoadingAnalysis = analyzeMutation.isLoading;
 
@@ -167,7 +163,13 @@ export default function RepositoryTab({
         variant="primary"
         className="relative mt-8 !px-24 flex items-center justify-center"
         disabled={!repo || !branch || !commit || isLoadingAnalysis}
-        onClick={() => analyzeMutation.mutate()}
+        onClick={() =>
+          analyzeMutation.mutate({
+            repository: repo?.value,
+            branch: branch?.value,
+            commit: commit?.value,
+          })
+        }
       >
         <span className={isLoadingAnalysis ? 'text-transparent' : ''}>
           Analyze
