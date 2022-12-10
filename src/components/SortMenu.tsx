@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react';
-import classNames from 'classnames';
 import { Listbox, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/outline';
+import classNames from 'classnames';
+import { Fragment } from 'react';
 import { RiSortAsc, RiSortDesc } from 'react-icons/ri';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/outline';
 
 export enum SortDirection {
   ASC,
@@ -44,7 +44,7 @@ export default function SortMenu({
                 <button
                   className={classNames(
                     'items-center py-2 outline-none',
-                    'focus-visible:ring-1 focus-visible:ring-green-primary hover:text-green-primary'
+                    'focus-visible:ring-1 focus-visible:ring-green-primary text-white hover:text-green-primary'
                   )}
                   onClick={() =>
                     onChangeSortDirection(
@@ -55,15 +55,9 @@ export default function SortMenu({
                   }
                 >
                   {sortDirection === SortDirection.ASC ? (
-                    <RiSortAsc
-                      className="h-5 w-5 text-white"
-                      aria-hidden="true"
-                    />
+                    <RiSortAsc className="h-5 w-5" aria-hidden="true" />
                   ) : (
-                    <RiSortDesc
-                      className="h-5 w-5 text-white"
-                      aria-hidden="true"
-                    />
+                    <RiSortDesc className="h-5 w-5" aria-hidden="true" />
                   )}
                 </button>
                 <Listbox.Button
@@ -78,6 +72,9 @@ export default function SortMenu({
                       'ml-2.5 text-secondary group-hover:text-white'
                     )}
                   >
+                    {value?.label && (
+                      <span className="font-medium text-white">Sort by: </span>
+                    )}
                     {value?.label ?? 'Sort by'}
                   </p>
                   <ChevronDownIcon
@@ -95,49 +92,36 @@ export default function SortMenu({
               >
                 <Listbox.Options
                   className={classNames(
-                    'origin-top-right absolute z-10 right-0 mt-2 w-40 overflow-hidden',
-                    'rounded-md bg-black/90 divide-y divide-[#ffffff22]',
+                    'origin-top-right absolute z-10 right-0 mt-2 w-48 overflow-hidden',
+                    'bg-[#232323]/80 backdrop-blur-[12.5px]',
                     'outline-none focus-visible:ring-1 focus-visible:ring-green-primary'
                   )}
                 >
-                  {options.map((option) => (
+                  {options.map((option, i) => (
                     <Listbox.Option
                       key={option.value}
-                      className={({ active }) =>
+                      className={() =>
                         classNames(
-                          active ? 'text-black bg-green-primary' : 'text-white',
-                          'cursor-default select-none relative p-4 text-sm'
+                          'hover:bg-[#232323]',
+                          'select-none cursor-pointer'
                         )
                       }
                       value={option}
                     >
-                      {({ selected, active }) => {
-                        return (
-                          <div className="flex flex-col">
-                            <div className="flex justify-between">
-                              <p
-                                className={
-                                  selected ? 'font-semibold' : 'font-normal'
-                                }
-                              >
-                                {option.label}
-                              </p>
-                              {selected ? (
-                                <span
-                                  className={
-                                    active ? 'text-black' : 'text-green-primary'
-                                  }
-                                >
-                                  <CheckIcon
-                                    className="h-5 w-5"
-                                    aria-hidden="true"
-                                  />
-                                </span>
-                              ) : null}
-                            </div>
-                          </div>
-                        );
-                      }}
+                      {() => (
+                        <div className="">
+                          <p
+                            className={classNames(
+                              'text-white w-full ml-6 pr-4 py-3',
+                              i !== options.length - 1
+                                ? 'border-b border-white/30'
+                                : ''
+                            )}
+                          >
+                            {option.label}
+                          </p>
+                        </div>
+                      )}
                     </Listbox.Option>
                   ))}
                 </Listbox.Options>

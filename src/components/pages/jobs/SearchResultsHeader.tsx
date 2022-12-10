@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import pluralize from 'pluralize';
+import { useState } from 'react';
 import SearchInput from '~/components/SearchInput';
 import SortMenu, { Option, SortDirection } from '~/components/SortMenu';
 
@@ -17,8 +17,8 @@ const sortOptions = [
     value: 'NEWEST',
   },
   {
-    label: 'Price',
-    value: 'PRICE',
+    label: 'Payout',
+    value: 'PAYOUT',
   },
 ];
 
