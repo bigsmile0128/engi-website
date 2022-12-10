@@ -11,6 +11,7 @@ import Logo from '~/components/Logo';
 import { useUser } from '~/utils/contexts/userContext';
 import BlockchainHealth from './BlockchainHealth';
 import UserInfo from './navbar/UserInfo';
+import Button from '~/components/global/Button/Button';
 
 interface NavbarProps {
   className?: string;
@@ -136,15 +137,9 @@ export default function Navbar({ className }: NavbarProps) {
             <BlockchainHealth className="hidden md:flex" isStacked />
             <Link href="/signup">
               <a>
-                <button
-                  className={classNames(
-                    'hidden md:block px-6 py-4 ml-8',
-                    'text-white font-bold whitespace-nowrap',
-                    'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-                  )}
-                >
+                <Button className="ml-8 !text-green-primary">
                   Get Started
-                </button>
+                </Button>
               </a>
             </Link>
           </>

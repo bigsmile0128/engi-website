@@ -75,11 +75,7 @@ export default function SortMenu({
                   <span className="sr-only">Change sort</span>
                   <p
                     className={classNames(
-                      'ml-2.5',
-                      // if option has no value, assume it's a default option and don't highlight it
-                      value?.value
-                        ? 'font-bold underline underline-offset-1 text-white'
-                        : 'text-secondary group-hover:text-white'
+                      'ml-2.5 text-secondary group-hover:text-white'
                     )}
                   >
                     {value?.label ?? 'Sort by'}

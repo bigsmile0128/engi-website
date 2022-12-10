@@ -142,7 +142,7 @@ export default function JobTable({
                 <th
                   key={header.id}
                   className={classNames(
-                    'text-left text-secondary text-xs',
+                    'text-left text-secondary text-xs font-medium uppercase',
                     'pb-2 border-b border-white/30',
                     'px-4'
                   )}
