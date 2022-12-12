@@ -8,7 +8,7 @@ interface CopyLinkProps {
 
 export default function CopyLink({ className, value = '' }: CopyLinkProps) {
   return (
-    <div className={classNames('flex border border-white/40', className)}>
+    <div className={classNames('flex border border-white/30', className)}>
       <input
         type="text"
         disabled

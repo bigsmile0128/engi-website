@@ -8,7 +8,7 @@ module.exports = {
     'plugin:storybook/recommended',
     'plugin:json/recommended',
   ],
-  ignorePatterns: ['*.md', 'Dockerfile', 'mockServer/**/*', '*.svg'],
+  ignorePatterns: ['*.md', '*.css', 'Dockerfile', 'mockServer/**/*', '*.svg'],
   overrides: [
     {
       files: ['**/*.stories.*'],
