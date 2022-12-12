@@ -16,7 +16,7 @@ export default function CopyLink({ className, value = '' }: CopyLinkProps) {
         className="flex-1 p-3 pr-0 bg-transparent text-secondary text-sm truncate"
       />
       <CopyButton
-        className="p-2 text-green-primary hover:text-green-primary/80"
+        className="py-2 px-3 text-green-primary hover:text-green-primary/80"
         value={value}
       />
     </div>
