@@ -1,18 +1,21 @@
-import React from 'react';
-import { useQuery } from 'react-query';
-import axios, { AxiosError } from 'axios';
 import * as Sentry from '@sentry/react';
+import axios, { AxiosError } from 'axios';
+import { Fragment, useState } from 'react';
+import { useQuery } from 'react-query';
 
-import { useRouter } from 'next/router';
-import { Job } from '~/types';
-import JobHeader from '~/components/pages/jobDetails/JobHeader';
-import JobDescription from '~/components/pages/jobDetails/JobDescription';
-import JobActivity from '~/components/pages/jobDetails/JobActivity';
+import { Tab } from '@headlessui/react';
+import classNames from 'classnames';
 import { gql } from 'graphql-request';
+import { useRouter } from 'next/router';
+import JobDescription from '~/components/pages/jobDetails/JobDescription';
+import JobHeader from '~/components/pages/jobDetails/JobHeader';
+import JobTests from '~/components/pages/jobDetails/JobTests';
+import { Job } from '~/types';
 
 export default function JobDetails() {
   const router = useRouter();
   const { jobId } = router.query;
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const { isLoading, isError, data } = useQuery<Job>(
     ['jobDetails', jobId],
     () => {
@@ -46,14 +49,43 @@ export default function JobDetails() {
   ) : (
     <div className="max-w-page mt-12 mb-24 flex flex-col lg:flex-row gap-16">
       <div className="flex flex-1 flex-col">
-        <JobHeader isLoading={isLoading} data={data} />
-        <JobDescription className="mt-8" isLoading={isLoading} data={data} />
+        <JobHeader className="mb-8" isLoading={isLoading} data={data} />
+        <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+          <Tab.List className="flex w-full border-b border-white/30">
+            {['Description', 'Tests'].map((name, i) => (
+              <Tab as={Fragment} key={name}>
+                {({ selected }) => (
+                  <button
+                    className={classNames(
+                      'py-2 -mb-[1px] mr-16',
+                      'text-xl',
+                      'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+                      selected
+                        ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
+                        : 'text-white/80'
+                    )}
+                  >
+                    {name}
+                  </button>
+                )}
+              </Tab>
+            ))}
+          </Tab.List>
+          <Tab.Panels className="mt-8">
+            <Tab.Panel>
+              <JobDescription isLoading={isLoading} data={data} />
+            </Tab.Panel>
+            <Tab.Panel>
+              <JobTests isLoading={isLoading} data={data} />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
       </div>
-      <JobActivity
+      {/* <JobActivity
         className="lg:basis-[400px] xl:basis-[430px]"
         data={data}
         isLoading={isLoading}
-      />
+      /> */}
     </div>
   );
 }

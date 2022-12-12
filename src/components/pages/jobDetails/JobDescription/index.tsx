@@ -1,15 +1,12 @@
-import React from 'react';
 import classNames from 'classnames';
-import { Job } from '~/types';
 import dayjs from 'dayjs';
-import TextSkeleton from '~/components/TextSkeleton';
-import Payout from './Payout';
-import Effort from './Effort';
 import CopyLink from '~/components/CopyLink';
-import Markdown from '~/components/Markdown';
-import { useQuery } from 'react-query';
-import axios from 'axios';
 import LanguageTag from '~/components/LanguageTag';
+import Markdown from '~/components/Markdown';
+import TextSkeleton from '~/components/TextSkeleton';
+import { Job } from '~/types';
+import Effort from './Effort';
+import Payout from './Payout';
 
 type JobDescriptionProps = {
   className?: string;
