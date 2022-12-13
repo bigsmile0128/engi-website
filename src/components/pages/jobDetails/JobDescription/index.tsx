@@ -55,7 +55,12 @@ export default function JobDescription({
       )}
       <Payout className="mt-8" isLoading={isLoading} data={data} />
       <Effort className="mt-8" isLoading={isLoading} />
-      <div className="mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6 children:children:skeleton">
+      <div
+        className={classNames(
+          'mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6',
+          isLoading ? 'children:children:skeleton' : ''
+        )}
+      >
         <div className="flex flex-col gap-y-2">
           <h2 className="font-grifter text-xl inline-block self-start">
             Job Link
