@@ -5,6 +5,7 @@ import { HiOutlineChevronLeft } from '@react-icons/all-files/hi/HiOutlineChevron
 import ShareModal from './ShareModal';
 import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import { Job } from '~/types';
+import Button from '~/components/global/Button/Button';
 
 type JobHeaderProps = {
   className?: string;
@@ -29,17 +30,23 @@ export default function JobHeader({
         </Link>
         <h1
           className={classNames(
-            'font-grifter text-3xl px-4',
+            'font-grifter text-3xl px-4 md:basis-3/5 lg:basis-auto overflow-hidden',
             isLoading ? 'skeleton mx-2' : ''
           )}
         >
-          <span className="-mb-2 block">
+          <span className="mt-2 block truncate">
             {isLoading ? 'Placeholder' : data?.name}
           </span>
         </h1>
         <button className="" onClick={() => setModalOpen(true)}>
           <IoMdShareAlt className="h-6 w-6" />
         </button>
+        <Button
+          variant="primary"
+          className="ml-auto whitespace-nowrap hidden md:block lg:hidden !px-12"
+        >
+          Get Started
+        </Button>
       </div>
     </div>
   );
