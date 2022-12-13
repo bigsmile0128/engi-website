@@ -1,16 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 import { AiFillCreditCard } from 'react-icons/ai';
-import {
-  RiAwardFill,
-  RiCoinsFill,
-  RiTrophyFill,
-  RiWallet3Fill,
-} from 'react-icons/ri';
-import EngiIcon from '~/components/global/icons/EngiIcon';
+import { RiCoinsFill, RiWallet3Fill } from 'react-icons/ri';
+import EngiAmount from '~/components/EngiAmount';
 import Statistic from '~/components/Statistic';
 import { Job } from '~/types';
-import EngiAmount from '~/components/EngiAmount';
 
 type PayoutProps = {
   className?: string;
@@ -21,7 +14,14 @@ type PayoutProps = {
 export default function Payout({ className, isLoading, data }: PayoutProps) {
   return (
     <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
-      <h2 className="font-grifter text-xl">Payout</h2>
+      <h2
+        className={classNames(
+          'font-grifter text-xl inline-block',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Payout
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
         <Statistic
           icon={<AiFillCreditCard className="text-orange-primary h-5 w-5" />}

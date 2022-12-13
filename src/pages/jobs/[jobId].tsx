@@ -11,6 +11,7 @@ import JobDescription from '~/components/pages/jobDetails/JobDescription';
 import JobHeader from '~/components/pages/jobDetails/JobHeader';
 import JobTests from '~/components/pages/jobDetails/JobTests';
 import { Job } from '~/types';
+import JobActivity from '~/components/pages/jobDetails/JobActivity';
 
 export default function JobDetails() {
   const router = useRouter();
@@ -60,12 +61,13 @@ export default function JobDetails() {
                       'py-2 -mb-[1px] mr-16',
                       'text-xl',
                       'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
-                      selected
+                      selected && !isLoading
                         ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
-                        : 'text-white/80'
+                        : 'text-white/80',
+                      isLoading ? 'children:skeleton' : ''
                     )}
                   >
-                    {name}
+                    <span>{name}</span>
                   </button>
                 )}
               </Tab>
@@ -81,11 +83,11 @@ export default function JobDetails() {
           </Tab.Panels>
         </Tab.Group>
       </div>
-      {/* <JobActivity
-        className="lg:basis-[400px] xl:basis-[430px]"
+      <JobActivity
+        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px]"
         data={data}
         isLoading={isLoading}
-      /> */}
+      />
     </div>
   );
 }

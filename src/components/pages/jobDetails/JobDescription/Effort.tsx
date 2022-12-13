@@ -16,7 +16,14 @@ export default function Effort({
 }: EffortProps) {
   return (
     <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
-      <h2 className="font-grifter text-xl">Effort</h2>
+      <h2
+        className={classNames(
+          'font-grifter text-xl inline-block',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Effort
+      </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
         <Statistic
           icon={<RiFileZipFill className="text-orange-primary h-5 w-5" />}
