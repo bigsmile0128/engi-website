@@ -5,6 +5,7 @@ import LanguageTag from '~/components/LanguageTag';
 import Markdown from '~/components/Markdown';
 import TextSkeleton from '~/components/TextSkeleton';
 import { Job } from '~/types';
+import JobActivity from '../JobActivity';
 import Effort from './Effort';
 import Payout from './Payout';
 
@@ -80,6 +81,11 @@ export default function JobDescription({
           />
         </div>
       </div>
+      <JobActivity
+        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px]"
+        data={data}
+        isLoading={isLoading}
+      />
     </div>
   );
 }

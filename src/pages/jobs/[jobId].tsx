@@ -49,7 +49,7 @@ export default function JobDetails() {
     </div>
   ) : (
     <div className="max-w-page mt-12 mb-24 flex flex-col lg:flex-row gap-16">
-      <div className="flex flex-1 flex-col">
+      <div className="flex flex-1 flex-col overflow-hidden">
         <JobHeader className="mb-8" isLoading={isLoading} data={data} />
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
           <Tab.List className="flex w-full border-b border-white/30">
@@ -84,7 +84,7 @@ export default function JobDetails() {
         </Tab.Group>
       </div>
       <JobActivity
-        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px]"
+        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0"
         data={data}
         isLoading={isLoading}
       />

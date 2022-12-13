@@ -30,20 +30,20 @@ export default function JobHeader({
         </Link>
         <h1
           className={classNames(
-            'font-grifter text-3xl px-4 md:basis-3/5 lg:basis-auto overflow-hidden',
+            'inline-flex items-center font-grifter text-3xl pl-4 pr-2 md:basis-3/5 lg:basis-auto flex-1 overflow-hidden',
             isLoading ? 'skeleton mx-2' : ''
           )}
         >
-          <span className="mt-2 block truncate">
+          <span className="mt-2 inline-block truncate">
             {isLoading ? 'Placeholder' : data?.name}
           </span>
+          <button className="ml-2" onClick={() => setModalOpen(true)}>
+            <IoMdShareAlt className="h-6 w-6" />
+          </button>
         </h1>
-        <button className="" onClick={() => setModalOpen(true)}>
-          <IoMdShareAlt className="h-6 w-6" />
-        </button>
         <Button
           variant="primary"
-          className="ml-auto whitespace-nowrap hidden md:block lg:hidden !px-12"
+          className="ml-8 self-end whitespace-nowrap hidden md:block lg:hidden !px-12"
         >
           Get Started
         </Button>
