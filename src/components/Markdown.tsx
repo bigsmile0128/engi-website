@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import ReactMarkdown from 'react-markdown';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -23,7 +22,7 @@ export default function Markdown({
           <h1
             className={classNames(
               'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-grifter text-white text-3xl'
+              'first:mt-0 font-bold text-white text-3xl'
             )}
           >
             {children}
@@ -33,7 +32,7 @@ export default function Markdown({
           <h2
             className={classNames(
               'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-grifter text-white text-2xl'
+              'first:mt-0 font-bold text-white text-2xl'
             )}
           >
             {children}
@@ -43,7 +42,7 @@ export default function Markdown({
           <h3
             className={classNames(
               'mt-6 mb-4',
-              'font-grifter text-white text-xl'
+              'first:mt-0 font-bold text-white text-xl'
             )}
           >
             {children}
@@ -53,7 +52,7 @@ export default function Markdown({
           <h4
             className={classNames(
               'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'font-grifter text-white text-lg'
+              'first:mt-0 font-bold text-white text-lg'
             )}
           >
             {children}

@@ -43,13 +43,21 @@ export default function JobDescription({
         <LanguageTag value={data?.language} isLoading={isLoading} />
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
+      <h2
+        className={classNames(
+          'mt-8 font-grifter text-xl',
+          isLoading ? 'skeleton' : ''
+        )}
+      >
+        Job Description
+      </h2>
       {isLoading ? (
         <TextSkeleton className="mt-4 gap-y-2" />
       ) : !description ? (
-        <div className="mt-4 text-xl text-secondary">Job Description N/A</div>
+        <div className="mt-4 text-xl text-secondary">N/A</div>
       ) : (
         <>
-          <Markdown className="overflow-hidden break-words">
+          <Markdown className="w-full mt-4 p-6 bg-black/[.14]">
             {description}
           </Markdown>
         </>
@@ -81,11 +89,7 @@ export default function JobDescription({
           />
         </div>
       </div>
-      <JobActivity
-        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px]"
-        data={data}
-        isLoading={isLoading}
-      />
+      <JobActivity className="md:hidden" data={data} isLoading={isLoading} />
     </div>
   );
 }
