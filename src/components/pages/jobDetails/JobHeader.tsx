@@ -43,7 +43,11 @@ export default function JobHeader({
         </h1>
         <Button
           variant="primary"
-          className="ml-8 self-end whitespace-nowrap hidden md:block lg:hidden !px-12"
+          className={classNames(
+            'ml-8 self-end whitespace-nowrap !px-12',
+            'hidden md:block lg:hidden'
+          )}
+          isLoading={isLoading}
         >
           Get Started
         </Button>

@@ -3,6 +3,7 @@ import { HTMLMotionProps, motion } from 'framer-motion';
 import Tag from '~/components/global/Tag/Tag';
 
 type ButtonProps = {
+  isLoading?: boolean;
   variant?: 'primary' | 'default' | 'tag' | 'link';
 };
 
@@ -11,6 +12,7 @@ export default function Button({
   disabled,
   children,
   variant = 'default',
+  isLoading,
   ...props
 }: HTMLMotionProps<'button'> & ButtonProps) {
   if (variant === 'primary') {
@@ -30,6 +32,7 @@ export default function Button({
           'border-t border-t-white border-b border-b-transparent',
           // hover and active states
           disabled ? '' : hoverClasses,
+          isLoading ? 'skeleton rounded-none text-transparent' : '',
           className
         )}
         disabled={disabled}
@@ -43,6 +46,7 @@ export default function Button({
       <motion.button
         className={classNames(
           'outline-none focus-visible:ring-1 focus-visible:ring-green-primary/60',
+          isLoading ? 'skeleton rounded-none text-transparent' : '',
           className
         )}
         disabled={disabled}
@@ -83,6 +87,7 @@ export default function Button({
         'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
         // hover and active states
         disabled ? '' : 'hover:bg-black/30 active:bg-black/40',
+        isLoading ? 'skeleton rounded-none text-transparent' : '',
         className
       )}
       disabled={disabled}

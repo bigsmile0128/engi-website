@@ -58,6 +58,9 @@ export type Job = {
   repository?: {
     branch: string;
     commit: string;
+    fullName: string;
+    name: string;
+    organization: string;
     readme: string;
     url: string;
   };

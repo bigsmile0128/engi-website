@@ -1,12 +1,22 @@
 import classNames from 'classnames';
 import dayjs from 'dayjs';
+import { useState } from 'react';
+import {
+  RiCheckboxCircleLine,
+  RiGroupFill,
+  RiLineChartFill,
+} from 'react-icons/ri';
 import CopyLink from '~/components/CopyLink';
+import Button from '~/components/global/Button/Button';
+import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
 import LanguageTag from '~/components/LanguageTag';
 import Markdown from '~/components/Markdown';
+import Statistic from '~/components/Statistic';
 import TextSkeleton from '~/components/TextSkeleton';
 import { Job } from '~/types';
-import JobActivity from '../JobActivity';
-import Effort from './Effort';
+import JobCreator from '../JobCreator';
+import RepositoryInfo from '../RepositoryInfo';
+import ShareModal from '../ShareModal';
 import Payout from './Payout';
 
 type JobDescriptionProps = {
@@ -20,9 +30,13 @@ export default function JobDescription({
   isLoading,
   data,
 }: JobDescriptionProps) {
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+
   const description = data?.repository?.readme;
+
   return (
     <div className={classNames('flex flex-col items-start', className)}>
+      <ShareModal isOpen={isShareModalOpen} setIsOpen={setIsShareModalOpen} />
       <p className={classNames('', isLoading ? 'skeleton' : 'text-secondary')}>
         {`Posted ${dayjs(data?.createdOn?.dateTime).fromNow()}`}
       </p>
@@ -63,7 +77,81 @@ export default function JobDescription({
         </>
       )}
       <Payout className="mt-8" isLoading={isLoading} data={data} />
-      <Effort className="mt-8" isLoading={isLoading} />
+      {/* TABLET START */}
+      <div className="hidden md:flex md:flex-col lg:hidden w-full">
+        <div className="mt-8 w-full border-t border-white/30" />
+        <div
+          className={classNames(
+            'flex flex-col mt-8 p-6 w-full overflow-hidden',
+            'bg-[#232323]/10 backdrop-blur-[100px]'
+          )}
+        >
+          <div className="flex items-center justify-between gap-16">
+            <JobCreator data={data?.creator} isLoading={isLoading} />
+            <RepositoryInfo
+              className="shrink-0"
+              organizationName={data?.repository?.organization}
+              repositoryName={data?.repository?.fullName}
+              isLoading={isLoading}
+            />
+          </div>
+          <div className="mt-8 w-full border-t border-white/30" />
+          <h2
+            className={classNames(
+              'font-grifter text-xl mt-12 mb-6',
+              isLoading ? 'skeleton' : ''
+            )}
+          >
+            Activity
+          </h2>
+          <Statistic
+            className="col-span-2"
+            icon={<RiLineChartFill className="text-green-primary h-5 w-5" />}
+            value="Average Progress"
+            title={
+              <ProgressBar
+                className="w-full"
+                percentage={
+                  data?.averageProgress?.numerator ??
+                  0 / (data?.averageProgress?.denominator ?? 1)
+                }
+                label={`${data?.averageProgress?.numerator ?? 0}/${
+                  data?.averageProgress?.denominator ?? 0
+                }`}
+              />
+            }
+            isLoading={isLoading}
+            inline
+          />
+          <div className="flex gap-8 mt-4">
+            <Statistic
+              className="col-span-1"
+              icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
+              value={data?.solutionUserCount}
+              title="Total Contributors"
+              isLoading={isLoading}
+            />
+            <Statistic
+              className="col-span-1"
+              icon={
+                <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
+              }
+              value={data?.attemptCount}
+              title="Total Submissions"
+              isLoading={isLoading}
+            />
+          </div>
+        </div>
+        <Button
+          className="self-center mt-8 px-32"
+          isLoading={isLoading}
+          onClick={() => setIsShareModalOpen(true)}
+        >
+          Share
+        </Button>
+        <div className="mt-8 w-full border-t border-white/30" />
+      </div>
+      {/* TABLET END */}
       <div
         className={classNames(
           'mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6',
@@ -89,7 +177,6 @@ export default function JobDescription({
           />
         </div>
       </div>
-      <JobActivity className="md:hidden" data={data} isLoading={isLoading} />
     </div>
   );
 }

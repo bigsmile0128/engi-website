@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const plugin = require('tailwindcss/plugin');
@@ -21,6 +22,7 @@ module.exports = {
         'green-primary': '#65FEB7',
         'orange-primary': '#F27B50',
         'red-primary': '#FF5F5F',
+        'purple-primary': '#BA54EC',
       },
     },
   },
