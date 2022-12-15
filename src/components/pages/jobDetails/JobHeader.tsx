@@ -31,8 +31,9 @@ export default function JobHeader({
           </Link>
           <h1
             className={classNames(
-              'inline-flex items-center font-grifter tablet:basis-3/5 laptop:basis-auto flex-1 overflow-hidden',
+              'inline-flex items-center font-grifter flex-1 overflow-hidden',
               'text-2xl tablet:text-3xl',
+              'tablet:basis-3/5 laptop:basis-auto',
               isLoading ? 'skeleton mx-2' : ''
             )}
           >
@@ -59,7 +60,7 @@ export default function JobHeader({
         </div>
       </div>
       {/* MOBILE: bottom bar */}
-      <div className="mt-8 w-full border-t border-white/30 tablet:hidden" />
+      <div className="mt-4 w-full border-t border-white/30 tablet:hidden" />
     </>
   );
 }
