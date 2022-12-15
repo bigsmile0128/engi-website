@@ -24,7 +24,7 @@ export default function Navbar({ className }: NavbarProps) {
 
   return (
     <header className="relative">
-      <div className="flex items-center md:justify-between max-w-page p-6 md:px-0">
+      <div className="flex items-center tablet:justify-between max-w-page p-6 tablet:px-0">
         <Link href="/">
           <a className="flex mr-10">
             <Logo className="h-8 w-8" />
@@ -33,7 +33,7 @@ export default function Navbar({ className }: NavbarProps) {
         {/* non-mobile nav */}
         <nav
           // as="nav"
-          className="flex-1 hidden md:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
+          className="flex-1 hidden tablet:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
         >
           <Link href="/jobs">
             <a
@@ -129,14 +129,17 @@ export default function Navbar({ className }: NavbarProps) {
             </Menu>
           </div>
         </nav>
-        <BlockchainHealth className="md:hidden ml-auto !gap-x-6" isStacked />
         {user ? (
-          <UserInfo className="hidden md:flex" user={user} setUser={setUser} />
+          <UserInfo
+            className="hidden tablet:flex"
+            user={user}
+            setUser={setUser}
+          />
         ) : (
           <>
-            <BlockchainHealth className="hidden md:flex" isStacked />
+            <BlockchainHealth className="hidden laptop:flex" isStacked />
             <Link href="/signup">
-              <a>
+              <a className="hidden laptop:flex">
                 <Button className="ml-8 !text-green-primary">
                   Get Started
                 </Button>
@@ -145,7 +148,7 @@ export default function Navbar({ className }: NavbarProps) {
           </>
         )}
         {/* mobile nav */}
-        <div className="ml-6 -mr-2 -my-2 md:hidden">
+        <div className="ml-auto -mr-2 -my-2 tablet:hidden">
           <button
             className="rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-primary"
             onClick={() => setIsOpen(true)}
