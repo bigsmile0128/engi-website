@@ -48,7 +48,7 @@ export default function JobDetails() {
       <p className="font-grifter text-3xl text-center">Unable to find job...</p>
     </div>
   ) : (
-    <div className="mt-12 mb-24">
+    <div className="mt-4 tablet:mt-12 mb-24">
       <JobHeader className="mb-8" isLoading={isLoading} data={data} />
       <div className="max-w-page flex flex-col lg:flex-row">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
