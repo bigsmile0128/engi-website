@@ -49,8 +49,8 @@ export default function JobDetails() {
     </div>
   ) : (
     <div className="mt-4 tablet:mt-12 mb-24">
-      <JobHeader className="mb-8" isLoading={isLoading} data={data} />
-      <div className="max-w-page flex flex-col lg:flex-row">
+      <JobHeader isLoading={isLoading} data={data} />
+      <div className="max-w-page flex flex-col lg:flex-row mt-12 tablet:mt-8">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
           <Tab.List className="flex w-full border-b border-white/30">
             {['Description', 'Tests'].map((name, i) => (

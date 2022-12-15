@@ -152,9 +152,77 @@ export default function JobDescription({
         <div className="mt-8 w-full border-t border-white/30" />
       </div>
       {/* TABLET END */}
+      {/* MOBILE START */}
+      <div className="w-full mb-4 tablet:hidden">
+        <div className="my-8 w-full border-t border-white/30" />
+        <Button variant="primary" className="w-full">
+          Get Started
+        </Button>
+        <div className="mt-16 px-4">
+          <JobCreator data={data?.creator} isLoading={isLoading} />
+          <div className="my-8 w-full border-t border-white/30" />
+          <RepositoryInfo
+            className="shrink-0"
+            organizationName={data?.repository?.organization}
+            repositoryName={data?.repository?.fullName}
+            isLoading={isLoading}
+          />
+          <h2
+            className={classNames(
+              'mt-24 mb-4 pb-4 font-grifter text-xl',
+              'border-b border-white/30',
+              isLoading ? 'skeleton' : ''
+            )}
+          >
+            Activity
+          </h2>
+          <div className="flex flex-col gap-2">
+            <Statistic
+              icon={<RiLineChartFill className="text-green-primary h-5 w-5" />}
+              value="Average Progress"
+              title={
+                <ProgressBar
+                  className="w-full"
+                  percentage={
+                    data?.averageProgress?.numerator ??
+                    0 / (data?.averageProgress?.denominator ?? 1)
+                  }
+                  label={`${data?.averageProgress?.numerator ?? 0}/${
+                    data?.averageProgress?.denominator ?? 0
+                  }`}
+                />
+              }
+              isLoading={isLoading}
+            />
+            <Statistic
+              icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
+              value={data?.solutionUserCount}
+              title="Total Contributors"
+              isLoading={isLoading}
+            />
+            <Statistic
+              icon={
+                <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
+              }
+              value={data?.attemptCount}
+              title="Total Submissions"
+              isLoading={isLoading}
+            />
+          </div>
+        </div>
+        <Button
+          className="w-full mt-12"
+          isLoading={isLoading}
+          onClick={() => setIsShareModalOpen(true)}
+        >
+          Share
+        </Button>
+        <div className="mt-8 w-full border-t border-white/30" />
+      </div>
+      {/* MOBILE END */}
       <div
         className={classNames(
-          'mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6',
+          'mt-4 tablet:mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6',
           isLoading ? 'children:children:skeleton' : ''
         )}
       >
