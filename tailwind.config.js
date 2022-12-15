@@ -8,6 +8,9 @@ module.exports = {
   theme: {
     screens: {
       xs: '475px',
+      tablet: defaultTheme.screens.sm,
+      laptop: defaultTheme.screens.md,
+      desktop: defaultTheme.screens.lg,
       ...defaultTheme.screens,
     },
     extend: {

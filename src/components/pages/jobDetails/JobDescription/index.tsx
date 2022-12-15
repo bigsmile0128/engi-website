@@ -78,7 +78,7 @@ export default function JobDescription({
       )}
       <Payout className="mt-8" isLoading={isLoading} data={data} />
       {/* TABLET START */}
-      <div className="hidden md:flex md:flex-col lg:hidden w-full">
+      <div className="hidden tablet:w-full tablet:flex tablet:flex-col laptop:hidden">
         <div className="mt-8 w-full border-t border-white/30" />
         <div
           className={classNames(

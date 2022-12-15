@@ -48,9 +48,9 @@ export default function JobDetails() {
       <p className="font-grifter text-3xl text-center">Unable to find job...</p>
     </div>
   ) : (
-    <div className="max-w-page mt-12 mb-24 flex flex-col lg:flex-row gap-16">
-      <div className="flex flex-1 flex-col overflow-hidden">
-        <JobHeader className="mb-8" isLoading={isLoading} data={data} />
+    <div className="mt-12 mb-24">
+      <JobHeader className="mb-8" isLoading={isLoading} data={data} />
+      <div className="max-w-page flex flex-col lg:flex-row">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
           <Tab.List className="flex w-full border-b border-white/30">
             {['Description', 'Tests'].map((name, i) => (
@@ -82,12 +82,12 @@ export default function JobDetails() {
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
+        <JobActivity
+          className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
+          data={data}
+          isLoading={isLoading}
+        />
       </div>
-      <JobActivity
-        className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0"
-        data={data}
-        isLoading={isLoading}
-      />
     </div>
   );
 }

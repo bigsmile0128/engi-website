@@ -20,38 +20,46 @@ export default function JobHeader({
 }: JobHeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
   return (
-    <div className={classNames('', className)}>
-      <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
-      <div className="flex items-center">
-        <Link href="/jobs" passHref>
-          <a>
-            <HiOutlineChevronLeft className="h-6 w-6" />
-          </a>
-        </Link>
-        <h1
-          className={classNames(
-            'inline-flex items-center font-grifter text-3xl pl-4 pr-2 md:basis-3/5 lg:basis-auto flex-1 overflow-hidden',
-            isLoading ? 'skeleton mx-2' : ''
-          )}
-        >
-          <span className="mt-2 inline-block truncate">
-            {isLoading ? 'Placeholder' : data?.name}
-          </span>
-          <button className="ml-2" onClick={() => setModalOpen(true)}>
-            <IoMdShareAlt className="h-6 w-6" />
-          </button>
-        </h1>
-        <Button
-          variant="primary"
-          className={classNames(
-            'ml-8 self-end whitespace-nowrap !px-12',
-            'hidden md:block lg:hidden'
-          )}
-          isLoading={isLoading}
-        >
-          Get Started
-        </Button>
+    <>
+      <div className={classNames('max-w-page', className)}>
+        <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
+        <div className="flex items-center">
+          <Link href="/jobs" passHref>
+            <a className="mr-2">
+              <HiOutlineChevronLeft className="h-5 w-5 tablet:h-6 tablet:w-6" />
+            </a>
+          </Link>
+          <h1
+            className={classNames(
+              'inline-flex items-center font-grifter tablet:basis-3/5 laptop:basis-auto flex-1 overflow-hidden',
+              'text-2xl tablet:text-3xl',
+              isLoading ? 'skeleton mx-2' : ''
+            )}
+          >
+            <span className="mt-2 inline-block truncate">
+              {isLoading ? 'Placeholder' : data?.name}
+            </span>
+            <button
+              className="ml-2 tablet:hidden laptop:block"
+              onClick={() => setModalOpen(true)}
+            >
+              <IoMdShareAlt className="h-5 w-5 tablet:h-6 tablet:w-6" />
+            </button>
+          </h1>
+          <Button
+            variant="primary"
+            className={classNames(
+              'ml-8 self-end whitespace-nowrap !px-12',
+              'hidden tablet:block laptop:hidden'
+            )}
+            isLoading={isLoading}
+          >
+            Get Started
+          </Button>
+        </div>
       </div>
-    </div>
+      {/* MOBILE: bottom bar */}
+      <div className="mt-8 w-full border-t border-white/30 tablet:hidden" />
+    </>
   );
 }
