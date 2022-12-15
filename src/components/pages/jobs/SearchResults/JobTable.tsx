@@ -76,23 +76,6 @@ export default function JobTable({
       //     );
       //   },
       // }),
-      // TODO: update with effort once available in job schema
-      columnHelper.accessor('attemptCount', {
-        header: 'Difficulty',
-        cell: (props) => {
-          const job = props.row.original;
-          return (
-            <Tag
-              className={classNames(
-                'py-1',
-                isLoading ? 'skeleton rounded-none' : ''
-              )}
-            >
-              Easy
-            </Tag>
-          );
-        },
-      }),
       columnHelper.accessor('funding', {
         header: 'Funding',
         cell: (props) => {
