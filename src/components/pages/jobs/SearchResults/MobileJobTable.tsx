@@ -47,9 +47,8 @@ export default function MobileJobTable({
               name={job.name}
               createdOn={job?.createdOn?.dateTime}
             />
-            <div className="flex items-center gap-x-2 mt-4">
+            <div className="flex items-center justify-between gap-x-2 mt-4">
               <JobStatus isLoading={isLoading} status={job?.status} />
-              <Tag className="py-1 ml-auto">Easy</Tag>
               <EngiAmount
                 className="ml-8"
                 isLoading={isLoading}
