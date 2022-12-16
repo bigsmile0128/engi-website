@@ -137,3 +137,36 @@ export const useLoginUser = () => {
     }
   );
 };
+
+type ConfirmEmail = {
+  address: string;
+  token: string;
+};
+
+export const useConfirmEmail = () =>
+  useMutation<{ address: string; token: string }, AxiosError, any>(
+    async ({ address, token }: ConfirmEmail) => {
+      const response = await axios.post('/api/graphql', {
+        query: gql`
+          mutation ConfirmEmail($confirmEmailArgs: ConfirmEmailArguments!) {
+            auth {
+              confirmEmail(args: $confirmEmailArgs)
+            }
+          }
+        `,
+        operationName: 'ConfirmEmail',
+        variables: {
+          confirmEmailArgs: {
+            address,
+            token,
+          },
+        },
+      });
+
+      if (response?.data?.errors?.length) {
+        throw new Error(response?.data?.errors?.[0]?.message);
+      }
+
+      return response?.data?.data?.auth?.confirmEmail;
+    }
+  );
