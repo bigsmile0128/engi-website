@@ -12,95 +12,111 @@ export default function useJobs(
   query: JobsQueryArguments,
   currentUser?: string
 ) {
-  return useQuery(['jobs', JSON.stringify(query)], () => fetchJobs(query), {
-    onError: (error) => {
-      Sentry.captureException(error);
-      emitFoundJobsErrorAnalyticsEvent(error);
-    },
-    onSuccess(data) {
-      emitFoundJobsAnalyticsEvent(data?.result?.totalCount, currentUser);
-    },
-  });
+  return useQuery<any, any>(
+    ['jobs', JSON.stringify(query)],
+    () => fetchJobs(query),
+    {
+      onError: (error) => {
+        Sentry.captureException(error);
+        emitFoundJobsErrorAnalyticsEvent(error);
+      },
+      onSuccess(data) {
+        emitFoundJobsAnalyticsEvent(data?.result?.totalCount, currentUser);
+      },
+    }
+  );
 }
 
 async function fetchJobs(query: JobsQueryArguments) {
-  const { data } = await axios.post('/api/graphql', {
-    query: gql`
-      query JobSearch($query: JobsQueryArguments!) {
-        jobs(query: $query) {
-          result {
-            totalCount
-            items {
-              id
-              creator
-              funding
-              repository {
-                url
-                branch
-                commit
-              }
-              language
-              name
-              tests {
-                ...test
-              }
-              requirements {
-                isEditable
-                isAddable
-                isDeletable
-              }
-              solution {
-                solutionId
-                jobId
-                author
-                patchUrl
-                attempt {
-                  attemptId
-                  attempter
-                  tests {
-                    ...testAttempt
+  let data;
+  try {
+    const response = await axios.post('/api/graphql', {
+      query: gql`
+        query JobSearch($query: JobsQueryArguments!) {
+          jobs(query: $query) {
+            result {
+              totalCount
+              items {
+                id
+                creator
+                funding
+                repository {
+                  url
+                  branch
+                  commit
+                }
+                language
+                name
+                tests {
+                  ...test
+                }
+                requirements {
+                  isEditable
+                  isAddable
+                  isDeletable
+                }
+                solution {
+                  solutionId
+                  jobId
+                  author
+                  patchUrl
+                  attempt {
+                    attemptId
+                    attempter
+                    tests {
+                      ...testAttempt
+                    }
                   }
                 }
-              }
-              createdOn {
-                ...blockReference
-              }
-              updatedOn {
-                ...blockReference
-              }
-              status
-              attemptCount
-              solutionUserCount
-              averageProgress {
-                numerator
-                denominator
+                createdOn {
+                  ...blockReference
+                }
+                updatedOn {
+                  ...blockReference
+                }
+                status
+                attemptCount
+                solutionUserCount
+                averageProgress {
+                  numerator
+                  denominator
+                }
               }
             }
           }
         }
-      }
 
-      fragment test on Test {
-        id
-        required
-      }
+        fragment test on Test {
+          id
+          required
+        }
 
-      fragment testAttempt on TestAttempt {
-        id
-        result
-        failedResultMessage
-      }
+        fragment testAttempt on TestAttempt {
+          id
+          result
+          failedResultMessage
+        }
 
-      fragment blockReference on BlockReference {
-        number
-        dateTime
-      }
-    `,
-    variables: {
-      query,
-    },
-  });
+        fragment blockReference on BlockReference {
+          number
+          dateTime
+        }
+      `,
+      variables: {
+        query,
+      },
+    });
 
+    data = response.data;
+  } catch (error) {
+    // catch 400 from bad request
+    console.log('error.response.data', error.response.data);
+    throw new Error(
+      error.response?.data?.errors?.[0]?.message ?? 'Unable to fetch jobs.'
+    );
+  }
+
+  // catch error from a field failing to resolve
   if (data.errors?.length > 0) {
     throw new Error(data?.errors?.[0]?.message ?? 'Unable to fetch jobs.');
   }

@@ -1,24 +1,26 @@
 import classNames from 'classnames';
 import pluralize from 'pluralize';
-import { useState } from 'react';
 import SearchInput from '~/components/SearchInput';
-import SortMenu, { Option, SortDirection } from '~/components/SortMenu';
+import SortMenu from '~/components/SortMenu';
+import { JobsOrderByProperty, OrderByDirection } from '~/types';
 
 interface SearchResultsHeaderProps {
   className?: string;
   error?: Error;
   isLoading: boolean;
   numResults?: number;
+  onChange: (searchParams) => void;
+  searchParams: URLSearchParams;
 }
 
 const sortOptions = [
   {
     label: 'Newest',
-    value: 'NEWEST',
+    value: JobsOrderByProperty.CREATED_ON,
   },
   {
     label: 'Payout',
-    value: 'PAYOUT',
+    value: JobsOrderByProperty.FUNDING,
   },
 ];
 
@@ -27,9 +29,12 @@ export default function SearchResultsHeader({
   isLoading,
   numResults,
   error,
+  onChange,
+  searchParams,
 }: SearchResultsHeaderProps) {
-  const [sortField, setSortField] = useState<Option | null>(sortOptions[0]);
-  const [sortDir, setSortDir] = useState<SortDirection>(SortDirection.DESC);
+  const sortField = sortOptions.find(
+    (option) => option.value === searchParams.get('sort-field')
+  );
 
   return (
     <header className={classNames('md:flex items-center', className)}>
@@ -57,9 +62,23 @@ export default function SearchResultsHeader({
           isLoading={isLoading}
           options={sortOptions}
           value={sortField}
-          onChange={setSortField}
-          sortDirection={sortDir}
-          onChangeSortDirection={setSortDir}
+          onChange={(option) => {
+            const newSearchParams: Record<string, any> =
+              Object.fromEntries(searchParams);
+            newSearchParams['sort-field'] = option.value;
+            newSearchParams['sort-dir'] = OrderByDirection.DESC;
+            onChange(newSearchParams);
+          }}
+          sortDirection={
+            (searchParams.get('sort-dir') as OrderByDirection) ??
+            OrderByDirection.DESC
+          }
+          onChangeSortDirection={(sortDir) => {
+            const newSearchParams: Record<string, any> =
+              Object.fromEntries(searchParams);
+            newSearchParams['sort-dir'] = sortDir;
+            onChange(newSearchParams);
+          }}
         />
       </div>
     </header>

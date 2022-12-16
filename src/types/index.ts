@@ -29,13 +29,20 @@ export enum JobStatus {
 }
 
 export enum Language {
-  C = 'C',
   C_SHARP = 'C_SHARP',
-  JAVA = 'JAVA',
   JAVA_SCRIPT = 'JAVA_SCRIPT',
   PYTHON = 'PYTHON',
   RUST = 'RUST',
-  TYPESCRIPT = 'TYPESCRIPT',
+}
+
+export enum JobsOrderByProperty {
+  CREATED_ON = 'CREATED_ON',
+  FUNDING = 'FUNDING',
+}
+
+export enum OrderByDirection {
+  ASC = 'ASC',
+  DESC = 'DESC',
 }
 
 export type Fractional = {
@@ -99,13 +106,14 @@ export type Transaction = {
 };
 
 export type JobsQueryArguments = {
+  createdAfter?: string;
   creator?: string;
-  language?: Language;
+  language?: Language[];
   limit: number;
   maxFunding?: number;
   minFunding?: number;
-  orderByDirection?: 'ASC' | 'DESC';
-  orderByProperty?: 'CREATED_ON' | 'FUNDING';
+  orderByDirection?: OrderByDirection;
+  orderByProperty?: JobsOrderByProperty;
   search?: string;
   skip: number;
   status?: string;

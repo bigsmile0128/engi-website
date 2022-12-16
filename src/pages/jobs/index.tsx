@@ -1,9 +1,18 @@
+import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import qs from 'qs';
 
-import SearchFilterList from '~/components/pages/jobs/SearchFilterList';
+import SearchFilterList, {
+  DateOption,
+} from '~/components/pages/jobs/SearchFilterList';
 import SearchResults from '~/components/pages/jobs/SearchResults';
 import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
+import {
+  JobsOrderByProperty,
+  JobsQueryArguments,
+  Language,
+  OrderByDirection,
+} from '~/types';
 import { useUser } from '~/utils/contexts/userContext';
 import useJobs from '~/utils/hooks/useJobs';
 
@@ -21,10 +30,7 @@ export default function JobDiscovery() {
   const { user } = useUser();
 
   const { isLoading, isError, data, refetch, error } = useJobs(
-    {
-      skip: 0,
-      limit: 25,
-    },
+    formatSearchParams(searchParams),
     user?.walletId
   );
 
@@ -32,9 +38,7 @@ export default function JobDiscovery() {
     <div className="max-w-page flex flex-col mt-12 mb-24">
       <div className="md:flex items-start justify-between gap-x-4">
         <h1 className="text-white font-grifter text-8xl">Jobs</h1>
-        {/* <CurrentJobs className="mt-12 md:mt-0 md:w-1/2 md:max-w-md" /> */}
       </div>
-      {/* <RecommendedJobs className="mt-12" /> */}
       <div className="flex mt-12 gap-x-12 flex-col lg:flex-row">
         <SearchFilterList
           className="hidden lg:block"
@@ -47,16 +51,87 @@ export default function JobDiscovery() {
             className="shrink-0 mb-8 md:mb-6 mt-4 md:mt-0"
             numResults={data?.result?.totalCount}
             isLoading={isLoading}
+            searchParams={searchParams}
+            onChange={setSearchParams}
           />
           <SearchResults
             isLoading={isLoading}
             results={data?.result?.items ?? []}
             numPages={Math.ceil((data?.result?.totalCount ?? 0) / PAGE_SIZE)}
             isError={isError}
+            error={error}
             refresh={refetch}
           />
         </div>
       </div>
     </div>
   );
+}
+
+function formatSearchParams(searchParams: URLSearchParams): JobsQueryArguments {
+  const query: JobsQueryArguments = {
+    skip: 0,
+    limit: 10,
+    orderByDirection: OrderByDirection.DESC,
+  };
+
+  const languages = searchParams.getAll('language') as Language[];
+  if (languages.length > 0) {
+    query.language = languages;
+  }
+
+  const minFunding = searchParams.get('funding-min');
+  const maxFunding = searchParams.get('funding-max');
+  if (minFunding) {
+    query.minFunding = parseInt(minFunding, 10) * Math.pow(10, 18);
+  }
+  if (maxFunding) {
+    query.maxFunding = parseInt(maxFunding, 10) * Math.pow(10, 18);
+  }
+
+  if (searchParams.get('sort-field')) {
+    query.orderByProperty = searchParams.get(
+      'sort-field'
+    ) as JobsOrderByProperty;
+  }
+
+  if (searchParams.get('sort-dir')) {
+    query.orderByDirection = searchParams.get('sort-dir') as OrderByDirection;
+  }
+
+  if (searchParams.get('created-after')) {
+    switch (searchParams.get('created-after')) {
+      case DateOption.LAST_DAY:
+        query.createdAfter = dayjs().startOf('day').subtract(1, 'day').format();
+        break;
+      case DateOption.LAST_WEEK:
+        query.createdAfter = dayjs()
+          .startOf('day')
+          .subtract(1, 'week')
+          .format();
+        break;
+      case DateOption.LAST_MONTH:
+        query.createdAfter = dayjs()
+          .startOf('day')
+          .subtract(1, 'month')
+          .format();
+        break;
+      case DateOption.LAST_QUARTER:
+        query.createdAfter = dayjs()
+          .startOf('day')
+          .subtract(3, 'month')
+          .format();
+        break;
+      case DateOption.LAST_YEAR:
+        query.createdAfter = dayjs()
+          .startOf('day')
+          .subtract(1, 'year')
+          .format();
+        break;
+      default:
+        query.createdAfter = searchParams.get('created-after');
+    }
+  }
+  // TODO: handle skip
+  return query;
 }

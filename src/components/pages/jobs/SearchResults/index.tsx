@@ -1,20 +1,18 @@
-import React from 'react';
-import classNames from 'classnames';
 import { IoMdRefresh } from '@react-icons/all-files/io/IoMdRefresh';
+import classNames from 'classnames';
 
-import { Job } from '~/types';
-import JobTable from './JobTable';
-import ReactPaginate from 'react-paginate';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { AiOutlineEllipsis } from '@react-icons/all-files/ai/AiOutlineEllipsis';
-import MobileJobTable from './MobileJobTable';
-import { RiFileSearchLine } from 'react-icons/ri';
-import Button from '~/components/global/Button/Button';
 import { SiDiscord } from 'react-icons/si';
-import Link from 'next/link';
+import ReactPaginate from 'react-paginate';
+import Button from '~/components/global/Button/Button';
+import { Job } from '~/types';
+import JobTable from './JobTable';
+import MobileJobTable from './MobileJobTable';
 
 interface SearchResultsProps {
   className?: string;
+  error?: any;
   isError: boolean;
   isLoading: boolean;
   numPages: number;
@@ -28,6 +26,7 @@ export default function SearchResults({
   results,
   numPages,
   isError,
+  error,
   refresh,
 }: SearchResultsProps) {
   const searchParams = new URLSearchParams();
@@ -48,6 +47,11 @@ export default function SearchResults({
       {isError && (
         <div className="flex flex-col items-center justify-center py-12">
           <p className="font-grifter text-3xl mb-6">Something went wrong...</p>
+          {error?.message && (
+            <code className="p-4 mb-6 bg-black/[.14] text-red-400">
+              {error?.message}
+            </code>
+          )}
           <button
             className="flex items-center justify-center text-gray-300 py-3 pl-4 pr-5 border border-gray-300 text-sm font-semibold bg-[#00000022] hover:bg-[#ffffff22] outline-none focus-visible:ring-green-400 focus-visible:ring-2"
             onClick={refresh}

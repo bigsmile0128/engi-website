@@ -11,11 +11,11 @@ type LanguageTagProps = {
 
 const displayNameMap = {
   [Language.C_SHARP]: 'C#',
-  [Language.JAVA]: 'Java',
+  // [Language.JAVA]: 'Java',
   [Language.JAVA_SCRIPT]: 'JavaScript',
   [Language.PYTHON]: 'Python',
   [Language.RUST]: 'Rust',
-  [Language.TYPESCRIPT]: 'TypeScript',
+  // [Language.TYPESCRIPT]: 'TypeScript',
 };
 
 export default function LanguageTag({
