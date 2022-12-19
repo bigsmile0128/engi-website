@@ -1,6 +1,7 @@
 import React from 'react';
+import { OrderByDirection } from '~/types';
 
-import SortMenu, { SortDirection } from '../SortMenu';
+import SortMenu from '../SortMenu';
 
 export default {
   title: 'SortMenu',
@@ -30,6 +31,6 @@ Default.args = {
   onChange: () => {},
   onChangeSortDirection: () => {},
   options,
-  sortDirection: SortDirection.DESC,
+  sortDirection: OrderByDirection.DESC,
   value: options[0],
 };

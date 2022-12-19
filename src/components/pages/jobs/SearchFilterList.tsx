@@ -1,7 +1,7 @@
-import React from 'react';
 import classNames from 'classnames';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
+import { Language } from '~/types';
 
 interface SearchFilterListProps {
   className?: string;
@@ -10,17 +10,31 @@ interface SearchFilterListProps {
   searchParams: URLSearchParams;
 }
 
+// TODO: replace with enums from schema
+// https://linear.app/engi/issue/ENGIN-907/query-to-get-list-of-static-values-for-job-search
 const languages = [
-  'JavaScript',
-  'TypeScript',
-  'Python',
-  'Rust',
-  'C++',
-  'Java',
-].sort();
+  { label: 'C#', value: Language.C_SHARP },
+  { label: 'JavaScript', value: Language.JAVA_SCRIPT },
+  { label: 'Python', value: Language.PYTHON },
+  { label: 'Rust', value: Language.RUST },
+].sort((a, b) => a.label.localeCompare(b.label));
 
-const MIN_HOURS = 0;
-const MAX_HOURS = 20;
+export enum DateOption {
+  LAST_DAY = 'LAST_DAY',
+  LAST_MONTH = 'LAST_MONTH',
+  LAST_QUARTER = 'LAST_QUARTER',
+  LAST_WEEK = 'LAST_WEEK',
+  LAST_YEAR = 'LAST_YEAR',
+}
+
+const createdAfterOptions = [
+  { label: 'Last day', value: DateOption.LAST_DAY },
+  { label: 'Last week', value: DateOption.LAST_WEEK },
+  { label: 'Last month', value: DateOption.LAST_MONTH },
+  { label: 'Last quarter', value: DateOption.LAST_QUARTER },
+  { label: 'Last year', value: DateOption.LAST_YEAR },
+];
+
 const MIN_FUNDING = 0;
 const MAX_FUNDING = 100;
 
@@ -31,42 +45,32 @@ export default function SearchFilterList({
   filterClassName,
 }: SearchFilterListProps) {
   const selectedLanguages = searchParams.getAll('language');
-  let minHours = parseInt(searchParams.get('minHours')) || MIN_HOURS;
-  let maxHours = parseInt(searchParams.get('maxHours')) || MAX_HOURS;
-  let minFunding = parseInt(searchParams.get('minFunding')) || MIN_FUNDING;
-  let maxFunding = parseInt(searchParams.get('maxFunding')) || MAX_FUNDING;
+  let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
+  let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
 
-  // handle incorrect range in query params
-  if (minHours >= maxHours) {
-    minHours = MIN_HOURS;
-    maxHours = MAX_HOURS;
-  }
   if (minFunding >= maxFunding) {
     minFunding = MIN_FUNDING;
     maxFunding = MAX_FUNDING;
   }
 
   return (
-    <div className={classNames('relative text-gray-300', className)}>
+    <div className={classNames('relative', className)}>
       <div className={classNames(filterClassName)}>
-        <legend className="text-sm mb-2">Language</legend>
-        <div className="flex flex-col gap-y-1">
-          {languages.map((language) => (
+        <legend className="mb-4">Language</legend>
+        <div className="flex flex-col gap-y-2">
+          {createdAfterOptions.map(({ label, value }) => (
             <Checkbox
-              key={language}
-              id={language}
-              label={language}
-              checked={selectedLanguages.includes(language)}
+              key={value}
+              id={value}
+              label={label}
+              checked={value === searchParams.get('created-after')}
               onChange={(checked) => {
                 const newSearchParams: Record<string, any> =
                   Object.fromEntries(searchParams);
-                delete newSearchParams.page; // reset page when changing languages
                 if (checked) {
-                  newSearchParams.language = [...selectedLanguages, language];
+                  newSearchParams['created-after'] = value;
                 } else {
-                  newSearchParams.language = selectedLanguages.filter(
-                    (lang) => lang !== language
-                  );
+                  delete newSearchParams['created-after'];
                 }
                 onChange(newSearchParams);
               }}
@@ -76,20 +80,30 @@ export default function SearchFilterList({
       </div>
       <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
       <div className={classNames(filterClassName)}>
-        <legend className="text-sm mb-2">Estimated Time</legend>
-        <Slider
-          min={MIN_HOURS}
-          max={MAX_HOURS}
-          minDistance={1}
-          value={[minHours, maxHours]}
-          onAfterChange={([minHours, maxHours]) => {
-            onChange({
-              ...Object.fromEntries(searchParams),
-              minHours,
-              maxHours,
-            });
-          }}
-        />
+        <legend className="mb-4">Language</legend>
+        <div className="flex flex-col gap-y-2">
+          {languages.map(({ label, value }) => (
+            <Checkbox
+              key={value}
+              id={value}
+              label={label}
+              checked={selectedLanguages.includes(value)}
+              onChange={(checked) => {
+                const newSearchParams: Record<string, any> =
+                  Object.fromEntries(searchParams);
+                delete newSearchParams.page; // reset page when changing languages
+                if (checked) {
+                  newSearchParams.language = [...selectedLanguages, value];
+                } else {
+                  newSearchParams.language = selectedLanguages.filter(
+                    (lang) => lang !== value
+                  );
+                }
+                onChange(newSearchParams);
+              }}
+            />
+          ))}
+        </div>
       </div>
       <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
       <div className={classNames(filterClassName)}>
@@ -102,8 +116,8 @@ export default function SearchFilterList({
           onAfterChange={([minFunding, maxFunding]) => {
             onChange({
               ...Object.fromEntries(searchParams),
-              minFunding,
-              maxFunding,
+              'funding-min': minFunding,
+              'funding-max': maxFunding,
             });
           }}
         />

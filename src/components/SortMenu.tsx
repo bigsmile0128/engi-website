@@ -3,11 +3,7 @@ import { ChevronDownIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import { Fragment } from 'react';
 import { RiSortAsc, RiSortDesc } from 'react-icons/ri';
-
-export enum SortDirection {
-  ASC,
-  DESC,
-}
+import { OrderByDirection } from '~/types';
 
 export type Option = {
   label: string;
@@ -18,9 +14,9 @@ type SortMenuProps = {
   className?: string;
   isLoading?: boolean;
   onChange: (value: Option) => void;
-  onChangeSortDirection: (sortDirection: SortDirection) => void;
+  onChangeSortDirection: (sortDirection: OrderByDirection) => void;
   options: Option[];
-  sortDirection: SortDirection;
+  sortDirection: OrderByDirection;
   value?: Option;
 };
 
@@ -48,13 +44,13 @@ export default function SortMenu({
                   )}
                   onClick={() =>
                     onChangeSortDirection(
-                      sortDirection === SortDirection.ASC
-                        ? SortDirection.DESC
-                        : SortDirection.ASC
+                      sortDirection === OrderByDirection.ASC
+                        ? OrderByDirection.DESC
+                        : OrderByDirection.ASC
                     )
                   }
                 >
-                  {sortDirection === SortDirection.ASC ? (
+                  {sortDirection === OrderByDirection.ASC ? (
                     <RiSortAsc className="h-5 w-5" aria-hidden="true" />
                   ) : (
                     <RiSortDesc className="h-5 w-5" aria-hidden="true" />

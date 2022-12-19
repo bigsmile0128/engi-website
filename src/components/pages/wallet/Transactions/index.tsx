@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import SearchInput from '~/components/SearchInput';
-import SortMenu, { Option, SortDirection } from '~/components/SortMenu';
-import SelectMenu from '~/components/SelectMenu';
 import axios from 'axios';
+import classNames from 'classnames';
 import { gql } from 'graphql-request';
+import { useState } from 'react';
 import { useQuery } from 'react-query';
-import TransactionTable from './TransactionTable';
 import Pagination from '~/components/global/Pagination/Pagination';
+import SearchInput from '~/components/SearchInput';
+import SelectMenu from '~/components/SelectMenu';
+import SortMenu, { Option } from '~/components/SortMenu';
+import { OrderByDirection, TransactionType } from '~/types';
 import MobileTransactionTable from './MobileTransactionTable';
-import { TransactionType } from '~/types';
+import TransactionTable from './TransactionTable';
 
 type TransactionsProps = {
   className?: string;
@@ -75,7 +75,9 @@ export default function Transactions({
   walletId,
 }: TransactionsProps) {
   const [sortField, setSortField] = useState<Option | null>(sortOptions[0]);
-  const [sortDir, setSortDir] = useState<SortDirection>(SortDirection.DESC);
+  const [sortDir, setSortDir] = useState<OrderByDirection>(
+    OrderByDirection.DESC
+  );
   const [status, setStatus] = useState(statusOptions[0]);
   // skip first N results for pagination
   const [page, setPage] = useState(0);
