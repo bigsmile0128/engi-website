@@ -78,7 +78,7 @@ export default function JobDescription({
       )}
       <Payout className="mt-8" isLoading={isLoading} data={data} />
       {/* TABLET START */}
-      <div className="hidden tablet:w-full tablet:flex tablet:flex-col laptop:hidden">
+      <div className="hidden tablet:w-full tablet:flex tablet:flex-col desktop:hidden">
         <div className="mt-8 w-full border-t border-white/30" />
         <div
           className={classNames(
@@ -222,7 +222,7 @@ export default function JobDescription({
       {/* MOBILE END */}
       <div
         className={classNames(
-          'mt-4 tablet:mt-8 grid sm:grid-cols-2 w-full gap-x-4 gap-y-6',
+          'mt-4 tablet:mt-8 grid tablet:grid-cols-2 w-full gap-x-4 gap-y-6',
           isLoading ? 'children:children:skeleton' : ''
         )}
       >

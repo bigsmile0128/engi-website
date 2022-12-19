@@ -33,7 +33,7 @@ export default function JobHeader({
             className={classNames(
               'inline-flex items-center font-grifter flex-1 overflow-hidden',
               'text-2xl tablet:text-3xl',
-              'tablet:basis-3/5 laptop:basis-auto',
+              'tablet:basis-3/5 desktop:basis-auto',
               isLoading ? 'skeleton mx-2' : ''
             )}
           >
@@ -41,7 +41,7 @@ export default function JobHeader({
               {isLoading ? 'Placeholder' : data?.name}
             </span>
             <button
-              className="ml-2 tablet:hidden laptop:block"
+              className="ml-2 tablet:hidden desktop:block"
               onClick={() => setModalOpen(true)}
             >
               <IoMdShareAlt className="h-5 w-5 tablet:h-6 tablet:w-6" />
@@ -51,7 +51,7 @@ export default function JobHeader({
             variant="primary"
             className={classNames(
               'ml-8 self-end whitespace-nowrap !px-12',
-              'hidden tablet:block laptop:hidden'
+              'hidden tablet:block desktop:hidden'
             )}
             isLoading={isLoading}
           >
