@@ -50,38 +50,40 @@ export default function JobDetails() {
   ) : (
     <div className="mt-4 tablet:mt-12 mb-24">
       <JobHeader isLoading={isLoading} data={data} />
-      <div className="max-w-page flex flex-col lg:flex-row mt-12 tablet:mt-8">
-        <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-          <Tab.List className="flex w-full border-b border-white/30">
-            {['Description', 'Tests'].map((name, i) => (
-              <Tab as={Fragment} key={name}>
-                {({ selected }) => (
-                  <button
-                    className={classNames(
-                      'py-2 -mb-[1px] mr-16',
-                      'text-xl',
-                      'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
-                      selected && !isLoading
-                        ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
-                        : 'text-white/80',
-                      isLoading ? 'children:skeleton' : ''
-                    )}
-                  >
-                    <span>{name}</span>
-                  </button>
-                )}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels className="mt-8">
-            <Tab.Panel>
-              <JobDescription isLoading={isLoading} data={data} />
-            </Tab.Panel>
-            <Tab.Panel>
-              <JobTests isLoading={isLoading} data={data} />
-            </Tab.Panel>
-          </Tab.Panels>
-        </Tab.Group>
+      <div className="max-w-page flex flex-col desktop:flex-row mt-12 tablet:mt-8">
+        <div className="">
+          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+            <Tab.List className="flex w-full border-b border-white/30">
+              {['Description', 'Tests'].map((name, i) => (
+                <Tab as={Fragment} key={name}>
+                  {({ selected }) => (
+                    <button
+                      className={classNames(
+                        'py-2 -mb-[1px] mr-16',
+                        'text-xl',
+                        'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+                        selected && !isLoading
+                          ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
+                          : 'text-white/80',
+                        isLoading ? 'children:skeleton' : ''
+                      )}
+                    >
+                      <span>{name}</span>
+                    </button>
+                  )}
+                </Tab>
+              ))}
+            </Tab.List>
+            <Tab.Panels className="mt-8">
+              <Tab.Panel>
+                <JobDescription isLoading={isLoading} data={data} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <JobTests isLoading={isLoading} data={data} />
+              </Tab.Panel>
+            </Tab.Panels>
+          </Tab.Group>
+        </div>
         <JobActivity
           className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
           data={data}
