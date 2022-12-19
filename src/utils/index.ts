@@ -9,3 +9,9 @@ export function isProduction() {
 export function isStaging() {
   return process.env.NEXT_PUBLIC_ENGI_ENV === 'testnet';
 }
+
+export async function sleep(ms) {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => resolve(), ms);
+  });
+}

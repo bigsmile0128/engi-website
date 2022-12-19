@@ -18,6 +18,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   variant: 'primary',
   isLoading: false,
+  inProgress: false,
 };
 
 export const Tag = Template.bind({});

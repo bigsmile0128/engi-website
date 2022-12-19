@@ -1,8 +1,10 @@
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
+import { AiOutlineLoading } from 'react-icons/ai';
 import Tag from '~/components/global/Tag/Tag';
 
 type ButtonProps = {
+  inProgress?: boolean;
   isLoading?: boolean;
   variant?: 'primary' | 'default' | 'tag' | 'link';
 };
@@ -13,6 +15,7 @@ export default function Button({
   children,
   variant = 'default',
   isLoading,
+  inProgress,
   ...props
 }: HTMLMotionProps<'button'> & ButtonProps) {
   if (variant === 'primary') {
@@ -31,13 +34,19 @@ export default function Button({
           'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
           'border-t border-t-white border-b border-b-transparent',
           // hover and active states
-          disabled ? '' : hoverClasses,
+          disabled || isLoading || inProgress ? '' : hoverClasses,
           isLoading ? 'skeleton rounded-none text-transparent' : '',
+          inProgress ? 'text-transparent' : '',
           className
         )}
         disabled={disabled}
         {...props}
       >
+        {inProgress && (
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <AiOutlineLoading className="text-2xl !text-green-primary visible animate-spin" />
+          </div>
+        )}
         {children}
       </motion.button>
     );
