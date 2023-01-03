@@ -5,6 +5,7 @@ export enum TestResult {
 }
 
 export type Test = {
+  failedResultMessage?: string;
   id: string;
   required: string;
   result: string;

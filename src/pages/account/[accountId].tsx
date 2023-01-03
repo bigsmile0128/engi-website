@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import avatarImg from 'public/img/avatar.png';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import { MdModeEdit } from 'react-icons/md';
 import { SiJava, SiPython, SiRust, SiTypescript } from 'react-icons/si';
 import EngiAmount from '~/components/EngiAmount';

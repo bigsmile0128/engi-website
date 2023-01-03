@@ -78,20 +78,19 @@ function JobItem({
 }: JobItemProps) {
   return (
     <div className="flex flex-col">
-      <Link href={isLoading ? '' : `/jobs/${id}`}>
-        <a
-          className={classNames(
-            'flex items-center gap-x-1 mb-5',
-            isLoading
-              ? 'children:skeleton pointer-events-none'
-              : 'hover:text-green-primary'
-          )}
-        >
-          <span className={isLoading ? 'w-1/3' : ''}>
-            {title ?? 'No job title'}
-          </span>
-          <ChevronRightIcon className="h-4 w-4" />
-        </a>
+      <Link
+        href={isLoading ? '' : `/jobs/${id}`}
+        className={classNames(
+          'flex items-center gap-x-1 mb-5',
+          isLoading
+            ? 'children:skeleton pointer-events-none'
+            : 'hover:text-green-primary'
+        )}
+      >
+        <span className={isLoading ? 'w-1/3' : ''}>
+          {title ?? 'No job title'}
+        </span>
+        <ChevronRightIcon className="h-4 w-4" />
       </Link>
       <div
         className={classNames(

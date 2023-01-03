@@ -1,12 +1,11 @@
-import React, { useMemo } from 'react';
 import classNames from 'classnames';
-import { Job } from '~/types';
-import { MobileJobInfo } from './JobInfo';
 import Link from 'next/link';
+import { useMemo } from 'react';
 import EngiAmount from '~/components/EngiAmount';
-import JobStatus from './JobStatus';
-import Tag from '~/components/global/Tag/Tag';
+import { Job } from '~/types';
 import { mockJob } from '~/types/mock';
+import { MobileJobInfo } from './JobInfo';
+import JobStatus from './JobStatus';
 
 type MobileJobTableProps = {
   className?: string;
@@ -34,28 +33,28 @@ export default function MobileJobTable({
   return (
     <div className={classNames('w-full flex flex-col gap-y-4', className)}>
       {_data.map((job) => (
-        <Link key={job.id} href={isLoading ? '' : `/jobs/${job.id}`}>
-          <a
-            className={classNames(
-              'p-4',
-              'bg-black/[.14]',
-              isLoading ? '' : 'hover:bg-black/40'
-            )}
-          >
-            <MobileJobInfo
+        <Link
+          key={job.id}
+          href={isLoading ? '' : `/jobs/${job.id}`}
+          className={classNames(
+            'p-4',
+            'bg-black/[.14]',
+            isLoading ? '' : 'hover:bg-black/40'
+          )}
+        >
+          <MobileJobInfo
+            isLoading={isLoading}
+            name={job.name}
+            createdOn={job?.createdOn?.dateTime}
+          />
+          <div className="flex items-center justify-between gap-x-2 mt-4">
+            <JobStatus isLoading={isLoading} status={job?.status} />
+            <EngiAmount
+              className="ml-8"
               isLoading={isLoading}
-              name={job.name}
-              createdOn={job?.createdOn?.dateTime}
+              value={job.funding}
             />
-            <div className="flex items-center justify-between gap-x-2 mt-4">
-              <JobStatus isLoading={isLoading} status={job?.status} />
-              <EngiAmount
-                className="ml-8"
-                isLoading={isLoading}
-                value={job.funding}
-              />
-            </div>
-          </a>
+          </div>
         </Link>
       ))}
     </div>

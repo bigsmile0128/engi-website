@@ -10,10 +10,11 @@ type TextLinkProps = {
 
 export default function TextLink({ className, children, href }: TextLinkProps) {
   return (
-    <Link href={href}>
-      <a className={classNames('font-bold text-green-primary', className)}>
-        {children}
-      </a>
+    <Link
+      href={href}
+      className={classNames('font-bold text-green-primary', className)}
+    >
+      {children}
     </Link>
   );
 }

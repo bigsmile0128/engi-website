@@ -117,33 +117,32 @@ function JobCard({
   isLoading,
 }: JobCardProps) {
   return (
-    <Link href={isLoading ? '' : `/jobs/${id}`}>
-      <a
+    <Link
+      href={isLoading ? '' : `/jobs/${id}`}
+      className={classNames(
+        'flex flex-col p-6 gap-y-2 items-start',
+        'bg-black/[.14] hover:bg-black/40',
+        isLoading ? 'pointer-events-none' : '',
+        className
+      )}
+    >
+      <span
         className={classNames(
-          'flex flex-col p-6 gap-y-2 items-start',
-          'bg-black/[.14] hover:bg-black/40',
-          isLoading ? 'pointer-events-none' : '',
-          className
+          'px-4 py-1 rounded-full',
+          'whitespace-nowrap text-sm',
+          isLoading ? 'skeleton' : 'bg-[#EFEFEF]/[.13]'
         )}
       >
-        <span
-          className={classNames(
-            'px-4 py-1 rounded-full',
-            'whitespace-nowrap text-sm',
-            isLoading ? 'skeleton' : 'bg-[#EFEFEF]/[.13]'
-          )}
-        >
-          Top Activity
-        </span>
-        <TimeEstimate
-          className={isLoading ? 'skeleton' : ''}
-          duration={`${timeEstimate} hours`}
-        />
-        <span className={classNames('font-bold', isLoading ? 'skeleton' : '')}>
-          {title}
-        </span>
-        <Reward className="mt-auto" value={reward} isLoading={isLoading} />
-      </a>
+        Top Activity
+      </span>
+      <TimeEstimate
+        className={isLoading ? 'skeleton' : ''}
+        duration={`${timeEstimate} hours`}
+      />
+      <span className={classNames('font-bold', isLoading ? 'skeleton' : '')}>
+        {title}
+      </span>
+      <Reward className="mt-auto" value={reward} isLoading={isLoading} />
     </Link>
   );
 }

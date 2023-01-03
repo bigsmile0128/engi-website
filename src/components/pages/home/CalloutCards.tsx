@@ -47,11 +47,9 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           language.
         </p>
         <Link href="/jobs">
-          <a>
-            <Button variant="primary" className="mt-12">
-              View Jobs
-            </Button>
-          </a>
+          <Button variant="primary" className="mt-12">
+            View Jobs
+          </Button>
         </Link>
       </div>
       <div className="relative flex-1 flex flex-col justify-between sm:items-start border border-gray-400 bg-gray-800/30 px-8 pt-12 pb-8">
@@ -76,11 +74,9 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           No sourcing. No recruiting. Find worldwide talent instantly.
         </p>
         <Link href="/hire">
-          <a>
-            <Button variant="primary" className="mt-12">
-              Post a Job
-            </Button>
-          </a>
+          <Button variant="primary" className="mt-12">
+            Post a Job
+          </Button>
         </Link>
       </div>
     </div>

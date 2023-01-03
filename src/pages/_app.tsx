@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -8,7 +8,7 @@ import { BrowserTracing } from '@sentry/tracing';
 import Layout from '~/components/modules/layout';
 import { ToastContainer } from 'react-toastify';
 
-import UserContext from '~/utils/contexts/userContext';
+import UserContext, { User } from '~/utils/contexts/userContext';
 import store from 'store2';
 import { isProduction } from '~/utils';
 import { usePersistedUserState } from '~/utils/auth/persisted';
@@ -36,19 +36,14 @@ const queryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [user, _setUser] = usePersistedUserState(null);
+  const [persistedUser, setUser] = usePersistedUserState(null);
+  // to prevent SSR hydration mismatch, store user in state to handle initial render
+  const [user, setStateUser] = useState<User>(null);
 
-  // fetch user info from local storage since there is no actual login
+  // keep state user updated with persisted user
   useEffect(() => {
-    _setUser(store.get('user'));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const setUser = useCallback((user) => {
-    _setUser(user);
-    store.set('user', user);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setStateUser(persistedUser);
+  }, [persistedUser]);
 
   console.log('is production: ', isProduction());
 

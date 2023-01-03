@@ -15,20 +15,29 @@ export default function SocialMedia({ className }: SocialMediaProps) {
     <div
       className={classNames('flex items-center gap-x-8 text-2xl', className)}
     >
-      <Link href="https://discord.gg/S67BnJWN27">
-        <a className="p-2 hover:text-gray-300" target="_blank" rel="noreferrer">
-          <SiDiscord />
-        </a>
+      <Link
+        href="https://discord.gg/S67BnJWN27"
+        className="p-2 hover:text-gray-300"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <SiDiscord />
       </Link>
-      <Link href="https://linkedin.com/company/engi-network">
-        <a className="p-2 hover:text-gray-300" target="_blank" rel="noreferrer">
-          <SiLinkedin />
-        </a>
+      <Link
+        href="https://linkedin.com/company/engi-network"
+        className="p-2 hover:text-gray-300"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <SiLinkedin />
       </Link>
-      <Link href="https://twitter.com/engi_network">
-        <a className="p-2 hover:text-gray-300" target="_blank" rel="noreferrer">
-          <SiTwitter />
-        </a>
+      <Link
+        href="https://twitter.com/engi_network"
+        className="p-2 hover:text-gray-300"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <SiTwitter />
       </Link>
     </div>
   );

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import aboutImg from 'public/img/press/about1.png';

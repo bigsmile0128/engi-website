@@ -51,7 +51,7 @@ export default function JobDetails() {
     <div className="mt-4 tablet:mt-12 mb-24">
       <JobHeader isLoading={isLoading} data={data} />
       <div className="max-w-page flex flex-col desktop:flex-row mt-12 tablet:mt-8">
-        <div className="">
+        <div className="flex-1">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex w-full border-b border-white/30">
               {['Description', 'Tests'].map((name, i) => (
@@ -154,6 +154,7 @@ async function fetchJobDetails(jobId) {
         id
         result
         required
+        failedResultMessage
       }
 
       fragment testAttempt on TestAttempt {

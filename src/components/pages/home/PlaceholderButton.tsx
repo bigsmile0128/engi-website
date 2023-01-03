@@ -11,16 +11,14 @@ export default function PlaceholderButton({
 }: PlaceholderButtonProps) {
   return (
     <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-      <a>
-        <button
-          className={classNames(
-            'px-6 py-4 bg-black/20 border border-white font-bold',
-            className
-          )}
-        >
-          Learn more
-        </button>
-      </a>
+      <button
+        className={classNames(
+          'px-6 py-4 bg-black/20 border border-white font-bold',
+          className
+        )}
+      >
+        Learn more
+      </button>
     </Link>
   );
 }

@@ -264,37 +264,34 @@ export default function EmailModal({
             <p className="font-semibold text-lg mt-6">Page Link</p>
             <CopyLink className="mt-2" value="https://engi.network/" />
             <div className="flex items-center justify-between mt-12 gap-x-4 xs:gap-x-8  text-xl xs:text-2xl">
-              <Link href="https://twitter.com/engi_network">
-                <a
-                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SiDiscord />
-                </a>
+              <Link
+                href="https://twitter.com/engi_network"
+                className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiDiscord />
               </Link>
               {/* <Link href="https://twitter.com/engi_network">
                 <a className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary" target="_blank" rel="noreferrer">
                   <SiTiktok />
                 </a>
               </Link> */}
-              <Link href="https://linkedin.com/company/engi-network">
-                <a
-                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SiLinkedin />
-                </a>
+              <Link
+                href="https://linkedin.com/company/engi-network"
+                className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiLinkedin />
               </Link>
-              <Link href="https://twitter.com/engi_network">
-                <a
-                  className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <SiTwitter />
-                </a>
+              <Link
+                href="https://twitter.com/engi_network"
+                className="p-3 xs:p-4 border border-green-primary rounded-full hover:text-secondary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <SiTwitter />
               </Link>
             </div>
           </div>

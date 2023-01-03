@@ -7,11 +7,11 @@ import { Fragment, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import MenuSvg from 'public/img/home/menu.svg';
+import Button from '~/components/global/Button/Button';
 import Logo from '~/components/Logo';
 import { useUser } from '~/utils/contexts/userContext';
 import BlockchainHealth from './BlockchainHealth';
 import UserInfo from './navbar/UserInfo';
-import Button from '~/components/global/Button/Button';
 
 interface NavbarProps {
   className?: string;
@@ -25,35 +25,31 @@ export default function Navbar({ className }: NavbarProps) {
   return (
     <header className="relative">
       <div className="flex items-center tablet:justify-between max-w-page p-6 tablet:px-0">
-        <Link href="/">
-          <a className="flex mr-10">
-            <Logo className="h-8 w-8" />
-          </a>
+        <Link href="/" className="flex mr-10">
+          <Logo className="h-8 w-8" />
         </Link>
         {/* non-mobile nav */}
         <nav
           // as="nav"
           className="flex-1 hidden tablet:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
         >
-          <Link href="/jobs">
-            <a
-              className={classNames(
-                'text-base font-medium text-gray-300 hover:text-white',
-                { 'underline !text-white': /^\/jobs/.test(router.asPath) }
-              )}
-            >
-              Earn
-            </a>
+          <Link
+            href="/jobs"
+            className={classNames(
+              'text-base font-medium text-gray-300 hover:text-white',
+              { 'underline !text-white': /^\/jobs/.test(router.asPath) }
+            )}
+          >
+            Earn
           </Link>
-          <Link href="/hire">
-            <a
-              className={classNames(
-                'text-base font-medium text-gray-300 hover:text-white',
-                { 'underline !text-white': /^\/hire/.test(router.asPath) }
-              )}
-            >
-              Post
-            </a>
+          <Link
+            href="/hire"
+            className={classNames(
+              'text-base font-medium text-gray-300 hover:text-white',
+              { 'underline !text-white': /^\/hire/.test(router.asPath) }
+            )}
+          >
+            Post
           </Link>
           <div className="relative">
             <Menu>
@@ -138,12 +134,8 @@ export default function Navbar({ className }: NavbarProps) {
         ) : (
           <>
             <BlockchainHealth className="hidden laptop:flex" isStacked />
-            <Link href="/signup">
-              <a className="hidden laptop:flex">
-                <Button className="ml-8 !text-green-primary">
-                  Get Started
-                </Button>
-              </a>
+            <Link href="/signup" className="hidden laptop:flex">
+              <Button className="ml-8 !text-green-primary">Get Started</Button>
             </Link>
           </>
         )}
@@ -203,71 +195,64 @@ export default function Navbar({ className }: NavbarProps) {
                 </div>
                 <div className="mt-6">
                   <nav className="grid grid-cols-1 gap-4">
-                    <Link href="/">
-                      <a
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Home</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="/"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Home</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
-                    <Link href="/jobs">
-                      <a
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Earn</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="/jobs"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Earn</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
-                    <Link href="/hire">
-                      <a
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Post</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="/hire"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Post</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
                     <p className="font-bold text-white text-2xl mt-8">Learn</p>
-                    <Link href="/about">
-                      <a
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>About</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="/about"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>About</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
-                    <Link href="/contact">
-                      <a
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Contact</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="/contact"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Contact</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
-                    <Link href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
-                      <a
-                        target="_blank"
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Documentation</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                      target="_blank"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Documentation</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
-                    <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
-                      <a
-                        target="_blank"
-                        className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        <span>Litepaper</span>
-                        <ChevronRightIcon className="h-6" />
-                      </a>
+                    <Link
+                      href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf"
+                      target="_blank"
+                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <span>Litepaper</span>
+                      <ChevronRightIcon className="h-6" />
                     </Link>
                   </nav>
                 </div>
@@ -280,17 +265,15 @@ export default function Navbar({ className }: NavbarProps) {
                 ) : (
                   <>
                     <BlockchainHealth className="mt-auto mx-auto" isStacked />
-                    <Link href="/signup">
-                      <a onClick={() => setIsOpen(false)}>
-                        <button
-                          className={classNames(
-                            'mt-8 py-4 w-full text-white font-bold',
-                            'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
-                          )}
-                        >
-                          Get Started
-                        </button>
-                      </a>
+                    <Link href="/signup" onClick={() => setIsOpen(false)}>
+                      <button
+                        className={classNames(
+                          'mt-8 py-4 w-full text-white font-bold',
+                          'bg-[#00000022] hover:bg-gray-700 active:bg-gray-600 border border-white outline-none focus-visible:ring-2'
+                        )}
+                      >
+                        Get Started
+                      </button>
                     </Link>
                   </>
                 )}

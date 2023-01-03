@@ -9,7 +9,7 @@ import ForwardSlashSvg from '~/components/global/icons/forward-slash.svg';
 import TokenContractSvg from 'public/img/home/features1.svg';
 import featuresSrc2 from 'public/img/home/features2.png';
 import featuresSrc3 from 'public/img/home/features3.png';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 
 interface FeaturesProps {
   className?: string;
