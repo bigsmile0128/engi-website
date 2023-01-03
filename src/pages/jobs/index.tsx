@@ -30,8 +30,7 @@ export default function JobDiscovery() {
   const { user } = useUser();
 
   const { isLoading, isError, data, refetch, error } = useJobs(
-    formatSearchParams(searchParams),
-    user?.walletId
+    formatSearchParams(searchParams)
   );
 
   return (
@@ -132,6 +131,11 @@ function formatSearchParams(searchParams: URLSearchParams): JobsQueryArguments {
         query.createdAfter = searchParams.get('created-after');
     }
   }
+
+  if (searchParams.get('query')) {
+    query.search = searchParams.get('query');
+  }
+
   // TODO: handle skip
   return query;
 }

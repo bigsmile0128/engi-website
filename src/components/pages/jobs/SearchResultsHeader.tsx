@@ -54,8 +54,18 @@ export default function SearchResultsHeader({
       >
         <SearchInput
           className="sm:w-56"
-          isLoading={isLoading}
           placeholder="Search jobs"
+          value={searchParams.get('query') ?? ''}
+          onChange={(query) => {
+            const newSearchParams: Record<string, any> =
+              Object.fromEntries(searchParams);
+            if (!query) {
+              delete newSearchParams.query;
+            } else {
+              newSearchParams.query = query;
+            }
+            onChange(newSearchParams);
+          }}
         />
         <SortMenu
           className="ml-auto"

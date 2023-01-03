@@ -7,11 +7,10 @@ import { useQuery } from 'react-query';
 import { JobsQueryArguments } from '~/types';
 import * as Sentry from '@sentry/react';
 import axios from 'axios';
+import { useUser } from '../contexts/userContext';
 
-export default function useJobs(
-  query: JobsQueryArguments,
-  currentUser?: string
-) {
+export default function useJobs(query: JobsQueryArguments) {
+  const { user } = useUser();
   return useQuery<any, any>(
     ['jobs', JSON.stringify(query)],
     () => fetchJobs(query),
@@ -21,7 +20,7 @@ export default function useJobs(
         emitFoundJobsErrorAnalyticsEvent(error);
       },
       onSuccess(data) {
-        emitFoundJobsAnalyticsEvent(data?.result?.totalCount, currentUser);
+        emitFoundJobsAnalyticsEvent(data?.result?.totalCount, user?.walletId);
       },
     }
   );

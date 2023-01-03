@@ -81,6 +81,7 @@ export default function Transactions({
   const [status, setStatus] = useState(statusOptions[0]);
   // skip first N results for pagination
   const [page, setPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
   const [transactionType, setTransactionType] = useState(
     transactionTypeOptions[0]
   );
@@ -116,6 +117,8 @@ export default function Transactions({
           className="sm:w-40 md:w-64"
           isLoading={isLoading}
           placeholder="Search jobs"
+          value={searchQuery}
+          onChange={(searchQuery) => setSearchQuery(searchQuery)}
         />
         <div className="flex items-center ml-auto gap-x-6">
           <SelectMenu

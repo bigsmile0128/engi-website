@@ -7,7 +7,12 @@ export type User = {
   walletId: string;
 } | null;
 
-const UserContext = createContext({
+type UserContextType = {
+  setUser: (user: User) => void;
+  user: User;
+};
+
+const UserContext = createContext<UserContextType>({
   user: null,
   setUser: (user: User) => {
     console.info('user set', user);
