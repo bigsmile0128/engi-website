@@ -7,6 +7,7 @@ import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 import Layout from '~/components/modules/layout';
 import { ToastContainer } from 'react-toastify';
+import lscache from 'lscache';
 
 import UserContext from '~/utils/contexts/userContext';
 import store from 'store2';
@@ -51,6 +52,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   console.log('is production: ', isProduction());
+
+  lscache.set('skillsbiteBanner', false);
 
   return (
     <>
