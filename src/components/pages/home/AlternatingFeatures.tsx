@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import blocks from 'public/img/home/blocks.png';
 import PlaceholderButton from './PlaceholderButton';
 

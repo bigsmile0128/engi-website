@@ -10,7 +10,7 @@ type MenuItemLinkProps = {
 // to be used for rendering a link inside headlessui Menu.Item
 function MenuItemLink({ href, children, ...props }: MenuItemLinkProps) {
   return (
-    <Link href={href} passHref>
+    <Link href={href}>
       <button {...props}>{children}</button>
     </Link>
   );

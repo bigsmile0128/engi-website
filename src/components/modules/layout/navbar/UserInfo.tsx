@@ -1,19 +1,16 @@
-import React from 'react';
-import classNames from 'classnames';
-import { User } from '~/utils/contexts/userContext';
-import Avvvatars from 'avvvatars-react';
-import EngiAmount from '~/components/EngiAmount';
-import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
-import { useQuery } from 'react-query';
-import axios from 'axios';
-import { gql } from 'graphql-request';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/outline';
+import Avvvatars from 'avvvatars-react';
+import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
-import { toast } from 'react-toastify';
-import MenuItemLink from '~/components/MenuItemLink';
-import { useBalance } from '~/utils/balances/userBalance';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { toast } from 'react-toastify';
+import EngiAmount from '~/components/EngiAmount';
+import MenuItemLink from '~/components/MenuItemLink';
+import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
+import { useBalance } from '~/utils/balances/userBalance';
+import { User } from '~/utils/contexts/userContext';
 
 type UserInfoProps = {
   blockchainHealthProps?: any;
@@ -55,7 +52,7 @@ export default function UserInfo({
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10">
+            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10 text-center">
               <Menu.Item>
                 <MenuItemLink
                   className="px-6 py-1 text-gray-300 hover:text-white"

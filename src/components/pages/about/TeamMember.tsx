@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/legacy/image';
 import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import { BiBuildings } from 'react-icons/bi';

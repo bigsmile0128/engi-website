@@ -70,7 +70,6 @@ export default function Hire({ className }: HireProps) {
           <TestsTab
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
-              console.log('selected tests', selectedTests);
               setCurrentStep(JobStep.DETAILS);
             }}
             goBack={() => setCurrentStep(JobStep.REPOSITORY)}

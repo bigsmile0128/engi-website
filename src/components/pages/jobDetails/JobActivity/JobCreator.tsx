@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Image from 'next/future/image';
+import Image from 'next/image';
 
 import avatarImg from 'public/img/jobDetails/avatar.png';
 import polygonImg from 'public/img/jobDetails/polygon.png';

@@ -109,7 +109,6 @@ async function fetchJobs(query: JobsQueryArguments) {
     data = response.data;
   } catch (error) {
     // catch 400 from bad request
-    console.log('error.response.data', error.response.data);
     throw new Error(
       error.response?.data?.errors?.[0]?.message ?? 'Unable to fetch jobs.'
     );

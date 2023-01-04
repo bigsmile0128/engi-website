@@ -15,7 +15,6 @@ function UploadAvatar() {
         name: `${image.name}`,
       });
 
-      console.log('response', response);
       setHasUploaded(true);
     } catch (error) {
       console.error(error);

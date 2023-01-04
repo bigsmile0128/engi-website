@@ -17,10 +17,11 @@ export default function NotFound() {
               Sorry, we couldn&apos;t find the page you&apos;re looking for.
             </p>
             <div className="mt-6">
-              <Link href="/" passHref>
-                <a className="text-base font-medium text-green-primary hover:text-emerald-400">
-                  Go back home<span aria-hidden="true"> &rarr;</span>
-                </a>
+              <Link
+                href="/"
+                className="text-base font-medium text-green-primary hover:text-emerald-400"
+              >
+                Go back home<span aria-hidden="true"> &rarr;</span>
               </Link>
             </div>
           </div>
