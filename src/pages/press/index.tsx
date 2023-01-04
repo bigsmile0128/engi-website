@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 import deskImg from 'public/img/press/desk.jpg';
 import BlockQuote from '~/components/pages/home/BlockQuote';

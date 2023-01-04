@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import useEmblaCarousel from 'embla-carousel-react';
 
 import aboutImg from 'public/img/press/about1.png';
@@ -87,13 +87,11 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
               engineering work for coders everywhere.
             </p>
           </div>
-          <div className="max-w-md md:max-w-none mx-auto">
-            <Image
-              className="h-3/4 w-3/4 mx-auto"
-              src={aboutImg}
-              alt="figma plugins"
-            />
-          </div>
+          <Image
+            className="px-8 laptop:px-0"
+            src={aboutImg}
+            alt="figma plugins"
+          />
         </div>
         <div className="md:grid grid-cols-2 grid-flow-row-dense gap-24 items-center mx-6 md:mx-0">
           <div className="mb-12 md:mb-0 col-start-2">
@@ -108,9 +106,11 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
               obstructs participation and growth.
             </p>
           </div>
-          <div className="max-w-md md:max-w-none mx-auto relative col-start-1">
-            <Image src={deskImg} alt="ipad website" />
-          </div>
+          <Image
+            className="px-8 laptop:px-0"
+            src={deskImg}
+            alt="ipad website"
+          />
         </div>
       </div>
       <div className="relative">
