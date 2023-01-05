@@ -21,7 +21,11 @@ export default function JobCreator({
       )}
     >
       <div className="shrink-0">
-        <Avvvatars value={data} style="shape" size={48} />
+        {data ? (
+          <Avvvatars value={data} style="shape" size={48} />
+        ) : (
+          <div className="h-12 w-12" />
+        )}
       </div>
       <span className="font-grifter text-xl inline-block truncate">
         {data ?? 'Author N/A'}

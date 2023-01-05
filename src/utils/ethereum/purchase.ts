@@ -1,16 +1,15 @@
-import {
-  emitBoughtEngiErrorAnalyticsEvent,
-  emitBoughtEngiAnalyticsEvent,
-} from './../analytics/events';
 import { useMutation } from 'react-query';
-import engiPurchaseAbi from './engiPurchaseAbi.json';
 import {
-  Web3Provider,
-  PURCHASE_CONTRACT_ADDRESS,
+  emitBoughtEngiAnalyticsEvent,
+  emitBoughtEngiErrorAnalyticsEvent,
+} from './../analytics/events';
+import {
   NO_GLOBAL_ETHEREUM_ERROR_MESSAGE,
+  PURCHASE_CONTRACT_ADDRESS,
+  Web3Provider,
 } from './constants';
+import engiPurchaseAbi from './engiPurchaseAbi.json';
 import { substrateToHex } from './substrate';
-import Web3 from 'web3';
 
 const EngiPurchaseContract = new Web3Provider.eth.Contract(
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

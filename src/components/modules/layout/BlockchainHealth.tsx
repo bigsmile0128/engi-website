@@ -1,13 +1,12 @@
-import React from 'react';
-import classNames from 'classnames';
-import { useQuery } from 'react-query';
-import { request, gql } from 'graphql-request';
-import pluralize from 'pluralize';
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import * as Sentry from '@sentry/react';
 import axios from 'axios';
-import ReactTooltip from 'react-tooltip';
+import classNames from 'classnames';
+import { gql } from 'graphql-request';
+import pluralize from 'pluralize';
+import { useQuery } from 'react-query';
+import Tooltip from '~/components/Tooltip';
 
 type BlockchainHealthProps = {
   className?: string;
@@ -93,15 +92,11 @@ export default function BlockchainHealth({
   ) : (
     <div className={classNames('flex items-center gap-x-3', className)}>
       {isLoading && (
-        <>
-          <GrStatusGoodSmall
-            className="text-sm text-blue-400 animate-pulse"
-            data-tip="Establishing Network Connection..."
-            data-place="bottom"
-            data-class="font-medium"
-          />
-          <ReactTooltip />
-        </>
+        <Tooltip title={<span>Establishing Network Connection...</span>}>
+          <span>
+            <GrStatusGoodSmall className="text-sm text-blue-400 animate-pulse" />
+          </span>
+        </Tooltip>
       )}
       {data?.status === 'ONLINE' && (
         <>
@@ -119,26 +114,18 @@ export default function BlockchainHealth({
         </>
       )}
       {data?.status === 'OFFLINE' && (
-        <>
-          <GrStatusDisabledSmall
-            className="text-sm text-red-400"
-            data-tip="Engi Appears Offline"
-            data-place="bottom"
-            data-class="font-medium"
-          />
-          <ReactTooltip />
-        </>
+        <Tooltip title="Engi Appears Offline">
+          <span>
+            <GrStatusDisabledSmall className="text-sm text-red-400" />
+          </span>
+        </Tooltip>
       )}
       {!isLoading && !data?.status && (
-        <>
-          <GrStatusGoodSmall
-            className="text-sm text-secondary"
-            data-tip="Network Status Unknown"
-            data-place="bottom"
-            data-class="font-medium"
-          />
-          <ReactTooltip />
-        </>
+        <Tooltip title="Network Status Unknown">
+          <span>
+            <GrStatusGoodSmall className="text-sm text-secondary" />
+          </span>
+        </Tooltip>
       )}
     </div>
   );

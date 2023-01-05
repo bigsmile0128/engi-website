@@ -52,7 +52,7 @@ export default function UserInfo({
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10 text-center">
+            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10">
               <Menu.Item>
                 <MenuItemLink
                   className="px-6 py-1 text-gray-300 hover:text-white"
