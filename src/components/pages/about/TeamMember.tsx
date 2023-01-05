@@ -1,4 +1,4 @@
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
 import { BiBuildings } from 'react-icons/bi';
@@ -34,9 +34,9 @@ function TeamMember({
         <Image
           src={photoLink}
           alt={name + 'photo'}
-          width={260}
           height={260}
-          className="w-full"
+          width={260}
+          className="h-[260px] w-[260px]"
         />
       ) : (
         <div

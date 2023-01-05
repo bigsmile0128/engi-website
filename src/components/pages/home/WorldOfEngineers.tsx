@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import worldImg from 'public/img/home/world-of-engi.png';
 import PlaceholderButton from './PlaceholderButton';
 
@@ -37,9 +37,6 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
           className="mx-auto drop-shadow-2xl"
           src={worldImg}
           alt="figma plugins"
-          layout="responsive"
-          loading="lazy"
-          placeholder="blur"
         />
       </div>
     </div>

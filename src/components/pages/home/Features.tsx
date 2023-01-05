@@ -9,7 +9,7 @@ import ForwardSlashSvg from '~/components/global/icons/forward-slash.svg';
 import TokenContractSvg from 'public/img/home/features1.svg';
 import featuresSrc2 from 'public/img/home/features2.png';
 import featuresSrc3 from 'public/img/home/features3.png';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 
 interface FeaturesProps {
   className?: string;
@@ -200,7 +200,7 @@ function Tab2({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
-        <Image src={featuresSrc2} loading="lazy" alt="source" />
+        <Image src={featuresSrc2} alt="source" />
       </div>
     </div>
   );
@@ -231,12 +231,7 @@ function Tab3({ className }: { className?: string }) {
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border children:!h-full">
-        <Image
-          src={featuresSrc3}
-          loading="lazy"
-          className="object-cover"
-          alt="wherever"
-        />
+        <Image src={featuresSrc3} className="object-cover" alt="wherever" />
       </div>
     </div>
   );

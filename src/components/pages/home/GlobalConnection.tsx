@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import GridPattern from '~/components/global/GridPattern/GridPattern';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import globeImg from 'public/img/home/globe.png';
 import PlaceholderButton from './PlaceholderButton';
 
@@ -41,7 +41,7 @@ export default function GlobalConnection({ className }: GlobalConnectionProps) {
         </div>
       </div>
       <div className="w-full max-w-5xl mx-auto mt-8 sm:mt-0 scale-125 sm:scale-100">
-        <Image src={globeImg} loading="lazy" alt="global-connections" />
+        <Image src={globeImg} alt="global-connections" />
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import blocks from 'public/img/home/blocks.png';
 import PlaceholderButton from './PlaceholderButton';
 
@@ -26,7 +26,7 @@ export default function AlternatingFeatures({
           <PlaceholderButton className="mt-8" />
         </div>
         <div className="max-w-md md:max-w-none relative col-start-1 mx-auto mt-16 md:mt-0">
-          <Image src={blocks} alt="workflows" loading="lazy" />
+          <Image src={blocks} alt="workflows" />
         </div>
       </div>
     </div>

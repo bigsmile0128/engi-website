@@ -5,7 +5,7 @@ import HeroTextSvg from 'public/img/home/hero-text.svg';
 import HeroTopSvg from 'public/img/home/hero-top.svg';
 import HeroBottomSvg from 'public/img/home/hero-bottom.svg';
 import sitePreviewImg from 'public/img/home/site-preview.png';
-import Image from 'next/legacy/image';
+import Image from 'next/image';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
 
@@ -60,14 +60,7 @@ export default function Hero({ className }: HeroProps) {
           <HeroBottomSvg />
         </div>
         <div className={classNames('row-start-1 lg:col-start-2', '-mt-6')}>
-          <Image
-            src={sitePreviewImg}
-            alt="site-preview"
-            layout="responsive"
-            loading="lazy"
-            placeholder="blur"
-            sizes="50vw"
-          />
+          <Image src={sitePreviewImg} alt="site-preview" sizes="50vw" />
           <Link href="/signup">
             <Button className="w-full mt-8 mb-12 sm:hidden">Get Started</Button>
           </Link>
