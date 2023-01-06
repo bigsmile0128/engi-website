@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
 import { MdCheck } from '@react-icons/all-files/md/MdCheck';
-import { RiFileCopyLine } from 'react-icons/ri';
+import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
-
-import dynamic from 'next/dynamic';
-
-const ReactTooltip = dynamic(() => import('react-tooltip'), {
-  ssr: false,
-});
+import { useState } from 'react';
+import { RiFileCopyLine } from 'react-icons/ri';
+import Tooltip from './Tooltip';
 
 type CopyButtonProps = {
   className?: string;
@@ -23,7 +18,7 @@ export default function CopyButton({
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
   return (
-    <>
+    <Tooltip title={<span>{copied ? 'Copied' : 'Copy'}</span>}>
       <button
         className={classNames(
           'bg-transparent focus-visible:ring-2 outline-none text-white/30 hover:text-white/70',
@@ -43,10 +38,6 @@ export default function CopyButton({
           <RiFileCopyLine className="" size={size} />
         )}
       </button>
-      <ReactTooltip
-        effect="solid"
-        getContent={() => (copied ? 'Copied' : 'Copy')}
-      />
-    </>
+    </Tooltip>
   );
 }

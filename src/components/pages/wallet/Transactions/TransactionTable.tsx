@@ -1,6 +1,3 @@
-import React, { useMemo } from 'react';
-import classNames from 'classnames';
-import { Transaction, TransactionType } from '~/types';
 import {
   ColumnDef,
   createColumnHelper,
@@ -8,16 +5,16 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import classNames from 'classnames';
 import dynamic from 'next/dynamic';
-import TransactionTypeTag from './TransactionTypeTag';
+import PolkadotSvg from 'public/img/wallet/polkadot.svg';
+import { useMemo } from 'react';
 import { RiCheckboxCircleLine, RiErrorWarningLine } from 'react-icons/ri';
 import EngiAmount from '~/components/EngiAmount';
-import PolkadotSvg from 'public/img/wallet/polkadot.svg';
+import Tooltip from '~/components/Tooltip';
+import { Transaction, TransactionType } from '~/types';
 import TransactionTypeIcon from './TransactionTypeIcon';
-
-const ReactTooltip = dynamic(() => import('react-tooltip'), {
-  ssr: false,
-});
+import TransactionTypeTag from './TransactionTypeTag';
 
 const TransactionTime = dynamic(() => import('./TransactionTime'), {
   ssr: false,
@@ -43,17 +40,16 @@ export default function TransactionTable({
         cell: (props) => {
           const transaction = props.row.original;
           return (
-            <>
+            <Tooltip title={transaction.hash}>
               <span
                 className={classNames(
                   'block font-bold overflow-hidden text-ellipsis w-24 lg:w-32',
                   isLoading ? 'skeleton' : ''
                 )}
-                data-tip={transaction.hash}
               >
                 {transaction.executor}
               </span>
-            </>
+            </Tooltip>
           );
         },
       }),
@@ -216,7 +212,6 @@ export default function TransactionTable({
                 // TODO: enable onClick to transaction details
                 // 'cursor-pointer hover:bg-black/40'
               )}
-              data-tip={row.original.hash}
             >
               {row.getVisibleCells().map((cell) => (
                 <td key={cell.id} className="px-4">
@@ -225,7 +220,6 @@ export default function TransactionTable({
               ))}
             </tr>
           ))}
-          <ReactTooltip effect="solid" place="bottom" />
         </tbody>
       </table>
     </div>

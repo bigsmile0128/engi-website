@@ -10,6 +10,7 @@ export default function Document() {
       </Head>
       <body className={isDev() ? 'debug-screens' : ''}>
         <Main />
+        <div id="portal" />
         <NextScript />
       </body>
     </Html>

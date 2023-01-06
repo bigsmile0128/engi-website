@@ -24,7 +24,11 @@ export default function RepositoryInfo({
       )}
     >
       <div className={classNames('shrink-0', isLoading ? 'skeleton' : '')}>
-        <Avvvatars value={repositoryName} style="shape" size={48} />
+        {repositoryName ? (
+          <Avvvatars value={repositoryName} style="shape" size={48} />
+        ) : (
+          <div className="h-12 w-12" />
+        )}
       </div>
       <div className="flex flex-col gap-0.5">
         <span

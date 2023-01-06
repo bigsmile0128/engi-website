@@ -1,14 +1,10 @@
-import Image from 'next/image';
-import classNames from 'classnames';
 import { HiUser } from '@react-icons/all-files/hi/HiUser';
-import { BiBuildings } from 'react-icons/bi';
+import classNames from 'classnames';
+import Image from 'next/image';
 import randomColor from 'randomcolor';
-import dynamic from 'next/dynamic';
+import { BiBuildings } from 'react-icons/bi';
 
-const ReactTooltip = dynamic(() => import('react-tooltip'), {
-  ssr: false,
-});
-
+import Tooltip from '~/components/Tooltip';
 import { TeamMember as TeamMemberType } from './About.utils';
 
 interface Props extends TeamMemberType {
@@ -79,25 +75,29 @@ function TeamMember({
             {companies ? (
               companies?.map(({ name, iconLink }, index) =>
                 iconLink ? (
-                  <Image
-                    key={name + index}
-                    src={iconLink}
-                    alt={name}
-                    width={20}
-                    height={20}
-                    className="h-5"
-                    data-tip={name}
-                  />
+                  <Tooltip title={name} key={index}>
+                    <span className="h-5">
+                      <Image
+                        key={name + index}
+                        src={iconLink}
+                        alt={name}
+                        width={20}
+                        height={20}
+                        className="h-5"
+                      />
+                    </span>
+                  </Tooltip>
                 ) : (
-                  <div key={index}>
-                    <BiBuildings className="h-5 w-5" data-tip={name} />
-                  </div>
+                  <Tooltip title={name} key={index}>
+                    <span className="h-5">
+                      <BiBuildings className="h-5 w-5" />
+                    </span>
+                  </Tooltip>
                 )
               )
             ) : (
               <BiBuildings className="h-5 w-5" />
             )}
-            <ReactTooltip effect="solid" />
           </div>
         </div>
       </div>

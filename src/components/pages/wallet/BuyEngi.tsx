@@ -1,17 +1,13 @@
-import React, { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import classNames from 'classnames';
-import Input from '~/components/global/Input/Input';
-import Button from '~/components/global/Button/Button';
+import { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
+import { toast } from 'react-toastify';
+import Button from '~/components/global/Button/Button';
+import Input from '~/components/global/Input/Input';
+import Tooltip from '~/components/Tooltip';
+import { PreviewMoveEngi } from '~/pages/wallet/move';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
-import { PreviewMoveEngi } from '~/pages/wallet/move';
-import { toast } from 'react-toastify';
-import dynamic from 'next/dynamic';
-
-const ReactTooltip = dynamic(() => import('react-tooltip'), {
-  ssr: false,
-});
 
 type BuyEngiProps = {
   account: string;
@@ -95,14 +91,12 @@ export default function BuyEngi({
           </label>
 
           <div className="flex flex-col justify-center h-full">
-            <span
-              data-tip="Sign in with a different account to change this value."
-              className="font-light text-lg truncate text-ellipsis"
-            >
-              {account}
-            </span>
+            <Tooltip title="Sign in with a different account to change this value.">
+              <span className="font-light text-lg truncate text-ellipsis">
+                {account}
+              </span>
+            </Tooltip>
           </div>
-          <ReactTooltip place="bottom" effect="solid" />
         </div>
 
         <div className="flex-col space-y-2">
@@ -138,9 +132,9 @@ export default function BuyEngi({
       <Button
         className="w-full"
         onClick={() =>
-          buy({ account, from: ethereumAccounts?.[0], amount: value })
+          buy({ account, from: (ethereumAccounts ?? [])?.[0], amount: value })
         }
-        disabled={!account || !ethereumAccounts?.length || !value}
+        disabled={!account || !(ethereumAccounts ?? [])?.length || !value}
         variant={'primary'}
       >
         Confirm
