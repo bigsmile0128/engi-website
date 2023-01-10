@@ -69,7 +69,7 @@ export function MobileJobInfo({
       />
       <div
         className={classNames(
-          'flex flex-col gap-y-0.5',
+          'flex flex-col gap-y-0.5 overflow-hidden',
           isLoading ? 'children:skeleton' : ''
         )}
       >
