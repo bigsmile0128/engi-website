@@ -3,6 +3,8 @@ import pluralize from 'pluralize';
 import SearchInput from '~/components/SearchInput';
 import SortMenu from '~/components/SortMenu';
 import { JobsOrderByProperty, OrderByDirection } from '~/types';
+import { IoOptionsOutline } from 'react-icons/io5';
+import Button from '~/components/global/Button/Button';
 
 interface SearchResultsHeaderProps {
   className?: string;
@@ -10,6 +12,7 @@ interface SearchResultsHeaderProps {
   isLoading: boolean;
   numResults?: number;
   onChange: (searchParams) => void;
+  onChangeVisible: (visible: boolean) => void;
   searchParams: URLSearchParams;
 }
 
@@ -30,6 +33,7 @@ export default function SearchResultsHeader({
   numResults,
   error,
   onChange,
+  onChangeVisible,
   searchParams,
 }: SearchResultsHeaderProps) {
   const sortField = sortOptions.find(
@@ -37,7 +41,7 @@ export default function SearchResultsHeader({
   );
 
   return (
-    <header className={classNames('md:flex items-center', className)}>
+    <header className={classNames('flex items-center', className)}>
       <h4 className={classNames('font-grifter', isLoading ? 'skeleton' : '')}>
         <span className="whitespace-nowrap text-xl">
           Found {numResults ?? 0}{' '}
@@ -46,14 +50,15 @@ export default function SearchResultsHeader({
           </span>
         </span>
       </h4>
+      {/* DESKTOP */}
       <div
         className={classNames(
-          'flex justify-between w-full',
-          'mt-4 md:mt-0 md:ml-12'
+          'hidden desktop:flex justify-between w-full',
+          'mt-0 ml-12'
         )}
       >
         <SearchInput
-          className="sm:w-56"
+          className="w-56 hidden desktop:block"
           placeholder="Search jobs"
           value={searchParams.get('query') ?? ''}
           onChange={(query) => {
@@ -91,6 +96,16 @@ export default function SearchResultsHeader({
           }}
         />
       </div>
+      {/* MOBILE, TABLET */}
+      <Button
+        className="desktop:hidden flex items-center gap-2 ml-auto !px-4 !py-2 tablet:!px-8 tablet:!py-4"
+        onClick={() => onChangeVisible(true)}
+        isLoading={isLoading}
+      >
+        <IoOptionsOutline className="h-5 w-5" />
+        <span className="tablet:hidden">Filters</span>
+        <span className="hidden tablet:inline-block">Filter & Sort</span>
+      </Button>
     </header>
   );
 }

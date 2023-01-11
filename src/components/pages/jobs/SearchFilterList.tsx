@@ -12,7 +12,7 @@ interface SearchFilterListProps {
 
 // TODO: replace with enums from schema
 // https://linear.app/engi/issue/ENGIN-907/query-to-get-list-of-static-values-for-job-search
-const languages = [
+export const languageOptions = [
   { label: 'C#', value: Language.C_SHARP },
   { label: 'JavaScript', value: Language.JAVA_SCRIPT },
   { label: 'Python', value: Language.PYTHON },
@@ -27,7 +27,7 @@ export enum DateOption {
   LAST_YEAR = 'LAST_YEAR',
 }
 
-const createdAfterOptions = [
+export const createdAfterOptions = [
   { label: 'Last day', value: DateOption.LAST_DAY },
   { label: 'Last week', value: DateOption.LAST_WEEK },
   { label: 'Last month', value: DateOption.LAST_MONTH },
@@ -35,8 +35,8 @@ const createdAfterOptions = [
   { label: 'Last year', value: DateOption.LAST_YEAR },
 ];
 
-const MIN_FUNDING = 0;
-const MAX_FUNDING = 100;
+export const MIN_FUNDING = 0;
+export const MAX_FUNDING = 100;
 
 export default function SearchFilterList({
   className,
@@ -44,7 +44,7 @@ export default function SearchFilterList({
   onChange,
   filterClassName,
 }: SearchFilterListProps) {
-  const selectedLanguages = searchParams.getAll('language');
+  const languages = searchParams.getAll('language');
   let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
   let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
 
@@ -56,7 +56,7 @@ export default function SearchFilterList({
   return (
     <div className={classNames('relative', className)}>
       <div className={classNames(filterClassName)}>
-        <legend className="mb-4">Language</legend>
+        <legend className="mb-4">Date of Publication</legend>
         <div className="flex flex-col gap-y-2">
           {createdAfterOptions.map(({ label, value }) => (
             <Checkbox
@@ -78,24 +78,24 @@ export default function SearchFilterList({
           ))}
         </div>
       </div>
-      <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
+      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
       <div className={classNames(filterClassName)}>
         <legend className="mb-4">Language</legend>
         <div className="flex flex-col gap-y-2">
-          {languages.map(({ label, value }) => (
+          {languageOptions.map(({ label, value }) => (
             <Checkbox
               key={value}
               id={value}
               label={label}
-              checked={selectedLanguages.includes(value)}
+              checked={languages.includes(value)}
               onChange={(checked) => {
                 const newSearchParams: Record<string, any> =
                   Object.fromEntries(searchParams);
                 delete newSearchParams.page; // reset page when changing languages
                 if (checked) {
-                  newSearchParams.language = [...selectedLanguages, value];
+                  newSearchParams.language = [...languages, value];
                 } else {
-                  newSearchParams.language = selectedLanguages.filter(
+                  newSearchParams.language = languages.filter(
                     (lang) => lang !== value
                   );
                 }
@@ -105,7 +105,7 @@ export default function SearchFilterList({
           ))}
         </div>
       </div>
-      <div className="my-6 w-full border-t border-gray-500 opacity-50 hidden lg:block" />
+      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
       <div className={classNames(filterClassName)}>
         <legend className="text-sm mb-2">Estimated Funding</legend>
         <Slider

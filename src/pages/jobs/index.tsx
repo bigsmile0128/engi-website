@@ -1,6 +1,8 @@
 import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import qs from 'qs';
+import { useState } from 'react';
+import MobileSearchFilterList from '~/components/pages/jobs/MobileSearchFilterList';
 
 import SearchFilterList, {
   DateOption,
@@ -13,12 +15,12 @@ import {
   Language,
   OrderByDirection,
 } from '~/types';
-import { useUser } from '~/utils/contexts/userContext';
 import useJobs from '~/utils/hooks/useJobs';
 
 const PAGE_SIZE = 10;
 
 export default function JobDiscovery() {
+  const [isFilterListVisible, setIsFilterListVisible] = useState(false);
   const router = useRouter();
   const searchParams = new URLSearchParams(
     qs.stringify(router.query, { indices: false })
@@ -27,31 +29,35 @@ export default function JobDiscovery() {
     router.push({ query });
   };
 
-  const { user } = useUser();
-
   const { isLoading, isError, data, refetch, error } = useJobs(
     formatSearchParams(searchParams)
   );
 
   return (
     <div className="max-w-page flex flex-col mt-12 mb-24">
-      <div className="md:flex items-start justify-between gap-x-4">
-        <h1 className="text-white font-grifter text-8xl">Jobs</h1>
-      </div>
-      <div className="flex mt-12 gap-x-12 flex-col lg:flex-row">
+      <h1 className="text-white font-grifter text-8xl">Jobs</h1>
+      <div className="flex mt-12 gap-x-12 flex-col desktop:flex-row">
         <SearchFilterList
-          className="hidden lg:block"
-          filterClassName="w-32 md:w-48"
+          className="hidden desktop:block"
+          filterClassName="w-48"
           searchParams={searchParams}
           onChange={setSearchParams}
         />
+        <MobileSearchFilterList
+          className="desktop:hidden"
+          searchParams={searchParams}
+          onChange={setSearchParams}
+          visible={isFilterListVisible}
+          onChangeVisible={setIsFilterListVisible}
+        />
         <div className="flex-1 flex flex-col">
           <SearchResultsHeader
-            className="shrink-0 mb-8 md:mb-6 mt-4 md:mt-0"
+            className="shrink-0 mb-8 laptop:mb-6 mt-4 laptop:mt-0"
             numResults={data?.result?.totalCount}
             isLoading={isLoading}
             searchParams={searchParams}
             onChange={setSearchParams}
+            onChangeVisible={setIsFilterListVisible}
           />
           <SearchResults
             isLoading={isLoading}
