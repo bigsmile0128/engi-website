@@ -95,8 +95,12 @@ export default function Button({
         'border border-white',
         'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
         // hover and active states
-        disabled ? '' : 'hover:bg-black/30 active:bg-black/40',
-        isLoading ? 'skeleton rounded-none text-transparent' : '',
+        disabled || isLoading
+          ? 'cursor-default'
+          : 'hover:bg-black/30 active:bg-black/40',
+        isLoading
+          ? 'skeleton rounded-none text-transparent !border-transparent'
+          : '',
         className
       )}
       disabled={disabled}

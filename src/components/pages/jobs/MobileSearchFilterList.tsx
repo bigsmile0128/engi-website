@@ -5,7 +5,6 @@ import { RiCloseLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
-import styles from '~/components/modules/layout/layout.module.css';
 import {
   createdAfterOptions,
   languageOptions,
@@ -81,23 +80,30 @@ export default function MobileSearchFilterList({
   return (
     <Dialog
       className={classNames(
-        'flex absolute inset-0 before:z-10',
-        styles.main_bg,
+        'flex absolute inset-0 bg-secondary before:z-10 tablet:before:bg-site',
         className
       )}
       open={visible}
       onClose={() => onChangeVisible(false)}
     >
       <Dialog.Panel className="w-full z-20 mt-16">
-        <Dialog.Title className="flex items-center gap-2 max-w-page">
+        <Dialog.Title className="flex items-center gap-2 max-w-page relative">
           <button
             className="hover:text-green-primary"
             onClick={() => onChangeVisible(false)}
           >
-            <RiCloseLine className="h-10 w-10" />
+            <RiCloseLine className="w-6 h-6 tablet:h-10 tablet:w-10" />
           </button>
-          <span className="font-grifter text-3xl -mb-2">Filters</span>
-          <div className="ml-auto flex items-center gap-4">
+          <span
+            className={classNames(
+              'font-grifter text-xl -mb-2',
+              'absolute top-0 left-1/2 -translate-x-1/2',
+              'tablet:text-3xl tablet:static tablet:translate-x-0'
+            )}
+          >
+            Filters
+          </span>
+          <div className="hidden tablet:flex items-center gap-4 ml-auto">
             <Button
               className="!py-2 !px-6"
               variant="primary"
@@ -111,7 +117,7 @@ export default function MobileSearchFilterList({
             </Button>
           </div>
         </Dialog.Title>
-        <Dialog.Description className="max-w-page mt-16">
+        <Dialog.Description className="max-w-page mt-12 tablet:mt-16">
           <div>
             <legend className="mb-4">Date of Publication</legend>
             <div className="flex flex-col gap-y-2">
@@ -173,6 +179,18 @@ export default function MobileSearchFilterList({
                 setMaxFunding(maxFunding);
               }}
             />
+          </div>
+          <div className="tablet:hidden flex justify-between gap-4 mt-12">
+            <Button
+              className="text-sm text-primary underline hover:text-green-primary"
+              variant="link"
+              onClick={() => onChange({})}
+            >
+              Clear All
+            </Button>
+            <Button variant="primary" onClick={() => onApplyFilters()}>
+              Show results
+            </Button>
           </div>
         </Dialog.Description>
       </Dialog.Panel>

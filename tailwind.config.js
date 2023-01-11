@@ -27,6 +27,9 @@ module.exports = {
         'red-primary': '#FF5F5F',
         'purple-primary': '#BA54EC',
       },
+      backgroundColor: {
+        secondary: '#232323',
+      }
     },
   },
   plugins: [

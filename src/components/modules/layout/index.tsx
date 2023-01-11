@@ -13,7 +13,7 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <main className={cn('relative min-h-screen flex flex-col', styles.main_bg)}>
+    <main className="relative min-h-screen flex flex-col overflow-hidden before:bg-site before:-z-10">
       <Banner />
       <div className="absolute w-full h-full -z-40"></div>
       <Navbar />
