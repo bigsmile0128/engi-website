@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
 import { Language } from '~/types';
@@ -55,6 +56,17 @@ export default function SearchFilterList({
 
   return (
     <div className={classNames('relative', className)}>
+      <div className="flex items-center justify-between">
+        <span className="font-grifter text-xl -mb-1">Filters</span>
+        <Button
+          variant="link"
+          className="text-secondary text-sm underline font-normal hover:text-white"
+          onClick={() => onChange({})}
+        >
+          Clear all
+        </Button>
+      </div>
+      <div className="mt-4 mb-8 w-full border-t border-gray-500 opacity-50" />
       <div className={classNames(filterClassName)}>
         <legend className="mb-4">Date of Publication</legend>
         <div className="flex flex-col gap-y-2">
