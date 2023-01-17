@@ -151,7 +151,7 @@ export default function JobTable({
               )}
               onClick={() => {
                 if (!isLoading && row.original?.id) {
-                  router.push(`/jobs/${row.original.id}`);
+                  router.push(`/bits/${row.original.id}`);
                 }
               }}
             >

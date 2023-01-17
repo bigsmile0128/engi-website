@@ -37,7 +37,7 @@ export default function EngiAmount({
     <Tooltip
       title={
         <span>
-          {typeof value === 'string' ? parseFloat(value) : value || 0} ADA
+          {typeof value === 'string' ? parseFloat(value) : value || 0} WOZ
         </span>
       }
     >

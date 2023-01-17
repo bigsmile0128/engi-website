@@ -30,7 +30,7 @@ export default function JobPreview({
   id,
 }: JobPreviewProps) {
   return (
-    <Link href={`/jobs/${id}`}>
+    <Link href={`/bits/${id}`}>
       <div
         className={classNames(
           'bg-black/[.14] text-gray-200',

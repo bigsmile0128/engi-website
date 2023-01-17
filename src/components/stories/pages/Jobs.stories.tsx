@@ -4,7 +4,7 @@ import withMock from 'storybook-addon-mock';
 import cn from 'classnames';
 import styles from './common_bg.module.css';
 
-import Jobs from '../../../pages/jobs';
+import Jobs from '../../../pages/bits';
 
 export default {
   title: 'Pages/Jobs Page',

@@ -46,7 +46,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           No need to apply. Get paid instantly regardless of your time zone or
           language.
         </p>
-        <Link href="/jobs">
+        <Link href="/bits">
           <Button variant="primary" className="mt-12">
             View Jobs
           </Button>

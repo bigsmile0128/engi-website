@@ -21,7 +21,7 @@ export default function Success({ className }: SuccessProps) {
         {"You've set up your wallet. You can start working on Engi jobs."}
       </p>
       <p className="text-lg mt-2">{"We're happy to meet you!"}</p>
-      <Link href="/jobs" className="mt-8">
+      <Link href="/bits" className="mt-8">
         <Button className="!px-16">Browse Jobs</Button>
       </Link>
     </div>

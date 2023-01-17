@@ -4,7 +4,7 @@ import withMock from 'storybook-addon-mock';
 import styles from './common_bg.module.css';
 import cn from 'classnames';
 
-import Job from '../../../pages/jobs/[jobId]';
+import Job from '../../../pages/bits/[jobId]';
 
 export default {
   title: 'Pages/Job Page',
@@ -24,8 +24,8 @@ Default.args = {};
 
 Default.parameters = {
   nextRouter: {
-    path: '/jobs/[id]',
-    asPath: '/jobs/4',
+    path: '/bits/[id]',
+    asPath: '/bits/4',
     query: {
       jobId: '4',
     },

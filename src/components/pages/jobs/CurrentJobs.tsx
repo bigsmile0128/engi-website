@@ -79,7 +79,7 @@ function JobItem({
   return (
     <div className="flex flex-col">
       <Link
-        href={isLoading ? '' : `/jobs/${id}`}
+        href={isLoading ? '' : `/bits/${id}`}
         className={classNames(
           'flex items-center gap-x-1 mb-5',
           isLoading

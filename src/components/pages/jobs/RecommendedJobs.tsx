@@ -118,7 +118,7 @@ function JobCard({
 }: JobCardProps) {
   return (
     <Link
-      href={isLoading ? '' : `/jobs/${id}`}
+      href={isLoading ? '' : `/bits/${id}`}
       className={classNames(
         'flex flex-col p-6 gap-y-2 items-start',
         'bg-black/[.14] hover:bg-black/40',

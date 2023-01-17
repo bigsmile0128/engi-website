@@ -35,7 +35,7 @@ export default function MobileJobTable({
       {_data.map((job) => (
         <Link
           key={job.id}
-          href={isLoading ? '' : `/jobs/${job.id}`}
+          href={isLoading ? '' : `/bits/${job.id}`}
           className={classNames(
             'p-4',
             'bg-black/[.14]',

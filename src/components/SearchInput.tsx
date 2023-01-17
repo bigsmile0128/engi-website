@@ -48,7 +48,7 @@ export default function SearchInput({
         onChange={(value) => {
           // if job ID, navigate directly to the job
           if (/^\d{10,}$/.test(value)) {
-            router.push(`/jobs/${value}`);
+            router.push(`/bits/${value}`);
           } else {
             onChange(value);
           }

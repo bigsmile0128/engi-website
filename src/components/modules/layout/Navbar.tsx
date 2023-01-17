@@ -34,13 +34,13 @@ export default function Navbar({ className }: NavbarProps) {
           className="flex-1 hidden tablet:flex gap-x-12 ml-8 lg:gap-x-16 lg:ml-12"
         >
           <Link
-            href="/jobs"
+            href="/bits"
             className={classNames(
               'text-base font-medium text-gray-300 hover:text-white',
-              { 'underline !text-white': /^\/jobs/.test(router.asPath) }
+              { 'underline !text-white': /^\/bits/.test(router.asPath) }
             )}
           >
-            Earn
+            Bits
           </Link>
           <Link
             href="/hire"
@@ -49,7 +49,7 @@ export default function Navbar({ className }: NavbarProps) {
               { 'underline !text-white': /^\/hire/.test(router.asPath) }
             )}
           >
-            Post
+            Create
           </Link>
           <div className="relative">
             <Menu>
@@ -204,7 +204,7 @@ export default function Navbar({ className }: NavbarProps) {
                       <ChevronRightIcon className="h-6" />
                     </Link>
                     <Link
-                      href="/jobs"
+                      href="/bits"
                       className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                       onClick={() => setIsOpen(false)}
                     >
@@ -216,7 +216,7 @@ export default function Navbar({ className }: NavbarProps) {
                       className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                       onClick={() => setIsOpen(false)}
                     >
-                      <span>Post</span>
+                      <span>Create</span>
                       <ChevronRightIcon className="h-6" />
                     </Link>
                     <p className="font-bold text-white text-2xl mt-8">Learn</p>
