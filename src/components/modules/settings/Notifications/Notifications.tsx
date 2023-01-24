@@ -2,20 +2,20 @@ import { useState } from 'react';
 import Switch from '~/components/global/Switch/Switch';
 
 enum NOTIFICATION_FIELDS {
-  NEW_JOBS = 'new_jobs',
+  NEW_BITS = 'new_bits',
   NEWS_LETTER = 'newsLetter',
   TECH_UPDATES = 'tech_updates',
 }
 
 interface FormValues {
   [NOTIFICATION_FIELDS.NEWS_LETTER]: boolean;
-  [NOTIFICATION_FIELDS.NEW_JOBS]: boolean;
+  [NOTIFICATION_FIELDS.NEW_BITS]: boolean;
   [NOTIFICATION_FIELDS.TECH_UPDATES]: boolean;
 }
 
 const initialValues: FormValues = {
   [NOTIFICATION_FIELDS.NEWS_LETTER]: false,
-  [NOTIFICATION_FIELDS.NEW_JOBS]: false,
+  [NOTIFICATION_FIELDS.NEW_BITS]: false,
   [NOTIFICATION_FIELDS.TECH_UPDATES]: false,
 };
 
@@ -44,10 +44,10 @@ function Notifications() {
           />
         </label>
         <label className="flex justify-between ">
-          <span className="text-xl">New jobs</span>
+          <span className="text-xl">New bits</span>
           <Switch
-            checked={values[NOTIFICATION_FIELDS.NEW_JOBS]}
-            onChange={handleValueChange(NOTIFICATION_FIELDS.NEW_JOBS)}
+            checked={values[NOTIFICATION_FIELDS.NEW_BITS]}
+            onChange={handleValueChange(NOTIFICATION_FIELDS.NEW_BITS)}
           />
         </label>
         <label className="flex justify-between ">

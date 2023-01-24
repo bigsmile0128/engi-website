@@ -69,7 +69,7 @@ export default function Signup({ className }: SignupProps) {
       <EngiText />
       <p className="text-xl text-secondary w-full text-center mb-8 sm:mb-12 lg:mb-16">
         {
-          "Don't miss your next job. Sign up to stay updated in your professional world."
+          "Don't miss your next bit. Sign up to stay updated in your professional world."
         }
       </p>
 

@@ -2,24 +2,24 @@ import dayjs from 'dayjs';
 import { useRouter } from 'next/router';
 import qs from 'qs';
 import { useState } from 'react';
-import MobileSearchFilterList from '~/components/pages/jobs/MobileSearchFilterList';
+import MobileSearchFilterList from '~/components/pages/bits/MobileSearchFilterList';
 
 import SearchFilterList, {
   DateOption,
-} from '~/components/pages/jobs/SearchFilterList';
-import SearchResults from '~/components/pages/jobs/SearchResults';
-import SearchResultsHeader from '~/components/pages/jobs/SearchResultsHeader';
+} from '~/components/pages/bits/SearchFilterList';
+import SearchResults from '~/components/pages/bits/SearchResults';
+import SearchResultsHeader from '~/components/pages/bits/SearchResultsHeader';
 import {
-  JobsOrderByProperty,
-  JobsQueryArguments,
+  BitsOrderByProperty,
+  BitsQueryArguments,
   Language,
   OrderByDirection,
 } from '~/types';
-import useJobs from '~/utils/hooks/useJobs';
+import useBits from '~/utils/hooks/useBits';
 
 const PAGE_SIZE = 10;
 
-export default function JobDiscovery() {
+export default function BitDiscovery() {
   const [isFilterListVisible, setIsFilterListVisible] = useState(false);
   const router = useRouter();
   const searchParams = new URLSearchParams(
@@ -29,13 +29,13 @@ export default function JobDiscovery() {
     router.push({ query });
   };
 
-  const { isLoading, isError, data, refetch, error } = useJobs(
+  const { isLoading, isError, data, refetch, error } = useBits(
     formatSearchParams(searchParams)
   );
 
   return (
     <div className="max-w-page flex flex-col mt-12 mb-24">
-      <h1 className="text-white font-grifter text-8xl">Jobs</h1>
+      <h1 className="text-white font-grifter text-8xl">Bits</h1>
       <div className="flex mt-4 tablet:mt-8 desktop:mt-12 gap-x-12 flex-col desktop:flex-row">
         <SearchFilterList
           className="hidden desktop:block"
@@ -73,8 +73,8 @@ export default function JobDiscovery() {
   );
 }
 
-function formatSearchParams(searchParams: URLSearchParams): JobsQueryArguments {
-  const query: JobsQueryArguments = {
+function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
+  const query: BitsQueryArguments = {
     skip: 0,
     limit: 10,
     orderByDirection: OrderByDirection.DESC,
@@ -97,7 +97,7 @@ function formatSearchParams(searchParams: URLSearchParams): JobsQueryArguments {
   if (searchParams.get('sort-field')) {
     query.orderByProperty = searchParams.get(
       'sort-field'
-    ) as JobsOrderByProperty;
+    ) as BitsOrderByProperty;
   }
 
   if (searchParams.get('sort-dir')) {

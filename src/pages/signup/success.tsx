@@ -18,11 +18,11 @@ export default function Success({ className }: SuccessProps) {
       <RiCheckboxCircleLine className="text-green-primary h-40 w-40" />
       <h1 className="font-bold text-5xl mt-8">Congratulations!</h1>
       <p className="text-lg mt-8">
-        {"You've set up your wallet. You can start working on Engi jobs."}
+        {"You've set up your wallet. You can start working on Engi bits."}
       </p>
       <p className="text-lg mt-2">{"We're happy to meet you!"}</p>
       <Link href="/bits" className="mt-8">
-        <Button className="!px-16">Browse Jobs</Button>
+        <Button className="!px-16">Browse Bits</Button>
       </Link>
     </div>
   );

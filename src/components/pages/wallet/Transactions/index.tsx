@@ -116,7 +116,7 @@ export default function Transactions({
         <SearchInput
           className="sm:w-40 md:w-64"
           isLoading={isLoading}
-          placeholder="Search jobs"
+          placeholder="Search bits"
           value={searchQuery}
           onChange={(searchQuery) => setSearchQuery(searchQuery)}
         />

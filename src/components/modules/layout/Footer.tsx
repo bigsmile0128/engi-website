@@ -35,7 +35,7 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Earn $ENGI
               </h4>
-              <Link href="/bits">Search Jobs</Link>
+              <Link href="/bits">Search Bits</Link>
               <Link href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
                 Documentation
               </Link>
@@ -45,7 +45,7 @@ export default function Footer({ className }: FooterProps) {
                 Buy $ENGI
               </h4>
               <Link href="/signup">Get Started</Link>
-              <Link href="/hire">Post a Job</Link>
+              <Link href="/hire">Post a Bit</Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">

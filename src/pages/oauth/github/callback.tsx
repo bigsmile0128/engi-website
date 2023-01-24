@@ -53,7 +53,7 @@ export default function GithubCallback({ className }: GithubCallbackProps) {
             Successfully added repository.
           </span>
           <Link href="/hire">
-            <Button variant="primary">Post a Job</Button>
+            <Button variant="primary">Post a Bit</Button>
           </Link>
         </div>
       ) : null}

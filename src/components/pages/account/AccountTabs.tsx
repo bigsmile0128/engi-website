@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
-import CreatedJobsTab from './CreatedJobsTab';
+import CreatedBitsTab from './CreatedBitsTab';
 
 type AccountTabsProps = {
   accountId: string;
@@ -37,10 +37,10 @@ export default function AccountTabs({
       </Tab.List>
       <Tab.Panels className="mt-12">
         <Tab.Panel>
-          <CreatedJobsTab accountId={accountId} />
+          <CreatedBitsTab accountId={accountId} />
         </Tab.Panel>
         <Tab.Panel>
-          <CreatedJobsTab accountId={accountId} />
+          <CreatedBitsTab accountId={accountId} />
         </Tab.Panel>
       </Tab.Panels>
     </Tab.Group>

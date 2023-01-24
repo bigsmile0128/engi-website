@@ -54,21 +54,21 @@ export const emitLoginErrorAnalyticsEvent = (
   window?.gtag?.('event', 'error_login', { error, address, display, source });
 };
 
-export const emitFoundJobsAnalyticsEvent = (jobs: number, address?: string) => {
+export const emitFoundBitsAnalyticsEvent = (bits: number, address?: string) => {
   if (typeof window === undefined) return;
 
-  console.log('emitting found jobs event', jobs, address);
+  console.log('emitting found bits event', bits, address);
 
-  window?.gtag?.('event', 'jobs', { jobs, address });
+  window?.gtag?.('event', 'bits', { bits, address });
 };
 
-export const emitFoundJobsErrorAnalyticsEvent = (
+export const emitFoundBitsErrorAnalyticsEvent = (
   error: any,
   address?: string
 ) => {
   if (typeof window === undefined) return;
 
-  window?.gtag?.('event', 'error_jobs', { error, address });
+  window?.gtag?.('event', 'error_bits', { error, address });
 };
 
 export const emitBoughtEngiAnalyticsEvent = (

@@ -1,7 +1,7 @@
 /* eslint-disable sort-keys */
-import { Job, JobStatus, Language } from '~/types';
+import { Bit, BitStatus, Language } from '~/types';
 
-export const mockJob: Job = {
+export const mockBit: Bit = {
   id: '5918463588561635990',
   creator: '5GMyG7j1GFzRBU15FC9KUc8q64hbtbCQ5Kdjee2aDip9DWTG',
   funding: '0000000000000000000000000000000000000001',
@@ -32,6 +32,6 @@ export const mockJob: Job = {
     number: 50675,
     dateTime: '2022-08-26T16:19:24Z',
   },
-  status: JobStatus.OPEN,
+  status: BitStatus.OPEN,
   solutionUserCount: 0,
 };

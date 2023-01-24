@@ -45,15 +45,15 @@ export default function Hero({ className }: HeroProps) {
           <div className="shrink-0 flex gap-x-4 items-center justify-between mb-4">
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-white">
               <div className="h-4 w-4 bg-white rounded-full"></div>
-              <span className="text-xs sm:text-base">New Jobs</span>
+              <span className="text-xs sm:text-base">New Bits</span>
             </div>
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-green-primary">
               <div className="h-4 w-4 bg-green-primary rounded-full"></div>
-              <span className="text-xs sm:text-base">Completed Jobs</span>
+              <span className="text-xs sm:text-base">Completed Bits</span>
             </div>
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-orange-500">
               <div className="h-4 w-4 bg-orange-500 rounded-full"></div>
-              <span className="text-xs sm:text-base">Active Jobs</span>
+              <span className="text-xs sm:text-base">Active Bits</span>
             </div>
           </div>
           <HeroTopSvg />

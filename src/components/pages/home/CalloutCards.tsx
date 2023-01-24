@@ -48,7 +48,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         </p>
         <Link href="/bits">
           <Button variant="primary" className="mt-12">
-            View Jobs
+            View Bits
           </Button>
         </Link>
       </div>
@@ -75,7 +75,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         </p>
         <Link href="/hire">
           <Button variant="primary" className="mt-12">
-            Post a Job
+            Post a Bit
           </Button>
         </Link>
       </div>
