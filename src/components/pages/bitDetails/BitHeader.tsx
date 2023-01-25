@@ -6,6 +6,7 @@ import ShareModal from './ShareModal';
 import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import { Bit } from '~/types';
 import Button from '~/components/global/Button/Button';
+import GetStartedModal from './GetStartedModal';
 
 type BitHeaderProps = {
   className?: string;
@@ -19,10 +20,16 @@ export default function BitHeader({
   data,
 }: BitHeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [isStartModalOpen, setIsStartModalOpen] = useState(false);
   return (
     <>
       <div className={classNames('max-w-page', className)}>
         <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
+        <GetStartedModal
+          bitId={data?.id}
+          isOpen={isStartModalOpen}
+          setIsOpen={setIsStartModalOpen}
+        />
         <div className="flex items-center">
           <Link href="/bits" passHref className="mr-2">
             <HiOutlineChevronLeft className="h-5 w-5 tablet:h-6 tablet:w-6" />
@@ -52,6 +59,7 @@ export default function BitHeader({
               'hidden tablet:block desktop:hidden'
             )}
             isLoading={isLoading}
+            onClick={() => setIsStartModalOpen(true)}
           >
             Get Started
           </Button>
