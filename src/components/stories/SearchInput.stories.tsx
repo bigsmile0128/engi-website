@@ -13,5 +13,5 @@ export const Default = Template.bind({});
 Default.args = {
   className: 'w-64',
   isLoading: false,
-  placeholder: 'Search jobs',
+  placeholder: 'Search bits',
 };

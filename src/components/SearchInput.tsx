@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import { Fragment, InputHTMLAttributes, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RiSearchLine } from 'react-icons/ri';
-import { Job } from '~/types';
+import { Bit } from '~/types';
 import useDebounce from '~/utils/hooks/useDebounce';
-import useJobs from '~/utils/hooks/useJobs';
+import useBits from '~/utils/hooks/useBits';
 
 type SearchInputProps = {
   className?: string;
@@ -25,7 +25,7 @@ export default function SearchInput({
   const [query, setQuery] = useState('');
 
   const debouncedQuery = useDebounce(query, 300);
-  const { isLoading: isLoadingJobs, data } = useJobs({
+  const { isLoading: isLoadingBits, data } = useBits({
     skip: 0,
     limit: 10,
     search: debouncedQuery,
@@ -46,9 +46,9 @@ export default function SearchInput({
       <Combobox
         value={value}
         onChange={(value) => {
-          // if job ID, navigate directly to the job
+          // if bit ID, navigate directly to the bit
           if (/^\d{10,}$/.test(value)) {
-            router.push(`/jobs/${value}`);
+            router.push(`/bits/${value}`);
           } else {
             onChange(value);
           }
@@ -69,9 +69,9 @@ export default function SearchInput({
             'border-b border-transparent',
             'placeholder:text-secondary'
           )}
-          placeholder="Search for a job..."
+          placeholder="Search for a bit..."
         />
-        {isLoadingJobs && (
+        {isLoadingBits && (
           <div className="absolute top-1/2 right-1 -translate-y-1/2">
             <AiOutlineLoading className="h-4 w-4 animate-spin" />
           </div>
@@ -104,10 +104,10 @@ export default function SearchInput({
             >
               Search for {query}
             </Combobox.Option>
-            {data?.result?.items?.map((job: Job) => (
+            {data?.result?.items?.map((bit: Bit) => (
               <Combobox.Option
-                key={job.id}
-                value={job.id}
+                key={bit.id}
+                value={bit.id}
                 className={({ active }) =>
                   classNames(
                     'relative cursor-default select-none py-2 px-4',
@@ -115,16 +115,16 @@ export default function SearchInput({
                   )
                 }
               >
-                {job.name}
+                {bit.name}
               </Combobox.Option>
             ))}
-            {isLoadingJobs && (
+            {isLoadingBits && (
               <Combobox.Option
                 className="relative cursor-default select-none py-2 px-4 text-secondary bg-gray-300/20"
                 value={''}
                 disabled
               >
-                Searching for jobs...
+                Searching for bits...
               </Combobox.Option>
             )}
           </Combobox.Options>

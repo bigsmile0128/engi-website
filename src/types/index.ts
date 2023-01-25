@@ -23,7 +23,7 @@ export type Solution = {
   solutionId: string;
 };
 
-export enum JobStatus {
+export enum BitStatus {
   ACTIVE = 'ACTIVE',
   COMPLETE = 'COMPLETE',
   OPEN = 'OPEN',
@@ -36,7 +36,7 @@ export enum Language {
   RUST = 'RUST',
 }
 
-export enum JobsOrderByProperty {
+export enum BitsOrderByProperty {
   CREATED_ON = 'CREATED_ON',
   FUNDING = 'FUNDING',
 }
@@ -51,7 +51,7 @@ export type Fractional = {
   numerator: number;
 };
 
-export type Job = {
+export type Bit = {
   attemptCount: number;
   averageProgress?: Fractional;
   createdOn?: {
@@ -79,7 +79,7 @@ export type Job = {
   };
   solution?: Solution;
   solutionUserCount: number;
-  status: JobStatus;
+  status: BitStatus;
   tests: Test[];
   updatedOn?: {
     dateTime: string;
@@ -106,7 +106,7 @@ export type Transaction = {
   type: TransactionType;
 };
 
-export type JobsQueryArguments = {
+export type BitsQueryArguments = {
   createdAfter?: string;
   creator?: string;
   language?: Language[];
@@ -114,7 +114,7 @@ export type JobsQueryArguments = {
   maxFunding?: number;
   minFunding?: number;
   orderByDirection?: OrderByDirection;
-  orderByProperty?: JobsOrderByProperty;
+  orderByProperty?: BitsOrderByProperty;
   search?: string;
   skip: number;
   status?: string;

@@ -37,7 +37,7 @@ export default function AccountDetails({ className }: AccountDetailsProps) {
               <SiJava className="h-8 w-8 text-white/80" />
             </div>
             <div className="flex flex-col sm:flex-row gap-x-8 gap-y-2 mt-4">
-              <span className="font-bold text-lg">123 Jobs Solved</span>
+              <span className="font-bold text-lg">123 Bits Solved</span>
               <EngiAmount
                 value={1.23 * Math.pow(10, 18)}
                 suffix=" earned"

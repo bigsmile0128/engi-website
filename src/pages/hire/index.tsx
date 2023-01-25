@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import Steps from '~/components/global/Steps/Steps';
-import RepositoryTab from '~/components/pages/jobCreation/RepositoryTab';
-import TestsTab from '~/components/pages/jobCreation/TestsTab';
-import DetailsTab from '~/components/pages/jobCreation/DetailsTab';
-import FundingTab from '~/components/pages/jobCreation/FundingTab';
-import PreviewTab from '~/components/pages/jobCreation/PreviewTab';
+import RepositoryTab from '~/components/pages/bitCreation/RepositoryTab';
+import TestsTab from '~/components/pages/bitCreation/TestsTab';
+import DetailsTab from '~/components/pages/bitCreation/DetailsTab';
+import FundingTab from '~/components/pages/bitCreation/FundingTab';
+import PreviewTab from '~/components/pages/bitCreation/PreviewTab';
 import IncompleteBanner from '~/components/IncompleteBanner';
 
 type HireProps = {
   className?: string;
 };
 
-export enum JobStep {
+export enum BitStep {
   REPOSITORY,
   TESTS,
   DETAILS,
@@ -22,9 +22,9 @@ export enum JobStep {
 }
 
 export default function Hire({ className }: HireProps) {
-  const [currentStep, setCurrentStep] = useState(JobStep.REPOSITORY);
+  const [currentStep, setCurrentStep] = useState(BitStep.REPOSITORY);
   const [repoUrl, setRepoUrl] = useState('');
-  const [jobName, setJobName] = useState('');
+  const [bitName, setBitName] = useState('');
   const [funding, setFunding] = useState('');
 
   return (
@@ -38,10 +38,10 @@ export default function Hire({ className }: HireProps) {
           'border border-white/10'
         )}
       >
-        <GridPattern className="top-0 left-0" id="new-job-header" offset={-1} />
+        <GridPattern className="top-0 left-0" id="new-bit-header" offset={-1} />
         <div className="flex flex-col items-center justify-center relative z-10">
           <h1 className="font-grifter text-5xl text-center lg:text-7xl">
-            New Engi Job
+            New Engi Bit
           </h1>
           <Steps
             className="mt-8"
@@ -58,50 +58,50 @@ export default function Hire({ className }: HireProps) {
         </div>
       </div>
       <div className="max-w-page md:!max-w-xl mt-12">
-        {currentStep === JobStep.REPOSITORY && (
+        {currentStep === BitStep.REPOSITORY && (
           <RepositoryTab
             onChange={(repoUrl) => {
-              setCurrentStep(JobStep.TESTS);
+              setCurrentStep(BitStep.TESTS);
               setRepoUrl(repoUrl);
             }}
           />
         )}
-        {currentStep === JobStep.TESTS && (
+        {currentStep === BitStep.TESTS && (
           <TestsTab
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
-              setCurrentStep(JobStep.DETAILS);
+              setCurrentStep(BitStep.DETAILS);
             }}
-            goBack={() => setCurrentStep(JobStep.REPOSITORY)}
+            goBack={() => setCurrentStep(BitStep.REPOSITORY)}
           />
         )}
-        {currentStep === JobStep.DETAILS && (
+        {currentStep === BitStep.DETAILS && (
           <DetailsTab
-            defaultValue={jobName}
-            onChange={({ jobName }) => {
-              setJobName(jobName);
-              setCurrentStep(JobStep.FUNDING);
+            defaultValue={bitName}
+            onChange={({ bitName }) => {
+              setBitName(bitName);
+              setCurrentStep(BitStep.FUNDING);
             }}
-            goBack={() => setCurrentStep(JobStep.TESTS)}
+            goBack={() => setCurrentStep(BitStep.TESTS)}
           />
         )}
-        {currentStep === JobStep.FUNDING && (
+        {currentStep === BitStep.FUNDING && (
           <FundingTab
             defaultValue={funding}
             onChange={({ funding }) => {
               setFunding(funding);
-              setCurrentStep(JobStep.PREVIEW);
+              setCurrentStep(BitStep.PREVIEW);
             }}
-            goBack={() => setCurrentStep(JobStep.DETAILS)}
+            goBack={() => setCurrentStep(BitStep.DETAILS)}
           />
         )}
-        {currentStep === JobStep.PREVIEW && (
+        {currentStep === BitStep.PREVIEW && (
           <PreviewTab
             onChange={() => {
-              // TODO: connect to job creation API
+              // TODO: connect to bit creation API
             }}
             setCurrentStep={setCurrentStep}
-            jobName={jobName}
+            bitName={bitName}
             funding={funding}
           />
         )}

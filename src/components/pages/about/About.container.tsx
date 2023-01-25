@@ -70,7 +70,7 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
         <p className="mt-8 text-gray-300 text-center">
           We are a marketplace for custom software. Engineers come for
           flexibility, accessibility, and growth. Work whenever, wherever, and
-          however on the jobs that you want. Businesses come for new access to
+          however on the bits that you want. Businesses come for new access to
           programmers across the world.{' '}
         </p>
       </div>

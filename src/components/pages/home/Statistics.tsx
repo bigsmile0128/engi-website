@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import useJobs from '~/utils/hooks/useJobs';
+import useBits from '~/utils/hooks/useBits';
 import _ from 'lodash';
-import { Job } from '~/types';
+import { Bit } from '~/types';
 import EngiAmount from '~/components/EngiAmount';
 
 type StatisticsProps = {
@@ -15,7 +15,7 @@ type StatisticsProps = {
 export default function Statistics({ className }: StatisticsProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel();
-  const { isLoading, data } = useJobs({ skip: 0, limit: 100 });
+  const { isLoading, data } = useBits({ skip: 0, limit: 100 });
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -54,7 +54,7 @@ export default function Statistics({ className }: StatisticsProps) {
   let funding: number;
   try {
     funding = data?.result?.items?.reduce(
-      (acc, job: Job) => acc + parseFloat(job.funding),
+      (acc, bit: Bit) => acc + parseFloat(bit.funding),
       0
     );
   } catch (error) {
@@ -64,7 +64,7 @@ export default function Statistics({ className }: StatisticsProps) {
 
   const stats = [
     {
-      name: 'Active Jobs',
+      name: 'Active Bits',
       value: data?.result?.totalCount ?? 0,
     },
     {
@@ -79,7 +79,7 @@ export default function Statistics({ className }: StatisticsProps) {
     },
     {
       name: '# of Technologies',
-      value: _.uniq(data?.result?.items?.map((job: Job) => job.language) ?? [])
+      value: _.uniq(data?.result?.items?.map((bit: Bit) => bit.language) ?? [])
         .length,
     },
   ];

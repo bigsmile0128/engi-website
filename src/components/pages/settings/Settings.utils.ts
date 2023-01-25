@@ -3,8 +3,8 @@ import { RiExchangeLine, RiTerminalFill } from 'react-icons/ri';
 import { BsChatLeftDots } from 'react-icons/bs';
 
 export enum SETTINGS_TAB {
+  BIT_PREF = 'bit_preference',
   EMAIL = 'email',
-  JOB_PREF = 'job_preference',
   NOTIFICATION = 'notification',
   PERSONAL_INFO = 'personal_info',
   UPLOAD_AVATAR = 'upload_avatar',
@@ -38,15 +38,15 @@ export const SETTINGS_LINKS: LinkItem[] = [
     icon: RiExchangeLine,
   },
   {
-    key: SETTINGS_TAB.JOB_PREF,
-    title: 'Job preference',
+    key: SETTINGS_TAB.BIT_PREF,
+    title: 'Bit preference',
     icon: RiTerminalFill,
   },
 ];
 
 export const mapSettingsTabToTitle: Record<SETTINGS_TAB, string> = {
   [SETTINGS_TAB.EMAIL]: 'Verify your email',
-  [SETTINGS_TAB.JOB_PREF]: 'What languages does your company use?',
+  [SETTINGS_TAB.BIT_PREF]: 'What languages does your company use?',
   [SETTINGS_TAB.NOTIFICATION]: 'Notification Settings',
   [SETTINGS_TAB.PERSONAL_INFO]: 'Update your account info',
   [SETTINGS_TAB.UPLOAD_AVATAR]: 'Upload your avatar',

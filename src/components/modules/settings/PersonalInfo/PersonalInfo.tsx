@@ -86,7 +86,7 @@ function PersonalInfo() {
         Personal info
       </h2>
       <h6 className="text-secondary mt-3 hidden md:block">
-        Help us personalize your job recommendations.
+        Help us personalize your bit recommendations.
       </h6>
       <form className="md:mt-12">
         <fieldset>

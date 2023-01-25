@@ -29,6 +29,7 @@ module.exports = {
       },
       backgroundColor: {
         secondary: '#232323',
+        dropdown: '#232323cc',
       }
     },
   },
