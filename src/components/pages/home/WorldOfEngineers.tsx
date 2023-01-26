@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import worldSrc from 'public/img/home/world.png';
+import worldMobileSrc from 'public/img/home/world-mobile.png';
 import PlaceholderButton from './PlaceholderButton';
 
 type WorldOfEngineersProps = {
@@ -11,9 +12,12 @@ type WorldOfEngineersProps = {
 export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
   return (
     <div
-      className={classNames('max-w-page md:flex items-center gap-4', className)}
+      className={classNames(
+        'tablet:max-w-page tablet:flex items-center gap-8',
+        className
+      )}
     >
-      <div className="mb-12 md:mb-0 tablet:basis-1/3 laptop:desktop-1/4 shrink-0 grow-0">
+      <div className="max-w-page mb-8 tablet:mb-0 tablet:basis-1/3 laptop:desktop-1/4 shrink-0 grow-0">
         <h2 className="font-grifter text-3xl mb-4">
           World of{' '}
           <span className="whitespace-nowrap">
@@ -32,11 +36,8 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
         <PlaceholderButton className="mt-8" />
       </div>
       <div>
-        <Image
-          className="mt-48 scale-[2] tablet:scale-100 tablet:mt-0"
-          src={worldSrc}
-          alt="world"
-        />
+        <Image className="hidden tablet:block" src={worldSrc} alt="world" />
+        <Image className="tablet:hidden" src={worldMobileSrc} alt="world" />
       </div>
     </div>
   );

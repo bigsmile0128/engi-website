@@ -19,7 +19,7 @@ const Home: NextPage = () => {
       <Stats className="mt-24 xl:mt-40" />
       <AlternatingFeatures className="max-w-page mt-24" />
       {/* <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" /> */}
-      <WorldOfEngineers className="max-w-page mt-32 lg:mt-40" />
+      <WorldOfEngineers className="mt-32 lg:mt-40" />
       <Features className="mt-32 lg:mt-40" />
       {/* <FigmaPreview className="max-w-page mt-40 mb-48" /> */}
       {/* <GlobalConnection className="mt-24" /> */}

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import writeCodeSrc from 'public/img/home/write-code.png';
 import buildProductsSrc from 'public/img/home/build-products.png';
-import PlaceholderButton from './PlaceholderButton';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
 
@@ -37,7 +36,7 @@ export default function AlternatingFeatures({
       </div>
       <div
         className={classNames(
-          'tablet:flex flex-row-reverse items-center gap-x-20 mt-36 tablet:mt-24'
+          'tablet:flex flex-row-reverse items-center gap-x-16 mt-36 tablet:mt-24'
         )}
       >
         <div className="mb-4 tablet:mb-0">
@@ -54,12 +53,7 @@ export default function AlternatingFeatures({
           </Link>
         </div>
         <div className="w-full basis-1/2 lg:basis-3/5 shrink-0 relative mx-auto tablet:mt-0">
-          <Image
-            // scale image to account for empty space on left side of image
-            className="scale-110"
-            src={buildProductsSrc}
-            alt="build-products"
-          />
+          <Image src={buildProductsSrc} alt="build-products" />
         </div>
       </div>
     </div>
