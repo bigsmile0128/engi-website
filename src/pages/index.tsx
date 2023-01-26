@@ -10,6 +10,7 @@ import CallToAction from '~/components/pages/home/CallToAction';
 import Stats from '~/components/pages/home/Statistics';
 import WorldOfEngineers from '~/components/pages/home/WorldOfEngineers';
 import WhosUsingEngi from '~/components/pages/home/WhosUsingEngi';
+import WorkflowsSupercharged from '~/components/pages/home/WorkflowsSupercharged';
 
 const Home: NextPage = () => {
   return (
@@ -23,9 +24,10 @@ const Home: NextPage = () => {
       <WorldOfEngineers className="max-w-page mt-32 lg:mt-40" />
       <Features className="max-w-page mt-32 lg:mt-40" />
       {/* <FigmaPreview className="max-w-page mt-40 mb-48" /> */}
-      <AlternatingFeatures className="max-w-page mt-24" />
+      {/* <AlternatingFeatures className="max-w-page mt-24" /> */}
       <GlobalConnection className="mt-24" />
-      <WhosUsingEngi className="max-w-page mt-24 md:mt-0" />
+      <WorkflowsSupercharged className="max-w-page mt-24" />
+      <WhosUsingEngi className="max-w-page mt-24" />
       <CallToAction className="mt-32" />
     </div>
   );
