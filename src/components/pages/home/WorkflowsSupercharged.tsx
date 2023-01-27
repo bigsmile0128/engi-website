@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
-import 'animate.css';
 import Image from 'next/image';
 import ethereumSrc from 'public/img/home/ethereum.png';
 import soliditySrc from 'public/img/home/solidity.png';
