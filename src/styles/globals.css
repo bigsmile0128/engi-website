@@ -40,6 +40,35 @@
     background-size: cover;
     will-change: transform;
   }
+
+  .border-image-none {
+    border-image: none;
+  }
+
+  .border-image-gradient {
+    border-image: linear-gradient(to right, #ffffff, #ffffff1a) 1;
+  }
+  .border-image-gradient-green-primary {
+    border-image: linear-gradient(to right, #65feb7, #65feb71a) 1;
+  }
+}
+
+@layer utilities {
+  .rotate-x-180 {
+    transform: rotateX(180deg);
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .translate-x-center {
+    @apply left-1/2 -translate-x-1/2;
+  }
+  .translate-y-center {
+    @apply top-1/2 -translate-y-1/2;
+  }
 }
 
 @keyframes fade-in-out {
