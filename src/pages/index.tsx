@@ -8,6 +8,7 @@ import Hero from '~/components/pages/home/Hero';
 import Stats from '~/components/pages/home/Statistics';
 import WhosUsingEngi from '~/components/pages/home/WhosUsingEngi';
 import WorldOfEngineers from '~/components/pages/home/WorldOfEngineers';
+import WorkflowsSupercharged from '~/components/pages/home/WorkflowsSupercharged';
 
 const Home: NextPage = () => {
   return (
@@ -18,12 +19,10 @@ const Home: NextPage = () => {
       <Hero className="max-w-page" />
       <Stats className="mt-24 xl:mt-40" />
       <AlternatingFeatures className="max-w-page mt-24" />
-      {/* <CalloutCards className="max-w-page mt-24 sm:mt-32 lg:mt-24" /> */}
-      <WorldOfEngineers className="mt-32 lg:mt-40" />
-      <Features className="mt-32 lg:mt-40" />
-      {/* <FigmaPreview className="max-w-page mt-40 mb-48" /> */}
-      {/* <GlobalConnection className="mt-24" /> */}
+      <WorldOfEngineers className="max-w-page mt-32 lg:mt-40" />
+      <Features className="max-w-page mt-32 lg:mt-40" />
       <WhosUsingEngi className="max-w-page mt-24 md:mt-0" />
+      <WorkflowsSupercharged className="max-w-page mt-24" />
       <CallToAction className="mt-32" />
     </div>
   );
