@@ -65,90 +65,101 @@ export default function Features({ className }: FeaturesProps) {
   }, [emblaApi]);
 
   return (
-    <div className={classNames('', className)}>
-      <div className="max-w-3xl mx-auto sm:text-center mb-12">
-        <h2 className="font-grifter text-3xl font-extrabold text-slate-100">
-          Built by programmers, for programmers
-        </h2>
-      </div>
-      <div className="relative md:hidden">
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {features.map(({ name, description }) => (
-              <div
-                key={name}
-                className="relative grow-0 shrink-0 basis-full flex flex-col items-center text-center px-12"
-              >
-                <span className="text-xl text-green-primary mb-4">{name}</span>
-                <span className={classNames('text-md text-white font-medium')}>
-                  {description}
-                </span>
-              </div>
-            ))}
-          </div>
+    <div
+      className={classNames(
+        'bg-secondary/40 backdrop-blur-[100px] py-24',
+        className
+      )}
+    >
+      <div className="max-w-page">
+        <div className="max-w-3xl mx-auto sm:text-center mb-12">
+          <h2 className="font-grifter text-3xl font-extrabold text-slate-100">
+            Built by programmers, for programmers
+          </h2>
         </div>
-        <button
-          className={classNames(
-            'absolute h-8 w-8 top-1/2 -translate-y-1/2 left-0',
-            !canScrollPrev() ? 'text-white/20' : ''
-          )}
-          onClick={scrollPrev}
-          disabled={!canScrollPrev()}
-        >
-          <ChevronLeftIcon />
-        </button>
-        <button
-          className={classNames(
-            'absolute h-8 w-8 top-1/2 -translate-y-1/2 right-0',
-            !canScrollNext() ? 'text-white/20' : ''
-          )}
-          onClick={scrollNext}
-          disabled={!canScrollNext()}
-        >
-          <ChevronRightIcon />
-        </button>
-      </div>
-      <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-        <Tab.List className="hidden md:flex w-full">
-          {features.map(({ name, description }) => (
-            <Tab as={Fragment} key={name}>
-              {({ selected }) => (
-                <button
-                  className={classNames(
-                    'flex flex-1 flex-col items-center text-center border-b px-12 py-8 outline-none focus-visible:ring-1 ring-green-primary',
-                    selected
-                      ? 'border-green-primary border-b-2'
-                      : 'border-gray-400'
-                  )}
+        <div className="relative md:hidden">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {features.map(({ name, description }) => (
+                <div
+                  key={name}
+                  className="relative grow-0 shrink-0 basis-full flex flex-col items-center text-center px-12"
                 >
                   <span className="text-xl text-green-primary mb-4">
                     {name}
                   </span>
                   <span
-                    className={classNames(
-                      'text-md',
-                      selected ? 'text-white font-medium' : 'text-secondary'
-                    )}
+                    className={classNames('text-md text-white font-medium')}
                   >
                     {description}
                   </span>
-                </button>
-              )}
-            </Tab>
-          ))}
-        </Tab.List>
-        <Tab.Panels className="mt-12">
-          <Tab.Panel>
-            <Tab1 className="lg:h-96 xl:h-[30rem]" />
-          </Tab.Panel>
-          <Tab.Panel>
-            <Tab2 className="lg:h-96 xl:h-[30rem]" />
-          </Tab.Panel>
-          <Tab.Panel>
-            <Tab3 className="lg:h-96 xl:h-[30rem]" />
-          </Tab.Panel>
-        </Tab.Panels>
-      </Tab.Group>
+                </div>
+              ))}
+            </div>
+          </div>
+          <button
+            className={classNames(
+              'absolute h-8 w-8 top-1/2 -translate-y-1/2 left-0',
+              !canScrollPrev() ? 'text-white/20' : ''
+            )}
+            onClick={scrollPrev}
+            disabled={!canScrollPrev()}
+          >
+            <ChevronLeftIcon />
+          </button>
+          <button
+            className={classNames(
+              'absolute h-8 w-8 top-1/2 -translate-y-1/2 right-0',
+              !canScrollNext() ? 'text-white/20' : ''
+            )}
+            onClick={scrollNext}
+            disabled={!canScrollNext()}
+          >
+            <ChevronRightIcon />
+          </button>
+        </div>
+        <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+          <Tab.List className="hidden md:flex w-full">
+            {features.map(({ name, description }) => (
+              <Tab as={Fragment} key={name}>
+                {({ selected }) => (
+                  <button
+                    className={classNames(
+                      'flex flex-1 flex-col items-center text-center border-b px-12 py-8 outline-none focus-visible:ring-1 ring-green-primary',
+                      selected
+                        ? 'border-green-primary border-b-2'
+                        : 'border-gray-400'
+                    )}
+                  >
+                    <span className="text-xl text-green-primary mb-4">
+                      {name}
+                    </span>
+                    <span
+                      className={classNames(
+                        'text-md',
+                        selected ? 'text-white font-medium' : 'text-secondary'
+                      )}
+                    >
+                      {description}
+                    </span>
+                  </button>
+                )}
+              </Tab>
+            ))}
+          </Tab.List>
+          <Tab.Panels className="mt-12">
+            <Tab.Panel>
+              <Tab1 className="lg:h-96 xl:h-[30rem]" />
+            </Tab.Panel>
+            <Tab.Panel>
+              <Tab2 className="lg:h-96 xl:h-[30rem]" />
+            </Tab.Panel>
+            <Tab.Panel>
+              <Tab3 className="lg:h-96 xl:h-[30rem]" />
+            </Tab.Panel>
+          </Tab.Panels>
+        </Tab.Group>
+      </div>
     </div>
   );
 }
