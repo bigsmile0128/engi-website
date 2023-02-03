@@ -19,7 +19,7 @@ export default function Slider(props) {
             {...props}
             className={classNames(
               props.className,
-              'h-3 w-3 bg-green-primary rounded-full relative flex justify-center items-center'
+              'h-3 w-3 bg-green-primary rounded-full relative flex justify-center items-center focus-green-primary'
             )}
           >
             <span className="-mt-10 text-green-primary text-xs">
