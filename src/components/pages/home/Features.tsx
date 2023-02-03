@@ -17,16 +17,19 @@ interface FeaturesProps {
 
 const features = [
   {
-    name: 'Secure, Sovereign Blockchain',
-    description: 'Written in Rust and built on the foundations of Substrate',
+    name: 'User-Owned Gig Economy',
+    description:
+      'A non-speculative plutocracy, EngiDAO dictates upgrades, pays dividends, taxes Bots, and more',
   },
   {
-    name: 'Open-Governance, Open-Source',
-    description: 'You influence the development of Engi’s technology ecosystem',
+    name: 'Private, Equitable, Fair',
+    description:
+      'Programming work wherever and whoever you are. Earn anoymously with rapid evaluation & payment',
   },
   {
-    name: 'Anonymous, Accessible, Equitable',
-    description: 'Speed and skill are all that is needed for greatness ',
+    name: 'Sovereign Fast Blockchain',
+    description:
+      'Digital labor is a primitive. Deploy labor-adjacent dApps on a performant Proof of Useful Work utility blockchain',
   },
 ];
 

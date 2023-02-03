@@ -13,7 +13,7 @@ export default function PlaceholderButton({
     <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
       <button
         className={classNames(
-          'px-6 py-4 bg-black/20 border border-white font-bold',
+          'px-6 py-4 bg-black/20 border border-white font-bold capitalize',
           className
         )}
       >
