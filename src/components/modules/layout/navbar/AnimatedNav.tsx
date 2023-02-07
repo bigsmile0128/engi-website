@@ -93,7 +93,10 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/bits/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/bits/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('BITS')}
       >
@@ -102,7 +105,10 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/hire/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/hire/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('CREATE')}
       >
@@ -111,7 +117,10 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/hire/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/hire/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('LEARN')}
       >
