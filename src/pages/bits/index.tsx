@@ -88,10 +88,10 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
   const minFunding = searchParams.get('funding-min');
   const maxFunding = searchParams.get('funding-max');
   if (minFunding) {
-    query.minFunding = parseInt(minFunding, 10) * Math.pow(10, 18);
+    query.minFunding = minFunding + '0'.repeat(18);
   }
   if (maxFunding) {
-    query.maxFunding = parseInt(maxFunding, 10) * Math.pow(10, 18);
+    query.maxFunding = maxFunding + '0'.repeat(18);
   }
 
   if (searchParams.get('sort-field')) {
