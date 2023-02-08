@@ -15,6 +15,7 @@ import Statistic from '~/components/Statistic';
 import TextSkeleton from '~/components/TextSkeleton';
 import { Bit } from '~/types';
 import BitCreator from '../BitCreator';
+import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';
 import ShareModal from '../ShareModal';
 import Payout from './Payout';
@@ -155,9 +156,7 @@ export default function BitDescription({
       {/* MOBILE START */}
       <div className="w-full mb-4 tablet:hidden">
         <div className="my-8 w-full border-t border-white/30" />
-        <Button variant="primary" className="w-full">
-          Get Started
-        </Button>
+        <GetStarted bitId={data?.id} />
         <div className="mt-16 px-4">
           <BitCreator data={data?.creator} isLoading={isLoading} />
           <div className="my-8 w-full border-t border-white/30" />
