@@ -84,14 +84,19 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
   const [hoverItem, setHoverItem] = useState(null);
   const router = useRouter();
 
-  const closeMenu = useCallback(() => setHoverItem(null), []);
+  const closeMenu = useCallback(() => {
+    setHoverItem(null);
+  }, []);
 
   return (
     <nav className={classNames('', className)} onMouseLeave={closeMenu}>
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/bits/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/bits/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('BITS')}
       >
@@ -100,7 +105,10 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/hire/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/hire/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('CREATE')}
       >
@@ -109,106 +117,139 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       <button
         className={classNames(
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
-          { 'underline !text-white': /^\/hire/.test(router.asPath) }
+          {
+            'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
+              /^\/hire/.test(router.asPath),
+          }
         )}
         onMouseEnter={() => setHoverItem('LEARN')}
       >
         Learn
       </button>
-      <AnimatePresence>
-        {hoverItem && (
+      {hoverItem && (
+        <motion.div
+          className="absolute top-16 left-0 z-50 origin-top-left"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          layout
+        >
+          {/* empty div to add margin-top without triggering onMouseLeave */}
+          <motion.div layout className="h-8 bg-transparent" />
           <motion.div
-            className="absolute top-16 left-0 z-50"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            className={classNames(
+              'bg-dropdown !backdrop-blur-[100px] rounded-3xl flex overflow-hidden p-8',
+              'min-h-[180px]'
+            )}
+            layout
           >
-            {/* empty div to add margin-top without triggering onMouseLeave */}
-            <div className="h-8 bg-transparent" />
-            <div className="p-8 bg-dropdown !backdrop-blur-[100px] min-h-[180px] rounded-3xl flex">
-              {/* left panel */}
+            {/* left panel */}
+            <motion.div layout="position">
               {hoverItem === 'BITS' ? (
-                <div>
-                  <p className="text-xl font-bold">
+                <>
+                  <motion.p layout="position" className="text-xl font-bold">
                     Try engineering work ready for you
-                  </p>
-                  <p className="text-secondary mt-3">
+                  </motion.p>
+                  <motion.p layout="position" className="text-secondary mt-3">
                     See what work is available to start now
-                  </p>
+                  </motion.p>
                   <Link
                     href="/bits"
-                    className="mt-9 inline-flex items-center gap-3 hover:text-green-primary"
+                    className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                   >
-                    <span className="font-bold underline">Browse all Bits</span>
-                    <RiArrowRightSLine className="h-5 w-5" />
+                    <motion.span
+                      layout="position"
+                      className="flex items-center gap-3 font-bold underline"
+                    >
+                      Browse all Bits
+                      <RiArrowRightSLine className="h-5 w-5" />
+                    </motion.span>
                   </Link>
-                </div>
+                </>
               ) : hoverItem === 'CREATE' ? (
-                <div>
-                  <p className="text-xl font-bold">
+                <>
+                  <motion.p layout="position" className="text-xl font-bold">
                     On demand software engineering
-                  </p>
-                  <p className="text-secondary mt-3">
+                  </motion.p>
+                  <motion.p layout="position" className="text-secondary mt-3">
                     Check out our guide on creating bits
-                  </p>
+                  </motion.p>
                   <Link
                     href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
-                    className="mt-9 inline-flex items-center gap-3 hover:text-green-primary"
+                    className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"
                   >
-                    <span className="font-bold underline">See guide</span>
-                    <RiArrowRightSLine className="h-5 w-5" />
+                    <motion.span
+                      layout="position"
+                      className="flex items-center gap-3 font-bold underline"
+                    >
+                      See guide
+                      <RiArrowRightSLine className="h-5 w-5" />
+                    </motion.span>
                   </Link>
-                </div>
+                </>
               ) : (
-                <div>
-                  <p className="text-xl font-bold">Learn more about engi</p>
-                  <p className="text-secondary mt-3">Check out our guide</p>
+                <>
+                  <motion.p layout="position" className="text-xl font-bold">
+                    Learn more about engi
+                  </motion.p>
+                  <motion.p layout="position" className="text-secondary mt-3">
+                    Check out our guide
+                  </motion.p>
                   <Link
                     href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
-                    className="mt-9 inline-flex items-center gap-3 hover:text-green-primary"
+                    className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"
                   >
-                    <span className="font-bold underline">See guide</span>
-                    <RiArrowRightSLine className="h-5 w-5" />
+                    <motion.span
+                      layout="position"
+                      className="flex items-center gap-3 font-bold underline"
+                    >
+                      See guide
+                      <RiArrowRightSLine className="h-5 w-5" />
+                    </motion.span>
                   </Link>
-                </div>
+                </>
               )}
-              <div className="w-[1px] bg-white/30 opacity-30 mx-12" />
-              {/* right panel */}
-              <div className="flex flex-col gap-9 mr-4">
-                <AnimatePresence>
-                  {hoverItem === 'BITS'
-                    ? EARN_LINKS.map((props) => (
-                        <MenuLink
-                          key={props.title}
-                          onClick={closeMenu}
-                          {...props}
-                        />
-                      ))
-                    : hoverItem === 'CREATE'
-                    ? CREATE_LINKS.map((props) => (
-                        <MenuLink
-                          key={props.title}
-                          onClick={closeMenu}
-                          {...props}
-                        />
-                      ))
-                    : LEARN_LINKS.map((props) => (
-                        <MenuLink
-                          key={props.title}
-                          onClick={closeMenu}
-                          {...props}
-                        />
-                      ))}
-                </AnimatePresence>
-              </div>
-            </div>
+            </motion.div>
+            <motion.div
+              layout
+              className="w-[1px] bg-white/30 opacity-30 mx-12"
+            />
+            {/* right panel */}
+            <AnimatePresence exitBeforeEnter>
+              <motion.div layout className="flex flex-col gap-9 mr-4">
+                {hoverItem === 'BITS'
+                  ? EARN_LINKS.map((props) => (
+                      <MenuLink
+                        key={props.title}
+                        onClick={closeMenu}
+                        {...props}
+                      />
+                    ))
+                  : hoverItem === 'CREATE'
+                  ? CREATE_LINKS.map((props) => (
+                      <MenuLink
+                        key={props.title}
+                        onClick={closeMenu}
+                        {...props}
+                      />
+                    ))
+                  : LEARN_LINKS.map((props) => (
+                      <MenuLink
+                        key={props.title}
+                        onClick={closeMenu}
+                        {...props}
+                      />
+                    ))}
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
-        )}
-      </AnimatePresence>
+        </motion.div>
+      )}
     </nav>
   );
 }
@@ -225,15 +266,11 @@ function MenuLink({
     // nest padding inside motion element for framer-motion height calculation
     <Link key={title} href={href} legacyBehavior passHref>
       <motion.a
+        layout
         className={classNames(
           'flex items-center justify-between !w-56 hover:text-green-primary',
           className
         )}
-        initial={{ opacity: 0, height: 30, width: 0 }}
-        animate={{ opacity: 1, height: 'auto', width: 'auto' }}
-        transition={{
-          duration: 0.3,
-        }}
         target={href.startsWith('/') ? undefined : '_blank'}
         {...props}
       >
