@@ -87,7 +87,7 @@ export default function EmailRegistration({
           <input
             id="email-address"
             className={classNames(
-              'w-full border border-white xs:border-r-0 p-4 bg-secondary',
+              'w-full border border-white/60 xs:border-r-0 p-4 bg-secondary',
               'text-white placeholder:text-tertiary text-base',
               'outline-none focus-visible:ring-1',
               'h-full laptop:w-[220px] desktop:w-[260px]',

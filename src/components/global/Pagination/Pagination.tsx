@@ -22,7 +22,7 @@ export default function Pagination(props) {
       className="flex items-center self-center mt-8 pb-8"
       pageClassName=""
       breakClassName="flex items-center justify-center w-8"
-      pageLinkClassName="flex items-center justify-center w-8 text-white/70 hover:text-white"
+      pageLinkClassName="hidden"
       activeLinkClassName="!text-green-primary font-bold mb-[1px]"
       {...props}
     />
