@@ -71,9 +71,7 @@ export default function BitDescription({
         <div className="mt-4 text-xl text-secondary">N/A</div>
       ) : (
         <>
-          <Markdown className="w-full mt-4 p-6 bg-black/[.14]">
-            {description}
-          </Markdown>
+          <Markdown className="w-full mt-4">{description}</Markdown>
         </>
       )}
       <Payout className="mt-8" isLoading={isLoading} data={data} />
