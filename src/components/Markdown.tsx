@@ -21,42 +21,39 @@ export default function Markdown({
         h1: ({ children }) => (
           <h1
             className={classNames(
-              'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'first:mt-0 font-bold text-white text-3xl'
+              'mt-6 mb-4 pb-1',
+              'first:mt-0 font-bold text-lg'
             )}
           >
             {children}
           </h1>
         ),
         h2: ({ children }) => (
-          <h2
-            className={classNames(
-              'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'first:mt-0 font-bold text-white text-2xl'
-            )}
-          >
+          <h2 className={classNames('mt-6 mb-4 pb-1', 'first:mt-0')}>
             {children}
           </h2>
         ),
         h3: ({ children }) => (
           <h3
-            className={classNames(
-              'mt-6 mb-4',
-              'first:mt-0 font-bold text-white text-xl'
-            )}
+            className={classNames('mt-6 mb-4', 'first:mt-0 font-bold text-sm')}
           >
             {children}
           </h3>
         ),
         h4: ({ children }) => (
-          <h4
-            className={classNames(
-              'mt-6 mb-4 pb-1 border-b border-b-white/30',
-              'first:mt-0 font-bold text-white text-lg'
-            )}
-          >
+          <h4 className={classNames('mt-6 mb-4 pb-1', 'first:mt-0 font-bold')}>
             {children}
           </h4>
+        ),
+        h5: ({ children }) => (
+          <h5 className={classNames('mt-6 mb-4 pb-1', 'first:mt-0 text-sm')}>
+            {children}
+          </h5>
+        ),
+        h6: ({ children }) => (
+          <h6 className={classNames('mt-6 mb-4 pb-1', 'first:mt-0 text-xs')}>
+            {children}
+          </h6>
         ),
         code: ({ node, inline, className, children, ...props }) => {
           const match = /language-(\w+)/.exec(className || '');
@@ -64,8 +61,8 @@ export default function Markdown({
             <div className="w-full overflow-auto">
               <SyntaxHighlighter
                 style={monokai}
-                language={match[1]}
-                className="my-2 w-full"
+                language={match?.[1]}
+                className="!p-4 w-full !bg-[#2D2E28]/[.57] backdrop-blur-sm"
                 wrapLongLines
                 {...props}
               >
@@ -75,7 +72,7 @@ export default function Markdown({
           ) : (
             <code
               className={classNames(
-                'bg-black/50 break-word whitespace-pre-wrap',
+                'bg-[#2D2E28]/[.57] backdrop-blur-sm break-word whitespace-pre-wrap',
                 className
               )}
               {...props}
