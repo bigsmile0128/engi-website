@@ -15,11 +15,13 @@ export default function CallToAction({ className }: CallToActionProps) {
     >
       <GridPattern offset={-1} id="freelancer-cta" />
       <div className="max-w-page flex flex-col text-center py-16">
-        <span className="font-grifter text-3xl">Write code,</span>
-        <span className="mt-2 font-grifter text-3xl">
-          get <span className="text-green-primary">paid</span>.
-        </span>
-        <p className="mt-4 text-secondary">
+        <div className="flex flex-col font-grifter text-3xl tablet:text-5xl tablet:flex-row gap-2 tablet:gap-4 justify-center">
+          <span className="">Write code,</span>
+          <span className="">
+            get <span className="text-green-primary">paid</span>.
+          </span>
+        </div>
+        <p className="mt-4 tablet:mt-8 text-secondary tablet:text-xl">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
           elit vel mauris tincidunt porta.
         </p>

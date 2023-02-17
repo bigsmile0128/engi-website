@@ -2,7 +2,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import groupMobileImg from 'public/img/about/freelancer/community.png';
+import groupMobileImg from 'public/img/about/freelancer/community-tablet.png';
 import { useCallback, useEffect, useState } from 'react';
 
 type CommunityCarouselProps = {

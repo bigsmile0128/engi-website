@@ -51,6 +51,17 @@
   .border-image-gradient-green-primary {
     border-image: linear-gradient(to right, #65feb7, #65feb71a) 1;
   }
+  .company-gradient-mobile {
+    background: linear-gradient(30deg, rgba(241, 140, 67, 0.8) 0%, #34b888 70%);
+  }
+  .company-gradient-tablet {
+    background: linear-gradient(
+      60deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(241, 140, 67, 0.6) 60%,
+      rgb(52, 184, 136, 0.7) 100%
+    );
+  }
 }
 
 @layer utilities {

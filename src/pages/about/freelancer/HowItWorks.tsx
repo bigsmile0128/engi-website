@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import laptopSplashImg from 'public/img/home/laptop-splash.png';
+import laptopSplashImg from 'public/img/about/freelancer/laptop.png';
 import Image from 'next/image';
 import { Disclosure } from '@headlessui/react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
@@ -37,16 +37,16 @@ const items = [
 export default function HowItWorks({ className }: HowItWorksProps) {
   return (
     <div className={classNames('w-full', className)}>
-      <div className="max-w-page">
-        <p className="font-grifter text-4xl">How It Works?</p>
-        <p className="text-secondary text-lg">
-          Anyone can begin working on bits regardless of their time zone or
-          language.
+      <div className="max-w-page tablet:text-center">
+        <p className="font-grifter text-4xl tablet:text-5xl">How It Works?</p>
+        <p className="text-secondary text-lg tablet:mt-8">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
+          elit vel mauris tincidunt porta.
         </p>
       </div>
       <Image
         src={laptopSplashImg}
-        className="mt-8 pl-4 w-full"
+        className="mt-8 pl-4 w-full max-w-page mr-0 pr-0"
         alt="how-it-works"
       />
       <div className="mt-8 max-w-page w-full flex flex-col gap-6">
@@ -81,7 +81,7 @@ export default function HowItWorks({ className }: HowItWorksProps) {
           </Disclosure>
         ))}
       </div>
-      <div className="mt-8 max-w-page w-full">
+      <div className="mt-8 max-w-page w-full tablet:hidden">
         <Link href="/bits">
           <Button variant="primary">Earn now</Button>
         </Link>

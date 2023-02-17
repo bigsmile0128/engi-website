@@ -50,17 +50,14 @@ export default function CompanyCarousel({ className }: CompanyCarouselProps) {
     <>
       <div
         className={classNames(
-          'flex flex-col items-center gap-8 w-full py-16',
+          'flex flex-col items-center gap-8 w-full py-16 company-gradient-mobile',
+          'tablet:max-w-page tablet:items-start tablet:p-8 tablet:py-10 tablet:company-gradient-tablet',
           className
         )}
-        style={{
-          background:
-            'linear-gradient(30deg, rgba(241, 140, 67, 0.8) 0%, #34B888 70%)',
-        }}
       >
         <span className="font-bold text-xl tracking-wide">Write code for</span>
-        <div className="embla w-full" ref={emblaRef}>
-          <div className="flex">
+        <div className="embla w-full tablet:hidden" ref={emblaRef}>
+          <div className="flex text-green-primary">
             <div className="max-w-page flex-[0_0_100%] flex items-center justify-center gap-8">
               <UpfrontSvg />
               <CompoundSvg />
@@ -74,8 +71,15 @@ export default function CompanyCarousel({ className }: CompanyCarouselProps) {
             </div>
           </div>
         </div>
+        <div className="hidden tablet:grid grid-cols-3 grid-rows-2 w-full gap-16 text-white">
+          <UpfrontSvg />
+          <CompoundSvg />
+          <TribeSvg />
+          <ShineSvg />
+          <EniacSvg className="max-h-[32px]" />
+        </div>
       </div>
-      <div className="mt-8 flex items-center justify-center gap-8">
+      <div className="mt-8 flex items-center justify-center gap-8 tablet:hidden">
         <button
           className={classNames(
             'p-3 bg-black/[.14] hover:bg-black/25',

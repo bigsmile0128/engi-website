@@ -9,10 +9,10 @@ type WhyEngiProps = {
 export default function WhyEngi({ className }: WhyEngiProps) {
   return (
     <div className={classNames('mt-32 w-full', className)}>
-      <p className="max-w-page font-grifter text-4xl">
+      <p className="max-w-page font-grifter text-4xl tablet:text-5xl">
         Why work on Bits on Engi
       </p>
-      <ReasonCarousel className="mt-8" />
+      <ReasonCarousel className="mt-8 tablet:mt-16" />
     </div>
   );
 }

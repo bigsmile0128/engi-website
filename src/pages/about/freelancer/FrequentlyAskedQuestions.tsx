@@ -1,7 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
 import { Disclosure } from '@headlessui/react';
-import { HiChevronDown, HiChevronUp, HiMinus, HiPlus } from 'react-icons/hi';
+import classNames from 'classnames';
+import { HiChevronDown, HiChevronUp } from 'react-icons/hi';
 
 type FrequentlyAskedQuestionsProps = {
   className?: string;
@@ -35,7 +34,9 @@ export default function FrequentlyAskedQuestions({
 }: FrequentlyAskedQuestionsProps) {
   return (
     <div className={classNames('', className)}>
-      <p className="font-grifter text-4xl">Frequently Asked Questions</p>
+      <p className="font-grifter text-4xl tablet:text-5xl tablet:text-center tablet:leading-[4rem]">
+        Frequently Asked Questions
+      </p>
       <div className="mt-8 w-full flex flex-col">
         {questions.map(({ title, description }) => (
           <Disclosure
