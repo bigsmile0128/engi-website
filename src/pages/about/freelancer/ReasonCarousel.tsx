@@ -26,7 +26,7 @@ const reasons = [
         />
         <Image
           src={groupTabletImg}
-          className="p-6 hidden tablet:block mx-auto mb-10"
+          className="p-6 hidden tablet:block mx-auto mb-6 w-full"
           alt="Accessible"
         />
       </>
@@ -62,7 +62,7 @@ const reasons = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
   },
   {
-    className: 'row-start-3 col-start-1',
+    className: 'row-start-3 col-start-1 xl:row-start-1 xl:col-start-3',
     img: (
       <Image
         src={cornerGlobeImg}
@@ -75,7 +75,7 @@ const reasons = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
   },
   {
-    className: 'row-start-3 col-start-2',
+    className: 'row-start-3 col-start-2 xl:row-start-2 xl:col-start-3',
     img: (
       <Image
         src={cornerRocketImg}
@@ -145,7 +145,13 @@ export default function ReasonCarousel({ className }: ReasonCarouselProps) {
             ))}
           </div>
         </div>
-        <div className="hidden tablet:grid grid-cols-2 grid-rows-3 gap-8 max-w-page">
+        <div
+          className={classNames(
+            'hidden tablet:grid max-w-page',
+            'tablet:grid-cols-2 tablet:grid-rows-3 tablet:gap-8',
+            'xl:grid-cols-3 xl:grid-rows-2'
+          )}
+        >
           {reasons.map(({ className, img, title, description }) => (
             <div
               key={title}

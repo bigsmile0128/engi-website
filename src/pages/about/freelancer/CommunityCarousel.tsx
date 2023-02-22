@@ -9,6 +9,21 @@ type CommunityCarouselProps = {
   className?: string;
 };
 
+const testimonials = [
+  {
+    name: 'John Doe',
+    subtitle: 'Principal Solutions Architect',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+  },
+  {
+    name: 'Wendy Doe',
+    subtitle: 'Principal Solutions Architect',
+    quote:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+  },
+];
+
 export default function CommunityCarousel({
   className,
 }: CommunityCarouselProps) {
@@ -50,52 +65,26 @@ export default function CommunityCarousel({
       <div className={classNames('w-full', className)}>
         <div className="embla w-full" ref={emblaRef}>
           <div className="flex">
-            <div className="flex-[0_0_100%]">
-              <div className="max-w-page">
-                <div className="bg-[#161B28]/30">
-                  <Image
-                    src={groupMobileImg}
-                    className="w-full"
-                    alt="accessible"
-                  />
-                  <div className="p-6 w-full border border-white/60 border-t-0">
-                    <p className="font-medium text-xl text-white">
-                      &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Vivamus in elit vel mauris tincidunt porta.&rdquo;
-                    </p>
-                    <p className="mt-8 font-bold text-xl text-green-primary">
-                      John Doe
-                    </p>
-                    <p className="mt-2 text-secondary">
-                      Principal Solutions Architect
-                    </p>
+            {testimonials.map(({ name, subtitle, quote }) => (
+              <div key={name} className="flex-[0_0_100%]">
+                <div className="max-w-page">
+                  <div className="bg-[#161B28]/30 desktop:flex">
+                    <Image
+                      src={groupMobileImg}
+                      className="w-full"
+                      alt="accessible"
+                    />
+                    <div className="p-6 w-full border border-white/30 border-t-0 desktop:border-l-0 desktop:border-t">
+                      <p className="font-medium text-xl text-white">{quote}</p>
+                      <p className="mt-8 font-bold text-xl text-green-primary">
+                        {name}
+                      </p>
+                      <p className="mt-2 text-secondary">{subtitle}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex-[0_0_100%]">
-              <div className="max-w-page">
-                <div className="bg-[#161B28]/30">
-                  <Image
-                    src={groupMobileImg}
-                    className="w-full"
-                    alt="accessible"
-                  />
-                  <div className="p-6 w-full border border-white/60 border-t-0">
-                    <p className="font-medium text-xl text-white">
-                      &ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit. Vivamus in elit vel mauris tincidunt porta.&rdquo;
-                    </p>
-                    <p className="mt-8 font-bold text-xl text-green-primary">
-                      John Doe
-                    </p>
-                    <p className="mt-2 text-secondary">
-                      Principal Solutions Architect
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

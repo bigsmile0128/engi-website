@@ -44,42 +44,51 @@ export default function HowItWorks({ className }: HowItWorksProps) {
           elit vel mauris tincidunt porta.
         </p>
       </div>
-      <Image
-        src={laptopSplashImg}
-        className="mt-8 pl-4 w-full max-w-page mr-0 pr-0"
-        alt="how-it-works"
-      />
-      <div className="mt-8 max-w-page w-full flex flex-col gap-6">
-        {items.map(({ title, description }) => (
-          <Disclosure
-            as="div"
-            key={title}
-            className="w-full p-6 border border-white/30"
-          >
-            {({ open }) => (
-              <>
-                <Disclosure.Button
-                  className={classNames(
-                    'w-full font-bold text-xl flex items-center justify-between',
-                    open
-                      ? 'text-green-primary'
-                      : 'text-white hover:text-green-primary'
-                  )}
-                >
-                  <span>{title}</span>
-                  {open ? (
-                    <HiMinus className="text-white" />
-                  ) : (
-                    <HiPlus className="text-white" />
-                  )}
-                </Disclosure.Button>
-                <Disclosure.Panel className="mt-8 font-medium text-xl">
-                  {description}
-                </Disclosure.Panel>
-              </>
-            )}
-          </Disclosure>
-        ))}
+      <div className="w-full relative">
+        <Image
+          src={laptopSplashImg}
+          className="mt-8 pl-4 w-full max-w-page mr-0 pr-0 desktop:hidden"
+          alt="how-it-works"
+        />
+        <Image
+          src={laptopSplashImg}
+          className="hidden desktop:block absolute w-1/2 right-0 pl-12 mt-8 max-w-[700px]"
+          alt="how-it-works"
+        />
+      </div>
+      <div className="max-w-page desktop:grid grid-cols-2">
+        <div className="mt-8 max-w-page w-full flex flex-col gap-6">
+          {items.map(({ title, description }) => (
+            <Disclosure
+              as="div"
+              key={title}
+              className="w-full p-6 border border-white/30"
+            >
+              {({ open }) => (
+                <>
+                  <Disclosure.Button
+                    className={classNames(
+                      'w-full font-bold text-xl flex items-center justify-between',
+                      open
+                        ? 'text-green-primary'
+                        : 'text-white hover:text-green-primary'
+                    )}
+                  >
+                    <span>{title}</span>
+                    {open ? (
+                      <HiMinus className="text-white" />
+                    ) : (
+                      <HiPlus className="text-white" />
+                    )}
+                  </Disclosure.Button>
+                  <Disclosure.Panel className="mt-8 font-medium text-xl">
+                    {description}
+                  </Disclosure.Panel>
+                </>
+              )}
+            </Disclosure>
+          ))}
+        </div>
       </div>
       <div className="mt-8 max-w-page w-full tablet:hidden">
         <Link href="/bits">

@@ -16,12 +16,12 @@ export default function BottomCallToAction({
   return (
     <div className={classNames('relative', className)}>
       <GridPattern id="freelancer-bottom-cta" offset={-1} />
-      <div className="max-w-page w-full flex flex-col py-20">
+      <div className="max-w-page max-w-[540px] w-full flex flex-col py-20">
         <p className="font-grifter text-4xl text-center leading-[3rem]">
           Join our community
         </p>
         <span className="mt-8 text-lg text-secondary text-center tracking-wide">
-          Start your first Bit today
+          Start your first bit today
         </span>
         <Link href="/login">
           <Button className="mt-12 w-full flex items-center gap-4 !px-4 !py-6">

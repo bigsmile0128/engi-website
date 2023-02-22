@@ -71,7 +71,14 @@ export default function CompanyCarousel({ className }: CompanyCarouselProps) {
             </div>
           </div>
         </div>
-        <div className="hidden tablet:grid grid-cols-3 grid-rows-2 w-full gap-16 text-white">
+        <div
+          className={classNames(
+            'hidden tablet:grid w-full text-white',
+            'tablet:grid-cols-3 tablet:grid-rows-2 tablet:gap-16',
+            'desktop:grid-cols-5 desktop:grid-rows-1 desktop:items-center desktop:gap-12',
+            'xl:gap-16'
+          )}
+        >
           <UpfrontSvg />
           <CompoundSvg />
           <TribeSvg />

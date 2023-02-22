@@ -15,12 +15,21 @@ const resources = [
     title: 'Lorem ipsum',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    className: '',
   },
   {
     img: <Image src={stockImg} className="w-full" alt="accessible" />,
     title: 'Lorem ipsum dolor',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    className: '',
+  },
+  {
+    img: <Image src={stockImg} className="w-full" alt="accessible" />,
+    title: 'Lorem ipsum dolor sit',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    className: 'hidden desktop:block',
   },
 ];
 
@@ -51,8 +60,8 @@ export default function UsefulResources({ className }: UsefulResourcesProps) {
         </div>
       </div>
       <div className="hidden mt-12 max-w-page tablet:flex gap-8">
-        {resources.map(({ img, title, description }) => (
-          <div className="" key={title}>
+        {resources.map(({ img, title, description, className }) => (
+          <div className={className} key={title}>
             {img}
             <div className="bg-secondary p-6 border border-white/30 border-t-0">
               <p className="font-bold text-xl text-green-primary">{title}</p>

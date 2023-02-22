@@ -4,6 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import _ from 'lodash';
 import { useCallback, useEffect, useState } from 'react';
 import EngiAmount from '~/components/EngiAmount';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { Bit, BitStatus } from '~/types';
 import useBits from '~/utils/hooks/useBits';
 
@@ -109,7 +110,7 @@ export default function Statistics({ className }: StatisticsProps) {
       >
         {(bitsActive?.jobs?.result.totalCount ?? 0).toString().toLocaleString()}
       </span>
-      <div className="mt-12 relative">
+      <div className="mt-12 relative desktop:hidden">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {stats.map(({ name, value }) => (
@@ -148,6 +149,17 @@ export default function Statistics({ className }: StatisticsProps) {
         >
           <ChevronRightIcon />
         </button>
+      </div>
+      <div className="hidden mt-24 w-full relative desktop:block">
+        <GridPattern id="freelancer-stats" offset={-1} sizeY={40} sizeX={61} />
+        <div className="flex gap-8 justify-between px-24 py-12 border border-white/20">
+          {stats.map(({ name, value }) => (
+            <div key={name} className="flex flex-col items-center gap-4">
+              <span className="font-grifter text-5xl">{value}</span>
+              <span className="text-lg">{name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
