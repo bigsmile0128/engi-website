@@ -11,16 +11,16 @@ interface CallToActionProps {
 const sections = [
   {
     icon: <RiCoinsFill className="text-green-primary h-7 w-7" />,
-    title: 'Start working on bits',
-    description: 'View the available bits and get started now.',
+    title: 'Earn $ENGI',
+    description: 'Find a Bit, Start Coding',
     buttonText: 'Browse Bits',
     href: '/bits',
   },
   {
     icon: <RiBuilding2Fill className="text-green-primary h-7 w-7" />,
-    title: 'Find talent',
-    description: 'Post a bit and find talent for your business needs.',
-    buttonText: 'Engi for Business',
+    title: 'Engage Talent',
+    description: 'Custom Code on Tap',
+    buttonText: 'Engi for Businesses',
     href: '/hire',
   },
 ];
@@ -36,7 +36,7 @@ export default function CallToAction({ className }: CallToActionProps) {
         <div className="max-w-page flex flex-col laptop:flex-row gap-8">
           {sections.map(({ icon, title, description, buttonText, href }) => (
             <div
-              className="flex-1 flex flex-col items-center bg-dropdown py-12 px-8 border border-white/60"
+              className="flex-1 flex flex-col items-center bg-dropdown py-12 px-8 border border-white/60 laptop:px-32 laptop:whitespace-nowrap"
               key={title}
             >
               <div className="p-4 bg-dropdown backdrop-blur-sm border border-white/60">

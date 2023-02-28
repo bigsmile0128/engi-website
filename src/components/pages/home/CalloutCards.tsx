@@ -39,7 +39,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           </svg>
         </div>
 
-        <h3 className="font-grifter text-2xl sm:text-3xl">
+        <h3 className="capitalize font-grifter text-2xl sm:text-3xl">
           Write code, <span className="text-green-primary">get paid</span>
         </h3>
         <p className="text-secondary text-lg sm:pr-16 mt-4">

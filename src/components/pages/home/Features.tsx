@@ -10,6 +10,7 @@ import TokenContractSvg from 'public/img/home/features1.svg';
 import featuresSrc2 from 'public/img/home/features2.png';
 import featuresSrc3 from 'public/img/home/features3.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface FeaturesProps {
   className?: string;
@@ -17,16 +18,22 @@ interface FeaturesProps {
 
 const features = [
   {
-    name: 'Secure, Sovereign Blockchain',
-    description: 'Written in Rust and built on the foundations of Substrate',
+    name: 'Flexible, Accessible, Fair, Fun',
+    description:
+      'Never commute or whiteboard interview again. Code is securely evaluated & paid for automatically on-chain',
+    Tab: () => <Tab3 className="lg:h-96 xl:h-[30rem]" />,
   },
   {
-    name: 'Open-Governance, Open-Source',
-    description: 'You influence the development of Engi’s technology ecosystem',
+    name: 'Performant Scalable Protocol',
+    description:
+      'WASM+EVM compatible, egalitarian computation-based consensus, & native tokenomics backed by labor',
+    Tab: () => <MarketplaceDynamics className="lg:h-96 xl:h-[30rem]" />,
   },
   {
-    name: 'Anonymous, Accessible, Equitable',
-    description: 'Speed and skill are all that is needed for greatness ',
+    name: 'User-Owned Future of Work',
+    description:
+      'Accumulate influence to vote on fees structures, protocol upgrades, ecosystem dividends, & more',
+    Tab: () => <CommunityOwnership className="lg:h-96 xl:h-[30rem]" />,
   },
 ];
 
@@ -74,7 +81,7 @@ export default function Features({ className }: FeaturesProps) {
       <div className="max-w-page">
         <div className="max-w-3xl mx-auto sm:text-center mb-12">
           <h2 className="font-grifter text-3xl font-extrabold text-slate-100">
-            Built by programmers, for programmers
+            Built by Programmers, for Programmers
           </h2>
         </div>
         <div className="relative md:hidden">
@@ -125,7 +132,7 @@ export default function Features({ className }: FeaturesProps) {
                 {({ selected }) => (
                   <button
                     className={classNames(
-                      'flex flex-1 flex-col items-center text-center border-b px-12 py-8 outline-none focus-visible:ring-1 ring-green-primary',
+                      'flex flex-1 flex-col items-center text-center border-b px-12 py-8 outline-none',
                       selected
                         ? 'border-green-primary border-b-2'
                         : 'border-gray-400'
@@ -136,8 +143,10 @@ export default function Features({ className }: FeaturesProps) {
                     </span>
                     <span
                       className={classNames(
-                        'text-md',
-                        selected ? 'text-white font-medium' : 'text-secondary'
+                        'text-md transition',
+                        selected
+                          ? 'text-white'
+                          : 'text-secondary text-opacity-75'
                       )}
                     >
                       {description}
@@ -148,15 +157,11 @@ export default function Features({ className }: FeaturesProps) {
             ))}
           </Tab.List>
           <Tab.Panels className="mt-12">
-            <Tab.Panel>
-              <Tab1 className="lg:h-96 xl:h-[30rem]" />
-            </Tab.Panel>
-            <Tab.Panel>
-              <Tab2 className="lg:h-96 xl:h-[30rem]" />
-            </Tab.Panel>
-            <Tab.Panel>
-              <Tab3 className="lg:h-96 xl:h-[30rem]" />
-            </Tab.Panel>
+            {features.map(({ name, Tab: FeatureTab }) => (
+              <Tab.Panel key={name}>
+                <FeatureTab />
+              </Tab.Panel>
+            ))}
           </Tab.Panels>
         </Tab.Group>
       </div>
@@ -164,23 +169,29 @@ export default function Features({ className }: FeaturesProps) {
   );
 }
 
-function Tab1({ className }: { className?: string }) {
+function MarketplaceDynamics({ className }: { className?: string }) {
   return (
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
         <GridPattern id="tab1" offset={-1} />
         <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
-          <span className="uppercase mb-4">Secure</span>
+          <span className="uppercase mb-4">Programmable</span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
-            Economics
+            Professionalism
           </h4>
           <p className="text-lg text-secondary leading-normal">
-            A transparent, performant, and secure marketplace for coding work.
+            Trustless engineering labor primitives, a resilient global currency,
+            a composable digital economy
           </p>
-          <Button variant="primary" className="mt-8">
-            Coming Soon
-          </Button>
+          <Link
+            target="_blank"
+            href={`https://polkadot.js.org/apps/?rpc=wss%3A%2F%2F${process.env.NEXT_PUBLIC_ENGI_ENV}.engi.network%3A9944#/explorer`}
+          >
+            <Button variant="primary" className="mt-8">
+              Engi Explorer
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:p-8 sm:border border-white/30 lg:border-l-0">
@@ -190,7 +201,7 @@ function Tab1({ className }: { className?: string }) {
   );
 }
 
-function Tab2({ className }: { className?: string }) {
+function CommunityOwnership({ className }: { className?: string }) {
   return (
     <div className={classNames('flex flex-col lg:flex-row', className)}>
       <div className="relative">
@@ -202,11 +213,11 @@ function Tab2({ className }: { className?: string }) {
             {'Source & Governed'}
           </h4>
           <p className="text-lg text-secondary leading-normal">
-            Participants in the Engi Network own their destiny and the future of
-            technical work.
+            Powerful, non-speculative, user-owned DAO devoted to the future of
+            technical gig work
           </p>
-          <Button variant="primary" className="mt-8">
-            Coming Soon
+          <Button variant="disabled" className="mt-8" disabled={true}>
+            DAO Coming Soon
           </Button>
         </div>
       </div>
@@ -224,21 +235,24 @@ function Tab3({ className }: { className?: string }) {
         <GridPattern id="tab3" offset={-1} />
         <div className="h-full px-8 py-16 sm:py-8 flex flex-col items-start justify-center border border-white/30 sm:border-b-0 lg:!border-b-[1px]">
           <span className="uppercase mb-4">
-            Whoever
-            <br />
             Whenever
+            <br />
+            Wherever
           </span>
           <h4 className="font-bold text-4xl uppercase mb-4">
             <ForwardSlashSvg className="inline h-6 w-6 -mt-1.5 mr-2" />
-            Wherever
+            Whoever
           </h4>
           <p className="text-lg text-secondary leading-normal">
-            Anyone can start coding on Engi right away. No interviews, no
-            commutes.
+            A fully flexible work schedule - anonymous, limitless opportunity &
+            variety, available globally
           </p>
-          <Button variant="primary" className="mt-8">
-            Coming Soon
-          </Button>
+
+          <Link href="/bits" className="mt-8">
+            <Button variant="primary" className="!px-16">
+              Discover Bits
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="shrink-0 flex items-center justify-center basis-3/5 mt-8 sm:mt-0 sm:border border-white/30 lg:border-l-0 border children:!h-full">

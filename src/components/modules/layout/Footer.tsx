@@ -42,9 +42,9 @@ export default function Footer({ className }: FooterProps) {
               <LogoAltSvg className="h-14 fill-green-primary" />
             </span>
             <p className="text-secondary border-t border-gray-600 py-4 laptop:w-3/4 desktop:w-full">
-              Accessible and affordable software engineering engagements for
-              all. Leverage the Engi network to embolden your technology teams
-              or participate and earn cash writing code today.
+              Global digital construction is stymied by legacy processes and
+              professional barriers. Now in record time, Engi delivers on-demand
+              software custom built to your specification
             </p>
           </div>
           <div
@@ -79,6 +79,7 @@ export default function Footer({ className }: FooterProps) {
             </div>
             <div className="flex flex-col gap-y-4 tablet:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">
+                Learn More
                 Resources
               </h4>
               <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
@@ -93,7 +94,7 @@ export default function Footer({ className }: FooterProps) {
               </Link>
               <Link
                 target="_blank"
-                href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
               >
                 Documentation
               </Link>
@@ -102,10 +103,6 @@ export default function Footer({ className }: FooterProps) {
         </div>
         <div className="shrink-0 h-[1px] bg-white/30 w-full mt-16 mb-8" />
         <div className="max-w-page flex flex-col-reverse tablet:flex-row items-center justify-between gap-12">
-          <p className="text-xs text-tertiary">
-            Engi is building our Beta in public. Numbers and testimonials on
-            this early product page are for demonstration purposes.
-          </p>
           <SocialMedia className="text-4xl tablet:text-2xl" />
         </div>
       </div>

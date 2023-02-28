@@ -17,16 +17,21 @@ export default function AlternatingFeatures({
     <div className={classNames('', className)}>
       <div className="tablet:grid grid-cols-2 grid-flow-row-dense gap-x-12 items-center">
         <div className="mb-12 tablet:mb-0 col-start-1">
-          <h2 className="font-grifter text-3xl mb-4">
+          <h2 className="capitalize font-grifter text-3xl mb-4">
             Write code, <span className="text-green-primary">get paid</span>
           </h2>
           <p className="text-secondary">
-            No need to apply. Get paid instantly regardless of your time zone or
-            language.
+            No commutes, meetings, or interviews.{' '}
+            <span className="font-semibold">
+              Earn
+              <br />
+              instantly
+            </span>{' '}
+            building your favorite projects
           </p>
           <Link href="/bits">
             <Button className="mt-8" variant="primary">
-              Earn now
+              Build-to-Earn Now
             </Button>
           </Link>
         </div>
@@ -40,15 +45,17 @@ export default function AlternatingFeatures({
         )}
       >
         <div className="mb-4 tablet:mb-0">
-          <h2 className="font-grifter text-3xl mb-4">
-            Launch products <span className="text-green-primary">faster</span>
+          <h2 className="capitalize font-grifter text-3xl mb-4">
+            Developers <span className="text-green-primary">On-Demand</span>
           </h2>
           <p className="text-secondary">
-            No sourcing. No recruiting. Find worldwide talent instantly.
+            <span className="font-semibold">Hiring is legacy</span>. Describe
+            your products&apos; needs and fund rewards to unlock infinite
+            technical firepower
           </p>
           <Link href="/hire">
             <Button className="mt-8" variant="primary">
-              Post a Bit
+              Engage Developers
             </Button>
           </Link>
         </div>

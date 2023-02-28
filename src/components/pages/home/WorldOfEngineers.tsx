@@ -29,9 +29,11 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
           </span>
         </h2>
         <p className="text-secondary">
-          A marketplace for custom software. Engineers come for flexibility,
-          accessibility, and growth. Businesses come for new access to
-          programmers across the world.
+          A global community of thousands of veteran builders writing{' '}
+          <span className="font-semibold">
+            high-quality performant software
+          </span>
+          , 24/7
         </p>
         <PlaceholderButton className="mt-8" />
       </div>

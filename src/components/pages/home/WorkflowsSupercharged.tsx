@@ -18,6 +18,16 @@ import { SiGithub } from 'react-icons/si';
 type WorkflowsSuperchargedProps = {
   className?: string;
 };
+const COOKBOOK_BASE_URL =
+  'https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10';
+const ETHEREUM_SOLIDITY_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const SOLANA_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const INK_POLKADOT_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const FIGMA_PLUGIN_DOWNLOAD_URL = 'coming soon';
+const ENGI_GITHUB_APP = 'https://github.com/apps/engi-bot-github-app';
+const TYPESCRIPT_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const CSHARP_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const CPP_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
 
 export const integrations = [
   {
@@ -28,7 +38,7 @@ export const integrations = [
       </div>
     ),
     name: 'Ethereum & Solidity',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: ETHEREUM_SOLIDITY_DOCS_COOKBOOK,
   },
   {
     icon: (
@@ -37,8 +47,8 @@ export const integrations = [
         <Image className="h-8 w-auto" src={solanaSrc} alt="solana" />
       </div>
     ),
-    name: 'Ink & Solana',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    name: 'Solana',
+    href: SOLANA_DOCS_COOKBOOK,
   },
   {
     icon: (
@@ -48,34 +58,37 @@ export const integrations = [
       </div>
     ),
     name: 'Polkadot & Ink',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: INK_POLKADOT_DOCS_COOKBOOK,
   },
   {
     icon: <Image className="h-12 w-auto" src={figmaSrc} alt="figma" />,
     name: 'Figma',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: FIGMA_PLUGIN_DOWNLOAD_URL,
+    cta: 'Download Figma Plugin',
   },
   {
     icon: <SiGithub className="h-12 w-auto" />,
     name: 'GitHub',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: ENGI_GITHUB_APP,
+    cta: 'Authorize Github App',
   },
   {
     icon: (
       <Image className="h-12 w-auto" src={typescriptSrc} alt="typescript" />
     ),
     name: 'TypeScript',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: TYPESCRIPT_DOCS_COOKBOOK,
   },
   {
     icon: <Image className="h-12 w-auto" src={csharpSrc} alt="C#" />,
     name: 'C#',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: CSHARP_DOCS_COOKBOOK,
   },
   {
     icon: <Image className="h-12 w-auto" src={cplusplusSrc} alt="C++" />,
     name: 'C++',
-    href: 'https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10',
+    href: CPP_DOCS_COOKBOOK,
+    disabled: true,
   },
 ];
 
@@ -85,45 +98,52 @@ export default function WorkflowsSupercharged({
   return (
     <div className={classNames('flex flex-col items-center', className)}>
       <h2 className="font-grifter text-5xl mb-8 text-center">
-        Your Workflows Supercharged
+        Seamless Integrations
       </h2>
       <span className="text-secondary px-24 text-center">
-        {`
-          As an innovative technology businesses, you can seamlessly integrate
-          Engi's new crowdsourced programming into your existing workflows. Engi
-          supports all popular testing frameworks for languages such as Rust,
-          TypeScript, Python, C#, and more. Draft Ul engineering jobs straight
-          from your design tools or from your version control systems.
-          `.trim()}
+        Engi supports over a dozen languages and test frameworks as well as
+        integrations with design tools and version control systems providing
+        your team with varied and customizable entry points into&nbsp;
+        <span className="font-semibold underline text-white decoration-green-primary">
+          DeDev
+        </span>
       </span>
       {/* TODO: update with ENGIN-972 add integrations page */}
-      <Button className="mt-12" variant="primary">
-        See all integrations
+      <Button className="mt-12 capitalize" variant="primary">
+        Discover Integrations
       </Button>
       <div className="mt-16 grid grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-4 tablet:gap-8 w-full">
-        {integrations.map(({ icon, name, href }) => (
+        {integrations.map(({ icon, name, href, cta, disabled }) => (
           <Link
             href={href}
             target="_blank"
             key={name}
-            className={classNames(
-              'flex flex-col items-center p-6 gap-4',
-              'bg-secondary/40 backdrop-blur-[200px]',
-              'border border-image-gradient hover:border-image-gradient-green-primary group'
-            )}
+            className={classNames({
+              'flex flex-col items-center p-6 gap-4': true,
+              'bg-secondary/40 backdrop-blur-[200px]': true,
+              'border border-image-gradient group': true,
+              'hover:border-image-gradient-green-primary': !disabled,
+            })}
           >
             {icon}
             <div
-              className={classNames(
-                'relative flex items-center justify-center h-6 w-full',
-                'font-bold text-xs whitespace-nowrap',
-                'transition-transform group-hover:rotate-y-180'
-              )}
+              className={classNames({
+                'relative flex items-center justify-center h-6 w-full': true,
+                'font-bold text-xs whitespace-nowrap': true,
+                'transition-transform group-hover:rotate-y-180': !disabled,
+              })}
               style={{ perspective: 600, transformStyle: 'preserve-3d' }}
             >
-              <div className="absolute backface-hidden">{name}</div>
+              <div
+                className={classNames({
+                  'absolute backface-hidden': true,
+                  'text-gray-400': disabled,
+                })}
+              >
+                {disabled ? 'Coming Soon' : name}
+              </div>
               <div className="absolute backface-hidden rotate-y-180 text-green-primary">
-                View Documentation
+                {cta || 'View Documentation'}
               </div>
             </div>
           </Link>

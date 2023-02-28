@@ -30,8 +30,12 @@ export default function Hero({ className }: HeroProps) {
             'text-lg text-secondary'
           )}
         >
-          Write code and get paid instantly. Have a design? Engage worldwide
-          talent and build products faster.
+          A network for{' '}
+          <span className="decoration-green-primary">
+            flexible software development
+          </span>
+          &nbsp; — ship features, fix bugs, improve performance, and more with{' '}
+          <span className="text-green-primary font-medium">ENGI</span>
         </p>
       </div>
       <div

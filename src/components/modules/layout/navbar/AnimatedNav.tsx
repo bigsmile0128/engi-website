@@ -18,64 +18,59 @@ type MenuLinkProps = {
 
 const EARN_LINKS: MenuLinkProps[] = [
   {
-    title: 'C# Bits',
-    description: 'View Bits',
-    href: '/bits?language=C_SHARP',
+    title: 'Smart Contracts',
+    description: 'Solidity, Solana, ink!',
+    href: '/bits?language=SOLIDITY,SOLANG,INK',
   },
   {
-    title: 'JavaScript Bits',
-    description: 'View Bits',
-    href: '/bits?language=JAVA_SCRIPT',
+    title: 'Substrate, DotSama',
+    description: 'Build Multi-Chain',
+    href: '/bits?language=SUBSTRATE',
   },
   {
-    title: 'Python Bits',
-    description: 'View Bits',
-    href: '/bits?language=PYTHON',
-  },
-  {
-    title: 'Rust Bits',
-    description: 'View Bits',
-    href: '/bits?language=RUST',
+    title: 'Rust, C++, C SDKs',
+    description: 'Author Critical Libraries',
+    href: '/bits?language=RUST,C++,C',
   },
 ];
 
 const CREATE_LINKS = [
   {
-    title: 'Connect your repositories',
-    description: 'Add or remove repositories',
-    href: '/settings',
-  },
-  {
-    title: 'Create Bit',
-    description: 'Use our intuitive UI',
+    title: 'Create a Bit',
+    description: 'Easily on the Web',
     href: '/hire',
   },
   {
-    title: 'Create Bit with CLI',
-    description: 'Use our convenient CLI',
+    title: 'Github Authorization',
+    description: 'Access to Test & Open PRs',
+    href: '/settings',
+  },
+  {
+    title: 'CLI',
+    description: 'Use Engi Anywhere',
     href: 'https://github.com/engi-network/cli',
   },
 ];
 
 const LEARN_LINKS = [
   {
-    title: 'About',
-    description: 'Learn about our team',
-    href: '/about',
-  },
-  {
-    title: 'Litepaper',
-    description: 'Read our litepaper',
-    href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
-  },
-  {
     title: 'Blockchain',
-    description: 'View the blockchain',
+    description: 'Sign Transactions, Explorer',
     href: 'https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer',
   },
   {
+    title: 'Litepaper',
+    description: 'Network in Broad Strokes',
+    href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
+  },
+  {
+    title: 'About',
+    description: 'Our Mission, Our People',
+    href: '/about',
+  },
+  {
     title: 'Contact',
-    description: 'Contact our team',
+    description: 'Introductions, Feedback',
     href: '/contact',
   },
 ];
@@ -148,10 +143,13 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
               {hoverItem === 'BITS' ? (
                 <>
                   <motion.p layout="position" className="text-xl font-bold">
-                    Try engineering work ready for you
+                    <span className="text-green-primary">Flexibly Earn</span>{' '}
+                    Coding
                   </motion.p>
                   <motion.p layout="position" className="text-secondary mt-3">
-                    See what work is available to start now
+                    Fast payouts, anonymity, diverse challenges, global
+                    <br />
+                    opportunites, and the flexibility to work how you want
                   </motion.p>
                   <Link
                     href="/bits"
@@ -160,7 +158,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                   >
                     <motion.span
                       layout="position"
-                      className="flex items-center gap-3 font-bold underline"
+                      className="flex items-center gap-3 font-bold underline capitalize"
                     >
                       Browse all Bits
                       <RiArrowRightSLine className="h-5 w-5" />
@@ -170,20 +168,23 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
               ) : hoverItem === 'CREATE' ? (
                 <>
                   <motion.p layout="position" className="text-xl font-bold">
-                    On demand software engineering
+                    On-Demand{' '}
+                    <span className="text-green-primary">Professionals</span>
                   </motion.p>
                   <motion.p layout="position" className="text-secondary mt-3">
-                    Check out our guide on creating bits
+                    Expert developers start coding your needs immediately,
+                    <br />
+                    consistently providing correct and performant deliverables
                   </motion.p>
                   <Link
-                    href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                    href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
                     className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"
                   >
                     <motion.span
                       layout="position"
-                      className="flex items-center gap-3 font-bold underline"
+                      className="flex items-center gap-3 font-bold underline capitalize"
                     >
                       See guide
                       <RiArrowRightSLine className="h-5 w-5" />
@@ -193,20 +194,21 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
               ) : (
                 <>
                   <motion.p layout="position" className="text-xl font-bold">
-                    Learn more about engi
+                    Discover <span className="text-green-primary">Engi</span>
                   </motion.p>
                   <motion.p layout="position" className="text-secondary mt-3">
-                    Check out our guide
+                    Learn how decentralized development empowers <br />
+                    professional coders and accelerates technology companies
                   </motion.p>
                   <Link
-                    href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                    href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
                     className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"
                   >
                     <motion.span
                       layout="position"
-                      className="flex items-center gap-3 font-bold underline"
+                      className="flex items-center gap-3 font-bold underline capitalize"
                     >
                       See guide
                       <RiArrowRightSLine className="h-5 w-5" />
