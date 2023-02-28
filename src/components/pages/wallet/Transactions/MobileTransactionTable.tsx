@@ -1,11 +1,15 @@
-import React, { useMemo } from 'react';
 import classNames from 'classnames';
-import { Transaction, TransactionType } from '~/types';
-import EngiAmount from '~/components/EngiAmount';
-import TransactionTime from './TransactionTime';
-import TransactionTypeTag from './TransactionTypeTag';
-import TransactionState from './TransactionState';
+import dynamic from 'next/dynamic';
 import PolkadotSvg from 'public/img/wallet/polkadot.svg';
+import { useMemo } from 'react';
+import EngiAmount from '~/components/EngiAmount';
+import { Transaction, TransactionType } from '~/types';
+import TransactionState from './TransactionState';
+import TransactionTypeTag from './TransactionTypeTag';
+
+const TransactionTime = dynamic(() => import('./TransactionTime'), {
+  ssr: false,
+});
 
 type MobileTransactionTableProps = {
   className?: string;

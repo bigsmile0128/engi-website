@@ -111,8 +111,8 @@ export type BitsQueryArguments = {
   creator?: string;
   language?: Language[];
   limit: number;
-  maxFunding?: number;
-  minFunding?: number;
+  maxFunding?: string;
+  minFunding?: string;
   orderByDirection?: OrderByDirection;
   orderByProperty?: BitsOrderByProperty;
   search?: string;

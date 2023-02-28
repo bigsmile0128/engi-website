@@ -58,6 +58,7 @@ export default function EngiAmount({
           className={classNames(
             {
               'text-secondary': !isLoading && displayValue === 'N/A',
+              'text-red-primary': displayValue.startsWith('-'),
             },
             valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
           )}

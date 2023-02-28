@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
 import { AiOutlineLoading } from '@react-icons/all-files/ai/AiOutlineLoading';
-import axios, { AxiosError } from 'axios';
-import { Mutation, useMutation } from 'react-query';
-import classNames from 'classnames';
 import * as Sentry from '@sentry/react';
+import axios, { AxiosError } from 'axios';
+import classNames from 'classnames';
+import { useState } from 'react';
+import { useMutation } from 'react-query';
 
-import Button from '~/components/global/Button/Button';
-import EmailModal from './EmailModal';
 import { MdCheck } from '@react-icons/all-files/md/MdCheck';
 import { MdErrorOutline } from '@react-icons/all-files/md/MdErrorOutline';
+import Button from '~/components/global/Button/Button';
 import { SENDGRID_LIST_NAME } from '~/types';
 import {
   emitJoinNewsletterErrorEvent,
   emitJoinNewsletterEvent,
 } from '~/utils/analytics/events';
+import EmailModal from './EmailModal';
 
 interface EmailRegistrationProps {
   className?: string;
@@ -74,7 +74,7 @@ export default function EmailRegistration({
   };
 
   return (
-    <div className={classNames('flex flex-col', className)}>
+    <div className={classNames('flex flex-col w-full laptop:w-min', className)}>
       <form
         // stack vertically on mobile devices
         className="flex flex-col xs:flex-row gap-y-6 xs:gap-y-0 w-full"
@@ -87,10 +87,10 @@ export default function EmailRegistration({
           <input
             id="email-address"
             className={classNames(
-              'w-full border border-white/30 xs:border-r-0 p-4 bg-[#232323]',
-              'text-white placeholder:text-tertiary text-sm',
+              'w-full border border-white xs:border-r-0 p-4 bg-secondary',
+              'text-white placeholder:text-tertiary text-base',
               'outline-none focus-visible:ring-1',
-              'h-full',
+              'h-full laptop:w-[220px] desktop:w-[260px]',
               registerMutation.isError
                 ? 'border-red-400 fill-red-400 focus-visible:ring-red-300 !bg-[#f8717122]'
                 : '',
