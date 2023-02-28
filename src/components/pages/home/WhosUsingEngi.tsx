@@ -14,32 +14,22 @@ type WhosUsingEngiProps = {
 const testimonials = [
   {
     name: 'bobbyjones3',
-    subtitle: 'Rust Bit',
+    subtitle: 'Solidity Contract',
     text: "There's no better way to find new bits and get paid quickly.",
   },
   {
     name: 'squirtle',
-    subtitle: 'Python Bit',
+    subtitle: 'Python Script',
     text: "It's easy to set up with my secure wallet and quick to get started.",
   },
   {
-    name: 'the_chemist',
-    subtitle: 'React Bit',
-    text: 'I get to work with exactly the specs I need for a good design.',
-  },
-  {
     name: 'kimhajin',
-    subtitle: 'Rust Bit',
+    subtitle: 'Prompt',
     text: 'The tests tell me all I need to know for writing the code.',
   },
   {
-    name: 'lunchbot',
-    subtitle: 'Python Bit',
-    text: "I didn't even need to communicate with the bit poster and got paid!",
-  },
-  {
     name: 'cassy_jones',
-    subtitle: 'React Bit',
+    subtitle: 'React Component',
     text: 'I wrote code and get paid all in less than a couple hours.',
   },
 ];

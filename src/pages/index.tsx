@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       <AlternatingFeatures className="max-w-page mt-24" />
       <WorldOfEngineers className="max-w-page mt-32 lg:mt-40" />
       <Features className="mt-32 lg:mt-40" />
-      <WhosUsingEngi className="max-w-page mt-24 md:mt-0" />
+      {/*<WhosUsingEngi className="max-w-page mt-24 md:mt-0" />*/}
       <WorkflowsSupercharged className="max-w-page mt-24" />
       <CallToAction className="mt-32" />
     </div>

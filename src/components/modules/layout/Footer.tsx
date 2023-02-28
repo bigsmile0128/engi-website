@@ -25,9 +25,9 @@ export default function Footer({ className }: FooterProps) {
               <SocialMedia className="hidden md:flex lg:hidden" />
             </span>
             <p className="border-t border-gray-600 py-4 md:w-3/4 lg:w-full">
-              Accessible and affordable software engineering engagements for
-              all. Leverage the Engi network to embolden your technology teams
-              or participate and earn cash writing code today.
+              Global digital construction is stymied by legacy processes and
+              professional barriers. Now in record time, Engi delivers on-demand
+              software custom built to your specification
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-x-16 gap-y-12 mt-8 md:mt-16 lg:mt-0 whitespace-nowrap">
@@ -36,34 +36,27 @@ export default function Footer({ className }: FooterProps) {
                 Earn $ENGI
               </h4>
               <Link href="/bits">Search Bits</Link>
-              <Link href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
+              <Link href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10">
                 Documentation
               </Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
-              <h4 className="text-lg font-bold text-green-primary">
-                Buy $ENGI
-              </h4>
+              <h4 className="text-lg font-bold text-green-primary">Buy Code</h4>
               <Link href="/signup">Get Started</Link>
               <Link href="/hire">Post a Bit</Link>
             </div>
             <div className="flex flex-col gap-y-4 sm:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">
-                For Investors
+                Learn More
               </h4>
               <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                 Litepaper
               </Link>
-              <Link href="/press">Press</Link>
               <Link href="/about">{'Team & Governance'}</Link>
             </div>
           </div>
         </div>
         <SocialMedia className="md:hidden lg:flex border-t border-gray-600 justify-end pt-8 mt-24" />
-        <p className="text-xs text-gray-600 mt-12 lg:mt-0">
-          Engi is building our Beta in public. Numbers and testimonials on this
-          early product page are for demonstration purposes.
-        </p>
       </div>
     </div>
   );

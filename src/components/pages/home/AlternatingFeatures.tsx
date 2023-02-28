@@ -30,8 +30,8 @@ export default function AlternatingFeatures({
             building your favorite projects
           </p>
           <Link href="/bits">
-            <Button className="capitalize mt-8" variant="primary">
-              Earn Now
+            <Button className="mt-8" variant="primary">
+              Build-to-Earn Now
             </Button>
           </Link>
         </div>
@@ -49,13 +49,13 @@ export default function AlternatingFeatures({
             Developers <span className="text-green-primary">On-Demand</span>
           </h2>
           <p className="text-secondary">
-            <span className="font-semibold">Hiring is legacy</span>. Simply
-            upload your products&apos; technical requirements to unlock endless
-            talent
+            <span className="font-semibold">Hiring is legacy</span>. Describe
+            your products&apos; needs and fund rewards to unlock infinite
+            technical firepower
           </p>
           <Link href="/hire">
             <Button className="mt-8" variant="primary">
-              Post a Bit
+              Engage Developers
             </Button>
           </Link>
         </div>

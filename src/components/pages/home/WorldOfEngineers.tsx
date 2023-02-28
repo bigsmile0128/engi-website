@@ -29,7 +29,7 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
           </span>
         </h2>
         <p className="text-secondary">
-          A global community of top engineers dedicated to writing{' '}
+          A global community of thousands of veteran builders writing{' '}
           <span className="font-semibold">
             high-quality performant software
           </span>

@@ -54,9 +54,9 @@ const CREATE_LINKS = [
 
 const LEARN_LINKS = [
   {
-    title: 'About',
-    description: 'Our Mission, Our People',
-    href: '/about',
+    title: 'Blockchain',
+    description: 'Sign Transactions, Explorer',
+    href: 'https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer',
   },
   {
     title: 'Litepaper',
@@ -64,9 +64,9 @@ const LEARN_LINKS = [
     href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
   },
   {
-    title: 'Blockchain',
-    description: 'Sign Transactions, Explorer',
-    href: 'https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer',
+    title: 'About',
+    description: 'Our Mission, Our People',
+    href: '/about',
   },
   {
     title: 'Contact',
