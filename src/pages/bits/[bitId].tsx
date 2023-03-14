@@ -99,53 +99,63 @@ async function fetchBitDetails(bitId) {
     query: gql`
       query BitDetails($bitId: UInt64!) {
         job(id: $bitId) {
-          id
-          creator
-          funding
-          repository {
-            url
-            branch
-            commit
-            readme
-            organization
+          job {
+            id
+            creator
+            funding
+            repository {
+              url
+              branch
+              commit
+              readme
+              organization
+              name
+              fullName
+            }
+            language
             name
-            fullName
-          }
-          language
-          name
-          tests {
-            ...test
-          }
-          requirements {
-            isEditable
-            isAddable
-            isDeletable
-          }
-          solution {
-            solutionId
-            jobId
-            author
-            patchUrl
-            attempt {
-              attemptId
-              attempter
-              tests {
-                ...testAttempt
+            tests {
+              ...test
+            }
+            requirements {
+              isEditable
+              isAddable
+              isDeletable
+            }
+            solution {
+              solutionId
+              jobId
+              author
+              patchUrl
+              attempt {
+                attemptId
+                attempter
+                tests {
+                  ...testAttempt
+                }
               }
             }
+            createdOn {
+              ...blockReference
+            }
+            updatedOn {
+              ...blockReference
+            }
+            status
+            attemptCount
+            solutionUserCount
+            averageProgress {
+              numerator
+              denominator
+            }
           }
-          createdOn {
-            ...blockReference
-          }
-          updatedOn {
-            ...blockReference
-          }
-          status
-          attemptCount
-          solutionUserCount
-          averageProgress {
-            numerator
-            denominator
+          creatorUserInfo {
+            address
+            display
+            profileImageUrl
+            createdOn
+            createdJobsCount
+            solvedJobsCount
           }
         }
       }
@@ -173,5 +183,16 @@ async function fetchBitDetails(bitId) {
     },
   });
 
-  return response.data?.data?.job ?? null;
+  const data = response.data?.data?.job ?? {};
+
+  const job = {
+    ...data?.job,
+    creatorUserInfo: {
+      ...data?.creatorUserInfo,
+    },
+  };
+
+  console.log('job', job);
+
+  return job;
 }
