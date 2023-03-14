@@ -17,7 +17,7 @@ export default function BottomCallToAction({
     <div className={classNames('relative', className)}>
       <GridPattern id="freelancer-bottom-cta" offset={-1} />
       <div className="max-w-page max-w-[540px] w-full flex flex-col py-20">
-        <p className="font-grifter text-4xl text-center leading-[3rem]">
+        <p className="font-grifter text-4xl tablet:text-5xl text-center leading-[3rem]">
           Join our community
         </p>
         <span className="mt-8 text-lg text-secondary text-center tracking-wide">
