@@ -216,7 +216,7 @@ function CommunityOwnership({ className }: { className?: string }) {
             Powerful, non-speculative, user-owned DAO devoted to the future of
             technical gig work
           </p>
-          <Button variant="disabled" className="mt-8" disabled={true}>
+          <Button className="mt-8" disabled={true}>
             DAO Coming Soon
           </Button>
         </div>

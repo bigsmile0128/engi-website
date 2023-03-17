@@ -39,5 +39,6 @@ module.exports = {
     }),
     require('tailwindcss-debug-screens'),
     require('@tailwindcss/line-clamp'),
+    require('@headlessui/tailwindcss')
   ],
 };

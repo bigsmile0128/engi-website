@@ -1,5 +1,6 @@
 import { gql } from 'graphql-request';
 import { useMutation } from 'react-query';
+import { AccountExistenceResult } from '~/types';
 import useAxios from './useAxios';
 
 export default function useAccountExistence() {
@@ -27,11 +28,11 @@ export default function useAccountExistence() {
       );
     }
 
-    const accountExistence: Record<string, boolean> = {};
+    const accountExistence: Record<string, AccountExistenceResult> = {};
     (data?.data?.accounts?.existence ?? [])
       .filter(Boolean)
       .forEach(({ address, exists }) => {
-        accountExistence[address] = exists;
+        accountExistence[address.Id] = exists;
       });
 
     return accountExistence;

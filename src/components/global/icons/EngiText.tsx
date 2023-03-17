@@ -1,3 +1,9 @@
-import EngiText from 'public/img/engi_text.svg';
+import EngiTextSvg from 'public/img/engi-text.svg';
 
-export default EngiText;
+export default function EngiText(props) {
+  return (
+    <div {...props}>
+      <EngiTextSvg />
+    </div>
+  );
+}

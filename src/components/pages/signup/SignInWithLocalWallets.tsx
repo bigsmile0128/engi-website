@@ -1,12 +1,14 @@
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { RiRefreshLine } from 'react-icons/ri';
+import { RiAlarmWarningLine, RiRefreshLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
+import { AccountExistenceResult } from '~/types';
 import { useLoginUser } from '~/utils/auth/api';
 import { useUser } from '~/utils/contexts/userContext';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
-import SubstrateAccountButton from './SubstrateAccountButton';
+import SubstrateAccountItem from './SubstrateAccountItem';
 
 type SignInWithLocalWalletsProps = {
   className?: string;
@@ -17,6 +19,7 @@ export default function SignInWithLocalWallets({
   className,
   onSuccess,
 }: SignInWithLocalWalletsProps) {
+  const router = useRouter();
   // load all accounts from all extensions the user wishes to connect
   const {
     isLoading: isLoadingAccounts,
@@ -98,7 +101,7 @@ export default function SignInWithLocalWallets({
             <RiRefreshLine className="animate-spin" />
           </Button>
           {Array.from({ length: 1 }).map((_, i) => (
-            <SubstrateAccountButton key={i} isLoading />
+            <SubstrateAccountItem key={i} isLoading />
           ))}
         </>
       ) : substrateAccounts?.length > 0 ? (
@@ -111,27 +114,69 @@ export default function SignInWithLocalWallets({
             <span>Refresh</span>
             <RiRefreshLine />
           </Button>
-          {substrateAccounts?.map((account) => (
-            <SubstrateAccountButton
-              key={account.address}
-              account={account}
-              onClick={() =>
-                login({
-                  address: account.address,
-                  source: account.meta.source,
-                  display: account.meta.name,
-                })
-              }
-            />
-          ))}
+          <div className="flex flex-col divide-y divide-[#AEB5C7]/30">
+            {substrateAccounts
+              ?.sort((a, b) => {
+                // sort by registered, unconfirmed, not registered
+                if (
+                  a?.exists === AccountExistenceResult.YES &&
+                  b?.exists !== AccountExistenceResult.YES
+                ) {
+                  return -1;
+                } else if (
+                  a?.exists !== AccountExistenceResult.YES &&
+                  b?.exists === AccountExistenceResult.YES
+                ) {
+                  return 1;
+                } else if (
+                  a?.exists === AccountExistenceResult.UNCONFIRMED &&
+                  b?.exists !== AccountExistenceResult.UNCONFIRMED
+                ) {
+                  return -1;
+                } else if (
+                  a?.exists !== AccountExistenceResult.UNCONFIRMED &&
+                  b?.exists === AccountExistenceResult.UNCONFIRMED
+                ) {
+                  return 1;
+                } else {
+                  return 0;
+                }
+              })
+              ?.map((account) => (
+                <SubstrateAccountItem
+                  key={account.address}
+                  account={account}
+                  onClick={() => {
+                    if (account?.exists === AccountExistenceResult.YES) {
+                      login({
+                        address: account.address,
+                        source: account.meta.source,
+                        display: account.meta.name,
+                      });
+                    } else if (
+                      account?.exists === AccountExistenceResult.UNCONFIRMED
+                    ) {
+                      router.push(
+                        `/signup/email?address=${account?.address}&initial-send=true`
+                      );
+                    } else {
+                      router.push(`/signup?address=${account?.address}`);
+                    }
+                  }}
+                />
+              ))}
+          </div>
         </>
       ) : (
-        <>
-          <span className="text-xl text-red-400">No connected accounts.</span>
+        <div className="flex flex-col items-center bg-black/20 w-full p-8">
+          <RiAlarmWarningLine className="h-20 w-20" />
+          <span className="text-xl text-secondary mt-4 text-center">
+            No connected accounts.
+          </span>
           <Button className="mt-8" onClick={() => refetchAccounts()}>
             Refresh
           </Button>
-        </>
+        </div>
       )}
     </div>
   );

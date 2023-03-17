@@ -1,5 +1,6 @@
 import { useQuery } from 'react-query';
-import { SubstrateAccount } from '~/types';
+import { AccountExistenceResult, SubstrateAccount } from '~/types';
+import pMinDelay from 'p-min-delay';
 import { emitConnectedPolkadotExtensionAnalyticsEvent } from '../analytics/events';
 import useAccountExistence from './useAccountExistence';
 
@@ -20,7 +21,8 @@ export default function useSubstrateAccounts() {
       const { web3Accounts, web3Enable } = require('@polkadot/extension-dapp');
 
       // this needs to be called first, before other requests
-      const enabledExtensions = await web3Enable('Engi');
+      // add 1 sec min delay to prevent flash of loader
+      const enabledExtensions: any = await pMinDelay(web3Enable('Engi'), 1000);
 
       if (!enabledExtensions.length)
         throw new Error('No connected extension found');
@@ -31,12 +33,16 @@ export default function useSubstrateAccounts() {
 
       const addresses = accounts.map((account) => account.address);
 
-      // TODO: remove try/catch when ENGIN-805 is fixed to not require auth
-      let accountExistence: Record<string, boolean> = {};
+      let accountExistence: Record<string, AccountExistenceResult> = {};
       try {
         accountExistence = await existMutation.mutateAsync(addresses);
+        accounts.forEach((account) => {
+          account.exists =
+            accountExistence[account.address] ?? AccountExistenceResult.NO;
+        });
+        accounts.sort((a, b) => Number(b.exists) - Number(a.exists));
       } catch (error) {
-        console.warn(error?.message || 'Failed to check existence.');
+        console.warn(error?.message || 'Failed to check account existence.');
       }
 
       return accounts;

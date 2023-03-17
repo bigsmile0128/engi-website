@@ -39,7 +39,7 @@ export default function Navbar({ className }: NavbarProps) {
         ) : (
           <>
             <BlockchainHealth className="hidden laptop:flex" isStacked />
-            <Link href="/signup" className="hidden laptop:flex">
+            <Link href="/login" className="hidden laptop:flex">
               <Button className="ml-8 !text-green-primary">Get Started</Button>
             </Link>
           </>
@@ -170,7 +170,7 @@ export default function Navbar({ className }: NavbarProps) {
                 ) : (
                   <>
                     <BlockchainHealth className="mt-auto mx-auto" isStacked />
-                    <Link href="/signup" onClick={() => setIsOpen(false)}>
+                    <Link href="/login" onClick={() => setIsOpen(false)}>
                       <button
                         className={classNames(
                           'mt-8 py-4 w-full text-white font-bold',

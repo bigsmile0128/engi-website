@@ -58,7 +58,7 @@ export default function Confirm() {
 
   useEffect(() => {
     if (emailConfirmed) {
-      pushRoute('/signup');
+      pushRoute('/login');
     }
   }, [emailConfirmed, pushRoute]);
 
