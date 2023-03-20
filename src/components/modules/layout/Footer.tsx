@@ -1,10 +1,9 @@
-import React from 'react';
 import classNames from 'classnames';
 
-import LogoAltSvg from 'public/img/home/logo_alt.svg';
-import SocialMedia from './SocialMedia';
 import Link from 'next/link';
+import LogoAltSvg from 'public/img/home/logo_alt.svg';
 import EmailRegistration from '~/components/pages/home/EmailRegistration';
+import SocialMedia from './SocialMedia';
 
 interface FooterProps {
   className?: string;
@@ -79,8 +78,7 @@ export default function Footer({ className }: FooterProps) {
             </div>
             <div className="flex flex-col gap-y-4 tablet:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">
-                Learn More
-                Resources
+                Learn More Resources
               </h4>
               <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
                 Litepaper

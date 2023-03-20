@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useState, Fragment } from 'react';
-import classNames from 'classnames';
 import { Tab } from '@headlessui/react';
-import GridPattern from '~/components/global/GridPattern/GridPattern';
-import Button from '~/components/global/Button/Button';
-import useEmblaCarousel from 'embla-carousel-react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import ForwardSlashSvg from '~/components/global/icons/forward-slash.svg';
+import classNames from 'classnames';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import TokenContractSvg from 'public/img/home/features1.svg';
 import featuresSrc2 from 'public/img/home/features2.png';
 import featuresSrc3 from 'public/img/home/features3.png';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Fragment, useCallback, useEffect, useState } from 'react';
+import Button from '~/components/global/Button/Button';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
+import ForwardSlashSvg from '~/components/global/icons/forward-slash.svg';
 
 interface FeaturesProps {
   className?: string;
@@ -216,7 +216,7 @@ function CommunityOwnership({ className }: { className?: string }) {
             Powerful, non-speculative, user-owned DAO devoted to the future of
             technical gig work
           </p>
-          <Button variant="disabled" className="mt-8" disabled={true}>
+          <Button className="mt-8" disabled={true}>
             DAO Coming Soon
           </Button>
         </div>
