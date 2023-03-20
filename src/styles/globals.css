@@ -27,6 +27,37 @@
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-primary;
   }
 
+  .hex {
+    display: inline-block;
+  }
+
+  .hex-bg-primary::before {
+    background: radial-gradient(
+      160.49% 199.62% at 107.22% -37.5%,
+      #f27b50 0%,
+      #f27b50 16.84%,
+      #ba54ec 52.92%,
+      #78e3b2 78.53%,
+      #65feb7 98.88%
+    );
+  }
+
+  .hex-bg-secondary::before {
+    background: linear-gradient(
+      144.36deg,
+      #3c707d 6.17%,
+      #328897 31%,
+      #d59105 100%
+    );
+  }
+
+  .hex::before {
+    content: '';
+    display: block;
+    padding-top: 90%;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
   /* https://www.fourkitchens.com/blog/article/fix-scrolling-performance-css-will-change-property/ */
   /* https://dev.opera.com/articles/css-will-change-property/ */
   .bg-site {
@@ -50,6 +81,17 @@
   }
   .border-image-gradient-green-primary {
     border-image: linear-gradient(to right, #65feb7, #65feb71a) 1;
+  }
+  .company-gradient-mobile {
+    background: linear-gradient(30deg, rgba(241, 140, 67, 0.8) 0%, #34b888 70%);
+  }
+  .company-gradient-tablet {
+    background: linear-gradient(
+      60deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(241, 140, 67, 0.6) 60%,
+      rgb(52, 184, 136, 0.7) 100%
+    );
   }
 }
 
