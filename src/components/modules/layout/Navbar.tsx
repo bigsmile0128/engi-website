@@ -16,6 +16,7 @@ import UserInfo from './navbar/UserInfo';
 import { RiNotification4Line } from 'react-icons/ri';
 import Avvvatars from 'avvvatars-react';
 import { isDev } from '~/utils';
+import { HiChevronRight } from 'react-icons/hi';
 
 interface NavbarProps {
   className?: string;
@@ -76,6 +77,15 @@ export default function Navbar({ className }: NavbarProps) {
                     </Menu.Item>
                   ))}
                 </div>
+                <Menu.Item>
+                  <Link
+                    href="/notifications"
+                    className="w-full flex items-center justify-end gap-2 p-6 font-bold border-t border-white/30 hover:bg-secondary/40"
+                  >
+                    View All Notifications
+                    <HiChevronRight className="h-5 w-5" />
+                  </Link>
+                </Menu.Item>
               </Menu.Items>
             </Menu>
           </div>
