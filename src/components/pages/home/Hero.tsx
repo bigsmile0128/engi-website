@@ -65,7 +65,7 @@ export default function Hero({ className }: HeroProps) {
         </div>
         <div className={classNames('row-start-1 lg:col-start-2', '-mt-6')}>
           <Image src={sitePreviewImg} alt="site-preview" sizes="50vw" />
-          <Link href="/signup">
+          <Link href="/login">
             <Button className="w-full mt-8 mb-12 sm:hidden">Get Started</Button>
           </Link>
         </div>

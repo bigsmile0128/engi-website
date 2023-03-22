@@ -147,12 +147,12 @@ export type UserGithubEnrollment = {
 
 export type SubstrateAccount = {
   address: string;
+  exists?: AccountExistenceResult;
   meta: {
     genesisHash?: string;
     name: string;
     source: string;
   };
-  registered?: boolean;
   type: string;
 };
 
@@ -165,4 +165,10 @@ export interface DFormValue {
 export enum SENDGRID_LIST_NAME {
   CONTACT_US = 'contact-us',
   ENGI_NEWSLETTER = 'engi-newsletter',
+}
+
+export enum AccountExistenceResult {
+  NO = 'NO',
+  UNCONFIRMED = 'UNCONFIRMED',
+  YES = 'YES',
 }

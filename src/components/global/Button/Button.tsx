@@ -6,6 +6,7 @@ import Tag from '~/components/global/Tag/Tag';
 type ButtonProps = {
   inProgress?: boolean;
   isLoading?: boolean;
+  size?: 'large' | 'default' | 'small';
   variant?: 'primary' | 'default' | 'tag' | 'link';
 };
 
@@ -16,8 +17,35 @@ export default function Button({
   variant = 'default',
   isLoading,
   inProgress,
+  size = 'default',
   ...props
 }: HTMLMotionProps<'button'> & ButtonProps) {
+  let paddingX: string;
+  let paddingY: string;
+  let textSize: string;
+  switch (size) {
+    case 'small':
+      paddingX = 'px-4';
+      paddingY = 'py-2';
+      textSize = 'text-sm';
+      break;
+    case 'large':
+      paddingX = 'px-10';
+      paddingY = 'py-6';
+      textSize = 'text-lg';
+      break;
+    default:
+      paddingX = 'px-8';
+      paddingY = 'py-4';
+      textSize = 'text-base';
+  }
+
+  const sizeClasses = classNames({
+    [paddingX]: !/px-/.test(className),
+    [paddingY]: !/py-/.test(className),
+    [textSize]: !/text-(xs|sm|base|lg|.?xl)/.test(className),
+  });
+
   if (variant === 'primary') {
     // underline animation on hover
     const hoverClasses = classNames(
@@ -29,10 +57,11 @@ export default function Button({
     return (
       <motion.button
         className={classNames(
-          'relative bg-white px-8 py-4',
+          'relative bg-white',
           'font-bold text-black disabled:text-gray-400',
           'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
           'border-t border-t-white border-b border-b-transparent',
+          sizeClasses,
           // hover and active states
           disabled || isLoading || inProgress ? '' : hoverClasses,
           isLoading ? 'skeleton rounded-none text-transparent' : '',
@@ -90,10 +119,11 @@ export default function Button({
   return (
     <motion.button
       className={classNames(
-        'relative bg-black/20 px-8 py-4',
+        'relative bg-black/20',
         'font-bold text-white disabled:text-gray-400',
         'border border-white',
         'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+        sizeClasses,
         // hover and active states
         disabled || isLoading
           ? 'cursor-default'

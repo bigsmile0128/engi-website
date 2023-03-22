@@ -39,6 +39,7 @@ type SignupProps = {
 
 export default function Signup({ className }: SignupProps) {
   const router = useRouter();
+  const address = (router.query.address ?? '').toString();
   const [account, setAccount] = useState<SubstrateAccount | null>(null);
   const [email, setEmail] = useState('');
   const {
@@ -51,6 +52,20 @@ export default function Signup({ className }: SignupProps) {
 
   const registerMutation = useRegisterUser();
 
+  // auto-select address if coming from login page
+  useEffect(() => {
+    if (
+      substrateAccounts &&
+      address &&
+      substrateAccounts.find((account) => account.address === address)
+    ) {
+      setAccount(
+        substrateAccounts.find((account) => account.address === address)
+      );
+    }
+  }, [substrateAccounts, address]);
+
+  // handle register flow
   useEffect(() => {
     if (registerMutation.error?.message) {
       toast.error(registerMutation.error.message);

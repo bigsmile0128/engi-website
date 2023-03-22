@@ -6,7 +6,7 @@ import '!style-loader!css-loader!postcss-loader!../src/styles/globals.css';
 import React from 'react';
 
 import * as NextImage from 'next/image';
-import * as NextFutureImage from 'next/future/image';
+import * as NextFutureImage from 'next/image';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { RouterContext } from 'next/dist/shared/lib/router-context'; // next 12
 import { withScreenshot } from 'storycap-engi';
