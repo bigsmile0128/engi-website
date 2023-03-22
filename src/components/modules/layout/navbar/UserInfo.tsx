@@ -99,12 +99,12 @@ export default function UserInfo({
         <div className="flex items-center gap-x-4">
           <EngiAmount
             iconClassName="!h-4 !w-4"
-            valueClassName="!font-default font-bold text-base mb-0 ml-2"
+            valueClassName="!font-default font-bold text-base mb-0 ml-1"
             isLoading={isLoadingBalance && !hasLoadedBalanceAtLeastOnce}
             value={balance}
           />
           <div className="h-5 w-[1px] bg-gray-400"></div>
-          <BlockchainHealth className="!gap-x-2" {...blockchainHealthProps} />
+          <BlockchainHealth className="!gap-x-1" {...blockchainHealthProps} />
         </div>
       </div>
     </div>

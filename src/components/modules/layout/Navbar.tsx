@@ -1,4 +1,4 @@
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Menu, Transition } from '@headlessui/react';
 import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
@@ -21,6 +21,24 @@ interface NavbarProps {
   className?: string;
 }
 
+const notifications = [
+  {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    unread: true,
+  },
+  {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt.',
+    unread: false,
+  },
+  {
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris.',
+    unread: false,
+  },
+];
+
 export default function Navbar({ className }: NavbarProps) {
   const { user, setUser } = useUser();
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +52,34 @@ export default function Navbar({ className }: NavbarProps) {
         </Link>
         {/* DESKTOP nav */}
         <AnimatedNav className="hidden laptop:flex ml-4 mr-auto" />
+        {isDev() && (
+          <div className="hidden laptop:block mr-4">
+            <Menu>
+              <Menu.Button className="relative rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus-green-primary">
+                <span className="sr-only">Open notifications</span>
+                <RiNotification4Line className="h-6 w-6" aria-hidden="true" />
+                <div className="absolute bg-red-primary h-2 w-2 top-1 right-1 rounded-full" />
+              </Menu.Button>
+              <Menu.Items className="absolute bg-secondary/40 backdrop-blur-[100px] right-0 w-[400px] translate-y-4">
+                <p className="w-full flex items-center justify-between p-6 border-b border-white/30">
+                  <span className="font-grifter text-xl -mb-2">
+                    Notifications
+                  </span>
+                  <button className="text-sm text-secondary underline">
+                    Mark all as read
+                  </button>
+                </p>
+                <div className="w-full divide-y divide-white/30">
+                  {notifications.map(({ description, unread }) => (
+                    <Menu.Item key={description}>
+                      <Notification description={description} unread={unread} />
+                    </Menu.Item>
+                  ))}
+                </div>
+              </Menu.Items>
+            </Menu>
+          </div>
+        )}
         {user ? (
           <UserInfo
             className="hidden laptop:flex"
@@ -50,7 +96,7 @@ export default function Navbar({ className }: NavbarProps) {
         )}
         {/* MOBILE notifications button */}
         {isDev() && (
-          <div className="ml-auto tablet:hidden">
+          <div className="ml-auto laptop:hidden">
             <button
               className="relative rounded-md p-2 inline-flex items-center justify-center text-white hover:text-gray-300 focus-green-primary"
               onClick={() => setIsNotificationsOpen(true)}
@@ -250,57 +296,20 @@ export default function Navbar({ className }: NavbarProps) {
                     Mark all as read
                   </button>
                 </div>
-                <div className="bg-secondary/40 backdrop-blur-[100px] p-6 flex items-start gap-6">
-                  <div className="relative shrink-0">
-                    <Avvvatars value={'MB'} size={48} />
-                    <div className="absolute h-2 w-2 bg-green-primary rounded-full translate-y-center -translate-x-full -left-2" />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <span className="text-sm">
-                      <span className="font-bold">Michael Betten posted</span>
-                      {': '}
-                      <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vivamus in elit vel mauris tincidunt porta.
-                      </span>
-                    </span>
-                    <span className="text-sm text-secondary">40 min ago</span>
-                  </div>
-                </div>
+                <Notification
+                  key={notifications[0].description}
+                  description={notifications[0].description}
+                  unread
+                />
                 <p className="mt-4 font-grifter text-xl p-6 pb-0">Earlier</p>
                 <div className="flex flex-col w-full divide-y divide-white/30">
-                  <div className="p-6 flex items-start gap-6">
-                    <div className="shrink-0">
-                      <Avvvatars value={'MB'} size={48} />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <span className="text-sm">
-                        <span className="font-bold">Michael Betten posted</span>
-                        {': '}
-                        <span>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Vivamus in elit vel mauris tincidunt porta.
-                        </span>
-                      </span>
-                      <span className="text-sm text-secondary">40 min ago</span>
-                    </div>
-                  </div>
-                  <div className="p-6 flex items-start gap-6">
-                    <div className="shrink-0">
-                      <Avvvatars value={'MB'} size={48} />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <span className="text-sm">
-                        <span className="font-bold">Michael Betten posted</span>
-                        {': '}
-                        <span>
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Vivamus in elit vel mauris tincidunt porta.
-                        </span>
-                      </span>
-                      <span className="text-sm text-secondary">40 min ago</span>
-                    </div>
-                  </div>
+                  {notifications.slice(1).map(({ description, unread }) => (
+                    <Notification
+                      key={description}
+                      description={description}
+                      unread={unread}
+                    />
+                  ))}
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -308,5 +317,37 @@ export default function Navbar({ className }: NavbarProps) {
         </Dialog>
       </Transition>
     </header>
+  );
+}
+
+type NotificationProps = {
+  className?: string;
+  description: string;
+  unread: boolean;
+};
+
+function Notification({ className, description, unread }: NotificationProps) {
+  return (
+    <div
+      className={classNames(
+        'p-6 flex items-start gap-6 hover:bg-secondary/40',
+        className
+      )}
+    >
+      <div className="relative shrink-0">
+        <Avvvatars value="MB" size={48} />
+        {unread && (
+          <div className="absolute h-2 w-2 bg-green-primary rounded-full translate-y-center -translate-x-full -left-2" />
+        )}
+      </div>
+      <div className="flex flex-col gap-2">
+        <span className="text-sm">
+          <span className="font-bold">Michael Betten posted</span>
+          {': '}
+          <span>{description}</span>
+        </span>
+        <span className="text-sm text-secondary">40 min ago</span>
+      </div>
+    </div>
   );
 }

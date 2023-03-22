@@ -101,12 +101,9 @@ export default function BlockchainHealth({
       {data?.status === 'ONLINE' && (
         <>
           <GrStatusGoodSmall className="text-sm text-green-primary" />
-          <span>
+          <span className="text-sm">
             {showPeerCount && data?.peerCount !== undefined ? (
-              <span>
-                <span className="font-bold">{data?.peerCount}</span> online{' '}
-                {pluralize('peer', data?.peerCount ?? 0)}
-              </span>
+              <span>{pluralize('peer', data?.peerCount ?? 0, true)}</span>
             ) : (
               <span>online</span>
             )}
