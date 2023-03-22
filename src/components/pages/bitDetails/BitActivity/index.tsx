@@ -6,14 +6,17 @@ import ShareModal from '../ShareModal';
 import BitCreator from './BitCreator';
 import ActivityStats from './ActivityStats';
 import { Bit } from '~/types';
+import GetStarted from '../GetStarted';
 
 interface BitActivityProps {
+  bitId: string;
   className?: string;
   data?: Bit;
   isLoading?: boolean;
 }
 
 export default function BitActivity({
+  bitId,
   className,
   isLoading,
   data,
@@ -23,7 +26,7 @@ export default function BitActivity({
   return (
     <div className={classNames('flex flex-col', className)}>
       <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
-      <Button variant="primary">Get Started</Button>
+      <GetStarted bitId={bitId} />
       <BitCreator
         className="mx-auto mt-8 sm:px-6 w-full"
         isLoading={isLoading}

@@ -5,7 +5,6 @@ import { HiOutlineChevronLeft } from '@react-icons/all-files/hi/HiOutlineChevron
 import ShareModal from './ShareModal';
 import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import { Bit } from '~/types';
-import Button from '~/components/global/Button/Button';
 
 type BitHeaderProps = {
   className?: string;
@@ -45,16 +44,6 @@ export default function BitHeader({
               <IoMdShareAlt className="h-5 w-5 tablet:h-6 tablet:w-6" />
             </button>
           </h1>
-          <Button
-            variant="primary"
-            className={classNames(
-              'ml-8 self-end whitespace-nowrap !px-12',
-              'hidden tablet:block desktop:hidden'
-            )}
-            isLoading={isLoading}
-          >
-            Get Started
-          </Button>
         </div>
       </div>
       {/* MOBILE: bottom bar */}

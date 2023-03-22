@@ -12,6 +12,7 @@ import BitHeader from '~/components/pages/bitDetails/BitHeader';
 import BitTests from '~/components/pages/bitDetails/BitTests';
 import { Bit } from '~/types';
 import BitActivity from '~/components/pages/bitDetails/BitActivity';
+import GetStarted from '~/components/pages/bitDetails/GetStarted';
 
 export default function BitDetails() {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function BitDetails() {
       <p className="font-grifter text-3xl text-center">Unable to find bit...</p>
     </div>
   ) : (
-    <div className="mt-4 tablet:mt-12 mb-24">
+    <div className="relative mt-4 tablet:mt-12 mb-24">
       <BitHeader isLoading={isLoading} data={data} />
       <div className="max-w-page flex flex-col desktop:flex-row mt-12 tablet:mt-8">
         <div className="flex-1">
@@ -85,11 +86,20 @@ export default function BitDetails() {
           </Tab.Group>
         </div>
         <BitActivity
+          bitId={bitId?.toString()}
           className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
           data={data}
           isLoading={isLoading}
         />
       </div>
+      {/* TABLET "Get Started" fixed section on bottom */}
+      <GetStarted
+        className={classNames(
+          'fixed bottom-0 w-full z-50 px-0',
+          'hidden tablet:block desktop:hidden'
+        )}
+        bitId={bitId?.toString()}
+      />
     </div>
   );
 }
