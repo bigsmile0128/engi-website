@@ -58,6 +58,7 @@ jobs:
         type: string
     environment:
       TF_WORKSPACE: 'engi-website-<< parameters.environment >>'
+      TF_CLOUD_ORGANIZATION: 'engi-<< parameters.environment >>'
     steps:
       - terraform-deploy
   build:
