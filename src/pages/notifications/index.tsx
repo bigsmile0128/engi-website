@@ -33,19 +33,23 @@ export default function Notifications({ className }: NotificationsProps) {
           Mark all as read
         </button>
       </div>
-      <Notification
-        className="w-full"
-        description={notifications[0].description}
-        unread
-      />
-      <p className="mt-16 mb-4 font-grifter text-3xl">Earlier</p>
-      {notifications.slice(1).map(({ description, unread }) => (
+      <div className="w-full backdrop-blur-[100px]">
         <Notification
-          key={description}
-          description={description}
-          unread={unread}
+          className="w-full"
+          description={notifications[0].description}
+          unread
         />
-      ))}
+      </div>
+      <p className="mt-16 mb-4 font-grifter text-3xl">Earlier</p>
+      <div className="w-full backdrop-blur-[100px] flex flex-col divide-y divide-white/30">
+        {notifications.slice(1).map(({ description, unread }) => (
+          <Notification
+            key={description}
+            description={description}
+            unread={unread}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -60,7 +64,7 @@ function Notification({ className, description, unread }: NotificationProps) {
   return (
     <div
       className={classNames(
-        'p-8 flex items-start gap-6 bg-secondary/40',
+        'relative p-8 flex items-start gap-6 bg-secondary/10 hover:bg-secondary/80',
         className
       )}
     >
@@ -70,13 +74,18 @@ function Notification({ className, description, unread }: NotificationProps) {
           <div className="absolute h-2 w-2 bg-green-primary rounded-full translate-y-center -translate-x-full -left-3" />
         )}
       </div>
-      <div className="flex-1 flex flex-row justify-between">
+      {unread && (
+        <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-green-primary" />
+      )}
+      <div className="flex-1 flex flex-row justify-between gap-24">
         <span className="text-sm">
           <span className="font-bold">Michael Betten posted</span>
           {': '}
           <span>{description}</span>
         </span>
-        <span className="text-sm text-secondary">40 min ago</span>
+        <span className="text-sm text-secondary whitespace-nowrap">
+          40 min ago
+        </span>
       </div>
     </div>
   );
