@@ -13,6 +13,7 @@ import BitTests from '~/components/pages/bitDetails/BitTests';
 import { Bit } from '~/types';
 import BitActivity from '~/components/pages/bitDetails/BitActivity';
 import GetStarted from '~/components/pages/bitDetails/GetStarted';
+import BitSubmissions from '~/components/pages/bitDetails/BitSubmissions';
 
 export default function BitDetails() {
   const router = useRouter();
@@ -51,18 +52,17 @@ export default function BitDetails() {
   ) : (
     <div className="relative mt-4 tablet:mt-12 mb-24">
       <BitHeader isLoading={isLoading} data={data} />
-      <div className="max-w-page flex flex-col desktop:flex-row mt-12 tablet:mt-8">
+      <div className="max-w-page flex flex-col desktop:flex-row mt-8 tablet:mt-8">
         <div className="flex-1">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-            <Tab.List className="flex w-full border-b border-white/30">
-              {['Description', 'Tests'].map((name, i) => (
+            <Tab.List className="flex w-full border-b border-white/30 gap-12 tablet:gap-16">
+              {['Description', 'Tests', 'Submissions'].map((name, i) => (
                 <Tab as={Fragment} key={name}>
                   {({ selected }) => (
                     <button
                       className={classNames(
-                        'py-2 -mb-[1px] mr-16',
-                        'text-xl',
-                        'outline-none focus-visible:ring-1 focus-visible:ring-green-primary',
+                        'py-2 -mb-[1px]',
+                        'text-lg focus-green-primary',
                         selected && !isLoading
                           ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
                           : 'text-white/80',
@@ -81,6 +81,9 @@ export default function BitDetails() {
               </Tab.Panel>
               <Tab.Panel>
                 <BitTests isLoading={isLoading} data={data} />
+              </Tab.Panel>
+              <Tab.Panel>
+                <BitSubmissions />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
