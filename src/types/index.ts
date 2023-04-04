@@ -117,7 +117,7 @@ export type BitsQueryArguments = {
   orderByProperty?: BitsOrderByProperty;
   search?: string;
   skip: number;
-  status?: string;
+  status?: BitStatus;
 };
 
 export type GithubRepositoryOwner = {
