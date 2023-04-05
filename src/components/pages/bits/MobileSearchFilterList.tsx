@@ -10,6 +10,7 @@ import {
   languageOptions,
   MAX_FUNDING,
   MIN_FUNDING,
+  statusOptions,
 } from './SearchFilterList';
 
 interface MobileSearchFilterListProps {
@@ -32,6 +33,7 @@ export default function MobileSearchFilterList({
   const [createdAfter, setCreatedAfter] = useState('');
   const [minFunding, setMinFunding] = useState(MIN_FUNDING);
   const [maxFunding, setMaxFunding] = useState(MAX_FUNDING);
+  const [bitStatus, setBitStatus] = useState('');
 
   useEffect(() => {
     // update state search filter values on query param change
@@ -47,6 +49,7 @@ export default function MobileSearchFilterList({
     setMinFunding(minFunding);
     setMaxFunding(maxFunding);
     setCreatedAfter(searchParams.get('created-after'));
+    setBitStatus(searchParams.get('status'));
   }, [searchParams, visible]);
 
   let numActiveFilters = 0;
@@ -160,6 +163,27 @@ export default function MobileSearchFilterList({
                       setSelectedLanguages(
                         selectedLanguages.filter((lang) => lang !== value)
                       );
+                    }
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+          <div>
+            <legend className="mb-4">Status</legend>
+            <div className="flex flex-col gap-y-2">
+              {statusOptions.map(({ label, value }) => (
+                <Checkbox
+                  key={'mobile' + value}
+                  id={'mobile' + value}
+                  label={label}
+                  checked={value === bitStatus}
+                  onChange={(checked) => {
+                    if (checked) {
+                      setBitStatus(value);
+                    } else {
+                      setBitStatus('');
                     }
                   }}
                 />

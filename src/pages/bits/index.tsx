@@ -10,6 +10,7 @@ import SearchFilterList, {
 import SearchResults from '~/components/pages/bits/SearchResults';
 import SearchResultsHeader from '~/components/pages/bits/SearchResultsHeader';
 import {
+  BitStatus,
   BitsOrderByProperty,
   BitsQueryArguments,
   Language,
@@ -92,6 +93,10 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
   }
   if (maxFunding) {
     query.maxFunding = maxFunding + '0'.repeat(18);
+  }
+
+  if (searchParams.get('status')) {
+    query.status = searchParams.get('status') as BitStatus;
   }
 
   if (searchParams.get('sort-field')) {

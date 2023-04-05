@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
-import { Language } from '~/types';
+import { BitStatus, Language } from '~/types';
 
 interface SearchFilterListProps {
   className?: string;
@@ -34,6 +34,12 @@ export const createdAfterOptions = [
   { label: 'Last month', value: DateOption.LAST_MONTH },
   { label: 'Last quarter', value: DateOption.LAST_QUARTER },
   { label: 'Last year', value: DateOption.LAST_YEAR },
+];
+
+export const statusOptions = [
+  { label: 'Open', value: BitStatus.OPEN },
+  { label: 'Active', value: BitStatus.ACTIVE },
+  { label: 'Completed', value: BitStatus.COMPLETE },
 ];
 
 export const MIN_FUNDING = 0;
@@ -110,6 +116,30 @@ export default function SearchFilterList({
                   newSearchParams.language = languages.filter(
                     (lang) => lang !== value
                   );
+                }
+                onChange(newSearchParams);
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+      <div className={classNames(filterClassName)}>
+        <legend className="mb-4">Status</legend>
+        <div className="flex flex-col gap-y-2">
+          {statusOptions.map(({ label, value }) => (
+            <Checkbox
+              key={value}
+              id={value}
+              label={label}
+              checked={value === searchParams.get('status')}
+              onChange={(checked) => {
+                const newSearchParams: Record<string, any> =
+                  Object.fromEntries(searchParams);
+                if (checked) {
+                  newSearchParams['status'] = value;
+                } else {
+                  delete newSearchParams['status'];
                 }
                 onChange(newSearchParams);
               }}
