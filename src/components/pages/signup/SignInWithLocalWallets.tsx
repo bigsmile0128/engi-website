@@ -114,7 +114,7 @@ export default function SignInWithLocalWallets({
             <span>Refresh</span>
             <RiRefreshLine />
           </Button>
-          <div className="flex flex-col divide-y divide-[#AEB5C7]/30">
+          <div className="flex flex-col divide-y divide-[#AEB5C7]/30 max-h-[266px] overflow-y-auto scrollbar">
             {substrateAccounts
               ?.sort((a, b) => {
                 // sort by registered, unconfirmed, not registered
@@ -144,6 +144,7 @@ export default function SignInWithLocalWallets({
               })
               ?.map((account) => (
                 <SubstrateAccountItem
+                  className="shrink-0"
                   key={account.address}
                   account={account}
                   onClick={() => {
