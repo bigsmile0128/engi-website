@@ -222,7 +222,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
               className="w-[1px] bg-white/30 opacity-30 mx-12"
             />
             {/* right panel */}
-            <AnimatePresence exitBeforeEnter>
+            <AnimatePresence mode="wait">
               <motion.div layout className="flex flex-col gap-9 mr-4">
                 {hoverItem === 'BITS'
                   ? EARN_LINKS.map((props) => (

@@ -1,5 +1,7 @@
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/outline';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
+import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
@@ -11,6 +13,7 @@ import MenuItemLink from '~/components/MenuItemLink';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
 import { useBalance } from '~/utils/balances/userBalance';
 import { User } from '~/utils/contexts/userContext';
+import useEngiHealth from '~/utils/hooks/useEngiHealth';
 
 type UserInfoProps = {
   blockchainHealthProps?: any;
@@ -30,6 +33,7 @@ export default function UserInfo({
     data: balance,
     isFetched: hasLoadedBalanceAtLeastOnce,
   } = useBalance(user.walletId);
+  const { isLoading: isLoadingHealth, data: health } = useEngiHealth();
   const { push: pushRoute } = useRouter();
 
   return (
@@ -52,45 +56,92 @@ export default function UserInfo({
             leaveFrom="transform scale-100 opacity-100"
             leaveTo="transform scale-95 opacity-0"
           >
-            <Menu.Items className="origin-top-right absolute right-0 rounded-sm shadow-lg bg-[#374151] whitespace-nowrap flex flex-col z-10">
+            <Menu.Items
+              className={classNames(
+                'origin-top-right absolute right-0 top-16 z-10',
+                'flex flex-col min-w-[200px]',
+                'rounded-sm shadow-lg bg-secondary/80 whitespace-nowrap'
+              )}
+            >
+              <div className="w-full pl-8 pt-4">
+                <div className="flex items-center justify-between pr-8 pb-3 border-b border-white/30">
+                  <div className="flex flex-col items-center gap-2">
+                    <span className="font-grifter h-4">
+                      {health?.peerCount ?? 'N/A'}
+                    </span>
+                    <span className="text-secondary">peers</span>
+                  </div>
+                  {isLoadingHealth && (
+                    <div className="flex flex-col items-center gap-2">
+                      <GrStatusGoodSmall className="h-4 w-4 text-secondary" />
+                      <span className="text-secondary">connecting</span>
+                    </div>
+                  )}
+                  {health?.status === 'ONLINE' && (
+                    <div className="flex flex-col items-center gap-2 justify-between">
+                      <GrStatusGoodSmall className="h-4 w-4 text-green-primary" />
+                      <span className="text-secondary">online</span>
+                    </div>
+                  )}
+                  {health?.status === 'OFFLINE' && (
+                    <div className="flex flex-col items-center gap-2">
+                      <GrStatusDisabledSmall className="h-4 w-4 text-red-400" />
+                      <span className="text-secondary">offline</span>
+                    </div>
+                  )}
+                  {!isLoadingHealth && !health?.status && (
+                    <div className="flex flex-col items-center gap-2">
+                      <GrStatusGoodSmall className="h-4 w-4 text-secondary" />
+                      <span className="text-secondary">unknown</span>
+                    </div>
+                  )}
+                </div>
+              </div>
               <Menu.Item>
                 <MenuItemLink
-                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  className="hover:bg-secondary text-left pt-3 pl-8"
                   href={`/wallet/${user?.walletId}`}
                 >
-                  View Wallet
+                  <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
+                    <span className="text-secondary">Wallet</span>
+                    <ChevronRightIcon className="h-4 w-4" />
+                  </div>
                 </MenuItemLink>
-              </Menu.Item>
-              <Menu.Item>
-                <button
-                  className="px-6 py-1 text-gray-300 hover:text-white"
-                  onClick={() => {
-                    copy(user?.walletId);
-                    toast.success('Copied wallet address.', {
-                      position: 'bottom-right',
-                    });
-                  }}
-                >
-                  Copy Wallet Address
-                </button>
               </Menu.Item>
               <Menu.Item>
                 <MenuItemLink
-                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  className="hover:bg-secondary text-left pt-3 pl-8"
+                  href={`/account/${user?.walletId}`}
+                >
+                  <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
+                    <span className="text-secondary">Account</span>
+                    <ChevronRightIcon className="h-4 w-4" />
+                  </div>
+                </MenuItemLink>
+              </Menu.Item>
+              <Menu.Item>
+                <MenuItemLink
+                  className="hover:bg-secondary text-left pt-3 pl-8"
                   href="/settings"
                 >
-                  Settings
+                  <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
+                    <span className="text-secondary">Settings</span>
+                    <ChevronRightIcon className="h-4 w-4" />
+                  </div>
                 </MenuItemLink>
               </Menu.Item>
               <Menu.Item>
                 <button
-                  className="px-6 py-1 text-gray-300 hover:text-white"
+                  className="hover:bg-secondary text-left pt-3 pl-8"
                   onClick={() => {
                     setUser(null);
                     pushRoute('/login');
                   }}
                 >
-                  Log out
+                  <div className="pr-4 pb-3 flex items-center justify-between">
+                    <span className="text-secondary">Log out</span>
+                    <ChevronRightIcon className="h-4 w-4" />
+                  </div>
                 </button>
               </Menu.Item>
             </Menu.Items>
@@ -99,12 +150,16 @@ export default function UserInfo({
         <div className="flex items-center gap-x-4">
           <EngiAmount
             iconClassName="!h-4 !w-4"
-            valueClassName="!font-default font-bold text-base mb-0 ml-2"
+            valueClassName="!font-default font-bold text-base mb-0 ml-1"
             isLoading={isLoadingBalance && !hasLoadedBalanceAtLeastOnce}
             value={balance}
           />
           <div className="h-5 w-[1px] bg-gray-400"></div>
-          <BlockchainHealth className="!gap-x-2" {...blockchainHealthProps} />
+          <BlockchainHealth
+            className="!gap-x-1"
+            showPeerCount={false}
+            {...blockchainHealthProps}
+          />
         </div>
       </div>
     </div>

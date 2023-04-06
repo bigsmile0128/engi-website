@@ -7,6 +7,7 @@ import { gql } from 'graphql-request';
 import pluralize from 'pluralize';
 import { useQuery } from 'react-query';
 import Tooltip from '~/components/Tooltip';
+import useEngiHealth from '~/utils/hooks/useEngiHealth';
 
 type BlockchainHealthProps = {
   className?: string;
@@ -19,30 +20,7 @@ export default function BlockchainHealth({
   isStacked,
   showPeerCount = true,
 }: BlockchainHealthProps) {
-  const { isLoading, isError, data } = useQuery(
-    ['blockchainHealth'],
-    async () => {
-      const response = await axios.post('/api/graphql', {
-        query: gql`
-          query EngiHealthStatusQuery {
-            health {
-              chain
-              nodeName
-              version
-              status
-              peerCount
-            }
-          }
-        `,
-      });
-      const health = response.data?.data?.health;
-      return health;
-    },
-    {
-      retry: false,
-      onError: Sentry.captureException,
-    }
-  );
+  const { isLoading, isError, data } = useEngiHealth();
 
   return isStacked ? (
     <div className={classNames('flex gap-x-8', className)}>
@@ -101,12 +79,9 @@ export default function BlockchainHealth({
       {data?.status === 'ONLINE' && (
         <>
           <GrStatusGoodSmall className="text-sm text-green-primary" />
-          <span>
+          <span className="text-sm">
             {showPeerCount && data?.peerCount !== undefined ? (
-              <span>
-                <span className="font-bold">{data?.peerCount}</span> online{' '}
-                {pluralize('peer', data?.peerCount ?? 0)}
-              </span>
+              <span>{pluralize('peer', data?.peerCount ?? 0, true)}</span>
             ) : (
               <span>online</span>
             )}
