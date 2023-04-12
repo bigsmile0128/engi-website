@@ -33,7 +33,7 @@ export default function MoveEngi({ className }: MoveEngiProps) {
 
   return (
     <div className={classNames('max-w-page mt-12 mb-24 flex', className)}>
-      <div className="max-w-lg">
+      <div className="max-w-xl">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
           <Tab.List className="flex w-full">
             {tabNames.map((name, i) => (
