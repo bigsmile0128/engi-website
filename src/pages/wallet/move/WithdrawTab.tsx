@@ -176,16 +176,16 @@ function CurrencySelect({ className }) {
           )}
           <span className="mt-4">{option.label}</span>
           {option.value === Currency.BITCOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - 2000</span>
+            <span className="font-normal text-sm mt-2">1 engi - ? BTC</span>
           )}
           {option.value === Currency.ETHEREUM && (
-            <span className="font-normal text-sm mt-2">1 engi - 1000</span>
+            <span className="font-normal text-sm mt-2">1 engi - 1 ETH</span>
           )}
           {option.value === Currency.LITECOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - 500</span>
+            <span className="font-normal text-sm mt-2">1 engi - ? LTC</span>
           )}
           {option.value === Currency.TETHER && (
-            <span className="font-normal text-sm mt-2">1 engi - 9000</span>
+            <span className="font-normal text-sm mt-2">1 engi - ? USDT</span>
           )}
         </button>
       ))}
