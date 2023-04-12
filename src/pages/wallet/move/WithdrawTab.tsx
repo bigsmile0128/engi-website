@@ -30,7 +30,7 @@ const repeatOptions = [
     value: RepeatFrequency.WEEKLY,
   },
   {
-    label: 'Every Other Week',
+    label: 'Every two weeks',
     value: RepeatFrequency.EVERY_OTHER_WEEK,
   },
   {
@@ -89,11 +89,12 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         }
       />
       <ButtonSelect
-        className="mt-2"
+        className="mt-3 gap-3"
         options={repeatOptions}
         value={repeatFrequency}
         onChange={(repeatFrequency) => setRepeatFrequency(repeatFrequency)}
         disabled={!repeatTransaction}
+        tagClassName="!py-[1px]"
       />
     </div>
   );
