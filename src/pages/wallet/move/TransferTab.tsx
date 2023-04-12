@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
 import IncompleteBanner from '~/components/IncompleteBanner';
 import Tooltip from '~/components/Tooltip';
+import Button from '~/components/global/Button/Button';
 
 type TransferTabProps = {
   className?: string;
@@ -31,17 +32,17 @@ export default function TransferTab({ className }: TransferTabProps) {
           <span className="text-sm">engi</span>
           <Tooltip
             title={
-              <div className="flex flex-col gap-y-3">
+              <div className="flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-2">
-                  <SiBitcoin className="text-orange-primary h-5 w-5" />
+                  <SiBitcoin className="text-orange-primary h-4 w-4" />
                   <span className="text-sm">100 BTC</span>
                 </div>
                 <div className="flex items-center gap-x-2">
-                  <SiEthereum className="text-blue-500 h-5 w-5" />
+                  <SiEthereum className="text-blue-500 h-4 w-4" />
                   <span className="text-sm">100 ETH</span>
                 </div>
                 <div className="flex items-center gap-x-2">
-                  <SiLitecoin className="text-yellow-500 h-5 w-5" />
+                  <SiLitecoin className="text-yellow-500 h-4 w-4" />
                   <span className="text-sm">100 LTC</span>
                 </div>
               </div>
@@ -62,6 +63,12 @@ export default function TransferTab({ className }: TransferTabProps) {
         name="note"
         placeholder="Write an optional message"
       />
+      <div className="mt-8 w-full flex items-center justify-end gap-4">
+        <Button>Cancel</Button>
+        <Button variant="primary" className="px-20">
+          Continue
+        </Button>
+      </div>
     </div>
   );
 }
