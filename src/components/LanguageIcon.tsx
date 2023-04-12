@@ -1,15 +1,6 @@
-import React from 'react';
-import { Language } from '~/types';
 import { RiCodeLine } from 'react-icons/ri';
-import {
-  SiC,
-  SiCsharp,
-  SiJava,
-  SiJavascript,
-  SiPython,
-  SiRust,
-  SiTypescript,
-} from 'react-icons/si';
+import { SiCsharp, SiJavascript, SiPython, SiRust } from 'react-icons/si';
+import { Language } from '~/types';
 
 type LanguageIconProps = {
   className?: string;
