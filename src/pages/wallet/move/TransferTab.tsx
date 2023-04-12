@@ -35,15 +35,15 @@ export default function TransferTab({ className }: TransferTabProps) {
               <div className="flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-2">
                   <SiBitcoin className="text-orange-primary h-4 w-4" />
-                  <span className="text-sm">100 BTC</span>
+                  <span className="text-sm">? BTC</span>
                 </div>
                 <div className="flex items-center gap-x-2">
                   <SiEthereum className="text-blue-500 h-4 w-4" />
-                  <span className="text-sm">100 ETH</span>
+                  <span className="text-sm">? ETH</span>
                 </div>
                 <div className="flex items-center gap-x-2">
                   <SiLitecoin className="text-yellow-500 h-4 w-4" />
-                  <span className="text-sm">100 LTC</span>
+                  <span className="text-sm">? LTC</span>
                 </div>
               </div>
             }
