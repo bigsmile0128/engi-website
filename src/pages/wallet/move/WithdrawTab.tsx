@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
-import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
+import { SiBitcoin, SiEthereum, SiLitecoin, SiTether } from 'react-icons/si';
 import ButtonSelect from '~/components/ButtonSelect';
 import IncompleteBanner from '~/components/IncompleteBanner';
 import Button from '~/components/global/Button/Button';
@@ -74,7 +74,7 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         </button>
         <div className="flex-1">
           <Input
-            className=""
+            className="w-full"
             type="number"
             name="converted"
             placeholder="0.00"
@@ -123,6 +123,10 @@ const currencyOptions = [
     label: 'Litecoin',
     value: Currency.LITECOIN,
   },
+  {
+    label: 'Tether',
+    value: Currency.TETHER,
+  },
 ];
 
 function CurrencySelect({ className }) {
@@ -134,10 +138,10 @@ function CurrencySelect({ className }) {
         <button
           key={option.value}
           className={classNames(
-            'flex-1 flex flex-col items-center justify-center py-6',
+            'flex-1 flex flex-col items-center justify-center pt-4 pb-3 px-4',
             'outline-none focus-visible:ring-1 ring-green-primary/60',
             option.value === value
-              ? 'font-bold text-white border border-green-primary'
+              ? 'font-bold text-white border border-green-primary bg-[#313D33]'
               : 'font-medium text-white/80 border border-white/20'
           )}
           onClick={() => setValue(option.value)}
@@ -166,15 +170,26 @@ function CurrencySelect({ className }) {
               )}
             />
           )}
+          {option.value === Currency.TETHER && (
+            <SiTether
+              className={classNames(
+                'h-8 w-8',
+                option.value === value ? 'text-green-primary' : ''
+              )}
+            />
+          )}
           <span className="mt-4">{option.label}</span>
           {option.value === Currency.BITCOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - 2000</span>
+            <span className="font-normal text-sm mt-2">1 engi - ? BTC</span>
           )}
           {option.value === Currency.ETHEREUM && (
-            <span className="font-normal text-sm mt-2">1 engi - 1000</span>
+            <span className="font-normal text-sm mt-2">1 engi - 1 ETH</span>
           )}
           {option.value === Currency.LITECOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - 500</span>
+            <span className="font-normal text-sm mt-2">1 engi - ? LTC</span>
+          )}
+          {option.value === Currency.TETHER && (
+            <span className="font-normal text-sm mt-2">1 engi - ? USDT</span>
           )}
         </button>
       ))}
