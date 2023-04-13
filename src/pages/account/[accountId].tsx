@@ -1,13 +1,12 @@
-import React from 'react';
 import classNames from 'classnames';
-import avatarImg from 'public/img/avatar.png';
 import Image from 'next/image';
-import { MdModeEdit } from 'react-icons/md';
-import { SiJava, SiPython, SiRust, SiTypescript } from 'react-icons/si';
-import EngiAmount from '~/components/EngiAmount';
-import Balance from '~/components/pages/account/Balance';
-import AccountTabs from '~/components/pages/account/AccountTabs';
 import { useRouter } from 'next/router';
+import avatarImg from 'public/img/avatar.png';
+import { MdModeEdit } from 'react-icons/md';
+import { SiPython, SiRust, SiTypescript } from 'react-icons/si';
+import EngiAmount from '~/components/EngiAmount';
+import AccountTabs from '~/components/pages/account/AccountTabs';
+import Balance from '~/components/pages/account/Balance';
 
 type AccountDetailsProps = {
   className?: string;
@@ -34,7 +33,6 @@ export default function AccountDetails({ className }: AccountDetailsProps) {
               <SiRust className="h-8 w-8 text-white/80" />
               <SiPython className="h-8 w-8 text-white/80" />
               <SiTypescript className="h-8 w-8 text-white/80" />
-              <SiJava className="h-8 w-8 text-white/80" />
             </div>
             <div className="flex flex-col sm:flex-row gap-x-8 gap-y-2 mt-4">
               <span className="font-bold text-lg">123 Bits Solved</span>
