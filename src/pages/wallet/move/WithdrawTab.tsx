@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
 import classNames from 'classnames';
-import Input from '~/components/global/Input/Input';
+import { useState } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
-import Checkbox from '~/components/global/Checkbox/Checkbox';
-import ButtonSelect from '~/components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
-import Button from '~/components/global/Button/Button';
-import WalletInput from './WalletInput';
+import ButtonSelect from '~/components/ButtonSelect';
 import IncompleteBanner from '~/components/IncompleteBanner';
+import Button from '~/components/global/Button/Button';
+import Checkbox from '~/components/global/Checkbox/Checkbox';
+import Input from '~/components/global/Input/Input';
+import WalletInput from './WalletInput';
+
+import DatePicker from '~/components/DatePicker';
 
 type WithdrawTabProps = {
   className?: string;
@@ -96,6 +98,7 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         disabled={!repeatTransaction}
         tagClassName="!py-[1px]"
       />
+      <DatePicker className="mt-4" disabled={!repeatTransaction} />
     </div>
   );
 }
