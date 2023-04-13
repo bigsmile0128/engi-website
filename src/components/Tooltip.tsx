@@ -33,7 +33,7 @@ export default function Tooltip({ title, children }: TooltipProps) {
           >
             <div
               {...getArrowProps({
-                className: 'tooltip-arrow text-sm',
+                // className: 'tooltip-arrow',
               })}
             />
             {title}

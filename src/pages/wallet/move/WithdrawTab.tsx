@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
 import classNames from 'classnames';
-import Input from '~/components/global/Input/Input';
+import { useState } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
-import Checkbox from '~/components/global/Checkbox/Checkbox';
-import ButtonSelect from '~/components/ButtonSelect';
 import { SiBitcoin, SiEthereum, SiLitecoin, SiTether } from 'react-icons/si';
-import Button from '~/components/global/Button/Button';
-import WalletInput from './WalletInput';
+import ButtonSelect from '~/components/ButtonSelect';
 import IncompleteBanner from '~/components/IncompleteBanner';
+import Button from '~/components/global/Button/Button';
+import Checkbox from '~/components/global/Checkbox/Checkbox';
+import Input from '~/components/global/Input/Input';
+import WalletInput from './WalletInput';
+
+import DatePicker from '~/components/DatePicker';
 
 type WithdrawTabProps = {
   className?: string;
@@ -30,7 +32,7 @@ const repeatOptions = [
     value: RepeatFrequency.WEEKLY,
   },
   {
-    label: 'Every Other Week',
+    label: 'Every two weeks',
     value: RepeatFrequency.EVERY_OTHER_WEEK,
   },
   {
@@ -89,12 +91,14 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         }
       />
       <ButtonSelect
-        className="mt-2"
+        className="mt-3 gap-3"
         options={repeatOptions}
         value={repeatFrequency}
         onChange={(repeatFrequency) => setRepeatFrequency(repeatFrequency)}
         disabled={!repeatTransaction}
+        tagClassName="!py-[1px]"
       />
+      <DatePicker className="mt-4" disabled={!repeatTransaction} />
     </div>
   );
 }
