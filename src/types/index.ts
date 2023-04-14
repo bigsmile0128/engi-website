@@ -29,7 +29,7 @@ export enum BitStatus {
   OPEN = 'OPEN',
 }
 
-export enum Language {
+export enum Technology {
   C_SHARP = 'C_SHARP',
   JAVA_SCRIPT = 'JAVA_SCRIPT',
   PYTHON = 'PYTHON',
@@ -61,7 +61,6 @@ export type Bit = {
   creator: string;
   funding: string;
   id: string;
-  language: Language;
   name: string;
   repository?: {
     branch: string;
@@ -80,6 +79,7 @@ export type Bit = {
   solution?: Solution;
   solutionUserCount: number;
   status: BitStatus;
+  technologies: Technology[];
   tests: Test[];
   updatedOn?: {
     dateTime: string;
@@ -109,7 +109,7 @@ export type Transaction = {
 export type BitsQueryArguments = {
   createdAfter?: string;
   creator?: string;
-  language?: Language[];
+  language?: Technology[];
   limit: number;
   maxFunding?: string;
   minFunding?: string;

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { RiCoinsFill } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
+import { HEADER_SUBTITLE } from './content';
 
 type HeaderProps = {
   className?: string;
@@ -31,12 +32,11 @@ export default function Header({ className }: HeaderProps) {
         </span>
       </div>
       <p className="mt-8 text-secondary text-xl text-center">
-        No need to apply. Get paid instantly regardless of your time zone or
-        language.
+        {HEADER_SUBTITLE}
       </p>
       <div className="hidden tablet:flex justify-center mt-8">
         <Link href="/login">
-          <Button variant="primary">Get Started</Button>
+          <Button variant="primary">Browse Bounties</Button>
         </Link>
       </div>
     </div>

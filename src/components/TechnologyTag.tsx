@@ -1,28 +1,28 @@
 import classNames from 'classnames';
-import { Language } from '~/types';
+import { Technology } from '~/types';
 import Tag from './global/Tag/Tag';
-import LanguageIcon from './LanguageIcon';
+import TechnologyIcon from './TechnologyIcon';
 
-type LanguageTagProps = {
+type TechnologyTagProps = {
   className?: string;
   isLoading?: boolean;
-  value?: Language;
+  value?: Technology;
 };
 
 const displayNameMap = {
-  [Language.C_SHARP]: 'C#',
+  [Technology.C_SHARP]: 'C#',
   // [Language.JAVA]: 'Java',
-  [Language.JAVA_SCRIPT]: 'JavaScript',
-  [Language.PYTHON]: 'Python',
-  [Language.RUST]: 'Rust',
+  [Technology.JAVA_SCRIPT]: 'JavaScript',
+  [Technology.PYTHON]: 'Python',
+  [Technology.RUST]: 'Rust',
   // [Language.TYPESCRIPT]: 'TypeScript',
 };
 
-export default function LanguageTag({
+export default function TechnologyTag({
   className,
   value,
   isLoading,
-}: LanguageTagProps) {
+}: TechnologyTagProps) {
   return (
     <Tag
       className={classNames(
@@ -31,7 +31,7 @@ export default function LanguageTag({
         className
       )}
     >
-      <LanguageIcon value={value} className="text-orange-primary" />
+      <TechnologyIcon value={value} className="text-orange-primary" />
       <span>{displayNameMap[value] ?? value}</span>
     </Tag>
   );

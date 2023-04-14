@@ -1,5 +1,5 @@
 /* eslint-disable sort-keys */
-import { Bit, BitStatus, Language } from '~/types';
+import { Bit, BitStatus, Technology } from '~/types';
 
 export const mockBit: Bit = {
   id: '5918463588561635990',
@@ -14,7 +14,7 @@ export const mockBit: Bit = {
     name: 'slampt-3',
     fullName: 'garrettmaring/slampt-3',
   },
-  language: Language.C_SHARP,
+  language: Technology.C_SHARP,
   name: 'a',
   tests: [],
   requirements: {

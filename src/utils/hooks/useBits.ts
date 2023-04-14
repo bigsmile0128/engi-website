@@ -44,7 +44,7 @@ async function fetchBits(query: BitsQueryArguments) {
                   branch
                   commit
                 }
-                language
+                technologies
                 name
                 tests {
                   ...test

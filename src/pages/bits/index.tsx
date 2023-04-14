@@ -13,7 +13,7 @@ import {
   BitStatus,
   BitsOrderByProperty,
   BitsQueryArguments,
-  Language,
+  Technology,
   OrderByDirection,
 } from '~/types';
 import useBits from '~/utils/hooks/useBits';
@@ -81,7 +81,7 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
     orderByDirection: OrderByDirection.DESC,
   };
 
-  const languages = searchParams.getAll('language') as Language[];
+  const languages = searchParams.getAll('language') as Technology[];
   if (languages.length > 0) {
     query.language = languages;
   }

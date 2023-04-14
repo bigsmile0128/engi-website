@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
-import { BitStatus, Language } from '~/types';
+import { BitStatus, Technology } from '~/types';
 
 interface SearchFilterListProps {
   className?: string;
@@ -13,11 +13,11 @@ interface SearchFilterListProps {
 
 // TODO: replace with enums from schema
 // https://linear.app/engi/issue/ENGIN-907/query-to-get-list-of-static-values-for-job-search
-export const languageOptions = [
-  { label: 'C#', value: Language.C_SHARP },
-  { label: 'JavaScript', value: Language.JAVA_SCRIPT },
-  { label: 'Python', value: Language.PYTHON },
-  { label: 'Rust', value: Language.RUST },
+export const technologyOptions = [
+  { label: 'C#', value: Technology.C_SHARP },
+  { label: 'JavaScript', value: Technology.JAVA_SCRIPT },
+  { label: 'Python', value: Technology.PYTHON },
+  { label: 'Rust', value: Technology.RUST },
 ].sort((a, b) => a.label.localeCompare(b.label));
 
 export enum DateOption {
@@ -51,7 +51,7 @@ export default function SearchFilterList({
   onChange,
   filterClassName,
 }: SearchFilterListProps) {
-  const languages = searchParams.getAll('language');
+  const technologies = searchParams.getAll('technologies');
   let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
   let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
 
@@ -98,22 +98,22 @@ export default function SearchFilterList({
       </div>
       <div className="my-6 w-full border-t border-gray-500 opacity-50" />
       <div className={classNames(filterClassName)}>
-        <legend className="mb-4">Language</legend>
+        <legend className="mb-4">Technologies</legend>
         <div className="flex flex-col gap-y-2">
-          {languageOptions.map(({ label, value }) => (
+          {technologyOptions.map(({ label, value }) => (
             <Checkbox
               key={value}
               id={value}
               label={label}
-              checked={languages.includes(value)}
+              checked={technologies.includes(value)}
               onChange={(checked) => {
                 const newSearchParams: Record<string, any> =
                   Object.fromEntries(searchParams);
-                delete newSearchParams.page; // reset page when changing languages
+                delete newSearchParams.page; // reset page when changing technologies
                 if (checked) {
-                  newSearchParams.language = [...languages, value];
+                  newSearchParams.technology = [...technologies, value];
                 } else {
-                  newSearchParams.language = languages.filter(
+                  newSearchParams.technology = technologies.filter(
                     (lang) => lang !== value
                   );
                 }

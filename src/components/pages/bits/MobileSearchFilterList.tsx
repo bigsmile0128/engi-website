@@ -7,7 +7,7 @@ import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
 import {
   createdAfterOptions,
-  languageOptions,
+  technologyOptions,
   MAX_FUNDING,
   MIN_FUNDING,
   statusOptions,
@@ -29,7 +29,7 @@ export default function MobileSearchFilterList({
   visible,
 }: MobileSearchFilterListProps) {
   // store state of filters independently from query params because user needs to click Apply
-  const [selectedLanguages, setSelectedLanguages] = useState([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
   const [createdAfter, setCreatedAfter] = useState('');
   const [minFunding, setMinFunding] = useState(MIN_FUNDING);
   const [maxFunding, setMaxFunding] = useState(MAX_FUNDING);
@@ -37,8 +37,8 @@ export default function MobileSearchFilterList({
 
   useEffect(() => {
     // update state search filter values on query param change
-    const languages = searchParams.getAll('language');
-    setSelectedLanguages(languages);
+    const technologies = searchParams.getAll('technologies');
+    setSelectedTechnologies(technologies);
     let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
     let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
 
@@ -53,7 +53,7 @@ export default function MobileSearchFilterList({
   }, [searchParams, visible]);
 
   let numActiveFilters = 0;
-  if (selectedLanguages.length > 0) {
+  if (selectedTechnologies.length > 0) {
     numActiveFilters++;
   }
   if (createdAfter) {
@@ -65,8 +65,8 @@ export default function MobileSearchFilterList({
 
   const onApplyFilters = () => {
     const searchParams: Record<string, any> = {};
-    if (selectedLanguages.length > 0) {
-      searchParams.language = selectedLanguages;
+    if (selectedTechnologies.length > 0) {
+      searchParams.technology = selectedTechnologies;
     }
     if (createdAfter) {
       searchParams['created-after'] = createdAfter;
@@ -144,24 +144,24 @@ export default function MobileSearchFilterList({
           <div className="my-6 w-full border-t border-gray-500 opacity-50" />
           <div>
             <legend className="mb-4">
-              Language
-              {selectedLanguages.length > 0
-                ? ` (${selectedLanguages.length})`
+              Technologies
+              {selectedTechnologies.length > 0
+                ? ` (${selectedTechnologies.length})`
                 : ''}
             </legend>
             <div className="flex flex-col gap-y-2">
-              {languageOptions.map(({ label, value }) => (
+              {technologyOptions.map(({ label, value }) => (
                 <Checkbox
                   key={'mobile' + value}
                   id={'mobile' + value}
                   label={label}
-                  checked={selectedLanguages.includes(value)}
+                  checked={selectedTechnologies.includes(value)}
                   onChange={(checked) => {
                     if (checked) {
-                      setSelectedLanguages([...selectedLanguages, value]);
+                      setSelectedTechnologies([...selectedTechnologies, value]);
                     } else {
-                      setSelectedLanguages(
-                        selectedLanguages.filter((lang) => lang !== value)
+                      setSelectedTechnologies(
+                        selectedTechnologies.filter((lang) => lang !== value)
                       );
                     }
                   }}

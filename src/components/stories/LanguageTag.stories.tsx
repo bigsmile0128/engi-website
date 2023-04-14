@@ -1,13 +1,13 @@
 import React from 'react';
 
-import LanguageTag from '../LanguageTag';
+import TechnologyTag from '../TechnologyTag';
 
 export default {
   title: 'LanguageTag',
-  component: LanguageTag,
+  component: TechnologyTag,
 };
 
-const Template = (args) => <LanguageTag {...args}>React</LanguageTag>;
+const Template = (args) => <TechnologyTag {...args}>React</TechnologyTag>;
 
 export const Default = Template.bind({});
 Default.args = {
