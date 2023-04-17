@@ -1,35 +1,35 @@
 import { RiCodeLine } from 'react-icons/ri';
 import { SiCsharp, SiJavascript, SiPython, SiRust } from 'react-icons/si';
-import { Language } from '~/types';
+import { Technology } from '~/types';
 
-type LanguageIconProps = {
+type TechnologyIconProps = {
   className?: string;
-  value?: Language;
+  value?: Technology;
 };
 
-export default function LanguageIcon({
+export default function TechnologyIcon({
   className,
   value,
   ...props
-}: LanguageIconProps) {
+}: TechnologyIconProps) {
   switch (value) {
     // TODO: re-enable when more languages are added to the enum
     // case Language.C:
     //   return <SiC className={className} {...props} />;
     //   break;
-    case Language.C_SHARP:
+    case Technology.C_SHARP:
       return <SiCsharp className={className} {...props} />;
       break;
     // case Language.JAVA:
     //   return <SiJava className={className} {...props} />;
     //   break;
-    case Language.JAVA_SCRIPT:
+    case Technology.JAVA_SCRIPT:
       return <SiJavascript className={className} {...props} />;
       break;
-    case Language.PYTHON:
+    case Technology.PYTHON:
       return <SiPython className={className} {...props} />;
       break;
-    case Language.RUST:
+    case Technology.RUST:
       return <SiRust className={className} {...props} />;
       break;
     // case Language.TYPESCRIPT:

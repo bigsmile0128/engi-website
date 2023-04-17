@@ -46,7 +46,7 @@ export default function BitTable({
               isLoading={isLoading}
               name={bit?.name}
               createdOn={bit?.createdOn?.dateTime}
-              language={bit?.language}
+              technologies={bit?.technologies}
             />
           );
         },

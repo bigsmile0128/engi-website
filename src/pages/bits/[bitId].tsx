@@ -122,7 +122,7 @@ async function fetchBitDetails(bitId) {
               name
               fullName
             }
-            language
+            technologies
             name
             tests {
               ...test

@@ -9,7 +9,7 @@ import {
 import CopyLink from '~/components/CopyLink';
 import Button from '~/components/global/Button/Button';
 import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
-import LanguageTag from '~/components/LanguageTag';
+import TechnologyTag from '~/components/TechnologyTag';
 import Markdown from '~/components/Markdown';
 import Statistic from '~/components/Statistic';
 import TextSkeleton from '~/components/TextSkeleton';
@@ -47,7 +47,7 @@ export default function BitDescription({
           isLoading ? 'skeleton' : ''
         )}
       >
-        Language required
+        Technologies required
       </h2>
       <p
         className={classNames(
@@ -55,7 +55,13 @@ export default function BitDescription({
           isLoading ? 'children:skeleton children:rounded-none' : ''
         )}
       >
-        <LanguageTag value={data?.language} isLoading={isLoading} />
+        {data?.technologies?.map((technology) => (
+          <TechnologyTag
+            key={technology}
+            value={technology}
+            isLoading={isLoading}
+          />
+        ))}
       </p>
       <div className="mt-8 w-full border-t border-white/30" />
       <h2

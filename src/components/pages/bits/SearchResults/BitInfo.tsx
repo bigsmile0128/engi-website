@@ -2,15 +2,15 @@ import React from 'react';
 import classNames from 'classnames';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
 import dayjs from 'dayjs';
-import { Language } from '~/types';
-import LanguageIcon from '~/components/LanguageIcon';
+import { Technology } from '~/types';
+import TechnologyIcon from '~/components/TechnologyIcon';
 
 type BitInfoProps = {
   className?: string;
   createdOn?: string;
   isLoading?: boolean;
-  language?: Language;
   name?: string;
+  technologies?: Technology[];
 };
 
 export default function BitInfo({
@@ -18,7 +18,7 @@ export default function BitInfo({
   name,
   createdOn,
   isLoading,
-  language,
+  technologies,
 }: BitInfoProps) {
   return (
     <div
@@ -29,15 +29,18 @@ export default function BitInfo({
       )}
     >
       <div className="flex items-center gap-x-4">
-        <LanguageIcon
-          className={classNames(
-            'h-7 w-7 shrink-0 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
-            {
-              invisible: isLoading,
-            }
-          )}
-          value={language}
-        />
+        {technologies?.map?.((technology) => (
+          <TechnologyIcon
+            key={technology}
+            className={classNames(
+              'h-7 w-7 shrink-0 text-green-primary rounded-full p-1.5 bg-[#050505]/[.24]',
+              {
+                invisible: isLoading,
+              }
+            )}
+            value={technology}
+          />
+        ))}
         <span className="text-xs text-white/80">
           Created {dayjs(createdOn).fromNow()}
         </span>

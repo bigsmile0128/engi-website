@@ -20,17 +20,17 @@ const EARN_LINKS: MenuLinkProps[] = [
   {
     title: 'Smart Contracts',
     description: 'Solidity, Solana, ink!',
-    href: '/bits?language=SOLIDITY,SOLANG,INK',
+    href: '/bits?technologies=solidity,solang,ink',
   },
   {
     title: 'Substrate, DotSama',
     description: 'Build Multi-Chain',
-    href: '/bits?language=SUBSTRATE',
+    href: '/bits?technologies=SUBSTRATE',
   },
   {
     title: 'Rust, C++, C SDKs',
     description: 'Author Critical Libraries',
-    href: '/bits?language=RUST,C++,C',
+    href: '/bits?technologies=RUST,C++,C',
   },
 ];
 
