@@ -109,7 +109,6 @@ export type Transaction = {
 export type BitsQueryArguments = {
   createdAfter?: string;
   creator?: string;
-  language?: Technology[];
   limit: number;
   maxFunding?: string;
   minFunding?: string;
@@ -118,6 +117,7 @@ export type BitsQueryArguments = {
   search?: string;
   skip: number;
   status?: BitStatus;
+  technologies?: Technology[];
 };
 
 export type GithubRepositoryOwner = {

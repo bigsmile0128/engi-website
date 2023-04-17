@@ -14,7 +14,7 @@ export const mockBit: Bit = {
     name: 'slampt-3',
     fullName: 'garrettmaring/slampt-3',
   },
-  language: Technology.C_SHARP,
+  technologies: [Technology.C_SHARP],
   name: 'a',
   tests: [],
   requirements: {
