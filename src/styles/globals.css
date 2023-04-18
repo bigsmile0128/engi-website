@@ -72,6 +72,13 @@
     will-change: transform;
   }
 
+  .bg-about-mission {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('/img/about/mission.png');
+    background-size: cover;
+    background-position: center;
+  }
+
   .border-image-none {
     border-image: none;
   }

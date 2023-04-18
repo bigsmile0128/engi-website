@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 interface BlockQuoteProps {
   className?: string;
+  containerClassName?: string;
   subtitle?: string;
   title?: string;
   value: string | JSX.Element;
@@ -10,6 +11,7 @@ interface BlockQuoteProps {
 
 export default function BlockQuote({
   className,
+  containerClassName,
   value,
   title,
   subtitle,
@@ -34,7 +36,9 @@ export default function BlockQuote({
             fill="inherit"
           />
         </svg>
-        <div className="flex flex-col gap-y-4">
+        <div
+          className={classNames('flex flex-col gap-y-4', containerClassName)}
+        >
           <span className="font-grifter text-3xl">{value}</span>
           {subtitle && <p className="text-secondary">{subtitle}</p>}
         </div>
