@@ -15,7 +15,8 @@
     "prepare": "husky install",
     "build-storybook": "build-storybook",
     "test": "jest -c ./jest.config.js",
-    "storycap:all": "storycap --verbose --server-timeout 100000 --capture-max-retry-count 6 --server-cmd \"start-storybook -p 9001\" \"http://localhost:9001\""
+    "storycap:all": "storycap --verbose --server-timeout 100000 --capture-max-retry-count 6 --server-cmd \"start-storybook -p 9001\" \"http://localhost:9001\"",
+    "pretty": "prettier --write --ignore-unknown ."
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity": "^3.181.0",
@@ -143,7 +144,7 @@
   },
   "lint-staged": {
     "**/*": [
-      "prettier --write --ignore-unknown",
+      "npm run pretty",
       "eslint \"src/**/*.{ts,tsx,md}\" --fix"
     ]
   }

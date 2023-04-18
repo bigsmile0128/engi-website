@@ -8,6 +8,8 @@ import _ from 'lodash';
 import { Bit } from '~/types';
 import EngiAmount from '~/components/EngiAmount';
 
+const x = '1';
+
 type StatisticsProps = {
   className?: string;
 };
