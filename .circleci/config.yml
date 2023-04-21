@@ -1,155 +1,31 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-# build the Docker image and push it to ECR
-# then invoke Terraform Cloud to deploy the new image
+# this allows you to use CircleCI's dynamic configuration feature
+setup: true
 
+# the continuation orb is required in order to use dynamic configuration
 orbs:
-  aws-ecr: circleci/aws-ecr@8.1.2
-  terraform: circleci/terraform@3.0.1
-  aws-cli: circleci/aws-cli@3.1
+  continuation: circleci/continuation@0.3.1
 
-parameters:
-  terraform-setup:
-    type: string
-    default: deploy/setup/engi-website
-
-executors:
-  build:
-    machine:
-      image: ubuntu-2004:202201-01
-
-commands:
-  terraform-deploy:
-    steps:
-      - run:
-          name: 'Checkout Terraform sources'
-          command: |
-            git clone git@github.com:engi-network/deploy.git
-      - run:
-          name: 'Display TF_WORKSPACE'
-          command: |
-            echo TF_WORKSPACE=$TF_WORKSPACE
-      - run:
-          name: Create .terraformrc file locally
-          command: |
-            echo "credentials \"app.terraform.io\" {token =
-            \"$TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
-      - terraform/install:
-          arch: amd64
-          os: linux
-          terraform_version: 1.2.2
-      - terraform/init:
-          path: << pipeline.parameters.terraform-setup >>
-      - run:
-          # the terraform/apply command built into the official orb unsets TF_WORKSPACE that won't work here
-          name: 'terraform apply'
-          command: |
-            terraform -chdir="<< pipeline.parameters.terraform-setup >>" apply -auto-approve
-
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+# our defined job, and its steps
 jobs:
-  deploy:
-    executor: build
-    parameters:
-      environment:
-        type: string
-    environment:
-      TF_WORKSPACE: 'engi-website-<< parameters.environment >>'
-      TF_CLOUD_ORGANIZATION: 'engi-<< parameters.environment >>'
+  setup:
+    executor: continuation/default
     steps:
-      - terraform-deploy
-  build:
-    executor: build
-    parameters:
-      environment:
-        type: string
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - checkout
-      - run: |
-          cat /tmp/workspace/.env > .env
-      - aws-ecr/build-and-push-image:
-          repo: 'engi-website-<< parameters.environment >>'
-          create-repo: true
-          tag: latest
-          registry-id: AWS_ID
-      - store_artifacts:
-          path: .env
-          destination: build_env
-  fetch-aws-env:
-    executor: build
-    parameters:
-      environment:
-        type: string
-    steps:
-      - aws-cli/setup:
-          profile-name: default
-      - run: |
-          mkdir -p .workspace
-          aws ecs describe-task-definition --task-definition engi-website-<< parameters.environment >> |
-          jq -rM '.taskDefinition.containerDefinitions[] as $c | [$c.secrets[]|[.name,.valueFrom]|join(" ")] as $s | [$c.environment[]|[.name,.value]|join("=")] + $s | .[]' |
-          while read env secret_arn; do
-            if [[ -n $secret_arn ]]; then
-              echo $env="$(aws secretsmanager get-secret-value --secret-id $secret_arn | jq -rM .SecretString)"
-            else
-              echo "$env"
-            fi
-          done > .workspace/.env
-      - persist_to_workspace:
-          root: .workspace
-          paths:
-            - .env
+      - checkout # checkout code
+      - run: # run a command
+          name: Fetch CircleCI config from submodule
+          command: |
+            git submodule update --init --remote
+      - run: # run a command
+          name: Setup config
+          command: .circleci/circleci/bin/setup-config.sh
+      - continuation/continue:
+          configuration_path: .circleci/project.yml # use newly generated config to continue
+          parameters: .circleci/parameters.json
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+# our single workflow, that triggers the setup job defined above
 workflows:
-  build-test-push-workflow:
+  setup:
     jobs:
-      - fetch-aws-env:
-          context:
-            - aws
-          name: fetch-aws-env-<< matrix.environment >>
-          matrix:
-            parameters:
-              environment:
-                - staging
-                - production
-      - build:
-          name: build-<< matrix.environment >>
-          matrix:
-            parameters:
-              environment:
-                - staging
-                - production
-          requires:
-            - fetch-aws-env-<< matrix.environment >>
-          context:
-            - aws
-      - deploy:
-          name: deploy-staging
-          environment: staging
-          requires:
-            - build
-          context:
-            - terraform
-          filters:
-            branches:
-              only: main
-            tags:
-              only: ''
-  release-workflow:
-    jobs:
-      - deploy:
-          name: deploy-production
-          environment: production
-          context:
-            - terraform
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^v.*/
+      - setup
