@@ -10,3 +10,5 @@ export const displayAdaInEngi = (ada: number, modifier = 1) => {
   }
   return displayValue;
 };
+
+export const engiToWoz = (engi: number) => engi * Math.pow(10, 18);
