@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
 import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
 import ButtonSelect from '~/components/ButtonSelect';
@@ -45,6 +45,12 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
   const [repeatTransaction, setRepeatTransaction] = useState(false);
   const [repeatFrequency, setRepeatFrequency] =
     useState<RepeatFrequency | null>(RepeatFrequency.DAILY);
+
+  // TODO: clear wallet address, value, etc.
+  const clear = useCallback(() => {
+    setRepeatTransaction(false);
+    setRepeatFrequency(RepeatFrequency.DAILY);
+  }, []);
 
   return (
     <div className={classNames('flex flex-col', className)}>
@@ -100,9 +106,9 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
       />
       <DatePicker className="mt-4" disabled={!repeatTransaction} />
       <div className="mt-8 w-full flex items-center justify-end gap-4">
-        <Button>Cancel</Button>
+        <Button onClick={clear}>Clear</Button>
         <Button variant="primary" className="px-20">
-          Continue
+          Confirm
         </Button>
       </div>
     </div>
