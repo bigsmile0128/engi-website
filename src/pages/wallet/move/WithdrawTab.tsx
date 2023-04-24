@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { useState } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
-import { SiBitcoin, SiEthereum, SiLitecoin, SiTether } from 'react-icons/si';
+import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
 import ButtonSelect from '~/components/ButtonSelect';
 import IncompleteBanner from '~/components/IncompleteBanner';
 import Button from '~/components/global/Button/Button';
@@ -99,6 +99,12 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         tagClassName="!py-[1px]"
       />
       <DatePicker className="mt-4" disabled={!repeatTransaction} />
+      <div className="mt-8 w-full flex items-center justify-end gap-4">
+        <Button>Cancel</Button>
+        <Button variant="primary" className="px-20">
+          Continue
+        </Button>
+      </div>
     </div>
   );
 }
@@ -118,10 +124,6 @@ const currencyOptions = [
   {
     label: 'Ethereum',
     value: Currency.ETHEREUM,
-  },
-  {
-    label: 'Litecoin',
-    value: Currency.LITECOIN,
   },
   {
     label: 'Tether',
@@ -162,14 +164,6 @@ function CurrencySelect({ className }) {
               )}
             />
           )}
-          {option.value === Currency.LITECOIN && (
-            <SiLitecoin
-              className={classNames(
-                'h-8 w-8',
-                option.value === value ? 'text-green-primary' : ''
-              )}
-            />
-          )}
           {option.value === Currency.TETHER && (
             <SiTether
               className={classNames(
@@ -184,9 +178,6 @@ function CurrencySelect({ className }) {
           )}
           {option.value === Currency.ETHEREUM && (
             <span className="font-normal text-sm mt-2">1 engi - 1 ETH</span>
-          )}
-          {option.value === Currency.LITECOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - ? LTC</span>
           )}
           {option.value === Currency.TETHER && (
             <span className="font-normal text-sm mt-2">1 engi - ? USDT</span>
