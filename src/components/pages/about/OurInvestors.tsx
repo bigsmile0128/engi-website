@@ -5,6 +5,7 @@ import EniacSvg from 'public/img/about/eniac.svg';
 import ShineSvg from 'public/img/about/shine.svg';
 import TribeSvg from 'public/img/about/tribe.svg';
 import UpfrontSvg from 'public/img/about/upfront.svg';
+import Content from './content';
 
 type OurInvestorsProps = {
   className?: string;
@@ -19,9 +20,11 @@ export default function OurInvestors({ className }: OurInvestorsProps) {
       )}
     >
       <div className="text-left sm:text-center xl:text-left xl:basis-1/2">
-        <h2 className="font-grifter text-4xl sm:text-5xl">Our Investors</h2>
+        <h2 className="font-grifter text-4xl sm:text-5xl">
+          {Content.SECOND_SPLIT_SEGMENT.TITLE}
+        </h2>
         <p className="mt-4 text-gray-300">
-          Our investors are some of the top leaders of their industries.
+          {Content.SECOND_SPLIT_SEGMENT.BODY}
         </p>
       </div>
       <div className="flex flex-col mt-8 xl:mt-0">

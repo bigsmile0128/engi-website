@@ -19,7 +19,7 @@ export default function Success({ className }: SuccessProps) {
       <h1 className="font-bold text-5xl mt-8">Logged in!</h1>
       <p className="text-lg mt-8">{'Welcome back!'}</p>
       <Link href="/bits" className="mt-8">
-        <Button className="!px-16">Browse Bits</Button>
+        <Button className="!px-16">Browse Bounties</Button>
       </Link>
     </div>
   );

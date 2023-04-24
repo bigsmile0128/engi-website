@@ -4,6 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import GlobeSvg from 'public/img/about/globe.svg';
 import TeamMember from '~/components/pages/about/TeamMember';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import Content from './content';
 
 import { members } from './About.utils';
 
@@ -47,10 +48,10 @@ export default function MeetTheTeam({ className }: MeetTheTeamProps) {
   return (
     <div className={classNames('flex flex-col items-center', className)}>
       <div className="text-center">
-        <h2 className="font-grifter text-4xl sm:text-5xl">Meet the Team!</h2>
-        <p className="text-lg text-secondary mt-4">
-          Shattering borders, time zones, and language barriers.
-        </p>
+        <h2 className="font-grifter text-4xl sm:text-5xl">
+          {Content.TEAM.TITLE}
+        </h2>
+        <p className="text-lg text-secondary mt-4">{Content.TEAM.BODY}</p>
       </div>
       <GlobeSvg className="w-full mt-16 sm:mt-12 scale-125 sm:scale-100" />
       <div className="w-full relative mt-16 sm:hidden">

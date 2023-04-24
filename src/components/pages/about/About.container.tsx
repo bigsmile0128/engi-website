@@ -9,6 +9,7 @@ import OurMission from './OurMission';
 import Values from './Values';
 import WhoWeAre from './WhoWeAre';
 import OurInvestors from './OurInvestors';
+import Content from './content';
 
 interface AboutUsPageProps {
   className?: string;
@@ -29,9 +30,14 @@ function AboutUsPageContainer({ className }: AboutUsPageProps) {
         containerClassName="-ml-8 sm:ml-0"
         value={
           <span className="text-4xl inline-block text-center sm:text-left leading-normal">
-            Engi is a gig economy for coders built on the blockchain. No need to
-            apply. Write code,{' '}
-            <span className="text-green-primary">get paid instantly</span>.
+            {Content.QUOTE[1]}
+            <span className="text-green-primary">
+              {Content.QUOTE['2_HIGHLIGHTED']}
+            </span>
+            {Content.QUOTE[3]}
+            <span className="text-green-primary">
+              {Content.QUOTE['4_HIGHLIGHTED']}
+            </span>
           </span>
         }
       />

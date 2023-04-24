@@ -67,7 +67,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: url('/img/landing.svg') no-repeat center center;
+    background: url('/img/landing.svg') no-repeat top center;
     background-size: cover;
     will-change: transform;
   }

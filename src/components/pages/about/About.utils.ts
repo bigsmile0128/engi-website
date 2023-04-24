@@ -77,6 +77,7 @@ export const members: Array<TeamMember> = [
   {
     name: 'Mark Holcomb',
     role: 'Engineering',
+    photoLink: '/img/about/members/mark.png',
     companies: [
       { name: 'Salesforce', iconLink: '/img/about/companies/salesforce.svg' },
       { name: 'Grubhub', iconLink: '/img/about/companies/grubhub.png' },
@@ -92,6 +93,7 @@ export const members: Array<TeamMember> = [
   {
     name: 'Thomas Sharp',
     role: 'Engineering',
+    photoLink: '/img/about/members/tj.png',
     companies: [
       { name: 'Kernel', iconLink: '/img/about/companies/kernel.png' },
       { name: 'Northrop Grumman', iconLink: '/img/about/companies/ng.png' },
