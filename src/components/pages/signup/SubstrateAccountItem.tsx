@@ -40,6 +40,7 @@ export default function SubstrateAccountItem({
   const avatarId = useMemo(() => {
     return account?.address ?? uuid4();
   }, [account]);
+
   return (
     <div
       className={classNames(
