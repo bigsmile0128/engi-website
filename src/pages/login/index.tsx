@@ -70,7 +70,7 @@ export default function Login({ className }: LoginProps) {
           ) : (
             <SignInWithLocalWallets
               className="w-full"
-              onSuccess={() => router.push('/login/success')}
+              onSuccess={() => router.push('/bits')}
             />
           )}
         </div>
