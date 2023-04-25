@@ -1,9 +1,11 @@
 import classNames from 'classnames';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
-import { RiRefreshLine } from 'react-icons/ri';
+import { RiAlarmWarningLine, RiRefreshLine } from 'react-icons/ri';
 import { components, OptionProps } from 'react-select';
+import PropagateLoader from 'react-spinners/PropagateLoader';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import EngiText from '~/components/global/icons/EngiText';
@@ -46,8 +48,6 @@ export default function Signup({ className }: SignupProps) {
     isLoading,
     isError,
     data: substrateAccounts,
-    refetch,
-    isRefetching,
   } = useSubstrateAccounts();
 
   const registerMutation = useRegisterUser();
@@ -77,91 +77,96 @@ export default function Signup({ className }: SignupProps) {
   return (
     <div
       className={classNames(
-        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[470px]',
+        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[470px] tablet:py-24',
         className
       )}
     >
-      <EngiText />
-      <p className="text-xl text-secondary w-full text-center mb-8 sm:mb-12 lg:mb-16">
-        {
-          "Don't miss your next bit. Sign up to stay updated in your professional world."
-        }
-      </p>
-
-      <div className="flex flex-col w-full">
-        <div className="flex items-center gap-2 mt-6">
-          <label htmlFor="account" className="font-bold text-xl">
-            Account
-          </label>
-          <button
-            className="text-xl text-green-primary hover:text-green-primary/80 disabled:text-gray-400"
-            disabled={isLoading || isRefetching}
-            onClick={() => refetch()}
-          >
-            <RiRefreshLine className={isRefetching ? 'animate-spin' : ''} />
-          </button>
+      {isLoading ? (
+        <div className="relative flex flex-col items-center gap-8">
+          {/* TODO: update loader */}
+          <PropagateLoader
+            color="#ffffff"
+            size={34}
+            cssOverride={{ transform: 'translateX(-17px)' }}
+          />
+          <span className="text-sm text-tertiary mt-4">
+            Connecting to extension...
+          </span>
         </div>
-        <Select
-          name="account"
-          className="mt-4 w-full"
-          options={substrateAccounts ?? []}
-          value={account}
-          onChange={(account: SubstrateAccount) => setAccount(account)}
-          getOptionLabel={(account: SubstrateAccount) => account.meta?.name}
-          getOptionValue={(account: SubstrateAccount) => account.address}
-          placeholder="Select an account..."
-          components={{
-            Option,
-          }}
-          isLoading={isLoading || isRefetching}
-        />
-        {isError && (
-          <p className="font-medium text-sm mt-2 text-red-400">
-            Failed to fetch accounts.
+      ) : isError ? (
+        <div className="flex flex-col items-center bg-black/20 w-full p-8">
+          <RiAlarmWarningLine className="h-20 w-20" />
+          <span className="text-xl text-secondary mt-4 text-center">
+            No wallet extension detected.
+          </span>
+          <Link
+            href="https://button-produce-60a.notion.site/Create-Your-Keys-34da44e16e8c4abc8f3d42b5e6f43cfbÁ"
+            target="href"
+            className="mt-8"
+          >
+            <Button>View Guide</Button>
+          </Link>
+        </div>
+      ) : account ? (
+        <>
+          <p className="font-bold text-3xl">Enter your email</p>
+          <p className="mt-8 text-xl text-secondary w-full text-center">
+            Enter the email you would like to use on Engi. You can always update
+            this later.
           </p>
-        )}
-        <label htmlFor="email" className="font-bold text-xl mt-8">
-          Email
-        </label>
-        <Input
-          name="email"
-          className="mt-4"
-          value={email}
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Enter an email address..."
-        />
-        <Button
-          className={classNames('mt-16 flex items-center justify-center')}
-          variant="primary"
-          disabled={
-            !account || !email || isLoading || registerMutation.isLoading
-          }
-          onClick={() =>
-            registerMutation.mutate({
-              address: account.address,
-              display: account.meta.name,
-              source: account.meta.source,
-              email,
-            })
-          }
-        >
-          {registerMutation.isLoading ? (
-            <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
-          ) : (
-            <span>Register</span>
-          )}
-        </Button>
-      </div>
-      <p className="mt-12">
-        Already have an account?{' '}
-        <TextLink
-          href="/login"
-          className="underline hover:text-green-primary/80"
-        >
-          Sign in
-        </TextLink>
-      </p>
+          <label
+            htmlFor="email"
+            className="font-bold text-xl mt-12 text-left w-full"
+          >
+            Email address
+          </label>
+          <Input
+            name="email"
+            className="mt-4 w-full"
+            value={email}
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter an email address..."
+          />
+          <Button
+            className={classNames(
+              'mt-12 flex items-center justify-center w-full'
+            )}
+            variant="primary"
+            disabled={
+              !account || !email || isLoading || registerMutation.isLoading
+            }
+            onClick={() =>
+              registerMutation.mutate({
+                address: account.address,
+                display: account.meta.name,
+                source: account.meta.source,
+                email,
+              })
+            }
+          >
+            {registerMutation.isLoading ? (
+              <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
+            ) : (
+              <span>Continue</span>
+            )}
+          </Button>
+        </>
+      ) : (
+        <div className="flex flex-col items-center bg-black/20 w-full p-8">
+          <RiAlarmWarningLine className="h-20 w-20" />
+          <span className="text-xl text-secondary mt-4 text-center">
+            Address not found.
+          </span>
+          <Button
+            variant="primary"
+            className="mt-8"
+            onClick={() => router.back()}
+          >
+            Back
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

@@ -29,11 +29,9 @@ export default function useAccountExistence() {
     }
 
     const accountExistence: Record<string, AccountExistenceResult> = {};
-    (data?.data?.accounts?.existence ?? [])
-      .filter(Boolean)
-      .forEach(({ address, exists }) => {
-        accountExistence[address.Id] = exists;
-      });
+    (data?.data?.accounts?.existence ?? []).forEach(({ address, exists }) => {
+      accountExistence[address] = exists;
+    });
 
     return accountExistence;
   });
