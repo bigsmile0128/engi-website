@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { RiCheckboxCircleLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
+import connectedImg from 'public/img/signup/connected.png';
+import Image from 'next/image';
 
 type SuccessProps = {
   className?: string;
@@ -15,15 +17,24 @@ export default function Success({ className }: SuccessProps) {
         className
       )}
     >
-      <RiCheckboxCircleLine className="text-green-primary h-40 w-40" />
-      <h1 className="font-bold text-5xl mt-8">Congratulations!</h1>
-      <p className="text-lg mt-8">
-        {"You've set up your wallet. You can start working on Engi bits."}
+      <p className="font-grifter text-3xl mt-8">
+        You&apos;ve successfully connected your wallet!
       </p>
-      <p className="text-lg mt-2">{"We're happy to meet you!"}</p>
-      <Link href="/bits" className="mt-8">
-        <Button className="!px-16">Browse Bits</Button>
-      </Link>
+      <p className="font-bold text-xl text-secondary mt-8">
+        You&apos;re ready to start working on bounties or buy your first ENGI.
+      </p>
+      <Image className="mt-12 h-96 w-auto" src={connectedImg} alt="success" />
+
+      <div className="mt-12 flex items-center justify-center gap-8">
+        <Link href="/account" className="flex-1">
+          <Button className="w-[240px]">Go to my account</Button>
+        </Link>
+        <Link href="/bits" className="flex-1">
+          <Button className="w-[240px]" variant="primary">
+            Browse Bounties
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

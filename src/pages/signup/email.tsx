@@ -41,22 +41,18 @@ export default function EmailConfirmation({
   return (
     <div
       className={classNames(
-        'max-w-page mt-16 mb-24 flex flex-col items-center text-center',
+        'max-w-md mx-auto mt-16 mb-24 flex flex-col items-center text-center tablet:py-24',
         className
       )}
     >
       <EmailSvg className="h-56 w-56" />
-      <h1 className="font-grifter text-4xl mt-8">
-        Confirming your email address
-      </h1>
-      <p className="font-bold text-lg text-secondary mt-8">
-        {
-          "Please check your email. If you didn't receive anything, click below to resend the email."
-        }
+      <h1 className="font-grifter text-4xl mt-8">Verify your email</h1>
+      <p className="text-lg text-secondary mt-8">
+        Verify your email address to complete the wallet setup with Engi
       </p>
       <Button
         variant="primary"
-        className="w-full tablet:w-auto tablet:!px-16 mt-8"
+        className="w-full tablet:w-auto tablet:!px-16 mt-12"
         inProgress={isLoading}
         onClick={() => mutate(address)}
       >

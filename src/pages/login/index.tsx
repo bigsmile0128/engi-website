@@ -31,6 +31,7 @@ export default function Login({ className }: LoginProps) {
       <EngiText className="h-auto w-36 mb-12" />
       {isLoading ? (
         <div className="relative flex flex-col items-center gap-8">
+          {/* TODO: update loader */}
           <PropagateLoader
             color="#ffffff"
             size={34}
@@ -44,13 +45,13 @@ export default function Login({ className }: LoginProps) {
         <div className="flex flex-col items-center w-full overflow-hidden">
           <p className="font-bold text-4xl">
             {isError || substrateAccounts?.length === 0
-              ? 'Welcome to Engi!'
+              ? 'Connect your wallet'
               : 'Welcome back!'}
           </p>
           <p className="text-xl text-secondary w-full text-center mt-8 mb-12 max-w-[470px]">
             {isError || substrateAccounts?.length === 0
-              ? "Don't miss your next bit. Sign up to stay updated in your professional world."
-              : "Don't miss your next bit. Sign in to stay updated in your professional world."}
+              ? 'Select the wallet that you would like to connect to get started on Engi!'
+              : 'Select an account that you would like to log in with and start working on Bits!'}
           </p>
           {isError ? (
             <div className="flex flex-col items-center bg-black/20 w-full p-8">
