@@ -12,12 +12,14 @@ type SearchInputProps = {
   className?: string;
   isLoading?: boolean;
   onChange: (value: string) => void;
+  placeholder?: string;
   value: string;
 };
 
 export default function SearchInput({
   className,
   isLoading,
+  placeholder,
   value,
   onChange,
 }: InputHTMLAttributes<HTMLInputElement> & SearchInputProps) {
@@ -69,7 +71,7 @@ export default function SearchInput({
             'border-b border-transparent',
             'placeholder:text-secondary'
           )}
-          placeholder="Search for a bit..."
+          placeholder={placeholder ?? 'Search for a bit...'}
         />
         {isLoadingBits && (
           <div className="absolute top-1/2 right-1 -translate-y-1/2">
