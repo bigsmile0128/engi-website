@@ -77,7 +77,7 @@ export default function BitSubmissions({
       }),
       columnHelper.accessor('status', {
         header: 'Status',
-        cell: (props) => {
+        cell: () => {
           return (
             <RiCheckboxCircleLine className="text-green-primary h-6 w-6" />
           );

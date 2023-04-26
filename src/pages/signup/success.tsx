@@ -1,9 +1,8 @@
 import classNames from 'classnames';
-import Link from 'next/link';
-import { RiCheckboxCircleLine } from 'react-icons/ri';
-import Button from '~/components/global/Button/Button';
-import connectedImg from 'public/img/signup/connected.png';
 import Image from 'next/image';
+import Link from 'next/link';
+import connectedImg from 'public/img/signup/connected.png';
+import Button from '~/components/global/Button/Button';
 
 type SuccessProps = {
   className?: string;

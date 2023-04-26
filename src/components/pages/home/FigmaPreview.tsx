@@ -15,18 +15,6 @@ interface FigmaPreviewProps {
   className?: string;
 }
 
-const code = `
-const Button = ({ text }) => (
-  <button className="btn">{text}</button>
-);
-`.trim();
-
-const incorrectCode = `
-const Button = () => (
-  <button>Click Me</button>
-);
-`.trim();
-
 export default function FigmaPreview({ className }: FigmaPreviewProps) {
   const control = useAnimation();
   const [ref, inView] = useInView();
@@ -46,11 +34,6 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
       transition: { duration: 0.8 },
     },
     hidden: { opacity: 0, y: 200 },
-  };
-
-  const motionProps = {
-    initial: 'hidden',
-    variants: variants,
   };
 
   return (

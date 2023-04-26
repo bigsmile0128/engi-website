@@ -54,7 +54,6 @@ export default function EmailModal({
   const [selectedBusinessReasons, setSelectedBusinessReasons] = useState<
     BusinessReason[]
   >([]);
-  const [showSuccessScreen, setShowSuccessScreen] = useState(false);
   const [page, setPage] = useState(Page.REGISTER);
 
   useEffect(() => {
@@ -323,7 +322,8 @@ export function LanguageButton({ className = '', active, children, ...props }) {
     <button
       className={classNames(
         'py-3 flex items-center justify-center border border-gray-500 bg-gradient-to-r from-[#ffffff22] via-[#ffffff11]',
-        active ? 'border-green-primary' : 'hover:border-gray-300'
+        active ? 'border-green-primary' : 'hover:border-gray-300',
+        className
       )}
       {...props}
     >

@@ -40,14 +40,14 @@ export default function RepositoryTab({
 
   const {
     isLoading: isLoadingBranches,
-    isError: isErrorBranches,
+    // isError: isErrorBranches,
     data: branches,
     isFetching: isFetchingBranches,
     refetch: refetchBranches,
   } = useGithubRepositoryBranches(repo?.value);
   const {
     isLoading: isLoadingCommits,
-    isError: isErrorCommits,
+    // isError: isErrorCommits,
     data: commits,
     isFetching: isFetchingCommits,
     refetch: refetchCommits,

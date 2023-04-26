@@ -28,7 +28,7 @@ export default function Slider(props) {
           </div>
         );
       }}
-      renderTrack={(props, state) => {
+      renderTrack={(props) => {
         return (
           <div
             {...props}

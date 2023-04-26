@@ -10,7 +10,7 @@ interface Props {
 function ImageCropper({ imageSrc }: Props) {
   const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
-  const [area, setArea] = useState<Area>({ x: 0, y: 0, width: 0, height: 0 });
+  const [, setArea] = useState<Area>({ x: 0, y: 0, width: 0, height: 0 });
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setArea(croppedAreaPixels);

@@ -1,5 +1,5 @@
-import React, { InputHTMLAttributes, forwardRef } from 'react';
 import classNames from 'classnames';
+import { InputHTMLAttributes } from 'react';
 
 type InputProps = {
   className?: string;

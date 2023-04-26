@@ -15,7 +15,12 @@ export default function AccountTabs({
   const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-      <Tab.List className="hidden w-full md:flex gap-x-16 border-b border-white/30">
+      <Tab.List
+        className={classNames(
+          'hidden w-full md:flex gap-x-16 border-b border-white/30',
+          className
+        )}
+      >
         {['Created', 'Coded'].map((name) => (
           <Tab as={Fragment} key={name}>
             {({ selected }) => (

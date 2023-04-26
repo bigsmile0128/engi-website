@@ -1,22 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
-import type { AppProps } from 'next/app';
-import Script from 'next/script';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
-import Layout from '~/components/modules/layout';
-import { ToastContainer } from 'react-toastify';
 import lscache from 'lscache';
+import type { AppProps } from 'next/app';
+import Script from 'next/script';
+import { useEffect, useState } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { ToastContainer } from 'react-toastify';
+import Layout from '~/components/modules/layout';
 
-import UserContext, { User } from '~/utils/contexts/userContext';
-import store from 'store2';
 import { isProduction } from '~/utils';
 import { usePersistedUserState } from '~/utils/auth/persisted';
+import UserContext, { User } from '~/utils/contexts/userContext';
 
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/globals.css';
 import '~/utils/datetime/dayjs-extend';
+import '../styles/globals.css';
 
 Sentry.init({
   dsn: 'https://5d4976956f2341fcb8c719bcacb852a0@o1170825.ingest.sentry.io/6294237',

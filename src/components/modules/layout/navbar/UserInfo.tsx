@@ -4,10 +4,8 @@ import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisable
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
-import copy from 'copy-to-clipboard';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { toast } from 'react-toastify';
 import EngiAmount from '~/components/EngiAmount';
 import MenuItemLink from '~/components/MenuItemLink';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';

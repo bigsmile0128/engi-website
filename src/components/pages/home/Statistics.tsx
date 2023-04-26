@@ -8,14 +8,12 @@ import _ from 'lodash';
 import { Bit } from '~/types';
 import EngiAmount from '~/components/EngiAmount';
 
-const x = '1';
-
 type StatisticsProps = {
   className?: string;
 };
 
 export default function Statistics({ className }: StatisticsProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel();
   const { isLoading, data } = useBits({ skip: 0, limit: 100 });
 

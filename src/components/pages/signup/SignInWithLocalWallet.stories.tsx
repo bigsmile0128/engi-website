@@ -10,5 +10,4 @@ export default {
 const Template = (args) => <SignInWithLocalWallets {...args} />;
 
 export const LocalWalletsFound = Template.bind({});
-LocalWalletsFound.storyName = 'Local Wallets Found';
 LocalWalletsFound.args = {};

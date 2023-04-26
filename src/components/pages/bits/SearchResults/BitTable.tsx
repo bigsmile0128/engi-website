@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-table';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { useCallback, useMemo } from 'react';
+import { useMemo } from 'react';
 import EngiAmount from '~/components/EngiAmount';
 import { Bit } from '~/types';
 import { mockBit } from '~/types/mock';
@@ -27,12 +27,6 @@ export default function BitTable({
   isLoading,
 }: BitTableProps) {
   const router = useRouter();
-
-  // TODO: set search params
-  const searchParams = new URLSearchParams();
-  const setSearchParams = (...args: any) => {};
-  // use 1-based pagination instead of 0-based
-  const page = Number(searchParams.get('page')) || 1;
 
   const columnHelper = createColumnHelper<Bit>();
   const columns: ColumnDef<Bit>[] = useMemo(

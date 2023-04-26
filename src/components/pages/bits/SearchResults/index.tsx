@@ -30,6 +30,8 @@ export default function SearchResults({
   refresh,
 }: SearchResultsProps) {
   const searchParams = new URLSearchParams();
+  // TODO: add pagination support
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setSearchParams = (...args: any) => {};
   // use 1-based pagination instead of 0-based
   const page = Number(searchParams.get('page')) || 0;

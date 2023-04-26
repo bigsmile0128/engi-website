@@ -3,37 +3,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
-import { RiAlarmWarningLine, RiRefreshLine } from 'react-icons/ri';
-import { components, OptionProps } from 'react-select';
+import { RiAlarmWarningLine } from 'react-icons/ri';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
-import EngiText from '~/components/global/icons/EngiText';
 import Input from '~/components/global/Input/Input';
-import Select from '~/components/global/Select';
-import TextLink from '~/components/TextLink';
 import { SubstrateAccount } from '~/types';
 import { useRegisterUser } from '~/utils/auth/api';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
-
-const Option = (props: OptionProps<SubstrateAccount>) => {
-  const account = props.data;
-  return (
-    <components.Option {...props}>
-      <div className="flex flex-col items-start">
-        <span className="font-medium">{account.meta.name}</span>
-        <span
-          className={classNames(
-            'w-full truncate text-sm',
-            props.isSelected ? 'text-gray-600' : 'text-secondary'
-          )}
-        >
-          {account.address}
-        </span>
-      </div>
-    </components.Option>
-  );
-};
 
 type SignupProps = {
   className?: string;
