@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['typescript-sort-keys'],
   rules: {
     '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'import/no-anonymous-default-export': 0,
     'no-duplicate-imports': 'error',

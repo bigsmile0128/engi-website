@@ -6,9 +6,8 @@ import CallToAction from '~/components/pages/home/CallToAction';
 import Features from '~/components/pages/home/Features';
 import Hero from '~/components/pages/home/Hero';
 import Stats from '~/components/pages/home/Statistics';
-import WhosUsingEngi from '~/components/pages/home/WhosUsingEngi';
-import WorldOfEngineers from '~/components/pages/home/WorldOfEngineers';
 import WorkflowsSupercharged from '~/components/pages/home/WorkflowsSupercharged';
+import WorldOfEngineers from '~/components/pages/home/WorldOfEngineers';
 
 const Home: NextPage = () => {
   return (

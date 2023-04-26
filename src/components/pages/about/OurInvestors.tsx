@@ -5,7 +5,7 @@ import EniacSvg from 'public/img/about/eniac.svg';
 import ShineSvg from 'public/img/about/shine.svg';
 import TribeSvg from 'public/img/about/tribe.svg';
 import UpfrontSvg from 'public/img/about/upfront.svg';
-import Content from './content';
+import Content from '~/content/about.json';
 
 type OurInvestorsProps = {
   className?: string;

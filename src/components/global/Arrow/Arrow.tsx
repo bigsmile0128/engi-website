@@ -50,7 +50,7 @@ export default function Arrow({
         strokeWidth={strokeWidth}
         headSize={headSize}
         curveness={curveness}
-        dashness
+        dashness={dashness}
         arrowBodyProps={{
           strokeDasharray: '6 4',
         }}

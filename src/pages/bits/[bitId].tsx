@@ -56,7 +56,7 @@ export default function BitDetails() {
         <div className="flex-1">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex w-full border-b border-white/30 gap-12 tablet:gap-16">
-              {['Description', 'Tests', 'Submissions'].map((name, i) => (
+              {['Description', 'Tests', 'Submissions'].map((name) => (
                 <Tab as={Fragment} key={name}>
                   {({ selected }) => (
                     <button

@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import whoWeAreImg from 'public/img/about/who-we-are.png';
-import Content from './content';
+import Content from '~/content/about.json';
 
 type WhoWeAreProps = {
   className?: string;

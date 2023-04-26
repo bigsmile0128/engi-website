@@ -1,15 +1,12 @@
-import React from 'react';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import Button from '~/components/global/Button/Button';
 import { RiExchangeLine } from 'react-icons/ri';
-import EngiIcon from '~/components/global/icons/EngiIcon';
 import CopyButton from '~/components/CopyButton';
+import Button from '~/components/global/Button/Button';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 import Balance from '~/components/pages/wallet/Balance';
 import Transactions from '~/components/pages/wallet/Transactions';
-import Activity from '~/components/pages/wallet/Activity';
-import { useBalance } from '~/utils/balances/userBalance';
 
 type WalletDetailsProps = {
   className?: string;

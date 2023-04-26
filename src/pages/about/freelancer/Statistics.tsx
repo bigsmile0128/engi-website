@@ -95,7 +95,7 @@ export default function Statistics({ className }: StatisticsProps) {
     {
       name: '# of Technologies',
       value: _.uniq(
-        _.flatMap(data?.result?.items ?? [], (bit: Bit) => bit.technologies)
+        _.flatMap(bits?.result?.items ?? [], (bit: Bit) => bit.technologies)
       ).length,
     },
   ];

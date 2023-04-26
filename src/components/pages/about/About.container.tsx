@@ -9,7 +9,7 @@ import OurMission from './OurMission';
 import Values from './Values';
 import WhoWeAre from './WhoWeAre';
 import OurInvestors from './OurInvestors';
-import Content from './content';
+import Content from '~/content/about.json';
 
 interface AboutUsPageProps {
   className?: string;

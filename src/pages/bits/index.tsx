@@ -81,9 +81,9 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
     orderByDirection: OrderByDirection.DESC,
   };
 
-  const languages = searchParams.getAll('language') as Technology[];
-  if (languages.length > 0) {
-    query.language = languages;
+  const technologies = searchParams.getAll('technology') as Technology[];
+  if (technologies.length > 0) {
+    query.technologies = technologies;
   }
 
   const minFunding = searchParams.get('funding-min');

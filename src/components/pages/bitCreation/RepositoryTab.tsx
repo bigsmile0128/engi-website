@@ -36,18 +36,19 @@ export default function RepositoryTab({
     error: errorRepositories,
   } = useGithubRepositories();
 
-  const isNotEnrolled = errorRepositories?.cause === 'NOT_ENROLLED_TO_GITHUB';
+  const isNotEnrolled =
+    (errorRepositories?.cause as Error)?.message === 'NOT_ENROLLED_TO_GITHUB';
 
   const {
     isLoading: isLoadingBranches,
-    isError: isErrorBranches,
+    // isError: isErrorBranches,
     data: branches,
     isFetching: isFetchingBranches,
     refetch: refetchBranches,
   } = useGithubRepositoryBranches(repo?.value);
   const {
     isLoading: isLoadingCommits,
-    isError: isErrorCommits,
+    // isError: isErrorCommits,
     data: commits,
     isFetching: isFetchingCommits,
     refetch: refetchCommits,

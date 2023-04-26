@@ -9,11 +9,7 @@ import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import PolkadotSvg from 'public/img/wallet/polkadot.svg';
 import { useMemo } from 'react';
-import {
-  RiAddFill,
-  RiCheckboxCircleLine,
-  RiErrorWarningLine,
-} from 'react-icons/ri';
+import { RiCheckboxCircleLine, RiErrorWarningLine } from 'react-icons/ri';
 import EngiAmount from '~/components/EngiAmount';
 import Tooltip from '~/components/Tooltip';
 import { Transaction, TransactionType } from '~/types';

@@ -31,7 +31,7 @@ export default function useGithubRepositories() {
       if (data.errors?.length > 0) {
         throw new Error(
           data?.errors?.[0]?.message ?? 'Unable to get Github repositories.',
-          { cause: data?.errors?.[0]?.extensions?.code }
+          { cause: new Error(data?.errors?.[0]?.extensions?.code) }
         );
       }
 

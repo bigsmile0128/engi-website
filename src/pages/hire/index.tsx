@@ -23,7 +23,7 @@ export enum BitStep {
 
 export default function Hire({ className }: HireProps) {
   const [currentStep, setCurrentStep] = useState(BitStep.REPOSITORY);
-  const [repoUrl, setRepoUrl] = useState('');
+  const [, setRepoUrl] = useState('');
   const [bitName, setBitName] = useState('');
   const [funding, setFunding] = useState('');
 
@@ -68,6 +68,7 @@ export default function Hire({ className }: HireProps) {
         )}
         {currentStep === BitStep.TESTS && (
           <TestsTab
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
               setCurrentStep(BitStep.DETAILS);

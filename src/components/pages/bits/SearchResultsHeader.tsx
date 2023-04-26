@@ -35,7 +35,7 @@ export default function SearchResultsHeader({
   className,
   isLoading,
   numResults,
-  error,
+  // error,
   onChange,
   onChangeVisible,
   searchParams,

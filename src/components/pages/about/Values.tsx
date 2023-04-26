@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import BulbIcon from '~/components/global/icons/bulb.svg';
 import RocketIcon from '~/components/global/icons/rocket.svg';
-import Content from './content';
+import Content from '~/content/about.json';
 
 type ValuesProps = {
   className?: string;

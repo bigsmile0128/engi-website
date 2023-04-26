@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import ChevronRight from '~/components/ChevronRight';
-import Content from './content';
+import Content from '~/content/about.json';
 
 type OurMissionProps = {
   className?: string;

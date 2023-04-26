@@ -72,7 +72,7 @@ export default function Payout({ className, reward, isLoading }: PayoutProps) {
   );
 }
 
-const CustomTooltip = ({ active, payload, label, ...props }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-[#232323] px-2 py-1 -translate-x-1/3 -translate-y-[120%]">
