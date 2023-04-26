@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { RiCoinsFill } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
-import { HEADER_SUBTITLE } from './content';
+import { HEADER_SUBTITLE } from '~/content/freelancer-landing.json';
 
 type HeaderProps = {
   className?: string;

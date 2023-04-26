@@ -4,7 +4,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import GlobeSvg from 'public/img/about/globe.svg';
 import TeamMember from '~/components/pages/about/TeamMember';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import Content from './content';
+import Content from '~/content/about.json';
 
 import { members } from './About.utils';
 
