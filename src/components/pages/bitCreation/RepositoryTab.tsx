@@ -37,7 +37,7 @@ export default function RepositoryTab({
   } = useGithubRepositories();
 
   const isNotEnrolled =
-    errorRepositories?.cause?.message === 'NOT_ENROLLED_TO_GITHUB';
+    (errorRepositories?.cause as Error)?.message === 'NOT_ENROLLED_TO_GITHUB';
 
   const {
     isLoading: isLoadingBranches,
