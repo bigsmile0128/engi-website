@@ -37,7 +37,7 @@ export default function MobileSearchFilterList({
 
   useEffect(() => {
     // update state search filter values on query param change
-    const technologies = searchParams.getAll('technologies');
+    const technologies = searchParams.getAll('technology');
     setSelectedTechnologies(technologies);
     let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
     let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
