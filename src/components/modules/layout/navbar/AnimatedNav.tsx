@@ -111,15 +111,19 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
       </button>
       <button
         className={classNames(
-          'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
+          'relative text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
               /^\/hire/.test(router.asPath),
           }
         )}
-        onMouseEnter={() => setHoverItem('LEARN')}
       >
         Learn
+        {/* larger hover target */}
+        <div
+          className="absolute inset-0 w-400p h-125p"
+          onMouseEnter={() => setHoverItem('LEARN')}
+        />
       </button>
       {hoverItem && (
         <motion.div
