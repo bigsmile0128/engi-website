@@ -112,6 +112,19 @@
     box-shadow: inset 0 0 10px 10px #65feb7;
     border-left: 10px solid transparent;
   }
+
+  .scrollbar-horizontal::-webkit-scrollbar {
+    -webkit-appearance: none;
+    /* combination of height, box-shadow, and border-top to fake margin-top */
+    height: 12px;
+    box-shadow: inset 0 0 10px 10px rgba(255, 255, 255, 0.3);
+    border-top: 11px solid transparent;
+  }
+
+  .scrollbar-horizontal::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px #65feb7;
+    border-top: 10px solid transparent;
+  }
 }
 
 @layer utilities {
