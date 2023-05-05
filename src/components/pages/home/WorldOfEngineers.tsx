@@ -29,11 +29,10 @@ export default function WorldOfEngineers({ className }: WorldOfEngineersProps) {
           </span>
         </h2>
         <p className="text-secondary">
-          A global community of thousands of veteran builders writing{' '}
+          A global community of veteran builders consistently shipping{' '}
           <span className="font-semibold">
             high-quality performant software
           </span>
-          , 24/7
         </p>
         <PlaceholderButton className="mt-8" />
       </div>

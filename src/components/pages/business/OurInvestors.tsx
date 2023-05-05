@@ -21,11 +21,11 @@ export default function OurInvestors({ className }: OurInvestorsProps) {
           'gap-x-8 tablet:gap-x-16'
         )}
       >
-        <UpfrontSvg className="w-full" />
-        <CompoundSvg className="w-full" />
-        <TribeSvg className="w-full" />
-        <ShineSvg className="w-full" />
         <EniacSvg className="w-full" />
+        <ShineSvg className="w-full" />
+        <UpfrontSvg className="w-full" />
+        <TribeSvg className="w-full" />
+        <CompoundSvg className="w-full" />
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ export default function Hire() {
         <GridPattern className="top-0 left-0" id="new-bit-header" offset={-1} />
         <div className="flex flex-col items-center justify-center relative z-10">
           <h1 className="font-grifter text-5xl text-center lg:text-7xl">
-            New Engi Bit
+            New Engi Bounty
           </h1>
           <Steps
             className="mt-8"

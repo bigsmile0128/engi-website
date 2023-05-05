@@ -66,7 +66,7 @@ export default function Statistics({ className }: StatisticsProps) {
 
   const stats = [
     {
-      name: 'Active Bits',
+      name: 'Active Bounties',
       value: data?.result?.totalCount ?? 0,
     },
     {

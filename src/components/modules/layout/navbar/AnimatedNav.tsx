@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
@@ -78,6 +78,7 @@ const LEARN_LINKS = [
 export default function AnimatedNav({ className }: AnimatedNavProps) {
   const [hoverItem, setHoverItem] = useState<string | null>(null);
   const pathname = usePathname() ?? '';
+  const router = useRouter();
 
   const closeMenu = useCallback(() => {
     setHoverItem(null);
@@ -94,8 +95,9 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           }
         )}
         onMouseEnter={() => setHoverItem('BITS')}
+        onClick={() => router.push('/bits')}
       >
-        Bits
+        Bounties
       </button>
       <button
         className={classNames(
@@ -164,7 +166,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                       layout="position"
                       className="flex items-center gap-3 font-bold underline capitalize"
                     >
-                      Browse all Bits
+                      Browse all Bounties
                       <RiArrowRightSLine className="h-5 w-5" />
                     </motion.span>
                   </Link>

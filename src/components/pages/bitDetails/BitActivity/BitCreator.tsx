@@ -55,7 +55,7 @@ export default function BitCreator({ className, isLoading }: BitCreatorProps) {
             isLoading ? 'skeleton' : ''
           )}
         >
-          About bit creator
+          About bounty creator
         </span>
         <div
           className={classNames(
@@ -72,8 +72,8 @@ export default function BitCreator({ className, isLoading }: BitCreatorProps) {
             isLoading ? 'children:skeleton' : ''
           )}
         >
-          <li className="text-secondary">N/A bits posted</li>
-          <li className="text-secondary">N/A bits solved</li>
+          <li className="text-secondary">N/A bounties posted</li>
+          <li className="text-secondary">N/A bounties solved</li>
           <li className="text-secondary">Member since N/A</li>
         </ul>
       </div>

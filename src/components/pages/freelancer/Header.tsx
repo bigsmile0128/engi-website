@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import ChevronRight from '~/components/ChevronRight';
 import avatarImg from 'public/img/about/freelancer/avatar.png';
@@ -6,12 +8,15 @@ import { RiCoinsFill } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
 import { HEADER_SUBTITLE } from '~/content/freelancer-landing.json';
+import { useRouter } from 'next/navigation';
 
 type HeaderProps = {
   className?: string;
 };
 
 export default function Header({ className }: HeaderProps) {
+  const router = useRouter();
+
   return (
     <div className={classNames('', className)}>
       <div className="flex items-center gap-2">
@@ -36,7 +41,14 @@ export default function Header({ className }: HeaderProps) {
       </p>
       <div className="hidden tablet:flex justify-center mt-8">
         <Link href="/login">
-          <Button variant="primary">Browse Bounties</Button>
+          <Button
+            variant="primary"
+            onClick={() => {
+              router.push('/bits');
+            }}
+          >
+            Browse Bounties
+          </Button>
         </Link>
       </div>
     </div>

@@ -9,7 +9,7 @@ type HeaderProps = {
 };
 
 const SUBTITLE =
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.';
+  'Simplified bounty specification with Docker services and Github integration lowers friction for Engi newcomers and veterans alike';
 
 export default function Header({ className }: HeaderProps) {
   return (

@@ -15,13 +15,13 @@ export default function BottomCallToAction({
       <GridPattern id="freelancer-bottom-cta" offset={-1} />
       <div className="max-w-page max-w-[540px] w-full flex flex-col items-center py-20">
         <p className="font-grifter text-4xl tablet:text-5xl text-center leading-[3rem]">
-          Ready to post your first bit?
+          Ready to Accelerate?
         </p>
         <span className="mt-8 text-lg text-secondary text-center tracking-wide">
-          Post a bit today and start building your products
+          Post a bounty today and start shipping faster
         </span>
-        <Link href="/post" className="mt-8">
-          <Button variant="primary">Post a Bit</Button>
+        <Link href="/hire" className="mt-8">
+          <Button variant="primary">Post a Bounty</Button>
         </Link>
       </div>
     </div>

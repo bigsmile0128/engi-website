@@ -19,7 +19,7 @@ export default function BitInfo({
           isLoading ? 'skeleton' : ''
         )}
       >
-        Bit Info
+        Bounty Info
       </p>
       <div className="grid grid-rows-2 grid-cols-1 gap-x-6 gap-y-2">
         <div

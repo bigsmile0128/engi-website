@@ -22,10 +22,10 @@ export default function CallToAction({ className }: CallToActionProps) {
           </span>
         </div>
         <p className="mt-4 tablet:mt-8 text-secondary tablet:text-xl">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-          elit vel mauris tincidunt porta.
+          Ultimate flexibility to work on new codebases and learn new
+          technologies while ensuring immediate payout for work well done
         </p>
-        <Link href="/login" className="mt-8">
+        <Link href="/bits" className="mt-8">
           <Button variant="primary">Get Started</Button>
         </Link>
       </div>

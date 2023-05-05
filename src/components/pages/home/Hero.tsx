@@ -8,6 +8,7 @@ import sitePreviewImg from 'public/img/home/site-preview.png';
 import Image from 'next/image';
 import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
+import Content from 'public/content/landing.json';
 
 interface HeroProps {
   className?: string;
@@ -18,7 +19,7 @@ export default function Hero({ className }: HeroProps) {
     <div className={classNames('flex flex-col items-start', className)}>
       <div
         className={classNames(
-          'w-full flex flex-col lg:flex-row gap-x-12',
+          'w-full flex flex-col lg:flex-row gap-x-4',
           'pt-8 sm:pt-16 lg:pt-24'
         )}
       >
@@ -30,12 +31,11 @@ export default function Hero({ className }: HeroProps) {
             'text-lg text-secondary'
           )}
         >
-          A network for{' '}
-          <span className="decoration-green-primary">
-            flexible software development
+          {Content.HERO.SUBTITLE[1]}
+          <span className="text-green-primary font-medium">
+            {Content.HERO.SUBTITLE['2_HIGHLIGHTED']}
           </span>
-          &nbsp; — ship features, fix bugs, improve performance, and more with{' '}
-          <span className="text-green-primary font-medium">ENGI</span>
+          {Content.HERO.SUBTITLE[3]}
         </p>
       </div>
       <div
@@ -46,18 +46,18 @@ export default function Hero({ className }: HeroProps) {
         )}
       >
         <div className="flex flex-col whitespace-nowrap gap-y-4">
-          <div className="shrink-0 flex gap-x-4 items-center justify-between mb-4">
+          <div className="shrink-0 flex gap-x-4 items-center mb-4">
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-white">
               <div className="h-4 w-4 bg-white rounded-full"></div>
-              <span className="text-xs sm:text-base">New Bits</span>
+              <span className="text-xs sm:text-base">New</span>
             </div>
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-green-primary">
               <div className="h-4 w-4 bg-green-primary rounded-full"></div>
-              <span className="text-xs sm:text-base">Completed Bits</span>
+              <span className="text-xs sm:text-base">Completed</span>
             </div>
             <div className="flex items-center gap-x-1 sm:gap-x-3 text-orange-500">
               <div className="h-4 w-4 bg-orange-500 rounded-full"></div>
-              <span className="text-xs sm:text-base">Active Bits</span>
+              <span className="text-xs sm:text-base">Active</span>
             </div>
           </div>
           <HeroTopSvg />

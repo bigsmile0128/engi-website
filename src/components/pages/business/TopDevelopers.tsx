@@ -14,7 +14,7 @@ export default function TopDevelopers({ className }: TopDevelopersProps) {
         Top Developers
       </p>
       <p className="mt-8 xl:mt-12 text-secondary text-lg tablet:text-xl text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Elite builders pushing the envelope every day
       </p>
       <svg
         className="hidden absolute"
@@ -134,10 +134,10 @@ export default function TopDevelopers({ className }: TopDevelopersProps) {
           </div>
         </div>
         <div className="mt-8 flex items-center gap-16b tablet:justify-between">
-          <span className="font-bold">32 jobs</span>
+          <span className="font-bold">32 bounties</span>
           <span className="flex items-center">
             <EngiIcon className="h-4 w-4 text-green-primary" />
-            <span className="ml-2">32 total earned</span>
+            <span className="ml-2">12.8 total earned</span>
           </span>
         </div>
       </div>
