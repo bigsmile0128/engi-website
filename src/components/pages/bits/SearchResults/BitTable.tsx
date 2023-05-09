@@ -6,7 +6,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import EngiAmount from '~/components/EngiAmount';
 import { Bit } from '~/types';

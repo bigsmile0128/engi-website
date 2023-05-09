@@ -1,3 +1,11 @@
+export enum BitCreationStep {
+  REPOSITORY,
+  TESTS,
+  DETAILS,
+  FUNDING,
+  PREVIEW,
+}
+
 export enum TestResult {
   'FAILED' = 'FAILED',
   'IGNORED' = 'IGNORED',

@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import { HTMLMotionProps, motion } from 'framer-motion';
 import { AiOutlineLoading } from 'react-icons/ai';
@@ -41,9 +43,9 @@ export default function Button({
   }
 
   const sizeClasses = classNames({
-    [paddingX]: !/px-/.test(className),
-    [paddingY]: !/py-/.test(className),
-    [textSize]: !/text-(xs|sm|base|lg|.?xl)/.test(className),
+    [paddingX]: !/px-/.test(className ?? ''),
+    [paddingY]: !/py-/.test(className ?? ''),
+    [textSize]: !/text-(xs|sm|base|lg|.?xl)/.test(className ?? ''),
   });
 
   if (variant === 'primary') {

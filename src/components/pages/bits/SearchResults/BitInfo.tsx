@@ -1,9 +1,9 @@
-import React from 'react';
-import classNames from 'classnames';
 import { SiPython } from '@react-icons/all-files/si/SiPython';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { Technology } from '~/types';
 import TechnologyIcon from '~/components/TechnologyIcon';
+import { Technology } from '~/types';
+import '~/utils/datetime/dayjs-extend';
 
 type BitInfoProps = {
   className?: string;

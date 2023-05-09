@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { RiAlarmWarningLine, RiRefreshLine } from 'react-icons/ri';
-import { toast } from 'react-toastify';
+import { Id, toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import { AccountExistenceResult } from '~/types';
 import { useLoginUser } from '~/utils/auth/api';
@@ -48,7 +48,7 @@ export default function SignInWithLocalWallets({
   }, [loggedIn, setUser, onSuccess]);
 
   // display login states
-  const loginStatesDisplay = useRef(null);
+  const loginStatesDisplay = useRef<Id | null>(null);
   useEffect(() => {
     if (isLoggingIn) {
       loginStatesDisplay.current = toast('Logging in...', {
@@ -56,14 +56,14 @@ export default function SignInWithLocalWallets({
         isLoading: true,
       });
     } else if (loggedIn) {
-      toast.update(loginStatesDisplay.current, {
+      toast.update(loginStatesDisplay.current as Id, {
         render: 'Successfully logged in!',
         isLoading: false,
         autoClose: 3000,
         type: toast.TYPE.SUCCESS,
       });
     } else if (failedToLogin) {
-      toast.update(loginStatesDisplay.current, {
+      toast.update(loginStatesDisplay.current as Id, {
         render: "Make sure you've registered and confirmed your email address",
         isLoading: false,
         autoClose: 5000,

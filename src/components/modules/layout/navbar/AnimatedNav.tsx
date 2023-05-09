@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 
@@ -76,8 +76,8 @@ const LEARN_LINKS = [
 ];
 
 export default function AnimatedNav({ className }: AnimatedNavProps) {
-  const [hoverItem, setHoverItem] = useState(null);
-  const router = useRouter();
+  const [hoverItem, setHoverItem] = useState<string | null>(null);
+  const pathname = usePathname() ?? '';
 
   const closeMenu = useCallback(() => {
     setHoverItem(null);
@@ -90,7 +90,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/bits/.test(router.asPath),
+              /^\/bits/.test(pathname),
           }
         )}
         onMouseEnter={() => setHoverItem('BITS')}
@@ -102,7 +102,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/hire/.test(router.asPath),
+              /^\/hire/.test(pathname),
           }
         )}
         onMouseEnter={() => setHoverItem('CREATE')}
@@ -114,7 +114,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'relative text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/hire/.test(router.asPath),
+              /^\/hire/.test(pathname),
           }
         )}
       >

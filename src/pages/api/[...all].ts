@@ -33,7 +33,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 
   const proxyOption = proxyOptions.find(({ pathRewrite }) => {
     return pathRewrite.some(({ patternStr }) =>
-      RegExp(patternStr).test(req?.url)
+      RegExp(patternStr).test(req?.url ?? '')
     );
   });
 

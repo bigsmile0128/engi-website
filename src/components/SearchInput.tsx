@@ -1,12 +1,12 @@
 import { Combobox, Transition } from '@headlessui/react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Fragment, InputHTMLAttributes, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RiSearchLine } from 'react-icons/ri';
 import { Bit } from '~/types';
-import useDebounce from '~/utils/hooks/useDebounce';
 import useBits from '~/utils/hooks/useBits';
+import useDebounce from '~/utils/hooks/useDebounce';
 
 type SearchInputProps = {
   className?: string;
@@ -49,10 +49,10 @@ export default function SearchInput({
         value={value}
         onChange={(value) => {
           // if bit ID, navigate directly to the bit
-          if (/^\d{10,}$/.test(value)) {
+          if (/^\d{10,}$/.test(value ?? '')) {
             router.push(`/bits/${value}`);
           } else {
-            onChange(value);
+            onChange(value ?? '');
           }
         }}
         nullable

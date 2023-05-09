@@ -1,15 +1,15 @@
 import React from 'react';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
-import { BitStep } from '~/pages/hire';
 import { MdModeEdit } from 'react-icons/md';
+import { BitCreationStep } from '~/types';
 
 type PreviewTabProps = {
   bitName: string;
   className?: string;
   funding: string;
   onChange: () => void;
-  setCurrentStep: (BitStep) => void;
+  setCurrentStep: (BitCreationStep) => void;
 };
 
 export default function PreviewTab({
@@ -30,7 +30,7 @@ export default function PreviewTab({
         </span>
         <button
           className="hover:text-green-primary"
-          onClick={() => setCurrentStep(BitStep.DETAILS)}
+          onClick={() => setCurrentStep(BitCreationStep.DETAILS)}
         >
           <MdModeEdit className="h-5 w-5 mb-2" />
         </button>
@@ -45,7 +45,7 @@ export default function PreviewTab({
         e{funding || '0'}
         <button
           className="hover:text-green-primary"
-          onClick={() => setCurrentStep(BitStep.FUNDING)}
+          onClick={() => setCurrentStep(BitCreationStep.FUNDING)}
         >
           <MdModeEdit className="h-5 w-5 mb-2" />
         </button>

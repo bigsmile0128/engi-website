@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import Tag from './global/Tag/Tag';
 
@@ -28,7 +27,7 @@ export default function ButtonSelect({
 }: ButtonSelectProps) {
   return (
     <div className={classNames('flex items-center gap-2', className)}>
-      {options.map((option) => (
+      {(options ?? []).map((option) => (
         <button
           className={classNames(
             'outline-none focus-visible:ring-1 ring-green-primary/60',

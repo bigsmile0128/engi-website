@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import { InputHTMLAttributes, forwardRef, useState } from 'react';
 import DatePickerComponent from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { RiCalendarLine } from 'react-icons/ri';
 import Input from './global/Input/Input';
-import 'react-datepicker/dist/react-datepicker.css';
 
 const CustomInput = forwardRef(
   (
@@ -38,7 +38,7 @@ const CustomInput = forwardRef(
 CustomInput.displayName = 'CustomInput';
 
 export default function DatePicker(props) {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState<Date | null>(new Date());
   return (
     <DatePickerComponent
       customInput={<CustomInput />}

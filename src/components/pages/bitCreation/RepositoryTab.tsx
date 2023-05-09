@@ -22,9 +22,9 @@ export default function RepositoryTab({
   className,
   onChange,
 }: RepositoryTabProps) {
-  const [repo, setRepo] = useState(null);
-  const [branch, setBranch] = useState(null);
-  const [commit, setCommit] = useState(null);
+  const [repo, setRepo] = useState<any>(null);
+  const [branch, setBranch] = useState<any>(null);
+  const [commit, setCommit] = useState<any>(null);
   const [modalType, setModalType] = useState('');
 
   const {
