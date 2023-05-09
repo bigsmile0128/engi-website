@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
-import { BitStep } from '~/pages/hire';
+import { BitStep } from '~/app/(bits)/hire/page';
 import { MdModeEdit } from 'react-icons/md';
 
 type PreviewTabProps = {

@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import { useMemo } from 'react';
 import 'react-popper-tooltip/dist/styles.css';

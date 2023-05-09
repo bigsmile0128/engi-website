@@ -1,3 +1,5 @@
+'use client';
+
 // Client portals to work with SSR
 // https://github.com/vercel/next.js/tree/canary/examples/with-portals
 import { useRef, useEffect, useState } from 'react';
@@ -12,5 +14,5 @@ export default function ClientOnlyPortal({ children, selector }) {
     setMounted(true);
   }, [selector]);
 
-  return mounted ? createPortal(children, ref.current) : null;
+  return mounted && ref.current ? createPortal(children, ref.current) : null;
 }

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 

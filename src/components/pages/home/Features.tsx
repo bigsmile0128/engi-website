@@ -1,3 +1,5 @@
+'use client';
+
 import { Tab } from '@headlessui/react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import classNames from 'classnames';

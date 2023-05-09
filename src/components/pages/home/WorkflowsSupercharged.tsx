@@ -108,7 +108,7 @@ export default function WorkflowsSupercharged({
           DeDev
         </span>
       </span>
-      <Link href="/about/integrations">
+      <Link href="/integrations">
         <Button className="mt-12 capitalize" variant="primary">
           Discover Integrations
         </Button>

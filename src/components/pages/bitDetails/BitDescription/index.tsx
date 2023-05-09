@@ -7,13 +7,14 @@ import {
   RiLineChartFill,
 } from 'react-icons/ri';
 import CopyLink from '~/components/CopyLink';
-import Button from '~/components/global/Button/Button';
-import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
-import TechnologyTag from '~/components/TechnologyTag';
 import Markdown from '~/components/Markdown';
 import Statistic from '~/components/Statistic';
+import TechnologyTag from '~/components/TechnologyTag';
 import TextSkeleton from '~/components/TextSkeleton';
+import Button from '~/components/global/Button/Button';
+import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
 import { Bit } from '~/types';
+import '~/utils/datetime/dayjs-extend';
 import BitCreator from '../BitCreator';
 import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';

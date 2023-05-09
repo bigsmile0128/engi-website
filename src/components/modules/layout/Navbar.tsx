@@ -1,3 +1,6 @@
+'use client';
+// TODO: switch to server component and create separate client components as needed
+
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';

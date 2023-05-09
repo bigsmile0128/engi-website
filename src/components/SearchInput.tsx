@@ -1,6 +1,6 @@
 import { Combobox, Transition } from '@headlessui/react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Fragment, InputHTMLAttributes, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RiSearchLine } from 'react-icons/ri';

@@ -1,3 +1,5 @@
+'use client';
+
 import axios from 'axios';
 import classNames from 'classnames';
 import { gql } from 'graphql-request';

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 import { RiAlarmWarningLine, RiRefreshLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';

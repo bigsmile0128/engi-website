@@ -1,3 +1,5 @@
+'use client';
+
 import React, { Fragment, useState } from 'react';
 import classNames from 'classnames';
 import { Tab } from '@headlessui/react';

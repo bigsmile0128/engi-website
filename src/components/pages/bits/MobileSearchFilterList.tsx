@@ -6,16 +6,16 @@ import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Slider from '~/components/global/Slider/Slider';
 import {
-  createdAfterOptions,
-  technologyOptions,
   MAX_FUNDING,
   MIN_FUNDING,
+  createdAfterOptions,
   statusOptions,
+  technologyOptions,
 } from './SearchFilterList';
 
 interface MobileSearchFilterListProps {
   className?: string;
-  onChange: (searchParams) => void;
+  onChange: (searchParams: URLSearchParams) => void;
   onChangeVisible: (visible: boolean) => void;
   searchParams: URLSearchParams;
   visible: boolean; // filter list visible for mobile or tablet
@@ -29,18 +29,22 @@ export default function MobileSearchFilterList({
   visible,
 }: MobileSearchFilterListProps) {
   // store state of filters independently from query params because user needs to click Apply
-  const [selectedTechnologies, setSelectedTechnologies] = useState([]);
+  const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
+    []
+  );
   const [createdAfter, setCreatedAfter] = useState('');
   const [minFunding, setMinFunding] = useState(MIN_FUNDING);
   const [maxFunding, setMaxFunding] = useState(MAX_FUNDING);
   const [bitStatus, setBitStatus] = useState('');
 
+  // update state search filter values on query param change
   useEffect(() => {
-    // update state search filter values on query param change
-    const technologies = searchParams.getAll('technology');
+    const technologies = searchParams.getAll('technology') ?? [];
     setSelectedTechnologies(technologies);
-    let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
-    let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
+    let minFunding =
+      parseInt(searchParams.get('funding-min') ?? '0') || MIN_FUNDING;
+    let maxFunding =
+      parseInt(searchParams.get('funding-max') ?? '0') || MAX_FUNDING;
 
     if (minFunding >= maxFunding) {
       minFunding = MIN_FUNDING;
@@ -48,8 +52,8 @@ export default function MobileSearchFilterList({
     }
     setMinFunding(minFunding);
     setMaxFunding(maxFunding);
-    setCreatedAfter(searchParams.get('created-after'));
-    setBitStatus(searchParams.get('status'));
+    setCreatedAfter(searchParams.get('created-after') ?? '');
+    setBitStatus(searchParams.get('status') ?? '');
   }, [searchParams, visible]);
 
   let numActiveFilters = 0;
@@ -64,16 +68,16 @@ export default function MobileSearchFilterList({
   }
 
   const onApplyFilters = () => {
-    const searchParams: Record<string, any> = {};
-    if (selectedTechnologies.length > 0) {
-      searchParams.technology = selectedTechnologies;
-    }
+    const searchParams = new URLSearchParams();
+    selectedTechnologies.forEach((technology) =>
+      searchParams.append('technology', technology)
+    );
     if (createdAfter) {
-      searchParams['created-after'] = createdAfter;
+      searchParams.set('created-after', createdAfter);
     }
     if (minFunding !== MIN_FUNDING || maxFunding !== MAX_FUNDING) {
-      searchParams['funding-min'] = minFunding;
-      searchParams['funding-max'] = maxFunding;
+      searchParams.set('funding-min', minFunding.toString());
+      searchParams.set('funding-max', maxFunding.toString());
     }
 
     onChange(searchParams);

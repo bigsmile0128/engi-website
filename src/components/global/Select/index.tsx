@@ -1,8 +1,12 @@
+import { useId } from 'react';
 import ReactSelect, { Props } from 'react-select';
 
 export default function Select(props: Props) {
   return (
     <ReactSelect
+      // useId hook generates an ID that is hydration safe but still globally unique
+      // https://stackoverflow.com/questions/61290173/react-select-how-do-i-resolve-warning-prop-id-did-not-match
+      instanceId={useId()}
       theme={(theme) => ({
         ...theme,
         borderRadius: 0,

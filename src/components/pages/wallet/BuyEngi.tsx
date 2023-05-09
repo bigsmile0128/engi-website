@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
 import Tooltip from '~/components/Tooltip';
-import { PreviewMoveEngi } from '~/pages/wallet/move';
+import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
 
