@@ -4,16 +4,11 @@ import Link from 'next/link';
 import connectedImg from 'public/img/signup/connected.png';
 import Button from '~/components/global/Button/Button';
 
-type SuccessProps = {
-  className?: string;
-};
-
-export default function Success({ className }: SuccessProps) {
+export default function Success() {
   return (
     <div
       className={classNames(
-        'max-w-page mt-16 mb-24 flex flex-col items-center text-center',
-        className
+        'max-w-page mt-16 mb-24 flex flex-col items-center text-center'
       )}
     >
       <p className="font-grifter text-3xl mt-8">

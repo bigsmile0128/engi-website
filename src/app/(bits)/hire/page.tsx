@@ -10,27 +10,16 @@ import DetailsTab from '~/components/pages/bitCreation/DetailsTab';
 import FundingTab from '~/components/pages/bitCreation/FundingTab';
 import PreviewTab from '~/components/pages/bitCreation/PreviewTab';
 import IncompleteBanner from '~/components/IncompleteBanner';
+import { BitCreationStep } from '~/types';
 
-type HireProps = {
-  className?: string;
-};
-
-export enum BitStep {
-  REPOSITORY,
-  TESTS,
-  DETAILS,
-  FUNDING,
-  PREVIEW,
-}
-
-export default function Hire({ className }: HireProps) {
-  const [currentStep, setCurrentStep] = useState(BitStep.REPOSITORY);
+export default function Hire() {
+  const [currentStep, setCurrentStep] = useState(BitCreationStep.REPOSITORY);
   const [, setRepoUrl] = useState('');
   const [bitName, setBitName] = useState('');
   const [funding, setFunding] = useState('');
 
   return (
-    <div className={classNames('mt-24 mb-24', className)}>
+    <div className={classNames('mt-24 mb-24')}>
       <div className="max-w-page mb-16">
         <IncompleteBanner />
       </div>
@@ -60,45 +49,45 @@ export default function Hire({ className }: HireProps) {
         </div>
       </div>
       <div className="max-w-page md:!max-w-xl mt-12">
-        {currentStep === BitStep.REPOSITORY && (
+        {currentStep === BitCreationStep.REPOSITORY && (
           <RepositoryTab
             onChange={(repoUrl) => {
-              setCurrentStep(BitStep.TESTS);
+              setCurrentStep(BitCreationStep.TESTS);
               setRepoUrl(repoUrl);
             }}
           />
         )}
-        {currentStep === BitStep.TESTS && (
+        {currentStep === BitCreationStep.TESTS && (
           <TestsTab
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onChange={(selectedTests) => {
               // TODO: set selected tests when real data is available
-              setCurrentStep(BitStep.DETAILS);
+              setCurrentStep(BitCreationStep.DETAILS);
             }}
-            goBack={() => setCurrentStep(BitStep.REPOSITORY)}
+            goBack={() => setCurrentStep(BitCreationStep.REPOSITORY)}
           />
         )}
-        {currentStep === BitStep.DETAILS && (
+        {currentStep === BitCreationStep.DETAILS && (
           <DetailsTab
             defaultValue={bitName}
             onChange={({ bitName }) => {
               setBitName(bitName);
-              setCurrentStep(BitStep.FUNDING);
+              setCurrentStep(BitCreationStep.FUNDING);
             }}
-            goBack={() => setCurrentStep(BitStep.TESTS)}
+            goBack={() => setCurrentStep(BitCreationStep.TESTS)}
           />
         )}
-        {currentStep === BitStep.FUNDING && (
+        {currentStep === BitCreationStep.FUNDING && (
           <FundingTab
             defaultValue={funding}
             onChange={({ funding }) => {
               setFunding(funding);
-              setCurrentStep(BitStep.PREVIEW);
+              setCurrentStep(BitCreationStep.PREVIEW);
             }}
-            goBack={() => setCurrentStep(BitStep.DETAILS)}
+            goBack={() => setCurrentStep(BitCreationStep.DETAILS)}
           />
         )}
-        {currentStep === BitStep.PREVIEW && (
+        {currentStep === BitCreationStep.PREVIEW && (
           <PreviewTab
             onChange={() => {
               // TODO: connect to bit creation API

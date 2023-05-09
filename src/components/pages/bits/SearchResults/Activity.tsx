@@ -1,6 +1,5 @@
-import React from 'react';
-import classNames from 'classnames';
 import { UserIcon } from '@heroicons/react/outline';
+import classNames from 'classnames';
 
 type ActivityProps = {
   className?: string;
@@ -59,7 +58,9 @@ export default function Activity({
                 'h-1.5 rounded-full',
                 isLoading ? 'invisible' : 'bg-[#F27B50]'
               )}
-              style={{ width: `${(testsPassed / numTests || 0) * 100}%` }}
+              style={{
+                width: `${((testsPassed ?? 0) / (numTests ?? 1) || 0) * 100}%`,
+              }}
             />
           </div>
         </div>

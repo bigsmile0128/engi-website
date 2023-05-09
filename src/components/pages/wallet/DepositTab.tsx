@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import { Dispatch } from 'react';
-import BuyEngi from '~/components/pages/wallet/BuyEngi';
 import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
+import BuyEngi from '~/components/pages/wallet/BuyEngi';
 import { useUser } from '~/utils/contexts/userContext';
 
 type DepositTabProps = {
   className?: string;
-  setPreviewMove?: Dispatch<PreviewMoveEngi>;
+  setPreviewMove: Dispatch<PreviewMoveEngi>;
 };
 
 export default function DepositTab({

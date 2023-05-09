@@ -1,20 +1,14 @@
-import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 
 import deskImg from 'public/img/press/desk.jpg';
 import BlockQuote from '~/components/pages/home/BlockQuote';
 
-interface PressPageProps {
-  className?: string;
-}
-
-export default function PressPage({ className }: PressPageProps) {
+export default function PressPage() {
   return (
     <div
       className={classNames(
-        'flex flex-col gap-y-12 max-w-page md:!max-w-xl mt-32 mb-32',
-        className
+        'flex flex-col gap-y-12 max-w-page md:!max-w-xl mt-32 mb-32'
       )}
     >
       <h1 className="font-grifter text-6xl">Press Page</h1>

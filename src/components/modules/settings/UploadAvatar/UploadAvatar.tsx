@@ -12,7 +12,7 @@ function UploadAvatar() {
     try {
       await uploadImageToS3({
         file: image,
-        name: `${image.name}`,
+        name: `${image?.name}`,
       });
 
       setHasUploaded(true);

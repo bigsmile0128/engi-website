@@ -1,26 +1,23 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
-import { useMutation } from 'react-query';
 import { gql } from 'graphql-request';
-import useAxios from '~/utils/hooks/useAxios';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
 import {
   RiCheckboxCircleLine,
   RiErrorWarningLine,
   RiLoader3Line,
 } from 'react-icons/ri';
+import { useMutation } from 'react-query';
 import Button from '~/components/global/Button/Button';
-import Link from 'next/link';
+import useAxios from '~/utils/hooks/useAxios';
 
-type GithubCallbackProps = {
-  className?: string;
-};
-
-export default function GithubCallback({ className }: GithubCallbackProps) {
-  const { query } = useRouter();
-  const { code, installation_id: installationId } = query;
+export default function GithubCallback() {
+  const searchParams = useSearchParams();
+  const code = searchParams?.get('code') ?? '';
+  const installationId = searchParams?.get('installation_id') ?? '';
 
   const mutation = useGithubCallback();
 
@@ -35,7 +32,7 @@ export default function GithubCallback({ className }: GithubCallbackProps) {
   }, [code, installationId]);
 
   return (
-    <div className={classNames('max-w-page flex mt-16 mb-24', className)}>
+    <div className={classNames('max-w-page flex mt-16 mb-24')}>
       {mutation.isLoading ? (
         <div className="flex-1 flex flex-col items-center gap-8">
           <RiLoader3Line className="text-8xl animate-spin" />
@@ -68,7 +65,7 @@ type GithubEnrollmentArgs = {
   installationId: string;
 };
 
-export function useGithubCallback() {
+function useGithubCallback() {
   const axios = useAxios();
   return useMutation<void, any, GithubEnrollmentArgs>(
     ['githubEnrollment'],

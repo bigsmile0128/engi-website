@@ -29,7 +29,7 @@ export default function EngiAmount({
   const displayValue: string = useMemo(
     () =>
       displayAdaInEngi(
-        typeof value === 'string' ? parseFloat(value) : value,
+        typeof value === 'string' ? parseFloat(value) : value || 0,
         modifier
       ),
     [value, modifier]

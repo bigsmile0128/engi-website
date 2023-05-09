@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
-import { toast } from 'react-toastify';
+import { Id, toast } from 'react-toastify';
+import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
+import Tooltip from '~/components/Tooltip';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
-import Tooltip from '~/components/Tooltip';
-import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
 import { useConnectEthereumExtension } from '~/utils/ethereum/extension';
 import { useBuyEngiWithEth } from '~/utils/ethereum/purchase';
 
@@ -45,7 +45,7 @@ export default function BuyEngi({
   } = useBuyEngiWithEth();
 
   // display buy states
-  const buyEngiStatesDisplay = useRef(null);
+  const buyEngiStatesDisplay = useRef<Id | null>(null);
   useEffect(() => {
     if (userConfirmingBuyTransaction) {
       buyEngiStatesDisplay.current = toast('Transaction pending...', {
@@ -54,14 +54,14 @@ export default function BuyEngi({
       });
     } else if (confirmedBuyTransaction) {
       // update loading or error toasts
-      toast.update(buyEngiStatesDisplay.current, {
+      toast.update(buyEngiStatesDisplay.current as Id, {
         render: 'Purchase Successful!',
         type: toast.TYPE.SUCCESS,
         autoClose: 3000,
         isLoading: false,
       });
     } else if (failedToBuyEngi) {
-      toast.update(buyEngiStatesDisplay.current, {
+      toast.update(buyEngiStatesDisplay.current as Id, {
         render: `${buyEngiError.message} Please try again.`,
         type: toast.TYPE.ERROR,
         autoClose: 5000,

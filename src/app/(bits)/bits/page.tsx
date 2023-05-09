@@ -139,12 +139,12 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
           .format();
         break;
       default:
-        query.createdAfter = searchParams.get('created-after');
+        query.createdAfter = searchParams.get('created-after') ?? '';
     }
   }
 
   if (searchParams.get('query')) {
-    query.search = searchParams.get('query');
+    query.search = searchParams.get('query') ?? '';
   }
 
   // TODO: handle skip

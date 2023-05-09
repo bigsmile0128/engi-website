@@ -1,24 +1,20 @@
 'use client';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from 'react';
-import classNames from 'classnames';
-import SocialMedia from '~/components/modules/layout/SocialMedia';
-import Button from '~/components/global/Button/Button';
-import { useMutation } from 'react-query';
 import axios, { AxiosError } from 'axios';
+import classNames from 'classnames';
+import { useEffect, useState } from 'react';
+import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
+import Button from '~/components/global/Button/Button';
+import SocialMedia from '~/components/modules/layout/SocialMedia';
 import { SENDGRID_LIST_NAME } from '~/types';
 import {
   emitContactUsErrorEvent,
   emitContactUsEvent,
 } from '~/utils/analytics/events';
 
-interface ContactUsPageProps {
-  className?: string;
-}
-
-export default function ContactUsPage({ className }: ContactUsPageProps) {
+export default function ContactUsPage() {
   const emailMutation = useMutation<
     any,
     AxiosError,
@@ -80,8 +76,7 @@ export default function ContactUsPage({ className }: ContactUsPageProps) {
   return (
     <div
       className={classNames(
-        'max-w-page flex flex-col md:flex-row gap-16 my-32',
-        className
+        'max-w-page flex flex-col md:flex-row gap-16 my-32'
       )}
     >
       <div className="basis-1/2 lg:basis-3/5 flex flex-col">

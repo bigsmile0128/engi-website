@@ -14,11 +14,7 @@ import { SubstrateAccount } from '~/types';
 import { useRegisterUser } from '~/utils/auth/api';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
 
-type SignupProps = {
-  className?: string;
-};
-
-export default function Signup({ className }: SignupProps) {
+export default function Signup() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const address = searchParams?.get('address') ?? '';
@@ -57,8 +53,7 @@ export default function Signup({ className }: SignupProps) {
   return (
     <div
       className={classNames(
-        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[470px] tablet:py-24',
-        className
+        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[470px] tablet:py-24'
       )}
     >
       {isLoading ? (

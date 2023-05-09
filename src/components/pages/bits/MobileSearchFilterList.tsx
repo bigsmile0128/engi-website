@@ -119,7 +119,10 @@ export default function MobileSearchFilterList({
             >
               Apply{numActiveFilters ? ` (${numActiveFilters})` : ''}
             </Button>
-            <Button className="!py-2 !px-6" onClick={() => onChange({})}>
+            <Button
+              className="!py-2 !px-6"
+              onClick={() => onChange(new URLSearchParams())}
+            >
               Clear All
             </Button>
           </div>
@@ -212,7 +215,7 @@ export default function MobileSearchFilterList({
             <Button
               className="text-sm text-primary underline hover:text-green-primary"
               variant="link"
-              onClick={() => onChange({})}
+              onClick={() => onChange(new URLSearchParams())}
             >
               Clear All
             </Button>

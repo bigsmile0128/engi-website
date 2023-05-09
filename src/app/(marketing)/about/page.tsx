@@ -11,15 +11,9 @@ import Statistics from '~/components/pages/home/Statistics';
 
 import Content from '~/content/about.json';
 
-interface AboutUsPageProps {
-  className?: string;
-}
-
-export default function AboutUsPage({ className }: AboutUsPageProps) {
+export default function AboutUsPage() {
   return (
-    <div
-      className={classNames('flex flex-col mt-16 sm:mt-32 mb-32', className)}
-    >
+    <div className={classNames('flex flex-col mt-16 sm:mt-32 mb-32')}>
       <Header className="max-w-page" />
       <Statistics className="mt-24 w-full" />
       <OurMission className="mt-32" />

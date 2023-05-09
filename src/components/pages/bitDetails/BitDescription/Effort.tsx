@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import { RiFileZipFill, RiTimeFill } from 'react-icons/ri';
 import Statistic from '~/components/Statistic';
@@ -67,7 +66,7 @@ export default function Effort({
                   : 'border-white/30 border-b-green-primary border-l-green-primary rotate'
               )}
               style={{
-                transform: `rotate(${timeEstimate * 3}deg)`,
+                transform: `rotate(${timeEstimate ?? 0 * 3}deg)`,
               }}
             />
           </div>

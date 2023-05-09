@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
 import { Dialog } from '@headlessui/react';
-import classNames from 'classnames';
 import { XIcon } from '@heroicons/react/outline';
+import classNames from 'classnames';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
 import { SiJava } from '@react-icons/all-files/si/SiJava';
@@ -12,11 +12,11 @@ import { SiPython } from '@react-icons/all-files/si/SiPython';
 import { SiRust } from '@react-icons/all-files/si/SiRust';
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
 
-import Modal, { ModalProps } from '~/components/global/Modal/Modal';
-import Button from '~/components/global/Button/Button';
 import EnvelopeSvg from 'public/img/home/envelope.svg';
 import CopyLink from '~/components/CopyLink';
+import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
+import Modal, { ModalProps } from '~/components/global/Modal/Modal';
 
 enum Interest {
   BUSINESS = 'engi-business',
@@ -33,7 +33,10 @@ enum BusinessReason {
 }
 
 interface EmailModalProps extends ModalProps {
-  onInterestClick: (interest: string, attributes: Record<string, any>) => void;
+  onInterestClick: (
+    interest: Interest,
+    attributes: Record<string, any>
+  ) => void;
 }
 
 enum Page {
@@ -97,7 +100,7 @@ export default function EmailModal({
               </Dialog.Title>
               <button
                 className="text-white hover:text-secondary outline-none focus-visible:ring-1 focus-visible:ring-emerald-200"
-                onClick={() => setIsOpen(false)}
+                onClick={() => setIsOpen?.(false)}
               >
                 <span className="sr-only">Close</span>
                 <XIcon className="h-5 w-5" aria-hidden="true" />
@@ -207,7 +210,9 @@ export default function EmailModal({
                 } else if (selectedInterest === Interest.BUSINESS) {
                   attributes.subinterest = selectedBusinessReasons ?? [];
                 }
-                onInterestClick(selectedInterest, attributes);
+                if (selectedInterest) {
+                  onInterestClick(selectedInterest, attributes);
+                }
                 setPage(Page.SUCCESS);
               }}
             >
@@ -237,7 +242,7 @@ export default function EmailModal({
           <button
             type="button"
             className="mt-4 w-full border border-white bg-[#00000022] py-4 hover:bg-[#ffffff22]"
-            onClick={() => setIsOpen(false)}
+            onClick={() => setIsOpen?.(false)}
           >
             Dismiss
           </button>
@@ -254,7 +259,7 @@ export default function EmailModal({
               </Dialog.Title>
               <button
                 className="text-white hover:text-secondary outline-none focus-visible:ring-1 focus-visible:ring-emerald-200"
-                onClick={() => setIsOpen(false)}
+                onClick={() => setIsOpen?.(false)}
               >
                 <span className="sr-only">Close</span>
                 <XIcon className="h-5 w-5" aria-hidden="true" />

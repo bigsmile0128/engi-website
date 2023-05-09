@@ -1,13 +1,12 @@
-import React from 'react';
 import { Dialog } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 
-import CopyLink from '~/components/CopyLink';
-import Modal, { ModalProps } from '~/components/global/Modal/Modal';
 import { SiDiscord } from '@react-icons/all-files/si/SiDiscord';
 import { SiInstagram } from '@react-icons/all-files/si/SiInstagram';
 import { SiTiktok } from '@react-icons/all-files/si/SiTiktok';
 import { SiTwitter } from '@react-icons/all-files/si/SiTwitter';
+import CopyLink from '~/components/CopyLink';
+import Modal, { ModalProps } from '~/components/global/Modal/Modal';
 
 export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
   return (
@@ -22,7 +21,7 @@ export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
         <button
           type="button"
           className="rounded-md text-gray-400 hover:text-gray-300 active:text-gray-200 focus-green-primary"
-          onClick={() => setIsOpen(false)}
+          onClick={() => setIsOpen?.(false)}
         >
           <span className="sr-only">Close</span>
           <XIcon className="h-6 w-6" aria-hidden="true" />

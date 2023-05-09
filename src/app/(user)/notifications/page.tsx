@@ -1,10 +1,6 @@
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
 
-type NotificationsProps = {
-  className?: string;
-};
-
 const notifications = [
   {
     description:
@@ -23,9 +19,9 @@ const notifications = [
   },
 ];
 
-export default function Notifications({ className }: NotificationsProps) {
+export default function Notifications() {
   return (
-    <div className={classNames('max-w-page py-24', className)}>
+    <div className={classNames('max-w-page py-24')}>
       <h1 className="font-grifter text-5xl">Notifications</h1>
       <div className="mt-16 mb-4 flex items-center justify-between">
         <p className="font-grifter text-3xl">New</p>

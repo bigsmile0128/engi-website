@@ -5,10 +5,10 @@ import classNames from 'classnames';
 import { gql } from 'graphql-request';
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import Pagination from '~/components/global/Pagination/Pagination';
 import SearchInput from '~/components/SearchInput';
 import SelectMenu from '~/components/SelectMenu';
 import SortMenu, { Option } from '~/components/SortMenu';
+import Pagination from '~/components/global/Pagination/Pagination';
 import { OrderByDirection, TransactionType } from '~/types';
 import MobileTransactionTable from './MobileTransactionTable';
 import TransactionTable from './TransactionTable';
@@ -76,7 +76,9 @@ export default function Transactions({
   className,
   walletId,
 }: TransactionsProps) {
-  const [sortField, setSortField] = useState<Option | null>(sortOptions[0]);
+  const [sortField, setSortField] = useState<Option | undefined>(
+    sortOptions[0]
+  );
   const [sortDir, setSortDir] = useState<OrderByDirection>(
     OrderByDirection.DESC
   );

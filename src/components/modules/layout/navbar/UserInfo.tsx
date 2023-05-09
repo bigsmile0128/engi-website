@@ -30,14 +30,14 @@ export default function UserInfo({
     isLoading: isLoadingBalance,
     data: balance,
     isFetched: hasLoadedBalanceAtLeastOnce,
-  } = useBalance(user.walletId);
+  } = useBalance(user?.walletId ?? '');
   const { isLoading: isLoadingHealth, data: health } = useEngiHealth();
   const { push: pushRoute } = useRouter();
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
       <div className="">
-        <Avvvatars value={user?.walletId} style="shape" size={48} />
+        <Avvvatars value={user?.walletId ?? ''} style="shape" size={48} />
       </div>
       <div className="flex flex-col items-end">
         <Menu className="relative" as="div">

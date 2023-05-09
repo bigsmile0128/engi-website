@@ -10,15 +10,9 @@ import Statistics from '~/components/pages/freelancer/Statistics';
 import UsefulResources from '~/components/pages/freelancer/UsefulResources';
 import WhyEngi from '~/components/pages/freelancer/WhyEngi';
 
-type FreelancerMarketingProps = {
-  className?: string;
-};
-
-export default function FreelancerMarketing({
-  className,
-}: FreelancerMarketingProps) {
+export default function FreelancerMarketing() {
   return (
-    <div className={classNames('flex flex-col items-center pt-24', className)}>
+    <div className={classNames('flex flex-col items-center pt-24')}>
       <Header className="max-w-page" />
       <CompanyCarousel className="mt-16 tablet:mt-24" />
       <WhyEngi className="mt-32 desktop:mt-48" />

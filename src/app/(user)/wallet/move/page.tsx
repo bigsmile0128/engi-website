@@ -4,16 +4,12 @@ import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 import { Fragment, useState } from 'react';
 import EngiIcon from '~/components/global/icons/EngiIcon';
+import TransferTab from '~/components/pages/wallet/TransferTab';
+import WithdrawTab from '~/components/pages/wallet/WithdrawTab';
 import { useBalance } from '~/utils/balances/userBalance';
 import { useUser } from '~/utils/contexts/userContext';
 import { displayAdaInEngi } from '~/utils/currency/conversion';
 import DepositTab from '../../../../components/pages/wallet/DepositTab';
-import WithdrawTab from '~/components/pages/wallet/WithdrawTab';
-import TransferTab from '~/components/pages/wallet/TransferTab';
-
-type MoveEngiProps = {
-  className?: string;
-};
 
 type MoveType = 'Withdraw' | 'Deposit' | 'Transfer';
 const tabNames: Array<MoveType> = ['Withdraw', 'Deposit', 'Transfer'];
@@ -27,14 +23,14 @@ export type PreviewMoveEngi = {
 // display a preview of a move
 const usePreviewMoveEngi = () => useState<PreviewMoveEngi>();
 
-export default function MoveEngi({ className }: MoveEngiProps) {
+export default function MoveEngi() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [previewMove, setPreviewMove] = usePreviewMoveEngi();
   const { user } = useUser();
   const { data: balance } = useBalance(user?.walletId ?? '');
 
   return (
-    <div className={classNames('max-w-page mt-12 mb-24 flex', className)}>
+    <div className={classNames('max-w-page mt-12 mb-24 flex')}>
       <div className="max-w-xl">
         <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
           <Tab.List className="flex w-full">

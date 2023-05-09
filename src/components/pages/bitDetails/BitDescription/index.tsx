@@ -133,7 +133,7 @@ export default function BitDescription({
             <Statistic
               className="col-span-1"
               icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-              value={data?.solutionUserCount}
+              value={data?.solutionUserCount ?? ''}
               title="Total Contributors"
               isLoading={isLoading}
             />
@@ -142,7 +142,7 @@ export default function BitDescription({
               icon={
                 <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
               }
-              value={data?.attemptCount}
+              value={data?.attemptCount ?? ''}
               title="Total Submissions"
               isLoading={isLoading}
             />
@@ -200,7 +200,7 @@ export default function BitDescription({
             />
             <Statistic
               icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-              value={data?.solutionUserCount}
+              value={data?.solutionUserCount ?? ''}
               title="Total Contributors"
               isLoading={isLoading}
             />
@@ -208,7 +208,7 @@ export default function BitDescription({
               icon={
                 <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
               }
-              value={data?.attemptCount}
+              value={data?.attemptCount ?? ''}
               title="Total Submissions"
               isLoading={isLoading}
             />
