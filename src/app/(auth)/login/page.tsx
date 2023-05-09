@@ -10,11 +10,7 @@ import { RiAlarmWarningLine } from 'react-icons/ri';
 import Link from 'next/link';
 import Button from '~/components/global/Button/Button';
 
-type LoginProps = {
-  className?: string;
-};
-
-export default function Login({ className }: LoginProps) {
+export default function Login() {
   const router = useRouter();
   // load all accounts from all extensions the user wishes to connect
   const {
@@ -26,8 +22,7 @@ export default function Login({ className }: LoginProps) {
   return (
     <div
       className={classNames(
-        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[640px]',
-        className
+        'max-w-page mt-16 mb-24 flex flex-col items-center max-w-[640px]'
       )}
     >
       <EngiText className="h-auto w-36 mb-12" />
