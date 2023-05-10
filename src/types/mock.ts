@@ -22,7 +22,7 @@ export const mockBit: Bit = {
     isAddable: 'a',
     isDeletable: 'a',
   },
-  solution: null,
+  solution: undefined,
   attemptCount: 0,
   createdOn: {
     number: 50675,

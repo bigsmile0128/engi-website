@@ -18,8 +18,8 @@ export default function useSignature() {
   return useMutation<Signature | null, any, SignatureArgs>(
     ['signature', user?.source, user?.walletId],
     async (args: SignatureArgs) => {
-      const source = args?.source || user.source;
-      const walletId = args?.walletId || user.walletId;
+      const source = args?.source || user?.source;
+      const walletId = args?.walletId || user?.walletId;
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { web3FromSource } = require('@polkadot/extension-dapp');
       if (!source || !walletId) {

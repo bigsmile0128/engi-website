@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { REGISTER_ENCRYPT_KEY_URL } from './constants';
-const { Keyring } = require('@polkadot/keyring');
-const { u8aToBuffer } = require('@polkadot/util');
+import { Keyring } from '@polkadot/keyring';
+import { u8aToBuffer } from '@polkadot/util';
 
 // Encrypt a user's pkcs8 key to be registered on Engi
 export const encryptMnemonic = async (mnemonic: string) => {

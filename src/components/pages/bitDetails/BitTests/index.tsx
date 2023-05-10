@@ -1,7 +1,6 @@
-import React from 'react';
+import { Roboto_Mono } from '@next/font/google';
 import classNames from 'classnames';
 import { Bit } from '~/types';
-import { Roboto_Mono } from '@next/font/google';
 
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
@@ -22,8 +21,8 @@ export default function BitTests({
     <div className={classNames('flex flex-col gap-2', className)}>
       {isLoading ? (
         <div>Loading...</div>
-      ) : data?.tests?.length > 0 ? (
-        data.tests.map((test) => (
+      ) : data?.tests?.length && data?.tests?.length > 0 ? (
+        data?.tests.map((test) => (
           <div key={test.id} className="flex flex-col bg-black/[.14]">
             <span className="block font-medium px-8 py-6">{test.id}</span>
             {test.failedResultMessage && (

@@ -67,9 +67,16 @@
     height: 100%;
     top: 0;
     left: 0;
-    background: url('/img/landing.svg') no-repeat center center;
+    background: url('/img/landing.svg') no-repeat top center;
     background-size: cover;
     will-change: transform;
+  }
+
+  .bg-about-mission {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url('/img/about/mission.png');
+    background-size: cover;
+    background-position: center;
   }
 
   .border-image-none {
@@ -104,6 +111,19 @@
   .scrollbar::-webkit-scrollbar-thumb {
     box-shadow: inset 0 0 10px 10px #65feb7;
     border-left: 10px solid transparent;
+  }
+
+  .scrollbar-horizontal::-webkit-scrollbar {
+    -webkit-appearance: none;
+    /* combination of height, box-shadow, and border-top to fake margin-top */
+    height: 12px;
+    box-shadow: inset 0 0 10px 10px rgba(255, 255, 255, 0.3);
+    border-top: 11px solid transparent;
+  }
+
+  .scrollbar-horizontal::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px #65feb7;
+    border-top: 10px solid transparent;
   }
 }
 

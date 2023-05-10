@@ -1,0 +1,4 @@
+[submodule ".circleci/circleci"]
+	path = .circleci/circleci
+	url = git@github.com:engi-network/circleci
+	branch = main

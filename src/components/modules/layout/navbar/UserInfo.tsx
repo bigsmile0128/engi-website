@@ -4,10 +4,8 @@ import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisable
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
-import copy from 'copy-to-clipboard';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import { toast } from 'react-toastify';
 import EngiAmount from '~/components/EngiAmount';
 import MenuItemLink from '~/components/MenuItemLink';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
@@ -32,14 +30,14 @@ export default function UserInfo({
     isLoading: isLoadingBalance,
     data: balance,
     isFetched: hasLoadedBalanceAtLeastOnce,
-  } = useBalance(user.walletId);
+  } = useBalance(user?.walletId ?? '');
   const { isLoading: isLoadingHealth, data: health } = useEngiHealth();
   const { push: pushRoute } = useRouter();
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
       <div className="">
-        <Avvvatars value={user?.walletId} style="shape" size={48} />
+        <Avvvatars value={user?.walletId ?? ''} style="shape" size={48} />
       </div>
       <div className="flex flex-col items-end">
         <Menu className="relative" as="div">

@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, Fragment } from 'react';
 import SettingsMenu from './SettingsMenu/SettingsMenu';
 import {

@@ -22,9 +22,9 @@ export default function RepositoryTab({
   className,
   onChange,
 }: RepositoryTabProps) {
-  const [repo, setRepo] = useState(null);
-  const [branch, setBranch] = useState(null);
-  const [commit, setCommit] = useState(null);
+  const [repo, setRepo] = useState<any>(null);
+  const [branch, setBranch] = useState<any>(null);
+  const [commit, setCommit] = useState<any>(null);
   const [modalType, setModalType] = useState('');
 
   const {
@@ -33,17 +33,22 @@ export default function RepositoryTab({
     data: repos,
     isFetching: isFetchingRepositories,
     refetch: refetchRepositories,
+    error: errorRepositories,
   } = useGithubRepositories();
+
+  const isNotEnrolled =
+    (errorRepositories?.cause as Error)?.message === 'NOT_ENROLLED_TO_GITHUB';
+
   const {
     isLoading: isLoadingBranches,
-    isError: isErrorBranches,
+    // isError: isErrorBranches,
     data: branches,
     isFetching: isFetchingBranches,
     refetch: refetchBranches,
   } = useGithubRepositoryBranches(repo?.value);
   const {
     isLoading: isLoadingCommits,
-    isError: isErrorCommits,
+    // isError: isErrorCommits,
     data: commits,
     isFetching: isFetchingCommits,
     refetch: refetchCommits,
@@ -61,7 +66,10 @@ export default function RepositoryTab({
 
   return (
     <div className={classNames('', className)}>
-      {isErrorRepositories && <LoginModal onSuccess={refetchRepositories} />}
+      {/* only show login modal if user receives an error other than NOT_ENROLLED */}
+      {isErrorRepositories && !isNotEnrolled && (
+        <LoginModal onSuccess={refetchRepositories} />
+      )}
       <h4 className="font-bold text-xl">Step 1: Select Repository</h4>
       <p className="text-secondary mt-4">
         Select an existing repository URL for creating a new bit. The directory
@@ -71,7 +79,7 @@ export default function RepositoryTab({
         <label className="font-bold text-xl">Repository</label>
         <a
           className="text-xl text-green-primary hover:text-green-primary/80"
-          href="https://github.com/apps/engi-bot-github-app/installations/new?state=uuid"
+          href="https://github.com/apps/engi-github-app/installations/new?state=uuid"
           target="_blank"
           rel="noreferrer"
         >

@@ -1,3 +1,5 @@
+'use client';
+
 import { MdCheck } from '@react-icons/all-files/md/MdCheck';
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
@@ -25,7 +27,7 @@ export default function CopyButton({
           className
         )}
         onClick={() => {
-          copy(value);
+          copy(value ?? '');
           setCopied(true);
           // show checkmark after copying for 2s
           setTimeout(() => setCopied(false), 2000);

@@ -1,9 +1,9 @@
-import { emitConnectedEthereumExtensionAnalyticsEvent } from './../analytics/events';
 import { useQuery } from 'react-query';
+import { emitConnectedEthereumExtensionAnalyticsEvent } from './../analytics/events';
 import {
-  QUERY_KEY_CONNECT_ETHEREUM_EXTENSION,
-  NO_GLOBAL_ETHEREUM_ERROR_MESSAGE,
   ETHEREUM_REQUEST_ACCOUNTS_METHOD,
+  NO_GLOBAL_ETHEREUM_ERROR_MESSAGE,
+  QUERY_KEY_CONNECT_ETHEREUM_EXTENSION,
 } from './constants';
 
 // Connect to the window's provider by retrieving accounts
@@ -33,7 +33,7 @@ export const useConnectEthereumExtension = () =>
       // Don't retry connection if user cancels request
       // Don't retry connection if user has canceled request before
       // Don't refetch after closing the extension
-      onSuccess(data) {
+      onSuccess() {
         emitConnectedEthereumExtensionAnalyticsEvent();
       },
     }

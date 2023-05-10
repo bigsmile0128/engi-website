@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import withMock from 'storybook-addon-mock';
 import styles from './common_bg.module.css';
-import ContactUs from '../../../pages/contact';
+import ContactUs from '../../../app/contact/page';
 
 export default {
   title: 'Pages/Contact Page',

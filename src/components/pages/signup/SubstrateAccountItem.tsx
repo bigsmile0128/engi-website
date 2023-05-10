@@ -1,11 +1,7 @@
-import { Popover } from '@headlessui/react';
 import { uuid4 } from '@sentry/utils';
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
-import Link from 'next/link';
-import { useMemo, useState } from 'react';
-import { RiMore2Fill } from 'react-icons/ri';
-import { usePopper } from 'react-popper';
+import { useMemo } from 'react';
 import Button from '~/components/global/Button/Button';
 import { AccountExistenceResult, SubstrateAccount } from '~/types';
 
@@ -40,6 +36,7 @@ export default function SubstrateAccountItem({
   const avatarId = useMemo(() => {
     return account?.address ?? uuid4();
   }, [account]);
+
   return (
     <div
       className={classNames(

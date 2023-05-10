@@ -108,10 +108,11 @@ export default function WorkflowsSupercharged({
           DeDev
         </span>
       </span>
-      {/* TODO: update with ENGIN-972 add integrations page */}
-      <Button className="mt-12 capitalize" variant="primary">
-        Discover Integrations
-      </Button>
+      <Link href="/integrations">
+        <Button className="mt-12 capitalize" variant="primary">
+          Discover Integrations
+        </Button>
+      </Link>
       <div className="mt-16 grid grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-4 tablet:gap-8 w-full">
         {integrations.map(({ icon, name, href, cta, disabled }) => (
           <Link

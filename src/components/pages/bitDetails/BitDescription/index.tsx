@@ -7,13 +7,14 @@ import {
   RiLineChartFill,
 } from 'react-icons/ri';
 import CopyLink from '~/components/CopyLink';
-import Button from '~/components/global/Button/Button';
-import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
-import TechnologyTag from '~/components/TechnologyTag';
 import Markdown from '~/components/Markdown';
 import Statistic from '~/components/Statistic';
+import TechnologyTag from '~/components/TechnologyTag';
 import TextSkeleton from '~/components/TextSkeleton';
+import Button from '~/components/global/Button/Button';
+import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
 import { Bit } from '~/types';
+import '~/utils/datetime/dayjs-extend';
 import BitCreator from '../BitCreator';
 import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';
@@ -132,7 +133,7 @@ export default function BitDescription({
             <Statistic
               className="col-span-1"
               icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-              value={data?.solutionUserCount}
+              value={data?.solutionUserCount ?? ''}
               title="Total Contributors"
               isLoading={isLoading}
             />
@@ -141,7 +142,7 @@ export default function BitDescription({
               icon={
                 <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
               }
-              value={data?.attemptCount}
+              value={data?.attemptCount ?? ''}
               title="Total Submissions"
               isLoading={isLoading}
             />
@@ -199,7 +200,7 @@ export default function BitDescription({
             />
             <Statistic
               icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-              value={data?.solutionUserCount}
+              value={data?.solutionUserCount ?? ''}
               title="Total Contributors"
               isLoading={isLoading}
             />
@@ -207,7 +208,7 @@ export default function BitDescription({
               icon={
                 <RiCheckboxCircleLine className="text-purple-primary h-5 w-5" />
               }
-              value={data?.attemptCount}
+              value={data?.attemptCount ?? ''}
               title="Total Submissions"
               isLoading={isLoading}
             />

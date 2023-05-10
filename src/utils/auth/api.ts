@@ -128,8 +128,13 @@ export const useLoginUser = () => {
       };
     },
     {
-      onSuccess({ accessToken }, { address, display, source }) {
-        emitLoginAnalyticsEvent(accessToken, address, display, source);
+      onSuccess(user, { address, display, source }) {
+        emitLoginAnalyticsEvent(
+          user?.accessToken ?? '',
+          address,
+          display,
+          source
+        );
       },
       onError(error, { address, display, source }) {
         emitLoginErrorAnalyticsEvent(error, address, display, source);

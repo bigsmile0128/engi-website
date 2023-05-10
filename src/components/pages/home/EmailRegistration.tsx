@@ -1,3 +1,5 @@
+'use client';
+
 import { AiOutlineLoading } from '@react-icons/all-files/ai/AiOutlineLoading';
 import * as Sentry from '@sentry/react';
 import axios, { AxiosError } from 'axios';

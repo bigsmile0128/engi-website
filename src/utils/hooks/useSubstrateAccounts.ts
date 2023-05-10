@@ -15,7 +15,7 @@ export default function useSubstrateAccounts() {
   return useQuery<SubstrateAccount[], any>(
     ['polkadotAccounts'],
     async () => {
-      if (typeof window === 'undefined') return;
+      if (typeof window === 'undefined') return [];
 
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       const { web3Accounts, web3Enable } = require('@polkadot/extension-dapp');

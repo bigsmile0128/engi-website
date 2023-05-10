@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { Technology } from '~/types';
-import Tag from './global/Tag/Tag';
 import TechnologyIcon from './TechnologyIcon';
+import Tag from './global/Tag/Tag';
 
 type TechnologyTagProps = {
   className?: string;
@@ -32,7 +32,7 @@ export default function TechnologyTag({
       )}
     >
       <TechnologyIcon value={value} className="text-orange-primary" />
-      <span>{displayNameMap[value] ?? value}</span>
+      <span>{displayNameMap[value ?? ''] ?? value}</span>
     </Tag>
   );
 }

@@ -8,7 +8,7 @@ type LoginModalProps = {
 
 export default function LoginModal({ onSuccess }: LoginModalProps) {
   return (
-    <Modal isOpen={true}>
+    <Modal className="tablet:min-w-[500px]" isOpen={true}>
       <Dialog.Title as="h3" className="font-grifter text-3xl text-gray-300">
         Log In
       </Dialog.Title>

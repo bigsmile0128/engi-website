@@ -1,11 +1,7 @@
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
-import * as Sentry from '@sentry/react';
-import axios from 'axios';
 import classNames from 'classnames';
-import { gql } from 'graphql-request';
 import pluralize from 'pluralize';
-import { useQuery } from 'react-query';
 import Tooltip from '~/components/Tooltip';
 import useEngiHealth from '~/utils/hooks/useEngiHealth';
 
@@ -20,7 +16,7 @@ export default function BlockchainHealth({
   isStacked,
   showPeerCount = true,
 }: BlockchainHealthProps) {
-  const { isLoading, isError, data } = useEngiHealth();
+  const { isLoading, data } = useEngiHealth();
 
   return isStacked ? (
     <div className={classNames('flex gap-x-8', className)}>

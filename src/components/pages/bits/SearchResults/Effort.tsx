@@ -1,4 +1,3 @@
-import React from 'react';
 import classNames from 'classnames';
 import TimeEstimate from '~/components/TimeEstimate';
 
@@ -29,7 +28,7 @@ export default function Effort({
               : 'border-white/30 border-b-green-primary border-l-green-primary rotate'
           )}
           style={{
-            transform: `rotate(${timeEstimate * 3}deg)`,
+            transform: `rotate(${timeEstimate ?? 0 * 3}deg)`,
           }}
         />
       </div>

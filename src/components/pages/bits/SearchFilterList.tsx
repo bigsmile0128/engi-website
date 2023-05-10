@@ -7,7 +7,7 @@ import { BitStatus, Technology } from '~/types';
 interface SearchFilterListProps {
   className?: string;
   filterClassName?: string;
-  onChange: (searchParams) => void;
+  onChange: (searchParams: URLSearchParams) => void;
   searchParams: URLSearchParams;
 }
 
@@ -51,9 +51,11 @@ export default function SearchFilterList({
   onChange,
   filterClassName,
 }: SearchFilterListProps) {
-  const technologies = searchParams.getAll('technologies');
-  let minFunding = parseInt(searchParams.get('funding-min')) || MIN_FUNDING;
-  let maxFunding = parseInt(searchParams.get('funding-max')) || MAX_FUNDING;
+  const technologies = searchParams.getAll('technology');
+  let minFunding =
+    parseInt(searchParams.get('funding-min') ?? '0') || MIN_FUNDING;
+  let maxFunding =
+    parseInt(searchParams.get('funding-max') ?? '0') || MAX_FUNDING;
 
   if (minFunding >= maxFunding) {
     minFunding = MIN_FUNDING;
@@ -67,7 +69,7 @@ export default function SearchFilterList({
         <Button
           variant="link"
           className="text-secondary text-sm underline font-normal hover:text-white"
-          onClick={() => onChange({})}
+          onClick={() => onChange(new URLSearchParams())}
         >
           Clear all
         </Button>
@@ -83,12 +85,12 @@ export default function SearchFilterList({
               label={label}
               checked={value === searchParams.get('created-after')}
               onChange={(checked) => {
-                const newSearchParams: Record<string, any> =
-                  Object.fromEntries(searchParams);
+                const newSearchParams = new URLSearchParams(searchParams);
+                newSearchParams.delete('page');
                 if (checked) {
-                  newSearchParams['created-after'] = value;
+                  newSearchParams.set('created-after', value);
                 } else {
-                  delete newSearchParams['created-after'];
+                  newSearchParams.delete('created-after');
                 }
                 onChange(newSearchParams);
               }}
@@ -107,15 +109,20 @@ export default function SearchFilterList({
               label={label}
               checked={technologies.includes(value)}
               onChange={(checked) => {
-                const newSearchParams: Record<string, any> =
-                  Object.fromEntries(searchParams);
-                delete newSearchParams.page; // reset page when changing technologies
+                const newSearchParams = new URLSearchParams(searchParams);
+                newSearchParams.delete('page');
+                newSearchParams.delete('technology');
                 if (checked) {
-                  newSearchParams.technology = [...technologies, value];
-                } else {
-                  newSearchParams.technology = technologies.filter(
-                    (lang) => lang !== value
+                  technologies.forEach((technology) =>
+                    newSearchParams.append('technology', technology)
                   );
+                  newSearchParams.append('technology', value);
+                } else {
+                  technologies
+                    .filter((lang) => lang !== value)
+                    .forEach((technology) =>
+                      newSearchParams.append('technology', technology)
+                    );
                 }
                 onChange(newSearchParams);
               }}
@@ -134,12 +141,12 @@ export default function SearchFilterList({
               label={label}
               checked={value === searchParams.get('status')}
               onChange={(checked) => {
-                const newSearchParams: Record<string, any> =
-                  Object.fromEntries(searchParams);
+                const newSearchParams = new URLSearchParams(searchParams);
+                newSearchParams.delete('page');
                 if (checked) {
-                  newSearchParams['status'] = value;
+                  newSearchParams.set('status', value);
                 } else {
-                  delete newSearchParams['status'];
+                  newSearchParams.delete('status');
                 }
                 onChange(newSearchParams);
               }}
@@ -156,11 +163,11 @@ export default function SearchFilterList({
           minDistance={1}
           value={[minFunding, maxFunding]}
           onAfterChange={([minFunding, maxFunding]) => {
-            onChange({
-              ...Object.fromEntries(searchParams),
-              'funding-min': minFunding,
-              'funding-max': maxFunding,
-            });
+            const newSearchParams = new URLSearchParams(searchParams);
+            newSearchParams.delete('page');
+            newSearchParams.set('funding-min', minFunding);
+            newSearchParams.set('funding-max', maxFunding);
+            onChange(newSearchParams);
           }}
         />
       </div>

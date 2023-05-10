@@ -10,9 +10,9 @@ function UploadAvatar() {
 
   const handleUploaded = async () => {
     try {
-      const response = await uploadImageToS3({
+      await uploadImageToS3({
         file: image,
-        name: `${image.name}`,
+        name: `${image?.name}`,
       });
 
       setHasUploaded(true);
