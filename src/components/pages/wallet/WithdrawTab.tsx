@@ -1,15 +1,19 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState, useEffect, useRef } from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
-import { SiBitcoin, SiEthereum, SiLitecoin, SiTether } from 'react-icons/si';
+import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
 import ButtonSelect from '~/components/ButtonSelect';
 import IncompleteBanner from '~/components/IncompleteBanner';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Input from '~/components/global/Input/Input';
 import WalletInput from './WalletInput';
+import { toast } from 'react-toastify';
 
 import DatePicker from '~/components/DatePicker';
+import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
+import { useUser } from '~/utils/contexts/userContext';
+import { engiToWoz } from '~/utils/currency/conversion';
 
 type WithdrawTabProps = {
   className?: string;
@@ -42,15 +46,66 @@ const repeatOptions = [
 ];
 
 export default function WithdrawTab({ className }: WithdrawTabProps) {
+  const { user } = useUser();
+  const [amount, setAmount] = useState(0);
+  const [sellToEthAccount, setSellToEthAccount] = useState<string>(null);
   const [repeatTransaction, setRepeatTransaction] = useState(false);
   const [repeatFrequency, setRepeatFrequency] =
     useState<RepeatFrequency | null>(RepeatFrequency.DAILY);
+
+  // TODO: clear wallet address, value, etc.
+  const clear = useCallback(() => {
+    setRepeatTransaction(false);
+    setRepeatFrequency(RepeatFrequency.DAILY);
+  }, []);
+
+  const {
+    mutate: sellEngiForEth,
+    isLoading: userConfirmingSellTransaction,
+    isError: failedToSellEngi,
+    error: sellEngiError,
+    data: confirmedSellTransaction,
+  } = useSellEngiForEth();
+
+  // display sell states
+  const sellEngiStatesDisplay = useRef(null);
+  useEffect(() => {
+    if (userConfirmingSellTransaction) {
+      sellEngiStatesDisplay.current = toast('Transaction pending...', {
+        position: 'top-center',
+        isLoading: true,
+      });
+    } else if (confirmedSellTransaction) {
+      // update loading or error toasts
+      toast.update(sellEngiStatesDisplay.current, {
+        render: 'Sell Successful!',
+        type: toast.TYPE.SUCCESS,
+        autoClose: 3000,
+        isLoading: false,
+      });
+    } else if (failedToSellEngi) {
+      toast.update(sellEngiStatesDisplay.current, {
+        render: `${sellEngiError.message} Please try again.`,
+        type: toast.TYPE.ERROR,
+        isLoading: false,
+      });
+    }
+  }, [
+    userConfirmingSellTransaction,
+    confirmedSellTransaction,
+    failedToSellEngi,
+    sellEngiError,
+    sellEngiStatesDisplay,
+  ]);
 
   return (
     <div className={classNames('flex flex-col', className)}>
       <IncompleteBanner className="mb-4" />
       <CurrencySelect className="" />
-      <WalletInput className="mt-8" />
+      <WalletInput
+        className="mt-8"
+        onChange={(event) => setSellToEthAccount(event.currentTarget.value)}
+      />
       <label htmlFor="amount" className="mt-8 font-bold text-xl">
         {"What's the amount?"}
       </label>
@@ -61,10 +116,13 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
             type="number"
             name="amount"
             placeholder="0.00"
+            value={amount}
+            onChange={(event) => setAmount(parseFloat(event.target.value))}
           />
           <Button
             variant="tag"
             className="absolute top-1/2 right-3 -translate-y-1/2"
+            disabled // TODO
           >
             Max
           </Button>
@@ -99,6 +157,25 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         tagClassName="!py-[1px]"
       />
       <DatePicker className="mt-4" disabled={!repeatTransaction} />
+      <div className="mt-8 w-full flex items-center justify-end gap-4">
+        <Button onClick={clear}>Clear</Button>
+        <Button
+          variant="primary"
+          className="px-20"
+          disabled={
+            !amount || !sellToEthAccount || userConfirmingSellTransaction
+          }
+          onClick={() => {
+            sellEngiForEth({
+              fromUser: user,
+              toAccount: sellToEthAccount,
+              amount: engiToWoz(amount),
+            });
+          }}
+        >
+          Confirm
+        </Button>
+      </div>
     </div>
   );
 }
@@ -118,10 +195,6 @@ const currencyOptions = [
   {
     label: 'Ethereum',
     value: Currency.ETHEREUM,
-  },
-  {
-    label: 'Litecoin',
-    value: Currency.LITECOIN,
   },
   {
     label: 'Tether',
@@ -162,14 +235,6 @@ function CurrencySelect({ className }) {
               )}
             />
           )}
-          {option.value === Currency.LITECOIN && (
-            <SiLitecoin
-              className={classNames(
-                'h-8 w-8',
-                option.value === value ? 'text-green-primary' : ''
-              )}
-            />
-          )}
           {option.value === Currency.TETHER && (
             <SiTether
               className={classNames(
@@ -184,9 +249,6 @@ function CurrencySelect({ className }) {
           )}
           {option.value === Currency.ETHEREUM && (
             <span className="font-normal text-sm mt-2">1 engi - 1 ETH</span>
-          )}
-          {option.value === Currency.LITECOIN && (
-            <span className="font-normal text-sm mt-2">1 engi - ? LTC</span>
           )}
           {option.value === Currency.TETHER && (
             <span className="font-normal text-sm mt-2">1 engi - ? USDT</span>

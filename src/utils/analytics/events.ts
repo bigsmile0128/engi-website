@@ -90,6 +90,32 @@ export const emitBoughtEngiErrorAnalyticsEvent = (
   window?.gtag?.('event', 'error_bought_engi', { error, address, amount });
 };
 
+export const emitSoldEngiAnalyticsEvent = (
+  from_address: string,
+  to_address: string,
+  amount: number
+) => {
+  if (typeof window === undefined) return;
+
+  window?.gtag?.('event', 'sold_engi', { from_address, to_address, amount });
+};
+
+export const emitSoldEngiErrorAnalyticsEvent = (
+  error: any,
+  from_address: string,
+  to_address: string,
+  amount: number
+) => {
+  if (typeof window === undefined) return;
+
+  window?.gtag?.('event', 'error_sold_engi', {
+    error,
+    from_address,
+    to_address,
+    amount,
+  });
+};
+
 export const emitConnectedPolkadotExtensionAnalyticsEvent = () => {
   if (typeof window === undefined) return;
 
