@@ -64,7 +64,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <RiNotification4Line className="h-6 w-6" aria-hidden="true" />
                 <div className="absolute bg-red-primary h-2 w-2 top-1 right-1 rounded-full" />
               </Menu.Button>
-              <Menu.Items className="absolute bg-secondary/40 backdrop-blur-[100px] right-0 w-[400px] translate-y-4">
+              <Menu.Items className="absolute bg-secondary/40 backdrop-blur-[100px] right-0 w-[400px] translate-y-4 z-50">
                 <p className="w-full flex items-center justify-between p-6 border-b border-white/30">
                   <span className="font-grifter text-xl -mb-2">
                     Notifications
