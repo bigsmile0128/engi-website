@@ -21,7 +21,7 @@ export const useSellEngiForEth = () =>
       // the amount of ENGI to sell in exchange for ETH
       amount: number;
       // the user's Engi wallet that will sell ENGI
-      fromUser: User;
+      fromUser: NonNullable<User>;
       // the user's Ethereum wallet that will receive ETH
       toAccount: string;
     }) => {

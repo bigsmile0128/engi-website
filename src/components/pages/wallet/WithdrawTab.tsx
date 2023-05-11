@@ -8,7 +8,7 @@ import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Input from '~/components/global/Input/Input';
 import WalletInput from './WalletInput';
-import { toast } from 'react-toastify';
+import { Id as ToastId, toast } from 'react-toastify';
 
 import DatePicker from '~/components/DatePicker';
 import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
@@ -48,7 +48,7 @@ const repeatOptions = [
 export default function WithdrawTab({ className }: WithdrawTabProps) {
   const { user } = useUser();
   const [amount, setAmount] = useState(0);
-  const [sellToEthAccount, setSellToEthAccount] = useState<string>(null);
+  const [sellToEthAccount, setSellToEthAccount] = useState<string | null>(null);
   const [repeatTransaction, setRepeatTransaction] = useState(false);
   const [repeatFrequency, setRepeatFrequency] =
     useState<RepeatFrequency | null>(RepeatFrequency.DAILY);
@@ -68,7 +68,7 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
   } = useSellEngiForEth();
 
   // display sell states
-  const sellEngiStatesDisplay = useRef(null);
+  const sellEngiStatesDisplay = useRef<ToastId | null>(null);
   useEffect(() => {
     if (userConfirmingSellTransaction) {
       sellEngiStatesDisplay.current = toast('Transaction pending...', {
@@ -76,6 +76,10 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         isLoading: true,
       });
     } else if (confirmedSellTransaction) {
+      if (!sellEngiStatesDisplay.current) {
+        return;
+      }
+
       // update loading or error toasts
       toast.update(sellEngiStatesDisplay.current, {
         render: 'Sell Successful!',
@@ -84,6 +88,10 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         isLoading: false,
       });
     } else if (failedToSellEngi) {
+      if (!sellEngiStatesDisplay.current) {
+        return;
+      }
+
       toast.update(sellEngiStatesDisplay.current, {
         render: `${sellEngiError.message} Please try again.`,
         type: toast.TYPE.ERROR,
