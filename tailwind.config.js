@@ -50,7 +50,6 @@ module.exports = {
       addVariant('children', '& > *');
     }),
     require('tailwindcss-debug-screens'),
-    require('@tailwindcss/line-clamp'),
     require('@headlessui/tailwindcss')
   ],
 };

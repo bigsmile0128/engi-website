@@ -27,6 +27,8 @@ module.exports = async ({ config, mode }) => {
     crypto: false,
     stream: false,
     path: false,
+    url: false,
+    os: false,
   };
 
   // Return the altered config
