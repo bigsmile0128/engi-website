@@ -9,6 +9,8 @@ import { BrowserTracing } from '@sentry/tracing';
 import { usePersistedUserState } from '~/utils/auth/persisted';
 import UserContext, { User } from '~/utils/contexts/userContext';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 type ProvidersProps = {
   children?: React.ReactNode;
 };
