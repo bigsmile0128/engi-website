@@ -1,12 +1,11 @@
-import classNames from 'classnames';
-import Image from 'next/image';
+'use client';
 
-import avatarImg from 'public/img/avatar.png';
-import { MdModeEdit } from 'react-icons/md';
-import { SiPython, SiRust, SiTypescript } from 'react-icons/si';
-import EngiAmount from '~/components/EngiAmount';
-import AccountTabs from '~/components/pages/account/AccountTabs';
-import Balance from '~/components/pages/account/Balance';
+import classNames from 'classnames';
+import UserAbout from '~/components/pages/account/UserAbout';
+import UserAnalytics from '~/components/pages/account/UserAnalytics';
+
+import UserInfo from '~/components/pages/account/UserInfo';
+import UserRepositories from '~/components/pages/account/UserRepositories';
 
 export default function AccountDetails({
   params,
@@ -17,44 +16,11 @@ export default function AccountDetails({
 }) {
   const { accountId } = params;
   return (
-    <div className={classNames('py-24')}>
-      <div className="max-w-page">
-        <div className="flex flex-col items-center sm:flex-row gap-x-16">
-          <div className="h-40 w-40">
-            <Image src={avatarImg} alt="avatar" />
-          </div>
-          <div className="flex flex-col items-center sm:items-start">
-            <div className="flex items-center gap-x-2">
-              <span className="font-bold text-2xl">John Doe</span>
-              <button className="text-white/80 hover:text-green-primary">
-                <MdModeEdit className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="flex items-center gap-x-8 mt-4">
-              <SiRust className="h-8 w-8 text-white/80" />
-              <SiPython className="h-8 w-8 text-white/80" />
-              <SiTypescript className="h-8 w-8 text-white/80" />
-            </div>
-            <div className="flex flex-col sm:flex-row gap-x-8 gap-y-2 mt-4">
-              <span className="font-bold text-lg">123 Bits Solved</span>
-              <EngiAmount
-                value={1.23 * Math.pow(10, 18)}
-                suffix=" earned"
-                valueClassName="font-bold text-lg ml-1"
-                iconClassName="h-3 w-3 mt-1"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="relative">
-        <div className="max-w-page">
-          <Balance className="mt-12 p-8 bg-[#232323]/40 backdrop-blur-[200px]" />
-        </div>
-      </div>
-      <div className="max-w-page mt-16">
-        <AccountTabs accountId={accountId} />
-      </div>
+    <div className={classNames('flex-1 flex flex-col gap-y-12')}>
+      <UserInfo className="w-full" accountId={accountId} />
+      <UserAnalytics className="w-full" />
+      <UserAbout className="w-full" />
+      <UserRepositories className="w-full" />
     </div>
   );
 }

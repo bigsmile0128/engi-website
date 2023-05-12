@@ -1,4 +1,4 @@
-import { Roboto_Mono } from '@next/font/google';
+import { Roboto_Mono } from 'next/font/google';
 import classNames from 'classnames';
 import { Bit } from '~/types';
 

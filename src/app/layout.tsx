@@ -1,13 +1,13 @@
 import classNames from 'classnames';
 import { Metadata } from 'next';
 import Script from 'next/script';
-import 'react-toastify/dist/ReactToastify.css';
 import Providers from '~/components/Providers';
 import Footer from '~/components/modules/layout/Footer';
 import Navbar from '~/components/modules/layout/Navbar';
 import { isDev, isProduction } from '~/utils';
 import '~/utils/datetime/dayjs-extend';
 import '../styles/globals.css';
+import BreakpointInspector from '~/components/BreakpointInspector';
 
 export const metadata: Metadata = {
   title: 'engi',
@@ -34,6 +34,7 @@ export default function RootLayout({
           <Footer className="mt-auto" />
         </Providers>
         <div id="portal" />
+        <BreakpointInspector className={isDev() ? '!block' : ''} />
       </body>
       {isProduction() && (
         <>
