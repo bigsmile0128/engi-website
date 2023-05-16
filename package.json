@@ -7,7 +7,7 @@
     "dev:analyze": "ANALYZE=true next dev",
     "analyze": "ANALYZE=true npm run build",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint \"src/**/*.{ts,tsx,md}\" --fix",
     "storybook": "storybook dev",
