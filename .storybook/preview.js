@@ -42,6 +42,7 @@ export const parameters = {
   screenshot: {
     waitFor: 'fontLoading',
   },
+  layout: 'fullscreen',
 };
 
 const OriginalNextImage = NextImage.default;

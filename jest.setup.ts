@@ -1,3 +1,7 @@
-import { toBeSameStory } from 'same-story-jest-plugin/lib';
+import { toMatchDesign } from '@engi.network/design-matcher';
+import dotenv from 'dotenv';
 
-expect.extend({ toBeSameStory });
+dotenv.config();
+// dotenv.config({ path: './.env.development.local' });
+
+expect.extend({ toMatchDesign });
