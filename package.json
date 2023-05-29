@@ -94,6 +94,7 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
+    "@engi.network/design-matcher": "^0.1.0",
     "@faker-js/faker": "^6.0.0",
     "@storybook/addon-actions": "^7.0.10",
     "@storybook/addon-backgrounds": "^7.0.10",
@@ -116,6 +117,7 @@
     "@types/use-persisted-state": "^0.3.1",
     "@typescript-eslint/eslint-plugin": "^5.39.0",
     "autoprefixer": "^10.4.2",
+    "dotenv": "^16.0.3",
     "encoding": "^0.1.13",
     "eslint": "^8.25.0",
     "eslint-config-next": "^13.0.7",

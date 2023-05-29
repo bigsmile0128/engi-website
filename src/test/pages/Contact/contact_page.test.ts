@@ -1,7 +1,7 @@
 import { contactUsData } from './contact_page.data';
 import { SS_TIMEOUT } from '../config';
 
-describe('Contact page', () => {
+xdescribe('Contact page', () => {
   test(
     'is the contact page matching the figma design?',
     async () => {

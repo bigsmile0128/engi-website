@@ -27,6 +27,9 @@
     "strictNullChecks": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "files": ["node_modules/same-story-jest-plugin/types/index.d.ts"],
+  "files": [
+    "node_modules/same-story-jest-plugin/types/index.d.ts",
+    "node_modules/@engi.network/design-matcher/plugin/types/jest.d.ts"
+  ],
   "exclude": ["node_modules"]
 }
