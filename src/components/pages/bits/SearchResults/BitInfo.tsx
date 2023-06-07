@@ -2,7 +2,6 @@ import { SiPython } from '@react-icons/all-files/si/SiPython';
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import TechnologyIcon from '~/components/TechnologyIcon';
-import { Technology } from '~/types';
 import '~/utils/datetime/dayjs-extend';
 
 type BitInfoProps = {
@@ -10,7 +9,7 @@ type BitInfoProps = {
   createdOn?: string;
   isLoading?: boolean;
   name?: string;
-  technologies?: Technology[];
+  technologies?: string[];
 };
 
 export default function BitInfo({
@@ -28,7 +27,7 @@ export default function BitInfo({
         className
       )}
     >
-      <div className="flex items-center gap-x-4">
+      <div className="flex items-center gap-x-1">
         {technologies?.map?.((technology) => (
           <TechnologyIcon
             key={technology}
@@ -41,7 +40,7 @@ export default function BitInfo({
             value={technology}
           />
         ))}
-        <span className="text-xs text-white/80">
+        <span className="ml-2 text-xs text-white/80">
           Created {dayjs(createdOn).fromNow()}
         </span>
       </div>
