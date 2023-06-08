@@ -46,7 +46,7 @@ const items = [
 
 export default function Sidebar({ className, accountId }: SidebarProps) {
   const pathname = usePathname() ?? '';
-  const activePath = pathname.replace(`/account/${accountId}`, '');
+  const activePath = pathname.replace(`/engineer/${accountId}`, '');
 
   return (
     <div
@@ -64,7 +64,7 @@ export default function Sidebar({ className, accountId }: SidebarProps) {
               ? 'font-bold text-green-primary border-green-primary'
               : 'border-transparent'
           )}
-          href={`/account/${accountId}${path}`}
+          href={`/engineer/${accountId}${path}`}
         >
           {icon}
           <span>{name}</span>
