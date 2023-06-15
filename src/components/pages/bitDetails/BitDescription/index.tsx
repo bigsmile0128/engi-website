@@ -52,7 +52,7 @@ export default function BitDescription({
       </h2>
       <p
         className={classNames(
-          'mt-4 flex-flex-wrap gap-4',
+          'mt-4 flex flex-wrap gap-4',
           isLoading ? 'children:skeleton children:rounded-none' : ''
         )}
       >

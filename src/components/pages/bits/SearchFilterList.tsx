@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
-import Slider from '~/components/global/Slider/Slider';
-import { BitStatus, Technology } from '~/types';
+import { BitStatus } from '~/types';
+import useSearchFields from '~/utils/hooks/useSearchFields';
 
 interface SearchFilterListProps {
   className?: string;
@@ -10,15 +10,6 @@ interface SearchFilterListProps {
   onChange: (searchParams: URLSearchParams) => void;
   searchParams: URLSearchParams;
 }
-
-// TODO: replace with enums from schema
-// https://linear.app/engi/issue/ENGIN-907/query-to-get-list-of-static-values-for-job-search
-export const technologyOptions = [
-  { label: 'C#', value: Technology.C_SHARP },
-  { label: 'JavaScript', value: Technology.JAVA_SCRIPT },
-  { label: 'Python', value: Technology.PYTHON },
-  { label: 'Rust', value: Technology.RUST },
-].sort((a, b) => a.label.localeCompare(b.label));
 
 export enum DateOption {
   LAST_DAY = 'LAST_DAY',
@@ -51,6 +42,9 @@ export default function SearchFilterList({
   onChange,
   filterClassName,
 }: SearchFilterListProps) {
+  const { data: searchFields, isLoading: isLoadingSearchFields } =
+    useSearchFields();
+
   const technologies = searchParams.getAll('technology');
   let minFunding =
     parseInt(searchParams.get('funding-min') ?? '0') || MIN_FUNDING;
@@ -75,101 +69,118 @@ export default function SearchFilterList({
         </Button>
       </div>
       <div className="mt-4 mb-8 w-full border-t border-gray-500 opacity-50" />
-      <div className={classNames(filterClassName)}>
-        <legend className="mb-4">Date of Publication</legend>
-        <div className="flex flex-col gap-y-2">
-          {createdAfterOptions.map(({ label, value }) => (
-            <Checkbox
-              key={value}
-              id={value}
-              label={label}
-              checked={value === searchParams.get('created-after')}
-              onChange={(checked) => {
-                const newSearchParams = new URLSearchParams(searchParams);
-                newSearchParams.delete('page');
-                if (checked) {
-                  newSearchParams.set('created-after', value);
-                } else {
-                  newSearchParams.delete('created-after');
-                }
-                onChange(newSearchParams);
-              }}
-            />
-          ))}
-        </div>
+      <div className={isLoadingSearchFields ? '' : 'hidden'}>
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className={classNames(filterClassName)}>
+            <legend className="mb-4 skeleton">Placeholder</legend>
+            <div className="flex flex-col gap-y-2">
+              {Array.from({ length: 3 }).map((_, j) => (
+                <div key={j} className="w-3/4 skeleton">
+                  Placeholder
+                </div>
+              ))}
+            </div>
+            <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+          </div>
+        ))}
       </div>
-      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
-      <div className={classNames(filterClassName)}>
-        <legend className="mb-4">Technologies</legend>
-        <div className="flex flex-col gap-y-2">
-          {technologyOptions.map(({ label, value }) => (
-            <Checkbox
-              key={value}
-              id={value}
-              label={label}
-              checked={technologies.includes(value)}
-              onChange={(checked) => {
-                const newSearchParams = new URLSearchParams(searchParams);
-                newSearchParams.delete('page');
-                newSearchParams.delete('technology');
-                if (checked) {
-                  technologies.forEach((technology) =>
-                    newSearchParams.append('technology', technology)
-                  );
-                  newSearchParams.append('technology', value);
-                } else {
-                  technologies
-                    .filter((lang) => lang !== value)
-                    .forEach((technology) =>
+      <div className={isLoadingSearchFields ? 'hidden' : ''}>
+        <div className={classNames(filterClassName)}>
+          <legend className="mb-4">Date of Publication</legend>
+          <div className="flex flex-col gap-y-2">
+            {createdAfterOptions.map(({ label, value }) => (
+              <Checkbox
+                key={value}
+                id={value}
+                label={label}
+                checked={value === searchParams.get('created-after')}
+                onChange={(checked) => {
+                  const newSearchParams = new URLSearchParams(searchParams);
+                  newSearchParams.delete('page');
+                  if (checked) {
+                    newSearchParams.set('created-after', value);
+                  } else {
+                    newSearchParams.delete('created-after');
+                  }
+                  onChange(newSearchParams);
+                }}
+              />
+            ))}
+          </div>
+        </div>
+        <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+        <div className={classNames(filterClassName)}>
+          <legend className="mb-4">Technologies</legend>
+          <div className="flex flex-col gap-y-2">
+            {(searchFields?.technologies ?? []).map(({ label, value }) => (
+              <Checkbox
+                key={value}
+                id={value}
+                label={label}
+                checked={technologies.includes(value)}
+                onChange={(checked) => {
+                  const newSearchParams = new URLSearchParams(searchParams);
+                  newSearchParams.delete('page');
+                  newSearchParams.delete('technology');
+                  if (checked) {
+                    technologies.forEach((technology) =>
                       newSearchParams.append('technology', technology)
                     );
-                }
-                onChange(newSearchParams);
-              }}
-            />
-          ))}
+                    newSearchParams.append('technology', value);
+                  } else {
+                    technologies
+                      .filter((lang) => lang !== value)
+                      .forEach((technology) =>
+                        newSearchParams.append('technology', technology)
+                      );
+                  }
+                  onChange(newSearchParams);
+                }}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
-      <div className={classNames(filterClassName)}>
-        <legend className="mb-4">Status</legend>
-        <div className="flex flex-col gap-y-2">
-          {statusOptions.map(({ label, value }) => (
-            <Checkbox
-              key={value}
-              id={value}
-              label={label}
-              checked={value === searchParams.get('status')}
-              onChange={(checked) => {
-                const newSearchParams = new URLSearchParams(searchParams);
-                newSearchParams.delete('page');
-                if (checked) {
-                  newSearchParams.set('status', value);
-                } else {
-                  newSearchParams.delete('status');
-                }
-                onChange(newSearchParams);
-              }}
-            />
-          ))}
+        <div className="my-6 w-full border-t border-gray-500 opacity-50" />
+        <div className={classNames(filterClassName)}>
+          <legend className="mb-4">Status</legend>
+          <div className="flex flex-col gap-y-2">
+            {statusOptions.map(({ label, value }) => (
+              <Checkbox
+                key={value}
+                id={value}
+                label={label}
+                checked={value === searchParams.get('status')}
+                onChange={(checked) => {
+                  const newSearchParams = new URLSearchParams(searchParams);
+                  newSearchParams.delete('page');
+                  if (checked) {
+                    newSearchParams.set('status', value);
+                  } else {
+                    newSearchParams.delete('status');
+                  }
+                  onChange(newSearchParams);
+                }}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="my-6 w-full border-t border-gray-500 opacity-50" />
-      <div className={classNames(filterClassName)}>
-        <legend className="text-sm mb-2">Estimated Funding</legend>
-        <Slider
-          min={MIN_FUNDING}
-          max={MAX_FUNDING}
-          minDistance={1}
-          value={[minFunding, maxFunding]}
-          onAfterChange={([minFunding, maxFunding]) => {
-            const newSearchParams = new URLSearchParams(searchParams);
-            newSearchParams.delete('page');
-            newSearchParams.set('funding-min', minFunding);
-            newSearchParams.set('funding-max', maxFunding);
-            onChange(newSearchParams);
-          }}
-        />
+        {/* <div className="my-6 w-full border-t border-gray-500 opacity-50" /> */}
+        {/* <div className={classNames(filterClassName)}>
+          <legend className="text-sm mb-2">Estimated Funding</legend>
+          <Slider
+            min={MIN_FUNDING}
+            max={MAX_FUNDING}
+            minDistance={1}
+            value={[minFunding, maxFunding]}
+            onAfterChange={([minFunding, maxFunding]) => {
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.delete('page');
+              newSearchParams.set('funding-min', minFunding);
+              newSearchParams.set('funding-max', maxFunding);
+              onChange(newSearchParams);
+            }}
+          />
+        </div> */}
       </div>
     </div>
   );
