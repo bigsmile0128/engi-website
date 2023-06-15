@@ -15,8 +15,7 @@ export enum TestResult {
 export type Test = {
   failedResultMessage?: string;
   id: string;
-  required: string;
-  result: string;
+  result: TestResult;
 };
 
 export type Solution = {
@@ -180,3 +179,15 @@ export enum AccountExistenceResult {
   UNCONFIRMED = 'UNCONFIRMED',
   YES = 'YES',
 }
+
+// TODO: update after server is ready
+export type SubmissionStage = {
+  results?: Record<string, any>;
+  stage: string;
+  status: string;
+};
+
+export type Submission = {
+  stages: SubmissionStage[];
+  status: string;
+};
