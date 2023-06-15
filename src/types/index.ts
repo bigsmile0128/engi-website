@@ -37,13 +37,6 @@ export enum BitStatus {
   OPEN = 'OPEN',
 }
 
-export enum Technology {
-  C_SHARP = 'C_SHARP',
-  JAVA_SCRIPT = 'JAVA_SCRIPT',
-  PYTHON = 'PYTHON',
-  RUST = 'RUST',
-}
-
 export enum BitsOrderByProperty {
   CREATED_ON = 'CREATED_ON',
   FUNDING = 'FUNDING',
@@ -87,7 +80,7 @@ export type Bit = {
   solution?: Solution;
   solutionUserCount: number;
   status: BitStatus;
-  technologies: Technology[];
+  technologies: string[];
   tests: Test[];
   updatedOn?: {
     dateTime: string;
@@ -125,7 +118,7 @@ export type BitsQueryArguments = {
   search?: string;
   skip: number;
   status?: BitStatus;
-  technologies?: Technology[];
+  technologies?: string[];
 };
 
 export type GithubRepositoryOwner = {

@@ -15,7 +15,6 @@ import {
   BitsOrderByProperty,
   BitsQueryArguments,
   OrderByDirection,
-  Technology,
 } from '~/types';
 import useBits from '~/utils/hooks/useBits';
 
@@ -81,7 +80,7 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
     orderByDirection: OrderByDirection.DESC,
   };
 
-  const technologies = searchParams.getAll('technology') as Technology[];
+  const technologies = searchParams.getAll('technology') as string[];
   if (technologies.length > 0) {
     query.technologies = technologies;
   }
