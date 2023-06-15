@@ -67,7 +67,7 @@ export default function SearchResultsHeader({
       <div className="relative flex items-center desktop:hidden mb-12">
         <Input
           className="w-full pl-12 font-normal"
-          placeholder="Search bits"
+          placeholder="Search Bounties"
           defaultValue={searchParams.get('query') ?? ''}
           onChange={debouncedSearch}
         />
@@ -80,7 +80,7 @@ export default function SearchResultsHeader({
           <span className="whitespace-nowrap text-xl">
             Found {numResults ?? 0}{' '}
             <span className="text-green-primary">
-              {pluralize('bit', numResults ?? 0)}
+              {pluralize('bounty', numResults ?? 0)}
             </span>
           </span>
         </h4>
@@ -93,7 +93,7 @@ export default function SearchResultsHeader({
         >
           <SearchInput
             className="w-56 inline-block"
-            placeholder="Search bits"
+            placeholder="Search Bounties"
             value={searchParams.get('query') ?? ''}
             onChange={onSearch}
           />

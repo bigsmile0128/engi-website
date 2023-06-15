@@ -44,7 +44,7 @@ function Notifications() {
           />
         </label>
         <label className="flex justify-between ">
-          <span className="text-xl">New bits</span>
+          <span className="text-xl">New bounties</span>
           <Switch
             checked={values[NOTIFICATION_FIELDS.NEW_BITS]}
             onChange={handleValueChange(NOTIFICATION_FIELDS.NEW_BITS)}

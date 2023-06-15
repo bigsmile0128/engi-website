@@ -14,24 +14,27 @@ type UsefulResourcesProps = {
 const resources = [
   {
     img: <Image src={stockImg} className="w-full" alt="accessible" />,
-    title: 'Lorem ipsum',
+    title: 'Getting Started',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "Check out 'Getting Started' in the Engi Cookbook to prepare your accounts and developer environment",
     className: '',
+    link: 'https://links.engi.network/cookbook',
   },
   {
     img: <Image src={stockImg} className="w-full" alt="accessible" />,
-    title: 'Lorem ipsum dolor',
+    title: 'Alternative Earning',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "Discover the many different ways to earn ENGI using your elite coding skills including developers' passive income",
     className: '',
+    link: 'https://links.engi.network/cookbook',
   },
   {
     img: <Image src={stockImg} className="w-full" alt="accessible" />,
-    title: 'Lorem ipsum dolor sit',
+    title: 'Master Bounties',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "Ensure you're quick on the draw when new bounties in your sweet spot become available",
     className: 'hidden desktop:block',
+    link: 'https://links.engi.network/cookbook',
   },
 ];
 
@@ -46,37 +49,38 @@ export default function UsefulResources({ className }: UsefulResourcesProps) {
       </div>
       <div className="mt-12 embla w-full tablet:hidden" ref={emblaRef}>
         <div className="flex children:ml-6">
-          {resources.map(({ img, title, description }) => (
-            <div className="flex-[0_0_80%] max-w-[300px]" key={title}>
-              <div className="">
-                {img}
-                <div className="bg-secondary p-6 border border-white/30 border-t-0">
-                  <p className="font-bold text-xl text-green-primary">
-                    {title}
-                  </p>
-                  <p className="mt-4 font-medium text-xl">{description}</p>
+          {resources.map(({ img, title, description, link }) => (
+            <Link href={link} target="_blank" key={title}>
+              <div className="flex-[0_0_80%] max-w-[300px] hover:cursor-pointer">
+                <div className="">
+                  {img}
+                  <div className="bg-secondary p-6 border border-white/30 border-t-0">
+                    <p className="font-bold text-xl text-green-primary">
+                      {title}
+                    </p>
+                    <p className="mt-4 font-medium text-xl">{description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
       <div className="hidden mt-12 max-w-page tablet:flex gap-8">
-        {resources.map(({ img, title, description, className }) => (
-          <div className={className} key={title}>
-            {img}
-            <div className="bg-secondary p-6 border border-white/30 border-t-0">
-              <p className="font-bold text-xl text-green-primary">{title}</p>
-              <p className="mt-4 font-medium text-xl">{description}</p>
+        {resources.map(({ img, title, description, className, link }) => (
+          <Link href={link} target="_blank" key={title}>
+            <div className={className}>
+              {img}
+              <div className="bg-secondary p-6 border border-white/30 border-t-0">
+                <p className="font-bold text-xl text-green-primary">{title}</p>
+                <p className="mt-4 font-medium text-xl">{description}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="mt-12 max-w-page w-full flex justify-center">
-        <Link
-          href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
-          target="_blank"
-        >
+        <Link href="https://links.engi.network/cookbook" target="_blank">
           <Button>Learn more</Button>
         </Link>
       </div>

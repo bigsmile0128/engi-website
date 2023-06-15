@@ -21,9 +21,9 @@ const reasons = [
         <Image src={sourcingImg} className="" alt="Sourcing" />
       </div>
     ),
-    title: 'No sourcing',
+    title: 'Hireless',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Save huge amounts of time and money by allowing any developer to start working while only paying for the very best results',
   },
   {
     className: 'row-start-2 col-start-1',
@@ -32,9 +32,9 @@ const reasons = [
         <Image src={sourcingImg} className="" alt="Sourcing" />
       </div>
     ),
-    title: 'No recruiting',
+    title: 'Global, 24/7',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'No timezones means your product is always moving foward at lightning speed',
   },
   {
     className: 'row-start-2 col-start-2',
@@ -43,9 +43,9 @@ const reasons = [
         <Image src={sourcingImg} className="" alt="Sourcing" />
       </div>
     ),
-    title: 'Global talent',
+    title: 'Your Stack',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Engi works for any software that can be tested and validated. Bring your full-stack and which your project improve faster than ever',
   },
 ];
 

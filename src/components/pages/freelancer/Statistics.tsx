@@ -104,7 +104,7 @@ export default function Statistics({ className }: StatisticsProps) {
 
   return (
     <div className={classNames('', className)}>
-      <p className="font-grifter text-2xl tablet:text-5xl">Active bits</p>
+      <p className="font-grifter text-2xl tablet:text-5xl">Active Bounties</p>
       <span
         className={classNames(
           'inline-block mt-1 font-grifter text-4xl tablet:text-6xl tablet:mt-4 min-w-[40px]',

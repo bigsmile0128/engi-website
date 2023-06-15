@@ -24,18 +24,18 @@ const reasons = [
         <Image
           src={groupMobileImg}
           className="p-6 pb-0 tablet:hidden"
-          alt="Accessible"
+          alt="Flexible"
         />
         <Image
           src={groupTabletImg}
           className="p-6 hidden tablet:block mx-auto mb-6 w-full"
-          alt="Accessible"
+          alt="Flexible"
         />
       </>
     ),
-    title: 'Accessible',
+    title: 'Flexible',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Work anywhere, anytime. Engi is a platform for ultimate freedom for technical professionals',
   },
   {
     className: 'row-start-1 col-start-2',
@@ -43,12 +43,12 @@ const reasons = [
       <Image
         src={cornerEngiImg}
         className="ml-auto opacity-10 -mb-12"
-        alt="Equitable"
+        alt="Accessible"
       />
     ),
-    title: 'Equitable',
+    title: 'Accessible',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'No matter who you are or what your background is, you have a shot. Quality work is simply all that matters',
   },
   {
     className: 'row-start-2 col-start-2',
@@ -56,12 +56,11 @@ const reasons = [
       <Image
         src={cornerSpyImg}
         className="ml-auto opacity-10 -mb-12"
-        alt="Equitable"
+        alt="Anonymous"
       />
     ),
     title: 'Anonymous',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    description: 'Maintain your privacy and participate just with your skills',
   },
   {
     className: 'row-start-3 col-start-1 xl:row-start-1 xl:col-start-3',
@@ -69,12 +68,12 @@ const reasons = [
       <Image
         src={cornerGlobeImg}
         className="ml-auto opacity-10 -mb-12"
-        alt="Equitable"
+        alt="Global Community"
       />
     ),
-    title: 'Global community',
+    title: 'Global Community',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Join thousands of other builders reimagining the future of work',
   },
   {
     className: 'row-start-3 col-start-2 xl:row-start-2 xl:col-start-3',
@@ -82,12 +81,12 @@ const reasons = [
       <Image
         src={cornerRocketImg}
         className="ml-auto opacity-10 -mb-12"
-        alt="Equitable"
+        alt="Skills Based"
       />
     ),
-    title: 'Only skill matters',
+    title: 'Competitive',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Excellence and speed are truth, bring your best, challenge yourself, and reap endless rewards',
   },
 ];
 

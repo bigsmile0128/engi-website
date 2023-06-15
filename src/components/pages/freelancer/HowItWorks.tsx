@@ -15,24 +15,23 @@ type HowItWorksProps = {
 
 const items = [
   {
-    title: 'Create an account',
+    title: 'Setup your Account',
     description:
-      'Bacon ipsum dolor sit amet. Rump chicken pork chop, cupim jerky ground round flank pig meatloaf shank frankfurter fatback turducken.',
+      'You own our keys. Bring your wallet, connect to Engi, and download the tools',
   },
   {
-    title: 'Start a job',
+    title: 'Pick a Bounty',
     description:
-      'Bacon ipsum dolor sit amet. Rump chicken pork chop, cupim jerky ground round flank pig meatloaf shank frankfurter fatback turducken.',
+      'An endless variety of technologies, domains, and difficulty provide of buffet of technical opportunity',
   },
   {
-    title: 'Get paid for solving',
+    title: 'Attempt to Solve',
     description:
-      'Bacon ipsum dolor sit amet. Rump chicken pork chop, cupim jerky ground round flank pig meatloaf shank frankfurter fatback turducken.',
+      'Write your solution as fast as possible while also optimizing for performance and style-guide adherence',
   },
   {
-    title: 'Recommended jobs',
-    description:
-      'Bacon ipsum dolor sit amet. Rump chicken pork chop, cupim jerky ground round flank pig meatloaf shank frankfurter fatback turducken.',
+    title: 'Get Paid',
+    description: 'Your awesome code is rewarded with an immediate payout',
   },
 ];
 
@@ -42,8 +41,8 @@ export default function HowItWorks({ className }: HowItWorksProps) {
       <div className="max-w-page tablet:text-center">
         <p className="font-grifter text-4xl tablet:text-5xl">How It Works?</p>
         <p className="text-secondary text-lg tablet:mt-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-          elit vel mauris tincidunt porta.
+          Set up your local environment to work on Engi and unlock a new way of
+          earning cash writing code
         </p>
       </div>
       <div className="w-full relative">

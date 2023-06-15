@@ -55,8 +55,8 @@ const CATEGORIES = [
 const INTEGRATIONS = [
   {
     icon: <SiPolkadot className="h-16 w-auto" />,
-    title: 'Polkadot',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Substrate & ink!',
+    description: 'Build Substrate Layer-1s or dApps the Engi Way',
     categories: [
       Category.LAYER1,
       Category.RUST,
@@ -66,8 +66,8 @@ const INTEGRATIONS = [
   },
   {
     icon: <SiEthereum className="h-16 w-auto" />,
-    title: 'Ethereum',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    title: 'Ethereum & Solidity',
+    description: 'Quickly build or maintain any Ethereum dApp',
     categories: [
       Category.LAYER1,
       Category.RUST,
@@ -78,7 +78,7 @@ const INTEGRATIONS = [
   {
     icon: <SiFigma className="h-16 w-auto" />,
     title: 'Figma',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Use our Figma Plugin to generate UI bounty specs',
     categories: [
       Category.LAYER1,
       Category.RUST,
@@ -89,7 +89,7 @@ const INTEGRATIONS = [
   {
     icon: <RiGithubFill className="h-16 w-auto" />,
     title: 'Github',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Authorize Engi to open pull requests with verified code',
     categories: [
       Category.LAYER1,
       Category.RUST,
@@ -100,7 +100,7 @@ const INTEGRATIONS = [
   {
     icon: <SiCsharp className="h-16 w-auto" />,
     title: 'C#',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    description: 'Develop your dotnet API',
     categories: [
       Category.LAYER1,
       Category.RUST,
@@ -108,27 +108,22 @@ const INTEGRATIONS = [
       Category.WASM,
     ],
   },
-  {
-    icon: <SiCplusplus className="h-16 w-auto" />,
-    title: 'C++',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
-  },
+  //{
+  //icon: <SiCplusplus className="h-16 w-auto" />,
+  //title: 'C++',
+  //description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  //categories: [
+  //Category.LAYER1,
+  //Category.RUST,
+  //Category.TEST_DRIVEN_WASM,
+  //Category.WASM,
+  //],
+  //},
   {
     icon: <SiRust className="h-16 w-auto" />,
     title: 'Rust',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
+    description: 'Use cargo tests to drive your product foward',
+    categories: [Category.RUST],
   },
 ];
 
