@@ -21,7 +21,7 @@ export default function BusinessMarketing() {
       <SaveCosts className="w-full mt-24 desktop:mt-48" />
       <Integrations className="max-w-page w-full mt-24 desktop:mt-48" />
       <TypesOfProjects className="max-w-page w-full mt-24 desktop:mt-48" />
-      <BuiltOnEngi className="max-w-page w-full mt-24 desktop:mt-48" />
+      {/*<BuiltOnEngi className="max-w-page w-full mt-24 desktop:mt-48" />*/}
       <TopDevelopers className="max-w-page w-full mt-24 desktop:mt-48" />
       <OurInvestors className="max-w-page w-full mt-24 desktop:mt-48" />
       <BottomCallToAction className="w-full mt-24 desktop:mt-48" />

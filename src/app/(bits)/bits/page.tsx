@@ -15,7 +15,6 @@ import {
   BitsOrderByProperty,
   BitsQueryArguments,
   OrderByDirection,
-  Technology,
 } from '~/types';
 import useBits from '~/utils/hooks/useBits';
 
@@ -36,7 +35,7 @@ export default function BitDiscovery() {
 
   return (
     <div className="max-w-page flex flex-col mt-12 mb-24">
-      <h1 className="text-white font-grifter text-8xl">Bits</h1>
+      <h1 className="text-white font-grifter text-8xl">Bounties</h1>
       <div className="flex mt-4 tablet:mt-8 desktop:mt-12 gap-x-12 flex-col desktop:flex-row">
         <SearchFilterList
           className="hidden desktop:block"
@@ -81,7 +80,7 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
     orderByDirection: OrderByDirection.DESC,
   };
 
-  const technologies = searchParams.getAll('technology') as Technology[];
+  const technologies = searchParams.getAll('technology') as string[];
   if (technologies.length > 0) {
     query.technologies = technologies;
   }

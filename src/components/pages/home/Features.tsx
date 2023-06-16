@@ -20,7 +20,7 @@ interface FeaturesProps {
 
 const features = [
   {
-    name: 'Flexible, Accessible, Fair, Fun',
+    name: 'Flexible, Contactless, Fast, Fun',
     description:
       'Never commute or whiteboard interview again. Code is securely evaluated & paid for automatically on-chain',
     Tab: () => <Tab3 className="lg:h-96 xl:h-[30rem]" />,
@@ -252,7 +252,7 @@ function Tab3({ className }: { className?: string }) {
 
           <Link href="/bits" className="mt-8">
             <Button variant="primary" className="!px-16">
-              Discover Bits
+              Discover Bounties
             </Button>
           </Link>
         </div>

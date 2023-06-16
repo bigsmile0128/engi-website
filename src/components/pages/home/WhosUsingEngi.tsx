@@ -15,7 +15,7 @@ const testimonials = [
   {
     name: 'bobbyjones3',
     subtitle: 'Solidity Contract',
-    text: "There's no better way to find new bits and get paid quickly.",
+    text: "There's no better way to find new bounties and get paid quickly.",
   },
   {
     name: 'squirtle',

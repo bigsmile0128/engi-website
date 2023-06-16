@@ -32,7 +32,7 @@ export default function BitTable({
   const columns: ColumnDef<Bit>[] = useMemo(
     () => [
       columnHelper.accessor('name', {
-        header: 'Bit info',
+        header: 'Bounty info',
         cell: (props) => {
           const bit = props.row.original;
           return (
@@ -46,7 +46,7 @@ export default function BitTable({
         },
       }),
       columnHelper.accessor('status', {
-        header: 'Bit Status',
+        header: 'Bounty Status',
         cell: (props) => {
           const bit = props.row.original;
           return <BitStatus isLoading={isLoading} status={bit?.status} />;
@@ -133,7 +133,7 @@ export default function BitTable({
             <tr
               key={row.id}
               className={classNames(
-                'bg-black/[.14] children:py-4',
+                'bg-black/[.14] children:py-4 hover:cursor-pointer',
                 isLoading ? '' : 'hover:bg-black/40'
               )}
               onClick={() => {

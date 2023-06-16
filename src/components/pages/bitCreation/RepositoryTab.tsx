@@ -72,8 +72,8 @@ export default function RepositoryTab({
       )}
       <h4 className="font-bold text-xl">Step 1: Select Repository</h4>
       <p className="text-secondary mt-4">
-        Select an existing repository URL for creating a new bit. The directory
-        must be a Rust project and have a .git directory.
+        Select an existing repository URL for creating a new bounty. The
+        directory must be a Rust project and have a .git directory.
       </p>
       <div className="flex items-center gap-2 mt-8">
         <label className="font-bold text-xl">Repository</label>

@@ -63,17 +63,15 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 For Talent
               </h4>
-              <Link href="/bits">Find Bits</Link>
-              {/* TODO: ENGIN-980 freelancer marketing page */}
-              <Link href="/bits">Engi for Freelancers</Link>
+              <Link href="/bits">Find Bounties</Link>
+              <Link href="/freelancer">Engi for Freelancers</Link>
             </div>
             <div className="flex flex-col gap-y-4 tablet:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">
                 For Businesses
               </h4>
-              <Link href="/hire">Post a Bit</Link>
-              {/* TODO: ENGIN-1032 business marketing page */}
-              <Link href="/hire">Engi for Businesses</Link>
+              <Link href="/hire">Post a Bounty</Link>
+              <Link href="/business">Engi for Businesses</Link>
             </div>
             <div className="flex flex-col gap-y-4 tablet:gap-y-6">
               <h4 className="text-lg font-bold text-green-primary">

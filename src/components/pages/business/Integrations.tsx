@@ -5,6 +5,7 @@ import integrationsMobileImg from 'public/img/about/business/integrations-mobile
 import integrationsTabletImg from 'public/img/about/business/integrations-tablet.png';
 import integrationsDesktopImg from 'public/img/about/business/integrations-desktop.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type IntegrationsProps = {
   className?: string;
@@ -24,12 +25,14 @@ export default function Integrations({ className }: IntegrationsProps) {
           Engi brings all of your tools into one place
         </p>
         <p className="mt-8 xl:mt-12 text-secondary text-lg tablet:text-xl">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-          elit vel mauris tincidunt porta.
+          Integrate simply with on-demand engineering using the tools and
+          frameworks you know and love such as Docker and Github
         </p>
-        <Button variant="primary" className="mt-12">
-          See all integrations
-        </Button>
+        <Link href={'/integrations'}>
+          <Button variant="primary" className="mt-12">
+            See all integrations
+          </Button>
+        </Link>
       </div>
       <div className="w-full flex justify-center tablet:hidden">
         <Image src={integrationsMobileImg} alt="integrations" />

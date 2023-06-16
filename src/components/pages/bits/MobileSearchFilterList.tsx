@@ -4,13 +4,12 @@ import { useEffect, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
-import Slider from '~/components/global/Slider/Slider';
+import useSearchFields from '~/utils/hooks/useSearchFields';
 import {
   MAX_FUNDING,
   MIN_FUNDING,
   createdAfterOptions,
   statusOptions,
-  technologyOptions,
 } from './SearchFilterList';
 
 interface MobileSearchFilterListProps {
@@ -28,6 +27,9 @@ export default function MobileSearchFilterList({
   onChangeVisible,
   visible,
 }: MobileSearchFilterListProps) {
+  const { data: searchFields, isLoading: isLoadingSearchFields } =
+    useSearchFields();
+
   // store state of filters independently from query params because user needs to click Apply
   const [selectedTechnologies, setSelectedTechnologies] = useState<string[]>(
     []
@@ -87,13 +89,13 @@ export default function MobileSearchFilterList({
   return (
     <Dialog
       className={classNames(
-        'flex absolute inset-0 bg-secondary before:z-10 tablet:before:bg-site',
+        'flex fixed inset-0 bg-secondary before:z-10 tablet:before:bg-site',
         className
       )}
       open={visible}
       onClose={() => onChangeVisible(false)}
     >
-      <Dialog.Panel className="w-full z-20 mt-16">
+      <Dialog.Panel className="w-full z-20 py-16">
         <Dialog.Title className="flex items-center gap-2 max-w-page relative">
           <button
             className="hover:text-green-primary"
@@ -157,7 +159,7 @@ export default function MobileSearchFilterList({
                 : ''}
             </legend>
             <div className="flex flex-col gap-y-2">
-              {technologyOptions.map(({ label, value }) => (
+              {(searchFields?.technologies ?? []).map(({ label, value }) => (
                 <Checkbox
                   key={'mobile' + value}
                   id={'mobile' + value}
@@ -198,7 +200,7 @@ export default function MobileSearchFilterList({
             </div>
           </div>
           <div className="my-6 w-full border-t border-gray-500 opacity-50" />
-          <div>
+          {/* <div>
             <legend className="text-sm mb-2">Estimated Funding</legend>
             <Slider
               min={MIN_FUNDING}
@@ -210,7 +212,7 @@ export default function MobileSearchFilterList({
                 setMaxFunding(maxFunding);
               }}
             />
-          </div>
+          </div> */}
           <div className="tablet:hidden flex justify-between gap-4 mt-12">
             <Button
               className="text-sm text-primary underline hover:text-green-primary"

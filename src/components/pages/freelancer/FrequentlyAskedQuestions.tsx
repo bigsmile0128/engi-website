@@ -10,24 +10,19 @@ type FrequentlyAskedQuestionsProps = {
 
 const questions = [
   {
-    title: 'What is Engi based on?',
+    title: 'Am I guaranteed to earn Engi if I push code?',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "No. Engi moves the competitive dynamics of professional engineering from the whiteboard to the keyboard. May the best coders win... thankfully, there's always plent of opportunity and you can always try again.",
   },
   {
     title: 'Do I need anything to sign up?',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "You'll need to be able to pay for gas on the network and edit code locally. A laptop and a digital wallet is all you need.",
   },
   {
-    title: 'How do I get paid?',
+    title: 'When do I get paid?',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
-  },
-  {
-    title: 'What do I need to create a Bit?',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      "After winning a bounty, it's payout will be immediately transfered to your wallet. You can cash out anytime to the currency of your choice or hold your ENGI.",
   },
 ];
 

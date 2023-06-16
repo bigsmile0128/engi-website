@@ -12,8 +12,8 @@ const sections = [
   {
     icon: <RiCoinsFill className="text-green-primary h-7 w-7" />,
     title: 'Earn $ENGI',
-    description: 'Find a Bit, Start Coding',
-    buttonText: 'Browse Bits',
+    description: 'Find a Bounty, Start Coding',
+    buttonText: 'Browse Bounties',
     href: '/bits',
   },
   {
@@ -21,7 +21,7 @@ const sections = [
     title: 'Engage Talent',
     description: 'Custom Code on Tap',
     buttonText: 'Engi for Businesses',
-    href: '/hire',
+    href: '/business',
   },
 ];
 

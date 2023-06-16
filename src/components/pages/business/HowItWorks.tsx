@@ -10,30 +10,31 @@ type HowItWorksProps = {
 
 const items = [
   {
-    title: 'Post a job',
+    title: 'Prepare your Requirements',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Specify your bounty requirements such as a design that needs to be implemented or a test for a bugfix that should pass',
   },
   {
-    title: 'Start a job',
+    title: 'Publish the Bounty',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Fund the requirements with $ENGI tokens and publish it to the blockchain making it available to the entire network',
   },
   {
-    title: 'Build products faster',
+    title: 'Receive a PR',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+      'Developers start working immediately. You receive a PR from the first submission that passes all specified correctness, performance, and quality thresholds.',
   },
 ];
 
 export default function HowItWorks({ className }: HowItWorksProps) {
   return (
     <div className={classNames('xl:flex xl:items-center xl:gap-16', className)}>
-      <div className="tablet:text-center xl:text-left">
+      <div className="tablet:text-center xl:text-left lg:max-w-50">
         <p className="font-grifter text-4xl tablet:text-5xl">How It Works?</p>
         <p className="text-secondary text-lg mt-4 tablet:mt-8">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
-          elit vel mauris tincidunt porta.
+          Engi is a platform for contactless professional technical engagements.
+          You provide precise specifications for your needs and pre-funding, and
+          developers around the world start right away
         </p>
       </div>
       <div className="mt-8 w-full flex flex-col tablet:gap-6 xl:gap-0 xl:mt-0">

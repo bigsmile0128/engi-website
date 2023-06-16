@@ -71,7 +71,7 @@ export default function SearchInput({
             'border-b border-transparent',
             'placeholder:text-secondary'
           )}
-          placeholder={placeholder ?? 'Search for a bit...'}
+          placeholder={placeholder ?? 'Search for a bounty...'}
         />
         {isLoadingBits && (
           <div className="absolute top-1/2 right-1 -translate-y-1/2">
@@ -126,7 +126,7 @@ export default function SearchInput({
                 value={''}
                 disabled
               >
-                Searching for bits...
+                Searching for bounties...
               </Combobox.Option>
             )}
           </Combobox.Options>

@@ -13,16 +13,14 @@ type CommunityCarouselProps = {
 
 const testimonials = [
   {
-    name: 'John Doe',
-    subtitle: 'Principal Solutions Architect',
-    quote:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    name: 'Jeff Wo',
+    subtitle: 'Full-Stack UI Engineer',
+    quote: 'Earning a living implementing designs has never felt so simple',
   },
   {
-    name: 'Wendy Doe',
-    subtitle: 'Principal Solutions Architect',
-    quote:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in elit vel mauris tincidunt porta.',
+    name: 'Jin Urso',
+    subtitle: 'Smart Contract Developer',
+    quote: 'Getting paid to learn Solidity building real-world projects',
   },
 ];
 

@@ -24,8 +24,8 @@ export default function FundingTab({
         <div>
           <h4 className="font-bold text-xl">Step 4: Add funding</h4>
           <p className="text-secondary mt-4">
-            Enter existing repository URL for creating a new bit. The directory
-            must be a Rust project and have a .git directory.
+            Enter existing repository URL for creating a new bounty. The
+            directory must be a Rust project and have a .git directory.
           </p>
         </div>
         <div className="py-4 px-8 bg-black/[.14]">
