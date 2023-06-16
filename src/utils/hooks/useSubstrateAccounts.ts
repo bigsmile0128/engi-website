@@ -42,7 +42,7 @@ export default function useSubstrateAccounts() {
         });
         accounts.sort((a, b) => Number(b.exists) - Number(a.exists));
       } catch (error) {
-        console.warn(error?.message || 'Failed to check account existence.');
+        throw new Error(error?.message || 'Failed to check account existence.');
       }
 
       return accounts;

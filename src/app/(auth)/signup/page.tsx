@@ -46,9 +46,9 @@ export default function Signup() {
     if (registerMutation.error?.message) {
       toast.error(registerMutation.error.message);
     } else if (registerMutation.isSuccess) {
-      router.push('/signup/success');
+      router.push(`/signup/email?address=${address}`);
     }
-  }, [registerMutation.error, registerMutation.isSuccess, router]);
+  }, [registerMutation.error, registerMutation.isSuccess, router, address]);
 
   return (
     <div
