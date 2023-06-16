@@ -1,4 +1,5 @@
 const path = require('path');
+
 module.exports = {
   stories: ['../src/**/*.stories.@(ts|tsx)'],
   addons: [
@@ -6,6 +7,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-styling',
+    'storybook-dark-mode',
   ],
   webpackFinal: async (config, { configType }) => {
     // Removing the global alias as it conflicts with the global npm pkg
@@ -22,7 +24,7 @@ module.exports = {
   },
   staticDirs: ['../public'],
   docs: {
-    autodocs: true,
+    autodocs: 'tag',
   },
   framework: {
     name: '@storybook/nextjs',

@@ -42,6 +42,9 @@ module.exports = {
       },
       width: {
         '400p': '400%',
+      },
+      animation: {
+        'spin-slow': 'spin 2s linear infinite',
       }
     },
   },
