@@ -32,9 +32,9 @@ export default function HowItWorks({ className }: HowItWorksProps) {
       <div className="tablet:text-center xl:text-left lg:max-w-50">
         <p className="font-grifter text-4xl tablet:text-5xl">How It Works?</p>
         <p className="text-secondary text-lg mt-4 tablet:mt-8">
-          Engi is a platform for contactless professional technical engagements.
-          You provide precise specifications for your needs and pre-funding, and
-          developers around the world start right away
+          Engi is a platform for contactless engineering engagements. Provide
+          precise specifications of your products&apos; needs along with token
+          funding - developers around the world then start right away
         </p>
       </div>
       <div className="mt-8 w-full flex flex-col tablet:gap-6 xl:gap-0 xl:mt-0">

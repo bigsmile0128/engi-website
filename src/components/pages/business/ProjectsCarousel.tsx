@@ -43,7 +43,7 @@ const reasons = [
         <Image src={sourcingImg} className="" alt="Sourcing" />
       </div>
     ),
-    title: 'Your Stack',
+    title: 'Bring Your Stack',
     description:
       'Engi works for any software that can be tested and validated. Bring your full-stack and which your project improve faster than ever',
   },

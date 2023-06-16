@@ -77,20 +77,17 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Learn More Resources
               </h4>
-              <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+              <Link href="https://links.engi.network/lightpaper">
                 Litepaper
               </Link>
-              <Link href="/press">Press</Link>
+              {/*<Link href="/press">Press</Link>*/}
               <Link
                 target="_blank"
                 href="https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer"
               >
                 Blockchain
               </Link>
-              <Link
-                target="_blank"
-                href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
-              >
+              <Link target="_blank" href="https://links.engi.network/cookbook">
                 Documentation
               </Link>
             </div>
