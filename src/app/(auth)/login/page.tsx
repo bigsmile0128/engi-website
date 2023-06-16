@@ -9,6 +9,7 @@ import PropagateLoader from 'react-spinners/PropagateLoader';
 import { RiAlarmWarningLine } from 'react-icons/ri';
 import Link from 'next/link';
 import Button from '~/components/global/Button/Button';
+import { AccountExistenceResult } from '~/types';
 
 export default function Login() {
   const router = useRouter();
@@ -18,6 +19,10 @@ export default function Login() {
     isError,
     data: substrateAccounts,
   } = useSubstrateAccounts();
+
+  const registeredAccounts = (substrateAccounts ?? []).filter(
+    (account) => account.exists === AccountExistenceResult.YES
+  );
 
   return (
     <div
@@ -41,7 +46,7 @@ export default function Login() {
       ) : (
         <div className="flex flex-col items-center w-full overflow-hidden">
           <p className="font-bold text-4xl">
-            {isError || substrateAccounts?.length === 0
+            {isError || registeredAccounts.length === 0
               ? 'Connect your wallet'
               : 'Welcome back!'}
           </p>
