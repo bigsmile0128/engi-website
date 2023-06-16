@@ -9,6 +9,8 @@ import {
   RiCloudFill,
   RiFlashlightFill,
   RiIndeterminateCircleFill,
+  RiTrophyFill,
+  RiTrophyLine,
 } from 'react-icons/ri';
 import { ImSpinner } from 'react-icons/im';
 import { BitStatus, Solution, Submission } from '~/types';
@@ -40,6 +42,7 @@ export default function BountyStatus({
 }: BountyStatusProps) {
   const isCreator = creator === userId;
   const submissionStatus = currentUserSubmission?.status;
+
   return (
     <div
       className={classNames(
@@ -91,6 +94,27 @@ export default function BountyStatus({
             </span>
           </div>
         </div>
+      ) : status === BitStatus.COMPLETE ? (
+        <div className="flex items-start gap-4">
+          <div
+            className="shrink-0 h-12 w-12 grid place-items-center border border-white/20 rounded-full"
+            style={{
+              background:
+                'linear-gradient(97.66deg, rgba(255, 255, 255, 0.1) 8%, rgba(255, 255, 255, 0) 92.75%)',
+            }}
+          >
+            {userId === solution?.author ? (
+              <RiTrophyFill className="h-6 w-auto text-green-primary" />
+            ) : (
+              <RiCheckFill className="h-6 w-auto text-green-primary" />
+            )}
+          </div>
+          <span className="-mb-1 font-grifter text-xl max-w-[300px]">
+            {userId === solution?.author
+              ? 'You have completed the bounty'
+              : 'Bounty completed'}
+          </span>
+        </div>
       ) : currentUserSubmission ? (
         // is user
         <div className="flex items-start gap-4">
@@ -109,12 +133,15 @@ export default function BountyStatus({
                 ? "You have made a submission! It's being analyzed."
                 : 'You are currently working on this bounty'}
             </span>
-            <div className="flex flex-col">
-              <SubmissionStages stages={currentUserSubmission.stages} />
-            </div>
+            {status === BitStatus.ACTIVE && (
+              <div className="flex flex-col">
+                <SubmissionStages stages={currentUserSubmission.stages} />
+              </div>
+            )}
           </div>
         </div>
       ) : (
+        // user has not submitted anything
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col">
             <span className="font-grifter text-xl text-green-primary">

@@ -109,6 +109,103 @@ export const FreelancerSubmission: Story = {
   },
 };
 
+export const FreelancerCompleted: Story = {
+  name: 'Freelancer - Completed by user',
+  args: {
+    className: '',
+    attemptCount: 0,
+    created: '2023-05-24T19:51:12Z',
+    creator: 'CREATOR_ID',
+    currentUserSubmission: {
+      stages: [
+        {
+          results: {},
+          stage: 'Compiling',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Linting',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Testing',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Approval',
+          status: 'PASSED',
+        },
+      ],
+      status: 'DONE',
+    },
+    id: '123',
+    solution: {
+      attempt: {
+        attemptId: 'ATTEMPT_ID',
+        attempter: 'USER_ID',
+        tests: [],
+      },
+      author: 'USER_ID',
+      jobId: 'JOB_ID',
+      patchUrl: 'https://github.com/engi-network/website/pull/75',
+      solutionId: 'SOLUTION_ID',
+    },
+    status: BitStatus.COMPLETE,
+    userId: 'USER_ID',
+  },
+};
+export const FreelancerCompletedOther: Story = {
+  name: 'Freelancer - Completed by another user',
+  args: {
+    className: '',
+    attemptCount: 0,
+    created: '2023-05-24T19:51:12Z',
+    creator: 'CREATOR_ID',
+    currentUserSubmission: {
+      stages: [
+        {
+          results: {},
+          stage: 'Compiling',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Linting',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Testing',
+          status: 'PASSED',
+        },
+        {
+          results: {},
+          stage: 'Approval',
+          status: 'PASSED',
+        },
+      ],
+      status: 'DONE',
+    },
+    id: '123',
+    solution: {
+      attempt: {
+        attemptId: 'ATTEMPT_ID',
+        attempter: 'USER_ID',
+        tests: [],
+      },
+      author: 'OTHER_USER_ID',
+      jobId: 'JOB_ID',
+      patchUrl: 'https://github.com/engi-network/website/pull/75',
+      solutionId: 'SOLUTION_ID',
+    },
+    status: BitStatus.COMPLETE,
+    userId: 'USER_ID',
+  },
+};
+
 export const BusinessNotStarted: Story = {
   name: 'Business - Not started',
   args: {
