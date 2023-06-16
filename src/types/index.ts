@@ -171,5 +171,6 @@ export enum SENDGRID_LIST_NAME {
 export enum AccountExistenceResult {
   NO = 'NO',
   UNCONFIRMED = 'UNCONFIRMED',
+  UNSUPPORTED_ADDRESS = 'UNSUPPORTED_ADDRESS',
   YES = 'YES',
 }

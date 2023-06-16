@@ -86,11 +86,16 @@ export default function SubstrateAccountItem({
         size="small"
         onClick={onClick}
         isLoading={isLoading}
+        disabled={
+          account?.exists === AccountExistenceResult.UNSUPPORTED_ADDRESS
+        }
       >
         {account?.exists === AccountExistenceResult.NO
           ? 'Register'
           : account?.exists === AccountExistenceResult.UNCONFIRMED
           ? 'Confirm'
+          : account?.exists === AccountExistenceResult.UNSUPPORTED_ADDRESS
+          ? 'Unsupported'
           : 'Log In'}
       </Button>
       {/* TODO: popover button to implement when there are more options */}
