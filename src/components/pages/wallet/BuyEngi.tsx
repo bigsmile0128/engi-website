@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { Id, toast } from 'react-toastify';
-import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
+import { PreviewMoveEngi } from '~/utils/exchange/types';
 import Tooltip from '~/components/Tooltip';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
@@ -32,7 +32,7 @@ export default function BuyEngi({
   const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
 
   useEffect(() => {
-    setPreviewMove({ amount: value, move: 'Deposit' });
+    setPreviewMove({ amount: value, move: 'Buy' });
   }, [setPreviewMove, value]);
 
   const { data: ethereumAccounts } = useConnectEthereumExtension();
