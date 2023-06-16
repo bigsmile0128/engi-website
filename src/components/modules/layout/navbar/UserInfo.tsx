@@ -98,18 +98,7 @@ export default function UserInfo({
               <Menu.Item>
                 <MenuItemLink
                   className="hover:bg-secondary text-left pt-3 pl-8"
-                  href={`/wallet/${user?.walletId}`}
-                >
-                  <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
-                    <span className="text-secondary">Wallet</span>
-                    <ChevronRightIcon className="h-4 w-4" />
-                  </div>
-                </MenuItemLink>
-              </Menu.Item>
-              <Menu.Item>
-                <MenuItemLink
-                  className="hover:bg-secondary text-left pt-3 pl-8"
-                  href={`/account/${user?.walletId}`}
+                  href={`/engineer/${user?.walletId}`}
                 >
                   <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
                     <span className="text-secondary">Account</span>
