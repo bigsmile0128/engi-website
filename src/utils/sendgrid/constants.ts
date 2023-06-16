@@ -10,10 +10,13 @@ export const CONTACT_REPLY_EMAIL = 'contact@engi.network';
 
 export enum TEMPLATE_NAME {
   CONTACT_US_REPLY = 'contact-us-reply',
+  CONTACT_US_REQUEST_RECEIVED = 'contact-us-receiving',
   WELCOME_NEWSLETTER = 'welcome-newsletter',
 }
 
 export const mapToTemplateId: Record<TEMPLATE_NAME, string> = {
+  [TEMPLATE_NAME.CONTACT_US_REQUEST_RECEIVED]:
+    'd-16a299f8124d4e2eb776d07327c632a3',
   [TEMPLATE_NAME.CONTACT_US_REPLY]: 'd-13501b86827e488995217d7357938d0b',
   [TEMPLATE_NAME.WELCOME_NEWSLETTER]: 'd-d620f0bb02fc4e7395c69f8dbe77ca82',
 };

@@ -27,7 +27,7 @@ async function contactUsApi(req: NextApiRequest, res: NextApiResponse) {
     list_ids: [mapNameToId[contact_list_name]],
   };
 
-  const msg: MailDataRequired = {
+  const toUserMsg: MailDataRequired = {
     dynamicTemplateData: {
       first_name,
       subject,
@@ -43,9 +43,29 @@ async function contactUsApi(req: NextApiRequest, res: NextApiResponse) {
     to: { email },
   };
 
+  const toEngiMsg: MailDataRequired = {
+    dynamicTemplateData: {
+      first_name,
+      last_name,
+      subject,
+      message,
+      email,
+    },
+    from: { email },
+    personalizations: [
+      {
+        to: CONTACT_REPLY_EMAIL,
+        from: email,
+      },
+    ],
+    templateId: mapToTemplateId[TEMPLATE_NAME.CONTACT_US_REQUEST_RECEIVED],
+    to: { email: CONTACT_REPLY_EMAIL },
+  };
+
   try {
     await upsertContact(data);
-    await sendMail(msg);
+    await sendMail(toUserMsg); // send confirmation of contact us request received to user
+    await sendMail(toEngiMsg); // send contact us request to ourselves for processing
 
     return res.status(202).end();
   } catch (error) {
