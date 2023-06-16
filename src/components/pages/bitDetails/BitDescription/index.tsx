@@ -71,7 +71,7 @@ export default function BitDescription({
           isLoading ? 'skeleton' : ''
         )}
       >
-        Bit Description
+        Bounty Description
       </h2>
       {isLoading ? (
         <TextSkeleton className="mt-4 gap-y-2" />
@@ -232,7 +232,7 @@ export default function BitDescription({
       >
         <div className="flex flex-col gap-y-2">
           <h2 className="font-grifter text-xl inline-block self-start">
-            Bit Link
+            Bounty Link
           </h2>
           <CopyLink
             className="!rounded-none"

@@ -252,7 +252,7 @@ function Tab3({ className }: { className?: string }) {
 
           <Link href="/bits" className="mt-8">
             <Button variant="primary" className="!px-16">
-              Discover Bits
+              Discover Bounties
             </Button>
           </Link>
         </div>
