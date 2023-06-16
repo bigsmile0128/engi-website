@@ -100,7 +100,7 @@ export default function WorkflowsSupercharged({
       <h2 className="font-grifter text-5xl mb-8 text-center">
         Seamless Integrations
       </h2>
-      <span className="text-secondary px-24 text-center">
+      <span className="text-secondary text-center">
         Engi supports over a dozen languages and test frameworks as well as
         integrations with design tools and version control systems providing
         your team with varied and customizable entry points into&nbsp;
