@@ -28,7 +28,7 @@ export default function WalletPage({
             <CopyButton className="inline-block" value={accountId} />
           </div>
         </div>
-        <Link href="/wallet/move">
+        <Link href={`/engineer/${accountId}/wallet/move`}>
           <Button className="flex justify-center items-center whitespace-nowrap">
             <RiExchangeLine className="h-5 w-5" />
             <span className="ml-3">

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { Dispatch } from 'react';
-import { PreviewMoveEngi } from '~/app/(user)/wallet/move/page';
+import { PreviewMoveEngi } from '~/utils/exchange/types';
 import BuyEngi from '~/components/pages/wallet/BuyEngi';
 import { useUser } from '~/utils/contexts/userContext';
 
