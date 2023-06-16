@@ -123,7 +123,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
         Learn
         {/* larger hover target */}
         <div
-          className="absolute inset-0 w-400p h-125p"
+          className="absolute inset-0 xl:w-400p h-125p"
           onMouseEnter={() => setHoverItem('LEARN')}
         />
       </button>

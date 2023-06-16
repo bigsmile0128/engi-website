@@ -14,8 +14,7 @@ export default function Stats({
 
   return (
     <div className={classNames('w-full')}>
-      <IncompleteBanner className="mb-8" />
-      <span className="font-grifter text-3xl">Stats</span>
+      <IncompleteBanner className="" />
       {/* INSERT CODE HERE */}
     </div>
   );

@@ -46,7 +46,7 @@ const items = [
 
 export default function AccountNav({ className, accountId }: AccountNavProps) {
   const pathname = usePathname() ?? '';
-  const activePath = pathname.replace(`/account/${accountId}`, '');
+  const activePath = pathname.replace(`/engineer/${accountId}`, '');
 
   return (
     <div
@@ -64,7 +64,7 @@ export default function AccountNav({ className, accountId }: AccountNavProps) {
               ? 'font-bold text-green-primary border-green-primary'
               : 'border-transparent'
           )}
-          href={`/account/${accountId}${path}`}
+          href={`/engineer/${accountId}${path}`}
         >
           {name}
         </Link>
