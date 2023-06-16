@@ -12,9 +12,11 @@ import WhyEngi from '~/components/pages/freelancer/WhyEngi';
 
 export default function FreelancerMarketing() {
   return (
-    <div className={classNames('flex flex-col items-center pt-24')}>
+    <div
+      className={classNames('flex flex-col items-center pt-16 tablet:pt-24')}
+    >
       <Header className="max-w-page" />
-      <CompanyCarousel className="mt-16 tablet:mt-24" />
+      {/*<CompanyCarousel className="mt-16 tablet:mt-24" />*/}
       <WhyEngi className="mt-32 desktop:mt-48" />
       <HowItWorks className="mt-20 tablet:mt-40 desktop:mt-48" />
       <Statistics className="mt-24 tablet:mt-40 desktop:mt-48 max-w-page w-full" />

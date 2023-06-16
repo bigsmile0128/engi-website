@@ -54,7 +54,6 @@ export default function CompanyCarousel({ className }: CompanyCarouselProps) {
         className={classNames(
           'flex flex-col items-center gap-8 w-full py-16 company-gradient-mobile',
           'tablet:max-w-page tablet:items-start tablet:p-8 tablet:py-10 tablet:company-gradient-tablet',
-          'hidden',
           className
         )}
       >

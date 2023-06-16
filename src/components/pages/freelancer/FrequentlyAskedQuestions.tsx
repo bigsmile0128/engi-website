@@ -12,7 +12,7 @@ const questions = [
   {
     title: 'Am I guaranteed to earn Engi if I push code?',
     description:
-      "No. Engi moves the competitive dynamics of professional engineering from the whiteboard to the keyboard. May the best coders win... thankfully, there's always plent of opportunity and you can always try again.",
+      "No. Engi moves the competitive dynamics of professional engineering from the whiteboard to the keyboard. May the best coders win! Thankfully, there's always plenty of opportunity and you can always try again.",
   },
   {
     title: 'Do I need anything to sign up?',
@@ -22,7 +22,7 @@ const questions = [
   {
     title: 'When do I get paid?',
     description:
-      "After winning a bounty, it's payout will be immediately transfered to your wallet. You can cash out anytime to the currency of your choice or hold your ENGI.",
+      'After winning a bounty, its payout will be immediately transfered to your wallet. You can cash out anytime to the currency of your choice or hold your ENGI.',
   },
 ];
 

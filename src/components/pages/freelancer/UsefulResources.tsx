@@ -51,7 +51,7 @@ export default function UsefulResources({ className }: UsefulResourcesProps) {
         <div className="flex children:ml-6">
           {resources.map(({ img, title, description, link }) => (
             <Link href={link} target="_blank" key={title}>
-              <div className="flex-[0_0_80%] max-w-[300px] hover:cursor-pointer">
+              <div className="flex-[0_0_80%] max-w-full w-[100vw] tablet:max-w-[300px] hover:cursor-pointer">
                 <div className="">
                   {img}
                   <div className="bg-secondary p-6 border border-white/30 border-t-0">

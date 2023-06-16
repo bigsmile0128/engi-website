@@ -13,7 +13,9 @@ import TypesOfProjects from '~/components/pages/business/TypesOfProjects';
 
 export default function BusinessMarketing() {
   return (
-    <div className={classNames('flex flex-col items-center pt-24')}>
+    <div
+      className={classNames('flex flex-col items-center pt-16 tablet:pt-24')}
+    >
       <Header className="max-w-page" />
       <TotalDevelopers className="max-w-page w-full mt-24 desktop:mt-48" />
       <Projects className="w-full mt-24 desktop:mt-48" />
