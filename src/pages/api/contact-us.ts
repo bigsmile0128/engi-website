@@ -51,11 +51,11 @@ async function contactUsApi(req: NextApiRequest, res: NextApiResponse) {
       message,
       email,
     },
-    from: { email },
+    from: { email: CONTACT_REPLY_EMAIL },
     personalizations: [
       {
         to: CONTACT_REPLY_EMAIL,
-        from: email,
+        from: CONTACT_REPLY_EMAIL,
       },
     ],
     templateId: mapToTemplateId[TEMPLATE_NAME.CONTACT_US_REQUEST_RECEIVED],
