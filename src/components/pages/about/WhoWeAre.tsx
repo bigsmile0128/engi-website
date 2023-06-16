@@ -16,7 +16,11 @@ export default function WhoWeAre({ className }: WhoWeAreProps) {
         className
       )}
     >
-      <Image className="flex-1 max-w-50" src={whoWeAreImg} alt="who-we-are" />
+      <Image
+        className="flex-1 tablet:max-w-50"
+        src={whoWeAreImg}
+        alt="who-we-are"
+      />
       <div className="flex-1 flex flex-col">
         <span className="font-grifter text-5xl">
           {Content.SPLIT_SEGMENT.TITLE}
