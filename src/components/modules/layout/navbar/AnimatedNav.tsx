@@ -36,7 +36,7 @@ const EARN_LINKS: MenuLinkProps[] = [
 
 const CREATE_LINKS = [
   {
-    title: 'Create a Bit',
+    title: 'Create a Bounty',
     description: 'Easily on the Web',
     href: '/hire',
   },
