@@ -64,7 +64,7 @@ export default function BitUserStatus({
             <span className="font-medium text-xs mt-2">
               First time starting a job? Check out our{' '}
               <Link
-                href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                href="https://links.engi.network/cookbook"
                 className="underline hover:text-green-primary"
               >
                 documentation
