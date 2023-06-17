@@ -16,6 +16,9 @@ import {
   SiFigma,
   SiPolkadot,
   SiRust,
+  SiTypescript,
+  SiReact,
+  SiPython,
 } from 'react-icons/si';
 
 type IntegrationsListProps = {
@@ -23,112 +26,91 @@ type IntegrationsListProps = {
 };
 
 enum Category {
-  'RUST',
-  'WASM',
-  'LAYER1',
-  'TEST_DRIVEN_WASM',
+  'APIs' = 'APIs',
+  'UIs' = 'UIs',
+  'Web3' = 'Web3',
 }
 
 const CATEGORIES = [
   {
     icon: <RiBuilding2Fill />,
-    label: 'Rust based',
-    value: Category.RUST,
+    label: 'APIs',
+    value: Category.APIs,
   },
   {
     icon: <RiGroupFill />,
-    label: 'WASM smart contract',
-    value: Category.WASM,
+    label: 'Web3',
+    value: Category.Web3,
   },
   {
     icon: <RiEarthFill />,
-    label: 'Layer 1',
-    value: Category.LAYER1,
-  },
-  {
-    icon: <RiTeamFill />,
-    label: 'Test-driven WASM',
-    value: Category.TEST_DRIVEN_WASM,
+    label: 'UIs',
+    value: Category.UIs,
   },
 ];
 
 const INTEGRATIONS = [
   {
+    icon: <RiGithubFill className="h-16 w-auto" />,
+    title: 'Github',
+    description: 'Authorize Engi to open pull requests with verified code',
+    categories: [Category.APIs, Category.UIs, Category.Web3],
+  },
+  {
     icon: <SiPolkadot className="h-16 w-auto" />,
     title: 'Substrate & ink!',
     description: 'Build Substrate Layer-1s or dApps the Engi Way',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
+    categories: [Category.Web3],
   },
   {
     icon: <SiEthereum className="h-16 w-auto" />,
     title: 'Ethereum & Solidity',
     description: 'Quickly build or maintain any Ethereum dApp',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
+    categories: [Category.Web3],
   },
   {
     icon: <SiFigma className="h-16 w-auto" />,
     title: 'Figma',
     description: 'Use our Figma Plugin to generate UI bounty specs',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
-  },
-  {
-    icon: <RiGithubFill className="h-16 w-auto" />,
-    title: 'Github',
-    description: 'Authorize Engi to open pull requests with verified code',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
+    categories: [Category.UIs],
   },
   {
     icon: <SiCsharp className="h-16 w-auto" />,
     title: 'C#',
     description: 'Develop your dotnet API',
-    categories: [
-      Category.LAYER1,
-      Category.RUST,
-      Category.TEST_DRIVEN_WASM,
-      Category.WASM,
-    ],
+    categories: [Category.APIs],
   },
-  //{
-  //icon: <SiCplusplus className="h-16 w-auto" />,
-  //title: 'C++',
-  //description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-  //categories: [
-  //Category.LAYER1,
-  //Category.RUST,
-  //Category.TEST_DRIVEN_WASM,
-  //Category.WASM,
-  //],
-  //},
   {
     icon: <SiRust className="h-16 w-auto" />,
     title: 'Rust',
     description: 'Use cargo tests to drive your product foward',
-    categories: [Category.RUST],
+    categories: [Category.APIs],
+  },
+  {
+    icon: <SiPython className="h-16 w-auto" />,
+    title: 'Python',
+    description: 'Develop python libraries testing with pytest',
+    categories: [Category.APIs],
+  },
+  {
+    icon: <SiReact className="h-16 w-auto" />,
+    title: 'React',
+    description:
+      'Use our custom Jest test matcher to utilize your designs to get custom CSS from the network',
+    categories: [Category.UIs],
+  },
+  {
+    icon: <SiTypescript className="h-16 w-auto" />,
+    title: 'Javascript & TypeScript',
+    description:
+      'Use Engi to implement application business logic, ship node APIs, and more',
+    categories: [Category.UIs, Category.APIs],
   },
 ];
 
 export default function IntegrationsList({ className }: IntegrationsListProps) {
   const [category, setCategory] = useState<Category | null>(null);
+  console.log(category);
   return (
     <div className={classNames('', className)}>
       <div
@@ -154,7 +136,7 @@ export default function IntegrationsList({ className }: IntegrationsListProps) {
                 ? 'text-green-primary border-green-primary'
                 : 'text-secondary hover:text-green-primary'
             )}
-            onClick={() => setCategory(value)}
+            onClick={() => setCategory(value !== category ? value : null)}
           >
             {icon}
             {label}
@@ -163,7 +145,9 @@ export default function IntegrationsList({ className }: IntegrationsListProps) {
         <div className="desktop:hidden shrink-0 h-full w-20"></div>
       </div>
       <div className="mt-8 max-w-page grid gap-x-8 gap-y-12 grid-cols-2 tablet:grid-cols-3 desktop:grid-cols-4">
-        {INTEGRATIONS.map(({ icon, title, description }) => (
+        {INTEGRATIONS.filter(({ categories }) =>
+          category ? categories.includes(category) : true
+        ).map(({ icon, title, description }) => (
           <div className="flex flex-col" key={title}>
             <div className="grid place-items-center bg-secondary/80 border border-white/60 py-10 tablet:py-16">
               {icon}

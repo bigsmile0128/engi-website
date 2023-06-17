@@ -3,6 +3,7 @@ import Image from 'next/image';
 import ChevronRight from '~/components/ChevronRight';
 import integrationsMobileImg from 'public/img/about/integrations/integrations-mobile.png';
 import integrationsDesktopImg from 'public/img/about/integrations/integrations-desktop.png';
+import Link from 'next/link';
 
 type HeaderProps = {
   className?: string;
@@ -30,6 +31,17 @@ export default function Header({ className }: HeaderProps) {
           <p className="mt-3 tablet:mt-6">integrate all your tools</p>
         </div>
         <p className="mt-6 text-secondary text-xl">{SUBTITLE}</p>
+        <p className="mt-4 text-seconday text-sm">
+          Check out our{' '}
+          <Link
+            target="_blank"
+            href="https://links.engi.network/cookbook"
+            className="text-green-primary underline"
+          >
+            cookbook
+          </Link>{' '}
+          to use Engi with your favorite tools and existing workflows
+        </p>
       </div>
       {/* DESKTOP */}
       <div className="hidden desktop:block mt-12">
@@ -41,6 +53,17 @@ export default function Header({ className }: HeaderProps) {
             </span>
             {/* subtitle text needs to be left-aligned with title and NOT the chevron */}
             <p className="mt-8 text-secondary text-xl">{SUBTITLE}</p>
+            <p className="mt-4 text-seconday text-sm">
+              Check out our{' '}
+              <Link
+                target="_blank"
+                href="https://links.engi.network/cookbook"
+                className="text-green-primary underline"
+              >
+                cookbook
+              </Link>{' '}
+              to use Engi with your favorite tools and existing workflows
+            </p>
           </div>
         </div>
       </div>
