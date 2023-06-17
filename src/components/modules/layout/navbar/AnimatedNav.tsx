@@ -43,7 +43,7 @@ const CREATE_LINKS = [
   {
     title: 'Github Authorization',
     description: 'Access to Test & Open PRs',
-    href: '/settings',
+    href: 'https://github.com/apps/engi-github-app',
   },
   {
     title: 'CLI',
