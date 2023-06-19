@@ -17,7 +17,7 @@ const items = [
   {
     title: 'Setup your Account',
     description:
-      'You own our keys. Bring your wallet, connect to Engi, and download the tools',
+      'You own your keys. Bring your wallet, connect to Engi, and download the tools',
   },
   {
     title: 'Pick a Bounty',
