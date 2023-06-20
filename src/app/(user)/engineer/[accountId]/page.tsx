@@ -1,6 +1,7 @@
 'use client';
 
 import classNames from 'classnames';
+import IncompleteBanner from '~/components/IncompleteBanner';
 import UserAbout from '~/components/pages/account/UserAbout';
 import UserAnalytics from '~/components/pages/account/UserAnalytics';
 
@@ -17,6 +18,8 @@ export default function AccountDetails({
   const { accountId } = params;
   return (
     <div className={classNames('flex-1 flex flex-col gap-y-12')}>
+      {/* TODO: blocked by https://linear.app/engi/issue/ENGIN-1146/api-to-get-account-information-for-a-wallet-address */}
+      <IncompleteBanner />
       <UserInfo className="w-full" accountId={accountId} />
       <UserAnalytics className="w-full" />
       <UserAbout className="w-full" />
