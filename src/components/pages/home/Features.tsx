@@ -134,7 +134,7 @@ export default function Features({ className }: FeaturesProps) {
                 {({ selected }) => (
                   <button
                     className={classNames(
-                      'flex flex-1 flex-col items-center text-center border-b px-12 py-8 outline-none',
+                      'flex flex-1 flex-col items-center text-center border-b px-4 desktop:px-12 py-8 outline-none',
                       selected
                         ? 'border-green-primary border-b-2'
                         : 'border-gray-400'
