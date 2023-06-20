@@ -30,11 +30,12 @@ export default function Balance({ className, walletId }: BalanceProps) {
           isLoading={isLoading}
         />
       </div>
-      <div className="flex items-center whitespace-nowrap text-secondary mt-4 sm:mt-0 sm:ml-12 sm:mb-4">
+      {/* TODO: blocked by https://linear.app/engi/issue/ENGIN-1146/api-to-get-account-information-for-a-wallet-address */}
+      {/* <div className="flex items-center whitespace-nowrap text-secondary mt-4 sm:mt-0 sm:ml-12 sm:mb-4">
         <RiArrowUpLine className="h-5 w-5 text-green-primary" />
         <EngiIcon className="h-3 w-3 ml-1 -mb-[3px]" />
         <span className="text-lg ml-1">N/A</span>
-      </div>
+      </div> */}
     </div>
   );
 }
