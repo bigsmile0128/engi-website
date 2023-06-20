@@ -88,6 +88,7 @@ export type Bit = {
 };
 
 export enum TransactionType {
+  BUY = 'BUY',
   EXCHANGE = 'EXCHANGE',
   INCOME = 'INCOME',
   SPEND = 'SPEND',
