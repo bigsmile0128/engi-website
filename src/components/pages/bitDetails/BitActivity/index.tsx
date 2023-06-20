@@ -8,6 +8,8 @@ import { Bit } from '~/types';
 import GetStarted from '../GetStarted';
 import BitCreator from '../BitCreator';
 import RepositoryInfo from '../RepositoryInfo';
+import { useUser } from '~/utils/contexts/userContext';
+import BountyStatus from '~/components/BountyStatus';
 
 interface BitActivityProps {
   bitId: string;
@@ -23,11 +25,21 @@ export default function BitActivity({
   data,
 }: BitActivityProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const { user } = useUser();
 
   return (
     <div className={classNames('flex flex-col overflow-hidden', className)}>
       <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
-      <GetStarted bitId={bitId} />
+      <BountyStatus
+        attemptCount={data?.attemptCount}
+        created={data?.createdOn?.dateTime}
+        creator={data?.creator}
+        id={data?.id}
+        isLoading={isLoading}
+        solution={data?.solution}
+        status={data?.status}
+        userId={user?.walletId}
+      />
       <BitCreator className="mt-8" isLoading={isLoading} data={data?.creator} />
       <div className="my-8 w-full border-t border-gray-400 opacity-50" />
       <RepositoryInfo

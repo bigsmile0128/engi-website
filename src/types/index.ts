@@ -24,7 +24,7 @@ export type Solution = {
     attempter: string;
     tests: Test[];
   };
-  author: string;
+  author: any;
   jobId: string;
   patchUrl: string;
   solutionId: string;
