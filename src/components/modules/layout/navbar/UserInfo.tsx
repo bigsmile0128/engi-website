@@ -109,7 +109,7 @@ export default function UserInfo({
               <Menu.Item>
                 <MenuItemLink
                   className="hover:bg-secondary text-left pt-3 pl-8"
-                  href="/settings"
+                  href={`/engineer/${user?.walletId}/settings`}
                 >
                   <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
                     <span className="text-secondary">Settings</span>
