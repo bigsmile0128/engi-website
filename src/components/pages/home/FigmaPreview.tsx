@@ -67,7 +67,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             {/* slide into view when this div is visible */}
             <div ref={ref}></div>
             {/* specific units to line up button precisely with grid on XL */}
-            <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+            <Link href="https://links.engi.network/lightpaper">
               <Button
                 variant="primary"
                 className="mt-8 xl:mt-[3.2rem]"

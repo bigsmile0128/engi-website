@@ -61,7 +61,7 @@ const LEARN_LINKS = [
   {
     title: 'Litepaper',
     description: 'Network in Broad Strokes',
-    href: 'https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf',
+    href: 'https://links.engi.network/lightpaper',
   },
   {
     title: 'About',

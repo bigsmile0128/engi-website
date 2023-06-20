@@ -10,7 +10,7 @@ export default function PlaceholderButton({
   className,
 }: PlaceholderButtonProps) {
   return (
-    <Link href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf">
+    <Link href="https://links.engi.network/lightpaper">
       <button
         className={classNames(
           'px-6 py-4 bg-black/20 border border-white font-bold capitalize',

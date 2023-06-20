@@ -218,7 +218,7 @@ export default function Navbar({ className }: NavbarProps) {
                       <ChevronRightIcon className="h-6" />
                     </Link>
                     <Link
-                      href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                      href="https://links.engi.network/cookbook"
                       target="_blank"
                       className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                       onClick={() => setIsOpen(false)}
@@ -227,7 +227,7 @@ export default function Navbar({ className }: NavbarProps) {
                       <ChevronRightIcon className="h-6" />
                     </Link>
                     <Link
-                      href="https://engi-website-terraform.s3.us-west-2.amazonaws.com/downloads/engi-lightpaper-searchable.pdf"
+                      href="https://links.engi.network/lightpaper"
                       target="_blank"
                       className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                       onClick={() => setIsOpen(false)}
