@@ -1,14 +1,15 @@
 'use client';
 
-import React, { useCallback, useEffect, useState } from 'react';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
+import * as Sentry from '@sentry/react';
 import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
-import GridPattern from '~/components/global/GridPattern/GridPattern';
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
-import useBits from '~/utils/hooks/useBits';
-import _ from 'lodash';
-import { Bit } from '~/types';
+import { gql } from 'graphql-request';
+import { useCallback, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import EngiAmount from '~/components/EngiAmount';
+import GridPattern from '~/components/global/GridPattern/GridPattern';
+import useAxios from '~/utils/hooks/useAxios';
 
 type StatisticsProps = {
   className?: string;
@@ -17,7 +18,7 @@ type StatisticsProps = {
 export default function Statistics({ className }: StatisticsProps) {
   const [, setSelectedIndex] = useState(0);
   const [emblaRef, emblaApi] = useEmblaCarousel();
-  const { isLoading, data } = useBits({ skip: 0, limit: 100 });
+  const { isLoading, data } = useBountyStats();
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) {
@@ -53,27 +54,16 @@ export default function Statistics({ className }: StatisticsProps) {
     }
   }, [emblaApi]);
 
-  let funding: number;
-  try {
-    funding = data?.result?.items?.reduce(
-      (acc, bit: Bit) => acc + parseFloat(bit.funding),
-      0
-    );
-  } catch (error) {
-    console.warn(error);
-    funding = 0;
-  }
-
   const stats = [
     {
       name: 'Active Bounties',
-      value: data?.result?.totalCount ?? 0,
+      value: data?.activeJobCount ?? 0,
     },
     {
       name: 'Amount Funded',
       value: (
         <EngiAmount
-          value={funding}
+          value={data?.totalAmountFunded ?? 0}
           iconClassName="h-8 w-8 -mt-2 mr-1"
           valueClassName="text-5xl"
         />
@@ -81,9 +71,7 @@ export default function Statistics({ className }: StatisticsProps) {
     },
     {
       name: '# of Technologies',
-      value: _.uniq(
-        _.flatMap(data?.result?.items ?? [], (bit: Bit) => bit.technologies)
-      ).length,
+      value: data?.technologyCount ?? 0,
     },
   ];
 
@@ -164,5 +152,40 @@ export default function Statistics({ className }: StatisticsProps) {
         </button>
       </div>
     </div>
+  );
+}
+
+function useBountyStats() {
+  const axios = useAxios();
+  return useQuery<any, any>(
+    ['bountyStats'],
+    async () => {
+      const response = await axios.post('/api/graphql', {
+        query: gql`
+          query BountyStats {
+            jobAggregates {
+              activeJobCount
+              totalAmountFunded
+              technologyCount
+            }
+          }
+        `,
+      });
+
+      const data = response.data ?? {};
+
+      if (data.errors?.length > 0) {
+        throw new Error(
+          data?.errors?.[0]?.message ?? 'Unable to fetch bounty stats.'
+        );
+      }
+
+      return response.data.data.jobAggregates;
+    },
+    {
+      onError: (error) => {
+        Sentry.captureException(error);
+      },
+    }
   );
 }
