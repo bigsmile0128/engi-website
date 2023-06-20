@@ -16,6 +16,13 @@ export default meta;
 
 type Story = StoryObj<typeof BountyStatus>;
 
+export const Loading: Story = {
+  args: {
+    className: 'w-[300px]',
+    isLoading: true,
+  },
+};
+
 export const FreelancerNotStarted: Story = {
   name: 'Freelancer - Not started',
   args: {

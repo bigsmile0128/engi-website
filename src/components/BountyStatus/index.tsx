@@ -18,15 +18,16 @@ import CopyLink from '../CopyLink';
 import SubmissionStages from './SubmissionStages';
 
 type BountyStatusProps = {
-  attemptCount: number;
+  attemptCount?: number;
   className?: string;
-  created: string;
-  creator: string;
+  created?: string;
+  creator?: string;
   currentUserSubmission?: Submission;
-  id: string;
+  id?: string;
+  isLoading?: boolean;
   solution?: Solution;
-  status: BitStatus;
-  userId: string;
+  status?: BitStatus;
+  userId?: string;
 };
 
 export default function BountyStatus({
@@ -36,6 +37,7 @@ export default function BountyStatus({
   creator,
   currentUserSubmission,
   id,
+  isLoading,
   solution,
   status,
   userId,
@@ -50,7 +52,13 @@ export default function BountyStatus({
         className
       )}
     >
-      {isCreator ? (
+      {isLoading ? (
+        <div className="w-full children:skeleton flex flex-col gap-2">
+          <div className="whitespace-pre"> </div>
+          <div className="whitespace-pre w-3/4"> </div>
+          <div className="whitespace-pre w-3/4"> </div>
+        </div>
+      ) : isCreator ? (
         <div className="flex items-center gap-4">
           <div
             className="shrink-0 h-12 w-12 grid place-items-center border border-white/20 rounded-full"
@@ -110,7 +118,7 @@ export default function BountyStatus({
             )}
           </div>
           <span className="-mb-1 font-grifter text-xl max-w-[300px]">
-            {userId === solution?.author
+            {userId === solution?.author?.Id
               ? 'You have completed the bounty'
               : 'Bounty completed'}
           </span>
@@ -120,7 +128,7 @@ export default function BountyStatus({
         <div className="flex items-start gap-4">
           <div className="relative">
             {/* TODO: update with user profile icon */}
-            <Avvvatars value={userId} size={48} />
+            <Avvvatars value={userId ?? ''} size={48} />
             {submissionStatus === 'ANALYZING' && (
               <div className="absolute right-1 bottom-1 bg-[#424031] rounded-full p-1 translate-x-1/3 translate-y-1/3">
                 <ImSpinner className="h-4 w-auto text-green-primary animate-spin-slow" />
