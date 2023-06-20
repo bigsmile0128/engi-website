@@ -62,7 +62,7 @@ export default function TransactionTable({
               value={transaction.dateTime}
               isLoading={isLoading}
               iconClassName="hidden md:block"
-              valueClassName="flex-col lg:flex-row lg:items-center"
+              valueClassName="flex-col"
             />
           );
         },
@@ -74,12 +74,13 @@ export default function TransactionTable({
           return (
             <>
               <TransactionTypeIcon
-                className="h-8 w-8 lg:hidden"
+                className="h-7 w-7 xl:hidden"
                 value={transaction.type}
                 isLoading={isLoading}
+                showTooltip
               />
               <TransactionTypeTag
-                className="hidden lg:inline-flex"
+                className="hidden xl:inline-flex"
                 value={transaction.type}
                 isLoading={isLoading}
               />
@@ -106,7 +107,7 @@ export default function TransactionTable({
           return (
             <a
               className={classNames(
-                'inline-flex items-center gap-x-2 px-3 py-1',
+                'inline-flex p-1 rounded-full',
                 'border border-white/20 hover:border-green-primary transition-all',
                 isLoading ? 'children:skeleton' : ''
               )}
@@ -115,7 +116,6 @@ export default function TransactionTable({
               rel="noreferrer"
             >
               <PolkadotSvg className="h-5 w-5" />
-              <span className="">Explorer</span>
             </a>
           );
         },
@@ -127,19 +127,19 @@ export default function TransactionTable({
           return (
             <div
               className={classNames(
-                'flex items-center justify-center md:px-4 md:h-8',
-                'rounded-full md:rounded-none',
+                'flex items-center justify-center xl:px-4 xl:h-8',
+                'rounded-full xl:rounded-none',
                 'font-medium text-sm',
                 transaction.isSuccessful
-                  ? 'md:bg-green-primary/10 text-green-primary'
-                  : 'md:bg-red-primary/10 text-red-primary',
+                  ? 'xl:bg-green-primary/10 text-green-primary'
+                  : 'xl:bg-red-primary/10 text-red-primary',
                 isLoading ? 'children:skeleton' : ''
               )}
             >
-              <span className="hidden md:block">
+              <span className="hidden xl:block">
                 {transaction.isSuccessful ? 'Success' : 'Failure'}
               </span>
-              <span className="md:hidden">
+              <span className="xl:hidden">
                 {transaction.isSuccessful ? (
                   <RiCheckboxCircleLine className="h-7 w-7" />
                 ) : (

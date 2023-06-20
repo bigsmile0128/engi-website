@@ -68,9 +68,6 @@ export default function SortMenu({
                       'ml-2.5 text-secondary group-hover:text-white'
                     )}
                   >
-                    {value?.label && (
-                      <span className="font-medium text-white">Sort by: </span>
-                    )}
                     {value?.label ?? 'Sort by'}
                   </p>
                   <ChevronDownIcon

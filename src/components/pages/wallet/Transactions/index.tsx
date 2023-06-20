@@ -30,7 +30,7 @@ const sortOptions = [
 
 const transactionTypeOptions = [
   {
-    label: 'All Types',
+    label: 'Type',
     value: '',
   },
   {
@@ -53,7 +53,7 @@ const transactionTypeOptions = [
 
 const statusOptions = [
   {
-    label: 'All Statuses',
+    label: 'Status',
     value: '',
   },
   {
@@ -91,11 +91,12 @@ export default function Transactions({
   );
 
   const { isLoading, isFetching, data } = useQuery(
-    ['walletTransactions', walletId, page, transactionType],
+    ['walletTransactions', walletId, page, transactionType, sortField, sortDir],
     () => {
       if (!walletId) {
         return null;
       }
+
       const query: TransactionSearchParams = {
         accountId: walletId,
         skip: page * PAGE_SIZE,
@@ -103,6 +104,22 @@ export default function Transactions({
       };
       if (transactionType?.value) {
         query.type = transactionType.value;
+      }
+
+      let sortBy = '';
+      if (sortField?.value === 'NEWEST') {
+        sortBy =
+          sortDir === OrderByDirection.DESC
+            ? 'CREATED_DESCENDING'
+            : 'CREATED_ASCENDING';
+      } else if (sortField?.value === 'AMOUNT') {
+        sortBy =
+          sortDir === OrderByDirection.DESC
+            ? 'AMOUNT_DESCENDING'
+            : 'AMOUNT_ASCENDING';
+      }
+      if (sortBy) {
+        query.sortBy = sortBy;
       }
       return fetchTransactions(query);
     },
@@ -175,6 +192,7 @@ type TransactionSearchParams = {
   accountId: string;
   limit: number;
   skip: number;
+  sortBy?: string;
   type?: string;
 };
 
