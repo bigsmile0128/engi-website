@@ -48,7 +48,7 @@ export default function Footer({ className }: FooterProps) {
           </div>
           <div
             className={classNames(
-              'flex flex-col laptop:flex-row',
+              'flex flex-col laptop:flex-row flex-wrap',
               'gap-x-16 gap-y-12',
               'mt-8 laptop:mt-12 xl:mt-0',
               'shrink-0 whitespace-nowrap'
