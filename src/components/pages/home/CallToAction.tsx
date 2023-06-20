@@ -33,10 +33,13 @@ export default function CallToAction({ className }: CallToActionProps) {
         <h2 className="font-grifter text-5xl mb-12 text-center">
           Ready to get started?
         </h2>
-        <div className="max-w-page flex flex-col laptop:flex-row gap-8">
+        <div className="max-w-page flex flex-col desktop:flex-row gap-8">
           {sections.map(({ icon, title, description, buttonText, href }) => (
             <div
-              className="flex-1 flex flex-col items-center bg-dropdown py-12 px-8 border border-white/60 laptop:px-32 laptop:whitespace-nowrap"
+              className={classNames(
+                'flex-1 flex flex-col items-center bg-dropdown border border-white/60',
+                'py-12 px-8 laptop:px-32'
+              )}
               key={title}
             >
               <div className="p-4 bg-dropdown backdrop-blur-sm border border-white/60">
