@@ -24,7 +24,8 @@ export default function Header({ className }: HeaderProps) {
         </span>
       </div>
       <p className="mt-8 text-secondary text-xl text-center">
-        No sourcing, no recruiting. Find worldwide talent instantly.
+        No recruiting, no interviewing, no contracts. Engage worldwide talent
+        and receive qualty code instantly
       </p>
       <div className="flex justify-center mt-8">
         <Link href="/login">

@@ -16,11 +16,11 @@ export default function TotalDevelopers({ className }: TotalDevelopersProps) {
     >
       <div>
         <p className="font-grifter capitalize text-4xl tablet:text-5xl">
-          Total developers
+          Endless Developers
         </p>
         <p className="text-secondary text-lg mt-4 tablet:mt-8">
-          A huge network of quality developers on stand-by to start working on
-          your bounties as soon as they are live
+          The largest network of software engineers standing by to solve your
+          bounties as quickly as possibly with the highest quality code
         </p>
       </div>
       <div className="total-developers-bg text-6xl w-full tablet:mt-0 flex items-center justify-center">

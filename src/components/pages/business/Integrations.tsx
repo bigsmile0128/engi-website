@@ -22,11 +22,12 @@ export default function Integrations({ className }: IntegrationsProps) {
       <div>
         <p className="font-bold text-sm text-green-primary">INTEGRATIONS</p>
         <p className="mt-6 font-grifter text-4xl tablet:text-5xl leading-normal">
-          Engi brings all of your tools into one place
+          Insert labor economics as low as your stack
         </p>
         <p className="mt-8 xl:mt-12 text-secondary text-lg tablet:text-xl">
-          Integrate simply with on-demand engineering using the tools and
-          frameworks you know and love such as Docker and Github
+          Integrate on-demand engineering into your development cycles using the
+          full-stack tools, languages, and frameworks you know and love from
+          React and Hardhat to Python and TypeScript to Docker and Github
         </p>
         <Link href={'/integrations'}>
           <Button variant="primary" className="mt-12">
