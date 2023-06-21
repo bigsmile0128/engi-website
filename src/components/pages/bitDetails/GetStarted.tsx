@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import CopyLink from '~/components/CopyLink';
 import Link from 'next/link';
+import { COOKBOOK_LINK } from '~/utils/links';
 
 type GetStartedProps = {
   bitId?: string;
@@ -40,7 +41,7 @@ export default function GetStarted({ className, bitId }: GetStartedProps) {
           <span className="font-medium text-xs mt-2">
             First time starting a bounty? Check out our{' '}
             <Link
-              href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+              href={COOKBOOK_LINK}
               className="underline hover:text-green-primary"
             >
               documentation

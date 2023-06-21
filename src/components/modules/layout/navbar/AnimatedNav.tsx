@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { COOKBOOK_LINK } from '~/utils/links';
 
 type AnimatedNavProps = {
   className?: string;
@@ -183,7 +184,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                     consistently providing correct and performant deliverables
                   </motion.p>
                   <Link
-                    href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                    href={COOKBOOK_LINK}
                     className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"
@@ -207,7 +208,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                     professional coders and accelerates technology companies
                   </motion.p>
                   <Link
-                    href="https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                    href={COOKBOOK_LINK}
                     className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                     target="_blank"

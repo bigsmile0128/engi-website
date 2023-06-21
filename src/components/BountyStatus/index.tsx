@@ -16,6 +16,7 @@ import { ImSpinner } from 'react-icons/im';
 import { BitStatus, Solution, Submission } from '~/types';
 import CopyLink from '../CopyLink';
 import SubmissionStages from './SubmissionStages';
+import { COOKBOOK_LINK } from '~/utils/links';
 
 type BountyStatusProps = {
   attemptCount?: number;
@@ -171,7 +172,7 @@ export default function BountyStatus({
             <span className="font-medium text-xs mt-2">
               First time starting a job? Check out our{' '}
               <Link
-                href="https://button-produce-60a.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10"
+                href={COOKBOOK_LINK}
                 className="underline hover:text-green-primary"
               >
                 documentation
