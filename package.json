@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "eslint \"src/**/*.{ts,tsx,md}\" --fix",
-    "storybook": "storybook dev",
+    "storybook": "storybook dev -p 6007",
     "server": "nodemon ./mockServer",
     "prepare": "husky install",
     "build-storybook": "storybook build",
