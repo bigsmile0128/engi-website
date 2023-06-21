@@ -35,7 +35,9 @@ export default function BitDiscovery() {
 
   return (
     <div className="max-w-page flex flex-col mt-12 mb-24">
-      <h1 className="text-white font-grifter text-8xl">Bounties</h1>
+      <h1 className="text-white font-grifter text-5xl xs:text-7xl lg:text-8xl">
+        Bounties
+      </h1>
       <div className="flex mt-4 tablet:mt-8 desktop:mt-12 gap-x-12 flex-col desktop:flex-row">
         <SearchFilterList
           className="hidden desktop:block"
