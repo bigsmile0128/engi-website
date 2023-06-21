@@ -9,23 +9,23 @@ type TypesOfProjectsProps = {
 const projectTypes = [
   {
     className: '',
-    title: 'Test-Driven Smart Contracts',
+    title: 'Web3 & Blockchain Teams',
     description:
-      'Better prepare your Solidity contracts for audits developing TDD while saving on implementation costs',
+      'Bounty-driven development better prepares protocols for audits and saves on implementation costs',
     icon: <RiBuilding2Fill className="h-10 w-10 text-purple-primary" />,
   },
   {
     className: '',
-    title: 'Web User Interfaces',
+    title: 'UI Design & Engineering Teams',
     description:
-      'Provide design files, screen sizes, and variants to receive pixel-perfect CSS for your UI components',
+      'Provide designs, receive pixel-perfect CSS. With Jest+Engi, ship apps, test behaviors, and more',
     icon: <RiGroupFill className="h-10 w-10 text-green-primary" />,
   },
   {
     className: 'tablet:hidden desktop:flex',
-    title: 'Libraries & SDKs',
+    title: 'Libraries & SDKs Authors',
     description:
-      'Business logic validated by tests, benchmarks, and linters unlocks crowd-sourced development for nearly any software project',
+      'Validated business logic benchmarked and style-guide adherent delivered fast',
     icon: <RiEarthFill className="h-10 w-10 text-orange-primary" />,
   },
 ];
@@ -34,12 +34,11 @@ export default function TypesOfProjects({ className }: TypesOfProjectsProps) {
   return (
     <div className={classNames('', className)}>
       <p className="font-grifter text-4xl tablet:text-5xl leading-normal">
-        Who can use Engi?
+        Who&apos;s using Engi?
       </p>
       <p className="mt-8 xl:mt-12 text-secondary text-lg tablet:text-xl xl:max-w-lg">
-        Whether you&apos;re test-driven or looking to increase test coverage,
-        automatically measurable progress is all that&apos;s needed to leverage
-        Engi
+        Automatically measurable progress is all that&apos;s needed to engage
+        Engi&apos;s global developer network
       </p>
       <div className="mt-16 w-full grid gap-24 tablet:grid-cols-2 desktop:grid-cols-3">
         {projectTypes.map(({ className, title, description, icon }) => (

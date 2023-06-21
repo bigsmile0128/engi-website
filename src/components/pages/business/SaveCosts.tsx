@@ -9,12 +9,12 @@ type SaveCostsProps = {
 
 const stats = [
   {
-    value: '1/100',
-    description: 'cost per developer hour to build product',
+    value: '~1/100',
+    description: 'cost per developer hour',
   },
   {
-    value: '10x',
-    description: 'faster ticket time-to-completion',
+    value: '~10x',
+    description: 'faster time-to-code-completion',
   },
   {
     value: '24/7',
@@ -32,11 +32,12 @@ export default function SaveCosts({ className }: SaveCostsProps) {
     >
       <div className="max-w-page w-full flex flex-col gap-8 xl:flex-row xl:justify-between xl:items-end">
         <span className="font-grifter text-3xl tablet:text-5xl tablet:leading-normal">
-          Reduce overhead. Accelerate shipping. Increase quality.
+          Reduce overhead&nbsp; Accelerate shipping&nbsp; Increase quality
         </span>
         <span className="text-lg text-secondary">
-          By removing the hiring process and allowing competition to pressurize{' '}
-          <em>engineering output</em>, cost and quality are market-maximized
+          Competition pressurizes engineering <em>output</em>, rather than
+          interviewing skills, allowing code cost and quality to be respectively
+          market min-maxed
         </span>
       </div>
       <Image
@@ -59,8 +60,8 @@ export default function SaveCosts({ className }: SaveCostsProps) {
                 Engi
               </span>
               <span className="font-medium text-xl">
-                Engi has saves time and money using itself for its own
-                development needs
+                Engi saves time and money using itself for its own development
+                needs
               </span>
             </div>
           </div>

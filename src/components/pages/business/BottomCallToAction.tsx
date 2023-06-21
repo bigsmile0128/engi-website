@@ -18,7 +18,7 @@ export default function BottomCallToAction({
           Ready to Accelerate?
         </p>
         <span className="mt-8 text-lg text-secondary text-center tracking-wide">
-          Post a bounty today and start shipping faster
+          Post a Bounty today, ship faster than ever
         </span>
         <Link href="/hire" className="mt-8">
           <Button variant="primary">Post a Bounty</Button>

@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import sourcingImg from 'public/img/about/business/sourcing.png';
+import globalImg from 'public/img/about/business/global.png';
+import targetImg from 'public/img/about/business/target.png';
 import { useCallback, useEffect, useState } from 'react';
 import ChevronRight from '~/components/ChevronRight';
 
@@ -23,29 +25,29 @@ const reasons = [
     ),
     title: 'Hireless',
     description:
-      'Save huge amounts of time and money by allowing any developer to start working while only paying for the very best results',
+      'Save copious amounts of time and money by allowing developers to start working immediately while always only paying for the very best results',
   },
   {
     className: 'row-start-2 col-start-1',
     img: (
       <div className="flex justify-center tablet:justify-start tablet:p-6 tablet:pb-0">
-        <Image src={sourcingImg} className="" alt="Sourcing" />
+        <Image src={globalImg} className="w-[150px]" alt="Global" />
       </div>
     ),
     title: 'Global, 24/7',
     description:
-      'No timezones means your product is always moving foward at lightning speed',
+      'No timezones or borders means product is always moving foward at lightning speed',
   },
   {
     className: 'row-start-2 col-start-2',
     img: (
       <div className="flex justify-center tablet:justify-start tablet:p-6 tablet:pb-0">
-        <Image src={sourcingImg} className="" alt="Sourcing" />
+        <Image src={targetImg} className="w-[150px]" alt="Target" />
       </div>
     ),
     title: 'Bring Your Stack',
     description:
-      'Engi works for any software that can be tested and validated. Bring your full-stack and which your project improve faster than ever',
+      'Engi works for any automated quality assurance process. Watch your project improve faster than ever',
   },
 ];
 

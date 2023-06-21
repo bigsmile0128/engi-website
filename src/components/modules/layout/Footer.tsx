@@ -29,7 +29,7 @@ export default function Footer({ className }: FooterProps) {
               Subscribe to our newsletter
             </p>
             <p className="font-medium text-xl mt-4">
-              A monthly digest of the latest Engi news, articles, and resources.
+              A monthly digest of the latest Engi news, articles, and resources
             </p>
           </div>
           <EmailRegistration />

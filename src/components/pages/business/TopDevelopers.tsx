@@ -14,7 +14,9 @@ export default function TopDevelopers({ className }: TopDevelopersProps) {
         Top Developers
       </p>
       <p className="mt-8 xl:mt-12 text-secondary text-lg tablet:text-xl text-center">
-        Elite builders pushing the envelope every day
+        The{' '}
+        <span className="text-green-primary font-semibold">Elite Builders</span>{' '}
+        pushing the envelope every day
       </p>
       <svg
         className="hidden absolute"
