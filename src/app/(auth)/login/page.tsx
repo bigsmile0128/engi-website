@@ -10,6 +10,7 @@ import { RiAlarmWarningLine } from 'react-icons/ri';
 import Link from 'next/link';
 import Button from '~/components/global/Button/Button';
 import { AccountExistenceResult } from '~/types';
+import { COOKBOOK_LINK } from '~/utils/links';
 
 export default function Login() {
   const router = useRouter();
@@ -61,11 +62,7 @@ export default function Login() {
               <span className="text-xl text-secondary mt-4 text-center">
                 No wallet extension detected.
               </span>
-              <Link
-                href="https://button-produce-60a.notion.site/Create-Your-Keys-34da44e16e8c4abc8f3d42b5e6f43cfbÁ"
-                target="href"
-                className="mt-8"
-              >
+              <Link href={COOKBOOK_LINK} target="href" className="mt-8">
                 <Button>View Guide</Button>
               </Link>
             </div>

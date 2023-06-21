@@ -14,20 +14,20 @@ import typescriptSrc from 'public/img/home/typescript.png';
 import csharpSrc from 'public/img/home/csharp.png';
 import cplusplusSrc from 'public/img/home/cplusplus.png';
 import { SiGithub } from 'react-icons/si';
+import { COOKBOOK_NOTION_SITE_BASE_URL } from '~/utils/links';
 
 type WorkflowsSuperchargedProps = {
   className?: string;
 };
-const COOKBOOK_BASE_URL =
-  'https://engi-network.notion.site/Engi-Cookbook-68c2d1347ecd499d8901ae387829ba10';
-const ETHEREUM_SOLIDITY_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
-const SOLANA_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
-const INK_POLKADOT_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+
+const ETHEREUM_SOLIDITY_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
+const SOLANA_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
+const INK_POLKADOT_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const FIGMA_PLUGIN_DOWNLOAD_URL = 'coming soon';
 const ENGI_GITHUB_APP = 'https://github.com/apps/engi-github-app';
-const TYPESCRIPT_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
-const CSHARP_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
-const CPP_DOCS_COOKBOOK = COOKBOOK_BASE_URL;
+const TYPESCRIPT_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
+const CSHARP_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
+const CPP_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 
 export const integrations = [
   {
