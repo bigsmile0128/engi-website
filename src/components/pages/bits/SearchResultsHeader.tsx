@@ -77,7 +77,7 @@ export default function SearchResultsHeader({
       </div>
       <div className="flex items-center">
         <h4 className={classNames('font-grifter', isLoading ? 'skeleton' : '')}>
-          <span className="whitespace-nowrap text-xl">
+          <span className="whitespace-nowrap text-base xs:text-xl">
             Found {numResults ?? 0}{' '}
             <span className="text-green-primary">
               {pluralize('bounty', numResults ?? 0)}
