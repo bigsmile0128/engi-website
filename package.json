@@ -94,7 +94,7 @@
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
-    "@engi.network/design-matcher": "^0.1.0",
+    "@engi.network/design-matcher": "^0.1.2",
     "@faker-js/faker": "^6.0.0",
     "@storybook/addon-actions": "^7.0.20",
     "@storybook/addon-backgrounds": "^7.0.20",
@@ -132,7 +132,6 @@
     "nodemon": "^2.0.15",
     "postcss": "^8.4.8",
     "prettier": "^2.5.1",
-    "same-story-jest-plugin": "^0.0.4",
     "storybook": "^7.0.20",
     "storybook-dark-mode": "^3.0.0",
     "storycap-engi": "^3.1.11",
