@@ -9,7 +9,9 @@ import {
   RiUserLine,
   RiWallet3Line,
 } from 'react-icons/ri';
+import { isCurrentUser } from '~/app/(user)/engineer/[accountId]/utils';
 import EngiIcon from '~/components/global/icons/EngiIcon';
+import { useUser } from '~/utils/contexts/userContext';
 
 type SidebarProps = {
   accountId: string;
@@ -47,6 +49,15 @@ const items = [
 export default function Sidebar({ className, accountId }: SidebarProps) {
   const pathname = usePathname() ?? '';
   const activePath = pathname.replace(`/engineer/${accountId}`, '');
+  const { user } = useUser();
+
+  // only show settings if it is the current user
+  let navItems;
+  if (isCurrentUser(accountId, user)) {
+    navItems = items.filter((item) => item.path !== '/settings');
+  } else {
+    navItems = items;
+  }
 
   return (
     <div
@@ -55,7 +66,7 @@ export default function Sidebar({ className, accountId }: SidebarProps) {
         className
       )}
     >
-      {items.map(({ name, icon, path }) => (
+      {navItems.map(({ name, icon, path }) => (
         <Link
           key={name}
           className={classNames(
