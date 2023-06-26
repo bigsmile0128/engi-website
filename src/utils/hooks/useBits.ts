@@ -110,13 +110,13 @@ async function fetchBits(query: BitsQueryArguments) {
   } catch (error) {
     // catch 400 from bad request
     throw new Error(
-      error.response?.data?.errors?.[0]?.message ?? 'Unable to fetch bits.'
+      error.response?.data?.errors?.[0]?.message ?? 'Unable to fetch bounties.'
     );
   }
 
   // catch error from a field failing to resolve
   if (data.errors?.length > 0) {
-    throw new Error(data?.errors?.[0]?.message ?? 'Unable to fetch bits.');
+    throw new Error(data?.errors?.[0]?.message ?? 'Unable to fetch bounties.');
   }
 
   return data?.data?.jobs ?? {};

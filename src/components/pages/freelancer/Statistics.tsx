@@ -91,7 +91,7 @@ export default function Statistics({ className }: StatisticsProps) {
       ),
     },
     {
-      name: 'Bits Solved',
+      name: 'Bounties Solved',
       value: bitsCompleted?.result?.totalCount ?? 0,
     },
     {

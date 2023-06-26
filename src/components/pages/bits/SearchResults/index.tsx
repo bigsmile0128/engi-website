@@ -71,7 +71,7 @@ export default function SearchResults({
                 'flex flex-col items-center justify-center gap-4 mt-16'
               )}
             >
-              <p className="font-bold text-2xl">Bits are coming soon!</p>
+              <p className="font-bold text-2xl">Bounties are coming soon!</p>
               <p className="text-xl">
                 In the meantime, join us on Discord to hear about our updates.
               </p>

@@ -20,7 +20,7 @@ export default function TotalDevelopers({ className }: TotalDevelopersProps) {
         </p>
         <p className="text-secondary text-lg mt-4 tablet:mt-8">
           The largest network of software engineers standing by to solve your
-          bounties as quickly as possibly with the highest quality code
+          bounties as quickly as possible with the highest quality code
         </p>
       </div>
       <div className="total-developers-bg text-6xl w-full tablet:mt-0 flex items-center justify-center">

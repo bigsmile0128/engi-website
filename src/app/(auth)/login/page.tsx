@@ -54,7 +54,7 @@ export default function Login() {
           <p className="text-xl text-secondary w-full text-center mt-8 mb-12 max-w-[470px]">
             {isError || substrateAccounts?.length === 0
               ? 'Select the wallet that you would like to connect to get started on Engi!'
-              : 'Select an account that you would like to log in with and start working on Bits!'}
+              : 'Select an account that you would like to log in with and start working on Bounties!'}
           </p>
           {isError ? (
             <div className="flex flex-col items-center bg-black/20 w-full p-8">
