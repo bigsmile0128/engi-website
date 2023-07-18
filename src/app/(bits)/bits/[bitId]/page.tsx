@@ -1,217 +1,60 @@
-'use client';
-
-import * as Sentry from '@sentry/react';
-import axios, { AxiosError } from 'axios';
-import { Fragment, useState } from 'react';
-import { useQuery } from 'react-query';
-
-import { Tab } from '@headlessui/react';
-import classNames from 'classnames';
+import axios from 'axios';
 import { gql } from 'graphql-request';
-import BitDescription from '~/components/pages/bitDetails/BitDescription';
-import BitHeader from '~/components/pages/bitDetails/BitHeader';
-import BitTests from '~/components/pages/bitDetails/BitTests';
-import { Bit } from '~/types';
-import BitActivity from '~/components/pages/bitDetails/BitActivity';
-import GetStarted from '~/components/pages/bitDetails/GetStarted';
-import BitSubmissions from '~/components/pages/bitDetails/BitSubmissions';
+import BitDetailsContainer from './container';
 
-export default function BitDetails({
-  params,
-}: {
+type Props = {
   params: {
     bitId: string;
   };
-}) {
-  const { bitId } = params;
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const { isLoading, isError, data } = useQuery<Bit>(
-    ['bitDetails', bitId],
-    () => {
-      return fetchBitDetails(bitId);
-    },
-    {
-      onError: (error: AxiosError) => {
-        Sentry.captureException(error, (scope) => {
-          scope.clear();
-          scope.setTransactionName('GET {bitId}');
-          scope.setTag('bitId', bitId.toString());
-          return scope;
-        });
-      },
-    }
-  );
+};
 
-  return isError ? (
-    <div className="flex flex-col items-center justify-center py-24">
-      <p className="font-grifter text-3xl text-center">
-        Something went wrong...
-      </p>
-    </div>
-  ) : !isLoading && !data ? (
-    <div className="flex flex-col items-center justify-center py-24">
-      <p className="font-grifter text-3xl text-center">Unable to find bit...</p>
-    </div>
-  ) : (
-    <div className="relative mt-4 tablet:mt-12 mb-24">
-      <BitHeader isLoading={isLoading} data={data} />
-      <div className="max-w-page flex flex-col desktop:flex-row mt-8 tablet:mt-8">
-        <div className="flex-1">
-          <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
-            <Tab.List className="flex w-full border-b border-white/30 gap-12 tablet:gap-16">
-              {['Description', 'Tests', 'Submissions'].map((name) => (
-                <Tab as={Fragment} key={name}>
-                  {({ selected }) => (
-                    <button
-                      className={classNames(
-                        'py-2 -mb-[1px]',
-                        'text-lg focus-green-primary',
-                        selected && !isLoading
-                          ? 'text-green-primary font-bold border-green-primary border-b-[3px]'
-                          : 'text-white/80',
-                        isLoading ? 'children:skeleton' : ''
-                      )}
-                    >
-                      <span>{name}</span>
-                    </button>
-                  )}
-                </Tab>
-              ))}
-            </Tab.List>
-            <Tab.Panels className="mt-8">
-              <Tab.Panel>
-                <BitDescription isLoading={isLoading} data={data} />
-              </Tab.Panel>
-              <Tab.Panel>
-                <BitTests isLoading={isLoading} data={data} />
-              </Tab.Panel>
-              <Tab.Panel>
-                <BitSubmissions />
-              </Tab.Panel>
-            </Tab.Panels>
-          </Tab.Group>
-        </div>
-        <BitActivity
-          bitId={bitId?.toString()}
-          className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
-          data={data}
-          isLoading={isLoading}
-        />
-      </div>
-      {/* TABLET "Get Started" fixed section on bottom */}
-      <GetStarted
-        className={classNames(
-          'fixed bottom-0 w-full z-50 px-0',
-          'hidden tablet:block desktop:hidden'
-        )}
-        bitId={bitId?.toString()}
-      />
-    </div>
-  );
-}
-
-async function fetchBitDetails(bitId) {
-  if (!bitId) {
-    throw new Error('Bounty ID missing.');
-  }
-  const response = await axios.post('/api/graphql', {
-    query: gql`
-      query BitDetails($bitId: UInt64!) {
-        job(id: $bitId) {
-          job {
-            id
-            creator
-            funding
-            repository {
-              url
-              branch
-              commit
-              readme
-              organization
-              name
-              fullName
-            }
-            technologies
-            name
-            tests {
-              ...test
-            }
-            requirements {
-              isEditable
-              isAddable
-              isDeletable
-            }
-            solution {
-              solutionId
-              jobId
-              author
-              patchUrl
-              attempt {
-                attemptId
-                attempter
-                tests {
-                  ...testAttempt
-                }
+export async function generateMetadata({ params }: Props) {
+  let title;
+  let description;
+  try {
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
+      {
+        query: gql`
+          query BitDetails($bitId: UInt64!) {
+            job(id: $bitId) {
+              job {
+                name
+                funding
+                technologies
               }
             }
-            createdOn {
-              ...blockReference
-            }
-            updatedOn {
-              ...blockReference
-            }
-            status
-            attemptCount
-            solutionUserCount
-            averageProgress {
-              numerator
-              denominator
-            }
           }
-          creatorUserInfo {
-            address
-            display
-            profileImageUrl
-            createdOn
-            createdJobsCount
-            solvedJobsCount
-          }
-        }
+        `,
+        variables: {
+          bitId: params.bitId,
+        },
       }
+    );
+    const job = response.data?.data?.job?.job ?? {};
+    title = `Bounty | ${job?.name}` ?? 'Bounty';
+    const technologies = job?.technologies ?? [];
+    description =
+      technologies.length > 0
+        ? `This bounty uses ${technologies.join(', ')}.`
+        : 'Solve this bounty to win engi.';
+  } catch (e: any) {
+    title = 'Bounty';
+    description = 'Solve this bounty to win engi.';
+  }
 
-      fragment test on Test {
-        id
-        result
-        required
-        failedResultMessage
-      }
-
-      fragment testAttempt on TestAttempt {
-        id
-        result
-        failedResultMessage
-      }
-
-      fragment blockReference on BlockReference {
-        number
-        dateTime
-      }
-    `,
-    variables: {
-      bitId,
-    },
-  });
-
-  const data = response.data?.data?.job ?? {};
-
-  const job = {
-    ...data?.job,
-    creatorUserInfo: {
-      ...data?.creatorUserInfo,
+  return {
+    openGraph: {
+      title,
+      description,
+      siteName: 'engi',
+      type: 'website',
     },
   };
+}
 
-  console.log('job', job);
+export default function BitDetails({ params }: Props) {
+  const { bitId } = params;
 
-  return job;
+  return <BitDetailsContainer bitId={bitId} />;
 }
