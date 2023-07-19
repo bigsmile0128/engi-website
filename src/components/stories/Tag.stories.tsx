@@ -12,5 +12,5 @@ const Template = (args) => <Tag {...args}>React</Tag>;
 export const Default = Template.bind({});
 Default.args = {
   className: 'text-white',
-  value: 'https://engi.network/bits/12345',
+  value: 'https://engi.network/bounty/12345',
 };

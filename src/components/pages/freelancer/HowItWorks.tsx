@@ -92,7 +92,7 @@ export default function HowItWorks({ className }: HowItWorksProps) {
         </div>
       </div>
       <div className="mt-8 max-w-page w-full tablet:hidden">
-        <Link href="/bits">
+        <Link href="/bounty">
           <Button variant="primary">Earn now</Button>
         </Link>
       </div>

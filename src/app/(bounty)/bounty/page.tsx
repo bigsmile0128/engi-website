@@ -3,13 +3,13 @@
 import dayjs from 'dayjs';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
-import MobileSearchFilterList from '~/components/pages/bits/MobileSearchFilterList';
+import MobileSearchFilterList from '~/app/(bounty)/bounty/MobileSearchFilterList';
 
 import SearchFilterList, {
   DateOption,
-} from '~/components/pages/bits/SearchFilterList';
-import SearchResults from '~/components/pages/bits/SearchResults';
-import SearchResultsHeader from '~/components/pages/bits/SearchResultsHeader';
+} from '~/app/(bounty)/bounty/SearchFilterList';
+import SearchResults from '~/app/(bounty)/bounty/SearchResults';
+import SearchResultsHeader from '~/app/(bounty)/bounty/SearchResultsHeader';
 import {
   BitStatus,
   BitsOrderByProperty,

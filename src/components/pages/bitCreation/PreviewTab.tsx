@@ -57,7 +57,7 @@ export default function PreviewTab({
         // TODO: add validation
         disabled={false}
       >
-        Post Bit
+        Post Bounty
       </Button>
     </div>
   );

@@ -4,7 +4,7 @@ import withMock from 'storybook-addon-mock';
 import styles from './common_bg.module.css';
 import cn from 'classnames';
 
-import Bit from '../../../app/(bits)/bits/[bitId]/page';
+import Bit from '../../../app/(bounty)/bounty/[bitId]/page';
 
 export default {
   title: 'Pages/Bit Page',
@@ -24,8 +24,8 @@ Default.args = {};
 
 Default.parameters = {
   nextRouter: {
-    path: '/bits/[id]',
-    asPath: '/bits/4',
+    path: '/bounty/[id]',
+    asPath: '/bounty/4',
     query: {
       jobId: '4',
     },

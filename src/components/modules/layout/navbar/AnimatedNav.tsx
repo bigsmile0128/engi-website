@@ -21,17 +21,17 @@ const EARN_LINKS: MenuLinkProps[] = [
   {
     title: 'Smart Contracts',
     description: 'Solidity, Solana, ink!',
-    href: '/bits?technologies=solidity,solang,ink',
+    href: '/bounty?technologies=solidity,solang,ink',
   },
   {
     title: 'Substrate, DotSama',
     description: 'Build Multi-Chain',
-    href: '/bits?technologies=SUBSTRATE',
+    href: '/bounty?technologies=SUBSTRATE',
   },
   {
     title: 'Rust, C++, C SDKs',
     description: 'Author Critical Libraries',
-    href: '/bits?technologies=RUST,C++,C',
+    href: '/bounty?technologies=RUST,C++,C',
   },
 ];
 
@@ -92,11 +92,11 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/bits/.test(pathname),
+              /^\/bounty/.test(pathname),
           }
         )}
         onMouseEnter={() => setHoverItem('BITS')}
-        onClick={() => router.push('/bits')}
+        onClick={() => router.push('/bounty')}
       >
         Bounties
       </button>
@@ -159,7 +159,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                     opportunites, and the flexibility to work how you want
                   </motion.p>
                   <Link
-                    href="/bits"
+                    href="/bounty"
                     className="block mt-8 hover:text-green-primary"
                     onClick={closeMenu}
                   >

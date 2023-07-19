@@ -14,7 +14,7 @@ const sections = [
     title: 'Earn $ENGI',
     description: 'Find a Bounty, Start Coding',
     buttonText: 'Browse Bounties',
-    href: '/bits',
+    href: '/bounty',
   },
   {
     icon: <RiBuilding2Fill className="text-green-primary h-7 w-7" />,

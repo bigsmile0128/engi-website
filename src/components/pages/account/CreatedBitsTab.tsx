@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import BitTable from '../bits/SearchResults/BitTable';
+import BitTable from '../../../app/(bounty)/bounty/SearchResults/BitTable';
 import useBits from '~/utils/hooks/useBits';
 
 type CreatedBitsTabProps = {

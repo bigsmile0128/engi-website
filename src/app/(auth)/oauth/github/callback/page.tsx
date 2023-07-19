@@ -52,7 +52,7 @@ export default function GithubCallback() {
             Successfully added repository.
           </span>
           <Link href="/hire">
-            <Button variant="primary">Post a Bit</Button>
+            <Button variant="primary">Post a Bounty</Button>
           </Link>
         </div>
       ) : null}

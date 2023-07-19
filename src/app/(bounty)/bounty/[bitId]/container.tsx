@@ -8,13 +8,13 @@ import { useQuery } from 'react-query';
 import { Tab } from '@headlessui/react';
 import classNames from 'classnames';
 import { gql } from 'graphql-request';
-import BitDescription from '~/components/pages/bitDetails/BitDescription';
-import BitHeader from '~/components/pages/bitDetails/BitHeader';
-import BitTests from '~/components/pages/bitDetails/BitTests';
+import BitActivity from '~/app/(bounty)/bounty/[bitId]/BitActivity';
+import BitDescription from '~/app/(bounty)/bounty/[bitId]/BitDescription';
+import BitHeader from '~/app/(bounty)/bounty/[bitId]/BitHeader';
+import BitSubmissions from '~/app/(bounty)/bounty/[bitId]/BitSubmissions';
+import BitTests from '~/app/(bounty)/bounty/[bitId]/BitTests';
+import GetStarted from '~/app/(bounty)/bounty/[bitId]/GetStarted';
 import { Bit } from '~/types';
-import BitActivity from '~/components/pages/bitDetails/BitActivity';
-import GetStarted from '~/components/pages/bitDetails/GetStarted';
-import BitSubmissions from '~/components/pages/bitDetails/BitSubmissions';
 
 export default function BitDetailsContainer({ bitId }: { bitId: string }) {
   const [selectedIndex, setSelectedIndex] = useState(0);

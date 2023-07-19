@@ -12,5 +12,5 @@ const Template = (args) => <CopyLink {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   className: 'w-64',
-  value: 'https://engi.network/bits/12345',
+  value: 'https://engi.network/bounty/12345',
 };

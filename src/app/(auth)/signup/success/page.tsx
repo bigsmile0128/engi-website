@@ -23,7 +23,7 @@ export default function Success() {
         <Link href="/engineer" className="flex-1">
           <Button className="w-[240px]">Go to my account</Button>
         </Link>
-        <Link href="/bits" className="flex-1">
+        <Link href="/bounty" className="flex-1">
           <Button className="w-[240px]" variant="primary">
             Browse Bounties
           </Button>

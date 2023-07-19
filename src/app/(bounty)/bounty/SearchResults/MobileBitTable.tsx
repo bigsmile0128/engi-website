@@ -35,7 +35,7 @@ export default function MobileBitTable({
       {_data.map((bit) => (
         <Link
           key={bit.id}
-          href={isLoading ? '' : `/bits/${bit.id}`}
+          href={isLoading ? '' : `/bounty/${bit.id}`}
           className={classNames(
             'p-4',
             'bg-black/[.14]',
