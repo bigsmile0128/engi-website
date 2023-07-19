@@ -35,7 +35,7 @@ export default function Header({ className }: HeaderProps) {
         {HEADER_SUBTITLE}
       </p>
       <div className="flex justify-center mt-8">
-        <Link href="/bits">
+        <Link href="/bounty">
           <Button variant="primary">Browse Bounties</Button>
         </Link>
       </div>

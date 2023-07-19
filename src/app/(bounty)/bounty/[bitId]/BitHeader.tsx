@@ -23,7 +23,7 @@ export default function BitHeader({
       <div className={classNames('max-w-page', className)}>
         <ShareModal isOpen={modalOpen} setIsOpen={setModalOpen} />
         <div className="flex items-center">
-          <Link href="/bits" passHref className="mr-2">
+          <Link href="/bounty" passHref className="mr-2">
             <HiOutlineChevronLeft className="h-5 w-5 tablet:h-6 tablet:w-6" />
           </Link>
           <h1

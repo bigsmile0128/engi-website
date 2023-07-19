@@ -4,7 +4,7 @@ import withMock from 'storybook-addon-mock';
 import cn from 'classnames';
 import styles from './common_bg.module.css';
 
-import Bits from '../../../app/(bits)/bits/page';
+import Bits from '../../../app/(bounty)/bounty/page';
 
 export default {
   title: 'Pages/Bits Page',

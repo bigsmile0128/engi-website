@@ -50,7 +50,7 @@ export default function SearchInput({
         onChange={(value) => {
           // if bit ID, navigate directly to the bit
           if (/^\d{10,}$/.test(value ?? '')) {
-            router.push(`/bits/${value}`);
+            router.push(`/bounty/${value}`);
           } else {
             onChange(value ?? '');
           }

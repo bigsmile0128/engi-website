@@ -3,8 +3,8 @@
 import { IoMdRefresh } from '@react-icons/all-files/io/IoMdRefresh';
 import classNames from 'classnames';
 import Button from '~/components/global/Button/Button';
-import BitTable from '~/components/pages/bits/SearchResults/BitTable';
-import MobileBitTable from '~/components/pages/bits/SearchResults/MobileBitTable';
+import BitTable from '~/app/(bounty)/bounty/SearchResults/BitTable';
+import MobileBitTable from '~/app/(bounty)/bounty/SearchResults/MobileBitTable';
 import useBits from '~/utils/hooks/useBits';
 
 export default function Bounties({

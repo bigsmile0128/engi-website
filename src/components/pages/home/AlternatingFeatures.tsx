@@ -29,7 +29,7 @@ export default function AlternatingFeatures({
             </span>{' '}
             building your favorite projects
           </p>
-          <Link href="/bits">
+          <Link href="/bounty">
             <Button className="mt-8" variant="primary">
               Build-to-Earn Now
             </Button>

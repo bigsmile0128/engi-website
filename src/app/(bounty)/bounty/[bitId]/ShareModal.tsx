@@ -28,7 +28,7 @@ export default function ShareModal({ isOpen, setIsOpen }: ModalProps) {
         </button>
       </div>
       <div className="mt-8">
-        <p className="font-bold mb-2 text-lg">Bit Link</p>
+        <p className="font-bold mb-2 text-lg">Bounty Link</p>
         <CopyLink
           value={typeof window !== 'undefined' ? window.location.href : ''}
         />

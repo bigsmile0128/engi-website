@@ -46,9 +46,9 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
           No need to apply. Get paid instantly regardless of your time zone or
           language.
         </p>
-        <Link href="/bits">
+        <Link href="/bounty">
           <Button variant="primary" className="mt-12">
-            View Bits
+            View Bounties
           </Button>
         </Link>
       </div>
@@ -75,7 +75,7 @@ export default function CalloutCards({ className }: CalloutCardsProps) {
         </p>
         <Link href="/hire">
           <Button variant="primary" className="mt-12">
-            Post a Bit
+            Post a Bounty
           </Button>
         </Link>
       </div>

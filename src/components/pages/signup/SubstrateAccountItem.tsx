@@ -113,7 +113,7 @@ export default function SubstrateAccountItem({
           className="py-2 bg-[#374151]"
         >
           <Link
-            href="/bits"
+            href="/bounty"
             className={classNames(
               'px-4 py-2',
             )}

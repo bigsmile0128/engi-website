@@ -25,7 +25,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           Ultimate flexibility to work on new codebases and learn new
           technologies while ensuring immediate payout for work well done
         </p>
-        <Link href="/bits" className="mt-8">
+        <Link href="/bounty" className="mt-8">
           <Button variant="primary">Get Started</Button>
         </Link>
       </div>

@@ -250,7 +250,7 @@ function Tab3({ className }: { className?: string }) {
             variety, available globally
           </p>
 
-          <Link href="/bits" className="mt-8">
+          <Link href="/bounty" className="mt-8">
             <Button variant="primary" className="!px-16">
               Discover Bounties
             </Button>

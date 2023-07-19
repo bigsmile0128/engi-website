@@ -185,7 +185,7 @@ export default function Navbar({ className }: NavbarProps) {
                       <ChevronRightIcon className="h-6" />
                     </Link>
                     <Link
-                      href="/bits"
+                      href="/bounty"
                       className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
                       onClick={() => setIsOpen(false)}
                     >

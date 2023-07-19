@@ -63,7 +63,7 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 For Talent
               </h4>
-              <Link href="/bits">Find Bounties</Link>
+              <Link href="/bounty">Find Bounties</Link>
               <Link href="/freelancer">Engi for Freelancers</Link>
             </div>
             <div className="flex flex-col gap-y-4 tablet:gap-y-6">

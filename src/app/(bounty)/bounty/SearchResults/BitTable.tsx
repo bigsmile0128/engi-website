@@ -138,7 +138,7 @@ export default function BitTable({
               )}
               onClick={() => {
                 if (!isLoading && row.original?.id) {
-                  router.push(`/bits/${row.original.id}`);
+                  router.push(`/bounty/${row.original.id}`);
                 }
               }}
             >
