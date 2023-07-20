@@ -1,5 +1,7 @@
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
+import { RiUserFill } from 'react-icons/ri';
+import EngiIcon from '~/components/global/icons/EngiIcon';
 
 type BitCreatorProps = {
   className?: string;
@@ -15,7 +17,7 @@ export default function BitCreator({
   return (
     <div
       className={classNames(
-        'flex items-center gap-2 overflow-hidden',
+        'flex items-start gap-2 overflow-hidden',
         isLoading ? 'children:skeleton' : '',
         className
       )}
@@ -27,9 +29,25 @@ export default function BitCreator({
           <div className="h-12 w-12" />
         )}
       </div>
-      <span className="font-grifter text-xl inline-block truncate">
-        {data ?? 'Author N/A'}
-      </span>
+      <div className="flex flex-col">
+        <span className="font-grifter text-xl inline-block truncate">
+          {data ?? 'Author N/A'}
+        </span>
+        <div className="flex items-center gap-2">
+          <div className="h-5 w-5 grid place-items-center bg-secondary rounded-full">
+            <EngiIcon className="-ml-0.5 h-3 w-auto text-green-primary" />
+          </div>
+          <span>
+            <span className="font-bold">N/A</span> spent on bounties
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="h-5 w-5 grid place-items-center bg-secondary rounded-full">
+            <RiUserFill className="h-3 w-auto text-green-primary" />
+          </div>
+          <span>member since N/A</span>
+        </div>
+      </div>
     </div>
   );
 }

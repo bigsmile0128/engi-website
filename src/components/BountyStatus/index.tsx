@@ -49,7 +49,7 @@ export default function BountyStatus({
   return (
     <div
       className={classNames(
-        'inline-block bg-secondary/20 backdrop-blur-[100px] p-6',
+        'inline-block bg-secondary/80 backdrop-blur-[100px] p-6',
         className
       )}
     >

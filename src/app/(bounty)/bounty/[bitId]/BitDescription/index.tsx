@@ -20,6 +20,7 @@ import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';
 import ShareModal from '../ShareModal';
 import Payout from './Payout';
+import BitTests from '../BitTests';
 
 type BitDescriptionProps = {
   className?: string;
@@ -39,20 +40,9 @@ export default function BitDescription({
   return (
     <div className={classNames('flex flex-col items-start', className)}>
       <ShareModal isOpen={isShareModalOpen} setIsOpen={setIsShareModalOpen} />
-      <p className={classNames('', isLoading ? 'skeleton' : 'text-secondary')}>
-        {`Posted ${dayjs(data?.createdOn?.dateTime).fromNow()}`}
-      </p>
-      <h2
-        className={classNames(
-          'mt-8 font-grifter text-xl',
-          isLoading ? 'skeleton' : ''
-        )}
-      >
-        Technologies required
-      </h2>
       <p
         className={classNames(
-          'mt-4 flex flex-wrap gap-4',
+          'flex flex-wrap gap-4',
           isLoading ? 'children:skeleton children:rounded-none' : ''
         )}
       >
@@ -64,10 +54,9 @@ export default function BitDescription({
           />
         ))}
       </p>
-      <div className="mt-8 w-full border-t border-white/30" />
       <h2
         className={classNames(
-          'mt-8 font-grifter text-xl',
+          'mt-12 font-grifter text-xl',
           isLoading ? 'skeleton' : ''
         )}
       >
@@ -82,13 +71,19 @@ export default function BitDescription({
           <Markdown className="w-full mt-4">{description}</Markdown>
         </>
       )}
-      <Payout className="mt-8" isLoading={isLoading} data={data} />
+      <p className={classNames('mt-4', isLoading ? 'skeleton' : '')}>
+        {`Posted ${dayjs(data?.createdOn?.dateTime).fromNow()}`}
+      </p>
+      <div className="my-16 w-full border-t border-white/30" />
+      <BitTests className="w-full" isLoading={isLoading} data={data} />
+      <div className="my-16 w-full border-t border-white/30" />
+      <Payout className="" isLoading={isLoading} data={data} />
       {/* TABLET START */}
       <div className="hidden tablet:w-full tablet:flex tablet:flex-col desktop:hidden">
-        <div className="mt-8 w-full border-t border-white/30" />
+        <div className="my-16 w-full border-t border-white/30" />
         <div
           className={classNames(
-            'flex flex-col mt-8 p-6 w-full overflow-hidden',
+            'flex flex-col p-6 w-full overflow-hidden',
             'bg-[#232323]/10 backdrop-blur-[100px]'
           )}
         >
@@ -155,12 +150,11 @@ export default function BitDescription({
         >
           Share
         </Button>
-        <div className="mt-8 w-full border-t border-white/30" />
       </div>
       {/* TABLET END */}
       {/* MOBILE START */}
       <div className="w-full mb-4 tablet:hidden">
-        <div className="my-8 w-full border-t border-white/30" />
+        <div className="my-16 w-full border-t border-white/30" />
         <GetStarted bitId={data?.id} />
         <div className="mt-16 px-4">
           <BitCreator data={data?.creator} isLoading={isLoading} />
@@ -221,12 +215,12 @@ export default function BitDescription({
         >
           Share
         </Button>
-        <div className="mt-8 w-full border-t border-white/30" />
       </div>
       {/* MOBILE END */}
+      <div className="my-16 w-full border-t border-white/30" />
       <div
         className={classNames(
-          'mt-4 tablet:mt-8 grid tablet:grid-cols-2 w-full gap-x-4 gap-y-6',
+          'grid tablet:grid-cols-2 w-full gap-x-4 gap-y-6',
           isLoading ? 'children:children:skeleton' : ''
         )}
       >

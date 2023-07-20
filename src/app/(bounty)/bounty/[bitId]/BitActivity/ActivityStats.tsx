@@ -23,16 +23,16 @@ export default function ActivityStats({
   return (
     <div className={classNames('', className)}>
       <h2 className="font-grifter text-xl">Activity</h2>
-      <div className="grid grid-cols-2 gap-y-4 gap-x-4 mt-4">
+      <div className="flex flex-col mt-4 divide-y divide-white/40">
         <Statistic
-          className="col-span-2"
+          className="py-6 pt-0"
           icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
           value="Leader Progress"
           title={<ProgressBar className="w-full" percentage={0} label="N/A" />}
           isLoading={isLoading}
         />
         <Statistic
-          className="col-span-2"
+          className="py-6"
           icon={<RiLineChartFill className="text-green-primary h-5 w-5" />}
           value="Average Progress"
           title={
@@ -50,14 +50,7 @@ export default function ActivityStats({
           isLoading={isLoading}
         />
         <Statistic
-          className="col-span-1"
-          icon={<RiGroupFill className="text-green-primary h-5 w-5" />}
-          value={data?.solutionUserCount ?? ''}
-          title="Total Contributors"
-          isLoading={isLoading}
-        />
-        <Statistic
-          className="col-span-1"
+          className="py-6"
           icon={<RiCheckboxCircleLine className="text-green-primary h-5 w-5" />}
           value={data?.attemptCount ?? ''}
           title="Total Submissions"
