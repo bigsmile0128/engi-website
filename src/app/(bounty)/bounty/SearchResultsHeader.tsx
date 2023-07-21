@@ -9,13 +9,14 @@ import { useCallback, useMemo } from 'react';
 import Input from '~/components/global/Input/Input';
 import { RiSearchLine } from 'react-icons/ri';
 import { debounce } from 'lodash';
+import SearchChips from './SearchResults/SearchChips';
 
 interface SearchResultsHeaderProps {
   className?: string;
   error?: Error;
   isLoading: boolean;
   numResults?: number;
-  onChange: (searchParams) => void;
+  onChange: (searchParams: URLSearchParams) => void;
   onChangeVisible: (visible: boolean) => void;
   searchParams: URLSearchParams;
 }
@@ -47,12 +48,11 @@ export default function SearchResultsHeader({
   const onSearch = useCallback(
     (e) => {
       const value = e.target.value;
-      const newSearchParams: Record<string, any> =
-        Object.fromEntries(searchParams);
+      const newSearchParams = new URLSearchParams(searchParams);
       if (!value) {
-        delete newSearchParams.query;
+        newSearchParams.delete('query');
       } else {
-        newSearchParams.query = value;
+        newSearchParams.set('query', value);
       }
       onChange(newSearchParams);
     },
@@ -103,10 +103,9 @@ export default function SearchResultsHeader({
             options={sortOptions}
             value={sortField}
             onChange={(option) => {
-              const newSearchParams: Record<string, any> =
-                Object.fromEntries(searchParams);
-              newSearchParams['sort-field'] = option.value;
-              newSearchParams['sort-dir'] = OrderByDirection.DESC;
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set('sort-field', option.value);
+              newSearchParams.set('sort-dir', OrderByDirection.DESC);
               onChange(newSearchParams);
             }}
             sortDirection={
@@ -114,9 +113,8 @@ export default function SearchResultsHeader({
               OrderByDirection.DESC
             }
             onChangeSortDirection={(sortDir) => {
-              const newSearchParams: Record<string, any> =
-                Object.fromEntries(searchParams);
-              newSearchParams['sort-dir'] = sortDir;
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set('sort-dir', sortDir);
               onChange(newSearchParams);
             }}
           />
@@ -132,6 +130,11 @@ export default function SearchResultsHeader({
           <span className="hidden tablet:inline-block">Filter & Sort</span>
         </Button>
       </div>
+      <SearchChips
+        className="mt-4 hidden desktop:flex"
+        onChange={onChange}
+        searchParams={searchParams}
+      />
     </header>
   );
 }

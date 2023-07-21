@@ -1,7 +1,5 @@
 import classNames from 'classnames';
-import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
-import { BitStatus } from '~/types';
 import useSearchFields from '~/utils/hooks/useSearchFields';
 
 interface SearchFilterListProps {
@@ -10,28 +8,6 @@ interface SearchFilterListProps {
   onChange: (searchParams: URLSearchParams) => void;
   searchParams: URLSearchParams;
 }
-
-export enum DateOption {
-  LAST_DAY = 'LAST_DAY',
-  LAST_MONTH = 'LAST_MONTH',
-  LAST_QUARTER = 'LAST_QUARTER',
-  LAST_WEEK = 'LAST_WEEK',
-  LAST_YEAR = 'LAST_YEAR',
-}
-
-export const createdAfterOptions = [
-  { label: 'Last day', value: DateOption.LAST_DAY },
-  { label: 'Last week', value: DateOption.LAST_WEEK },
-  { label: 'Last month', value: DateOption.LAST_MONTH },
-  { label: 'Last quarter', value: DateOption.LAST_QUARTER },
-  { label: 'Last year', value: DateOption.LAST_YEAR },
-];
-
-export const statusOptions = [
-  { label: 'Open', value: BitStatus.OPEN },
-  { label: 'Active', value: BitStatus.ACTIVE },
-  { label: 'Completed', value: BitStatus.COMPLETE },
-];
 
 export const MIN_FUNDING = 0;
 export const MAX_FUNDING = 100;
@@ -58,17 +34,6 @@ export default function SearchFilterList({
 
   return (
     <div className={classNames('relative', className)}>
-      <div className="flex items-center justify-between">
-        <span className="font-grifter text-xl -mb-1">Filters</span>
-        <Button
-          variant="link"
-          className="text-secondary text-sm underline font-normal hover:text-white"
-          onClick={() => onChange(new URLSearchParams())}
-        >
-          Clear all
-        </Button>
-      </div>
-      <div className="mt-4 mb-8 w-full border-t border-gray-500 opacity-50" />
       <div className={isLoadingSearchFields ? '' : 'hidden'}>
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className={classNames(filterClassName)}>
@@ -88,7 +53,7 @@ export default function SearchFilterList({
         <div className={classNames(filterClassName)}>
           <legend className="mb-4">Date of Publication</legend>
           <div className="flex flex-col gap-y-2">
-            {createdAfterOptions.map(({ label, value }) => (
+            {(searchFields?.createdAfter ?? []).map(({ label, value }) => (
               <Checkbox
                 key={value}
                 id={value}
@@ -144,7 +109,7 @@ export default function SearchFilterList({
         <div className={classNames(filterClassName)}>
           <legend className="mb-4">Status</legend>
           <div className="flex flex-col gap-y-2">
-            {statusOptions.map(({ label, value }) => (
+            {(searchFields?.status ?? []).map(({ label, value }) => (
               <Checkbox
                 key={value}
                 id={value}

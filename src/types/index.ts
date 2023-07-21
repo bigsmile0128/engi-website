@@ -186,3 +186,11 @@ export type Submission = {
   stages: SubmissionStage[];
   status: string;
 };
+
+export enum DateOption {
+  LAST_DAY = 'LAST_DAY',
+  LAST_MONTH = 'LAST_MONTH',
+  LAST_QUARTER = 'LAST_QUARTER',
+  LAST_WEEK = 'LAST_WEEK',
+  LAST_YEAR = 'LAST_YEAR',
+}

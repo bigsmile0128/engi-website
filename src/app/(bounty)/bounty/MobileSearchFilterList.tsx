@@ -5,12 +5,7 @@ import { RiCloseLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import useSearchFields from '~/utils/hooks/useSearchFields';
-import {
-  MAX_FUNDING,
-  MIN_FUNDING,
-  createdAfterOptions,
-  statusOptions,
-} from './SearchFilterList';
+import { MAX_FUNDING, MIN_FUNDING } from './SearchFilterList';
 
 interface MobileSearchFilterListProps {
   className?: string;
@@ -133,7 +128,7 @@ export default function MobileSearchFilterList({
           <div>
             <legend className="mb-4">Date of Publication</legend>
             <div className="flex flex-col gap-y-2">
-              {createdAfterOptions.map(({ label, value }) => (
+              {(searchFields?.createdAfter ?? []).map(({ label, value }) => (
                 <Checkbox
                   key={'mobile' + value}
                   id={'mobile' + value}
@@ -182,7 +177,7 @@ export default function MobileSearchFilterList({
           <div>
             <legend className="mb-4">Status</legend>
             <div className="flex flex-col gap-y-2">
-              {statusOptions.map(({ label, value }) => (
+              {(searchFields?.status ?? []).map(({ label, value }) => (
                 <Checkbox
                   key={'mobile' + value}
                   id={'mobile' + value}
