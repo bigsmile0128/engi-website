@@ -9,6 +9,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import dayjs from 'dayjs';
+import { Bit } from '~/types';
 
 type BitUpdatesProps = {
   className?: string;
