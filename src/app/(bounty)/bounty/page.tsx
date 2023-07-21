@@ -5,15 +5,14 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import MobileSearchFilterList from '~/app/(bounty)/bounty/MobileSearchFilterList';
 
-import SearchFilterList, {
-  DateOption,
-} from '~/app/(bounty)/bounty/SearchFilterList';
+import SearchFilterList from '~/app/(bounty)/bounty/SearchFilterList';
 import SearchResults from '~/app/(bounty)/bounty/SearchResults';
 import SearchResultsHeader from '~/app/(bounty)/bounty/SearchResultsHeader';
 import {
   BitStatus,
   BitsOrderByProperty,
   BitsQueryArguments,
+  DateOption,
   OrderByDirection,
 } from '~/types';
 import useBits from '~/utils/hooks/useBits';
@@ -25,7 +24,7 @@ export default function BitDiscovery() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams() ?? new URLSearchParams();
-  const setSearchParams = (searchParams) => {
+  const setSearchParams = (searchParams: URLSearchParams) => {
     router.push(pathname + '?' + searchParams.toString());
   };
 
