@@ -15,6 +15,7 @@ import BitSubmissions from '~/app/(bounty)/bounty/[bitId]/BitSubmissions';
 import BitTests from '~/app/(bounty)/bounty/[bitId]/BitTests';
 import GetStarted from '~/app/(bounty)/bounty/[bitId]/GetStarted';
 import { Bit } from '~/types';
+import BitUpdates from './BitUpdates';
 
 export default function BitDetailsContainer({ bitId }: { bitId: string }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -52,7 +53,7 @@ export default function BitDetailsContainer({ bitId }: { bitId: string }) {
         <div className="flex-1">
           <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
             <Tab.List className="flex w-full border-b border-white/30 gap-12 tablet:gap-16">
-              {['Description', 'Tests', 'Submissions'].map((name) => (
+              {['Description', 'Submissions', 'Updates'].map((name) => (
                 <Tab as={Fragment} key={name}>
                   {({ selected }) => (
                     <button
@@ -76,17 +77,17 @@ export default function BitDetailsContainer({ bitId }: { bitId: string }) {
                 <BitDescription isLoading={isLoading} data={data} />
               </Tab.Panel>
               <Tab.Panel>
-                <BitTests isLoading={isLoading} data={data} />
+                <BitSubmissions />
               </Tab.Panel>
               <Tab.Panel>
-                <BitSubmissions />
+                <BitUpdates isLoading={isLoading} data={data} />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
         </div>
         <BitActivity
           bitId={bitId?.toString()}
-          className="hidden lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
+          className="hidden self-start lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
           data={data}
           isLoading={isLoading}
         />

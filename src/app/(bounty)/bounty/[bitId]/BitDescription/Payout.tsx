@@ -13,7 +13,7 @@ type PayoutProps = {
 
 export default function Payout({ className, isLoading, data }: PayoutProps) {
   return (
-    <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
+    <div className={classNames('w-full', className)}>
       <h2
         className={classNames(
           'font-grifter text-xl inline-block',
