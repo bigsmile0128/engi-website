@@ -1,10 +1,8 @@
-import React from 'react';
 import classNames from 'classnames';
 import qs from 'qs';
-import useSearchFields from '~/utils/hooks/useSearchFields';
-import Tag from '~/components/global/Tag/Tag';
 import { RiCloseFill } from 'react-icons/ri';
-import Button from '~/components/global/Button/Button';
+import Tag from '~/components/global/Tag/Tag';
+import useSearchFields from '~/utils/hooks/useSearchFields';
 
 type SearchChipsProps = {
   className?: string;
@@ -25,8 +23,6 @@ export default function SearchChips({
 }: SearchChipsProps) {
   const { data: searchFields, isLoading } = useSearchFields();
   const params = qs.parse(searchParams.toString());
-  console.log('searchFields', searchFields);
-  console.log('params', params);
   const chips: {
     key: string;
     label: string;
@@ -55,7 +51,6 @@ export default function SearchChips({
       });
     }
   });
-  console.log('chips', chips);
 
   if (chips.length === 0) {
     return null;

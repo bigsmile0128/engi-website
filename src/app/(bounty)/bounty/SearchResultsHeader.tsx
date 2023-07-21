@@ -103,10 +103,9 @@ export default function SearchResultsHeader({
             options={sortOptions}
             value={sortField}
             onChange={(option) => {
-              const newSearchParams: Record<string, any> =
-                Object.fromEntries(searchParams);
-              newSearchParams['sort-field'] = option.value;
-              newSearchParams['sort-dir'] = OrderByDirection.DESC;
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set('sort-field', option.value);
+              newSearchParams.set('sort-dir', OrderByDirection.DESC);
               onChange(newSearchParams);
             }}
             sortDirection={
@@ -114,9 +113,8 @@ export default function SearchResultsHeader({
               OrderByDirection.DESC
             }
             onChangeSortDirection={(sortDir) => {
-              const newSearchParams: Record<string, any> =
-                Object.fromEntries(searchParams);
-              newSearchParams['sort-dir'] = sortDir;
+              const newSearchParams = new URLSearchParams(searchParams);
+              newSearchParams.set('sort-dir', sortDir);
               onChange(newSearchParams);
             }}
           />
