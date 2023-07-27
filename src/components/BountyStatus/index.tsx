@@ -3,20 +3,17 @@ import classNames from 'classnames';
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import pluralize from 'pluralize';
+import { ImSpinner } from 'react-icons/im';
 import {
   RiCheckFill,
-  RiCloseFill,
-  RiCloudFill,
   RiFlashlightFill,
   RiIndeterminateCircleFill,
   RiTrophyFill,
-  RiTrophyLine,
 } from 'react-icons/ri';
-import { ImSpinner } from 'react-icons/im';
 import { BitStatus, Solution, Submission } from '~/types';
+import { COOKBOOK_LINK } from '~/utils/links';
 import CopyLink from '../CopyLink';
 import SubmissionStages from './SubmissionStages';
-import { COOKBOOK_LINK } from '~/utils/links';
 
 type BountyStatusProps = {
   attemptCount?: number;

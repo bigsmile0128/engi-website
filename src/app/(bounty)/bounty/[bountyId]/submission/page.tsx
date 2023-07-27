@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ColumnDef,
   createColumnHelper,
@@ -6,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
+import { useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { IoOptionsOutline } from 'react-icons/io5';
 import { RiCheckboxCircleLine, RiSearchLine } from 'react-icons/ri';
@@ -14,11 +17,6 @@ import Input from '~/components/global/Input/Input';
 import SearchInput from '~/components/SearchInput';
 import SortMenu from '~/components/SortMenu';
 import { OrderByDirection } from '~/types';
-
-type BitSubmissionsProps = {
-  className?: string;
-  isLoading?: boolean;
-};
 
 const sortOptions = [
   {
@@ -33,32 +31,36 @@ const sortOptions = [
 
 // TODO: replace when API is ready
 type Submission = {
+  id: string;
   status: string;
   wallet: string;
 };
 
 const submissions: Submission[] = [
   {
+    id: '100',
     status: 'GOOD',
     wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvf',
   },
   {
+    id: '101',
     status: 'GOOD',
     wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvg',
   },
   {
+    id: '102',
     status: 'GOOD',
     wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvh',
   },
 ];
 
-export default function BitSubmissions({
-  className,
-  isLoading,
-}: BitSubmissionsProps) {
+export default function BitSubmissions() {
+  const router = useRouter();
   const [value, setValue] = useState('');
   const [sortField, setSortField] = useState(sortOptions[0]);
   const [sortDirection, setSortDirection] = useState(OrderByDirection.DESC);
+  // TODO: fetch submissions when API is ready
+  const isLoading = false;
 
   const columnHelper = createColumnHelper<Submission>();
 
@@ -94,7 +96,7 @@ export default function BitSubmissions({
   });
 
   return (
-    <div className={classNames('', className)}>
+    <div className={classNames('')}>
       {/* MOBILE/TABLET search input */}
       <div className="relative flex items-center desktop:hidden mb-12">
         <Input
@@ -189,7 +191,9 @@ export default function BitSubmissions({
                 isLoading ? '' : 'hover:bg-black/40'
               )}
               onClick={() => {
-                // TODO: implement when API is ready
+                if (!isLoading && row.original?.id) {
+                  router.push(`/bounty/${row.original.id}`);
+                }
               }}
             >
               {row.getVisibleCells().map((cell) => (
