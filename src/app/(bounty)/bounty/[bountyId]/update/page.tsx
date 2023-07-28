@@ -1,6 +1,5 @@
-import React, { useMemo } from 'react';
-import classNames from 'classnames';
-import IncompleteBanner from '~/components/IncompleteBanner';
+'use client';
+
 import {
   ColumnDef,
   createColumnHelper,
@@ -8,14 +7,11 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import classNames from 'classnames';
 import dayjs from 'dayjs';
-import { Bit } from '~/types';
-
-type BitUpdatesProps = {
-  className?: string;
-  data?: Bit;
-  isLoading?: boolean;
-};
+import { useMemo } from 'react';
+import IncompleteBanner from '~/components/IncompleteBanner';
+import '~/utils/datetime/dayjs-extend';
 
 type Update = {
   created: string;
@@ -23,11 +19,10 @@ type Update = {
   type: string;
 };
 
-export default function BitUpdates({
-  className,
-  data,
-  isLoading,
-}: BitUpdatesProps) {
+export default function BitUpdates() {
+  // TODO: fetch updates when API is ready
+  const isLoading = false;
+
   const columnHelper = createColumnHelper<Update>();
   const columns: ColumnDef<Update>[] = useMemo(
     () => [
@@ -62,7 +57,7 @@ export default function BitUpdates({
     getCoreRowModel: getCoreRowModel(),
   });
   return (
-    <div className={classNames('', className)}>
+    <div className={classNames('')}>
       <IncompleteBanner />
       <table className="mt-8 border-separate border-spacing-y-3 w-full">
         <thead>

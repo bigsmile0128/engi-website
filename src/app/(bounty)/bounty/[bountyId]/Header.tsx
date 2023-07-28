@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
@@ -6,17 +8,13 @@ import ShareModal from './ShareModal';
 import { IoMdShareAlt } from '@react-icons/all-files/io/IoMdShareAlt';
 import { Bit } from '~/types';
 
-type BitHeaderProps = {
+type HeaderProps = {
   className?: string;
   data?: Bit;
   isLoading?: boolean;
 };
 
-export default function BitHeader({
-  className,
-  isLoading,
-  data,
-}: BitHeaderProps) {
+export default function Header({ className, isLoading, data }: HeaderProps) {
   const [modalOpen, setModalOpen] = useState(false);
   return (
     <>

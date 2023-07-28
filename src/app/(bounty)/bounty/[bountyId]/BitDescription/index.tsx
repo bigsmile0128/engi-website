@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import { useState } from 'react';
@@ -20,7 +22,7 @@ import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';
 import ShareModal from '../ShareModal';
 import Payout from './Payout';
-import BitTests from '../BitTests';
+import BitTests from './BitTests';
 
 type BitDescriptionProps = {
   className?: string;
