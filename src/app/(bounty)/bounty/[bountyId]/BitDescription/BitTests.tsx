@@ -1,13 +1,24 @@
+'use client';
+
 import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/outline';
+import {
+  ColumnDef,
+  createColumnHelper,
+  flexRender,
+  getCoreRowModel,
+  getExpandedRowModel,
+  useReactTable,
+} from '@tanstack/react-table';
 import classNames from 'classnames';
 import { Roboto_Mono } from 'next/font/google';
+import { Fragment, useMemo } from 'react';
 import {
   RiCheckboxCircleLine,
   RiCloseCircleLine,
   RiPauseCircleLine,
 } from 'react-icons/ri';
-import { Bit } from '~/types';
+import { Test } from '~/types';
 
 const robotoMono = Roboto_Mono({
   subsets: ['latin'],
@@ -15,83 +26,131 @@ const robotoMono = Roboto_Mono({
 
 type BitTestsProps = {
   className?: string;
-  data?: Bit;
-  isLoading?: boolean;
+  data: Test[];
+  defaultOpen?: boolean;
 };
 
 export default function BitTests({
   className,
-  isLoading,
   data,
+  defaultOpen,
 }: BitTestsProps) {
+  const columnHelper = createColumnHelper<Test>();
+  const columns: ColumnDef<Test>[] = useMemo(
+    () => [
+      columnHelper.accessor('id', {
+        header: 'Name',
+      }),
+      columnHelper.accessor('result', {
+        header: 'Status',
+        cell: ({ getValue }) =>
+          getValue() === 'PASSED' ? (
+            <RiCheckboxCircleLine className="h-6 w-auto text-green-primary" />
+          ) : getValue() === 'FAILED' ? (
+            <RiCloseCircleLine className="h-6 w-auto text-red-primary" />
+          ) : (
+            <RiPauseCircleLine className="h-6 w-auto text-secondary" />
+          ),
+      }),
+    ],
+    [columnHelper]
+  );
+
+  const table = useReactTable({
+    data,
+    columns,
+    getRowCanExpand: () => true,
+    getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    initialState: {
+      expanded: true,
+    },
+  });
+
   return (
-    <div className={classNames('flex flex-col gap-2', className)}>
-      <h2
-        className={classNames(
-          'font-grifter text-xl inline-block',
-          isLoading ? 'skeleton' : ''
-        )}
-      >
-        Tests
-      </h2>
-      {isLoading ? (
-        <div className="flex items-center px-8 py-6 bg-black/[.14] rounded-none children:skeleton">
-          <span className="block font-medium">Placeholder</span>
-        </div>
-      ) : data?.tests?.length && data?.tests?.length > 0 ? (
-        data?.tests.map((test, i) => (
-          <Disclosure key={test.id} as="div" defaultOpen={i === 0}>
-            <Disclosure.Button className="w-full">
-              <div
-                key={test.id}
-                className="flex items-center px-8 py-6 bg-black/[.14]"
+    <table className="mt-8 w-full">
+      <thead>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th
+                key={header.id}
+                className={classNames(
+                  'text-left text-secondary text-xs font-medium uppercase',
+                  'pb-2 border-b border-white/30',
+                  'px-4'
+                )}
+                colSpan={header.colSpan}
               >
-                <span className="block font-medium">{test.id}</span>
-                {test.result === 'PASSED' ? (
-                  <RiCheckboxCircleLine className="ml-auto mr-12 h-6 w-auto text-green-primary" />
-                ) : test.result === 'FAILED' ? (
-                  <RiCloseCircleLine className="ml-auto mr-12 h-6 w-auto text-red-primary" />
-                ) : (
-                  <RiPauseCircleLine className="ml-auto mr-12 h-6 w-auto text-secondary" />
-                )}
-                <ChevronRightIcon className="ui-open:rotate-90 ui-open:transform h-4 w-auto" />
-              </div>
-            </Disclosure.Button>
-            <Transition
-              className="transition-all duration-500 overflow-hidden"
-              enterFrom="transform opacity-0 max-h-0"
-              enterTo="transform opacity-100 max-h-96"
-              leaveFrom="transform opacity-100 max-h-96"
-              leaveTo="transform opacity-0 max-h-0"
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.header,
+                      header.getContext()
+                    )}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody>
+        {/* empty row to act as divider */}
+        <tr className="h-4"></tr>
+        {table.getRowModel().rows.map((row) => (
+          <Fragment key={row.id}>
+            <tr
+              className="bg-black/[.14] children:py-4 hover:cursor-pointer"
+              onClick={row.getToggleExpandedHandler()}
             >
-              <Disclosure.Panel>
-                {test.failedResultMessage && (
-                  <div
-                    className="flex"
-                    style={{
-                      background:
-                        'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
-                    }}
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id} className="px-4">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+            {row.getIsExpanded() && (
+              <tr>
+                {/* 2nd row is a custom 1 cell row */}
+                <td colSpan={row.getVisibleCells().length}>
+                  <Transition
+                    show
+                    className="transition-all duration-500 overflow-hidden"
+                    enterFrom="transform opacity-0 max-h-0"
+                    enterTo="transform opacity-100 max-h-96"
+                    leaveFrom="transform opacity-100 max-h-96"
+                    leaveTo="transform opacity-0 max-h-0"
                   >
-                    <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
-                    <div
-                      className={classNames(
-                        'block text-sm font-medium px-8 py-6',
-                        robotoMono.className
+                    <div>
+                      {row.original.failedResultMessage && (
+                        <div
+                          className="flex"
+                          style={{
+                            background:
+                              'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
+                          }}
+                        >
+                          <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
+                          <div
+                            className={classNames(
+                              'block text-sm font-medium px-8 py-6',
+                              robotoMono.className
+                            )}
+                          >
+                            {row.original.failedResultMessage}
+                          </div>
+                        </div>
                       )}
-                    >
-                      {test.failedResultMessage}
+                      <div className="flex h-[5px] bg-orange-primary"></div>
                     </div>
-                  </div>
-                )}
-                <div className="flex h-[5px] bg-orange-primary"></div>
-              </Disclosure.Panel>
-            </Transition>
-          </Disclosure>
-        ))
-      ) : (
-        <div>No tests found.</div>
-      )}
-    </div>
+                  </Transition>
+                </td>
+              </tr>
+            )}
+            {/* empty row to act as divider */}
+            <tr className="h-4"></tr>
+          </Fragment>
+        ))}
+      </tbody>
+    </table>
   );
 }

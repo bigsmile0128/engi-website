@@ -15,6 +15,7 @@ export enum TestResult {
 export type Test = {
   failedResultMessage?: string;
   id: string;
+  required: boolean;
   result: TestResult;
 };
 
@@ -183,8 +184,10 @@ export type SubmissionStage = {
 };
 
 export type Submission = {
+  id: string;
   stages: SubmissionStage[];
   status: string;
+  wallet: string;
 };
 
 export enum DateOption {
