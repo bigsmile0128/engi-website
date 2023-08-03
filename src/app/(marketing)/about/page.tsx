@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import EngiRoadmap from '~/components/pages/about/EngiRoadmap';
 import Header from '~/components/pages/about/Header';
 import MeetTheTeam from '~/components/pages/about/MeetTheTeam';
 import OurInvestors from '~/components/pages/about/OurInvestors';
@@ -36,6 +37,7 @@ export default function AboutUsPage() {
         }
       />
       <MeetTheTeam className="mt-40 max-w-page w-full" />
+      <EngiRoadmap className="mt-40" />
       <OurInvestors className="mt-40" />
     </div>
   );

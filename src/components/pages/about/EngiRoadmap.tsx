@@ -1,32 +1,25 @@
-'use client';
-
+import React from 'react';
 import classNames from 'classnames';
-import { useState } from 'react';
-import Roadmap from '../(marketing)/about/Roadmap';
+import Roadmap from '~/app/(marketing)/about/Roadmap';
 
-const statusOptions = [
-  'OPEN',
-  'PROGRESS',
-  'ANALYZING',
-  'SUBMITTED',
-  'FAILED',
-  'COMPLETE',
-];
+type EngiRoadmapProps = {
+  className?: string;
+};
 
-export default function Playground() {
-  const [status, setStatus] = useState('OPEN');
-
-  const optionIndex = statusOptions.findIndex(
-    (option) => option === status
-  ) as number;
-
-  const prevOption = () => setStatus(statusOptions[optionIndex - 1]);
-  const nextOption = () => setStatus(statusOptions[optionIndex + 1]);
+export default function EngiRoadmap({ className }: EngiRoadmapProps) {
   return (
-    <div className={classNames('py-24 -mr-[400px]')}>
-      <div className="overflow-x-auto">
+    <div className={classNames('', className)}>
+      <div className="max-w-page text-center">
+        <h2 className="font-grifter text-4xl sm:text-5xl">Engi Roadmap</h2>
+        <p className="text-lg text-secondary mt-8">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus in
+          elit vel mauris tincidunt porta.
+        </p>
+      </div>
+      {/* adjust negative margin-right to compensate for extra width from translation */}
+      <div className="mt-8 overflow-x-auto -mr-[370px] tablet:-mr-[400px] scrollbar-horizontal">
         <Roadmap
-          className="py-64"
+          className="py-32 tablet:py-40"
           items={[
             {
               date: '2020',
