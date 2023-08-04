@@ -51,9 +51,15 @@ export type Fractional = {
   numerator: number;
 };
 
+export type RepositoryComplexity = {
+  cyclomatic: number;
+  sLOC: number;
+};
+
 export type Bit = {
   attemptCount: number;
   averageProgress?: Fractional;
+  complexity?: RepositoryComplexity;
   createdOn?: {
     dateTime: string;
     number: number;
