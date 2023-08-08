@@ -17,6 +17,7 @@ import WalletInput from './WalletInput';
 import { useBalance } from '~/utils/balances/userBalance';
 import { useUser } from '~/utils/contexts/userContext';
 import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
+import Tag from '~/components/global/Tag/Tag';
 
 type WithdrawTabProps = {
   className?: string;
@@ -152,7 +153,7 @@ export default function WithdrawTab({
         <button className="hover:text-green-primary">
           <RiArrowLeftRightLine className="h-5 w-5" />
         </button>
-        <div className="flex-1">
+        <div className="relative flex-1">
           <Input
             className="w-full"
             type="number"
@@ -160,6 +161,9 @@ export default function WithdrawTab({
             placeholder="0.00"
             value={displayValue}
           />
+          <Tag className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary pointer-events-none">
+            ETH
+          </Tag>
         </div>
       </div>
       {/* TODO: enable when these are supported */}
