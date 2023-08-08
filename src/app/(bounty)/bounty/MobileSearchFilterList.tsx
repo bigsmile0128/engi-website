@@ -2,6 +2,7 @@ import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
+import TechnologyIcon from '~/components/TechnologyIcon';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import useSearchFields from '~/utils/hooks/useSearchFields';
@@ -169,6 +170,7 @@ export default function MobileSearchFilterList({
                       );
                     }
                   }}
+                  icon={<TechnologyIcon value={value} className="h-4 w-4" />}
                 />
               ))}
             </div>

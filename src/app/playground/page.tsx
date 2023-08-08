@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import BitUserStatus from '~/components/BitUserStatus';
 import Button from '~/components/global/Button/Button';
+import Checkbox from '~/components/global/Checkbox/Checkbox';
+import { SiTypescript } from 'react-icons/si';
 
 const statusOptions = [
   'OPEN',
@@ -15,6 +17,7 @@ const statusOptions = [
 ];
 
 export default function Playground() {
+  const [checked, setChecked] = useState(false);
   const [status, setStatus] = useState('OPEN');
 
   const optionIndex = statusOptions.findIndex(
@@ -37,6 +40,14 @@ export default function Playground() {
         </Button>
       </div>
       <BitUserStatus className="mt-8" status={status as any} />
+      <Checkbox
+        className="mt-8"
+        checked={checked}
+        onChange={(checked) => setChecked(checked)}
+        id="1"
+        label="TypeScript"
+        icon={<SiTypescript className="h-4 w-4" />}
+      />
     </div>
   );
 }

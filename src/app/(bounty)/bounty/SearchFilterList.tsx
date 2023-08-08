@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import TechnologyIcon from '~/components/TechnologyIcon';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
 import useSearchFields from '~/utils/hooks/useSearchFields';
 
@@ -82,6 +83,7 @@ export default function SearchFilterList({
                 key={value}
                 id={value}
                 label={label}
+                icon={<TechnologyIcon value={value} className="h-4 w-4" />}
                 checked={technologies.includes(value)}
                 onChange={(checked) => {
                   const newSearchParams = new URLSearchParams(searchParams);
