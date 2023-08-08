@@ -1,22 +1,27 @@
 import classNames from 'classnames';
-import { useCallback, useState, useEffect, useRef } from 'react';
+import {
+  Dispatch,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 import { RiArrowLeftRightLine } from 'react-icons/ri';
 import { SiBitcoin, SiEthereum, SiTether } from 'react-icons/si';
-import ButtonSelect from '~/components/ButtonSelect';
-import IncompleteBanner from '~/components/IncompleteBanner';
+import { Id as ToastId, toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
-import Checkbox from '~/components/global/Checkbox/Checkbox';
 import Input from '~/components/global/Input/Input';
 import WalletInput from './WalletInput';
-import { Id as ToastId, toast } from 'react-toastify';
 
-import DatePicker from '~/components/DatePicker';
-import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
+import { useBalance } from '~/utils/balances/userBalance';
 import { useUser } from '~/utils/contexts/userContext';
-import { engiToWoz } from '~/utils/currency/conversion';
+import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
+import Tag from '~/components/global/Tag/Tag';
 
 type WithdrawTabProps = {
   className?: string;
+  setWithdrawAmount: Dispatch<number>;
 };
 
 enum RepeatFrequency {
@@ -45,9 +50,13 @@ const repeatOptions = [
   },
 ];
 
-export default function WithdrawTab({ className }: WithdrawTabProps) {
+export default function WithdrawTab({
+  className,
+  setWithdrawAmount,
+}: WithdrawTabProps) {
   const { user } = useUser();
-  const [amount, setAmount] = useState(0);
+  const { data: balance } = useBalance(user?.walletId ?? '');
+  const [value, setValue] = useState(0);
   const [sellToEthAccount, setSellToEthAccount] = useState<string | null>(null);
   const [repeatTransaction, setRepeatTransaction] = useState(false);
   const [repeatFrequency, setRepeatFrequency] =
@@ -106,13 +115,15 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
     sellEngiStatesDisplay,
   ]);
 
+  const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
+
   return (
     <div className={classNames('flex flex-col', className)}>
-      <IncompleteBanner className="mb-4" />
       <CurrencySelect className="" />
       <WalletInput
         className="mt-8"
         onChange={(event) => setSellToEthAccount(event.currentTarget.value)}
+        label="Ethereum Wallet Address"
       />
       <label htmlFor="amount" className="mt-8 font-bold text-xl">
         {"What's the amount?"}
@@ -124,13 +135,18 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
             type="number"
             name="amount"
             placeholder="0.00"
-            value={amount}
-            onChange={(event) => setAmount(parseFloat(event.target.value))}
+            value={displayValue}
+            onChange={(event) => {
+              // set as wei
+              const value = parseFloat(event.target.value) * Math.pow(10, 18);
+              setValue(value);
+              setWithdrawAmount(value);
+            }}
           />
           <Button
             variant="tag"
             className="absolute top-1/2 right-3 -translate-y-1/2"
-            disabled // TODO
+            onClick={() => setValue(balance)}
           >
             Max
           </Button>
@@ -138,16 +154,21 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         <button className="hover:text-green-primary">
           <RiArrowLeftRightLine className="h-5 w-5" />
         </button>
-        <div className="flex-1">
+        <div className="relative flex-1">
           <Input
             className="w-full"
             type="number"
             name="converted"
             placeholder="0.00"
+            value={displayValue}
           />
+          <Tag className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary pointer-events-none">
+            ETH
+          </Tag>
         </div>
       </div>
-      <Checkbox
+      {/* TODO: enable when these are supported */}
+      {/* <Checkbox
         className="font-medium mt-8"
         id="repeat-transaction"
         label="Repeat this transaction"
@@ -164,20 +185,20 @@ export default function WithdrawTab({ className }: WithdrawTabProps) {
         disabled={!repeatTransaction}
         tagClassName="!py-[1px]"
       />
-      <DatePicker className="mt-4" disabled={!repeatTransaction} />
+      <DatePicker className="mt-4" disabled={!repeatTransaction} /> */}
       <div className="mt-8 w-full flex items-center justify-end gap-4">
         <Button onClick={clear}>Clear</Button>
         <Button
           variant="primary"
           className="px-20"
           disabled={
-            !amount || !sellToEthAccount || userConfirmingSellTransaction
+            !value || !sellToEthAccount || userConfirmingSellTransaction
           }
           onClick={() => {
             sellEngiForEth({
               fromUser: user,
               toAccount: sellToEthAccount,
-              amount: engiToWoz(amount),
+              amount: value,
             });
           }}
         >
@@ -197,12 +218,12 @@ enum Currency {
 
 const currencyOptions = [
   {
-    label: 'Bitcoin',
-    value: Currency.BITCOIN,
-  },
-  {
     label: 'Ethereum',
     value: Currency.ETHEREUM,
+  },
+  {
+    label: 'Bitcoin',
+    value: Currency.BITCOIN,
   },
   {
     label: 'Tether',
@@ -211,7 +232,7 @@ const currencyOptions = [
 ];
 
 function CurrencySelect({ className }) {
-  const [value, setValue] = useState(Currency.BITCOIN);
+  const [value, setValue] = useState(Currency.ETHEREUM);
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
@@ -223,9 +244,13 @@ function CurrencySelect({ className }) {
             'outline-none focus-visible:ring-1 ring-green-primary/60',
             option.value === value
               ? 'font-bold text-white border border-green-primary bg-[#313D33]'
-              : 'font-medium text-white/80 border border-white/20'
+              : 'font-medium text-white/80 border border-white/20',
+            option.value !== Currency.ETHEREUM
+              ? 'cursor-not-allowed bg-secondary/50 opacity-70'
+              : ''
           )}
           onClick={() => setValue(option.value)}
+          disabled={option.value !== Currency.ETHEREUM}
         >
           {option.value === Currency.BITCOIN && (
             <SiBitcoin

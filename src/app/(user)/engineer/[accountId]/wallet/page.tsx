@@ -1,11 +1,8 @@
 import classNames from 'classnames';
-import Link from 'next/link';
-import { RiExchangeLine } from 'react-icons/ri';
 import CopyButton from '~/components/CopyButton';
-import Button from '~/components/global/Button/Button';
-import EngiIcon from '~/components/global/icons/EngiIcon';
 import Balance from '~/components/pages/wallet/Balance';
 import Transactions from '~/components/pages/wallet/Transactions';
+import MoveEngiButton from './MoveEngiButton';
 
 export default function WalletPage({
   params,
@@ -28,16 +25,7 @@ export default function WalletPage({
             <CopyButton className="inline-block" value={accountId} />
           </div>
         </div>
-        <Link href={`/engineer/${accountId}/wallet/move`}>
-          <Button className="flex justify-center items-center whitespace-nowrap">
-            <RiExchangeLine className="h-5 w-5" />
-            <span className="ml-3">
-              Move{' '}
-              <EngiIcon className="inline-block h-2.5 w-2.5 text-green-primary" />
-              ngi
-            </span>
-          </Button>
-        </Link>
+        <MoveEngiButton className="hidden laptop:block" />
       </div>
       <Balance
         className="mt-12 p-6 bg-[#232323]/40 backdrop-blur-[200px]"

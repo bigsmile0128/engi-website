@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { Dispatch, useEffect, useMemo, useRef, useState } from 'react';
 import { RiSearchLine } from 'react-icons/ri';
 import { Id, toast } from 'react-toastify';
-import { PreviewMoveEngi } from '~/utils/exchange/types';
 import Tooltip from '~/components/Tooltip';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
@@ -14,7 +13,7 @@ type BuyEngiProps = {
   className?: string;
   iconClassName?: string;
   isLoading?: boolean;
-  setPreviewMove: Dispatch<PreviewMoveEngi>;
+  setDepositAmount: Dispatch<number>;
   value?: string;
   valueClassName?: string;
 };
@@ -24,16 +23,12 @@ export default function BuyEngi({
   isLoading,
   // currently signed in user's substrate wallet address
   account,
-  setPreviewMove,
+  setDepositAmount,
 }: BuyEngiProps) {
   // the value to purchase in WEI
   const [value, setValue] = useState(0);
   // handles unexpected NaN
   const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
-
-  useEffect(() => {
-    setPreviewMove({ amount: value, move: 'Buy' });
-  }, [setPreviewMove, value]);
 
   const { data: ethereumAccounts } = useConnectEthereumExtension();
   const {
@@ -92,7 +87,7 @@ export default function BuyEngi({
 
           <div className="flex flex-col justify-center h-full">
             <Tooltip title="Sign in with a different account to change this value.">
-              <span className="font-light text-lg truncate text-ellipsis">
+              <span className="font-light text-lg truncate text-ellipsis max-w-[200px]">
                 {account}
               </span>
             </Tooltip>
@@ -121,7 +116,9 @@ export default function BuyEngi({
                 if (isNaN(target.value)) return;
 
                 // set as wei
-                setValue(parseFloat(target.value) * Math.pow(10, 18));
+                const value = parseFloat(target.value) * Math.pow(10, 18);
+                setValue(value);
+                setDepositAmount(value);
               }}
             />
             <RiSearchLine className="text-secondary absolute top-1/2 left-4 -translate-y-1/2 h-5 w-5" />

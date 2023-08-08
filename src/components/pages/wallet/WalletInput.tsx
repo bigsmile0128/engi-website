@@ -5,14 +5,19 @@ import { RiSearchLine } from 'react-icons/ri';
 
 type WalletInputProps = {
   className?: string;
+  label?: string;
   onChange?: (event: React.FormEvent<HTMLInputElement>) => void;
 };
 
-export default function WalletInput({ className, onChange }: WalletInputProps) {
+export default function WalletInput({
+  className,
+  onChange,
+  label = 'Wallet Address',
+}: WalletInputProps) {
   return (
     <div className={classNames('', className)}>
       <label htmlFor="wallet-address" className="font-bold text-xl">
-        Wallet Address
+        {label}
       </label>
       <div className="relative mt-2">
         <Input
