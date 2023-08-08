@@ -123,6 +123,7 @@ export default function WithdrawTab({
       <WalletInput
         className="mt-8"
         onChange={(event) => setSellToEthAccount(event.currentTarget.value)}
+        label="Ethereum Wallet Address"
       />
       <label htmlFor="amount" className="mt-8 font-bold text-xl">
         {"What's the amount?"}
