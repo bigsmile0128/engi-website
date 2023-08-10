@@ -16,7 +16,7 @@ export default function Payout({ className, isLoading, data }: PayoutProps) {
     <div className={classNames('w-full', className)}>
       <h2
         className={classNames(
-          'font-grifter text-xl inline-block',
+          'mb-2 font-grifter text-xl inline-block',
           isLoading ? 'skeleton' : ''
         )}
       >

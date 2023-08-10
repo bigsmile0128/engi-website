@@ -53,16 +53,17 @@ export default function EngiAmount({
         <EngiIcon
           className={classNames(
             'text-green-primary',
-            iconClassName || 'h-3.5 w-3.5'
+            iconClassName || 'h-3.5 w-auto'
           )}
         />
         <span
           className={classNames(
+            'font-grifter text-white',
             {
               'text-secondary': !isLoading && displayValue === 'N/A',
               'text-red-primary': displayValue.startsWith('-'),
             },
-            valueClassName || 'font-grifter text-xl text-white -mb-1 ml-1'
+            valueClassName || 'text-xl -mb-1 ml-1'
           )}
         >
           {displayValue}

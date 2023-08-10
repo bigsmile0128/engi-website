@@ -1,23 +1,33 @@
 import classNames from 'classnames';
 import { RiFileZipFill, RiTimeFill } from 'react-icons/ri';
 import Statistic from '~/components/Statistic';
+import { RepositoryComplexity } from '~/types';
 
 type EffortProps = {
   className?: string;
+  complexity?: RepositoryComplexity;
   isLoading?: boolean;
-  timeEstimate?: number;
+  numTests: number;
 };
 
 export default function Effort({
   className,
+  complexity,
   isLoading,
-  timeEstimate,
+  numTests,
 }: EffortProps) {
+  // half hour per test with minimum of 1 hour per bounty
+  const timeEstimate = `${Math.min(1, numTests * 0.5)} hours`;
+  // difficulty in range [0, 1] with 10+ tests meaning max difficulty
+  const difficulty = Math.min(1, numTests / 10);
+  const difficultyLabel =
+    difficulty < 0.3 ? 'Easy' : difficulty < 0.6 ? 'Medium' : 'Hard';
+
   return (
-    <div className={classNames('p-6 bg-black/[.14] w-full', className)}>
+    <div className={classNames('', className)}>
       <h2
         className={classNames(
-          'font-grifter text-xl inline-block',
+          'mb-2 font-grifter text-xl inline-block',
           isLoading ? 'skeleton' : ''
         )}
       >
@@ -26,16 +36,8 @@ export default function Effort({
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-4">
         <Statistic
           icon={<RiFileZipFill className="text-orange-primary h-5 w-5" />}
-          // TODO: replace with real data when available
-          value="N/A"
-          title="Bit size"
-          isLoading={isLoading}
-        />
-        <Statistic
-          icon={<RiTimeFill className="text-green-primary h-5 w-5" />}
-          // TODO: replace with real data when available
-          value="N/A"
-          title="Time"
+          value={complexity?.sLOC ?? 'N/A'}
+          title="LOC"
           isLoading={isLoading}
         />
         <div
@@ -45,8 +47,7 @@ export default function Effort({
           )}
         >
           <div className="col-start-1 font-bold text-xl place-self-start">
-            {/* TODO: replace with real data when available */}
-            N/A
+            {difficultyLabel}
           </div>
           <span className="col-start-1 row-start-2 text-secondary place-self-start">
             Difficulty
@@ -63,14 +64,21 @@ export default function Effort({
                 'border-[16px]',
                 isLoading
                   ? 'skeleton border-[#00000022] bg-transparent'
-                  : 'border-white/30 border-b-green-primary border-l-green-primary rotate'
+                  : 'border-white/30 border-b-green-primary border-l-green-primary'
               )}
               style={{
-                transform: `rotate(${timeEstimate ?? 0 * 3}deg)`,
+                // -45deg is the start because of how the arc is created from a square's diagonal
+                transform: `rotate(${-45 + difficulty * 180}deg)`,
               }}
             />
           </div>
         </div>
+        <Statistic
+          icon={<RiTimeFill className="text-green-primary h-5 w-5" />}
+          value={timeEstimate}
+          title="Time"
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

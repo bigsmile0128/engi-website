@@ -23,6 +23,7 @@ import RepositoryInfo from '../RepositoryInfo';
 import ShareModal from '../ShareModal';
 import Payout from './Payout';
 import BitTests from './BitTests';
+import Effort from './Effort';
 
 type BitDescriptionProps = {
   className?: string;
@@ -80,6 +81,13 @@ export default function BitDescription({
       <BitTests className="w-full" isLoading={isLoading} data={data} />
       <div className="my-16 w-full border-t border-white/30" />
       <Payout className="" isLoading={isLoading} data={data} />
+      <div className="my-16 w-full border-t border-white/30" />
+      <Effort
+        className="w-full"
+        isLoading={isLoading}
+        complexity={data?.complexity}
+        numTests={data?.tests.length ?? 0}
+      />
       {/* TABLET START */}
       <div className="hidden tablet:w-full tablet:flex tablet:flex-col desktop:hidden">
         <div className="my-16 w-full border-t border-white/30" />
