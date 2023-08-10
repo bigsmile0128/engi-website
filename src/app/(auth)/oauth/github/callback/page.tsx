@@ -12,9 +12,11 @@ import {
 } from 'react-icons/ri';
 import { useMutation } from 'react-query';
 import Button from '~/components/global/Button/Button';
+import { useUser } from '~/utils/contexts/userContext';
 import useAxios from '~/utils/hooks/useAxios';
 
 export default function GithubCallback() {
+  const { user } = useUser();
   const searchParams = useSearchParams();
   const code = searchParams?.get('code') ?? '';
   const installationId = searchParams?.get('installation_id') ?? '';
@@ -22,14 +24,14 @@ export default function GithubCallback() {
   const mutation = useGithubCallback();
 
   useEffect(() => {
-    if (code && installationId) {
+    if (code && installationId && user?.accessToken) {
       mutation.mutate({
         code: code as string,
         installationId: installationId as string,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [code, installationId]);
+  }, [code, installationId, user?.accessToken]);
 
   return (
     <div className={classNames('max-w-page flex mt-16 mb-24')}>

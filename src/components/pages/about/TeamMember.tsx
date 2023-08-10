@@ -9,6 +9,7 @@ import { TeamMember as TeamMemberType } from './About.utils';
 
 interface Props extends TeamMemberType {
   className?: string;
+  width?: number;
 }
 
 function TeamMember({
@@ -18,6 +19,7 @@ function TeamMember({
   companies,
   photoLink,
   socialLinks,
+  width = 210,
 }: Props) {
   const backgroundColor = randomColor({
     seed: name,
@@ -25,22 +27,23 @@ function TeamMember({
   });
 
   return (
-    <div className={classNames('flex flex-col min-w-[260px]', className)}>
+    <div
+      className={classNames('flex flex-col', className)}
+      style={{ minWidth: width }}
+    >
       {photoLink ? (
         <Image
           src={photoLink}
           alt={name + 'photo'}
-          height={260}
-          width={260}
-          className="h-[260px] w-[260px]"
+          height={width}
+          width={width}
         />
       ) : (
         <div
-          className={classNames(
-            'h-[260px] flex items-center justify-center px-12'
-          )}
+          className={classNames('flex items-center justify-center px-12')}
           style={{
             backgroundColor,
+            height: width,
           }}
         >
           <HiUser size={150} />
