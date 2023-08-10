@@ -103,7 +103,6 @@ export default function Playground() {
         />
       </div>
 
-
       <BitUserStatus className="mt-8" status={status as any} />
       <Checkbox
         className="mt-8"
