@@ -9,14 +9,21 @@ import {
 } from '@tanstack/react-table';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
+import pluralize from 'pluralize';
 import { useMemo, useState } from 'react';
 import { IoOptionsOutline } from 'react-icons/io5';
-import { RiCheckboxCircleLine, RiSearchLine } from 'react-icons/ri';
+import {
+  RiCheckboxCircleLine,
+  RiCloseCircleLine,
+  RiCloudLine,
+  RiSearchLine,
+} from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
 import SearchInput from '~/components/SearchInput';
 import SortMenu from '~/components/SortMenu';
-import { OrderByDirection } from '~/types';
+import { OrderByDirection, Submission, SubmissionStatus } from '~/types';
+import useBountySubmissions from '~/utils/hooks/useBountySubmissions';
 
 const sortOptions = [
   {
@@ -29,60 +36,57 @@ const sortOptions = [
   },
 ];
 
-// TODO: replace when API is ready
-type Submission = {
-  id: string;
-  status: string;
-  wallet: string;
-};
-
-const submissions: Submission[] = [
-  {
-    id: '100',
-    status: 'GOOD',
-    wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvf',
-  },
-  {
-    id: '101',
-    status: 'GOOD',
-    wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvg',
-  },
-  {
-    id: '102',
-    status: 'GOOD',
-    wallet: '5HKmhgssTaohnXy2hxn8x5i98a21LG8muV4e3hTAcETjPgvh',
-  },
-];
-
-export default function BitSubmissions() {
+export default function BountySubmissions({
+  params,
+}: {
+  params: { bountyId: string };
+}) {
+  const { bountyId } = params;
   const router = useRouter();
   const [value, setValue] = useState('');
   const [sortField, setSortField] = useState(sortOptions[0]);
   const [sortDirection, setSortDirection] = useState(OrderByDirection.DESC);
-  // TODO: fetch submissions when API is ready
-  const isLoading = false;
+
+  const { data, isLoading } = useBountySubmissions({
+    skip: 0,
+    limit: 100,
+    jobId: bountyId,
+  });
+
+  const { items: submissions, totalCount } = data ?? {};
 
   const columnHelper = createColumnHelper<Submission>();
 
   const columns: ColumnDef<Submission>[] = useMemo(
     () => [
-      columnHelper.accessor('wallet', {
+      columnHelper.accessor('userInfo.address', {
         header: 'Submission Author',
         cell: (props) => {
           const submission = props.row.original;
           return (
             <p className="font-bold truncate max-w-[180px] tablet:max-w-[240px]">
-              {submission.wallet}
+              {submission.userInfo.display ?? submission.userInfo.address}
             </p>
           );
         },
       }),
       columnHelper.accessor('status', {
         header: 'Status',
-        cell: () => {
-          return (
-            <RiCheckboxCircleLine className="text-green-primary h-6 w-6" />
-          );
+        cell: (props) => {
+          const submission = props.row.original;
+
+          switch (submission.status) {
+            case SubmissionStatus.ATTEMPTED_ON_CHAIN:
+              return <RiCloseCircleLine className="text-red-primary h-6 w-6" />;
+            case SubmissionStatus.ENGINE_ATTEMPTING:
+              return <RiCloudLine className="text-orange-primary h-6 w-6" />;
+            case SubmissionStatus.SOLVED_ON_CHAIN:
+              return (
+                <RiCheckboxCircleLine className="text-green-primary h-6 w-6" />
+              );
+            default:
+              return null;
+          }
         },
       }),
     ],
@@ -90,7 +94,7 @@ export default function BitSubmissions() {
   );
 
   const table = useReactTable({
-    data: submissions,
+    data: submissions ?? [],
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -142,7 +146,10 @@ export default function BitSubmissions() {
           )}
         >
           <span className="whitespace-nowrap text-xl">
-            3 <span className="text-green-primary">Submissions</span>
+            {totalCount}{' '}
+            <span className="text-green-primary">
+              {pluralize('Submission', totalCount)}
+            </span>
           </span>
         </h4>
         {/* MOBILE, TABLET */}
