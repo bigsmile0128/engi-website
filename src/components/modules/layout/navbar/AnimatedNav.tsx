@@ -19,19 +19,19 @@ type MenuLinkProps = {
 
 const EARN_LINKS: MenuLinkProps[] = [
   {
+    title: 'UI Development',
+    description: 'React, TypeScript, CSS',
+    href: '/bounty?technology=TYPE_SCRIPT&technology=CSS',
+  },
+  {
     title: 'Smart Contracts',
     description: 'Solidity, Solana, ink!',
-    href: '/bounty?technologies=solidity,solang,ink',
+    href: '/bounty?technology=SOLIDITY&technology=SOLANG&technology=INK',
   },
   {
-    title: 'Substrate, DotSama',
-    description: 'Build Multi-Chain',
-    href: '/bounty?technologies=SUBSTRATE',
-  },
-  {
-    title: 'Rust, C++, C SDKs',
-    description: 'Author Critical Libraries',
-    href: '/bounty?technologies=RUST,C++,C',
+    title: 'Libraries & APIs',
+    description: 'Python, Rust, Dotnet',
+    href: '/bounty?technology=PYTHON',
   },
 ];
 
