@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { Dispatch, useMemo, useState } from 'react';
 import { RiInformationLine } from 'react-icons/ri';
 import { SiBitcoin, SiEthereum, SiLitecoin } from 'react-icons/si';
 import IncompleteBanner from '~/components/IncompleteBanner';
@@ -9,9 +10,17 @@ import WalletInput from './WalletInput';
 
 type TransferTabProps = {
   className?: string;
+  setTransferAmount: Dispatch<number>;
 };
 
-export default function TransferTab({ className }: TransferTabProps) {
+export default function TransferTab({
+  className,
+  setTransferAmount,
+}: TransferTabProps) {
+  const [value, setValue] = useState(0);
+
+  const displayValue = useMemo(() => value / Math.pow(10, 18) || 0, [value]);
+
   return (
     <div className={classNames('flex flex-col', className)}>
       <IncompleteBanner className="mb-4" />
@@ -25,6 +34,13 @@ export default function TransferTab({ className }: TransferTabProps) {
           type="number"
           name="amount"
           placeholder="0.00"
+          value={displayValue}
+          onChange={(e) => {
+            // set as wei
+            const value = parseFloat(e.target.value) * Math.pow(10, 18);
+            setValue(value);
+            setTransferAmount(value);
+          }}
         />
         <div className="flex items-center gap-x-1 text-secondary absolute top-1/2 right-3 -translate-y-1/2">
           <span className="text-sm">engi</span>

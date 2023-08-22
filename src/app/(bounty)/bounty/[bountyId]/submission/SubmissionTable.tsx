@@ -11,8 +11,12 @@ import {
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
-import { RiCheckboxCircleLine } from 'react-icons/ri';
-import { Submission } from '~/types';
+import {
+  RiCheckboxCircleLine,
+  RiCloseCircleLine,
+  RiCloudLine,
+} from 'react-icons/ri';
+import { Submission, SubmissionStatus } from '~/types';
 
 type SubmissionTableProps = {
   bountyId: string;
@@ -31,28 +35,35 @@ export default function SubmissionTable({
 
   const columns: ColumnDef<Submission>[] = useMemo(
     () => [
-      columnHelper.accessor('wallet', {
+      columnHelper.accessor('userInfo.address', {
         header: 'Submission Author',
         cell: (props) => {
           const submission = props.row.original;
           return (
             <p className="font-bold truncate max-w-[180px] tablet:max-w-[240px]">
-              {submission.wallet}
+              {submission.userInfo.display ?? submission.userInfo.address}
             </p>
           );
         },
       }),
       columnHelper.accessor('status', {
         header: 'Status',
-        cell: () => {
-          return (
-            <RiCheckboxCircleLine className="text-green-primary h-6 w-6" />
-          );
+        cell: (props) => {
+          const submission = props.row.original;
+
+          switch (submission.status) {
+            case SubmissionStatus.ATTEMPTED_ON_CHAIN:
+              return <RiCloseCircleLine className="text-red-primary h-6 w-6" />;
+            case SubmissionStatus.ENGINE_ATTEMPTING:
+              return <RiCloudLine className="text-orange-primary h-6 w-6" />;
+            case SubmissionStatus.SOLVED_ON_CHAIN:
+              return (
+                <RiCheckboxCircleLine className="text-green-primary h-6 w-6" />
+              );
+            default:
+              return null;
+          }
         },
-      }),
-      columnHelper.accessor('id', {
-        header: '',
-        cell: () => <ChevronRightIcon className="h-5 w-5" />,
       }),
     ],
     [columnHelper]
@@ -66,7 +77,7 @@ export default function SubmissionTable({
   return (
     <table
       className={classNames(
-        'border-separate border-spacing-y-3 w-full',
+        'mt-8 border-separate border-spacing-y-3 w-full',
         className
       )}
     >
@@ -98,12 +109,13 @@ export default function SubmissionTable({
           <tr
             key={row.id}
             className={classNames(
-              'bg-black/[.14] children:py-4 hover:bg-black/40'
+              'bg-black/[.14] children:py-4',
+              'hover:bg-black/40'
             )}
             onClick={() => {
-              if (row.original?.id) {
+              if (row.original?.attemptId) {
                 router.push(
-                  `/bounty/${bountyId}/submission/${row.original.id}`
+                  `/bounty/${bountyId}/submission/${row.original.attemptId}`
                 );
               }
             }}

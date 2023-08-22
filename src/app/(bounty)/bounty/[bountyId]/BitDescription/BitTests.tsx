@@ -1,7 +1,6 @@
 'use client';
 
-import { Disclosure, Transition } from '@headlessui/react';
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import { Transition } from '@headlessui/react';
 import {
   ColumnDef,
   createColumnHelper,
@@ -30,11 +29,7 @@ type BitTestsProps = {
   defaultOpen?: boolean;
 };
 
-export default function BitTests({
-  className,
-  data,
-  defaultOpen,
-}: BitTestsProps) {
+export default function BitTests({ className, data }: BitTestsProps) {
   const columnHelper = createColumnHelper<Test>();
   const columns: ColumnDef<Test>[] = useMemo(
     () => [
@@ -68,7 +63,7 @@ export default function BitTests({
   });
 
   return (
-    <table className="mt-8 w-full">
+    <table className={classNames('mt-8 w-full', className)}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>

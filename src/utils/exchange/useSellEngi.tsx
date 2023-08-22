@@ -2,7 +2,6 @@
 import pMinDelay from 'p-min-delay';
 import { useMutation } from 'react-query';
 import { User } from '../contexts/userContext';
-import { engiToWoz } from '../currency/conversion';
 import chainAPI from '../polkadot/chainAPI';
 import {
   emitSoldEngiAnalyticsEvent,
@@ -42,9 +41,12 @@ export const useSellEngiForEth = () =>
       const _: any = await pMinDelay(web3Enable('Engi'), 1000);
 
       const injector = await web3FromSource(fromUser.source);
-      return chain.tx.exchange
-        .sell(toAccount, engiToWoz(amount))
-        .signAndSend(fromUser.walletId, { signer: injector.signer });
+      return (
+        chain.tx.exchange
+          // convert amount to string because 0.01 ENGI in WOZ is greater than Number.MAX_SAFE_INTEGER
+          .sell(toAccount, amount.toString())
+          .signAndSend(fromUser.walletId, { signer: injector.signer })
+      );
     },
     {
       onSuccess(_, { fromUser, toAccount, amount }) {

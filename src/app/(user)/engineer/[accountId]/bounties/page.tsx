@@ -22,7 +22,7 @@ export default function Bounties({
     skip: 0,
   });
 
-  const results = data?.results?.items ?? [];
+  const results = data?.result?.items ?? [];
 
   return (
     <div className={classNames('w-full')}>

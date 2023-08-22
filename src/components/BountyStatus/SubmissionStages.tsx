@@ -9,11 +9,10 @@ import {
   RiCloseFill,
   RiCloudFill,
 } from 'react-icons/ri';
-import { SubmissionStage } from '~/types';
 
 type SubmissionStagesProps = {
   className?: string;
-  stages: SubmissionStage[];
+  stages: any[];
 };
 
 export default function SubmissionStages({

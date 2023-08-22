@@ -52,9 +52,15 @@ export type Fractional = {
   numerator: number;
 };
 
+export type RepositoryComplexity = {
+  cyclomatic: number;
+  sLOC: number;
+};
+
 export type Bit = {
   attemptCount: number;
   averageProgress?: Fractional;
+  complexity?: RepositoryComplexity;
   createdOn?: {
     dateTime: string;
     number: number;
@@ -176,18 +182,22 @@ export enum AccountExistenceResult {
   YES = 'YES',
 }
 
-// TODO: update after server is ready
-export type SubmissionStage = {
-  results?: Record<string, any>;
-  stage: string;
-  status: string;
+export type UserInfo = {
+  address: string;
+  display: string;
+  profileImageUrl?: string;
 };
 
+export enum SubmissionStatus {
+  ATTEMPTED_ON_CHAIN = 'ATTEMPTED_ON_CHAIN',
+  ENGINE_ATTEMPTING = 'ENGINE_ATTEMPTING',
+  SOLVED_ON_CHAIN = 'SOLVED_ON_CHAIN',
+}
+
 export type Submission = {
-  id: string;
-  stages: SubmissionStage[];
-  status: string;
-  wallet: string;
+  attemptId: number;
+  status: SubmissionStatus;
+  userInfo: UserInfo;
 };
 
 export enum DateOption {
@@ -197,3 +207,9 @@ export enum DateOption {
   LAST_WEEK = 'LAST_WEEK',
   LAST_YEAR = 'LAST_YEAR',
 }
+
+export type JobSubmissionsDetailsPagedQueryArguments = {
+  jobId: string;
+  limit: number;
+  skip: number;
+};

@@ -61,6 +61,10 @@ export async function getBountyDetails(bitId) {
                   numerator
                   denominator
                 }
+                complexity {
+                  sLOC
+                  cyclomatic
+                }
               }
               creatorUserInfo {
                 address
