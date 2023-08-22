@@ -10,7 +10,7 @@ import {
   RiIndeterminateCircleFill,
   RiTrophyFill,
 } from 'react-icons/ri';
-import { BitStatus, Solution, Submission } from '~/types';
+import { BitStatus, Solution, Submission, SubmissionStatus } from '~/types';
 import { COOKBOOK_LINK } from '~/utils/links';
 import CopyLink from '../CopyLink';
 import SubmissionStages from './SubmissionStages';
@@ -127,7 +127,7 @@ export default function BountyStatus({
           <div className="relative">
             {/* TODO: update with user profile icon */}
             <Avvvatars value={userId ?? ''} size={48} />
-            {submissionStatus === 'ANALYZING' && (
+            {submissionStatus === SubmissionStatus.ENGINE_ATTEMPTING && (
               <div className="absolute right-1 bottom-1 bg-[#424031] rounded-full p-1 translate-x-1/3 translate-y-1/3">
                 <ImSpinner className="h-4 w-auto text-green-primary animate-spin-slow" />
               </div>
@@ -135,15 +135,16 @@ export default function BountyStatus({
           </div>
           <div className="flex flex-col gap-1">
             <span className="-mb-1 font-grifter text-xl max-w-[300px]">
-              {submissionStatus === 'ANALYZING'
+              {submissionStatus === SubmissionStatus.ENGINE_ATTEMPTING
                 ? "You have made a submission! It's being analyzed."
                 : 'You are currently working on this bounty'}
             </span>
-            {status === BitStatus.ACTIVE && (
+            {/* TODO: update based on new schema */}
+            {/* {status === BitStatus.ACTIVE && (
               <div className="flex flex-col">
                 <SubmissionStages stages={currentUserSubmission.stages} />
               </div>
-            )}
+            )} */}
           </div>
         </div>
       ) : (

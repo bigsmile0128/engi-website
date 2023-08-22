@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BitStatus } from '~/types';
+import { BitStatus, SubmissionStatus } from '~/types';
 import BountyStatus from '.';
 
 const meta: Meta = {
@@ -46,29 +46,12 @@ export const FreelancerAnalyzing: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
-      stages: [
-        {
-          results: {},
-          stage: 'Compiling',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Linting',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Testing',
-          status: 'ANALYZING',
-        },
-        {
-          results: {},
-          stage: 'Approval',
-          status: 'WAITING',
-        },
-      ],
-      status: 'ANALYZING',
+      attemptId: 123,
+      userInfo: {
+        address: '123',
+        display: '123',
+      },
+      status: SubmissionStatus.ENGINE_ATTEMPTING,
     },
     id: '123',
     solution: undefined,
@@ -85,29 +68,12 @@ export const FreelancerSubmission: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
-      stages: [
-        {
-          results: {},
-          stage: 'Compiling',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Linting',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Testing',
-          status: 'FAILED',
-        },
-        {
-          results: {},
-          stage: 'Approval',
-          status: 'SKIPPED',
-        },
-      ],
-      status: 'DONE',
+      attemptId: 123,
+      userInfo: {
+        address: '123',
+        display: '123',
+      },
+      status: SubmissionStatus.SOLVED_ON_CHAIN,
     },
     id: '123',
     solution: undefined,
@@ -124,29 +90,12 @@ export const FreelancerCompleted: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
-      stages: [
-        {
-          results: {},
-          stage: 'Compiling',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Linting',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Testing',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Approval',
-          status: 'PASSED',
-        },
-      ],
-      status: 'DONE',
+      attemptId: 123,
+      userInfo: {
+        address: '123',
+        display: '123',
+      },
+      status: SubmissionStatus.SOLVED_ON_CHAIN,
     },
     id: '123',
     solution: {
@@ -172,29 +121,12 @@ export const FreelancerCompletedOther: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
-      stages: [
-        {
-          results: {},
-          stage: 'Compiling',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Linting',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Testing',
-          status: 'PASSED',
-        },
-        {
-          results: {},
-          stage: 'Approval',
-          status: 'PASSED',
-        },
-      ],
-      status: 'DONE',
+      attemptId: 123,
+      userInfo: {
+        address: '123',
+        display: '123',
+      },
+      status: SubmissionStatus.SOLVED_ON_CHAIN,
     },
     id: '123',
     solution: {
