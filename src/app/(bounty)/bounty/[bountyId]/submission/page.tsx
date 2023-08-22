@@ -198,8 +198,8 @@ export default function BountySubmissions({
                 isLoading ? '' : 'hover:bg-black/40'
               )}
               onClick={() => {
-                if (!isLoading && row.original?.id) {
-                  router.push(`/bounty/${row.original.id}`);
+                if (!isLoading && row.original?.attemptId) {
+                  router.push(`/bounty/${row.original.attemptId}`);
                 }
               }}
             >
