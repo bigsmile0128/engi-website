@@ -1,6 +1,5 @@
 'use client';
 
-import { ChevronRightIcon } from '@heroicons/react/outline';
 import {
   ColumnDef,
   createColumnHelper,

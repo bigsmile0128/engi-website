@@ -3,15 +3,7 @@ import IncompleteBanner from '~/components/IncompleteBanner';
 import { TestResult } from '~/types';
 import BitTests from '../../BitDescription/BitTests';
 import Header from './Header';
-
-async function getSubmissionDetails(submissionId): Promise<any> {
-  await new Promise<void>((resolve) => setTimeout(() => resolve(), 2000));
-
-  return {
-    status: 'PASSED',
-    wallet: '5FLCw1SJBaBDpTGduFdYqonzf2Arsg1dYoaNMa3776w3nLDH',
-  };
-}
+import { getSubmissionDetails } from '../../api';
 
 export default async function SubmissionDetails({
   params,

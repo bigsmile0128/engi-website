@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import SubmissionFilters from './SubmissionFilters';
 import SubmissionTable from './SubmissionTable';
+import { getSubmissions } from '../api';
 
 export default async function BountySubmissions({
   params,
@@ -9,14 +10,18 @@ export default async function BountySubmissions({
 }) {
   const { bountyId } = params;
 
-  const submissions = [];
+  const submissions = await getSubmissions({
+    jobId: bountyId,
+    skip: 0,
+    limit: 100,
+  });
 
   return (
     <div className={classNames('')}>
-      <SubmissionFilters numResults={submissions.length} />
+      <SubmissionFilters numResults={submissions.totalCount} />
       <SubmissionTable
         bountyId={bountyId}
-        submissions={submissions}
+        submissions={submissions.items}
         className="mt-4"
       />
     </div>
