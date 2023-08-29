@@ -15,6 +15,7 @@ export enum TestResult {
 export type Test = {
   failedResultMessage?: string;
   id: string;
+  required: boolean;
   result: TestResult;
 };
 
@@ -212,3 +213,21 @@ export type JobSubmissionsDetailsPagedQueryArguments = {
   limit: number;
   skip: number;
 };
+
+export type Folder = {
+  children: DirectoryTree[];
+  name: string;
+  path: string;
+  size: number;
+  type: 'directory';
+};
+
+export type File = {
+  extension: string;
+  name: string;
+  path: string;
+  size: number;
+  type: 'file';
+};
+
+export type DirectoryTree = Folder | File;

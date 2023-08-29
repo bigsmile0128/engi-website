@@ -1,27 +1,16 @@
-import classNames from 'classnames';
 import { useState } from 'react';
-import FilePicker from '~/components/FilePicker';
-import Button from '~/components/global/Button/Button';
-import Input from '~/components/global/Input/Input';
+import FilePicker from '../FilePicker';
 import { DirectoryTree } from '~/types';
 
-type DetailsTabProps = {
-  className?: string;
-  defaultValue?: string;
-  goBack: () => void;
-  onChange: ({ bitName }) => void;
+export default {
+  title: 'FilePicker',
+  component: FilePicker,
 };
 
-export default function DetailsTab({
-  className,
-  onChange,
-  goBack,
-  defaultValue,
-}: DetailsTabProps) {
+const Template = (args) => {
   const [pathPermissions, setPathPermissions] = useState<
     Record<string, string[]>
   >({});
-  const [bitName, setBitName] = useState(defaultValue ?? '');
 
   const directoryTrees = [
     createDirectoryTree('assets'),
@@ -30,44 +19,22 @@ export default function DetailsTab({
   ];
 
   return (
-    <div className={classNames('', className)}>
-      <h1 className="font-grifter text-3xl">Bounty Details</h1>
-      <label className="block font-bold text-xl mt-12" htmlFor="bit-name">
-        Name of the bounty
-      </label>
-      <Input
-        id="bit-name"
-        className="block mt-4 w-full"
-        type="text"
-        placeholder="Name of the bounty"
-        value={bitName}
-        onChange={(e) => setBitName(e.target.value)}
+    <div className="max-w-page my-12">
+      <FilePicker
+        {...args}
+        directoryTrees={directoryTrees}
+        pathPermissions={pathPermissions}
+        onChangePermissions={setPathPermissions}
       />
-      <div className="p-8 border border-white/30 mt-12">
-        <div className="block font-bold text-xl">Files</div>
-        <FilePicker
-          className="mt-8"
-          directoryTrees={directoryTrees}
-          pathPermissions={pathPermissions}
-          onChangePermissions={setPathPermissions}
-        />
-      </div>
-      <div className="flex justify-end gap-x-4 mt-8">
-        <Button className="" onClick={goBack}>
-          Back
-        </Button>
-        <Button
-          className="block !px-24"
-          variant="primary"
-          onClick={() => onChange({ bitName })}
-          disabled={!bitName}
-        >
-          Continue
-        </Button>
-      </div>
     </div>
   );
-}
+};
+
+export const Default = Template.bind({});
+
+Default.args = {
+  className: '',
+};
 
 function createDirectoryTree(root) {
   const directoryTree: DirectoryTree = {

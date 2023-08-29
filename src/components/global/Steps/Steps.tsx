@@ -69,7 +69,7 @@ export function Step({
           <span
             className={classNames(
               'h-[18px] w-[18px] rounded-full',
-              'flex items-center justify-center bg-secondary',
+              'flex items-center justify-center bg-[#D7D7D7]',
               {
                 '!bg-green-primary': completed,
                 '!bg-transparent border-[3px] border-green-primary': active,
@@ -86,7 +86,7 @@ export function Step({
           )}
         </div>
         <span
-          className={classNames('text-xl text-secondary px-2', {
+          className={classNames('text-secondary px-2', {
             '!text-green-primary': active,
             '!text-white': completed,
             'font-bold': active || completed,
@@ -102,7 +102,7 @@ export function Step({
             "after:inline-block after:content-[''] after:h-[2px] after:w-full",
             {
               'after:bg-green-primary': completed,
-              'after:bg-secondary': !completed,
+              'after:bg-[#D7D7D7]': !completed,
               'ml-[17px]': active,
               'ml-[9px]': !active,
             }
