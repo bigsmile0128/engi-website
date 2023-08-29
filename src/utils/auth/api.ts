@@ -122,19 +122,13 @@ export const useLoginUser = () => {
 
       return {
         walletId: address,
-        accessToken: response?.data?.data?.auth?.login?.accessToken,
         display,
         source,
       };
     },
     {
       onSuccess(user, { address, display, source }) {
-        emitLoginAnalyticsEvent(
-          user?.accessToken ?? '',
-          address,
-          display,
-          source
-        );
+        emitLoginAnalyticsEvent(address, display, source);
       },
       onError(error, { address, display, source }) {
         emitLoginErrorAnalyticsEvent(error, address, display, source);

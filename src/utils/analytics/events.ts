@@ -33,14 +33,13 @@ export const emitRegisterWalletErrorAnalyticsEvent = (
 };
 
 export const emitLoginAnalyticsEvent = (
-  accessToken: string,
   address: string,
   display: string,
   source: string
 ) => {
   if (typeof window === undefined) return;
 
-  window?.gtag?.('event', 'login', { accessToken, address, display, source });
+  window?.gtag?.('event', 'login', { address, display, source });
 };
 
 export const emitLoginErrorAnalyticsEvent = (

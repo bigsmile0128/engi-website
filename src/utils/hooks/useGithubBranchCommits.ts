@@ -1,14 +1,12 @@
 import { gql } from 'graphql-request';
 import { useQuery } from 'react-query';
 import { Commit } from '~/types';
-import { useUser } from '../contexts/userContext';
 import useAxios from './useAxios';
 
 export default function useGithubBranchCommits(repositoryFullName, branch) {
   const axios = useAxios();
-  const { user } = useUser();
   return useQuery<Commit[]>(
-    ['githubBranchCommits', user?.accessToken, repositoryFullName, branch],
+    ['githubBranchCommits', repositoryFullName, branch],
     async () => {
       if (!repositoryFullName || !branch) {
         return [];
