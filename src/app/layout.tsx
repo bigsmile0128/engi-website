@@ -10,8 +10,8 @@ import '../styles/globals.css';
 import BreakpointInspector from '~/components/BreakpointInspector';
 
 export const metadata: Metadata = {
-  title: 'engi',
-  description: 'engi',
+  title: 'Engi Network',
+  description: 'Affordable Engineering On-Demand',
   colorScheme: 'dark',
 };
 
