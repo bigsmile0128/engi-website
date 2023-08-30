@@ -117,7 +117,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'relative text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/hire/.test(pathname),
+              /^\/(about|contact)/.test(pathname),
           }
         )}
       >
