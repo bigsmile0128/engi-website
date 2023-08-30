@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react';
 
 export type User = {
-  accessToken?: string;
   display: string;
   source: string;
   walletId: string;
