@@ -6,7 +6,7 @@ export interface CheckboxProps {
   className?: string;
   icon?: React.ReactElement;
   id: string;
-  label: string;
+  label?: string;
   labelClassName?: string;
   onChange: (checked: boolean) => void;
 }
@@ -65,12 +65,17 @@ export default function Checkbox({
           </svg>
         )}
       </div>
-      <label
-        htmlFor={id}
-        className={classNames('text-sm text-white select-none', labelClassName)}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className={classNames(
+            'text-sm text-white select-none',
+            labelClassName
+          )}
+        >
+          {label}
+        </label>
+      )}
     </div>
   );
 }
