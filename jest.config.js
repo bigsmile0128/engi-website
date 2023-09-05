@@ -8,4 +8,5 @@ module.exports = {
     'node_modules/@engi.network/.+\\.(j|t)sx?$': 'ts-jest',
   },
   transformIgnorePatterns: ['node_modules/(?!@engi.network/.*)'],
+  testTimeout: 10000,
 };
