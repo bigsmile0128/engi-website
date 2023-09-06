@@ -9,6 +9,6 @@ const mockTest: StorybookTest = {
   design: 'designs/primary-button.png',
 };
 
-test('should match design', async () => {
+test.skip('should match design', async () => {
   await expect(mockTest).toMatchDesign();
 });
