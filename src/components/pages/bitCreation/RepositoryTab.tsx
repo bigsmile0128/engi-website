@@ -66,10 +66,11 @@ export default function RepositoryTab({
 
   return (
     <div className={classNames('', className)}>
+      {/* TODO: re-enable when session auth is fixed */}
       {/* only show login modal if user receives an error other than NOT_ENROLLED */}
-      {isErrorRepositories && !isNotEnrolled && (
+      {/* {isErrorRepositories && !isNotEnrolled && (
         <LoginModal onSuccess={refetchRepositories} />
-      )}
+      )} */}
       <h4 className="font-bold text-xl">Step 1: Select Repository</h4>
       <p className="text-secondary mt-4">
         Select an existing repository URL for creating a new bounty. The
@@ -169,7 +170,7 @@ export default function RepositoryTab({
       />
       <Button
         variant="primary"
-        className="relative mt-8 !px-24 flex items-center justify-center"
+        className="relative mt-8 ml-auto !px-24 flex items-center justify-center"
         disabled={!repo || !branch || !commit || isLoadingAnalysis}
         onClick={() =>
           analyzeMutation.mutate({

@@ -1,10 +1,16 @@
 import classNames from 'classnames';
 import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
 import { COOKBOOK_LINK } from '~/utils/links';
+
+import { ChevronRightIcon } from '@heroicons/react/outline';
+import freelancersSrc from 'public/img/articles/freelancers.jpg';
+import businessSrc from 'public/img/articles/business.jpg';
+import Button from '~/components/global/Button/Button';
 
 type AnimatedNavProps = {
   className?: string;
@@ -117,7 +123,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           'relative text-base font-medium text-gray-300 hover:text-white px-6 py-3',
           {
             'underline underline-offset-8 !text-white decoration-green-primary decoration-2':
-              /^\/hire/.test(pathname),
+              /^\/(about|contact)/.test(pathname),
           }
         )}
       >
@@ -156,7 +162,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                   <motion.p layout="position" className="text-secondary mt-3">
                     Fast payouts, anonymity, diverse challenges, global
                     <br />
-                    opportunites, and the flexibility to work how you want
+                    opportunities, and the flexibility to work how you want
                   </motion.p>
                   <Link
                     href="/bounty"
@@ -226,7 +232,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
             </motion.div>
             <motion.div
               layout
-              className="w-[1px] bg-white/30 opacity-30 mx-12"
+              className="w-[1px] bg-white/30 opacity-30 mx-8"
             />
             {/* right panel */}
             <AnimatePresence mode="wait">
@@ -256,6 +262,75 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
                     ))}
               </motion.div>
             </AnimatePresence>
+            {hoverItem === 'BITS' && (
+              <>
+                <motion.div
+                  layout
+                  className="w-[1px] bg-white/30 opacity-30 mx-8"
+                />
+                <motion.div layout className="flex flex-col shrink-0 w-64">
+                  <motion.div layout className="font-bold text-xl">
+                    Engi for Freelancers
+                  </motion.div>
+                  <motion.div layout className="mt-4">
+                    <Image
+                      src={freelancersSrc}
+                      className="w-48 rounded-2xl"
+                      alt="freelancers"
+                    />
+                  </motion.div>
+                  <motion.div layout className="mt-4 text-secondary">
+                    No applications or interviews. Start coding and earning
+                    today.
+                  </motion.div>
+                  <Link href="/freelancer">
+                    <Button
+                      variant="link"
+                      className="mt-2 flex items-center gap-2 !text-white hover:!text-green-primary"
+                    >
+                      <span className="underline whitespace-nowrap">
+                        Read now
+                      </span>
+                      <ChevronRightIcon className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </motion.div>
+              </>
+            )}
+            {hoverItem === 'CREATE' && (
+              <>
+                <motion.div
+                  layout
+                  className="w-[1px] bg-white/30 opacity-30 mx-8"
+                />
+                <motion.div layout className="flex flex-col shrink-0 w-64">
+                  <motion.div layout className="font-bold text-xl">
+                    Engi for Business
+                  </motion.div>
+                  <motion.div layout className="mt-4">
+                    <Image
+                      src={businessSrc}
+                      className="w-48 rounded-2xl"
+                      alt="business"
+                    />
+                  </motion.div>
+                  <motion.div layout className="mt-4 text-secondary">
+                    Engage worldwide talent and receive quality code instantly.
+                  </motion.div>
+                  <Link href="/business">
+                    <Button
+                      variant="link"
+                      className="mt-2 flex items-center gap-2 !text-white hover:!text-green-primary"
+                    >
+                      <span className="underline whitespace-nowrap">
+                        Read now
+                      </span>
+                      <ChevronRightIcon className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </motion.div>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -277,7 +352,7 @@ function MenuLink({
       <motion.a
         layout
         className={classNames(
-          'flex items-center justify-between !w-56 hover:text-green-primary',
+          'flex items-center gap-1 justify-between !w-56 hover:text-green-primary',
           className
         )}
         target={href.startsWith('/') ? undefined : '_blank'}

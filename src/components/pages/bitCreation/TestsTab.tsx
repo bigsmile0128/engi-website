@@ -1,68 +1,75 @@
-import React, { useState } from 'react';
+'use client';
+
 import classNames from 'classnames';
+import { useMemo } from 'react';
+import TestTable from '~/components/TestTable';
 import Button from '~/components/global/Button/Button';
-import Switch from '~/components/global/Switch/Switch';
-import Checkbox from '~/components/global/Checkbox/Checkbox';
+import { TestResult } from '~/types';
 
 type TestsTabProps = {
   className?: string;
-  goBack: () => void;
-  onChange: (selectedTests: any[]) => void;
 };
 
-export default function TestsTab({
-  className,
-  onChange,
-  goBack,
-}: TestsTabProps) {
-  const [isShowPreview, setIsShowPreview] = useState(false);
-  const [selectedTests, setSelectedTests] = useState<Set<string>>(new Set());
+export default function TestsTab({ className }: TestsTabProps) {
+  const mockData = useMemo(
+    () => [
+      {
+        id: 'Placeholder test 1',
+        result: TestResult.FAILED,
+        required: true,
+        failedResultMessage:
+          'System.NotImplementedException : Not fully implemented.',
+      },
+      {
+        id: 'Placeholder test 2',
+        result: TestResult.FAILED,
+        required: true,
+        failedResultMessage:
+          'System.NotImplementedException : Not fully implemented.',
+      },
+      {
+        id: 'Placeholder test 3',
+        result: TestResult.FAILED,
+        required: true,
+        failedResultMessage:
+          'System.NotImplementedException : Not fully implemented.',
+      },
+      {
+        id: 'Placeholder test 4',
+        result: TestResult.PASSED,
+        required: true,
+        failedResultMessage:
+          'System.NotImplementedException : Not fully implemented.',
+      },
+    ],
+    []
+  );
+
+  const defaultRowSelection = useMemo(() => {
+    const rowSelection = {};
+
+    mockData.forEach((test, i) => {
+      rowSelection[i] = test.result === TestResult.FAILED;
+    });
+
+    return rowSelection;
+  }, [mockData]);
 
   return (
     <div className={classNames('', className)}>
-      <h4 className="font-bold text-xl">
-        Step 2: Select from the following stories and components that should be
-        editable.
-      </h4>
-      <Switch
-        className="mt-4"
-        checked={isShowPreview}
-        onChange={setIsShowPreview}
-        label="Show all previews"
-      />
-      <div className="mt-8 flex flex-col gap-y-4">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-x-4 px-4 py-2 bg-black/[.14]"
-          >
-            <Checkbox
-              checked={selectedTests.has(i.toString())}
-              onChange={() => {
-                const newSelectedTests = new Set(selectedTests);
-                if (selectedTests.has(i.toString())) {
-                  newSelectedTests.delete(i.toString());
-                } else {
-                  newSelectedTests.add(i.toString());
-                }
-                setSelectedTests(newSelectedTests);
-              }}
-              id={i.toString()}
-              label={`Component ${i + 1}`}
-              labelClassName="font-medium text-base ml-2"
-            />
-          </div>
-        ))}
+      <h1 className="font-grifter text-3xl">Analysis Results</h1>
+      <div className="mt-4 text-xl text-secondary">
+        3 failing tests will be auto selected. These tests must be passing in
+        order to complete the bounty.
       </div>
+      <TestTable
+        className="mt-12 w-full"
+        data={mockData}
+        defaultRowSelection={defaultRowSelection}
+      />
       <div className="flex justify-end gap-x-4 mt-8">
-        <Button className="" onClick={goBack}>
-          Back
-        </Button>
-        <Button
-          className="block !px-24"
-          variant="primary"
-          onClick={() => onChange(Array.from(selectedTests))}
-        >
+        <Button className="">Back</Button>
+        <Button className="block !px-24" variant="primary">
           Continue
         </Button>
       </div>

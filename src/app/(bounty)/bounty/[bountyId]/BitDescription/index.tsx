@@ -12,6 +12,7 @@ import CopyLink from '~/components/CopyLink';
 import Markdown from '~/components/Markdown';
 import Statistic from '~/components/Statistic';
 import TechnologyTag from '~/components/TechnologyTag';
+import TestTable from '~/components/TestTable';
 import TextSkeleton from '~/components/TextSkeleton';
 import Button from '~/components/global/Button/Button';
 import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
@@ -21,9 +22,8 @@ import BitCreator from '../BitCreator';
 import GetStarted from '../GetStarted';
 import RepositoryInfo from '../RepositoryInfo';
 import ShareModal from '../ShareModal';
-import Payout from './Payout';
-import BitTests from './BitTests';
 import Effort from './Effort';
+import Payout from './Payout';
 
 type BitDescriptionProps = {
   className?: string;
@@ -78,8 +78,7 @@ export default function BitDescription({
         {`Posted ${dayjs(data?.createdOn?.dateTime).fromNow()}`}
       </p>
       <div className="my-16 w-full border-t border-white/30" />
-      <h2 className="font-grifter text-xl inline-block">Tests</h2>
-      <BitTests className="w-full" data={data?.tests ?? []} />
+      <TestTable className="w-full" data={data?.tests ?? []} />
       <div className="my-16 w-full border-t border-white/30" />
       <Payout className="" isLoading={isLoading} data={data} />
       <div className="my-16 w-full border-t border-white/30" />

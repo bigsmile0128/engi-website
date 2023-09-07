@@ -1,3 +1,5 @@
 server.js
 svgr.config.js
 *.jpg
+engi.Dockerfile
+docker-compose.yml
