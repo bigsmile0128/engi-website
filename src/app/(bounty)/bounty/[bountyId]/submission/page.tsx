@@ -1,7 +1,7 @@
 import classNames from 'classnames';
+import { getSubmissions } from '../api';
 import SubmissionFilters from './SubmissionFilters';
 import SubmissionTable from './SubmissionTable';
-import { getSubmissions } from '../api';
 
 export default async function BountySubmissions({
   params,

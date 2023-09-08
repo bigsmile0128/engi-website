@@ -37,7 +37,7 @@ export default function TestTable({
   className,
   data,
   defaultExpanded,
-  defaultRowSelection,
+  defaultRowSelection = {},
 }: TestTableProps) {
   const columnHelper = createColumnHelper<Test>();
   const columns: ColumnDef<Test>[] = useMemo(
@@ -71,7 +71,7 @@ export default function TestTable({
                 row.getIsExpanded() ? 'rotate-90' : ''
               )}
             >
-              <ChevronRightIcon className="h-5 w-auto" />
+              <ChevronRightIcon className="-mb-1 h-5 w-auto" />
             </button>
           ) : null;
         },
@@ -133,8 +133,8 @@ export default function TestTable({
               className={classNames(
                 'bg-black/[.14] children:py-4 hover:cursor-pointer',
                 {
-                  'border-2 border-green-primary': row.getIsSelected(),
-                  'border-b-0': row.getIsSelected() && row.getIsExpanded(),
+                  'border-2 border-green-primary': row?.getIsSelected(),
+                  'border-b-0': row?.getIsSelected() && row.getIsExpanded(),
                 }
               )}
               onClick={row.getToggleExpandedHandler()}
@@ -149,7 +149,7 @@ export default function TestTable({
               <tr
                 className={classNames({
                   'border-2 border-green-primary border-t-0':
-                    row.getIsSelected(),
+                    row?.getIsSelected(),
                 })}
               >
                 {/* 2nd row is a custom 1 cell row */}
@@ -163,26 +163,34 @@ export default function TestTable({
                     leaveTo="transform opacity-0 max-h-0"
                   >
                     <div>
-                      {row.original.failedResultMessage && (
+                      <div
+                        className="flex"
+                        style={{
+                          background:
+                            'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
+                        }}
+                      >
+                        <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
                         <div
-                          className="flex"
-                          style={{
-                            background:
-                              'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
-                          }}
+                          className={classNames(
+                            'block text-sm font-medium px-8 py-6',
+                            robotoMono.className
+                          )}
                         >
-                          <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
-                          <div
-                            className={classNames(
-                              'block text-sm font-medium px-8 py-6',
-                              robotoMono.className
-                            )}
-                          >
-                            {row.original.failedResultMessage}
-                          </div>
+                          {row.getValue('result') === 'PASSED'
+                            ? 'Passed.'
+                            : row.getValue('failedResultMessage') ??
+                              'No message.'}
                         </div>
-                      )}
-                      <div className="flex h-[5px] bg-orange-primary"></div>
+                      </div>
+                      <div
+                        className={classNames(
+                          'flex h-[5px]',
+                          row.getValue('result') === 'PASSED'
+                            ? 'bg-green-primary'
+                            : 'bg-orange-primary'
+                        )}
+                      ></div>
                     </div>
                   </Transition>
                 </td>

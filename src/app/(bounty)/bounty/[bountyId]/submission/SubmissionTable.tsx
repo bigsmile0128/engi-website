@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import {
@@ -16,6 +17,7 @@ import {
   RiCloudLine,
 } from 'react-icons/ri';
 import { Submission, SubmissionStatus } from '~/types';
+import '~/utils/datetime/dayjs-extend';
 
 type SubmissionTableProps = {
   bountyId: string;
@@ -34,12 +36,18 @@ export default function SubmissionTable({
 
   const columns: ColumnDef<Submission>[] = useMemo(
     () => [
+      columnHelper.accessor('attemptCreated', {
+        header: 'Date',
+        cell: ({ getValue }) => {
+          return dayjs(getValue()).fromNow();
+        },
+      }),
       columnHelper.accessor('userInfo.address', {
         header: 'Submission Author',
         cell: (props) => {
           const submission = props.row.original;
           return (
-            <p className="font-bold truncate max-w-[180px] tablet:max-w-[240px]">
+            <p className="font-bold truncate max-w-[180px] tablet:max-w-[240px] desktop:max-w-[140px] xl:max-w-[300px]">
               {submission.userInfo.display ?? submission.userInfo.address}
             </p>
           );
@@ -63,6 +71,7 @@ export default function SubmissionTable({
               return null;
           }
         },
+        size: 100,
       }),
     ],
     [columnHelper]
@@ -91,6 +100,10 @@ export default function SubmissionTable({
                   'pb-2 border-b border-white/30',
                   'px-4'
                 )}
+                style={{
+                  width:
+                    header.getSize() !== 150 ? header.getSize() : undefined,
+                }}
               >
                 {header.isPlaceholder
                   ? null

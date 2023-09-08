@@ -1,5 +1,5 @@
 import { gql } from 'graphql-request';
-import { JobSubmissionsDetailsPagedQueryArguments } from '~/types';
+import { JobSubmissionsDetailsPagedQueryArguments, Submission } from '~/types';
 
 export async function getBountyDetails(bitId) {
   const response = await fetch(
@@ -111,7 +111,7 @@ export async function getBountyDetails(bitId) {
   return bounty;
 }
 
-export async function getSubmissionDetails(submissionId) {
+export async function getSubmissionDetails(submissionId): Promise<Submission> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
@@ -134,11 +134,10 @@ export async function getSubmissionDetails(submissionId) {
               }
               attempt {
                 status
-                results {
-                  identifier
-                  stdout
-                  stderr
-                  returnCode
+                tests {
+                  id
+                  result
+                  failedResultMessage
                 }
               }
               solve {
@@ -176,6 +175,7 @@ export async function getSubmissions(
         query BountySubmissions($skip: Int!, $limit: Int!) {
           submissions(query: { skip: $skip, limit: $limit, jobId: ${query.jobId} }) {
             items {
+              attemptCreated
               status
               userInfo {
                 address
@@ -216,5 +216,8 @@ export async function getSubmissions(
   );
 
   const json = await response.json();
+  if (json.errors?.length > 0) {
+    throw new Error(JSON.stringify(json.errors[0], undefined, '  '));
+  }
   return json.data.submissions;
 }

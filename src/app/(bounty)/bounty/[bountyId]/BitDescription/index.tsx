@@ -78,7 +78,8 @@ export default function BitDescription({
         {`Posted ${dayjs(data?.createdOn?.dateTime).fromNow()}`}
       </p>
       <div className="my-16 w-full border-t border-white/30" />
-      <TestTable className="w-full" data={data?.tests ?? []} />
+      <h2 className="font-grifter text-xl inline-block">Tests</h2>
+      <TestTable className="mt-8 w-full" data={data?.tests ?? []} />
       <div className="my-16 w-full border-t border-white/30" />
       <Payout className="" isLoading={isLoading} data={data} />
       <div className="my-16 w-full border-t border-white/30" />

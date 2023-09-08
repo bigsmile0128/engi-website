@@ -7,18 +7,16 @@ import {
   RiEarthFill,
   RiGithubFill,
   RiGroupFill,
-  RiTeamFill,
 } from 'react-icons/ri';
 import {
-  SiCplusplus,
   SiCsharp,
   SiEthereum,
   SiFigma,
   SiPolkadot,
+  SiPython,
+  SiReact,
   SiRust,
   SiTypescript,
-  SiReact,
-  SiPython,
 } from 'react-icons/si';
 
 type IntegrationsListProps = {
@@ -110,7 +108,6 @@ const INTEGRATIONS = [
 
 export default function IntegrationsList({ className }: IntegrationsListProps) {
   const [category, setCategory] = useState<Category | null>(null);
-  console.log(category);
   return (
     <div className={classNames('', className)}>
       <div
