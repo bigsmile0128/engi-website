@@ -102,7 +102,9 @@ export const useLoginUser = () => {
           mutation LoginUser($loginArgs: LoginArguments!) {
             auth {
               login(args: $loginArgs) {
-                accessToken
+                user {
+                  email
+                }
               }
             }
           }
@@ -169,3 +171,25 @@ export const useConfirmEmail = () =>
       return response?.data?.data?.auth?.confirmEmail;
     }
   );
+
+export const useLogOut = () =>
+  useMutation<any, AxiosError, any>(async () => {
+    const response = await axios.post('/api/graphql', {
+      query: gql`
+        mutation LogOut {
+          auth {
+            logout {
+              result
+            }
+          }
+        }
+      `,
+      operationName: 'LogOut',
+    });
+
+    if (response?.data?.errors?.length) {
+      throw new Error(response?.data?.errors?.[0]?.message);
+    }
+
+    return null;
+  });

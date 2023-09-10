@@ -194,7 +194,14 @@ export enum SubmissionStatus {
   SOLVED_ON_CHAIN = 'SOLVED_ON_CHAIN',
 }
 
+export type Attempt = {
+  status: string;
+  tests: Test[];
+};
+
 export type Submission = {
+  attempt: Attempt;
+  attemptCreated: string;
   attemptId: number;
   status: SubmissionStatus;
   userInfo: UserInfo;

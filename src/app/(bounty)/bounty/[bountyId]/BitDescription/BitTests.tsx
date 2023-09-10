@@ -1,11 +1,8 @@
 'use client';
 
 import { Transition } from '@headlessui/react';
-import { ChevronRightIcon } from '@heroicons/react/outline';
 import {
   ColumnDef,
-  ExpandedState,
-  RowSelectionState,
   createColumnHelper,
   flexRender,
   getCoreRowModel,
@@ -26,57 +23,30 @@ const robotoMono = Roboto_Mono({
   subsets: ['latin'],
 });
 
-type TestTableProps = {
+type BitTestsProps = {
   className?: string;
   data: Test[];
-  defaultExpanded?: ExpandedState;
-  defaultRowSelection?: RowSelectionState;
+  defaultOpen?: boolean;
 };
 
-export default function TestTable({
-  className,
-  data,
-  defaultExpanded,
-  defaultRowSelection = {},
-}: TestTableProps) {
+export default function BitTests({ className, data }: BitTestsProps) {
   const columnHelper = createColumnHelper<Test>();
   const columns: ColumnDef<Test>[] = useMemo(
     () => [
       columnHelper.accessor('id', {
         header: 'Name',
-        cell: ({ getValue }) => (
-          <span className="font-medium">{getValue()}</span>
-        ),
       }),
       columnHelper.accessor('result', {
         header: 'Status',
         cell: ({ getValue }) =>
           getValue() === 'PASSED' ? (
-            <RiCheckboxCircleLine className="ml-2.5 h-6 w-auto text-green-primary" />
+            <RiCheckboxCircleLine className="h-6 w-auto text-green-primary" />
           ) : getValue() === 'FAILED' ? (
-            <RiCloseCircleLine className="ml-2.5 h-6 w-auto text-red-primary" />
+            <RiCloseCircleLine className="h-6 w-auto text-red-primary" />
           ) : (
-            <RiPauseCircleLine className="ml-2.5 h-6 w-auto text-secondary" />
+            <RiPauseCircleLine className="h-6 w-auto text-secondary" />
           ),
-        size: 100,
       }),
-      {
-        id: 'expander',
-        header: () => null,
-        cell: ({ row }) => {
-          return row.getCanExpand() ? (
-            <button
-              className={classNames(
-                'cursor-pointer',
-                row.getIsExpanded() ? 'rotate-90' : ''
-              )}
-            >
-              <ChevronRightIcon className="-mb-1 h-5 w-auto" />
-            </button>
-          ) : null;
-        },
-        size: 60,
-      },
     ],
     [columnHelper]
   );
@@ -84,18 +54,16 @@ export default function TestTable({
   const table = useReactTable({
     data,
     columns,
-    enableRowSelection: true,
     getRowCanExpand: () => true,
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
     initialState: {
-      expanded: defaultExpanded,
-      rowSelection: defaultRowSelection,
+      expanded: true,
     },
   });
 
   return (
-    <table className={classNames('', className)}>
+    <table className={classNames('mt-8 w-full', className)}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>
@@ -108,10 +76,6 @@ export default function TestTable({
                   'px-4'
                 )}
                 colSpan={header.colSpan}
-                style={{
-                  width:
-                    header.getSize() !== 150 ? header.getSize() : undefined,
-                }}
               >
                 {header.isPlaceholder
                   ? null
@@ -130,13 +94,7 @@ export default function TestTable({
         {table.getRowModel().rows.map((row) => (
           <Fragment key={row.id}>
             <tr
-              className={classNames(
-                'bg-black/[.14] children:py-4 hover:cursor-pointer',
-                {
-                  'border-2 border-green-primary': row?.getIsSelected(),
-                  'border-b-0': row?.getIsSelected() && row.getIsExpanded(),
-                }
-              )}
+              className="bg-black/[.14] children:py-4 hover:cursor-pointer"
               onClick={row.getToggleExpandedHandler()}
             >
               {row.getVisibleCells().map((cell) => (
@@ -146,12 +104,7 @@ export default function TestTable({
               ))}
             </tr>
             {row.getIsExpanded() && (
-              <tr
-                className={classNames({
-                  'border-2 border-green-primary border-t-0':
-                    row?.getIsSelected(),
-                })}
-              >
+              <tr>
                 {/* 2nd row is a custom 1 cell row */}
                 <td colSpan={row.getVisibleCells().length}>
                   <Transition
@@ -163,34 +116,26 @@ export default function TestTable({
                     leaveTo="transform opacity-0 max-h-0"
                   >
                     <div>
-                      <div
-                        className="flex"
-                        style={{
-                          background:
-                            'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
-                        }}
-                      >
-                        <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
+                      {row.original.failedResultMessage && (
                         <div
-                          className={classNames(
-                            'block text-sm font-medium px-8 py-6',
-                            robotoMono.className
-                          )}
+                          className="flex"
+                          style={{
+                            background:
+                              'linear-gradient(131deg, rgba(255, 255, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 70%, rgba(101, 254, 183, 0.1) 100%)',
+                          }}
                         >
-                          {row.getValue('result') === 'PASSED'
-                            ? 'Passed.'
-                            : row.getValue('failedResultMessage') ??
-                              'No message.'}
+                          <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
+                          <div
+                            className={classNames(
+                              'block text-sm font-medium px-8 py-6',
+                              robotoMono.className
+                            )}
+                          >
+                            {row.original.failedResultMessage}
+                          </div>
                         </div>
-                      </div>
-                      <div
-                        className={classNames(
-                          'flex h-[5px]',
-                          row.getValue('result') === 'PASSED'
-                            ? 'bg-green-primary'
-                            : 'bg-orange-primary'
-                        )}
-                      ></div>
+                      )}
+                      <div className="flex h-[5px] bg-orange-primary"></div>
                     </div>
                   </Transition>
                 </td>

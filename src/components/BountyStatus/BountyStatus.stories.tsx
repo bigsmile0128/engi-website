@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { BitStatus, SubmissionStatus } from '~/types';
+import { BitStatus, SubmissionStatus, TestResult } from '~/types';
 import BountyStatus from '.';
 
 const meta: Meta = {
@@ -46,6 +46,24 @@ export const FreelancerAnalyzing: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
+      attemptCreated: '',
+      attempt: {
+        status: 'PASSED',
+        tests: [
+          {
+            id: 'test/test_demo.py::test_fail',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+          {
+            id: 'test/test_demo.py::test_ok',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+        ],
+      },
       attemptId: 123,
       userInfo: {
         address: '123',
@@ -68,6 +86,24 @@ export const FreelancerSubmission: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
+      attemptCreated: '',
+      attempt: {
+        status: 'PASSED',
+        tests: [
+          {
+            id: 'test/test_demo.py::test_fail',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+          {
+            id: 'test/test_demo.py::test_ok',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+        ],
+      },
       attemptId: 123,
       userInfo: {
         address: '123',
@@ -90,6 +126,24 @@ export const FreelancerCompleted: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
+      attemptCreated: '',
+      attempt: {
+        status: 'PASSED',
+        tests: [
+          {
+            id: 'test/test_demo.py::test_fail',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+          {
+            id: 'test/test_demo.py::test_ok',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+        ],
+      },
       attemptId: 123,
       userInfo: {
         address: '123',
@@ -121,6 +175,24 @@ export const FreelancerCompletedOther: Story = {
     created: '2023-05-24T19:51:12Z',
     creator: 'CREATOR_ID',
     currentUserSubmission: {
+      attemptCreated: '',
+      attempt: {
+        status: 'PASSED',
+        tests: [
+          {
+            id: 'test/test_demo.py::test_fail',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+          {
+            id: 'test/test_demo.py::test_ok',
+            result: TestResult.PASSED,
+            failedResultMessage: '',
+            required: false,
+          },
+        ],
+      },
       attemptId: 123,
       userInfo: {
         address: '123',

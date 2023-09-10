@@ -1,3 +1,5 @@
+'use client';
+
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
@@ -9,6 +11,7 @@ import React from 'react';
 import EngiAmount from '~/components/EngiAmount';
 import MenuItemLink from '~/components/MenuItemLink';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
+import { useLogOut } from '~/utils/auth/api';
 import { useBalance } from '~/utils/balances/userBalance';
 import { User } from '~/utils/contexts/userContext';
 import useEngiHealth from '~/utils/hooks/useEngiHealth';
@@ -32,6 +35,7 @@ export default function UserInfo({
     isFetched: hasLoadedBalanceAtLeastOnce,
   } = useBalance(user?.walletId ?? '');
   const { isLoading: isLoadingHealth, data: health } = useEngiHealth();
+  const { mutate: logOut } = useLogOut();
   const { push: pushRoute } = useRouter();
 
   return (
@@ -122,6 +126,7 @@ export default function UserInfo({
                   className="hover:bg-secondary text-left pt-3 pl-8"
                   onClick={() => {
                     setUser(null);
+                    logOut(null);
                     pushRoute('/login');
                   }}
                 >
