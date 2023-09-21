@@ -15,7 +15,7 @@ export enum TestResult {
 export type Test = {
   failedResultMessage?: string;
   id: string;
-  required: boolean;
+  required?: boolean;
   result: TestResult;
 };
 
@@ -238,3 +238,31 @@ export type File = {
 };
 
 export type DirectoryTree = Folder | File;
+
+export type RepositoryAnalysis = {
+  branch: string;
+  commit: string;
+  createdBy: string;
+  createdOn: string;
+  directoryEntries?: string;
+  executionResult?: Record<string, any>;
+  id: string;
+  processedOn?: string;
+  repositoryUrl: string;
+  status: string;
+  technologies?: string[];
+  tests?: Test[];
+};
+
+export type Draft = {
+  analysis?: RepositoryAnalysis;
+  branch: string;
+  commit: string;
+  funding?: number;
+  id: string;
+  isAddable?: string;
+  isDeletable?: string;
+  isEditable?: string;
+  name?: string;
+  tests?: any[];
+};

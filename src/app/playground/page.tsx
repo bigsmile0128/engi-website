@@ -1,5 +1,13 @@
 'use client';
 
+import SignInWithLocalWallets from '~/components/pages/signup/SignInWithLocalWallets';
+
 export default function Playground() {
-  return <div className="max-w-page my-24"></div>;
+  // const signatureMutation = useSignature();
+
+  return (
+    <div className="max-w-page my-24">
+      <SignInWithLocalWallets className="w-full" />
+    </div>
+  );
 }

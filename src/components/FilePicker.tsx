@@ -15,7 +15,7 @@ type FilePickerProps = {
   pathPermissions: Record<string, string[]>;
 };
 
-enum Permission {
+export enum Permission {
   ADDABLE = 'ADDABLE',
   DELETABLE = 'DELETABLE',
   EDITABLE = 'EDITABLE',
@@ -336,7 +336,7 @@ function File({
         labelClassName="!text-base !text-secondary"
       />
       <span className="ml-auto text-xs text-secondary w-32">
-        {mime.lookup(path)}
+        {getFileType(extension)}
       </span>
       <FileOptions
         className=""
@@ -480,4 +480,13 @@ function updatePermissions({
   });
 
   return newPathPermissions;
+}
+
+function getFileType(extension) {
+  const overrides = {
+    '.ts': 'typescript',
+    '.tsx': 'typescript',
+  };
+
+  return overrides[extension] ?? mime.lookup(extension);
 }

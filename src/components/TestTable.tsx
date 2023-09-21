@@ -173,14 +173,13 @@ export default function TestTable({
                         <div className="basis-10 shrink-0 bg-[#EBEBEB]/[.14] opacity-80 backdrop-blur-[2px]" />
                         <div
                           className={classNames(
-                            'block text-sm font-medium px-8 py-6',
+                            'block text-sm font-medium px-8 py-6 whitespace-pre-wrap',
                             robotoMono.className
                           )}
                         >
                           {row.getValue('result') === 'PASSED'
                             ? 'Passed.'
-                            : row.getValue('failedResultMessage') ??
-                              'No message.'}
+                            : row.original.failedResultMessage ?? 'No message.'}
                         </div>
                       </div>
                       <div
