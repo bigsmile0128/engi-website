@@ -3,11 +3,11 @@ import classNames from 'classnames';
 
 type StepsProps = {
   className?: string;
-  current: number;
+  current: string;
   // current step
-  onChange: (current: number) => void;
+  onChange: (value: string) => void;
   stepClassName?: string;
-  steps: { title: string }[];
+  steps: { disabled?: boolean; title: string; value: string }[];
 };
 
 export default function Steps({
@@ -17,19 +17,21 @@ export default function Steps({
   steps,
   stepClassName,
 }: StepsProps) {
+  const currentIndex = steps.findIndex((step) => step.value === current);
   return (
     <div
       className={classNames('flex flex-wrap gap-4 justify-center', className)}
     >
-      {steps.map((step, i) => {
+      {steps.map(({ title, value, disabled }, i) => {
         return (
           <Step
             className={stepClassName}
-            key={i}
-            active={i === current}
-            completed={current > i}
-            title={step.title}
-            onClick={() => onChange(i)}
+            key={value}
+            active={value === current}
+            completed={currentIndex > i}
+            title={title}
+            onClick={() => onChange(value)}
+            disabled={disabled}
             showTail={i !== steps.length - 1}
           />
         );
@@ -42,6 +44,7 @@ type StepProps = {
   active?: boolean;
   className?: string;
   completed?: boolean;
+  disabled?: boolean;
   onClick?: () => void;
   showTail?: boolean;
   title: string;
@@ -51,6 +54,7 @@ export function Step({
   className,
   active,
   completed,
+  disabled,
   title,
   onClick,
   showTail,
@@ -61,9 +65,15 @@ export function Step({
         className={classNames(
           'relative flex flex-col items-center gap-y-8 w-[100px] pt-[12px]',
           'outline-none focus-visible:ring-1 ring-green-primary',
+          disabled ? 'cursor-default' : '',
           className
         )}
-        onClick={onClick}
+        onClick={() => {
+          if (!disabled) {
+            onClick?.();
+          }
+        }}
+        disabled={disabled}
       >
         <div className="relative h-[18px] w-[18px]">
           <span

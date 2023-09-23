@@ -30,6 +30,6 @@ export const useBalance = (id: string) =>
     },
     {
       // TODO: this updates users balance every 30 seconds. move to socket
-      refetchInterval: 30000,
+      refetchInterval: process.env.NODE_ENV === 'development' ? false : 30000,
     }
   );

@@ -1,6 +1,7 @@
 import { stringToHex } from '@polkadot/util';
 import { useMutation } from 'react-query';
 import { useUser } from '../contexts/userContext';
+import pMinDelay from 'p-min-delay';
 
 export type Signature = {
   signedOn: string;
@@ -20,11 +21,16 @@ export default function useSignature() {
     async (args: SignatureArgs) => {
       const source = args?.source || user?.source;
       const walletId = args?.walletId || user?.walletId;
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      const { web3FromSource } = require('@polkadot/extension-dapp');
+      const {
+        web3FromSource,
+        web3Enable,
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+      } = require('@polkadot/extension-dapp');
       if (!source || !walletId) {
         throw new Error('User must first be logged in.');
       }
+
+      await pMinDelay(web3Enable('Engi'), 1000);
       const injector = await web3FromSource(source);
 
       const signRaw = injector?.signer?.signRaw;
