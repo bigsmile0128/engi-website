@@ -30,12 +30,6 @@ const draftFragment = gql`
         result
         failedResultMessage
       }
-      executionResult {
-        identifier
-        stdout
-        stderr
-        returnCode
-      }
       processedOn
     }
   }
