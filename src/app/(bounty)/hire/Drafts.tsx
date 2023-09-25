@@ -53,7 +53,7 @@ export function Drafts({ drafts }: DraftsProps) {
               {/* <span className="mt-4 text-secondary">No description.</span> */}
               <Link
                 className="mt-8 self-start"
-                href={`/hire/${encodeURIComponent(draft.id)}`}
+                href={`/hire/${encodeURIComponent(draft.id)}/repository`}
               >
                 <Button variant="primary">Continue</Button>
               </Link>

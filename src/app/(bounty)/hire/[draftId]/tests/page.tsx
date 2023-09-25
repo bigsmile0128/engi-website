@@ -14,11 +14,16 @@ export default async function DraftTests({
   const draft = await getDraftDetails(draftId);
 
   const analysis = draft.analysis;
+  const tests = analysis?.tests ?? [];
 
   return (
-    <div className="max-w-page md:!max-w-xl">
+    <div className="max-w-page md:!max-w-xl w-full">
       <h1 className="font-grifter text-3xl">Analysis Results</h1>
-      <TestTable className="mt-8 w-full" data={analysis?.tests ?? []} />
+      {tests.length > 0 ? (
+        <TestTable className="mt-8 w-full" data={tests} />
+      ) : (
+        <p className="mt-4 text-xl text-secondary">No tests were detected.</p>
+      )}
       <div className="flex justify-end gap-x-4 mt-8">
         <Link href={`/hire/${encodeURIComponent(draftId)}/repository`}>
           <Button className="">Back</Button>

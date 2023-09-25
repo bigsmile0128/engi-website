@@ -1,14 +1,12 @@
 import classNames from 'classnames';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import { RiRocket2Fill } from 'react-icons/ri';
+import JsonDisplay from '~/components/JsonDisplay';
 import Button from '~/components/global/Button/Button';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
-import { getDrafts } from './[draftId]/api';
-import JsonDisplay from '~/components/JsonDisplay';
-import { SiGithub } from 'react-icons/si';
-import { Drafts } from './Drafts';
 import { Draft } from '~/types';
+import { Drafts } from './Drafts';
+import { getDrafts } from './[draftId]/api';
 
 export default async function HirePage() {
   let drafts: Draft[];
