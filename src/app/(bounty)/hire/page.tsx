@@ -7,9 +7,19 @@ import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { getDrafts } from './[draftId]/api';
 import JsonDisplay from '~/components/JsonDisplay';
 import { SiGithub } from 'react-icons/si';
+import { Drafts } from './Drafts';
+import { Draft } from '~/types';
 
 export default async function HirePage() {
-  const drafts = await getDrafts();
+  let drafts: Draft[];
+  let errorMessage: string | undefined;
+
+  try {
+    drafts = await getDrafts();
+  } catch (e) {
+    errorMessage = e.message;
+    drafts = [];
+  }
 
   return (
     <div className="relative mt-12 mb-24">
@@ -44,8 +54,13 @@ export default async function HirePage() {
             </Button>
           </Link>
         </div>
-        <div className="my-8 w-full border-t border-white/30" />
+        <div className="my-12 w-full border-t border-white/30" />
         <span className="font-grifter text-4xl mb-4">Drafts</span>
+        {errorMessage ? (
+          <JsonDisplay value={errorMessage} />
+        ) : (
+          <Drafts drafts={drafts} />
+        )}
         <div className="flex flex-col gap-4">
           {drafts.map((draft) => {
             const { analysis } = draft;
