@@ -121,12 +121,16 @@ export default function DraftDetailsContent({
       />
       <div className="p-8 border border-white/30 mt-12">
         <div className="block font-bold text-xl">Files</div>
-        <FilePicker
-          className="mt-8"
-          directoryTrees={directoryTrees}
-          pathPermissions={pathPermissions}
-          onChangePermissions={setPathPermissions}
-        />
+        {directoryTrees.length > 0 ? (
+          <FilePicker
+            className="mt-8"
+            directoryTrees={directoryTrees}
+            pathPermissions={pathPermissions}
+            onChangePermissions={setPathPermissions}
+          />
+        ) : (
+          <p className="mt-4 text-secondary">Failed to analyze files.</p>
+        )}
       </div>
       <div className="flex justify-end gap-x-4 mt-8">
         <Link href={`/hire/${encodeURIComponent(draft.id)}/tests`}>

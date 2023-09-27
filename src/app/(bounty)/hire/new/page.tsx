@@ -102,7 +102,11 @@ export default function NewDraft() {
           <label className="font-bold text-xl">Repository</label>
           <a
             className="text-xl text-green-primary hover:text-green-primary/80"
-            href="https://github.com/apps/engi-test/installations/new?state=uuid"
+            href={`https://github.com/apps/${
+              /localhost/.test(process.env.NEXT_PUBLIC_API_URL ?? '')
+                ? 'engi-test'
+                : 'engi-github-app'
+            }/installations/new?state=uuid`}
             target="_blank"
             rel="noreferrer"
           >

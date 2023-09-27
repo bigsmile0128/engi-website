@@ -17,6 +17,8 @@ export default async function DraftPreview({
   const draft = await getDraftDetails(draftId);
   const walletId = await getWalletId();
 
+  const tests = draft?.analysis?.tests ?? [];
+
   return (
     <div className="max-w-page md:!max-w-xl w-full">
       <h1 className="font-grifter text-3xl">Preview</h1>
@@ -54,10 +56,11 @@ export default async function DraftPreview({
         <div className="my-4 w-full border-t border-white/30" />
         <div className="">
           <span className="mb-2 block text-sm text-secondary">Tests</span>
-          <TestTable
-            className="mt-6 w-full"
-            data={draft.analysis?.tests ?? []}
-          />
+          {tests.length > 0 ? (
+            <TestTable className="mt-6 w-full" data={tests} />
+          ) : (
+            <p className="mt-4 text-secondary">No tests were detected.</p>
+          )}
         </div>
       </div>
       <div className="my-8 w-full border-t border-white/30" />

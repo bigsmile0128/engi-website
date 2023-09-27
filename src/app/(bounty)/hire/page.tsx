@@ -1,15 +1,23 @@
 import classNames from 'classnames';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import { RiRocket2Fill } from 'react-icons/ri';
+import JsonDisplay from '~/components/JsonDisplay';
 import Button from '~/components/global/Button/Button';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
+import { Draft } from '~/types';
+import { Drafts } from './Drafts';
 import { getDrafts } from './[draftId]/api';
-import JsonDisplay from '~/components/JsonDisplay';
-import { SiGithub } from 'react-icons/si';
 
 export default async function HirePage() {
-  const drafts = await getDrafts();
+  let drafts: Draft[];
+  let errorMessage: string | undefined;
+
+  try {
+    drafts = await getDrafts();
+  } catch (e) {
+    errorMessage = e.message;
+    drafts = [];
+  }
 
   return (
     <div className="relative mt-12 mb-24">
@@ -44,67 +52,13 @@ export default async function HirePage() {
             </Button>
           </Link>
         </div>
-        <div className="my-8 w-full border-t border-white/30" />
+        <div className="my-12 w-full border-t border-white/30" />
         <span className="font-grifter text-4xl mb-4">Drafts</span>
-        <div className="flex flex-col gap-4">
-          {drafts.map((draft) => {
-            const { analysis } = draft;
-            return (
-              <div
-                key={draft.id}
-                className="relative flex flex-col p-10 bg-[#161B28]/30"
-              >
-                <div className="absolute top-8 right-8 flex items-center gap-4">
-                  <div className="font-bold text-sm h-8 px-4 grid place-items-center bg-green-primary/10 text-green-primary">
-                    {analysis ? analysis.status : 'N/A'}
-                  </div>
-                </div>
-                <span className="font-bold text-xl">
-                  {analysis ? (
-                    <div className="flex items-center gap-2">
-                      <Link
-                        href={analysis.repositoryUrl}
-                        className="hover:text-green-primary"
-                        target="_blank"
-                      >
-                        <SiGithub className="" />
-                      </Link>
-                      {analysis.repositoryUrl.replace(/^.*github.com\//, '')}
-                    </div>
-                  ) : (
-                    'Repository'
-                  )}
-                </span>
-                <span className="mt-2">
-                  <span className="font-bold text-xl">Started on: </span>
-                  <span className="text-secondary">
-                    {analysis
-                      ? dayjs(analysis.createdOn).format('YYYY-MM-DD HH:MM')
-                      : 'N/A'}
-                  </span>
-                </span>
-                {/* TODO: show when description is supported */}
-                {/* <span className="mt-4 text-secondary">No description.</span> */}
-                <Link
-                  className="mt-8 self-start"
-                  href={`/hire/${encodeURIComponent(draft.id)}`}
-                >
-                  <Button variant="primary">Continue</Button>
-                </Link>
-                {analysis?.executionResult && (
-                  <JsonDisplay
-                    className="mt-8"
-                    value={JSON.stringify(
-                      analysis.executionResult,
-                      undefined,
-                      '  '
-                    )}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
+        {errorMessage ? (
+          <JsonDisplay value={errorMessage} />
+        ) : (
+          <Drafts drafts={drafts} />
+        )}
       </div>
     </div>
   );
