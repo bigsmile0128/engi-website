@@ -6,10 +6,10 @@ import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisable
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
 import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import EngiAmount from '~/components/EngiAmount';
-import MenuItemLink from '~/components/MenuItemLink';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
 import { useLogOut } from '~/utils/auth/api';
 import { useBalance } from '~/utils/balances/userBalance';
@@ -60,7 +60,7 @@ export default function UserInfo({
           >
             <Menu.Items
               className={classNames(
-                'origin-top-right absolute right-0 top-16 z-10',
+                'origin-top-right absolute right-0 top-16 z-50',
                 'flex flex-col min-w-[200px]',
                 'rounded-sm shadow-lg bg-secondary/80 whitespace-nowrap'
               )}
@@ -100,7 +100,7 @@ export default function UserInfo({
                 </div>
               </div>
               <Menu.Item>
-                <MenuItemLink
+                <Link
                   className="hover:bg-secondary text-left pt-3 pl-8"
                   href={`/engineer/${user?.walletId}`}
                 >
@@ -108,18 +108,7 @@ export default function UserInfo({
                     <span className="text-secondary">Account</span>
                     <ChevronRightIcon className="h-4 w-4" />
                   </div>
-                </MenuItemLink>
-              </Menu.Item>
-              <Menu.Item>
-                <MenuItemLink
-                  className="hover:bg-secondary text-left pt-3 pl-8"
-                  href={`/engineer/${user?.walletId}/settings`}
-                >
-                  <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
-                    <span className="text-secondary">Settings</span>
-                    <ChevronRightIcon className="h-4 w-4" />
-                  </div>
-                </MenuItemLink>
+                </Link>
               </Menu.Item>
               <Menu.Item>
                 <button
