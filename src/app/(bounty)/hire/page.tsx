@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import Link from 'next/link';
 import { RiRocket2Fill } from 'react-icons/ri';
-import JsonDisplay from '~/components/JsonDisplay';
 import Button from '~/components/global/Button/Button';
 import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { Draft } from '~/types';
@@ -9,15 +8,7 @@ import { Drafts } from './Drafts';
 import { getDrafts } from './[draftId]/api';
 
 export default async function HirePage() {
-  let drafts: Draft[];
-  let errorMessage: string | undefined;
-
-  try {
-    drafts = await getDrafts();
-  } catch (e) {
-    errorMessage = e.message;
-    drafts = [];
-  }
+  const drafts: Draft[] = await getDrafts();
 
   return (
     <div className="relative mt-12 mb-24">
@@ -54,11 +45,7 @@ export default async function HirePage() {
         </div>
         <div className="my-12 w-full border-t border-white/30" />
         <span className="font-grifter text-4xl mb-4">Drafts</span>
-        {errorMessage ? (
-          <JsonDisplay value={errorMessage} />
-        ) : (
-          <Drafts drafts={drafts} />
-        )}
+        <Drafts drafts={drafts} />
       </div>
     </div>
   );

@@ -66,8 +66,8 @@ export default function Button({
           sizeClasses,
           // hover and active states
           disabled || isLoading || inProgress ? '' : hoverClasses,
-          isLoading ? 'skeleton rounded-none text-transparent' : '',
-          inProgress ? 'text-transparent' : '',
+          isLoading ? 'skeleton rounded-none !text-transparent' : '',
+          inProgress ? '!text-transparent' : '',
           className
         )}
         disabled={disabled}

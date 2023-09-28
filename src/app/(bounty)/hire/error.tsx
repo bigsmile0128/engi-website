@@ -16,7 +16,7 @@ export default function Error({
   }, []);
 
   return (
-    <div>
+    <div className="max-w-page w-full my-24">
       <h2 className="font-medium text-xl">
         Your login expired. Please log in again.
       </h2>
