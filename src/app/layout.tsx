@@ -52,6 +52,11 @@ export default function RootLayout({
           gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}');
         `}
           </Script>
+          <Script id="env-logger">{`
+          console.log('🐲 START -- Engi Environment Configuration 🐲');
+          console.log(${JSON.stringify(process.env)});
+          console.log('🐲 END -- Engi Environment Configuration 🐲');
+          `}</Script>
         </>
       )}
     </html>
