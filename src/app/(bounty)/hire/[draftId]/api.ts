@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request';
 import { Draft } from '~/types';
 import { cookies } from 'next/headers';
+import { revalidateTag } from 'next/cache';
 
 const draftFragment = gql`
   fragment draft on JobDraft {
@@ -45,6 +46,7 @@ export async function getDraftDetails(draftId): Promise<Draft> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
+      cache: 'no-store',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

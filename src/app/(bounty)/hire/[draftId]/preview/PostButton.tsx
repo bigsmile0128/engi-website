@@ -104,6 +104,32 @@ export const usePostBounty = () =>
           draft.name,
           [draft.isEditable, draft.isAddable, draft.isDeletable]
         )
-        .signAndSend(walletId, { signer: injector.signer });
+        .signAndSend(
+          walletId,
+          { signer: injector.signer },
+          ({ status, events }) => {
+            if (status.isInBlock) {
+              console.log(
+                `Completed at block hash #${status.asInBlock.toString()}`
+              );
+              events
+                .filter(({ event }) => api.events.jobs.JobCreated.is(event))
+                .forEach(
+                  ({
+                    event: {
+                      data: [result],
+                    },
+                  }) => {
+                    console.log('Result', result);
+                  }
+                );
+            } else {
+              console.log(`Current status: ${status.type}`);
+            }
+          }
+        )
+        .catch((error: any) => {
+          console.log('Transaction failed.', error);
+        });
     }
   );
