@@ -5,7 +5,9 @@ import {
   SiCsharp,
   SiCss3,
   SiDocker,
+  SiHtml5,
   SiJavascript,
+  SiMdx,
   SiParitysubstrate,
   SiPython,
   SiRust,
@@ -25,51 +27,56 @@ type TechnologyIconProps = {
 export default function TechnologyIcon({
   className,
   value,
-  ...props
 }: TechnologyIconProps) {
   const classes = classNames('h-4 w-4', className);
   switch (value) {
-    case 'C_SHARP':
+    case 'csharp':
       return <SiCsharp className={classes} />;
       break;
-    case 'PYTHON':
+    case 'python':
       return <SiPython className={classes} />;
       break;
-    case 'JAVA_SCRIPT':
+    case 'javascript':
       return <SiJavascript className={classes} />;
       break;
-    case 'TYPE_SCRIPT':
+    case 'typescript':
       return <SiTypescript className={classes} />;
       break;
-    case 'RUST':
+    case 'rust':
       return <SiRust className={classes} />;
       break;
-    case 'SOLIDITY':
+    case 'solidity':
       return <SiSolidity className={classes} />;
       break;
-    case 'SOLANG':
+    case 'solang':
       return <TbCurrencySolana className={classes} />;
       break;
-    case 'INK':
+    case 'ink':
       return <InkIcon className={classes} />;
       break;
-    case 'SUBSTRATE':
+    case 'substrate':
       return <SiParitysubstrate className={classes} />;
       break;
-    case 'CPP':
+    case 'cpp':
       return <SiCplusplus className={classes} />;
       break;
-    case 'C':
+    case 'c':
       return <SiC className={classes} />;
       break;
-    case 'SAME_STORY':
+    case 'samestory':
       return <EngiIcon className={classes} />;
       break;
-    case 'CSS':
+    case 'css':
       return <SiCss3 className={classes} />;
       break;
-    case 'DOCKER':
+    case 'docker':
       return <SiDocker className={classes} />;
+      break;
+    case 'html':
+      return <SiHtml5 className={classes} />;
+      break;
+    case 'mdx':
+      return <SiMdx className={classes} />;
       break;
     default:
       return <RiCodeLine className={classes} />;
