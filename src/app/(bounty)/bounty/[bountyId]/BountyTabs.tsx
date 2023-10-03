@@ -27,7 +27,8 @@ export default function BountyTabs({ className, bountyId }: BountyTabsProps) {
       {[
         { label: 'Description', path: '' },
         { label: 'Submissions', path: '/submission' },
-        { label: 'Updates', path: '/update' },
+        // TODO: re-enable when updates are available
+        // { label: 'Updates', path: '/update' },
       ].map(({ label, path }) => (
         <Link
           key={label}
