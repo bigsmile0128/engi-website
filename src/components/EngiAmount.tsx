@@ -26,6 +26,9 @@ const usdFormatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
 });
 
+// left space padding on left side of currency to align numerical values
+const CURRENCY_PADDING = 3;
+
 export default function EngiAmount({
   className,
   formatter = usdFormatter,
@@ -67,16 +70,18 @@ export default function EngiAmount({
       title={
         <div className="flex flex-col items-end font-mono whitespace-pre">
           <span>
-            {engiValue.toFixed(2)} {'ETH/ENGI'.padStart(4, ' ')}
+            {engiValue.toFixed(3) === '0.000' ? '<0.001' : engiValue.toFixed(3)}{' '}
+            {'ETH'.padStart(CURRENCY_PADDING, ' ')}
           </span>
           {usdValue && (
             <span>
-              {usdValue.toFixed(2)} {'USD'.padStart(4, ' ')}
+              {usdValue.toFixed(2) === '0.00' ? '<0.01' : usdValue.toFixed(2)}{' '}
+              {'USD'.padStart(CURRENCY_PADDING, ' ')}
             </span>
           )}
           <span>
             {typeof value === 'string' ? parseFloat(value) : value || 0}{' '}
-            {'WOZ'.padStart(4, ' ')}
+            {'WOZ'.padStart(CURRENCY_PADDING, ' ')}
           </span>
         </div>
       }
