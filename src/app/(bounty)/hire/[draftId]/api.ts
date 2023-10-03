@@ -1,7 +1,6 @@
 import { gql } from 'graphql-request';
 import { Draft } from '~/types';
 import { cookies } from 'next/headers';
-import { revalidateTag } from 'next/cache';
 
 const draftFragment = gql`
   fragment draft on JobDraft {

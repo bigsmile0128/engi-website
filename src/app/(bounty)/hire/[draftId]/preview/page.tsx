@@ -1,9 +1,10 @@
+import classNames from 'classnames';
 import Link from 'next/link';
-import Button from '~/components/global/Button/Button';
-import { getDraftDetails, getWalletId } from '../api';
 import { RiEdit2Fill } from 'react-icons/ri';
-import { wozToEngi } from '~/utils/currency/conversion';
 import TestTable from '~/components/TestTable';
+import Button from '~/components/global/Button/Button';
+import { wozToEngi } from '~/utils/currency/conversion';
+import { getDraftDetails, getWalletId } from '../api';
 import PostButton from './PostButton';
 
 export default async function DraftPreview({
@@ -27,8 +28,13 @@ export default async function DraftPreview({
         <div className="">
           <span className="mb-2 block text-sm text-secondary">Bounty name</span>
           <span className="flex items-center gap-2">
-            <span className="font-grifter text-xl -mb-1">
-              {draft.name ?? 'N/A'}
+            <span
+              className={classNames(
+                'font-grifter text-xl -mb-1',
+                !draft.name ? 'text-red-primary' : ''
+              )}
+            >
+              {draft.name ?? 'Bounty is missing name.'}
             </span>
             <Link
               href={`/hire/${encodeURIComponent(draftId)}/details`}
@@ -42,8 +48,15 @@ export default async function DraftPreview({
         <div className="">
           <span className="mb-2 block text-sm text-secondary">Funding</span>
           <span className="flex items-center gap-2">
-            <span className="font-grifter text-xl -mb-1">
-              {draft.funding ? `e${wozToEngi(draft.funding)}` : 'N/A'}
+            <span
+              className={classNames(
+                'font-grifter text-xl -mb-1',
+                !draft.funding ? 'text-red-primary' : ''
+              )}
+            >
+              {draft.funding
+                ? `e${wozToEngi(draft.funding)}`
+                : 'Bounty is missing funding.'}
             </span>
             <Link
               href={`/hire/${encodeURIComponent(draftId)}/funding`}
@@ -59,7 +72,14 @@ export default async function DraftPreview({
           {tests.length > 0 ? (
             <TestTable className="mt-6 w-full" data={tests} />
           ) : (
-            <p className="mt-4 text-secondary">No tests were detected.</p>
+            <p
+              className={classNames(
+                'mt-4',
+                tests.length === 0 ? 'text-red-primary' : 'text-secondary'
+              )}
+            >
+              No tests were detected.
+            </p>
           )}
         </div>
       </div>
