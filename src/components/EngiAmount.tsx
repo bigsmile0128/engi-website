@@ -67,7 +67,7 @@ export default function EngiAmount({
       title={
         <div className="flex flex-col items-end font-mono whitespace-pre">
           <span>
-            {engiValue.toFixed(2)} {'ENGI'.padStart(4, ' ')}
+            {engiValue.toFixed(2)} {'ETH/ENGI'.padStart(4, ' ')}
           </span>
           {usdValue && (
             <span>
