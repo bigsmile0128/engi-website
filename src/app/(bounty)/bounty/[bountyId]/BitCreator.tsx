@@ -6,19 +6,14 @@ import EngiIcon from '~/components/global/icons/EngiIcon';
 type BitCreatorProps = {
   className?: string;
   data?: string;
-  isLoading?: boolean;
 };
 
-export default function BitCreator({
-  className,
-  data,
-  isLoading,
-}: BitCreatorProps) {
+export default function BitCreator({ className, data }: BitCreatorProps) {
+  // TODO: update when engineer lookup is available
   return (
     <div
       className={classNames(
         'flex items-start gap-2 overflow-hidden',
-        isLoading ? 'children:skeleton' : '',
         className
       )}
     >

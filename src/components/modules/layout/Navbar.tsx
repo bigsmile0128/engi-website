@@ -1,5 +1,4 @@
 'use client';
-// TODO: switch to server component and create separate client components as needed
 
 import { Dialog, Menu, Transition } from '@headlessui/react';
 import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
@@ -8,21 +7,21 @@ import classNames from 'classnames';
 import Link from 'next/link';
 import { Fragment, useState } from 'react';
 
+import Avvvatars from 'avvvatars-react';
 import MenuSvg from 'public/img/home/menu.svg';
-import 'react-popper-tooltip/dist/styles.css';
-import Button from '~/components/global/Button/Button';
+import { HiChevronRight } from 'react-icons/hi';
+import { RiNotification4Line } from 'react-icons/ri';
 import Logo from '~/components/Logo';
-import { useUser } from '~/utils/contexts/userContext';
+import Button from '~/components/global/Button/Button';
+import { CurrentUserInfo } from '~/types';
+import { isDev } from '~/utils';
 import BlockchainHealth from './BlockchainHealth';
 import AnimatedNav from './navbar/AnimatedNav';
 import UserInfo from './navbar/UserInfo';
-import { RiNotification4Line } from 'react-icons/ri';
-import Avvvatars from 'avvvatars-react';
-import { isDev } from '~/utils';
-import { HiChevronRight } from 'react-icons/hi';
 
 interface NavbarProps {
   className?: string;
+  user?: CurrentUserInfo;
 }
 
 const notifications = [
@@ -43,8 +42,7 @@ const notifications = [
   },
 ];
 
-export default function Navbar({ className }: NavbarProps) {
-  const { user, setUser } = useUser();
+export default function Navbar({ className, user }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
 
@@ -94,11 +92,7 @@ export default function Navbar({ className }: NavbarProps) {
           </div>
         )}
         {user ? (
-          <UserInfo
-            className="hidden laptop:flex"
-            user={user}
-            setUser={setUser}
-          />
+          <UserInfo className="hidden laptop:flex" user={user} />
         ) : (
           <>
             <BlockchainHealth className="hidden laptop:flex" isStacked />
@@ -238,11 +232,7 @@ export default function Navbar({ className }: NavbarProps) {
                   </nav>
                 </div>
                 {user ? (
-                  <UserInfo
-                    className="mt-auto mx-auto"
-                    user={user}
-                    setUser={setUser}
-                  />
+                  <UserInfo className="mt-auto mx-auto" user={user} />
                 ) : (
                   <>
                     <BlockchainHealth className="mt-auto mx-auto" isStacked />

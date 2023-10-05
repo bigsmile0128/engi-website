@@ -7,6 +7,7 @@ import { getBountyDetails } from './api';
 import GetStarted from './GetStarted';
 import BitActivity from './BitActivity';
 import BountyTabs from './BountyTabs';
+import { CurrentUserInfo } from '~/types';
 
 type Props = {
   params: {
@@ -68,17 +69,17 @@ export default async function BountyDetailsLayout({
   const { bountyId } = params;
   // fetch to see if valid bounty
   const bounty = await getBountyDetails(bountyId);
-  // TODO: handle error page
+
   return (
     <div className="relative mt-4 tablet:mt-12 mb-24">
       <Header data={bounty} />
       <div className="max-w-page flex flex-col desktop:flex-row mt-8 tablet:mt-8">
-        <div className="flex-1">
+        <div className="flex-1 overflow-hidden">
           <BountyTabs bountyId={bountyId} className="mb-8" />
           {children}
         </div>
+        {/* @ts-expect-error Server Component */}
         <BitActivity
-          bitId={bountyId}
           className="hidden self-start lg:flex lg:basis-[400px] xl:basis-[430px] shrink-0 ml-16"
           data={bounty}
         />

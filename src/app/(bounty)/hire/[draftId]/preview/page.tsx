@@ -4,8 +4,9 @@ import { RiEdit2Fill } from 'react-icons/ri';
 import TestTable from '~/components/TestTable';
 import Button from '~/components/global/Button/Button';
 import { wozToEngi } from '~/utils/currency/conversion';
-import { getDraftDetails, getWalletId } from '../api';
+import { getDraftDetails } from '../api';
 import PostButton from './PostButton';
+import { getWalletId } from '~/app/(user)/api';
 
 export default async function DraftPreview({
   params,

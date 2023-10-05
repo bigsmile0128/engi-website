@@ -1,7 +1,6 @@
 import { stringToHex } from '@polkadot/util';
-import { useMutation } from 'react-query';
-import { useUser } from '../contexts/userContext';
 import pMinDelay from 'p-min-delay';
+import { useMutation } from 'react-query';
 
 export type Signature = {
   signedOn: string;
@@ -14,13 +13,11 @@ type SignatureArgs = {
 } | null;
 
 export default function useSignature() {
-  const { user } = useUser();
-
   return useMutation<Signature | null, any, SignatureArgs>(
-    ['signature', user?.source, user?.walletId],
+    ['signature'],
     async (args: SignatureArgs) => {
-      const source = args?.source || user?.source;
-      const walletId = args?.walletId || user?.walletId;
+      const source = args?.source;
+      const walletId = args?.walletId;
       const {
         web3FromSource,
         web3Enable,

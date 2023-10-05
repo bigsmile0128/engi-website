@@ -7,15 +7,18 @@ import Tooltip from '~/components/Tooltip';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
 import WalletInput from './WalletInput';
+import { CurrentUserInfo } from '~/types';
 
 type TransferTabProps = {
   className?: string;
   setTransferAmount: Dispatch<number>;
+  user: CurrentUserInfo;
 };
 
 export default function TransferTab({
   className,
   setTransferAmount,
+  user,
 }: TransferTabProps) {
   const [value, setValue] = useState(0);
 

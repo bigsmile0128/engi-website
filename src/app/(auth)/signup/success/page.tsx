@@ -20,7 +20,7 @@ export default function Success() {
       <Image className="mt-12 h-96 w-auto" src={connectedImg} alt="success" />
 
       <div className="mt-12 flex items-center justify-center gap-8">
-        <Link href="/engineer" className="flex-1">
+        <Link href="/engineer/me" className="flex-1">
           <Button className="w-[240px]">Go to my account</Button>
         </Link>
         <Link href="/bounty" className="flex-1">

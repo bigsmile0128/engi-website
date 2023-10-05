@@ -14,14 +14,15 @@ import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
 import WalletInput from './WalletInput';
 
-import { useBalance } from '~/utils/balances/userBalance';
-import { useUser } from '~/utils/contexts/userContext';
-import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
 import Tag from '~/components/global/Tag/Tag';
+import { CurrentUserInfo } from '~/types';
+import { useSellEngiForEth } from '~/utils/exchange/useSellEngi';
+import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
 
 type WithdrawTabProps = {
   className?: string;
   setWithdrawAmount: Dispatch<number>;
+  user: CurrentUserInfo;
 };
 
 enum RepeatFrequency {
@@ -53,14 +54,18 @@ const repeatOptions = [
 export default function WithdrawTab({
   className,
   setWithdrawAmount,
+  user,
 }: WithdrawTabProps) {
-  const { user } = useUser();
-  const { data: balance } = useBalance(user?.walletId ?? '');
   const [value, setValue] = useState(0);
   const [sellToEthAccount, setSellToEthAccount] = useState<string | null>(null);
   const [repeatTransaction, setRepeatTransaction] = useState(false);
   const [repeatFrequency, setRepeatFrequency] =
     useState<RepeatFrequency | null>(RepeatFrequency.DAILY);
+
+  const { data: substrateAccounts } = useSubstrateAccounts();
+  const account = substrateAccounts?.find(
+    (account) => account.address === user.wallet.Id
+  );
 
   // TODO: clear wallet address, value, etc.
   const clear = useCallback(() => {
@@ -146,7 +151,7 @@ export default function WithdrawTab({
           <Button
             variant="tag"
             className="absolute top-1/2 right-3 -translate-y-1/2"
-            onClick={() => setValue(balance)}
+            onClick={() => setValue(user.balance)}
           >
             Max
           </Button>
@@ -161,6 +166,7 @@ export default function WithdrawTab({
             name="converted"
             placeholder="0.00"
             value={displayValue}
+            readOnly
           />
           <Tag className="absolute top-1/2 right-3 -translate-y-1/2 text-secondary pointer-events-none">
             ETH
@@ -195,11 +201,16 @@ export default function WithdrawTab({
             !value || !sellToEthAccount || userConfirmingSellTransaction
           }
           onClick={() => {
-            sellEngiForEth({
-              fromUser: user,
-              toAccount: sellToEthAccount,
-              amount: value,
-            });
+            if (!account) {
+              toast.error('Unable to load account information.');
+            } else {
+              sellEngiForEth({
+                walletId: user.wallet.Id,
+                source: account.meta.source,
+                toAccount: sellToEthAccount,
+                amount: value,
+              });
+            }
           }}
         >
           Confirm

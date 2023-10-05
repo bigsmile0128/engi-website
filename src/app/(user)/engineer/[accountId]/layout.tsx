@@ -2,8 +2,10 @@ import React from 'react';
 import classNames from 'classnames';
 import Sidebar from '~/components/pages/account/Sidebar';
 import AccountNav from '~/components/pages/account/AccountNav';
+import { getCurrentUser } from '../../api';
+import { redirect } from 'next/navigation';
 
-export default function AccountLayout({
+export default async function AccountLayout({
   children, // will be a page or nested layout
   params,
 }: {
@@ -12,6 +14,11 @@ export default function AccountLayout({
     accountId: string;
   };
 }) {
+  const user = await getCurrentUser();
+  if (params.accountId === 'me' && !user) {
+    redirect('/login');
+  }
+
   return (
     <div
       className={classNames(

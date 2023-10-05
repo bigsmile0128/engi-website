@@ -6,16 +6,25 @@ import { RiExchangeLine } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import EngiIcon from '~/components/global/icons/EngiIcon';
 import MoveEngiModal from './MoveEngiModal';
+import { CurrentUserInfo } from '~/types';
 
 type MoveEngiButtonProps = {
   className?: string;
+  user: CurrentUserInfo;
 };
 
-export default function MoveEngiButton({ className }: MoveEngiButtonProps) {
+export default function MoveEngiButton({
+  className,
+  user,
+}: MoveEngiButtonProps) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   return (
     <div className={classNames('', className)}>
-      <MoveEngiModal isOpen={isModalVisible} setIsOpen={setIsModalVisible} />
+      <MoveEngiModal
+        isOpen={isModalVisible}
+        setIsOpen={setIsModalVisible}
+        user={user}
+      />
       <Button
         className="flex justify-center items-center whitespace-nowrap"
         onClick={() => setIsModalVisible(true)}

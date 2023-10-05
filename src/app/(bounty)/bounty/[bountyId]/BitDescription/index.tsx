@@ -99,12 +99,11 @@ export default function BitDescription({
           )}
         >
           <div className="flex items-center justify-between gap-16">
-            <BitCreator data={data?.creator} isLoading={isLoading} />
+            <BitCreator data={data?.creator} />
             <RepositoryInfo
               className="shrink-0"
               organizationName={data?.repository?.organization}
               repositoryName={data?.repository?.fullName}
-              isLoading={isLoading}
             />
           </div>
           <div className="mt-8 w-full border-t border-white/30" />
@@ -168,13 +167,12 @@ export default function BitDescription({
         <div className="my-16 w-full border-t border-white/30" />
         <GetStarted bitId={data?.id} />
         <div className="mt-16 px-4">
-          <BitCreator data={data?.creator} isLoading={isLoading} />
+          <BitCreator data={data?.creator} />
           <div className="my-8 w-full border-t border-white/30" />
           <RepositoryInfo
             className="shrink-0"
             organizationName={data?.repository?.organization}
             repositoryName={data?.repository?.fullName}
-            isLoading={isLoading}
           />
           <h2
             className={classNames(

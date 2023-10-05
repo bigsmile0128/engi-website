@@ -1,5 +1,3 @@
-'use client';
-
 import classNames from 'classnames';
 import IncompleteBanner from '~/components/IncompleteBanner';
 import UserAbout from '~/components/pages/account/UserAbout';

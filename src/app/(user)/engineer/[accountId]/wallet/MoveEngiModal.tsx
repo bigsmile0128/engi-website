@@ -8,8 +8,7 @@ import Modal, { ModalProps } from '~/components/global/Modal/Modal';
 import DepositTab from '~/components/pages/wallet/DepositTab';
 import TransferTab from '~/components/pages/wallet/TransferTab';
 import WithdrawTab from '~/components/pages/wallet/WithdrawTab';
-import { useBalance } from '~/utils/balances/userBalance';
-import { useUser } from '~/utils/contexts/userContext';
+import { CurrentUserInfo } from '~/types';
 import { MoveType } from '~/utils/exchange/types';
 
 const tabNames: Array<MoveType> = ['Buy', 'Withdraw', 'Transfer'];
@@ -20,10 +19,16 @@ enum MoveTab {
   TRANSFER = 2,
 }
 
-export default function MoveEngiModal({ isOpen, setIsOpen }: ModalProps) {
+type MoveEngiModalProps = {
+  user: CurrentUserInfo;
+};
+
+export default function MoveEngiModal({
+  isOpen,
+  setIsOpen,
+  user,
+}: ModalProps & MoveEngiModalProps) {
   const [selectedIndex, setSelectedIndex] = useState(MoveTab.BUY);
-  const { user } = useUser();
-  const { data: balance } = useBalance(user?.walletId ?? '');
 
   // amounts in WOZ
   const [depositAmount, setDepositAmount] = useState(0);
@@ -86,13 +91,19 @@ export default function MoveEngiModal({ isOpen, setIsOpen }: ModalProps) {
             </Tab.List>
             <Tab.Panels className="bg-[#232323]/40 p-4">
               <Tab.Panel>
-                <DepositTab setDepositAmount={setDepositAmount} />
+                <DepositTab setDepositAmount={setDepositAmount} user={user} />
               </Tab.Panel>
               <Tab.Panel>
-                <WithdrawTab setWithdrawAmount={setWithdrawAmount} />
+                <WithdrawTab
+                  setWithdrawAmount={setWithdrawAmount}
+                  user={user}
+                />
               </Tab.Panel>
               <Tab.Panel>
-                <TransferTab setTransferAmount={setTransferAmount} />
+                <TransferTab
+                  setTransferAmount={setTransferAmount}
+                  user={user}
+                />
               </Tab.Panel>
             </Tab.Panels>
           </Tab.Group>
@@ -122,13 +133,13 @@ export default function MoveEngiModal({ isOpen, setIsOpen }: ModalProps) {
           <div className="mt-8 flex items-center justify-center divide-x divide-white/30">
             <div className="flex flex-col items-center gap-2 px-4 text-center">
               <span className="text-xl text-white/80">Current Balance</span>
-              <EngiAmount value={balance} />
+              <EngiAmount value={user?.balance} />
             </div>
             <div className="flex flex-col items-center gap-2 px-4 text-center">
               <span className="text-xl text-white/80">New Balance</span>
               <EngiAmount
                 value={
-                  (balance || 0) +
+                  (user?.balance || 0) +
                   (selectedIndex === MoveTab.BUY
                     ? depositAmount
                     : selectedIndex === MoveTab.WITHDRAW
