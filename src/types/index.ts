@@ -188,6 +188,17 @@ export type UserInfo = {
   profileImageUrl?: string;
 };
 
+export type CurrentUserInfo = {
+  balance: number;
+  display: string;
+  email: string;
+  profileImageUrl?: string;
+  wallet: {
+    Id: string;
+    Raw: string;
+  };
+};
+
 export enum SubmissionStatus {
   ATTEMPTED_ON_CHAIN = 'ATTEMPTED_ON_CHAIN',
   ENGINE_ATTEMPTING = 'ENGINE_ATTEMPTING',

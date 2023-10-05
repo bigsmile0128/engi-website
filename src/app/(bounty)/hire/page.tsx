@@ -6,8 +6,15 @@ import GridPattern from '~/components/global/GridPattern/GridPattern';
 import { Draft } from '~/types';
 import { Drafts } from './Drafts';
 import { getDrafts } from './[draftId]/api';
+import { getCurrentUser } from '~/app/(user)/api';
+import { redirect } from 'next/navigation';
 
 export default async function HirePage() {
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect('/login');
+  }
+
   const drafts: Draft[] = await getDrafts();
 
   return (

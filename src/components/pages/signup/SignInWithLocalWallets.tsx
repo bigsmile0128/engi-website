@@ -6,7 +6,6 @@ import { Id, toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import { AccountExistenceResult } from '~/types';
 import { useLoginUser } from '~/utils/auth/api';
-import { useUser } from '~/utils/contexts/userContext';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
 import SubstrateAccountItem from './SubstrateAccountItem';
 
@@ -39,13 +38,11 @@ export default function SignInWithLocalWallets({
     data: loggedIn,
   } = useLoginUser();
 
-  const { setUser } = useUser();
   useEffect(() => {
     if (loggedIn) {
-      setUser(loggedIn);
       onSuccess?.();
     }
-  }, [loggedIn, setUser, onSuccess]);
+  }, [loggedIn, onSuccess]);
 
   // display login states
   const loginStatesDisplay = useRef<Id | null>(null);

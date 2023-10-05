@@ -1,7 +1,8 @@
 import EngiAmount from '~/components/EngiAmount';
-import { getBalance, getDraftDetails } from '../api';
+import { getDraftDetails } from '../api';
 import DraftFundingContent from './Funding';
 import { wozToEngi } from '~/utils/currency/conversion';
+import { getBalance } from '~/app/(user)/api';
 
 export default async function DraftFunding({
   params,

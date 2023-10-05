@@ -1,7 +1,6 @@
 /// sell
 import pMinDelay from 'p-min-delay';
 import { useMutation } from 'react-query';
-import { User } from '../contexts/userContext';
 import chainAPI from '../polkadot/chainAPI';
 import {
   emitSoldEngiAnalyticsEvent,
@@ -13,19 +12,18 @@ export const useSellEngiForEth = () =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useMutation<any, Error, any>(
     async ({
-      fromUser,
+      walletId,
+      source,
       toAccount,
       amount,
     }: {
       // the amount of ENGI to sell in exchange for ETH
       amount: number;
-      // the user's Engi wallet that will sell ENGI
-      fromUser: NonNullable<User>;
+      source: string;
       // the user's Ethereum wallet that will receive ETH
       toAccount: string;
+      walletId: string;
     }) => {
-      console.log('Selling Engi:', fromUser, toAccount, amount);
-
       if (typeof window === 'undefined') return;
 
       const {
@@ -38,14 +36,14 @@ export const useSellEngiForEth = () =>
 
       // this needs to be called first, before other requests
       // add 1 sec min delay to prevent flash of loader
-      const _: any = await pMinDelay(web3Enable('Engi'), 1000);
+      await pMinDelay(web3Enable('Engi'), 1000);
 
-      const injector = await web3FromSource(fromUser.source);
+      const injector = await web3FromSource(source);
       return (
         chain.tx.exchange
           // convert amount to string because 0.01 ENGI in WOZ is greater than Number.MAX_SAFE_INTEGER
           .sell(toAccount, amount.toString())
-          .signAndSend(fromUser.walletId, { signer: injector.signer })
+          .signAndSend(walletId, { signer: injector.signer })
       );
     },
     {

@@ -1,24 +1,22 @@
 import classNames from 'classnames';
 import { Dispatch } from 'react';
 import BuyEngi from '~/components/pages/wallet/BuyEngi';
-import { useUser } from '~/utils/contexts/userContext';
+import { CurrentUserInfo } from '~/types';
 
 type DepositTabProps = {
   className?: string;
   setDepositAmount: Dispatch<number>;
+  user: CurrentUserInfo;
 };
 
 export default function DepositTab({
   className,
   setDepositAmount,
+  user,
 }: DepositTabProps) {
-  const { user } = useUser();
-
   return (
     <div className={classNames('flex flex-col', className)}>
-      {user?.walletId && (
-        <BuyEngi account={user.walletId} setDepositAmount={setDepositAmount} />
-      )}
+      <BuyEngi account={user.wallet.Id} setDepositAmount={setDepositAmount} />
     </div>
   );
 }

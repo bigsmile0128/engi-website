@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
-import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
-import { usePersistedUserState } from '~/utils/auth/persisted';
-import UserContext, { User } from '~/utils/contexts/userContext';
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -34,21 +32,11 @@ const queryClient = new QueryClient({
 });
 
 export default function Providers({ children }: ProvidersProps) {
-  const [persistedUser, setUser] = usePersistedUserState(null);
-  // to prevent SSR hydration mismatch, store user in state to handle initial render
-  const [user, setStateUser] = useState<User>(null);
-
-  // keep state user updated with persisted user
-  useEffect(() => {
-    setStateUser(persistedUser);
-  }, [persistedUser]);
   return (
     <QueryClientProvider client={queryClient}>
-      <UserContext.Provider value={{ user, setUser }}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-        <ToastContainer />
-      </UserContext.Provider>
+      {children}
+      <ReactQueryDevtools initialIsOpen={false} />
+      <ToastContainer />
     </QueryClientProvider>
   );
 }

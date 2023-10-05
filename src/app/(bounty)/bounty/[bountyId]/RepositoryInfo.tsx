@@ -5,14 +5,12 @@ import { RiGithubFill } from 'react-icons/ri';
 
 type RepositoryInfoProps = {
   className?: string;
-  isLoading?: boolean;
   organizationName?: string;
   repositoryName?: string;
 };
 
 export default function RepositoryInfo({
   className,
-  isLoading,
   repositoryName,
   organizationName,
 }: RepositoryInfoProps) {
@@ -23,7 +21,7 @@ export default function RepositoryInfo({
         className
       )}
     >
-      <div className={classNames('shrink-0', isLoading ? 'skeleton' : '')}>
+      <div className="shrink-0">
         {repositoryName ? (
           <Avvvatars value={repositoryName} style="shape" size={48} />
         ) : (
@@ -31,20 +29,10 @@ export default function RepositoryInfo({
         )}
       </div>
       <div className="flex flex-col gap-0.5">
-        <span
-          className={classNames(
-            'font-grifter text-xl inline-block truncate',
-            isLoading ? 'skeleton' : ''
-          )}
-        >
+        <span className="font-grifter text-xl inline-block truncate">
           {organizationName ?? 'Author N/A'}
         </span>
-        <div
-          className={classNames(
-            'flex items-center gap-2',
-            isLoading ? 'skeleton' : ''
-          )}
-        >
+        <div className="flex items-center gap-2">
           <RiGithubFill className="h-5 w-5" />
           <span className="text-secondary inline-block truncate">
             {repositoryName ?? 'Repository N/A'}

@@ -8,40 +8,39 @@ import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useEffect } from 'react';
 import EngiAmount from '~/components/EngiAmount';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
+import { CurrentUserInfo } from '~/types';
 import { useLogOut } from '~/utils/auth/api';
-import { useBalance } from '~/utils/balances/userBalance';
-import { User } from '~/utils/contexts/userContext';
 import useEngiHealth from '~/utils/hooks/useEngiHealth';
 
 type UserInfoProps = {
   blockchainHealthProps?: any;
   className?: string;
-  setUser: (user: User) => void;
-  user: User;
+  user: CurrentUserInfo;
 };
 
 export default function UserInfo({
   className,
   user,
-  setUser,
   blockchainHealthProps,
 }: UserInfoProps) {
-  const {
-    isLoading: isLoadingBalance,
-    data: balance,
-    isFetched: hasLoadedBalanceAtLeastOnce,
-  } = useBalance(user?.walletId ?? '');
+  const router = useRouter();
   const { isLoading: isLoadingHealth, data: health } = useEngiHealth();
-  const { mutate: logOut } = useLogOut();
+  const { mutate: logOut, isSuccess: isSuccessfulLogout } = useLogOut();
   const { push: pushRoute } = useRouter();
+
+  useEffect(() => {
+    if (isSuccessfulLogout) {
+      router.refresh();
+    }
+  }, [router, isSuccessfulLogout]);
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
       <div className="">
-        <Avvvatars value={user?.walletId ?? ''} style="shape" size={48} />
+        <Avvvatars value={user.wallet.Id} style="shape" size={48} />
       </div>
       <div className="flex flex-col items-end">
         <Menu className="relative" as="div">
@@ -102,7 +101,7 @@ export default function UserInfo({
               <Menu.Item>
                 <Link
                   className="hover:bg-secondary text-left pt-3 pl-8"
-                  href={`/engineer/${user?.walletId}`}
+                  href="/engineer/me"
                 >
                   <div className="pr-4 pb-3 border-b border-white/30 flex items-center justify-between">
                     <span className="text-secondary">Account</span>
@@ -114,7 +113,6 @@ export default function UserInfo({
                 <button
                   className="hover:bg-secondary text-left pt-3 pl-8"
                   onClick={() => {
-                    setUser(null);
                     logOut(null);
                     pushRoute('/login');
                   }}
@@ -132,8 +130,7 @@ export default function UserInfo({
           <EngiAmount
             iconClassName="!h-4 !w-4"
             valueClassName="!font-default font-bold text-base mb-0 ml-1"
-            isLoading={isLoadingBalance && !hasLoadedBalanceAtLeastOnce}
-            value={balance}
+            value={user.balance}
           />
           <div className="h-5 w-[1px] bg-gray-400"></div>
           <BlockchainHealth

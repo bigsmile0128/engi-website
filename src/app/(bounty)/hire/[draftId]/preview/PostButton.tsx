@@ -6,7 +6,7 @@ import { AiOutlineLoading } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import { Draft } from '~/types';
-import { useUser } from '~/utils/contexts/userContext';
+import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
 import usePostBounty, { isValidDraft } from './usePostBounty';
 
 type PostButtonProps = {
@@ -20,8 +20,12 @@ export default function PostButton({
   draft,
   walletId,
 }: PostButtonProps) {
-  const { user } = useUser();
+  const { data: substrateAccounts } = useSubstrateAccounts();
   const mutation = usePostBounty();
+
+  const account = substrateAccounts?.find(
+    (account) => account.address === walletId
+  );
 
   useEffect(() => {
     if (mutation.error?.message) {
@@ -40,11 +44,17 @@ export default function PostButton({
       )}
       disabled={!isValidDraft(draft)}
       onClick={() => {
-        mutation.mutate({
-          walletId,
-          source: user?.source,
-          draft: draft,
-        });
+        if (account) {
+          mutation.mutate({
+            walletId,
+            source: account.meta.source,
+            draft: draft,
+          });
+        } else {
+          toast.error(
+            'Error locating your account. Please log out and back in.'
+          );
+        }
       }}
     >
       <span className={mutation.isLoading ? 'text-transparent' : ''}>

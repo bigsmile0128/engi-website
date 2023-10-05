@@ -9,9 +9,7 @@ import {
   RiUserLine,
   RiWallet3Line,
 } from 'react-icons/ri';
-import { isCurrentUser } from '~/app/(user)/engineer/[accountId]/utils';
 import EngiIcon from '~/components/global/icons/EngiIcon';
-import { useUser } from '~/utils/contexts/userContext';
 
 type SidebarProps = {
   accountId: string;
@@ -40,8 +38,8 @@ const items = [
     icon: <RiLineChartFill className="h-6 w-auto" />,
   },
   {
-    name: 'Settings',
-    path: '/settings',
+    name: 'Notification Settings',
+    path: '/notification-settings',
     icon: <RiSettingsLine className="h-6 w-auto" />,
   },
 ];
@@ -49,11 +47,10 @@ const items = [
 export default function Sidebar({ className, accountId }: SidebarProps) {
   const pathname = usePathname() ?? '';
   const activePath = pathname.replace(`/engineer/${accountId}`, '');
-  const { user } = useUser();
 
   // only show settings if it is the current user
   let navItems;
-  if (isCurrentUser(accountId, user)) {
+  if (accountId === 'me') {
     navItems = items.filter((item) => item.path !== '/settings');
   } else {
     navItems = items;

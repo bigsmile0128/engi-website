@@ -7,10 +7,8 @@ import { useQuery } from 'react-query';
 import { BitsQueryArguments } from '~/types';
 import * as Sentry from '@sentry/react';
 import axios from 'axios';
-import { useUser } from '../contexts/userContext';
 
 export default function useBits(query: BitsQueryArguments) {
-  const { user } = useUser();
   return useQuery<any, any>(
     ['bits', JSON.stringify(query)],
     () => fetchBits(query),
@@ -20,7 +18,7 @@ export default function useBits(query: BitsQueryArguments) {
         emitFoundBitsErrorAnalyticsEvent(error);
       },
       onSuccess(data) {
-        emitFoundBitsAnalyticsEvent(data?.result?.totalCount, user?.walletId);
+        emitFoundBitsAnalyticsEvent(data?.result?.totalCount);
       },
     }
   );
