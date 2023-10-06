@@ -2,14 +2,28 @@ import { gql } from 'graphql-request';
 import { useMutation } from 'react-query';
 import useAxios from './useAxios';
 import useSignature from './useSignature';
+import { SubstrateAccount } from '~/types';
 
 export default function useCreateDraft() {
   const axios = useAxios();
   const signatureMutation = useSignature();
   return useMutation<string, any, any>(
     ['startDraft'],
-    async ({ repository, branch, commit }) => {
-      const signature = await signatureMutation.mutateAsync(null);
+    async ({
+      repository,
+      branch,
+      commit,
+      substrateAccount,
+    }: {
+      branch: string;
+      commit: string;
+      repository: string;
+      substrateAccount: SubstrateAccount;
+    }) => {
+      const signature = await signatureMutation.mutateAsync({
+        source: substrateAccount.meta.source,
+        walletId: substrateAccount.address,
+      });
       const { data } = await axios.post('/api/graphql', {
         query: gql`
           mutation CreateDraft(
