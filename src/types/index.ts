@@ -28,6 +28,7 @@ export type Solution = {
   author: any;
   jobId: string;
   patchUrl: string;
+  pullRequestUrl: string;
   solutionId: string;
 };
 
@@ -66,6 +67,7 @@ export type Bit = {
     number: number;
   };
   creator: string;
+  currentUserSubmissions?: Submission[];
   funding: string;
   id: string;
   name: string;
