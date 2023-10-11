@@ -49,7 +49,7 @@ export default function TestTable({
         ),
       }),
       columnHelper.accessor('result', {
-        header: 'Status',
+        header: 'Result',
         cell: ({ getValue }) =>
           getValue() === 'PASSED' ? (
             <RiCheckboxCircleLine className="ml-2.5 h-6 w-auto text-green-primary" />
