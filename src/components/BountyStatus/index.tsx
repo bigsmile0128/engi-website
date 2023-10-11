@@ -10,35 +10,23 @@ import {
   RiIndeterminateCircleFill,
   RiTrophyFill,
 } from 'react-icons/ri';
-import { BitStatus, Solution, Submission, SubmissionStatus } from '~/types';
+import { Bit, BitStatus, SubmissionStatus } from '~/types';
 import { COOKBOOK_LINK } from '~/utils/links';
 import CopyLink from '../CopyLink';
 
 type BountyStatusProps = {
-  attemptCount: number;
   className?: string;
-  created: string;
-  creator: string;
-  currentUserSubmission?: Submission;
-  id: string;
-  solution?: Solution;
-  status: BitStatus;
-  userId: string;
+  data: Bit;
+  userId?: string;
 };
 
 export default function BountyStatus({
-  attemptCount,
   className,
-  created,
-  creator,
-  currentUserSubmission,
-  id,
-  solution,
-  status,
+  data,
   userId,
 }: BountyStatusProps) {
-  const isCreator = creator === userId;
-  const submissionStatus = currentUserSubmission?.status;
+  const isCreator = data.creator === userId;
+  const submissionStatus = data.currentUserSubmissions?.[0]?.status;
 
   return (
     <div
@@ -56,9 +44,9 @@ export default function BountyStatus({
                 'linear-gradient(97.66deg, rgba(255, 255, 255, 0.1) 8%, rgba(255, 255, 255, 0) 92.75%)',
             }}
           >
-            {status === BitStatus.COMPLETE ? (
+            {data.status === BitStatus.COMPLETE ? (
               <RiCheckFill className="h-6 w-auto text-green-primary" />
-            ) : status == BitStatus.ACTIVE ? (
+            ) : data.status == BitStatus.ACTIVE ? (
               <RiFlashlightFill className="h-6 w-auto text-purple-primary" />
             ) : (
               <RiIndeterminateCircleFill className="h-6 w-auto text-white/30" />
@@ -66,32 +54,32 @@ export default function BountyStatus({
           </div>
           <div className="flex flex-col gap-1">
             <span className="-mb-1 font-grifter text-xl">
-              {status === BitStatus.COMPLETE
+              {data.status === BitStatus.COMPLETE
                 ? 'Bounty completed'
-                : `Posted ${dayjs(created).fromNow()}`}
+                : `Posted ${dayjs(data.createdOn?.dateTime).fromNow()}`}
             </span>
             <span className="flex items-center gap-2 text-secondary text-sm">
-              {status === BitStatus.COMPLETE ? (
+              {data.status === BitStatus.COMPLETE ? (
                 <>
                   {/* TODO: use Solution.author.profileImageUrl after blocker */}
                   {/* https://linear.app/engi/issue/ENGIN-1212/references-to-author-or-user-to-include-additional-information */}
-                  <Avvvatars value="Test User" size={24} />
+                  <Avvvatars value="Test User" size={24} style="shape" />
                   <Link
-                    href={solution?.patchUrl ?? ''}
+                    href={data.solution?.pullRequestUrl ?? ''}
                     className="font-medium underline"
                   >
                     View pull request
                   </Link>
                 </>
-              ) : status === BitStatus.ACTIVE ? (
-                pluralize('attempt', attemptCount, true)
+              ) : data.status === BitStatus.ACTIVE ? (
+                pluralize('attempt', data.attemptCount, true)
               ) : (
                 'No activity'
               )}
             </span>
           </div>
         </div>
-      ) : status === BitStatus.COMPLETE ? (
+      ) : data.status === BitStatus.COMPLETE ? (
         <div className="flex items-start gap-4">
           <div
             className="shrink-0 h-12 w-12 grid place-items-center border border-white/20 rounded-full"
@@ -100,19 +88,19 @@ export default function BountyStatus({
                 'linear-gradient(97.66deg, rgba(255, 255, 255, 0.1) 8%, rgba(255, 255, 255, 0) 92.75%)',
             }}
           >
-            {userId === solution?.author ? (
+            {userId === data.solution?.author ? (
               <RiTrophyFill className="h-6 w-auto text-green-primary" />
             ) : (
               <RiCheckFill className="h-6 w-auto text-green-primary" />
             )}
           </div>
           <span className="-mb-1 font-grifter text-xl max-w-[300px]">
-            {userId === solution?.author?.Id
+            {userId === data.solution?.author?.Id
               ? 'You have completed the bounty'
               : 'Bounty completed'}
           </span>
         </div>
-      ) : currentUserSubmission ? (
+      ) : submissionStatus ? (
         // is user
         <div className="flex items-start gap-4">
           <div className="relative">
@@ -130,12 +118,6 @@ export default function BountyStatus({
                 ? "You have made a submission! It's being analyzed."
                 : 'You are currently working on this bounty'}
             </span>
-            {/* TODO: update based on new schema */}
-            {/* {status === BitStatus.ACTIVE && (
-              <div className="flex flex-col">
-                <SubmissionStages stages={currentUserSubmission.stages} />
-              </div>
-            )} */}
           </div>
         </div>
       ) : (
@@ -152,11 +134,7 @@ export default function BountyStatus({
           <div>
             <CopyLink
               className=""
-              value={
-                typeof window !== 'undefined'
-                  ? `docker compose run cli engi job get ${id} | tee /tmp/demo-csharp-job.json`
-                  : ''
-              }
+              value={`docker compose run cli engi job get ${data.id} | tee /tmp/${data.id}.json`}
             />
             <span className="font-medium text-xs mt-2">
               First time starting a job? Check out our{' '}

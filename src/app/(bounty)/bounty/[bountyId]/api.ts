@@ -5,9 +5,7 @@ export async function getBountyDetails(bitId) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
-      next: {
-        revalidate: 0,
-      },
+      cache: 'no-store',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,11 +42,46 @@ export async function getBountyDetails(bitId) {
                   jobId
                   author
                   patchUrl
+                  pullRequestUrl
                   attempt {
                     attemptId
                     attempter
                     tests {
                       ...testAttempt
+                    }
+                  }
+                }
+                currentUserSubmissions {
+                  status
+                  attemptCreated
+                  userInfo {
+                    address
+                    display
+                    profileImageUrl
+                    createdOn
+                    createdJobsCount
+                    solvedJobsCount
+                  }
+                  attemptId
+                  attempt {
+                    status
+                    results {
+                      identifier
+                      stdout
+                      stderr
+                      returnCode
+                    }
+                    tests {
+                      id
+                      result
+                      failedResultMessage
+                    }
+                  }
+                  solve {
+                    status
+                    results {
+                      solutionId
+                      resultHash
                     }
                   }
                 }
@@ -118,9 +151,7 @@ export async function getSubmissionDetails(submissionId): Promise<Submission> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
-      next: {
-        revalidate: 0,
-      },
+      cache: 'no-store',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -172,9 +203,7 @@ export async function getSubmissions(
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
-      next: {
-        revalidate: 0,
-      },
+      cache: 'no-store',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

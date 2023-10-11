@@ -6,6 +6,7 @@ import BitCreator from '../BitCreator';
 import RepositoryInfo from '../RepositoryInfo';
 import ActivityStats from './ActivityStats';
 import { getCurrentUser } from '~/app/(user)/api';
+import { getSubmissions } from '../api';
 
 interface BitActivityProps {
   className?: string;
@@ -23,20 +24,26 @@ export default async function BitActivity({
   } catch (e) {
     walletId = '';
   }
+
+  const submissions = await getSubmissions({
+    jobId: data.id,
+    skip: 0,
+    limit: 100,
+  });
+
   return (
     <div className={classNames('flex flex-col overflow-hidden', className)}>
       <div className="bg-secondary/40">
         <BountyStatus
           className="w-full px-12 py-8"
-          attemptCount={data.attemptCount}
-          created={data.createdOn?.dateTime ?? ''}
-          creator={data.creator}
-          id={data.id}
-          solution={data?.solution}
-          status={data.status}
+          data={data}
           userId={walletId}
         />
-        <ActivityStats className="p-12" data={data} />
+        <ActivityStats
+          className="p-12"
+          data={data}
+          submissions={submissions.items}
+        />
       </div>
       <div className="mt-8 px-12 py-8 bg-secondary/40">
         {/* TODO: update when engineer lookup is available */}

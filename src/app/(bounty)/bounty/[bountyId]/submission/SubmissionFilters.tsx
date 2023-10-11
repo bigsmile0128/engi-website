@@ -2,42 +2,42 @@
 
 import classNames from 'classnames';
 import pluralize from 'pluralize';
-import { useState } from 'react';
-import { IoOptionsOutline } from 'react-icons/io5';
-import { RiSearchLine } from 'react-icons/ri';
-import SearchInput from '~/components/SearchInput';
-import SortMenu from '~/components/SortMenu';
-import Button from '~/components/global/Button/Button';
-import Input from '~/components/global/Input/Input';
-import { OrderByDirection } from '~/types';
+// import { IoOptionsOutline } from 'react-icons/io5';
+// import { RiSearchLine } from 'react-icons/ri';
+// import SearchInput from '~/components/SearchInput';
+// import SortMenu from '~/components/SortMenu';
+// import Button from '~/components/global/Button/Button';
+// import Input from '~/components/global/Input/Input';
 
 type SubmissionFiltersProps = {
   className?: string;
   numResults: number;
 };
 
-const sortOptions = [
-  {
-    label: 'Newest',
-    value: 'NEWEST',
-  },
-  {
-    label: 'Status',
-    value: 'STATUS',
-  },
-];
+// const sortOptions = [
+//   {
+//     label: 'Newest',
+//     value: 'NEWEST',
+//   },
+//   {
+//     label: 'Status',
+//     value: 'STATUS',
+//   },
+// ];
 
 export default function SubmissionFilters({
   className,
   numResults,
 }: SubmissionFiltersProps) {
-  const [value, setValue] = useState('');
-  const [sortField, setSortField] = useState(sortOptions[0]);
-  const [sortDirection, setSortDirection] = useState(OrderByDirection.DESC);
+  // const [value, setValue] = useState('');
+  // const [sortField, setSortField] = useState(sortOptions[0]);
+  // const [sortDirection, setSortDirection] = useState(OrderByDirection.DESC);
   return (
     <div className={classNames('', className)}>
       {/* MOBILE/TABLET search input */}
-      <div className="relative flex items-center desktop:hidden">
+      {/* TODO: enable when unblocked */}
+      {/* BLOCKED: https://github.com/engi-network/engi-blockchain-gql/issues/129 */}
+      {/* <div className="relative flex items-center desktop:hidden">
         <Input
           className="w-full pl-12 font-normal"
           placeholder="Search for a submission"
@@ -47,9 +47,9 @@ export default function SubmissionFilters({
         <div className="absolute pointer-events-none ml-4">
           <RiSearchLine className="h-5 w-5 text-white" />
         </div>
-      </div>
+      </div> */}
       {/* DESKTOP */}
-      <div
+      {/* <div
         className={classNames(
           'hidden desktop:flex justify-between w-full',
           'mt-0 ml-12 desktop:ml-0'
@@ -71,7 +71,7 @@ export default function SubmissionFilters({
             setSortDirection(sortDirection)
           }
         />
-      </div>
+      </div> */}
       <div className="mt-6 desktop:mt-8 flex items-center">
         <div className="font-grifter whitespace-nowrap text-2xl">
           {numResults}{' '}
@@ -80,7 +80,9 @@ export default function SubmissionFilters({
           </span>
         </div>
         {/* MOBILE, TABLET */}
-        <Button
+        {/* TODO: enable when unblocked */}
+        {/* BLOCKED: https://github.com/engi-network/engi-blockchain-gql/issues/129 */}
+        {/* <Button
           className="desktop:hidden flex items-center gap-2 ml-auto !px-4 !py-2 tablet:!px-8 tablet:!py-4"
           onClick={() => {
             // TODO: implement when API is ready
@@ -89,7 +91,7 @@ export default function SubmissionFilters({
           <IoOptionsOutline className="h-5 w-5" />
           <span className="tablet:hidden">Filters</span>
           <span className="hidden tablet:inline-block">Filter & Sort</span>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
