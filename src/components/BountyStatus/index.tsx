@@ -17,7 +17,7 @@ import CopyLink from '../CopyLink';
 type BountyStatusProps = {
   className?: string;
   data: Bit;
-  userId: string;
+  userId?: string;
 };
 
 export default function BountyStatus({
