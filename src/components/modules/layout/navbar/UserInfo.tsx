@@ -4,12 +4,12 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import { GrStatusDisabledSmall } from '@react-icons/all-files/gr/GrStatusDisabledSmall';
 import { GrStatusGoodSmall } from '@react-icons/all-files/gr/GrStatusGoodSmall';
-import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import EngiAmount from '~/components/EngiAmount';
+import UserAvatar from '~/components/UserAvatar';
 import BlockchainHealth from '~/components/modules/layout/BlockchainHealth';
 import { CurrentUserInfo } from '~/types';
 import { useLogOut } from '~/utils/auth/api';
@@ -39,13 +39,15 @@ export default function UserInfo({
 
   return (
     <div className={classNames('flex items-center gap-x-4', className)}>
-      <div className="">
-        <Avvvatars value={user.wallet.Id} style="shape" size={48} />
-      </div>
+      <UserAvatar
+        walletId={user.wallet.Id}
+        profileImageUrl={user.profileImageUrl}
+        size={48}
+      />
       <div className="flex flex-col items-end">
         <Menu className="relative" as="div">
           <Menu.Button className="flex items-center whitespace-nowrap">
-            {user?.display}
+            <span className="truncate max-w-[120px]">{user?.display}</span>
             <ChevronDownIcon className="h-4 w-4 ml-2" />
           </Menu.Button>
           <Transition

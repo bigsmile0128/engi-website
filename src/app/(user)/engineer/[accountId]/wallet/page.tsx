@@ -24,7 +24,10 @@ export default async function WalletPage({
             <span className="text-sm text-secondary w-56 overflow-hidden text-ellipsis">
               {accountId === 'me' ? user.wallet.Id : accountId}{' '}
             </span>
-            <CopyButton className="inline-block" value={accountId} />
+            <CopyButton
+              className="inline-block"
+              value={accountId === 'me' ? user.wallet.Id : accountId}
+            />
           </div>
         </div>
         {accountId === 'me' && !!user && (

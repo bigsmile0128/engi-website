@@ -5,7 +5,7 @@ import { Bit } from '~/types';
 import BitCreator from '../BitCreator';
 import RepositoryInfo from '../RepositoryInfo';
 import ActivityStats from './ActivityStats';
-import { getCurrentUser } from '~/app/(user)/api';
+import { getCurrentUser, getUser } from '~/app/(user)/api';
 import { getSubmissions } from '../api';
 
 interface BitActivityProps {
@@ -20,10 +20,12 @@ export default async function BitActivity({
   let walletId: string;
   try {
     const currentUser = await getCurrentUser();
-    walletId = currentUser.wallet.Id;
+    walletId = currentUser ? currentUser.wallet.Id : '';
   } catch (e) {
     walletId = '';
   }
+
+  const user = await getUser(data.creator);
 
   const submissions = await getSubmissions({
     jobId: data.id,
@@ -47,7 +49,7 @@ export default async function BitActivity({
       </div>
       <div className="mt-8 px-12 py-8 bg-secondary/40">
         {/* TODO: update when engineer lookup is available */}
-        <BitCreator className="" data={data?.creator} />
+        <BitCreator className="" data={user} />
         <div className="my-8 w-full border-t border-white/30" />
         <RepositoryInfo
           className=""

@@ -21,7 +21,7 @@ import UserInfo from './navbar/UserInfo';
 
 interface NavbarProps {
   className?: string;
-  user?: CurrentUserInfo;
+  user?: CurrentUserInfo | null;
 }
 
 const notifications = [
