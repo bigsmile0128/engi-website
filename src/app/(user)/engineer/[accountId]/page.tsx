@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import UserAnalytics from '~/components/pages/account/UserAnalytics';
 import UserInfo from '~/components/pages/account/UserInfo';
-import { Engineer } from '~/types';
+import { CurrentUserInfo, Engineer } from '~/types';
 import { getCurrentUser, getUser } from '../../api';
 
 export default async function AccountDetails({
@@ -14,7 +14,7 @@ export default async function AccountDetails({
   let user: Engineer;
   if (params.accountId === 'me') {
     // current user will not be null because layout.tsx will fetch and redirect if missing
-    const currentUser = await getCurrentUser();
+    const currentUser = (await getCurrentUser()) as CurrentUserInfo;
     const walletId = currentUser.wallet.Id;
     user = await getUser(walletId);
   } else {

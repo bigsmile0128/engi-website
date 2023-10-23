@@ -4,6 +4,7 @@ import CopyButton from '~/components/CopyButton';
 import EngiAmount from '~/components/EngiAmount';
 import Transactions from '~/components/pages/wallet/Transactions';
 import MoveEngiButton from './MoveEngiButton';
+import { CurrentUserInfo } from '~/types';
 
 export default async function WalletPage({
   params,
@@ -13,7 +14,7 @@ export default async function WalletPage({
   };
 }) {
   const { accountId } = params;
-  const user = await getCurrentUser();
+  const user = (await getCurrentUser()) as CurrentUserInfo;
 
   return (
     <div className={classNames('w-full')}>
@@ -30,7 +31,7 @@ export default async function WalletPage({
             />
           </div>
         </div>
-        {accountId === 'me' && !!user && (
+        {accountId === 'me' && (
           <MoveEngiButton className="hidden laptop:block" user={user} />
         )}
       </div>

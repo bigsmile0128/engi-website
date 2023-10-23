@@ -169,7 +169,7 @@ export default function BitDescription({
         <div className="my-16 w-full border-t border-white/30" />
         <GetStarted bitId={data?.id} />
         <div className="mt-16 px-4">
-          <BitCreator data={data?.creator} />
+          <BitCreator data={user} />
           <div className="my-8 w-full border-t border-white/30" />
           <RepositoryInfo
             className="shrink-0"
