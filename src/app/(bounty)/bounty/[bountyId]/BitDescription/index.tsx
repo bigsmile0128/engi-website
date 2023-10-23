@@ -16,7 +16,7 @@ import TestTable from '~/components/TestTable';
 import TextSkeleton from '~/components/TextSkeleton';
 import Button from '~/components/global/Button/Button';
 import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
-import { Bit } from '~/types';
+import { Bit, Engineer } from '~/types';
 import '~/utils/datetime/dayjs-extend';
 import BitCreator from '../BitCreator';
 import GetStarted from '../GetStarted';
@@ -29,12 +29,14 @@ type BitDescriptionProps = {
   className?: string;
   data?: Bit;
   isLoading?: boolean;
+  user: Engineer;
 };
 
 export default function BitDescription({
   className,
   isLoading,
   data,
+  user,
 }: BitDescriptionProps) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false);
 
@@ -99,7 +101,7 @@ export default function BitDescription({
           )}
         >
           <div className="flex items-center justify-between gap-16">
-            <BitCreator data={data?.creator} />
+            <BitCreator data={user} />
             <RepositoryInfo
               className="shrink-0"
               organizationName={data?.repository?.organization}
@@ -167,7 +169,7 @@ export default function BitDescription({
         <div className="my-16 w-full border-t border-white/30" />
         <GetStarted bitId={data?.id} />
         <div className="mt-16 px-4">
-          <BitCreator data={data?.creator} />
+          <BitCreator data={user} />
           <div className="my-8 w-full border-t border-white/30" />
           <RepositoryInfo
             className="shrink-0"

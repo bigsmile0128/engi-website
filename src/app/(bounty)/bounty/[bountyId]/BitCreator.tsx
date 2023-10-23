@@ -1,11 +1,12 @@
-import Avvvatars from 'avvvatars-react';
 import classNames from 'classnames';
 import { RiUserFill } from 'react-icons/ri';
+import UserAvatar from '~/components/UserAvatar';
 import EngiIcon from '~/components/global/icons/EngiIcon';
+import { Engineer } from '~/types';
 
 type BitCreatorProps = {
   className?: string;
-  data?: string;
+  data: Engineer;
 };
 
 export default function BitCreator({ className, data }: BitCreatorProps) {
@@ -18,15 +19,15 @@ export default function BitCreator({ className, data }: BitCreatorProps) {
       )}
     >
       <div className="shrink-0">
-        {data ? (
-          <Avvvatars value={data} style="shape" size={48} />
-        ) : (
-          <div className="h-12 w-12" />
-        )}
+        <UserAvatar
+          profileImageUrl={data.profileImageUrl}
+          walletId={data.address}
+          size={48}
+        />
       </div>
       <div className="flex flex-col">
         <span className="font-grifter text-xl inline-block truncate">
-          {data ?? 'Author N/A'}
+          {data.displayName ?? data.address}
         </span>
         <div className="flex items-center gap-2">
           <div className="h-5 w-5 grid place-items-center bg-secondary rounded-full">

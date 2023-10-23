@@ -1,7 +1,11 @@
 import { gql } from 'graphql-request';
-import { JobSubmissionsDetailsPagedQueryArguments, Submission } from '~/types';
+import {
+  Bit,
+  JobSubmissionsDetailsPagedQueryArguments,
+  Submission,
+} from '~/types';
 
-export async function getBountyDetails(bitId) {
+export async function getBountyDetails(bitId): Promise<Bit> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {

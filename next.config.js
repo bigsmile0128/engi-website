@@ -19,6 +19,20 @@ const nextConfig = {
     deviceSizes: [640, 768, 1024, 1280, 1536],
     minimumCacheTTL: 60,
     domains: ['engi-email-template.s3.us-west-2.amazonaws.com', 'via.placeholder.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: `${process.env.S3_BUCKET_NAME}.s3.amazonaws.com`,
+        port: '',
+        pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'engi-website-staging.s3.us-west-2.amazonaws.com',
+        port: '',
+        pathname: '**'
+      }
+    ]
   },
   async rewrites() {
     return [

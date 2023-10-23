@@ -194,6 +194,11 @@ export type CurrentUserInfo = {
   balance: number;
   display: string;
   email: string;
+  emailSettings: {
+    jobAlerts: boolean;
+    technicalUpdates: boolean;
+    weeklyNewsletter: boolean;
+  };
   profileImageUrl?: string;
   wallet: {
     Id: string;
@@ -278,4 +283,23 @@ export type Draft = {
   isEditable?: string;
   name?: string;
   tests?: any[];
+};
+
+export type Engineer = {
+  // address is added manually because it's currently missing from schema
+  address: string;
+  balance: number;
+  bountiesCreated: number;
+  bountiesSolved: number;
+  displayName: string;
+  earnings?: {
+    lifetime?: number;
+    pastDay?: number;
+    pastMonth?: number;
+    pastWeek?: number;
+  };
+  email: string;
+  profileImageUrl?: string;
+  rootOrganization: string;
+  technologies?: string[];
 };

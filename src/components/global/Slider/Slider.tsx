@@ -1,21 +1,22 @@
+'use client';
+
 import classNames from 'classnames';
 import React from 'react';
-import dynamic from 'next/dynamic';
+import ReactSlider, { ReactSliderProps } from 'react-slider';
 
-const ReactSlider = dynamic(import('react-slider'), { ssr: false });
-
-export default function Slider(props) {
+export default function Slider(props: ReactSliderProps) {
   return (
     <ReactSlider
       className="mt-8 h-4"
       trackClassName=""
       markClassName=""
       marks
-      ariaLabel={['min', 'max']}
       ariaValuetext={(state) => `${state.valueNow}`}
-      renderThumb={(props, state) => {
+      renderThumb={({ key, ...props }, state) => {
         return (
           <div
+            // key needs to be added to div outside of a spread operator to prevent nextjs error
+            key={key}
             {...props}
             className={classNames(
               props.className,
@@ -28,18 +29,18 @@ export default function Slider(props) {
           </div>
         );
       }}
-      renderTrack={(props) => {
+      renderTrack={({ key, ...props }) => {
         return (
           <div
+            key={key}
             {...props}
             className={classNames(props.className, 'h-0.5 top-[5px]', {
-              'bg-green-primary': props.key === '-1',
-              'bg-[#FFFFFF22]': props.key === '-0' || props.key === '-2',
+              'bg-green-primary': key === '-1',
+              'bg-[#FFFFFF22]': key === '-0' || key === '-2',
             })}
           />
         );
       }}
-      pearling
       {...props}
     />
   );
