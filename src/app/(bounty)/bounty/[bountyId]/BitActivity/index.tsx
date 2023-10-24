@@ -55,6 +55,8 @@ export default async function BitActivity({
           className=""
           organizationName={data.repository?.organization}
           repositoryName={data.repository?.fullName}
+          branch={data.repository?.branch}
+          commit={data.repository?.commit}
         />
       </div>
     </div>
