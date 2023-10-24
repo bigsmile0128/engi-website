@@ -1,10 +1,16 @@
 import { Dialog } from '@headlessui/react';
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { RiCloseLine } from 'react-icons/ri';
+import {
+  RiCheckboxCircleFill,
+  RiCloseLine,
+  RiFlashlightFill,
+  RiRocket2Fill,
+} from 'react-icons/ri';
 import TechnologyIcon from '~/components/TechnologyIcon';
 import Button from '~/components/global/Button/Button';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
+import { BitStatus } from '~/types';
 import useSearchFields from '~/utils/hooks/useSearchFields';
 import { MAX_FUNDING, MIN_FUNDING } from './SearchFilterList';
 
@@ -91,8 +97,8 @@ export default function MobileSearchFilterList({
       open={visible}
       onClose={() => onChangeVisible(false)}
     >
-      <Dialog.Panel className="w-full z-20 py-16">
-        <Dialog.Title className="flex items-center gap-2 max-w-page relative">
+      <Dialog.Panel className="w-full z-20 py-16 flex flex-col overflow-y-auto">
+        <Dialog.Title className="w-full flex items-center gap-2 max-w-page relative">
           <button
             className="hover:text-green-primary"
             onClick={() => onChangeVisible(false)}
@@ -125,7 +131,7 @@ export default function MobileSearchFilterList({
             </Button>
           </div>
         </Dialog.Title>
-        <Dialog.Description className="max-w-page mt-12 tablet:mt-16">
+        <Dialog.Description className="w-full max-w-page mt-12 tablet:mt-16">
           <div>
             <legend className="mb-4">Date of Publication</legend>
             <div className="flex flex-col gap-y-2">
@@ -185,6 +191,15 @@ export default function MobileSearchFilterList({
                   id={'mobile' + value}
                   label={label}
                   checked={value === bitStatus}
+                  icon={
+                    value === BitStatus.COMPLETE ? (
+                      <RiCheckboxCircleFill className="h-4 w-4" />
+                    ) : value == BitStatus.ACTIVE ? (
+                      <RiFlashlightFill className="h-4 w-4" />
+                    ) : (
+                      <RiRocket2Fill className="h-4 w-4" />
+                    )
+                  }
                   onChange={(checked) => {
                     if (checked) {
                       setBitStatus(value);
