@@ -1,6 +1,12 @@
 import classNames from 'classnames';
+import {
+  RiCheckboxCircleFill,
+  RiFlashlightFill,
+  RiRocket2Fill,
+} from 'react-icons/ri';
 import TechnologyIcon from '~/components/TechnologyIcon';
 import Checkbox from '~/components/global/Checkbox/Checkbox';
+import { BitStatus } from '~/types';
 import useSearchFields from '~/utils/hooks/useSearchFields';
 
 interface SearchFilterListProps {
@@ -116,6 +122,15 @@ export default function SearchFilterList({
                 key={value}
                 id={value}
                 label={label}
+                icon={
+                  value === BitStatus.COMPLETE ? (
+                    <RiCheckboxCircleFill className="h-4 w-4" />
+                  ) : value == BitStatus.ACTIVE ? (
+                    <RiFlashlightFill className="h-4 w-4" />
+                  ) : (
+                    <RiRocket2Fill className="h-4 w-4" />
+                  )
+                }
                 checked={value === searchParams.get('status')}
                 onChange={(checked) => {
                   const newSearchParams = new URLSearchParams(searchParams);
