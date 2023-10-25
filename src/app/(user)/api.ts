@@ -1,6 +1,6 @@
 import { gql } from 'graphql-request';
 import { cookies } from 'next/headers';
-import { CurrentUserInfo, Engineer } from '~/types';
+import { CurrentUserInfo, Engineer, Transaction } from '~/types';
 
 export async function getCurrentUser(): Promise<CurrentUserInfo | null> {
   const response = await fetch(
@@ -204,4 +204,59 @@ export async function getPresignedUrl(contentType: string): Promise<string> {
   }
 
   return json.data.user.getProfileImagePreSignedUrl;
+}
+
+export async function getLatestTransactions(
+  walletId: string,
+  numResults?: number
+): Promise<Transaction[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
+    {
+      cache: 'no-store',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify({
+        query: gql`
+          query LatestTransactions($accountId: String!, $limit: Int!) {
+            transactions(
+              query: {
+                accountId: $accountId
+                skip: 0
+                limit: $limit
+                sortBy: CREATED_DESCENDING
+              }
+            ) {
+              items {
+                number
+                hash
+                dateTime
+                type
+                executor
+                isSuccessful
+                otherParticipants
+                amount
+                jobId
+              }
+              totalCount
+            }
+          }
+        `,
+        variables: {
+          accountId: walletId,
+          limit: numResults ?? 3,
+        },
+      }),
+    }
+  );
+
+  const json = await response.json();
+  if (json.errors?.length > 0) {
+    throw new Error(JSON.stringify(json.errors[0], undefined, '  '));
+  }
+
+  return json.data.transactions.items;
 }
