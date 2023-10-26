@@ -27,17 +27,17 @@ const EARN_LINKS: MenuLinkProps[] = [
   {
     title: 'UI Development',
     description: 'React, TypeScript, CSS',
-    href: '/bounty?technology=TYPE_SCRIPT&technology=CSS',
+    href: '/bounty?technology=typescript&technology=css',
   },
   {
     title: 'Smart Contracts',
     description: 'Solidity, Solana, ink!',
-    href: '/bounty?technology=SOLIDITY&technology=SOLANG&technology=INK',
+    href: '/bounty?technology=solidity&technology=solang&technology=ink',
   },
   {
     title: 'Libraries & APIs',
     description: 'Python, Rust, Dotnet',
-    href: '/bounty?technology=PYTHON',
+    href: '/bounty?technology=python',
   },
 ];
 
