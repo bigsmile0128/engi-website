@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ColumnDef,
   createColumnHelper,
@@ -22,6 +24,7 @@ const TransactionTime = dynamic(() => import('./TransactionTime'), {
 
 type TransactionTableProps = {
   className?: string;
+  columnVisibility?: Record<string, any>;
   data?: Transaction[];
   isLoading?: boolean;
   numPages?: number;
@@ -31,6 +34,7 @@ export default function TransactionTable({
   className,
   data,
   isLoading,
+  columnVisibility,
 }: TransactionTableProps) {
   const columnHelper = createColumnHelper<Transaction>();
   const columns: ColumnDef<Transaction>[] = useMemo(
@@ -175,6 +179,9 @@ export default function TransactionTable({
     data: _data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    state: {
+      columnVisibility,
+    },
   });
 
   return (

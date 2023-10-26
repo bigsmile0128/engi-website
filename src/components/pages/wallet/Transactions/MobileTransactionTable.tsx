@@ -1,3 +1,5 @@
+'use client';
+
 import classNames from 'classnames';
 import dynamic from 'next/dynamic';
 import PolkadotSvg from 'public/img/wallet/polkadot.svg';
