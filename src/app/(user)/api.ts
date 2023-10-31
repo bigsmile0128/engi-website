@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request';
 import { cookies } from 'next/headers';
-import { CurrentUserInfo } from '~/types';
+import { CurrentUserInfo, Engineer, Transaction } from '~/types';
 
-export async function getCurrentUser(): Promise<CurrentUserInfo> {
+export async function getCurrentUser(): Promise<CurrentUserInfo | null> {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
     {
@@ -52,10 +52,60 @@ export async function getCurrentUser(): Promise<CurrentUserInfo> {
   );
 
   const json = await response.json();
+  if (json.errors?.length > 0 || !json.data.auth.currentUser) {
+    return null;
+  }
+
+  return json.data.auth.currentUser;
+}
+
+export async function getUser(accountId): Promise<Engineer> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
+    {
+      cache: 'no-store',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify({
+        query: gql`
+          query AccountDetails($id: String!) {
+            engineer(id: $id) {
+              displayName
+              profileImageUrl
+              email
+              balance
+              bountiesSolved
+              bountiesCreated
+              earnings {
+                pastDay
+                pastWeek
+                pastMonth
+                lifetime
+              }
+              techologies
+              repositoriesWorkedOn
+              rootOrganization
+            }
+          }
+        `,
+        variables: {
+          id: accountId,
+        },
+      }),
+    }
+  );
+
+  const json = await response.json();
   if (json.errors?.length > 0) {
     throw new Error(JSON.stringify(json.errors[0], undefined, '  '));
   }
-  return json.data.auth.currentUser;
+
+  // add account ID manually until it's added to schema
+  // BLOCKED BY: https://github.com/engi-network/engi-blockchain-gql/issues/137
+  return { ...json.data.engineer, address: accountId };
 }
 
 export async function getBalance(): Promise<string> {
@@ -120,4 +170,93 @@ export async function getWalletId(): Promise<string> {
   }
 
   return json.data.auth.currentUser.wallet.Id;
+}
+
+// get presigned URL for uploading images to S3
+export async function getPresignedUrl(contentType: string): Promise<string> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
+    {
+      cache: 'no-store',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify({
+        query: gql`
+          mutation getPresignedUrl($contentType: String!) {
+            user {
+              getProfileImagePreSignedUrl(contentType: $contentType)
+            }
+          }
+        `,
+        variables: {
+          contentType,
+        },
+      }),
+    }
+  );
+
+  const json = await response.json();
+  if (json.errors?.length > 0) {
+    throw new Error(JSON.stringify(json.errors[0], undefined, '  '));
+  }
+
+  return json.data.user.getProfileImagePreSignedUrl;
+}
+
+export async function getLatestTransactions(
+  walletId: string,
+  numResults?: number
+): Promise<Transaction[]> {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/graphql`,
+    {
+      cache: 'no-store',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Cookie: cookies().toString(),
+      },
+      body: JSON.stringify({
+        query: gql`
+          query LatestTransactions($accountId: String!, $limit: Int!) {
+            transactions(
+              query: {
+                accountId: $accountId
+                skip: 0
+                limit: $limit
+                sortBy: CREATED_DESCENDING
+              }
+            ) {
+              items {
+                number
+                hash
+                dateTime
+                type
+                executor
+                isSuccessful
+                otherParticipants
+                amount
+                jobId
+              }
+              totalCount
+            }
+          }
+        `,
+        variables: {
+          accountId: walletId,
+          limit: numResults ?? 3,
+        },
+      }),
+    }
+  );
+
+  const json = await response.json();
+  if (json.errors?.length > 0) {
+    throw new Error(JSON.stringify(json.errors[0], undefined, '  '));
+  }
+
+  return json.data.transactions.items;
 }

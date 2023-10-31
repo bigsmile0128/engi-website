@@ -9,6 +9,8 @@ export default async function BountiesContainer({
   const { accountId } = params;
   const user = await getCurrentUser();
   return (
-    <Bounties walletId={accountId === 'me' ? user.wallet.Id : accountId} />
+    <Bounties
+      walletId={accountId === 'me' && user ? user.wallet.Id : accountId}
+    />
   );
 }

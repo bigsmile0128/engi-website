@@ -1,13 +1,13 @@
-import React from 'react';
 import classNames from 'classnames';
 import EngiAmount from '~/components/EngiAmount';
-import { ChevronRightIcon } from '@heroicons/react/outline';
+import { Engineer } from '~/types';
 
 type UserAnalyticsProps = {
   className?: string;
+  data: Engineer;
 };
 
-export default function UserAnalytics({ className }: UserAnalyticsProps) {
+export default function UserAnalytics({ className, data }: UserAnalyticsProps) {
   return (
     <div
       className={classNames(
@@ -20,27 +20,28 @@ export default function UserAnalytics({ className }: UserAnalyticsProps) {
       <div className="flex items-start gap-x-16 laptop:whitespace-nowrap">
         <div className="flex flex-col gap-2">
           <span className="text-xl text-secondary">Bounties Created</span>
-          <span className="font-grifter text-4xl">3,022</span>
+          <span className="font-grifter text-4xl">{data.bountiesCreated}</span>
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-xl text-secondary">Bounties Coded</span>
-          <span className="font-grifter text-4xl">1,745</span>
+          <span className="font-grifter text-4xl">{data.bountiesSolved}</span>
         </div>
         <div className="flex flex-col gap-2">
           <span className="text-xl text-secondary">Amount Earned</span>
           <EngiAmount
-            value={'1230000000000000000'}
+            value={data?.earnings?.lifetime ?? 0}
             iconClassName="h-5 w-auto -mt-1 mr-2"
             valueClassName="font-grifter text-4xl"
           />
         </div>
       </div>
-      <button className="flex items-center gap-2 hover:text-green-primary focus-green-primary self-center">
+      {/* TODO: enable when we have more stats to show */}
+      {/* <button className="flex items-center gap-2 hover:text-green-primary focus-green-primary self-center">
         <span className="font-bold text-sm whitespace-nowrap">
           Show all stats
         </span>
         <ChevronRightIcon className="h-5 w-5" />
-      </button>
+      </button> */}
     </div>
   );
 }

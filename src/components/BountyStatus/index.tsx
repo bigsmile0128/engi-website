@@ -6,8 +6,9 @@ import pluralize from 'pluralize';
 import { ImSpinner } from 'react-icons/im';
 import {
   RiCheckFill,
+  RiCheckboxCircleFill,
   RiFlashlightFill,
-  RiIndeterminateCircleFill,
+  RiRocket2Fill,
   RiTrophyFill,
 } from 'react-icons/ri';
 import { Bit, BitStatus, SubmissionStatus } from '~/types';
@@ -45,11 +46,11 @@ export default function BountyStatus({
             }}
           >
             {data.status === BitStatus.COMPLETE ? (
-              <RiCheckFill className="h-6 w-auto text-green-primary" />
+              <RiCheckboxCircleFill className="h-6 w-auto text-green-primary" />
             ) : data.status == BitStatus.ACTIVE ? (
               <RiFlashlightFill className="h-6 w-auto text-purple-primary" />
             ) : (
-              <RiIndeterminateCircleFill className="h-6 w-auto text-white/30" />
+              <RiRocket2Fill className="h-6 w-auto text-white/30" />
             )}
           </div>
           <div className="flex flex-col gap-1">

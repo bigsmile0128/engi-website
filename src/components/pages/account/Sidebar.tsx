@@ -32,11 +32,12 @@ const items = [
     path: '/bounties',
     icon: <EngiIcon className="h-4 w-auto" />,
   },
-  {
-    name: 'Stats',
-    path: '/stats',
-    icon: <RiLineChartFill className="h-6 w-auto" />,
-  },
+  // TODO: enable when data is available
+  // {
+  //   name: 'Stats',
+  //   path: '/stats',
+  //   icon: <RiLineChartFill className="h-6 w-auto" />,
+  // },
   {
     name: 'Notification Settings',
     path: '/notification-settings',

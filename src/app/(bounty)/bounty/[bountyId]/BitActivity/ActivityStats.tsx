@@ -8,6 +8,7 @@ import {
 } from 'react-icons/ri';
 import Avatar from '~/components/Avatar';
 import Statistic from '~/components/Statistic';
+import UserAvatar from '~/components/UserAvatar';
 import Button from '~/components/global/Button/Button';
 import ProgressBar from '~/components/global/ProgressBar/ProgressBar';
 import { Bit, Submission } from '~/types';
@@ -42,7 +43,11 @@ export default function ActivityStats({
                 {users.slice(0, 10).map((user) => (
                   // cap at displaying 10 user icons
                   <div key={user.address} className="-ml-2">
-                    <Avatar value={user.address} style="shape" size={32} />
+                    <UserAvatar
+                      profileImageUrl={user.profileImageUrl}
+                      walletId={user.address}
+                      size={32}
+                    />
                   </div>
                 ))}
               </div>

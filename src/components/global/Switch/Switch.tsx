@@ -6,7 +6,7 @@ type SwitchProps = {
   checked: boolean;
   className?: string;
   label?: string;
-  onChange: (checked) => void;
+  onChange: (checked: boolean) => void;
 };
 
 export default function Switch({
