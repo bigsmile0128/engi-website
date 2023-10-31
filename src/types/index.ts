@@ -200,6 +200,7 @@ export type CurrentUserInfo = {
     weeklyNewsletter: boolean;
   };
   profileImageUrl?: string;
+  userType?: string;
   wallet: {
     Id: string;
     Raw: string;
@@ -302,4 +303,5 @@ export type Engineer = {
   profileImageUrl?: string;
   rootOrganization: string;
   technologies?: string[];
+  userType?: string;
 };

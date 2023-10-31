@@ -6,13 +6,14 @@ import useUploadS3 from '~/utils/hooks/useUploadS3';
 export type UpdateUserArgs = {
   displayName?: string;
   imageFile?: File;
+  userType?: string;
 };
 
 export default function useUpdateUser() {
   const uploadMutation = useUploadS3();
   return useMutation<void, any, any>(
     ['updateUser'],
-    async ({ displayName, imageFile }: UpdateUserArgs) => {
+    async ({ displayName, imageFile, userType }: UpdateUserArgs) => {
       const args: any = {};
 
       if (displayName) {
@@ -21,6 +22,9 @@ export default function useUpdateUser() {
       if (imageFile) {
         const profileImageUrl = await uploadMutation.mutateAsync(imageFile);
         args.profileImageUrl = profileImageUrl;
+      }
+      if (userType) {
+        args.userType = userType;
       }
 
       const { data } = await axios.post('/api/graphql', {
@@ -54,6 +58,7 @@ export default function useUpdateUser() {
                 }
                 balance
                 wallet
+                userType
               }
             }
           }
