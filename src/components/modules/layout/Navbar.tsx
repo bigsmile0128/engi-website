@@ -10,7 +10,19 @@ import { Fragment, useState } from 'react';
 import Avvvatars from 'avvvatars-react';
 import MenuSvg from 'public/img/home/menu.svg';
 import { HiChevronRight } from 'react-icons/hi';
-import { RiNotification4Line } from 'react-icons/ri';
+import {
+  RiArticleLine,
+  RiFileCodeLine,
+  RiFileTextLine,
+  RiGithubLine,
+  RiGroupLine,
+  RiHtml5Line,
+  RiLinksLine,
+  RiMailLine,
+  RiNotification4Line,
+  RiSearchLine,
+} from 'react-icons/ri';
+import { SiRust } from 'react-icons/si';
 import Logo from '~/components/Logo';
 import Button from '~/components/global/Button/Button';
 import { CurrentUserInfo } from '~/types';
@@ -170,72 +182,104 @@ export default function Navbar({ className, user }: NavbarProps) {
                 </div>
                 <div className="mt-6">
                   <nav className="grid grid-cols-1 gap-4">
-                    <Link
-                      href="/"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Home</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <Link
-                      href="/bounty"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Earn</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <Link
-                      href="/hire"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Create</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <p className="font-bold text-white text-2xl mt-8">Learn</p>
-                    <Link
-                      href="/about"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>About</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <Link
-                      href="/contact"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Contact</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <Link
-                      href="https://links.engi.network/cookbook"
-                      target="_blank"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Documentation</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
-                    <Link
-                      href="https://links.engi.network/lightpaper"
-                      target="_blank"
-                      className="flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300 border-b border-gray-500"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <span>Litepaper</span>
-                      <ChevronRightIcon className="h-6" />
-                    </Link>
+                    <MobileNavItem
+                      label="Bounties"
+                      links={[
+                        {
+                          icon: (
+                            <RiSearchLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Browse all bounties',
+                          href: '/bounty',
+                        },
+                        {
+                          icon: (
+                            <RiHtml5Line className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'UI Development',
+                          href: '/bounty?technology=typescript&technology=css',
+                        },
+                        {
+                          icon: (
+                            <RiArticleLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Smart Contracts',
+                          href: '/bounty?technology=solidity&technology=solang&technology=ink',
+                        },
+                        {
+                          icon: (
+                            <SiRust className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Libraries & APIs',
+                          href: '/bounty?technology=python',
+                        },
+                      ]}
+                    />
+                    <MobileNavItem
+                      label="Create"
+                      links={[
+                        {
+                          icon: (
+                            <RiFileTextLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Create a bounty',
+                          href: '/hire',
+                        },
+                        {
+                          icon: (
+                            <RiGithubLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Github Authorization',
+                          href: 'https://github.com/apps/engi-github-app',
+                        },
+                        {
+                          icon: (
+                            <RiFileCodeLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'CLI',
+                          href: 'https://github.com/engi-network/cli',
+                        },
+                      ]}
+                    />
+                    <MobileNavItem
+                      label="Learn"
+                      links={[
+                        {
+                          icon: (
+                            <RiLinksLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Blockchain',
+                          href: 'https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Fmainnet.engi.network%3A9944#/explorer',
+                        },
+                        {
+                          icon: (
+                            <RiArticleLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Litepaper',
+                          href: 'https://links.engi.network/lightpaper',
+                        },
+                        {
+                          icon: (
+                            <RiGroupLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'About',
+                          href: '/about',
+                        },
+                        {
+                          icon: (
+                            <RiMailLine className="h-6 w-6 text-purple-primary" />
+                          ),
+                          label: 'Contact',
+                          href: '/contact',
+                        },
+                      ]}
+                    />
                   </nav>
                 </div>
                 {user ? (
                   <UserInfo className="mt-auto mx-auto" user={user} />
                 ) : (
                   <>
-                    <BlockchainHealth className="mt-auto mx-auto" isStacked />
                     <Link href="/login" onClick={() => setIsOpen(false)}>
                       <button
                         className={classNames(
@@ -351,6 +395,56 @@ function Notification({ className, description, unread }: NotificationProps) {
         </span>
         <span className="text-sm text-secondary">40 min ago</span>
       </div>
+    </div>
+  );
+}
+
+function MobileNavItem({
+  className,
+  label,
+  links,
+}: {
+  className?: string;
+  label: string;
+  links: {
+    href: string;
+    icon: JSX.Element;
+    label: string;
+  }[];
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className={classNames('', className)}>
+      <button
+        className="w-full flex items-center justify-between py-4 font-semibold text-white hover:text-gray-300"
+        onClick={() => setIsOpen((isOpen) => !isOpen)}
+      >
+        <span>{label}</span>
+        <ChevronRightIcon
+          className={classNames('h-6 w-6', isOpen ? 'rotate-90' : '')}
+        />
+      </button>
+      <Transition
+        show={isOpen}
+        enter="transition-opacity duration-75"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        <div className="flex flex-col gap-3 pb-4">
+          {links.map(({ icon, label, href }) => (
+            <Link href={href} key={href}>
+              <button className="flex items-center gap-2">
+                {icon}
+                <span>{label}</span>
+              </button>
+            </Link>
+          ))}
+        </div>
+      </Transition>
+      <div className="border-b border-gray-500" />
     </div>
   );
 }
