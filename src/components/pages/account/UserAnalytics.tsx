@@ -17,7 +17,7 @@ export default function UserAnalytics({ className, data }: UserAnalyticsProps) {
       )}
     >
       <span className="font-bold text-2xl">Analytics</span>
-      <div className="flex items-start gap-x-16 laptop:whitespace-nowrap">
+      <div className="flex flex-wrap items-start gap-x-16 gap-y-4 laptop:whitespace-nowrap">
         <div className="flex flex-col gap-2">
           <span className="text-xl text-secondary">Bounties Created</span>
           <span className="font-grifter text-4xl">{data.bountiesCreated}</span>
