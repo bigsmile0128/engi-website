@@ -46,8 +46,7 @@ export default function SearchResultsHeader({
   );
 
   const onSearch = useCallback(
-    (e) => {
-      const value = e.target.value;
+    (value: string) => {
       const newSearchParams = new URLSearchParams(searchParams);
       if (!value) {
         newSearchParams.delete('query');
@@ -59,7 +58,10 @@ export default function SearchResultsHeader({
     [searchParams, onChange]
   );
 
-  const debouncedSearch = useMemo(() => debounce(onSearch, 300), [onSearch]);
+  const debouncedSearch = useMemo(
+    () => debounce((e) => onSearch(e.target.value), 300),
+    [onSearch]
+  );
 
   return (
     <header className={classNames('', className)}>
