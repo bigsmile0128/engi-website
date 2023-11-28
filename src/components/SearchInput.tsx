@@ -1,7 +1,7 @@
 import { Combobox, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { useRouter } from 'next/navigation';
-import { Fragment, InputHTMLAttributes, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { RiSearchLine } from 'react-icons/ri';
 import { Bit } from '~/types';
@@ -22,7 +22,7 @@ export default function SearchInput({
   placeholder,
   value,
   onChange,
-}: InputHTMLAttributes<HTMLInputElement> & SearchInputProps) {
+}: SearchInputProps) {
   const router = useRouter();
   const [query, setQuery] = useState('');
 
