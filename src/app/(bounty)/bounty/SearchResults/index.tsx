@@ -16,8 +16,10 @@ interface SearchResultsProps {
   isError: boolean;
   isLoading: boolean;
   numPages: number;
+  onChange: (searchParams: URLSearchParams) => void;
   refresh: () => void;
   results: Bit[];
+  searchParams: URLSearchParams;
 }
 
 export default function SearchResults({
@@ -28,13 +30,12 @@ export default function SearchResults({
   isError,
   error,
   refresh,
+  onChange,
+  searchParams,
 }: SearchResultsProps) {
-  const searchParams = new URLSearchParams();
-  // TODO: add pagination support
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const setSearchParams = (...args: any) => {};
+  const page = searchParams.get('page');
   // use 1-based pagination instead of 0-based
-  const page = Number(searchParams.get('page')) || 0;
+  const pageNum = Number(page) || 1;
 
   return (
     <div
@@ -112,14 +113,15 @@ export default function SearchResults({
                   <AiOutlineEllipsis className="h-5 w-5 text-gray-300" />
                 }
                 onPageChange={(e) => {
-                  const newSearchParams = Object.fromEntries(searchParams);
-                  if (e.selected === 0) {
-                    delete newSearchParams.page;
+                  const newSearchParams = new URLSearchParams(searchParams);
+                  // 0-based pagination
+                  const newPage = e.selected + 1;
+                  if (newPage === 1) {
+                    newSearchParams.delete('page');
+                  } else {
+                    newSearchParams.set('page', newPage.toString());
                   }
-                  setSearchParams({
-                    ...Object.fromEntries(searchParams),
-                    page: (e.selected + 1).toString(),
-                  });
+                  onChange(newSearchParams);
                 }}
                 className="flex items-center self-center mt-8 pb-8"
                 pageClassName=""
@@ -127,7 +129,7 @@ export default function SearchResults({
                 pageLinkClassName="flex items-center justify-center w-8 text-gray-300 hover:text-gray-100"
                 activeLinkClassName="!text-green-400 font-bold"
                 // library uses 0-based pagination, but we use 1-based for consistency with URL
-                forcePage={page - 1}
+                forcePage={pageNum - 1}
               />
             </>
           )}
