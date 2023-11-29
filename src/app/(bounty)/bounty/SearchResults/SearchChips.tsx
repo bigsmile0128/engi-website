@@ -29,6 +29,9 @@ export default function SearchChips({
     value: any;
   }[] = [];
   Object.entries(params).forEach(([key, value]) => {
+    if (key === 'page') {
+      return;
+    }
     // URL key does not always match field in graphQL
     const fieldKey = keyToSchemaMap[key];
     if (Array.isArray(value)) {

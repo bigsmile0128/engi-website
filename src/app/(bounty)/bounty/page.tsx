@@ -24,13 +24,13 @@ export default function BitDiscovery() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams() ?? new URLSearchParams();
-  const setSearchParams = (searchParams: URLSearchParams) => {
-    router.push(pathname + '?' + searchParams.toString());
-  };
 
   const { isLoading, isError, data, refetch, error } = useBits(
     formatSearchParams(searchParams)
   );
+  const setSearchParams = (searchParams: URLSearchParams) => {
+    router.push(pathname + '?' + searchParams.toString());
+  };
 
   return (
     <div className="max-w-page flex flex-col mt-12 mb-24">
@@ -67,6 +67,8 @@ export default function BitDiscovery() {
             isError={isError}
             error={error}
             refresh={refetch}
+            searchParams={searchParams}
+            onChange={setSearchParams}
           />
         </div>
       </div>
@@ -75,8 +77,9 @@ export default function BitDiscovery() {
 }
 
 function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
+  const pageNum = parseInt(searchParams.get('page') ?? '1') - 1;
   const query: BitsQueryArguments = {
-    skip: 0,
+    skip: 10 * pageNum,
     limit: 10,
     orderByDirection: OrderByDirection.DESC,
   };
@@ -147,6 +150,5 @@ function formatSearchParams(searchParams: URLSearchParams): BitsQueryArguments {
     query.search = searchParams.get('query') ?? '';
   }
 
-  // TODO: handle skip
   return query;
 }
