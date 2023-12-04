@@ -14,7 +14,7 @@ import typescriptSrc from 'public/img/home/typescript.png';
 import csharpSrc from 'public/img/home/csharp.png';
 import cplusplusSrc from 'public/img/home/cplusplus.png';
 import { SiGithub } from 'react-icons/si';
-import { COOKBOOK_NOTION_SITE_BASE_URL } from '~/utils/links';
+import { COOKBOOK_NOTION_SITE_BASE_URL, GITHUB_APP_LINK } from '~/utils/links';
 
 type WorkflowsSuperchargedProps = {
   className?: string;
@@ -24,7 +24,6 @@ const ETHEREUM_SOLIDITY_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const SOLANA_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const INK_POLKADOT_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const FIGMA_PLUGIN_DOWNLOAD_URL = 'coming soon';
-const ENGI_GITHUB_APP = 'https://github.com/apps/engi-github-app';
 const TYPESCRIPT_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const CSHARP_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
 const CPP_DOCS_COOKBOOK = COOKBOOK_NOTION_SITE_BASE_URL;
@@ -69,7 +68,7 @@ export const integrations = [
   {
     icon: <SiGithub className="h-12 w-auto" />,
     name: 'GitHub',
-    href: ENGI_GITHUB_APP,
+    href: GITHUB_APP_LINK,
     cta: 'Authorize Github App',
   },
   {

@@ -16,6 +16,7 @@ import useGithubRepositories from '~/utils/hooks/useGithubRepositories';
 import useGithubRepositoryBranches from '~/utils/hooks/useGithubRepositoryBranches';
 import Nav from '../[draftId]/Nav';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
+import { GITHUB_APP_LINK } from '~/utils/links';
 
 type NewDraftProps = {
   walletId: string;
@@ -113,11 +114,7 @@ export default function NewDraft({ walletId }: NewDraftProps) {
           <label className="font-bold text-xl">Repository</label>
           <a
             className="text-xl text-green-primary hover:text-green-primary/80"
-            href={`https://github.com/apps/${
-              /localhost/.test(process.env.NEXT_PUBLIC_API_URL ?? '')
-                ? 'engi-test'
-                : 'engi-github-app'
-            }/installations/new?state=uuid`}
+            href={GITHUB_APP_LINK}
             target="_blank"
             rel="noreferrer"
           >
