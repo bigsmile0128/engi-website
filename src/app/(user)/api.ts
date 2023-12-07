@@ -43,6 +43,7 @@ export async function getCurrentUser(): Promise<CurrentUserInfo | null> {
                 }
                 balance
                 wallet
+                userType
               }
             }
           }
@@ -88,6 +89,7 @@ export async function getUser(accountId): Promise<Engineer> {
               techologies
               repositoriesWorkedOn
               rootOrganization
+              userType
             }
           }
         `,
