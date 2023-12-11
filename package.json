@@ -90,6 +90,7 @@
     "react-xarrows": "^2.0.2",
     "recharts": "2.1.12",
     "remark-gfm": "^3.0.1",
+    "sharp": "^0.33.0",
     "store2": "^2.14.2",
     "storybook-addon-mock": "^4.3.0",
     "web3": "1.7.4",

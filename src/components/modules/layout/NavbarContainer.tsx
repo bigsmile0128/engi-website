@@ -1,7 +1,13 @@
 import { getCurrentUser } from '~/app/(user)/api';
+import { CurrentUserInfo } from '~/types';
 import Navbar from './Navbar';
 
 export default async function NavbarContainer() {
-  const user = await getCurrentUser();
+  let user: CurrentUserInfo | null = null;
+  try {
+    user = await getCurrentUser();
+  } catch (error) {
+    console.error(error);
+  }
   return <Navbar user={user} />;
 }
