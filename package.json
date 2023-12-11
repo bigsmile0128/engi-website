@@ -90,14 +90,12 @@
     "react-xarrows": "^2.0.2",
     "recharts": "2.1.12",
     "remark-gfm": "^3.0.1",
-    "sharp": "^0.32.6",
     "store2": "^2.14.2",
     "storybook-addon-mock": "^4.3.0",
     "web3": "1.7.4",
     "webpack-bundle-analyzer": "^4.5.0"
   },
   "devDependencies": {
-    "@engi.network/design-matcher": "1.1.18",
     "@faker-js/faker": "^6.0.0",
     "@storybook/addon-actions": "^7.5.1",
     "@storybook/addon-backgrounds": "^7.5.1",
