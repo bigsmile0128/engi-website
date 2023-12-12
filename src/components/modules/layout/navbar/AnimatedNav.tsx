@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { COOKBOOK_LINK, GITHUB_APP_LINK } from '~/utils/links';
+import { COOKBOOK_LINK, GITHUB_APP_LINK, LIGHTPAPER_LINK } from '~/utils/links';
 
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import freelancersSrc from 'public/img/articles/freelancers.jpg';
@@ -68,7 +68,7 @@ const LEARN_LINKS = [
   {
     title: 'Litepaper',
     description: 'Network in Broad Strokes',
-    href: 'https://links.engi.network/lightpaper',
+    href: LIGHTPAPER_LINK,
   },
   {
     title: 'About',

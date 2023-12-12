@@ -30,7 +30,7 @@ import { isDev } from '~/utils';
 import BlockchainHealth from './BlockchainHealth';
 import AnimatedNav from './navbar/AnimatedNav';
 import UserInfo from './navbar/UserInfo';
-import { GITHUB_APP_LINK } from '~/utils/links';
+import { GITHUB_APP_LINK, LIGHTPAPER_LINK } from '~/utils/links';
 
 interface NavbarProps {
   className?: string;
@@ -257,7 +257,7 @@ export default function Navbar({ className, user }: NavbarProps) {
                             <RiArticleLine className="h-6 w-6 text-purple-primary" />
                           ),
                           label: 'Litepaper',
-                          href: 'https://links.engi.network/lightpaper',
+                          href: LIGHTPAPER_LINK,
                         },
                         {
                           icon: (
