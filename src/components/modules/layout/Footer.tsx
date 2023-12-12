@@ -4,6 +4,7 @@ import Link from 'next/link';
 import LogoAltSvg from 'public/img/home/logo_alt.svg';
 import EmailRegistration from '~/components/pages/home/EmailRegistration';
 import SocialMedia from './SocialMedia';
+import { LIGHTPAPER_LINK } from '~/utils/links';
 
 interface FooterProps {
   className?: string;
@@ -77,9 +78,7 @@ export default function Footer({ className }: FooterProps) {
               <h4 className="text-lg font-bold text-green-primary">
                 Learn More Resources
               </h4>
-              <Link href="https://links.engi.network/lightpaper">
-                Litepaper
-              </Link>
+              <Link href={LIGHTPAPER_LINK}>Litepaper</Link>
               {/*<Link href="/press">Press</Link>*/}
               <Link
                 target="_blank"

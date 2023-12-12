@@ -8,3 +8,5 @@ export const GITHUB_APP_LINK = `https://github.com/apps/${
     ? 'engi-github-app-staging'
     : 'engi-github-app'
 }/installations/new?state=uuid`;
+export const LIGHTPAPER_LINK =
+  'https://engi-website.s3.us-east-2.amazonaws.com/Engi-Lightpaper.pdf';

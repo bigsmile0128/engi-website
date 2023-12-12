@@ -10,6 +10,7 @@ import FigmaCodeBlock from './FigmaCodeBlock';
 import FigmaStoryExample from './FigmaStoryExample';
 import Arrow from '~/components/global/Arrow/Arrow';
 import Link from 'next/link';
+import { LIGHTPAPER_LINK } from '~/utils/links';
 
 interface FigmaPreviewProps {
   className?: string;
@@ -67,7 +68,7 @@ export default function FigmaPreview({ className }: FigmaPreviewProps) {
             {/* slide into view when this div is visible */}
             <div ref={ref}></div>
             {/* specific units to line up button precisely with grid on XL */}
-            <Link href="https://links.engi.network/lightpaper">
+            <Link href={LIGHTPAPER_LINK}>
               <Button
                 variant="primary"
                 className="mt-8 xl:mt-[3.2rem]"
