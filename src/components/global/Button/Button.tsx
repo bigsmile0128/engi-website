@@ -75,7 +75,7 @@ export default function Button({
       >
         {inProgress && (
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <AiOutlineLoading className="text-2xl !text-green-primary visible animate-spin" />
+            <AiOutlineLoading className="text-2xl !text-purple-primary visible animate-spin" />
           </div>
         )}
         {children}
