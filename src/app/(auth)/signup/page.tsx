@@ -10,6 +10,7 @@ import PropagateLoader from 'react-spinners/PropagateLoader';
 import { toast } from 'react-toastify';
 import Button from '~/components/global/Button/Button';
 import Input from '~/components/global/Input/Input';
+import EngiText from '~/components/global/icons/EngiText';
 import { SubstrateAccount } from '~/types';
 import { useRegisterUser } from '~/utils/auth/api';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
@@ -81,6 +82,7 @@ export default function Signup() {
         </div>
       ) : account ? (
         <>
+          <EngiText className="h-auto w-36 mb-12" />
           <p className="font-bold text-3xl">Enter your email</p>
           <p className="mt-8 text-xl text-secondary w-full text-center">
             Enter the email you would like to use on Engi. You can always update
