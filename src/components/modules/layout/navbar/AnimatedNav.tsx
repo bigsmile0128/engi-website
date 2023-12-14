@@ -146,7 +146,7 @@ export default function AnimatedNav({ className }: AnimatedNavProps) {
           <motion.div layout className="h-8 bg-transparent" />
           <motion.div
             className={classNames(
-              'bg-dropdown !backdrop-blur-[100px] rounded-3xl flex overflow-hidden p-8',
+              'bg-[#161B284D] !backdrop-blur-[100px] rounded-3xl flex overflow-hidden p-8',
               'min-h-[180px]'
             )}
             layout
