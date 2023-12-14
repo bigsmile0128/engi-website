@@ -6,20 +6,24 @@ import { MdLaptop } from 'react-icons/md';
 import { RiGroupLine } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import useUpdateUser from '../(user)/engineer/[accountId]/useUpdateUser';
+import { useRouter } from 'next/navigation';
 
 type PersonalizationProps = {
   className?: string;
   currentUserType?: string;
   onSuccess?: () => void;
+  refreshOnSuccess?: boolean;
 };
 
 export default function Personalization({
   className,
   currentUserType,
   onSuccess,
+  refreshOnSuccess,
 }: PersonalizationProps) {
   const [userType, setUserType] = useState(currentUserType);
   const mutation = useUpdateUser();
+  const router = useRouter();
 
   const onChangeUserType = useCallback(
     (userType) => {
@@ -34,13 +38,16 @@ export default function Personalization({
   useEffect(() => {
     if (mutation.isSuccess) {
       toast.success('Successfully updated preferences.');
+      if (refreshOnSuccess) {
+        router.refresh();
+      }
       onSuccess?.();
       mutation.reset();
     } else if (mutation.isError) {
       toast.error('Failed to update preferences.');
       mutation.reset();
     }
-  }, [mutation, onSuccess]);
+  }, [mutation, onSuccess, refreshOnSuccess, router]);
 
   return (
     <div className={classNames('flex flex-col gap-4', className)}>

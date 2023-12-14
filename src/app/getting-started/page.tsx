@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation';
 import { getCurrentUser } from '../(user)/api';
 import EngiText from '~/components/global/icons/EngiText';
 import Personalization from './Personalization';
+import Button from '~/components/global/Button/Button';
+import Link from 'next/link';
 
 export default async function GettingStarted() {
   const user = await getCurrentUser();
@@ -22,7 +24,18 @@ export default async function GettingStarted() {
       <Personalization
         className="mt-12 w-full max-w-md"
         currentUserType={user.userType}
+        refreshOnSuccess
       />
+      <Link
+        href={
+          user.userType === 'BUSINESS' ? '/getting-started/github' : '/bounties'
+        }
+        className="w-full max-w-md"
+      >
+        <Button variant="primary" className="mt-12 w-full">
+          Continue
+        </Button>
+      </Link>
     </div>
   );
 }
