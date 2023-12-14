@@ -16,7 +16,6 @@ import useGithubRepositories from '~/utils/hooks/useGithubRepositories';
 import useGithubRepositoryBranches from '~/utils/hooks/useGithubRepositoryBranches';
 import Nav from '../[draftId]/Nav';
 import useSubstrateAccounts from '~/utils/hooks/useSubstrateAccounts';
-import { GITHUB_APP_LINK } from '~/utils/links';
 
 type NewDraftProps = {
   walletId: string;
@@ -114,7 +113,7 @@ export default function NewDraft({ walletId }: NewDraftProps) {
           <label className="font-bold text-xl">Repository</label>
           <a
             className="text-xl text-green-primary hover:text-green-primary/80"
-            href={GITHUB_APP_LINK}
+            href={process.env.NEXT_PUBLIC_GITHUB_APP_LINK}
             target="_blank"
             rel="noreferrer"
           >

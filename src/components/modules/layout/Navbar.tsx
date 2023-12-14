@@ -30,7 +30,7 @@ import { isDev } from '~/utils';
 import BlockchainHealth from './BlockchainHealth';
 import AnimatedNav from './navbar/AnimatedNav';
 import UserInfo from './navbar/UserInfo';
-import { GITHUB_APP_LINK, LIGHTPAPER_LINK } from '~/utils/links';
+import { LIGHTPAPER_LINK } from '~/utils/links';
 
 interface NavbarProps {
   className?: string;
@@ -231,7 +231,7 @@ export default function Navbar({ className, user }: NavbarProps) {
                             <RiGithubLine className="h-6 w-6 text-purple-primary" />
                           ),
                           label: 'Github Authorization',
-                          href: GITHUB_APP_LINK,
+                          href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
                         },
                         {
                           icon: (

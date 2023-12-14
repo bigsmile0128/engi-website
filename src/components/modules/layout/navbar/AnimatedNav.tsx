@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { RiArrowRightSLine } from 'react-icons/ri';
-import { COOKBOOK_LINK, GITHUB_APP_LINK, LIGHTPAPER_LINK } from '~/utils/links';
+import { COOKBOOK_LINK, LIGHTPAPER_LINK } from '~/utils/links';
 
 import { ChevronRightIcon } from '@heroicons/react/outline';
 import freelancersSrc from 'public/img/articles/freelancers.jpg';
@@ -50,7 +50,7 @@ const CREATE_LINKS = [
   {
     title: 'Github Authorization',
     description: 'Access to Test & Open PRs',
-    href: GITHUB_APP_LINK,
+    href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
   },
   {
     title: 'CLI',
