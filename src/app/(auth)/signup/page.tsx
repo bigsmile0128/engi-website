@@ -88,43 +88,48 @@ export default function Signup() {
             Enter the email you would like to use on Engi. You can always update
             this later.
           </p>
-          <label
-            htmlFor="email"
-            className="font-bold text-xl mt-12 text-left w-full"
-          >
-            Email address
-          </label>
-          <Input
-            name="email"
-            className="mt-4 w-full"
-            value={email}
-            type="email"
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter an email address..."
-          />
-          <Button
-            className={classNames(
-              'mt-12 flex items-center justify-center w-full'
-            )}
-            variant="primary"
-            disabled={
-              !account || !email || isLoading || registerMutation.isLoading
-            }
-            onClick={() =>
+          <form
+            className="w-full mt-12 flex flex-col"
+            onSubmit={(e) => {
+              e.preventDefault();
               registerMutation.mutate({
                 address: account.address,
                 display: account.meta.name,
                 source: account.meta.source,
                 email,
-              })
-            }
+              });
+            }}
           >
-            {registerMutation.isLoading ? (
-              <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
-            ) : (
-              <span>Continue</span>
-            )}
-          </Button>
+            <label
+              htmlFor="email"
+              className="font-bold text-xl text-left w-full"
+            >
+              Email address
+            </label>
+            <Input
+              name="email"
+              className="mt-4 w-full"
+              value={email}
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter an email address..."
+            />
+            <Button
+              className={classNames(
+                'mt-12 flex items-center justify-center w-full'
+              )}
+              variant="primary"
+              disabled={
+                !account || !email || isLoading || registerMutation.isLoading
+              }
+            >
+              {registerMutation.isLoading ? (
+                <AiOutlineLoading className="animate-spin text-lg text-green-primary" />
+              ) : (
+                <span>Continue</span>
+              )}
+            </Button>
+          </form>
         </>
       ) : (
         <div className="flex flex-col items-center bg-black/20 w-full p-8">
