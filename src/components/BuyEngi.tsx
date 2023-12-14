@@ -109,11 +109,11 @@ export default function BuyEngi({ className, walletId }: BuyEngiProps) {
   return (
     <div
       className={classNames(
-        'border border-white/60 flex flex-col bg-dropdown',
+        'border border-white/60 flex flex-col bg-[#161B284D]',
         className
       )}
     >
-      <div className="px-4 py-2 flex items-center justify-between bg-dropdown border-b border-white/60">
+      <div className="px-4 py-2 flex items-center justify-between bg-[#161B284D] border-b border-white/60">
         <div className="flex items-center gap-2">
           <EngiCircleIcon className="h-4 w-4 text-green-primary" />
           <span className="text-secondary">You can always buy ENGI later</span>

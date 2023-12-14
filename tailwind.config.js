@@ -29,7 +29,7 @@ module.exports = {
       },
       backgroundColor: {
         secondary: '#232323',
-        dropdown: '#161B284D',
+        dropdown: '#232323cc',
       },
       spacing: {
         88: '22rem',

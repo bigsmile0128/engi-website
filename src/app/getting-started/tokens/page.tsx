@@ -1,8 +1,6 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getCurrentUser } from '~/app/(user)/api';
 import BuyEngi from '~/components/BuyEngi';
-import Button from '~/components/global/Button/Button';
 
 export default async function GettingStartedTokens() {
   const user = await getCurrentUser();
