@@ -14,7 +14,7 @@ import typescriptSrc from 'public/img/home/typescript.png';
 import csharpSrc from 'public/img/home/csharp.png';
 import cplusplusSrc from 'public/img/home/cplusplus.png';
 import { SiGithub } from 'react-icons/si';
-import { COOKBOOK_NOTION_SITE_BASE_URL, GITHUB_APP_LINK } from '~/utils/links';
+import { COOKBOOK_NOTION_SITE_BASE_URL } from '~/utils/links';
 
 type WorkflowsSuperchargedProps = {
   className?: string;
@@ -68,7 +68,7 @@ export const integrations = [
   {
     icon: <SiGithub className="h-12 w-auto" />,
     name: 'GitHub',
-    href: GITHUB_APP_LINK,
+    href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
     cta: 'Authorize Github App',
   },
   {
