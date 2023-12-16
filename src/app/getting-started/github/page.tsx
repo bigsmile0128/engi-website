@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { RiGithubFill } from 'react-icons/ri';
 import Button from '~/components/global/Button/Button';
 import EngiText from '~/components/global/icons/EngiText';
-import { GITHUB_APP_LINK } from '~/utils/links';
 
 export default async function GettingStartedGitHub() {
   return (
@@ -21,7 +20,10 @@ export default async function GettingStartedGitHub() {
             Skip
           </Button>
         </Link>
-        <Link href={GITHUB_APP_LINK} className="w-full max-w-md">
+        <Link
+          href={process.env.NEXT_PUBLIC_GITHUB_APP_LINK}
+          className="w-full max-w-md"
+        >
           <Button variant="primary" className="mt-12 w-full">
             Authorize
           </Button>
