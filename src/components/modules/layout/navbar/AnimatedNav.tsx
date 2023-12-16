@@ -50,7 +50,7 @@ const CREATE_LINKS = [
   {
     title: 'Github Authorization',
     description: 'Access to Test & Open PRs',
-    href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
+    href: `${process.env.NEXT_PUBLIC_GITHUB_APP_LINK}`,
   },
   {
     title: 'CLI',

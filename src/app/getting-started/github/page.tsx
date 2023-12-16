@@ -21,7 +21,7 @@ export default async function GettingStartedGitHub() {
           </Button>
         </Link>
         <Link
-          href={process.env.NEXT_PUBLIC_GITHUB_APP_LINK}
+          href={`${process.env.NEXT_PUBLIC_GITHUB_APP_LINK}`}
           className="w-full max-w-md"
         >
           <Button variant="primary" className="mt-12 w-full">

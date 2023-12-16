@@ -68,7 +68,7 @@ export const integrations = [
   {
     icon: <SiGithub className="h-12 w-auto" />,
     name: 'GitHub',
-    href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
+    href: `${process.env.NEXT_PUBLIC_GITHUB_APP_LINK}`,
     cta: 'Authorize Github App',
   },
   {

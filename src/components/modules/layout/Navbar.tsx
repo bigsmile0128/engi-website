@@ -231,7 +231,7 @@ export default function Navbar({ className, user }: NavbarProps) {
                             <RiGithubLine className="h-6 w-6 text-purple-primary" />
                           ),
                           label: 'Github Authorization',
-                          href: process.env.NEXT_PUBLIC_GITHUB_APP_LINK,
+                          href: `${process.env.NEXT_PUBLIC_GITHUB_APP_LINK}`,
                         },
                         {
                           icon: (
