@@ -178,9 +178,7 @@ export const useLogOut = () =>
       query: gql`
         mutation LogOut {
           auth {
-            logout {
-              result
-            }
+            logout
           }
         }
       `,
