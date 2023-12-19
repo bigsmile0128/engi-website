@@ -11,7 +11,7 @@ type AuthenticationFailedProps = {
 
 export default function AuthenticationFailed({
   className,
-  text = 'Your login expired. Please log in again.',
+  text = 'Please log in.',
 }: AuthenticationFailedProps) {
   const onLogin = useCallback(() => {
     // after successfully logging in, reload page

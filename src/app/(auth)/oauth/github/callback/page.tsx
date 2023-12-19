@@ -11,7 +11,6 @@ import {
   RiLoader3Line,
 } from 'react-icons/ri';
 import { useMutation } from 'react-query';
-import AuthenticationFailed from '~/components/AuthenticationFailed';
 import Button from '~/components/global/Button/Button';
 import { GraphQlError } from '~/utils/GraphQlError';
 import useAxios from '~/utils/hooks/useAxios';
@@ -39,11 +38,6 @@ export default function GithubCallback() {
         <div className="flex-1 flex flex-col items-center gap-8">
           <RiLoader3Line className="text-8xl animate-spin" />
           <span className="font-medium text-3xl">Loading...</span>
-        </div>
-      ) : mutation.error instanceof GraphQlError &&
-        mutation.error.code === 'AUTHENTICATION_FAILED' ? (
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <AuthenticationFailed />
         </div>
       ) : mutation.isError ? (
         <div className="flex-1 flex flex-col items-center gap-8">
