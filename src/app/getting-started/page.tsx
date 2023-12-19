@@ -1,14 +1,19 @@
-import { redirect } from 'next/navigation';
-import { getCurrentUser } from '../(user)/api';
-import EngiText from '~/components/global/icons/EngiText';
-import Personalization from './Personalization';
-import Button from '~/components/global/Button/Button';
 import Link from 'next/link';
+import AuthenticationFailed from '~/components/AuthenticationFailed';
+import Button from '~/components/global/Button/Button';
+import EngiText from '~/components/global/icons/EngiText';
+import { getCurrentUser } from '../(user)/api';
+import Personalization from './Personalization';
 
 export default async function GettingStarted() {
   const user = await getCurrentUser();
+
   if (!user) {
-    redirect('/login');
+    return (
+      <div className="w-full py-24 max-w-page flex items-center justify-center">
+        <AuthenticationFailed text="Please log in." />
+      </div>
+    );
   }
 
   return (

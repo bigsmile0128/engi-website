@@ -11,7 +11,9 @@ import {
   RiLoader3Line,
 } from 'react-icons/ri';
 import { useMutation } from 'react-query';
+import AuthenticationFailed from '~/components/AuthenticationFailed';
 import Button from '~/components/global/Button/Button';
+import { GraphQlError } from '~/utils/GraphQlError';
 import useAxios from '~/utils/hooks/useAxios';
 
 export default function GithubCallback() {
@@ -37,6 +39,11 @@ export default function GithubCallback() {
         <div className="flex-1 flex flex-col items-center gap-8">
           <RiLoader3Line className="text-8xl animate-spin" />
           <span className="font-medium text-3xl">Loading...</span>
+        </div>
+      ) : mutation.error instanceof GraphQlError &&
+        mutation.error.code === 'AUTHENTICATION_FAILED' ? (
+        <div className="flex-1 flex flex-col items-center justify-center">
+          <AuthenticationFailed />
         </div>
       ) : mutation.isError ? (
         <div className="flex-1 flex flex-col items-center gap-8">
@@ -70,23 +77,28 @@ function useGithubCallback() {
   return useMutation<void, any, GithubEnrollmentArgs>(
     ['githubEnrollment'],
     async ({ code, installationId }) => {
-      const { data } = await axios.post('/api/graphql', {
-        query: gql`
-          mutation GithubEnrollment($code: String!, $installationId: String!) {
-            github {
-              enroll(args: { code: $code, installationId: $installationId })
+      try {
+        await axios.post('/api/graphql', {
+          query: gql`
+            mutation GithubEnrollment(
+              $code: String!
+              $installationId: String!
+            ) {
+              github {
+                enroll(args: { code: $code, installationId: $installationId })
+              }
             }
-          }
-        `,
-        variables: {
-          code,
-          installationId,
-        },
-      });
-
-      if (data.errors?.length > 0) {
-        throw new Error(
-          data?.errors?.[0]?.message ?? 'Unable to enroll Github repositories.'
+          `,
+          variables: {
+            code,
+            installationId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+        throw new GraphQlError(
+          'Unable to enroll Github repositories.',
+          error.response?.data?.errors?.[0]?.extensions?.code
         );
       }
     }
