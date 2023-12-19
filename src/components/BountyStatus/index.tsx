@@ -29,6 +29,8 @@ export default function BountyStatus({
   const isCreator = data.creator === userId;
   const submissionStatus = data.currentUserSubmissions?.[0]?.status;
 
+  const prUrl = data.solution?.pullRequestUrl ?? data.solution?.patchUrl;
+
   return (
     <div
       className={classNames(
@@ -36,7 +38,7 @@ export default function BountyStatus({
         className
       )}
     >
-      {isCreator ? (
+      {!isCreator ? (
         <div className="flex items-center gap-4">
           <div
             className="shrink-0 h-12 w-12 grid place-items-center border border-white/20 rounded-full"
@@ -66,10 +68,15 @@ export default function BountyStatus({
                   {/* https://linear.app/engi/issue/ENGIN-1212/references-to-author-or-user-to-include-additional-information */}
                   <Avvvatars value="Test User" size={24} style="shape" />
                   <Link
-                    href={data.solution?.pullRequestUrl ?? ''}
-                    className="font-medium underline"
+                    href={prUrl ?? ''}
+                    className={classNames(
+                      'font-medium',
+                      prUrl
+                        ? 'underline hover:text-green-primary'
+                        : 'pointer-events-none'
+                    )}
                   >
-                    View pull request
+                    {prUrl ? 'View pull request' : 'Pull request missing.'}
                   </Link>
                 </>
               ) : data.status === BitStatus.ACTIVE ? (
