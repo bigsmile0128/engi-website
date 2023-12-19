@@ -1,5 +1,5 @@
 import { uuid4 } from '@sentry/utils';
-import Avvvatars from 'avvvatars-react';
+import Avatar from '~/components/Avatar';
 import classNames from 'classnames';
 import { useMemo } from 'react';
 import Button from '~/components/global/Button/Button';
@@ -50,7 +50,7 @@ export default function SubstrateAccountItem({
           isLoading ? 'skeleton' : ''
         )}
       >
-        <Avvvatars value={avatarId} style="shape" size={56} />
+        <Avatar value={avatarId} style="shape" size={56} />
       </div>
       <div className="flex flex-col ml-4 overflow-hidden">
         <div

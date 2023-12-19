@@ -1,6 +1,7 @@
 'use client';
 
-import Avatar from 'avvvatars-react';
+import dynamic from 'next/dynamic';
+const Avatar = dynamic(() => import('avvvatars-react'), { ssr: false });
 
-// return this in a client component because it will not render properly in a server component
+// SSR must be off to prevent hydration error with svg generated
 export default Avatar;
