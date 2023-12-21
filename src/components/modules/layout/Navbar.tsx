@@ -5,9 +5,10 @@ import { ChevronLeftIcon, XIcon } from '@heroicons/react/outline';
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import Avvvatars from 'avvvatars-react';
+import { usePathname, useSearchParams } from 'next/navigation';
 import MenuSvg from 'public/img/home/menu.svg';
 import { HiChevronRight } from 'react-icons/hi';
 import {
@@ -27,10 +28,10 @@ import Logo from '~/components/Logo';
 import Button from '~/components/global/Button/Button';
 import { CurrentUserInfo } from '~/types';
 import { isDev } from '~/utils';
+import { LIGHTPAPER_LINK } from '~/utils/links';
 import BlockchainHealth from './BlockchainHealth';
 import AnimatedNav from './navbar/AnimatedNav';
 import UserInfo from './navbar/UserInfo';
-import { LIGHTPAPER_LINK } from '~/utils/links';
 
 interface NavbarProps {
   className?: string;
@@ -58,6 +59,13 @@ const notifications = [
 export default function Navbar({ className, user }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // auto-close mobile menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname, searchParams]);
 
   return (
     <header className={classNames('relative', className)}>
